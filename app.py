@@ -22,7 +22,9 @@ Welcome to the **Market Risk Intelligence Suite**. Select a dashboard from the s
 | **🔴 Market Regime & Crash Probability** | Multi-factor crash probability model with real-time liquidity and credit analysis. |
 | **🐻 Bear Trap Indicator** | Weighted macro scoring system to detect approaching long-term bear markets. |
 | **🐂 Bull Trap Indicator** | Structural transition detector to identify genuine vs. false bull market rallies. |
-| **📈 ETF Rotation Threshold** | 20-year derivation engine extracting momentum footprints of rotational shifts. |
+| **📊 ETF Rotation Threshold** | 20-year derivation engine extracting momentum footprints of rotational shifts. |
+| **📈 200MA Strategy** | Paul Tudor Jones style trend-following defense and fundamental crash scorecard. |
+| **🎯 ML Meta-Indicator** | HMM & Random Forest meta-model verifying trend-following trade success probability. |
 
 ---
 
