@@ -194,16 +194,23 @@ def build_dashboard():
         if yc_inverted_now or yc_inverted_recent: risk_score += 1; risk_factors.append("🟡 Yield Curve Inversion")
         if two_stage_active: risk_score += 2; risk_factors.append("🔥 TWO-STAGE SIGNAL ACTIVE")
         
-        # Risk level classification
+        # Risk level classification & Action Mapping
         if risk_score == 0: 
             risk_level = "LOW RISK"
             risk_color = "#2ecc71"
+            required_action = "✅ HOLD / REBALANCE: Core trend is healthy. Maintain cyclical exposure."
         elif risk_score <= 3: 
             risk_level = "EARLY WARNING"
             risk_color = "#f1c40f"
-        else: 
+            required_action = "⚠️ CAUTION / REDUCE BETA: Systemic stress rising. Trim overextended cyclicals."
+        elif risk_score <= 6:
             risk_level = "HIGH RISK"
+            risk_color = "#e67e22"
+            required_action = "🔴 DEFENSIVE ROTATION: Exit high-beta. Rotate to XLU, XLP, XLV."
+        else: 
+            risk_level = "CRITICAL"
             risk_color = "#e74c3c"
+            required_action = "🚨 EXIT TO CASH / TREASURIES: Structural breakdown confirmed. Capital preservation is priority."
             
         # --- Render ---
         st.markdown(f"**Analysis Date:** `{actual_date.strftime('%Y-%m-%d')}` | **SPY:** `${spy_price:.2f}` | **VIX:** `{vix_level:.1f}`")
@@ -211,6 +218,8 @@ def build_dashboard():
         
         if risk_factors:
             for rf in risk_factors: st.markdown(f"- {rf}")
+            
+        st.warning(f"**REQUIRED ACTION:** {required_action}")
         
         st.subheader("Indicator Signal Dashboard")
         core4_etfs = ['XLI', 'XLB', 'XLE', 'XLP']
@@ -226,11 +235,14 @@ def build_dashboard():
         # Historical Logic (Simplified for page load speed)
         st.info("Historically, the 'Two-Stage' combined signal provides the highest conviction with >60% predictive power for major corrections.")
 
-    st.subheader("Action Framework")
+    st.subheader("Action Framework Legend")
     st.markdown("""
-    1. **CAUTION**: Review portfolio concentration.
-    2. **HIGH RISK**: Rotate to defensives (XLU, XLP, XLV) or raise 20% cash.
-    3. **CRITICAL**: Immediate action to cash or treasuries.
+    | Risk Level | Description | Recommended Action |
+    |---|---|---|
+    | **🟢 LOW RISK** | Broad institutional accumulation; cyclical trend is intact. | **HOLD / REBALANCE**: Maintain 60-80% cyclical exposure (XLK, XLY, XLI). |
+    | **🟡 EARLY WARNING** | Sector rotation is shifting; defensive groups showing relative strength. | **CAUTION / REDUCE BETA**: Selective profit taking. Reduce high-beta concentration. |
+    | **🟠 HIGH RISK** | Structural trend failure in leaders; VIX elevated; credit spreads widening. | **DEFENSIVE ROTATION**: Exit ALL cyclicals. Move to Defensive ETFs (XLP, XLV, XLU). |
+    | **🔴 CRITICAL** | Systemic liquidity breakdown or exogenous shock detected. | **CASH / TREASURIES**: 100% Capital Preservation. Exit all equity exposure. |
     """)
 
 build_dashboard()
