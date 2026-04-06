@@ -100,9 +100,18 @@ def calc_gex(symbol):
 def dashboard():
     st.title("🔴 Market Regime & Crash Probability Dashboard")
 
-    # Date picker
-    today = datetime.date.today()
-    analysis_date = st.date_input("📅 Analysis Date", value=today, max_value=today)
+    # Sidebar Reset Button
+    if st.sidebar.button("🔄 Reset Master Date"):
+        st.session_state['master_date'] = datetime.date.today()
+        st.sidebar.success("Reset to Today!")
+        st.rerun()
+
+    # Date picker (Master)
+    if 'master_date' not in st.session_state:
+        st.session_state['master_date'] = datetime.date.today()
+        
+    analysis_date = st.date_input("📅 Analysis Date (MASTER)", value=st.session_state['master_date'], max_value=datetime.date.today())
+    st.session_state['master_date'] = analysis_date
     
     with st.spinner("Loading market data..."):
         data = load_market_data()

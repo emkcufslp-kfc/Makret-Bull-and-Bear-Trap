@@ -19,9 +19,14 @@ def dashboard():
     st.title("🐂 Bull Trap Indicator Dashboard")
     st.markdown("Structural transition detector identifying genuine bull markets vs. deceptive bear rallies (bull traps) using a 10-point scoring system.")
     
-    # Date picker
-    today = datetime.date.today()
-    analysis_date = st.date_input("📅 Analysis Date", value=today, max_value=today)
+    # Date Synchronization
+    if 'master_date' not in st.session_state:
+        st.session_state['master_date'] = datetime.date.today()
+        
+    analysis_date = st.session_state['master_date']
+    st.sidebar.markdown(f"🗓️ **Analysis Date:** `{analysis_date}`")
+    if st.sidebar.button("🔄 Sync with Master Date"):
+        st.rerun()
     
     with st.spinner("Loading market data..."):
         data = load_bull_data()
@@ -155,21 +160,22 @@ def dashboard():
     st.subheader("Bull Market Strength Gauge")
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
-        value=total_score,
-        title={'text': "Bull Market Score (0-10)"},
+        value=total_score * 10,
+        number={'suffix': "%", 'valueformat': '.1f'},
+        title={'text': "Bull Market Strength"},
         gauge={
-            'axis': {'range': [0, 10]},
+            'axis': {'range': [0, 100], 'tickformat': '.0f', 'ticksuffix': '%'},
             'bar': {'color': "darkgreen"},
             'steps': [
-                {'range': [0, 4], 'color': "#e74c3c"},
-                {'range': [4, 6], 'color': "#f1c40f"},
-                {'range': [6, 8], 'color': "#2ecc71"},
-                {'range': [8, 10], 'color': "#27ae60"},
+                {'range': [0, 40], 'color': "#e74c3c"},
+                {'range': [40, 60], 'color': "#f1c40f"},
+                {'range': [60, 80], 'color': "#2ecc71"},
+                {'range': [80, 100], 'color': "#27ae60"},
             ],
             'threshold': {
                 'line': {'color': "black", 'width': 4},
                 'thickness': 0.75,
-                'value': total_score
+                'value': total_score * 10
             }
         }
     ))

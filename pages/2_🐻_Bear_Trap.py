@@ -29,9 +29,14 @@ def dashboard():
     st.title("🐻 Bear Trap Indicator Dashboard")
     st.markdown("Multi-factor weighted scoring system detecting approaching bear markets across macro, credit, liquidity, and volatility dimensions.")
     
-    # Date picker
-    today = datetime.date.today()
-    analysis_date = st.date_input("📅 Analysis Date", value=today, max_value=today)
+    # Date Synchronization
+    if 'master_date' not in st.session_state:
+        st.session_state['master_date'] = datetime.date.today()
+        
+    analysis_date = st.session_state['master_date']
+    st.sidebar.markdown(f"🗓️ **Analysis Date:** `{analysis_date}`")
+    if st.sidebar.button("🔄 Sync with Master Date"):
+        st.rerun()
     
     with st.spinner("Loading market data..."):
         data = load_bear_data()
@@ -144,9 +149,10 @@ def dashboard():
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=total_score * 100,
+        number={'suffix': "%", 'valueformat': '.1f'},
         title={'text': "Bear Market Risk Score"},
         gauge={
-            'axis': {'range': [0, 100]},
+            'axis': {'range': [0, 100], 'tickformat': '.0f', 'ticksuffix': '%'},
             'bar': {'color': "darkred"},
             'steps': [
                 {'range': [0, 40], 'color': "#2ecc71"},

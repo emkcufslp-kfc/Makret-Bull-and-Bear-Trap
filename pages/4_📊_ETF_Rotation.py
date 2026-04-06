@@ -76,17 +76,17 @@ def build_dashboard():
     spy_200sma = data[benchmark].rolling(window=200).mean()
     market_trend_up = data[benchmark] > spy_200sma
 
-    # =====================================================================
-    # MARKET REGIME STATUS ANALYZER (Top Section)
-    # =====================================================================
-    st.header("⚡ Market Regime Status Analyzer")
-    st.markdown("Select any date to analyze the market regime status **as-of that date** using only data available at that time (no future peeking).")
-    
-    latest_date = data.index[-1].date()
-    analysis_date = st.date_input("Analysis Date", value=latest_date, min_value=data.index[0].date(), max_value=latest_date)
-    analysis_ts = pd.Timestamp(analysis_date)
+    # Date Synchronization
+    if 'master_date' not in st.session_state:
+        st.session_state['master_date'] = datetime.date.today()
+        
+    analysis_date = st.session_state['master_date']
+    st.sidebar.markdown(f"🗓️ **Analysis Date:** `{analysis_date}`")
+    if st.sidebar.button("🔄 Sync with Master Date"):
+        st.rerun()
     
     # Find nearest valid trading day on or before selected date
+    analysis_ts = pd.Timestamp(analysis_date)
     valid_dates = data.index[data.index <= analysis_ts]
     if len(valid_dates) == 0:
         st.error("No data available for the selected date.")

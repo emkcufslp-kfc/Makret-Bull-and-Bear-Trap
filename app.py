@@ -6,6 +6,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# Initialize Master Date in Session State
+if 'master_date' not in st.session_state:
+    import datetime
+    st.session_state['master_date'] = datetime.date.today()
+
 st.title("📊 Market Regime & Risk Intelligence Suite")
 st.markdown("""
 Welcome to the **Market Risk Intelligence Suite**. Select a dashboard from the sidebar to begin analyzing structural market risks.
