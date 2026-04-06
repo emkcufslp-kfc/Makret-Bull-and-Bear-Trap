@@ -1,0 +1,20 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# Environment
+.env
+.venv
+env/
+venv/
+
+# Streamlit secrets (API keys — NEVER commit)
+.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

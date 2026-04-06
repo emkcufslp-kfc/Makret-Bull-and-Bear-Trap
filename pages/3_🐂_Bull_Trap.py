@@ -1,0 +1,156 @@
+import yfinance as yf
+import pandas as pd
+import numpy as np
+import streamlit as st
+import plotly.graph_objects as go
+import datetime
+
+st.set_page_config(page_title="Bull Trap Indicator", page_icon="🐂", layout="wide")
+
+@st.cache_data(ttl=3600)
+def load_bull_data():
+    tickers = ["^TNX", "^IRX", "^VIX", "HYG", "IEF", "SPY", "TIP"]
+    data = yf.download(tickers, period="2y", auto_adjust=True)['Close']
+    if isinstance(data.columns, pd.MultiIndex):
+        data.columns = data.columns.get_level_values(0)
+    return data
+
+def dashboard():
+    st.title("🐂 Bull Trap Indicator Dashboard")
+    st.markdown("Structural transition detector identifying genuine bull markets vs. deceptive bear rallies (bull traps) using a 10-point scoring system.")
+    
+    # Date picker
+    today = datetime.date.today()
+    analysis_date = st.date_input("📅 Analysis Date", value=today, max_value=today)
+    
+    with st.spinner("Loading market data..."):
+        data = load_bull_data()
+    
+    analysis_ts = pd.Timestamp(analysis_date)
+    d = data.loc[:analysis_ts]
+    if len(d) < 200:
+        st.error("Insufficient data for the selected date (need 200+ trading days).")
+        return
+    
+    latest = d.iloc[-1]
+    actual_date = d.index[-1]
+    prev_loc = max(0, len(d) - 23)
+    prev_mo = d.iloc[prev_loc]
+    
+    st.markdown(f"<p style='color: #8892a4;'>Data as of: <b>{actual_date.strftime('%Y-%m-%d')}</b></p>", unsafe_allow_html=True)
+    
+    scores = {}
+    
+    # 1. Yield Curve Re-Steepening
+    curve = latest["^TNX"] - latest["^IRX"]
+    prev_curve = prev_mo["^TNX"] - prev_mo["^IRX"]
+    if curve > 0 and prev_curve < 0: scores["Yield Curve"] = 1.0
+    elif curve > 0: scores["Yield Curve"] = 0.5
+    else: scores["Yield Curve"] = 0.0
+    
+    # 2. VIX Trending Lower
+    vix_mavg = d["^VIX"].rolling(22).mean().iloc[-1]
+    if latest["^VIX"] < 15: scores["VIX Regime"] = 1.0
+    elif latest["^VIX"] < vix_mavg: scores["VIX Regime"] = 0.5
+    else: scores["VIX Regime"] = 0.0
+    
+    # 3. Credit Recovery
+    hyg_ief = d["HYG"] / d["IEF"]
+    if hyg_ief.iloc[-1] > hyg_ief.rolling(22).mean().iloc[-1]:
+        scores["Credit Stress"] = 1.0
+    else:
+        scores["Credit Stress"] = 0.0
+    
+    # 4. Market Breadth
+    spy_200ma = d["SPY"].rolling(200).mean().iloc[-1]
+    if latest["SPY"] > spy_200ma * 1.05: scores["Market Breadth"] = 1.0
+    elif latest["SPY"] > spy_200ma: scores["Market Breadth"] = 0.5
+    else: scores["Market Breadth"] = 0.0
+    
+    # 5. Momentum
+    spy_mom = (latest["SPY"] / prev_mo["SPY"]) - 1
+    if spy_mom > 0.02: scores["Accumulation"] = 1.0
+    elif spy_mom > 0: scores["Accumulation"] = 0.5
+    else: scores["Accumulation"] = 0.0
+    
+    # 6. Liquidity (TIP trend)
+    if "TIP" in d.columns and len(d) >= 22:
+        tip_latest = d["TIP"].iloc[-1]
+        tip_start = d["TIP"].iloc[-22]
+        scores["Liquidity"] = 1.0 if tip_latest > tip_start else 0.0
+    else:
+        scores["Liquidity"] = 0.0
+    
+    # Static scores
+    scores["Valuation"] = 0.5
+    scores["Insider Buying"] = 0.5
+    
+    total_score = min(10.0, sum(scores.values()) + 1.0)
+    
+    # Regime mapping
+    if total_score >= 10: regime, prob = "Structural Bull Market", 95.0
+    elif total_score >= 8: regime, prob = "Strong Bull Market", 85.0
+    elif total_score >= 6: regime, prob = "Early Bull Market", 65.0
+    elif total_score >= 4: regime, prob = "Bull Trap Risk", 40.0
+    else: regime, prob = "Bear Market", 20.0
+    
+    bull_trap_risk = "HIGH" if regime == "Bull Trap Risk" else ("MEDIUM" if total_score < 6 else "LOW")
+    
+    # --- RENDER ---
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Bull Score", f"{total_score:.1f} / 10")
+    col2.metric("Market Regime", regime)
+    col3.metric("Bull Trap Risk", bull_trap_risk)
+    
+    st.metric("Bull Market Probability", f"{prob}%")
+    
+    st.markdown("---")
+    
+    # Indicator breakdown
+    st.subheader("10-Point Scoring Breakdown")
+    indicator_rows = []
+    display_vals = {
+        "Yield Curve": f"{curve:.2f}%",
+        "VIX Regime": f"{latest['^VIX']:.1f}",
+        "Credit Stress": "Recovering" if scores.get("Credit Stress", 0) == 1 else "Tightening",
+        "Market Breadth": f"{((latest['SPY']/spy_200ma)-1)*100:+.1f}% vs 200MA",
+        "Accumulation": f"{spy_mom*100:+.1f}% (1M momentum)",
+        "Liquidity": "Expanding" if scores.get("Liquidity", 0) == 1 else "Tightening",
+        "Valuation": "Neutral (proxy)",
+        "Insider Buying": "Neutral (proxy)"
+    }
+    for name, sc in scores.items():
+        indicator_rows.append({
+            "Indicator": name,
+            "Value": display_vals.get(name, ""),
+            "Score": f"{sc:.1f}",
+            "Status": "🟢 Bullish" if sc >= 0.5 else "🔴 Bearish"
+        })
+    
+    st.dataframe(pd.DataFrame(indicator_rows).set_index("Indicator"), use_container_width=True)
+    
+    # Gauge
+    st.subheader("Bull Market Strength Gauge")
+    fig = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=total_score,
+        title={'text': "Bull Market Score (0-10)"},
+        gauge={
+            'axis': {'range': [0, 10]},
+            'bar': {'color': "darkgreen"},
+            'steps': [
+                {'range': [0, 4], 'color': "#e74c3c"},
+                {'range': [4, 6], 'color': "#f1c40f"},
+                {'range': [6, 8], 'color': "#2ecc71"},
+                {'range': [8, 10], 'color': "#27ae60"},
+            ],
+            'threshold': {
+                'line': {'color': "black", 'width': 4},
+                'thickness': 0.75,
+                'value': total_score
+            }
+        }
+    ))
+    st.plotly_chart(fig, use_container_width=True)
+
+dashboard()
