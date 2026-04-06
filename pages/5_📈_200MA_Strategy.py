@@ -3,7 +3,29 @@ import yfinance as yf
 import pandas as pd
 import datetime
 import os
-import pandas_datareader.data as web
+import datetime
+
+# --- Secure API Key Loading ---
+def get_secret(key, default=""):
+    try:
+        return st.secrets[key]
+    except Exception:
+        pass
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+    return os.environ.get(key, default)
+
+FRED_API_KEY = get_secret("FRED_API_KEY", "")
+fred = None
+try:
+    if FRED_API_KEY:
+        from fredapi import Fred
+        fred = Fred(api_key=FRED_API_KEY)
+except ImportError:
+    pass
 
 # --- Page Config ---
 st.set_page_config(page_title="200MA Strategy", layout="wide")
@@ -68,13 +90,15 @@ def get_200ma_data(target_date):
 
 @st.cache_data(ttl=3600)
 def get_credit_spread_historical(target_date):
+    if not fred:
+        return 327.0
     try:
-        end = target_date
-        start = target_date - datetime.timedelta(days=30)
         # BAMLH0A0HYM2 is the FRED ticker for ICE BofA US High Yield Index OAS
-        df = web.DataReader('BAMLH0A0HYM2', 'fred', start, end)
-        if df.empty: return 327.0
-        latest_val = df.dropna().iloc[-1, 0]
+        s = fred.get_series("BAMLH0A0HYM2")
+        # Filter up to target_date
+        s = s[s.index.date <= target_date]
+        if s.empty: return 327.0
+        latest_val = s.iloc[-1]
         return float(latest_val * 100) # convert % to bps
     except:
         return 327.0 # safe fallback
