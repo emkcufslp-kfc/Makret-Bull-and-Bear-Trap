@@ -163,18 +163,25 @@ def dashboard():
     if liquidity < 0: score += 5
     prob = min(score, 100)
     
-    # Regime classification
-    if prob < 30: regime = "Bull Expansion"
-    elif prob < 50: regime = "Healthy Market"
-    elif prob < 70: regime = "Fragile"
-    elif prob < 85: regime = "Risk-Off"
-    else: regime = "Crash Risk"
+    # Risk level classification
+    if prob < 30: 
+        risk_level = "LOW RISK"
+        risk_color = "#2ecc71"
+    elif prob < 55: 
+        risk_level = "EARLY WARNING"
+        risk_color = "#f1c40f"
+    else: 
+        risk_level = "HIGH RISK"
+        risk_color = "#e74c3c"
     
     # --- RENDER ---
     st.markdown(f"<p style='color: #8892a4;'>Data as of: <b>{actual_date.strftime('%Y-%m-%d')}</b></p>", unsafe_allow_html=True)
     
-    st.metric("Bear Market Probability (6M)", f"{prob}%")
-    st.metric("Market Regime", regime)
+    m1, m2 = st.columns(2)
+    m1.metric("Bear Market Probability (6M)", f"{prob}%")
+    m2.markdown(f"### Risk Level: <span style='color:{risk_color};'>{risk_level}</span>", unsafe_allow_html=True)
+    
+    st.markdown("---")
     
     col1, col2, col3 = st.columns(3)
     col1.metric("SP500", round(sp_price, 2))

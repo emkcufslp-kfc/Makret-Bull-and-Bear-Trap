@@ -102,15 +102,21 @@ def dashboard():
     prob_6m = round(total_score * 0.85 * 100, 1)
     prob_12m = round(total_score * 100, 1)
     
-    if total_score > 0.7: risk_level = "🔴 IMMINENT BEAR MARKET"
-    elif total_score > 0.55: risk_level = "🟠 HIGH RISK"
-    elif total_score > 0.4: risk_level = "🟡 EARLY WARNING"
-    else: risk_level = "🟢 LOW RISK"
+    # Risk level classification
+    if total_score < 0.4: 
+        risk_level = "LOW RISK"
+        risk_color = "#2ecc71"
+    elif total_score < 0.55: 
+        risk_level = "EARLY WARNING"
+        risk_color = "#f1c40f"
+    else: 
+        risk_level = "HIGH RISK"
+        risk_color = "#e74c3c"
     
     # --- RENDER ---
     col1, col2 = st.columns(2)
-    col1.metric("Composite Bear Score", f"{total_score:.2f} / 1.00")
-    col2.metric("Risk Level", risk_level.split(" ", 1)[1] if " " in risk_level else risk_level)
+    col1.metric("Composite Bear Score", f"{total_score*100:.1f}%")
+    col2.markdown(f"### Risk Level: <span style='color:{risk_color};'>{risk_level}</span>", unsafe_allow_html=True)
     
     st.markdown("---")
     

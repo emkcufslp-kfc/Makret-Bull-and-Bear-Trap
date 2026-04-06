@@ -187,12 +187,20 @@ def build_dashboard():
         if yc_inverted_now or yc_inverted_recent: risk_score += 1; risk_factors.append("🟡 Yield Curve Inversion")
         if two_stage_active: risk_score += 2; risk_factors.append("🔥 TWO-STAGE SIGNAL ACTIVE")
         
+        # Risk level classification
+        if risk_score == 0: 
+            risk_level = "LOW RISK"
+            risk_color = "#2ecc71"
+        elif risk_score <= 3: 
+            risk_level = "EARLY WARNING"
+            risk_color = "#f1c40f"
+        else: 
+            risk_level = "HIGH RISK"
+            risk_color = "#e74c3c"
+            
         # --- Render ---
         st.markdown(f"**Analysis Date:** `{actual_date.strftime('%Y-%m-%d')}` | **SPY:** `${spy_price:.2f}` | **VIX:** `{vix_level:.1f}`")
-        if risk_score == 0: st.success("### ✅ REGIME STATUS: ALL CLEAR")
-        elif risk_score <= 2: st.warning("### ⚠️ REGIME STATUS: CAUTION")
-        elif risk_score <= 5: st.error("### 🔴 REGIME STATUS: HIGH RISK")
-        else: st.error("### 🚨 REGIME STATUS: CRITICAL")
+        st.markdown(f"### Current Status: <span style='color:{risk_color};'>{risk_level}</span>", unsafe_allow_html=True)
         
         if risk_factors:
             for rf in risk_factors: st.markdown(f"- {rf}")

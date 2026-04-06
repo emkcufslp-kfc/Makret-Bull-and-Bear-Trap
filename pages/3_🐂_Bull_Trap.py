@@ -109,16 +109,23 @@ def dashboard():
     elif total_score >= 4: regime, prob = "Bull Trap Risk", 40.0
     else: regime, prob = "Bear Market", 20.0
     
-    bull_trap_risk = "HIGH" if regime == "Bull Trap Risk" else ("MEDIUM" if total_score < 6 else "LOW")
+    # Market status classification
+    if total_score >= 6: 
+        market_status = "BULLISH / LOW RISK"
+        status_color = "#2ecc71"
+    elif total_score >= 4: 
+        market_status = "CAUTION / BULL TRAP RISK"
+        status_color = "#f1c40f"
+    else: 
+        market_status = "BEARISH / HIGH RISK"
+        status_color = "#e74c3c"
     
     # --- RENDER ---
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Bull Score", f"{total_score:.1f} / 10")
-    col2.metric("Market Regime", regime)
-    col3.metric("Bull Trap Risk", bull_trap_risk)
+    col1, col2 = st.columns(2)
+    col1.metric("Bull Market Probability", f"{prob}%")
+    col2.markdown(f"### Market Status: <span style='color:{status_color};'>{market_status}</span>", unsafe_allow_html=True)
     
-    st.metric("Bull Market Probability", f"{prob}%")
-    
+    st.markdown(f"**Regime Classification:** `{regime}`")
     st.markdown("---")
     
     # Indicator breakdown
