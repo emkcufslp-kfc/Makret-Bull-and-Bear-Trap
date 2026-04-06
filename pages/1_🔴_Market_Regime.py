@@ -106,13 +106,16 @@ def dashboard():
     
     with st.spinner("Loading market data..."):
         data = load_market_data()
+        # Clean data: Forward fill then drop NaNs to ensure stable readings
+        data = data.ffill().dropna()
     
     # Slice data to analysis date
     analysis_ts = pd.Timestamp(analysis_date)
     d = data.loc[:analysis_ts]
     if d.empty:
-        st.error("No data available for the selected date.")
-        return
+        # Fallback to the latest available day if the specific date isn't found
+        d = data
+        st.warning(f"No data found for {analysis_date}. Showing latest available data.")
     
     latest = d.iloc[-1]
     actual_date = d.index[-1]

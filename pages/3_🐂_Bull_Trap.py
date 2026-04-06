@@ -25,9 +25,16 @@ def dashboard():
     
     with st.spinner("Loading market data..."):
         data = load_bull_data()
+        # Clean data: Forward fill then drop NaNs to ensure stable readings
+        data = data.ffill().dropna()
     
     analysis_ts = pd.Timestamp(analysis_date)
     d = data.loc[:analysis_ts]
+    if d.empty:
+        # Fallback to the latest available day if the specific date isn't found
+        d = data
+        st.warning(f"No data found for {analysis_date}. Showing latest available data.")
+    
     if len(d) < 200:
         st.error("Insufficient data for the selected date (need 200+ trading days).")
         return
