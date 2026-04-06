@@ -106,17 +106,30 @@ def dashboard():
     
     with st.spinner("Loading market data..."):
         data = load_market_data()
-        # Clean data: Forward fill then drop NaNs to ensure stable readings
-        data = data.ffill().dropna()
+        if data.empty:
+            st.error("⚠️ Failed to fetch market data from Yahoo Finance. Please check your internet connection or try again later.")
+            return
+            
+        # Clean data: Forward fill to handle gaps, then drop rows that are still entirely NaN
+        data = data.ffill().dropna(how='all')
+        if data.empty:
+            st.error("⚠️ Market data is empty after cleaning. One or more tickers may be unavailable.")
+            return
     
     # Slice data to analysis date
     analysis_ts = pd.Timestamp(analysis_date)
     d = data.loc[:analysis_ts]
+    
     if d.empty:
         # Fallback to the latest available day if the specific date isn't found
+        st.warning(f"No data found for {analysis_date}. Showing latest available data from {data.index[-1].strftime('%Y-%m-%d')}.")
         d = data
-        st.warning(f"No data found for {analysis_date}. Showing latest available data.")
     
+    # Final safety check before indexing
+    if d.empty:
+        st.error("No valid data available for analysis.")
+        return
+        
     latest = d.iloc[-1]
     actual_date = d.index[-1]
     
