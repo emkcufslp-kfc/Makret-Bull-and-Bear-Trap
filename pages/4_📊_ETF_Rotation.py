@@ -76,14 +76,21 @@ def build_dashboard():
     spy_200sma = data[benchmark].rolling(window=200).mean()
     market_trend_up = data[benchmark] > spy_200sma
 
-    # Date Synchronization
+    # Date Synchronization Logic
     if 'master_date' not in st.session_state:
         st.session_state['master_date'] = datetime.date.today()
+    
+    # Independent local date for this page
+    if 'etf_date' not in st.session_state:
+        st.session_state['etf_date'] = st.session_state['master_date']
         
-    analysis_date = st.session_state['master_date']
-    st.sidebar.markdown(f"🗓️ **Analysis Date:** `{analysis_date}`")
+    # Sync button in sidebar
     if st.sidebar.button("🔄 Sync with Master Date"):
+        st.session_state['etf_date'] = st.session_state['master_date']
         st.rerun()
+        
+    analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['etf_date'])
+    st.session_state['etf_date'] = analysis_date
     
     # Find nearest valid trading day on or before selected date
     analysis_ts = pd.Timestamp(analysis_date)

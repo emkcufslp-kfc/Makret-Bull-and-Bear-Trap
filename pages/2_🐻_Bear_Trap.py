@@ -26,17 +26,21 @@ def load_bear_data():
     return data
 
 def dashboard():
-    st.title("🐻 Bear Trap Indicator Dashboard")
-    st.markdown("Multi-factor weighted scoring system detecting approaching bear markets across macro, credit, liquidity, and volatility dimensions.")
-    
-    # Date Synchronization
+    # Date Synchronization Logic
     if 'master_date' not in st.session_state:
         st.session_state['master_date'] = datetime.date.today()
+    
+    # Independent local date for this page
+    if 'bear_date' not in st.session_state:
+        st.session_state['bear_date'] = st.session_state['master_date']
         
-    analysis_date = st.session_state['master_date']
-    st.sidebar.markdown(f"🗓️ **Analysis Date:** `{analysis_date}`")
+    # Sync button in sidebar
     if st.sidebar.button("🔄 Sync with Master Date"):
+        st.session_state['bear_date'] = st.session_state['master_date']
         st.rerun()
+        
+    analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['bear_date'])
+    st.session_state['bear_date'] = analysis_date
     
     with st.spinner("Loading market data..."):
         data = load_bear_data()
