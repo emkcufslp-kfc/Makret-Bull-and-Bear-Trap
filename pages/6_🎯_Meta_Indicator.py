@@ -24,26 +24,25 @@ if 'meta_date' not in st.session_state:
     st.session_state['meta_date'] = st.session_state['master_date']
 
 # --- Sidebar: Date Synchronization ---
-    # --- Sidebar Configuration ---
-    with st.sidebar:
-        if st.button("🔄 Sync with Master Date", use_container_width=True):
-            st.session_state['meta_date'] = st.session_state['master_date']
-            st.rerun()
+# --- Sidebar Configuration ---
+with st.sidebar:
+    if st.button("🔄 Sync with Master Date", use_container_width=True):
+        st.session_state['meta_date'] = st.session_state['master_date']
+        st.rerun()
 
-    st.divider()
+st.divider()
 
-    analysis_date = st.date_input(
-        "Select Analysis Date",
-        value=st.session_state['meta_date'],
-        key="meta_date_input"
-    )
-    st.session_state['meta_date'] = analysis_date
+analysis_date = st.date_input(
+    "Select Analysis Date",
+    value=st.session_state['meta_date'],
+    key="meta_date_input"
+)
+st.session_state['meta_date'] = analysis_date
 
 st.divider()
 
 # --- Meta Indicator Calculation ---
-with st.spinner("Training Meta-Model and generating probabilities..."):
-    results = get_meta_results(analysis_date)
+class MLMetaIndicator:
     def __init__(self, pt_multiplier=1.5, sl_multiplier=1.0, max_holding_days=15, hmm_components=2, prob_threshold=0.60):
         self.pt_multiplier = pt_multiplier
         self.sl_multiplier = sl_multiplier
