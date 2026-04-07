@@ -146,6 +146,25 @@ if all_data:
     st.markdown(f"**Analysis Date:** `{last_updated}`")
     st.markdown("當標普500跌破200日均線時，區分「事件驅動型回調」與「結構性熊市」的關鍵指標。")
 
+    # --- Scorecard Logic Configuration ---
+    # Manual overrides in sidebar for specific macro items not easily fetchable historically
+    with st.sidebar:
+        st.divider()
+        st.subheader("⚙️ Manual Macro Inputs")
+        richmond_sos = st.number_input("Richmond Fed SOS", value=0.042, format="%.3f")
+        polymarket_odds = st.slider("Polymarket Recession Probability (%)", 0, 100, 35)
+        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=16.74)
+
+    red_lights = 0
+    if credit_spread >= 400: red_lights += 1
+    if richmond_sos >= 0.2: red_lights += 1
+    if polymarket_odds >= 50: red_lights += 1
+
+    buy_signals = 0
+    if current_vix > 30: buy_signals += 1
+    if t2108 < 10: buy_signals += 1
+    if drawdown > 10: buy_signals += 1
+
     # --- Executive Summary: Balanced View ---
     st.markdown("""
     <div style="background-color: #e0f2fe; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-top: 6px solid #0284c7;">
@@ -222,25 +241,6 @@ if all_data:
     col_m3.metric("Status", status_text, delta_color="inverse" if current_sp < current_200ma else "normal")
 
     st.divider()
-
-    # --- Scorecard Logic ---
-    # Manual overrides in sidebar for specific macro items not easily fetchable historically
-    with st.sidebar:
-        st.divider()
-        st.subheader("⚙️ Manual Macro Inputs")
-        richmond_sos = st.number_input("Richmond Fed SOS", value=0.042, format="%.3f")
-        polymarket_odds = st.slider("Polymarket Recession Probability (%)", 0, 100, 35)
-        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=16.74)
-
-    red_lights = 0
-    if credit_spread >= 400: red_lights += 1
-    if richmond_sos >= 0.2: red_lights += 1
-    if polymarket_odds >= 50: red_lights += 1
-
-    buy_signals = 0
-    if current_vix > 30: buy_signals += 1
-    if t2108 < 10: buy_signals += 1
-    if drawdown > 10: buy_signals += 1
 
     # --- Action Banner (Traffic Light Style) ---
     if red_lights > 0:
