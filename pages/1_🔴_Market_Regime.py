@@ -141,7 +141,6 @@ def dashboard():
         mode="gauge+number",
         value=prob,
         title={'text': "Crash Probability (%)"},
-        main={'color': "white"},
         gauge={
             'axis': {'range': [0, 100], 'tickcolor': "white"},
             'bar': {'color': "darkblue"},
