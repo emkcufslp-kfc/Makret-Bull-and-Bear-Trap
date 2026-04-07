@@ -212,19 +212,18 @@ if results is not None:
         # S&P 500 Price Line
         fig_hist.add_trace(go.Scatter(x=hist_df.index, y=hist_df['Close'], name="S&P 500 Price", line=dict(color='white', width=2)))
         
-        # HMM Regime Shading
-        # 0 = High Vol/Risk, 1 = Low Vol/Growth
-        # Note: HMM states are mapped randomly. We identify 'Low Risk' as the one with lower standard deviation.
-        regime_0_mask = hist_df['Regime'] == 0
-        regime_1_mask = hist_df['Regime'] == 1
-        
-        # Shading logic (Expansion vs Contraction)
-        for i in range(len(hist_df)-1):
-            color = "rgba(46, 204, 113, 0.1)" if hist_df['Regime'].iloc[i] == 1 else "rgba(231, 76, 60, 0.15)"
-            fig_hist.add_vrect(
-                x0=hist_df.index[i], x1=hist_df.index[i+1],
-                fillcolor=color, layer="below", line_width=0
-            )
+        # HMM Regime Shading (Add only if column exists in cache)
+        if 'Regime' in hist_df.columns:
+            for i in range(len(hist_df)-1):
+                # 0 = High Vol/Risk, 1 = Low Vol/Growth
+                regime_val = hist_df['Regime'].iloc[i]
+                color = "rgba(46, 204, 113, 0.1)" if regime_val == 1 else "rgba(231, 76, 60, 0.15)"
+                fig_hist.add_vrect(
+                    x0=hist_df.index[i], x1=hist_df.index[i+1],
+                    fillcolor=color, layer="below", line_width=0
+                )
+        else:
+            st.info("💡 Tip: Click 'Clear Cache' in the sidebar or 'Master Date Reset' to initialize the new Regime Visualization engine.")
             
         fig_hist.update_layout(height=450, margin=dict(l=20, r=20, t=20, b=20), xaxis_title="Date", yaxis_title="S&P 500 Price", showlegend=True)
         st.plotly_chart(fig_hist, use_container_width=True)
