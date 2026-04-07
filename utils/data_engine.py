@@ -17,7 +17,14 @@ REF_TICKERS = ["BND", "AGG", "LQD", "BNDX", "SMH", "VUG", "VV", "VO", "VB", "SCH
 
 TICKER_NAMES = {
     'SPY': 'S&P 500 ETF Trust',
-    '^VIX': 'CBOE Volatility Index',
+    'GSPC': 'S&P 500 Index',
+    'VIX': 'CBOE Volatility Index',
+    'VIX3M': 'VIX 3-Month Volatility Index',
+    'MOVE': 'ICE BofA Bond Market Volatility (MOVE)',
+    'HYG': 'iShares iBoxx $ High Yield Corporate Bond ETF',
+    'WALCL': 'Fed Total Assets (Net Liquidity Proxy)',
+    'RRPONTSYD': 'Fed Reverse Repurchase Agreements',
+    'DX-Y.NYB': 'US Dollar Index',
     'XLK': 'Technology Select Sector SPDR',
     'XLY': 'Consumer Discretionary Select Sector SPDR',
     'XLI': 'Industrial Select Sector SPDR',
