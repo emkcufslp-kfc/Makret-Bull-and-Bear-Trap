@@ -31,6 +31,11 @@ with st.sidebar:
         st.session_state['meta_date'] = st.session_state['master_date']
         st.rerun()
 
+    from utils.data_engine import render_sidebar_footer
+    render_sidebar_footer()
+
+    st.divider()
+
     analysis_date = st.date_input(
         "Select Analysis Date",
         value=st.session_state['meta_date'],

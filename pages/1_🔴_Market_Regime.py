@@ -125,6 +125,9 @@ def dashboard():
         st.sidebar.success("Reset to Today!")
         st.rerun()
 
+    from utils.data_engine import render_sidebar_footer
+    render_sidebar_footer()
+
     # Date picker (Master)
     if 'master_date' not in st.session_state:
         st.session_state['master_date'] = datetime.date.today()
