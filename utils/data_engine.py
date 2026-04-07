@@ -172,6 +172,51 @@ def get_gex(target_date):
     """Gamma Exposure Proxy logic (Simplified for dashboard)"""
     return 15.0 # Fixed proxy for now; integration with option-chain logic planned
 
+def get_t2108(target_date):
+    """
+    Calculates T2108 (Percentage of stocks above 40-day Moving Average).
+    Uses the T2108_TICKERS proxy basket for high-performance breadth tracking.
+    """
+    try:
+        df = get_clean_master()
+        ts = pd.Timestamp(target_date)
+        valid = df.index[df.index <= ts]
+        if len(valid) < 40: return 50.0
+        
+        subset = df[T2108_TICKERS].loc[:valid[-1]]
+        ma40 = subset.rolling(window=40).mean()
+        
+        latest_prices = subset.iloc[-1]
+        latest_ma40 = ma40.iloc[-1]
+        
+        above_ma40 = (latest_prices > latest_ma40).sum()
+        total_stocks = len(T2108_TICKERS)
+        
+        return round((above_ma40 / total_stocks) * 100, 2)
+    except Exception as e:
+        st.error(f"T2108 Calculation Error: {e}")
+        return 50.0
+
+def get_sp500_drawdown(target_date):
+    """Calculates S&P 500 drawdown from 1-year (252 terminal days) high."""
+    try:
+        df = get_clean_master()
+        if '^GSPC' not in df.columns: return 0.0
+        
+        ts = pd.Timestamp(target_date)
+        valid = df.index[df.index <= ts]
+        if len(valid) == 0: return 0.0
+        
+        # Look back 1 year (approx 252 trading days)
+        lookback = df['^GSPC'].loc[:valid[-1]].tail(252)
+        peak = lookback.max()
+        current = lookback.iloc[-1]
+        
+        drawdown = (current - peak) / peak * 100
+        return round(drawdown, 2)
+    except:
+        return 0.0
+
 def render_sidebar_footer():
     """Centralized sidebar navigation for the ecosystem."""
     st.markdown("""
