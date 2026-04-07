@@ -99,35 +99,33 @@ def get_master_data():
 
     # --- Step 3: Fetch Data ---
     if missing_tickers or needs_incremental:
-        with st.status("🛠️ Data Engine: Updating Master Records...", expanded=False) as status:
-            delta_df = pd.DataFrame()
+        delta_df = pd.DataFrame()
+        
+        # Case A: Missing some tickers completely
+        if missing_tickers:
+            print(f"Refilling missing tickers: {missing_tickers}")
+            full_missing = yf.download(missing_tickers, start=START_DATE, auto_adjust=True, threads=True)['Close']
+            if isinstance(full_missing.columns, pd.MultiIndex): full_missing.columns = full_missing.columns.get_level_values(0)
             
-            # Case A: Missing some tickers completely
-            if missing_tickers:
-                status.write(f"Refilling missing tickers: {missing_tickers}")
-                full_missing = yf.download(missing_tickers, start=START_DATE, auto_adjust=True, threads=True)['Close']
-                if isinstance(full_missing.columns, pd.MultiIndex): full_missing.columns = full_missing.columns.get_level_values(0)
-                
-                if master_df.empty:
-                    master_df = full_missing
-                else:
-                    master_df = pd.concat([master_df, full_missing], axis=1)
+            if master_df.empty:
+                master_df = full_missing
+            else:
+                master_df = pd.concat([master_df, full_missing], axis=1)
 
-            # Case B: Incremental update for all tickers
-            if needs_incremental:
-                fetch_start = (last_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-                status.write(f"Downloading Incremental Delta from {fetch_start} to {today}")
-                inc_data = yf.download(ALL_TICKERS, start=fetch_start, auto_adjust=True, threads=True)['Close']
-                if isinstance(inc_data.columns, pd.MultiIndex): inc_data.columns = inc_data.columns.get_level_values(0)
-                
-                if not inc_data.empty:
-                    master_df = pd.concat([master_df, inc_data])
-                    # Drop duplicates and sort index
-                    master_df = master_df[~master_df.index.duplicated(keep='last')].sort_index()
+        # Case B: Incremental update for all tickers
+        if needs_incremental:
+            fetch_start = (last_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+            print(f"Downloading Incremental Delta from {fetch_start} to {today}")
+            inc_data = yf.download(ALL_TICKERS, start=fetch_start, auto_adjust=True, threads=True)['Close']
+            if isinstance(inc_data.columns, pd.MultiIndex): inc_data.columns = inc_data.columns.get_level_values(0)
+            
+            if not inc_data.empty:
+                master_df = pd.concat([master_df, inc_data])
+                # Drop duplicates and sort index
+                master_df = master_df[~master_df.index.duplicated(keep='last')].sort_index()
 
-            # Save back to Parquet
-            master_df.to_parquet(MASTER_FILE)
-            status.update(label="✅ Master Data Engine: Updated & Verified", state="complete")
+        # Save back to Parquet
+        master_df.to_parquet(MASTER_FILE)
     
     return master_df.ffill()
 
@@ -136,25 +134,74 @@ def get_clean_master():
     """Cached wrapper for the master data engine."""
     return get_master_data()
 
+from fredapi import Fred
+
+# --- Secret Management ---
+def get_secret(key, default=""):
+    try: return st.secrets[key]
+    except: pass
+    return os.environ.get(key, default)
+
+FRED_API_KEY = get_secret("FRED_API_KEY")
+fred = Fred(api_key=FRED_API_KEY) if FRED_API_KEY else None
+
 # --- Specialized Indicator Pickers ---
 def get_hy_spread(target_date):
-    """Calculates High Yield Spread proxy (HYG vs BND)"""
+    """Fetches High Yield Spread (ICE BofA OAS via FRED or Proxy)"""
+    if fred:
+        try:
+            hy_series = fred.get_series("BAMLH0A0HYM2")
+            ts = pd.Timestamp(target_date)
+            valid = hy_series.index[hy_series.index <= ts]
+            if len(valid) > 0:
+                return float(hy_series.loc[valid[-1]])
+        except: pass
+    
+    # Fallback to ETF Proxy
     try:
         df = get_clean_master()
         if 'HYG' in df.columns and 'BND' in df.columns:
             ts = pd.Timestamp(target_date)
-            # Find nearest available date
             valid = df.index[df.index <= ts]
-            if len(valid) == 0: return 5.0
+            if len(valid) == 0: return 4.5
             idx = valid[-1]
-            # Simple ROC-based risk proxy (since direct spread isn't in YFinance)
             hyg_20 = df['HYG'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
             bnd_20 = df['BND'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
-            # Spread widens when HYG underperforms BND
             return round(4.5 + (bnd_20 - hyg_20) * 100, 2)
-    except:
-        pass
+    except: pass
     return 4.8
+
+def get_richmond_fed_sos(target_date):
+    """Richmond Fed SOS Indicator Proxy (via FRED RICMFM)"""
+    if fred:
+        try:
+            # Richmond Fed Mfg Survey: Shipments/Orders proxy
+            series = fred.get_series("RICMFG")
+            ts = pd.Timestamp(target_date)
+            valid = series.index[series.index <= ts]
+            if len(valid) > 0:
+                val = float(series.loc[valid[-1]])
+                # Map Fed Manufacturing (-50 to +50) to SOS Prob (0.0 to 1.0)
+                # Lower index = higher recession risk
+                prob = max(0, min(1, 0.2 - (val / 100))) 
+                return round(prob, 3)
+        except: pass
+    return 0.142 # Baseline fallback
+
+def get_polymarket_prob(target_date):
+    """Polymarket Recession Probability (Simulated based on VIX/DXY)"""
+    try:
+        df = get_clean_master()
+        ts = pd.Timestamp(target_date)
+        valid = df.index[df.index <= ts]
+        if len(valid) > 0:
+            idx = valid[-1]
+            vix = df['^VIX'].loc[idx]
+            # Market odds typically rise with volatility
+            sim_prob = 15 + (vix / 60) * 40 
+            return round(sim_prob, 0)
+    except: pass
+    return 35.0
 
 def get_move(target_date):
     """Fetches MOVE Bond Volatility index"""
