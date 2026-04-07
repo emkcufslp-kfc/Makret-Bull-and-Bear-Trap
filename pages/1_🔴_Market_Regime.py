@@ -207,49 +207,46 @@ def dashboard():
         risk_level = "HIGH RISK"
         risk_color = "#e74c3c"
     
-    # --- RENDER ---
-    st.markdown(f"<p style='color: #8892a4;'>Data as of: <b>{actual_date.strftime('%Y-%m-%d')}</b></p>", unsafe_allow_html=True)
-    
-    m1, m2 = st.columns(2)
-    m1.metric("Bear Market Probability (6M)", f"{prob}%")
-    m2.markdown(f"### Risk Level: <span style='color:{risk_color};'>{risk_level}</span>", unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    col1, col2, col3 = st.columns(3)
-    col1.metric("SP500", round(sp_price, 2))
-    col1.metric("SP500 200DMA", round(dma200, 2))
-    col2.metric("VIX", round(vix, 2))
-    col2.metric("MOVE", round(move, 2))
-    col3.metric("HY Credit Spread", round(hy, 2))
-    col3.metric("DXY", round(dxy, 2))
-    
-    st.subheader("Market Structure")
-    col4, col5 = st.columns(2)
-    col4.metric("Breadth (SPY vs 200DMA)", "Above" if breadth_pct > 0.5 else "Below")
-    col4.metric("Dealer Net GEX", round(spy_gex, 2))
-    col5.metric("Put Wall", put_wall if put_wall else "—")
-    col5.metric("Liquidity Index", round(liquidity, 2))
-    
-    if sp_price < dma200 and move > 100 and spy_gex < 0:
-        st.error("⚠️ SYSTEMIC RISK ALERT")
-    
-    # Gauge
-    st.subheader("Crash Probability Gauge")
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=prob,
-        title={'text': "Crash Probability"},
-        gauge={
-            'axis': {'range': [0, 100]},
-            'steps': [
-                {'range': [0, 30], 'color': "green"},
-                {'range': [30, 50], 'color': "yellow"},
-                {'range': [50, 70], 'color': "orange"},
-                {'range': [70, 100], 'color': "red"},
-            ]
-        }
-    ))
     st.plotly_chart(fig, use_container_width=True)
+
+    # --- NEW: Risk Factor Heatmap (Institutional Alignment) ---
+    st.divider()
+    st.subheader("🧬 Historical Risk Clustering Heatmap (12M)")
+    st.markdown("Spotting the 'stacking' of risk factors across credit, liquidity, and technicals.")
+    
+    with st.spinner("Generating historical risk heatmap..."):
+        # We'll compute the risk states for the last 252 trading days
+        hist_idx = data.index[data.index <= actual_date][-252:]
+        factors = ["Trend", "Credit", "MOVE", "VIX", "Term Structure", "DXY"]
+        heatmap_data = []
+        
+        # Sampling every 5 days for speed
+        for d_target in hist_idx[::5]:
+            d_slice = data.loc[:d_target]
+            ltst = d_slice.iloc[-1]
+            
+            # Simple status logic (1=Risk, 0=Stable)
+            s_trend = 1 if ltst["^GSPC"] < d_slice["^GSPC"].rolling(200).mean().iloc[-1] else 0
+            s_credit = 1 if get_hy_spread(d_target.date()) > 5 else 0
+            s_move = 1 if get_move(d_target.date()) > 100 else 0
+            s_vix = 1 if ltst["^VIX"] > 25 else 0
+            s_term = 1 if ltst["^VIX"] > (ltst["^VIX3M"] if "^VIX3M" in ltst else 20) else 0
+            s_dxy = 1 if (ltst["DX-Y.NYB"] if "DX-Y.NYB" in ltst else 100) > 105 else 0
+            
+            heatmap_data.append([s_trend, s_credit, s_move, s_vix, s_term, s_dxy])
+            
+        df_heatmap = pd.DataFrame(heatmap_data, columns=factors, index=hist_idx[::5])
+        
+        # Trace for Heatmap
+        fig_heat = go.Figure(data=go.Heatmap(
+            z=df_heatmap.T.values,
+            x=df_heatmap.index,
+            y=factors,
+            colorscale=[[0, "#2ecc71"], [1, "#e74c3c"]],
+            showscale=False
+        ))
+        fig_heat.update_layout(height=300, margin=dict(l=20, r=20, t=20, b=20), xaxis_title="Timeline", yaxis_title="Risk Factor")
+        st.plotly_chart(fig_heat, use_container_width=True)
+        st.caption("🟢 Stable | 🔴 Risk Threshold Triggered")
 
 dashboard()
