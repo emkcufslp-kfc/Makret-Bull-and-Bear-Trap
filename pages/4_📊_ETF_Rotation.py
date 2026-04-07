@@ -57,9 +57,6 @@ def build_dashboard():
             st.session_state['etf_date'] = st.session_state['master_date']
             st.rerun()
 
-        # Centralized Navigation
-        render_sidebar_footer()
-        
         st.divider()
         analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['etf_date'])
         st.session_state['etf_date'] = analysis_date

@@ -32,9 +32,6 @@ def dashboard():
         if st.button("🔄 Sync with Master Date", use_container_width=True):
             st.session_state['bull_date'] = st.session_state['master_date']
             st.rerun()
-
-        from utils.data_engine import render_sidebar_footer
-        render_sidebar_footer()
         
     analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['bull_date'])
     st.session_state['bull_date'] = analysis_date
