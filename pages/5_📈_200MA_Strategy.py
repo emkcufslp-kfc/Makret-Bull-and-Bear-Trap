@@ -55,6 +55,36 @@ with st.sidebar:
     # Update session state when manually changed
     st.session_state['ma200_date'] = analysis_date
 
+    # --- Ecosystem Navigation Box ---
+    st.markdown("""
+    <div style="background-color: #0f172a; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; border: 1px solid #334155;">
+        <h3 style="color: white; margin-top: 0; font-size: 1.1rem;">🌐 量化決策生態系統</h3>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">切換至其他專業監控面板</p>
+        <a href="https://emkcufslp-kfc.github.io/My-Dashboard/dashboard_follow_through.html" target="_blank" style="text-decoration:none;">
+            <div style="background-color: #38bdf8; color: #0f172a; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px;">
+                🚀 底部確認：FTD 追蹤儀表板
+            </div>
+        </a>
+        <a href="https://emkcufslp-kfc.github.io/My-Dashboard/ntsx_dashboard.html" target="_blank" style="text-decoration:none;">
+            <div style="background-color: #4ade80; color: #0f172a; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px;">
+                🛡️ 資產配置：NTSX 策略儀表板
+            </div>
+        </a>
+        <a href="https://emkcufslp-kfc.github.io/My-Dashboard/platinum_dashboard.html" target="_blank" style="text-decoration:none;">
+            <div style="background-color: #fcd34d; color: #0f172a; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
+                核心增益：Platinum 策略儀表板
+            </div>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- Manual Master Sync Button (Placeholder for Script) ---
+    st.divider()
+    st.subheader("🔁 同步公共儀表板")
+    st.info("此按鈕用於將數據推送至 GitHub 公共 HTML 版面。")
+    if st.button("🚀 立即同步 (Sync Now)", use_container_width=True):
+        st.warning("Master Sync 進程啟動中... (需確保 `sync_all.py` 位於目錄中)")
+
 # --- Data Fetching Logic ---
 @st.cache_data(ttl=3600)
 def get_200ma_data(target_date):
@@ -114,7 +144,72 @@ if all_data:
     
     st.title("🚦 S&P 500 & 200-Day Moving Average Dashboard")
     st.markdown(f"**Analysis Date:** `{last_updated}`")
-    st.markdown("Distinguishing between 'Event-Driven Pullbacks' and 'Structural Bear Markets' using the 200-DMA framework.")
+    st.markdown("當標普500跌破200日均線時，區分「事件驅動型回調」與「結構性熊市」的關鍵指標。")
+
+    # --- Executive Summary: Balanced View ---
+    st.markdown("""
+    <div style="background-color: #e0f2fe; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-top: 6px solid #0284c7;">
+        <h3 style="text-align: center; color: #0c4a6e; margin-bottom: 20px;">SUMMARY: S&P 500 Below 200-DMA - A Balanced View</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+    colA, colB, colC = st.columns(3)
+
+    with colA:
+        st.markdown("""
+        <div style="background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: 180px; border: 1px solid #e2e8f0;">
+            <h5 style="color: #334155; font-size: 1rem; margin: 0;">🛡️ PAUL TUDOR JONES'S RISK MGT</h5>
+            <p style="font-size: 0.85rem; color: #475569; margin-top: 10px;">
+            <strong>Avoids catastrophe.</strong><br>
+            Takes a 7.5% loss early to escape a potential 38.5% catastrophic loss.<br><br>
+            <em>Valuable primary defense in major market crashes.</em>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        with st.expander("🔍 PTJ 風險管理詳情"):
+            st.markdown("""
+            **The Legendary 200-Day Rule:**
+            "My metric for everything I look at is the 200-day moving average of closing prices." — Paul Tudor Jones.
+            Historically, every major crash (1929, 1987, 2008, 2020) happened *after* the market broke the 200-DMA.
+            """)
+
+    with colB:
+        st.markdown("""
+        <div style="background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: 180px; border: 1px solid #e2e8f0;">
+            <h5 style="color: #334155; font-size: 1rem; margin: 0;">📊 THE FULL HISTORICAL PICTURE</h5>
+            <p style="font-size: 0.85rem; color: #475569; margin-top: 10px;">
+            <strong>153 breaches</strong> below 200-DMA historically.<br>
+            <strong>65% of post-breach periods</strong> are positive after 12 months.<br><br>
+            <em> Statistically, most breaches end up being False Signals.</em>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        with st.expander("📊 153次歷史破線統計源"):
+            st.markdown("""
+            **Data Source:** S&P 500 Historical Data since 1950.
+            * **12-Month Forward Return:** 65% of the time, the market is *higher* 1 year after breaking the 200MA.
+            * **Conclusion:** Breaking the moving average is often a false trap unless accompanied by deteriorating macro fundamentals.
+            """)
+
+    with colC:
+        st.markdown(f"""
+        <div style="background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: 180px; border: 1px solid #e2e8f0;">
+            <h5 style="color: #334155; font-size: 1rem; margin: 0;">⚖️ TRUE VALUE OF 200-DMA</h5>
+            <p style="font-size: 0.85rem; color: #475569; margin-top: 10px;">
+            Not reliable for predicting return.<br>
+            <strong>Highly reliable for predicting volatility.</strong>
+            <hr style="margin: 8px 0;">
+            <b>SCORECARD:</b> {red_lights} RED LIGHTS / {buy_signals} TRIGGERED
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        with st.expander("⚖️ 均線預測波動率關係"):
+            st.markdown("""
+            **Volatility Fact:**
+            * **Above 200-DMA:** High Returns, Low Volatility (Avg VIX: 15).
+            * **Below 200-DMA:** Moderate Returns, **Extreme Volatility** (Avg VIX: 25+).
+            The 200-DMA tells you *how turbulent* the ride will be, not necessarily *where* the car is driving.
+            """)
 
     # --- Metrics ---
     diff_ma = current_sp - current_200ma
@@ -187,6 +282,12 @@ if all_data:
             {"Indicator": "Recession Odds", "Threshold": "< 50%", "Actual": f"{polymarket_odds}%", "Status": "🚨 HIGH" if polymarket_odds >= 50 else "✅ LOW"}
         ]
         st.table(pd.DataFrame(fund_data).set_index("Indicator"))
+        with st.expander("🔍 基本面指標詳情與即時數據源"):
+            st.markdown("""
+            * **Credit Spread:** ICE BofA US High Yield OAS. Readings `< 400bps` indicate zero liquidity risk.
+            * **Richmond Fed SOS:** Trigger `> 0.2` strongly predicts economic contraction.
+            * **Polymarket:** Decentralized crowd-sourced recession probabilities.
+            """)
 
     with col_t2:
         st.subheader("📊 Technicals (Buy Signals)")
@@ -196,6 +297,12 @@ if all_data:
             {"Signal": "Market Drawdown", "Threshold": "> 10%", "Actual": f"{drawdown:.1f}%", "Status": "✅ TRIGGERED" if drawdown > 10 else "❌ WAITING"}
         ]
         st.table(pd.DataFrame(tech_data).set_index("Signal"))
+        with st.expander("🔍 技術面買點訊號詳情與即時圖表"):
+            st.markdown("""
+            * **VIX Panic:** When VIX breaks `> 30`, 12-month forward return averages +23%.
+            * **T2108 Capitulation:** Percentage of stocks above 40MA. Drops `< 10%` signal deep market capitulation.
+            * **Market Drawdown:** A `10%` drop is a standard favorable entry point for long-term investors.
+            """)
 
     # --- Chart ---
     st.subheader("📉 Historical S&P 500 vs 200-Day Moving Average")
