@@ -87,8 +87,17 @@ def build_dashboard():
     ref_tickers = list(TICKER_NAMES.keys())
     existing_ref = [t for t in ref_tickers if t in data.columns]
     
+    # Determine 63-day ROC range for probability normalization
+    all_rocs = [d[t].pct_change(63).iloc[-1] for t in existing_ref]
+    max_roc = max(all_rocs) if all_rocs else 0.1
+    min_roc = min(all_rocs) if all_rocs else -0.1
+    
     ref_data = []
     for t in existing_ref:
+        roc = d[t].pct_change(63).iloc[-1]
+        # Normalize ROC to a 0.0 - 1.0 probability proxy
+        prob = (roc - min_roc) / (max_roc - min_roc) if max_roc != min_roc else 0.5
+        
         status = "BULLISH" if d[t].iloc[-1] > d[t].rolling(200).mean().iloc[-1] else "BEARISH"
         
         # Institutional Required Action Text
@@ -100,7 +109,7 @@ def build_dashboard():
         ref_data.append({
             "ETF": t,
             "Name": TICKER_NAMES.get(t.replace("^", ""), "Unknown Fund"),
-            "Predictive Prob.": prob,
+            "Predictive Prob.": round(float(prob), 4),
             "Status": status,
             "Required Action": action
         })

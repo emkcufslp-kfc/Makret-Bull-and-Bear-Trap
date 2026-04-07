@@ -39,8 +39,11 @@ if 'meta_date' not in st.session_state:
     )
     st.session_state['meta_date'] = analysis_date
 
-# --- ML Model Logic ---
-class MLMetaIndicator:
+st.divider()
+
+# --- Meta Indicator Calculation ---
+with st.spinner("Training Meta-Model and generating probabilities..."):
+    results = get_meta_results(analysis_date)
     def __init__(self, pt_multiplier=1.5, sl_multiplier=1.0, max_holding_days=15, hmm_components=2, prob_threshold=0.60):
         self.pt_multiplier = pt_multiplier
         self.sl_multiplier = sl_multiplier
