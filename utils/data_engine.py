@@ -13,7 +13,10 @@ START_DATE = "2004-01-01"
 # All Tickers in the Ecosystem
 CORE_TICKERS = ["^GSPC", "^VIX", "^VIX3M", "HYG", "IEF", "DX-Y.NYB", "SPY", "TIP", "^TNX", "^IRX"]
 SECTOR_TICKERS = ["XLK", "XLY", "XLI", "XLF", "XLB", "XLE", "XLU", "XLP", "XLV"]
-REF_TICKERS = ["BND", "AGG", "LQD", "BNDX", "SMH", "VUG", "VV", "VO", "VB", "SCHD", "ESGU", "VEA", "IEMG", "VXUS", "GLD", "USO", "DBA"]
+REF_TICKERS = [
+    "BND", "AGG", "LQD", "BNDX", "SMH", "VUG", "VV", "VO", "VB", "SCHD", "ESGU", 
+    "VEA", "IEMG", "VXUS", "GLD", "USO", "DBA", "HYG", "^MOVE", "^GSPC", "^VIX", "^VIX3M"
+]
 
 TICKER_NAMES = {
     'SPY': 'S&P 500 ETF Trust',
@@ -132,6 +135,42 @@ def get_master_data():
 def get_clean_master():
     """Cached wrapper for the master data engine."""
     return get_master_data()
+
+# --- Specialized Indicator Pickers ---
+def get_hy_spread(target_date):
+    """Calculates High Yield Spread proxy (HYG vs BND)"""
+    try:
+        df = get_clean_master()
+        if 'HYG' in df.columns and 'BND' in df.columns:
+            ts = pd.Timestamp(target_date)
+            # Find nearest available date
+            valid = df.index[df.index <= ts]
+            if len(valid) == 0: return 5.0
+            idx = valid[-1]
+            # Simple ROC-based risk proxy (since direct spread isn't in YFinance)
+            hyg_20 = df['HYG'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
+            bnd_20 = df['BND'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
+            # Spread widens when HYG underperforms BND
+            return round(4.5 + (bnd_20 - hyg_20) * 100, 2)
+    except:
+        pass
+    return 4.8
+
+def get_move(target_date):
+    """Fetches MOVE Bond Volatility index"""
+    try:
+        df = get_clean_master()
+        if '^MOVE' in df.columns:
+            ts = pd.Timestamp(target_date)
+            valid = df.index[df.index <= ts]
+            if len(valid) > 0:
+                return round(float(df['^MOVE'].loc[valid[-1]]), 1)
+    except: pass
+    return 105.0
+
+def get_gex(target_date):
+    """Gamma Exposure Proxy logic (Simplified for dashboard)"""
+    return 15.0 # Fixed proxy for now; integration with option-chain logic planned
 
 def render_sidebar_footer():
     """Centralized sidebar navigation for the ecosystem."""
