@@ -316,7 +316,7 @@ def build_dashboard():
                         return 'color: #2ecc71'
                     except: return ''
                 
-                st.table(df_ref.style.applymap(color_prob, subset=['Predictive Prob.']))
+                st.table(df_ref.style.map(color_prob, subset=['Predictive Prob.']))
             else:
                 st.warning("Insufficient data for Reference ETFs.")
 
