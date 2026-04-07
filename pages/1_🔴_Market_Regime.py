@@ -38,38 +38,56 @@ except ImportError:
 @st.cache_data(ttl=3600)
 def load_market_data():
     tickers = ["^GSPC", "^VIX", "^VIX3M", "HYG", "IEF", "DX-Y.NYB", "SPY"]
-    data = yf.download(tickers, period="3y", auto_adjust=True)['Close']
+    # Fetch 20 years for robust historical review
+    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
     if isinstance(data.columns, pd.MultiIndex):
         data.columns = data.columns.get_level_values(0)
     return data
 
-def get_hy_spread():
+def get_hy_spread(target_date):
     if not fred:
         return 3.50
     try:
+        # BAMLH0A0HYM2: ICE BofA US High Yield Index OAS
         hy = fred.get_series("BAMLH0A0HYM2")
-        return float(hy.dropna().iloc[-1])
+        hy = hy[hy.index.date <= target_date]
+        if hy.empty: return 3.50
+        return float(hy.iloc[-1])
     except Exception:
         return 3.50
 
-def get_move():
+def get_move(target_date):
     try:
-        move = yf.download("^MOVE", period="1y", progress=False)
+        # ICE BofA MOVE Index
+        # Note: ^MOVE historical data on Yahoo is sometimes spotty, 
+        # but we fetch sufficient window to slice.
+        start_date = (pd.to_datetime(target_date) - pd.DateOffset(days=365)).strftime('%Y-%m-%d')
+        end_date = (pd.to_datetime(target_date) + pd.DateOffset(days=5)).strftime('%Y-%m-%d')
+        move = yf.download("^MOVE", start=start_date, end=end_date, progress=False)
         if isinstance(move.columns, pd.MultiIndex):
             move.columns = move.columns.get_level_values(0)
+        
+        move = move[move.index.date <= target_date]
         if not move.empty:
             return float(move["Close"].dropna().iloc[-1])
     except Exception:
         pass
     return 110.0
 
-def get_liquidity():
+def get_liquidity(target_date):
     if not fred:
         return 6000000.0
     try:
+        # WALCL (Total Assets) - RRP (Reverse Repos)
         fed = fred.get_series("WALCL")
         rrp = fred.get_series("RRPONTSYD")
-        return fed.dropna().iloc[-1] - rrp.dropna().iloc[-1]
+        
+        fed = fed[fed.index.date <= target_date]
+        rrp = rrp[rrp.index.date <= target_date]
+        
+        if fed.empty: return 6000000.0
+        latest_rrp = rrp.iloc[-1] if not rrp.empty else 0.0
+        return fed.iloc[-1] - latest_rrp
     except Exception:
         return 6000000.0
 
@@ -110,29 +128,35 @@ def dashboard():
     if 'master_date' not in st.session_state:
         st.session_state['master_date'] = datetime.date.today()
         
-    analysis_date = st.date_input("📅 Analysis Date (MASTER)", value=st.session_state['master_date'], max_value=datetime.date.today())
+    analysis_date_input = st.date_input("📅 Analysis Date (MASTER)", value=st.session_state['master_date'], max_value=datetime.date.today())
+    
+    # Robust date unpacking (handle potential range selection)
+    if isinstance(analysis_date_input, (list, tuple)):
+        analysis_date = analysis_date_input[0]
+    else:
+        analysis_date = analysis_date_input
+        
     st.session_state['master_date'] = analysis_date
     
-    with st.spinner("Loading market data..."):
+    with st.spinner("Downloading 20 Years of Market Data..."):
         data = load_market_data()
         if data.empty:
-            st.error("⚠️ Failed to fetch market data from Yahoo Finance. Please check your internet connection or try again later.")
+            st.error("⚠️ Failed to fetch market data. Try clicking 'Clear Cache' in Streamlit settings.")
             return
             
-        # Clean data: Forward fill to handle gaps, then drop rows that are still entirely NaN
         data = data.ffill().dropna(how='all')
-        if data.empty:
-            st.error("⚠️ Market data is empty after cleaning. One or more tickers may be unavailable.")
-            return
     
-    # Slice data to analysis date
+    # Find nearest valid trading day on or before selected date
     analysis_ts = pd.Timestamp(analysis_date)
-    d = data.loc[:analysis_ts]
+    valid_dates = data.index[data.index <= analysis_ts]
     
-    if d.empty:
-        # Fallback to the latest available day if the specific date isn't found
-        st.warning(f"No data found for {analysis_date}. Showing latest available data from {data.index[-1].strftime('%Y-%m-%d')}.")
+    if len(valid_dates) > 0:
+        actual_date = valid_dates[-1]
+        d = data.loc[:actual_date]
+    else:
+        st.warning(f"No data available for {analysis_date}. Showing latest.")
         d = data
+        actual_date = data.index[-1]
     
     # Final safety check before indexing
     if d.empty:
@@ -149,11 +173,11 @@ def dashboard():
     vix3m = float(latest["^VIX3M"]) if "^VIX3M" in d.columns else vix
     dxy = float(latest["DX-Y.NYB"]) if "DX-Y.NYB" in d.columns else 100.0
     
-    # FRED data (only for current date, not time-travel)
-    hy = get_hy_spread()
-    move = get_move()
-    liquidity = get_liquidity()
-    spy_gex, put_wall = calc_gex("SPY")
+    # FRED data synchronized to Analysis Date
+    hy = get_hy_spread(analysis_date)
+    move = get_move(analysis_date)
+    liquidity = get_liquidity(analysis_date)
+    spy_gex, put_wall = calc_gex("SPY") # Note: GEX remains Current-Only due to data limitations
     
     # Breadth proxy: % of data above 200-DMA (SPY only for speed)
     spy_200 = d["SPY"].rolling(200).mean().iloc[-1] if "SPY" in d.columns else sp_price

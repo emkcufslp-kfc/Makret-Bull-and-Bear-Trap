@@ -20,7 +20,8 @@ def normalize(val, lower, upper, inverted=False):
 @st.cache_data(ttl=3600)
 def load_bear_data():
     tickers = ["^TNX", "^IRX", "^VIX", "HYG", "IEF", "SPY"]
-    data = yf.download(tickers, period="2y", auto_adjust=True)['Close']
+    # Fetch 20 years for robust historical review
+    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
     if isinstance(data.columns, pd.MultiIndex):
         data.columns = data.columns.get_level_values(0)
     return data

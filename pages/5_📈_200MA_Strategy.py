@@ -155,6 +155,36 @@ def get_t2108_proxy(target_date):
     if total_valid == 0: return 16.74 # Fallback
     return round((above_count / total_valid) * 100, 2)
 
+@st.cache_data(ttl=3600*24)
+def get_sos_reconstruction(target_date):
+    if not fred: return 0.035
+    try:
+        # IUR: Insured Unemployment Rate (Weekly)
+        # SOS Reconstruction: 26-week MA - 52-week min
+        target_dt = pd.to_datetime(target_date)
+        start_dt = target_dt - pd.DateOffset(weeks=60)
+        s = fred.get_series("IUR", observation_start=start_dt.strftime('%Y-%m-%d'), observation_end=target_dt.strftime('%Y-%m-%d'))
+        if s.empty: return 0.035
+        
+        ma26 = s.rolling(window=26).mean().iloc[-1]
+        min52 = s.rolling(window=52).min().iloc[-1]
+        sos_val = ma26 - min52
+        return round(float(sos_val), 3)
+    except:
+        return 0.035
+
+@st.cache_data(ttl=3600*24)
+def get_hist_recession_odds(target_date):
+    if not fred: return 64.0
+    try:
+        # RECPROUSM156N: 12-Month Forward Recession Probability (NY Fed)
+        s = fred.get_series("RECPROUSM156N")
+        s = s[s.index.date <= target_date]
+        if s.empty: return 64.0
+        return round(float(s.iloc[-1]), 1)
+    except:
+        return 64.0
+
 @st.cache_data(ttl=3600)
 def get_credit_spread_historical(target_date):
     if not fred:
@@ -184,17 +214,18 @@ if all_data:
     st.markdown("當標普500跌破200日均線時，區分「事件驅動型回調」與「結構性熊市」的關鍵指標。")
 
     # --- Scorecard Logic Configuration ---
-    # Manual overrides in sidebar for specific macro items not easily fetchable historically
+    # Automated fetching of historical indicators for the Analysis Date
+    auto_sos = get_sos_reconstruction(analysis_date)
+    auto_recession_odds = get_hist_recession_odds(analysis_date)
+    auto_t2108 = get_t2108_proxy(analysis_date)
+
     with st.sidebar:
         st.divider()
-        st.subheader("⚙️ Manual Macro Inputs")
-        # Updated defaults to latest April 2026 data
-        richmond_sos = st.number_input("Richmond Fed SOS", value=0.035, format="%.3f", help="Latest: 0.035 (Apr 2026)")
-        polymarket_odds = st.slider("Polymarket Recession Probability (%)", 0, 100, 64, help="Latest: 64% (Apr 2026)")
-        
-        # T2108 Automation Check
-        auto_t2108 = get_t2108_proxy(analysis_date)
-        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=auto_t2108, help=f"Currently Auto-Calculated: {auto_t2108}%")
+        st.subheader("⚙️ Overrides (Manual)")
+        # Defaults now come from automated historical proxies
+        richmond_sos = st.number_input("Richmond Fed SOS", value=auto_sos, format="%.3f", help="Reconstructed from FRED IUR")
+        polymarket_odds = st.slider("Recession Odds (%)", 0, 100, int(auto_recession_odds), help="Sourced from NY Fed Probability Index")
+        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=auto_t2108, help="Auto-calculated from S&P constituents")
 
     red_lights = 0
     if credit_spread >= 400: red_lights += 1
