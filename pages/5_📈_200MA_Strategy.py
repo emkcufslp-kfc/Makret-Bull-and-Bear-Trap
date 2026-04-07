@@ -59,9 +59,9 @@ with st.sidebar:
     )
     st.session_state['ma200_date'] = analysis_date
 
-    # --- Ecosystem Navigation Box (Streamlit Internal) ---
-    from utils.ui_utils import render_ecosystem_sidebar
-    render_ecosystem_sidebar()
+    # --- Ecosystem Navigation (Standardized) ---
+    from utils.data_engine import render_sidebar_footer
+    render_sidebar_footer()
 
     st.divider()
     if st.button("🚀 立即同步 (Sync Now)", use_container_width=True):

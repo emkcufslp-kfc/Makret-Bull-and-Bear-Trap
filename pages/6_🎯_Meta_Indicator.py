@@ -24,15 +24,14 @@ if 'meta_date' not in st.session_state:
     st.session_state['meta_date'] = st.session_state['master_date']
 
 # --- Sidebar: Date Synchronization ---
-with st.sidebar:
-    st.header("📅 Analysis Date")
-    
-    if st.button("🔄 Sync with Master Date", use_container_width=True):
-        st.session_state['meta_date'] = st.session_state['master_date']
-        st.rerun()
+    # --- Sidebar Configuration ---
+    with st.sidebar:
+        if st.button("🔄 Sync with Master Date", use_container_width=True):
+            st.session_state['meta_date'] = st.session_state['master_date']
+            st.rerun()
 
-    from utils.data_engine import render_sidebar_footer
-    render_sidebar_footer()
+        from utils.data_engine import render_sidebar_footer
+        render_sidebar_footer()
 
     st.divider()
 

@@ -119,14 +119,16 @@ def calc_gex(symbol):
 def dashboard():
     st.title("🔴 Market Regime & Crash Probability Dashboard")
 
-    # Sidebar Reset Button
-    if st.sidebar.button("🔄 Reset Master Date"):
-        st.session_state['master_date'] = datetime.date.today()
-        st.sidebar.success("Reset to Today!")
-        st.rerun()
+    # Sidebar Navigation & Utilities
+    with st.sidebar:
+        # Sidebar Reset Button
+        if st.button("🔄 Reset Master Date", use_container_width=True):
+            st.session_state['master_date'] = datetime.date.today()
+            st.success("Reset to Today!")
+            st.rerun()
 
-    from utils.data_engine import render_sidebar_footer
-    render_sidebar_footer()
+        from utils.data_engine import render_sidebar_footer
+        render_sidebar_footer()
 
     # Date picker (Master)
     if 'master_date' not in st.session_state:
