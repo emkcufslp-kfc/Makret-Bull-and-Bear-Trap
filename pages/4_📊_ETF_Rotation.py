@@ -43,10 +43,12 @@ ref_etfs = {
 all_ref_tickers = [t for sublist in ref_etfs.values() for t in sublist]
 all_tickers = [benchmark, '^VIX'] + sectors['Cyclical/Growth'] + sectors['Defensive/Late'] + all_ref_tickers
 
+from utils.data_engine import get_clean_master, TICKER_NAMES
+
 # ----------------------------
 # DATA LOADERS
 # ----------------------------
-from utils.data_engine import get_clean_master
+# Handled via TICKER_NAMES from utils.data_engine
 
 @st.cache_data(ttl=300)
 def load_data():
@@ -251,7 +253,7 @@ def build_dashboard():
         elif risk_score <= 3: 
             risk_level = "EARLY WARNING"
             risk_color = "#f1c40f"
-            required_action = "⚠️ CAUTION / REDUCE BETA: Systemic stress rising. Trim overextended cyclicals."
+            required_action = "⚠️ CAUTION / REDUCE BETA: Systemic stress rising. Selective profit taking. Reduce high-beta concentration."
         elif risk_score <= 6:
             risk_level = "HIGH RISK"
             risk_color = "#e67e22"
@@ -278,8 +280,15 @@ def build_dashboard():
                 val = roc_d[ticker].iloc[-1]
                 thr = roc_d[ticker].quantile(0.15) if ticker in ['XLI', 'XLB'] else roc_d[ticker].quantile(0.85)
                 breached = val < thr if ticker in ['XLI', 'XLB'] else val > thr
-                etf_rows.append({"ETF": ticker, "Momentum": f"{val:.2f}%", "Threshold": f"{thr:.2f}%", "Status": "🔴 BREACHED" if breached else "✅ Normal"})
-        st.table(pd.DataFrame(etf_rows).set_index("ETF"))
+                etf_rows.append({
+                    "ETF": ticker, 
+                    "Name": TICKER_NAMES.get(ticker, ticker), # Fallback to ticker if not found
+                    "Momentum": f"{val:.2f}%", 
+                    "Threshold": f"{thr:.2f}%", 
+                    "Status": "🔴 BREACHED" if breached else "✅ Normal"
+                })
+        # Explicit column order
+        st.table(pd.DataFrame(etf_rows)[["ETF", "Name", "Momentum", "Threshold", "Status"]])
 
         # Historical Logic (Simplified for page load speed)
         st.info("Historically, the 'Two-Stage' combined signal provides the highest conviction with >60% predictive power for major corrections.")
@@ -300,13 +309,19 @@ def build_dashboard():
                             ref_rows.append({
                                 "Category": cat,
                                 "ETF": ticker,
+                                "Name": TICKER_NAMES.get(ticker, ""),
                                 "3M Momentum": f"{mom:.2f}%",
                                 "Percentile": f"{pct:.1f}%",
-                                "Predictive Prob.": f"{prob:.1f}%"
+                                "Predictive Prob.": f"{prob:.1f}%",
+                                "_prob_numeric": prob # Hidden for sorting
                             })
             
             if ref_rows:
-                df_ref = pd.DataFrame(ref_rows)
+                # Rank Predictive prob from highest to lowest
+                df_ref = pd.DataFrame(ref_rows).sort_values(by="_prob_numeric", ascending=False)
+                # Explicit column order
+                cols = ["Category", "ETF", "Name", "3M Momentum", "Percentile", "Predictive Prob."]
+                df_ref = df_ref[cols]
                 # Styling: Color code high probability
                 def color_prob(val):
                     try:

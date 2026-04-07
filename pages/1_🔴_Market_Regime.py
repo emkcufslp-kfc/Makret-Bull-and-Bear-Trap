@@ -170,15 +170,22 @@ def dashboard():
     # Compute metrics as-of the selected date
     sp_price = float(latest["^GSPC"])
     dma200 = float(d["^GSPC"].rolling(200).mean().iloc[-1])
-    vix = float(latest["^VIX"])
-    vix3m = float(latest["^VIX3M"]) if "^VIX3M" in d.columns else vix
-    dxy = float(latest["DX-Y.NYB"]) if "DX-Y.NYB" in d.columns else 100.0
+    # --- Metric Tables ---
+    st.subheader("Indicator Signal Breakdown")
+    indicators = [
+        {"Ticker": "^GSPC", "Indicator": "S&P 500", "Value": f"${sp_price:.2f}", "Threshold": f"${dma200:.2f} (200DMA)"},
+        {"Ticker": "^VIX", "Indicator": "Volatility Index", "Value": f"{vix:.1f}", "Threshold": "25.0"},
+        {"Ticker": "HYG", "Indicator": "Credit Spreads", "Value": f"{hy:.2f}%", "Threshold": "5.0%"},
+        {"Ticker": "^MOVE", "Indicator": "Bond Volatility", "Value": f"{move:.1f}", "Threshold": "100.0"},
+        {"Ticker": "DX-Y.NYB", "Indicator": "US Dollar Index", "Value": f"{dxy:.1f}", "Threshold": "105.0"},
+        {"Ticker": "WALCL", "Indicator": "Net Liquidity", "Value": f"${liquidity/1e12:.2f}T", "Threshold": "Positive Slope"}
+    ]
+    # Add Names
+    from utils.data_engine import TICKER_NAMES
+    for row in indicators:
+        row["Ticker Name"] = TICKER_NAMES.get(row["Ticker"], row["Ticker"])
     
-    # FRED data synchronized to Analysis Date
-    hy = get_hy_spread(analysis_date)
-    move = get_move(analysis_date)
-    liquidity = get_liquidity(analysis_date)
-    spy_gex, put_wall = calc_gex("SPY") # Note: GEX remains Current-Only due to data limitations
+    st.table(pd.DataFrame(indicators)[["Ticker", "Ticker Name", "Indicator", "Value", "Threshold"]])
     
     # Breadth proxy: % of data above 200-DMA (SPY only for speed)
     spy_200 = d["SPY"].rolling(200).mean().iloc[-1] if "SPY" in d.columns else sp_price

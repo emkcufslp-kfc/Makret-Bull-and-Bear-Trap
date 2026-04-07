@@ -15,6 +15,37 @@ CORE_TICKERS = ["^GSPC", "^VIX", "^VIX3M", "HYG", "IEF", "DX-Y.NYB", "SPY", "TIP
 SECTOR_TICKERS = ["XLK", "XLY", "XLI", "XLF", "XLB", "XLE", "XLU", "XLP", "XLV"]
 REF_TICKERS = ["BND", "AGG", "LQD", "BNDX", "SMH", "VUG", "VV", "VO", "VB", "SCHD", "ESGU", "VEA", "IEMG", "VXUS", "GLD", "USO", "DBA"]
 
+TICKER_NAMES = {
+    'SPY': 'S&P 500 ETF Trust',
+    '^VIX': 'CBOE Volatility Index',
+    'XLK': 'Technology Select Sector SPDR',
+    'XLY': 'Consumer Discretionary Select Sector SPDR',
+    'XLI': 'Industrial Select Sector SPDR',
+    'XLF': 'Financial Select Sector SPDR',
+    'XLB': 'Materials Select Sector SPDR',
+    'XLE': 'Energy Select Sector SPDR',
+    'XLU': 'Utilities Select Sector SPDR',
+    'XLP': 'Consumer Staples Select Sector SPDR',
+    'XLV': 'Health Care Select Sector SPDR',
+    'BND': 'Vanguard Total Bond Market ETF',
+    'AGG': 'iShares Core U.S. Aggregate Bond ETF',
+    'LQD': 'iShares iBoxx $ Inv. Grade Corp. Bond ETF',
+    'BNDX': 'Vanguard Total Intl. Bond ETF',
+    'SMH': 'VanEck Semiconductor ETF',
+    'VUG': 'Vanguard Growth ETF',
+    'VV': 'Vanguard Large-Cap ETF',
+    'VO': 'Vanguard Mid-Cap ETF',
+    'VB': 'Vanguard Small-Cap ETF',
+    'SCHD': 'Schwab US Dividend Equity ETF',
+    'ESGU': 'iShares ESG MSCI USA ETF',
+    'VEA': 'iShares Core MSCI EAFE ETF',
+    'IEMG': 'iShares Core MSCI Emerging Markets ETF',
+    'VXUS': 'Vanguard Total Intl. Stock ETF',
+    'GLD': 'SPDR Gold Shares',
+    'USO': 'United States Oil Fund LP',
+    'DBA': 'Invesco DB Agriculture Fund'
+}
+
 T2108_TICKERS = [
     "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "BRK-B", "TSLA", "LLY", "V", 
     "UNH", "JPM", "MA", "XOM", "AVGO", "HD", "PG", "COST", "ORCL", "TRV",
