@@ -86,42 +86,42 @@ with st.sidebar:
         st.warning("Master Sync 進程啟動中... (需確保 `sync_all.py` 位於目錄中)")
 
 # --- Data Fetching Logic ---
-@st.cache_data(ttl=3600)
-def get_200ma_data(target_date):
-    spy = yf.Ticker("^GSPC") # S&P 500
-    vix = yf.Ticker("^VIX")  # VIX
+def get_200ma_data(target_date, master_df):
+    """
+    Optimized: Uses master_df from Incremental Engine.
+    """
+    spy_ticker = "^GSPC"
+    vix_ticker = "^VIX"
     
-    # Fetch 5 years of data to ensure enough for 200MA
-    start_date = (pd.to_datetime(target_date) - pd.DateOffset(years=5)).strftime('%Y-%m-%d')
-    end_date = (pd.to_datetime(target_date) + pd.DateOffset(days=1)).strftime('%Y-%m-%d')
-    
-    spy_hist = spy.history(start=start_date, end=end_date)
-    if spy_hist.empty:
+    if spy_ticker not in master_df.columns:
         return None
         
-    spy_hist['200MA'] = spy_hist['Close'].rolling(window=200).mean()
+    spy_hist = master_df[[spy_ticker]].copy()
+    spy_hist['200MA'] = spy_hist[spy_ticker].rolling(window=200).mean()
     
     # Filter up to target_date
-    spy_hist = spy_hist[spy_hist.index.date <= target_date]
+    target_dt = pd.to_datetime(target_date)
+    spy_hist = spy_hist.loc[:target_dt]
     
     if len(spy_hist) < 200:
         return None
         
-    current_sp = spy_hist['Close'].iloc[-1]
+    current_sp = spy_hist[spy_ticker].iloc[-1]
     current_200ma = spy_hist['200MA'].iloc[-1]
-    sp_high = spy_hist['Close'].max()
+    sp_high = spy_hist[spy_ticker].max()
     drawdown = ((sp_high - current_sp) / sp_high) * 100
     
-    vix_hist = vix.history(start=start_date, end=end_date)
-    vix_hist = vix_hist[vix_hist.index.date <= target_date]
-    current_vix = vix_hist['Close'].iloc[-1] if not vix_hist.empty else 20.0
+    current_vix = master_df[vix_ticker].loc[:target_dt].iloc[-1] if vix_ticker in master_df.columns else 20.0
     
     return current_sp, current_200ma, drawdown, current_vix, spy_hist
 
-@st.cache_data(ttl=3600*24)
-def get_t2108_proxy(target_date):
-    # Percentage of stocks above 40-day moving average (T2108 Proxy)
-    # Using Top 50 S&P 500 Market Cap constituents for a high-accuracy proxy
+from utils.data_engine import get_clean_master
+
+def get_t2108_proxy(target_date, master_df):
+    """
+    Optimized: Uses vectorized local master_df instead of 50 sequential API calls.
+    Percentage of stocks above 40-day moving average.
+    """
     top_tickers = [
         "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "BRK-B", "TSLA", "LLY", "V", 
         "UNH", "JPM", "MA", "XOM", "AVGO", "HD", "PG", "COST", "ORCL", "TRV",
@@ -130,29 +130,25 @@ def get_t2108_proxy(target_date):
         "NEE", "PFE", "ADX", "QCOM", "LIN", "LOW", "INTU", "TXN", "MS", "AMAT"
     ]
     
+    # Filter master_df up to target_date
+    target_dt = pd.to_datetime(target_date)
+    hist_master = master_df.loc[:target_dt]
+    
+    if len(hist_master) < 40: return 16.74 # Fallback
+    
     above_count = 0
     total_valid = 0
-    target_dt = pd.to_datetime(target_date)
     
     for ticker in top_tickers:
-        try:
-            t = yf.Ticker(ticker)
-            # Fetch enough for 40-day MA
-            hist = t.history(start=(target_dt - pd.DateOffset(days=80)).strftime('%Y-%m-%d'), 
-                             end=(target_dt + pd.DateOffset(days=1)).strftime('%Y-%m-%d'))
-            # Filter up to target_date
-            hist = hist[hist.index.date <= target_date]
-            
-            if len(hist) >= 40:
-                ma40 = hist['Close'].rolling(40).mean().iloc[-1]
-                current = hist['Close'].iloc[-1]
-                if current > ma40:
+        if ticker in hist_master.columns:
+            series = hist_master[ticker].dropna()
+            if len(series) >= 40:
+                ma40 = series.rolling(40).mean().iloc[-1]
+                if series.iloc[-1] > ma40:
                     above_count += 1
                 total_valid += 1
-        except:
-            continue
-            
-    if total_valid == 0: return 16.74 # Fallback
+                
+    if total_valid == 0: return 16.74
     return round((above_count / total_valid) * 100, 2)
 
 @st.cache_data(ttl=3600*24)
@@ -201,7 +197,8 @@ def get_credit_spread_historical(target_date):
         return 327.0 # safe fallback
 
 # --- Main Logic ---
-all_data = get_200ma_data(analysis_date)
+master_df = get_clean_master()
+all_data = get_200ma_data(analysis_date, master_df)
 
 if all_data:
     current_sp, current_200ma, drawdown, current_vix, spy_hist = all_data
@@ -212,12 +209,12 @@ if all_data:
     st.title("🚦 S&P 500 & 200-Day Moving Average Dashboard")
     st.markdown(f"**Analysis Date:** `{last_updated}`")
     st.markdown("當標普500跌破200日均線時，區分「事件驅動型回調」與「結構性熊市」的關鍵指標。")
-
+    
     # --- Scorecard Logic Configuration ---
     # Automated fetching of historical indicators for the Analysis Date
     auto_sos = get_sos_reconstruction(analysis_date)
     auto_recession_odds = get_hist_recession_odds(analysis_date)
-    auto_t2108 = get_t2108_proxy(analysis_date)
+    auto_t2108 = get_t2108_proxy(analysis_date, master_df)
 
     with st.sidebar:
         st.divider()

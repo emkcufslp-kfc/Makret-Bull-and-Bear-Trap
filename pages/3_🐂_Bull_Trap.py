@@ -7,14 +7,12 @@ import datetime
 
 st.set_page_config(page_title="Bull Trap Indicator", page_icon="🐂", layout="wide")
 
-@st.cache_data(ttl=3600)
+from utils.data_engine import get_clean_master
+
+@st.cache_data(ttl=300)
 def load_bull_data():
-    tickers = ["^TNX", "^IRX", "^VIX", "HYG", "IEF", "SPY", "TIP"]
-    # Fetch 20 years for robust historical review
-    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
-    if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)
-    return data
+    # Use the centralized Incremental Data Engine
+    return get_clean_master()
 
 def dashboard():
     st.title("🐂 Bull Trap Indicator Dashboard")

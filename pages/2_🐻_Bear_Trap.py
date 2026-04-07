@@ -17,14 +17,12 @@ def normalize(val, lower, upper, inverted=False):
         if val >= upper: return 1.0
         return round((val - lower) / (upper - lower), 2)
 
+from utils.data_engine import get_clean_master
+
 @st.cache_data(ttl=3600)
 def load_bear_data():
-    tickers = ["^TNX", "^IRX", "^VIX", "HYG", "IEF", "SPY"]
-    # Fetch 20 years for robust historical review
-    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
-    if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)
-    return data
+    # Use the centralized Incremental Data Engine
+    return get_clean_master()
 
 def dashboard():
     # Date Synchronization Logic

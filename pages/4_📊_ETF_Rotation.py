@@ -46,60 +46,54 @@ all_tickers = [benchmark, '^VIX'] + sectors['Cyclical/Growth'] + sectors['Defens
 # ----------------------------
 # DATA LOADERS
 # ----------------------------
-@st.cache_data(ttl=3600)
+from utils.data_engine import get_clean_master
+
+@st.cache_data(ttl=300)
 def load_data():
-    tickers = list(set(all_tickers + ['HYG', 'IEF', '^TNX', '^FVX']))
-    # Fetch 20 years for robust derivation
-    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
-    if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)
-    # Cleaning
-    data = data.ffill().dropna(how='all')
-    return data
+    # Use the centralized Incremental Data Engine
+    return get_clean_master()
 
 # ----------------------------
 # DERIVATION ENGINE
 # ----------------------------
-@st.cache_data(ttl=3600)
-def calculate_predictive_probability(ticker, current_date, data, target_ticker='SPY'):
-    """
-    Calculates the statistical probability of a major correction following the current momentum profile.
-    Working backwards from 20 years of history.
-    """
-    if ticker not in data.columns or target_ticker not in data.columns:
-        return 0, 50 # Default 0% prob, 50th percentile
-        
-    hist_data = data.loc[:current_date].copy()
-    if len(hist_data) < 252: return 0, 50
-    
+@st.cache_data(ttl=86400)
+def get_precalculated_metrics(data, target_ticker='SPY'):
+    """Vectorized calculation of 20-year ROC and Crash labels."""
     # 3-Month ROC (63 trading days)
-    roc = hist_data[ticker].pct_change(63) * 100
-    
+    roc_df = data.pct_change(63) * 100
     # Target: 10% Drawdown in the NEXT 63 days
-    target_fwd_ret = data[target_ticker].shift(-63) / data[target_ticker] - 1
-    target_fwd_ret = target_fwd_ret.loc[:current_date]
-    crash_occurred = target_fwd_ret < -0.10
+    crash_occurred = (data[target_ticker].shift(-63) / data[target_ticker] - 1) < -0.10
+    return roc_df, crash_occurred
+
+def calculate_predictive_probability_v2(ticker, current_date, data, roc_df, crash_occurred):
+    """
+    Optimized: Uses pre-calculated ROC and Crash labels.
+    """
+    if ticker not in data.columns:
+        return 0, 50
+        
+    # Mask data to current date
+    hist_roc = roc_df[ticker].loc[:current_date]
+    if len(hist_roc) < 252: return 0, 50
     
-    current_roc = roc.iloc[-1]
+    current_roc = hist_roc.iloc[-1]
     if np.isnan(current_roc): return 0, 50
     
-    # Percentile of current ROC in history
-    percentile = (roc < current_roc).mean() * 100
-    
-    # Calculate probability in the surrounding decile (e.g., if 85th, look at 80-90)
-    decile_low = max(0, (percentile // 10) * 10)
+    # Calculate Statistical Rank
+    rank_pct = (hist_roc < current_roc).mean() * 100
+    decile_low = max(0, (rank_pct // 10) * 10)
     decile_high = min(100, decile_low + 10)
     
-    # Find historical dates with similar ROC footprints
-    similar_mask = (roc.rank(pct=True)*100 >= decile_low) & (roc.rank(pct=True)*100 <= decile_high)
+    # Find similar historical footprints
+    deciles = (hist_roc.rank(pct=True) * 100)
+    similar_mask = (deciles >= decile_low) & (deciles <= decile_high)
     total_matches = similar_mask.sum()
     
-    if total_matches < 5: return 0, percentile
+    if total_matches < 5: return 0, rank_pct
     
-    crashes_after_matches = crash_occurred[similar_mask].sum()
-    prob = (crashes_after_matches / total_matches) * 100
-    
-    return prob, percentile
+    # Efficient crash lookup
+    prob = (crash_occurred.loc[hist_roc.index][similar_mask].sum() / total_matches) * 100
+    return prob, rank_pct
 
 # ----------------------------
 # DASHBOARD BUILDER
@@ -290,36 +284,41 @@ def build_dashboard():
         # Historical Logic (Simplified for page load speed)
         st.info("Historically, the 'Two-Stage' combined signal provides the highest conviction with >60% predictive power for major corrections.")
 
-        # --- NEW: Reference ETF Section ---
+        # --- NEW: Reference ETF Section (LAZY LOAD) ---
         st.divider()
-        st.subheader("🔍 Reference ETF Momentum Analysis (Reference Only)")
-        st.markdown("*These results are for institutional reference and do not impact the current risk score.*")
-        
-        ref_rows = []
-        with st.status("Performing 20-Year Derivation for Reference ETFs...", expanded=False):
-            for cat, tickers in ref_etfs.items():
-                for ticker in tickers:
-                    if ticker in data.columns:
-                        prob, pct = calculate_predictive_probability(ticker, actual_date, data)
-                        mom = roc_3m[ticker].loc[:actual_date].iloc[-1]
-                        ref_rows.append({
-                            "Category": cat,
-                            "ETF": ticker,
-                            "3M Momentum": f"{mom:.2f}%",
-                            "Percentile": f"{pct:.1f}%",
-                            "Predictive Prob.": f"{prob:.1f}%"
-                        })
-        
-        if ref_rows:
-            df_ref = pd.DataFrame(ref_rows)
-            # Styling: Color code high probability
-            def color_prob(val):
-                p = float(val.replace('%', ''))
-                if p > 40: return 'color: #e74c3c' # red
-                if p > 20: return 'color: #f39c12' # orange
-                return 'color: #2ecc71' # green
+        with st.expander("🔍 深度統計：17支參考ETF概率分析 (點擊展開)", expanded=False):
+            st.markdown("*此部分執行20年歷史回測與動量足跡分析，僅供參考，不影響當前風險評分。*")
+            roc_df, crash_occurred = get_precalculated_metrics(data)
             
-            st.table(df_ref.style.map(color_prob, subset=['Predictive Prob.']))
+            ref_rows = []
+            with st.status("Performing 20-Year Derivation for Reference ETFs...", expanded=True):
+                for cat, tickers in ref_etfs.items():
+                    for ticker in tickers:
+                        if ticker in data.columns:
+                            prob, pct = calculate_predictive_probability_v2(ticker, actual_date, data, roc_df, crash_occurred)
+                            mom = roc_df[ticker].loc[:actual_date].iloc[-1]
+                            ref_rows.append({
+                                "Category": cat,
+                                "ETF": ticker,
+                                "3M Momentum": f"{mom:.2f}%",
+                                "Percentile": f"{pct:.1f}%",
+                                "Predictive Prob.": f"{prob:.1f}%"
+                            })
+            
+            if ref_rows:
+                df_ref = pd.DataFrame(ref_rows)
+                # Styling: Color code high probability
+                def color_prob(val):
+                    try:
+                        p = float(val.replace('%', ''))
+                        if p > 40: return 'background-color: rgba(231, 76, 60, 0.1); color: #e74c3c'
+                        if p > 20: return 'background-color: rgba(243, 156, 18, 0.1); color: #f39c12'
+                        return 'color: #2ecc71'
+                    except: return ''
+                
+                st.table(df_ref.style.applymap(color_prob, subset=['Predictive Prob.']))
+            else:
+                st.warning("Insufficient data for Reference ETFs.")
 
     # --- Methodology Documentation ---
     st.divider()

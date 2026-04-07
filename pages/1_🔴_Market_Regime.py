@@ -35,13 +35,14 @@ except ImportError:
 # ----------------------------
 # DATA FUNCTIONS
 # ----------------------------
+from utils.data_engine import get_clean_master
+
 @st.cache_data(ttl=3600)
 def load_market_data():
-    tickers = ["^GSPC", "^VIX", "^VIX3M", "HYG", "IEF", "DX-Y.NYB", "SPY"]
-    # Fetch 20 years for robust historical review
-    data = yf.download(tickers, start="2004-01-01", auto_adjust=True)['Close']
-    if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)
+    # Use the centralized Incremental Data Engine
+    data = get_clean_master()
+    # Filter for tickers relevant to this page if needed, or just return master
+    # The engine already includes all tickers
     return data
 
 def get_hy_spread(target_date):
@@ -232,37 +233,51 @@ def dashboard():
     
     with st.spinner("Generating historical risk heatmap..."):
         # We'll compute the risk states for the last 252 trading days
+        # Pre-calculate vectorized conditions for speed (Avoiding 50+ inside-loop FRED calls)
         hist_idx = data.index[data.index <= actual_date][-252:]
-        factors = ["Trend", "Credit", "MOVE", "VIX", "Term Structure", "DXY"]
-        heatmap_data = []
+        hist_slice = data.loc[hist_idx[0]:hist_idx[-1]]
         
-        # Sampling every 5 days for speed
-        for d_target in hist_idx[::5]:
-            d_slice = data.loc[:d_target]
-            ltst = d_slice.iloc[-1]
+        # 🟢 Vectorized Logic
+        ma200 = data["^GSPC"].rolling(200).mean().loc[hist_idx]
+        s_trend = (hist_slice["^GSPC"] < ma200).astype(int)
+        s_vix = (hist_slice["^VIX"] > 25).astype(int)
+        
+        # Term structure (if VIX3M available)
+        if "^VIX3M" in hist_slice.columns:
+            s_term = (hist_slice["^VIX"] > hist_slice["^VIX3M"]).astype(int)
+        else:
+            s_term = (hist_slice["^VIX"] > 22).astype(int)
             
-            # Simple status logic (1=Risk, 0=Stable)
-            s_trend = 1 if ltst["^GSPC"] < d_slice["^GSPC"].rolling(200).mean().iloc[-1] else 0
-            s_credit = 1 if get_hy_spread(d_target.date()) > 5 else 0
-            s_move = 1 if get_move(d_target.date()) > 100 else 0
-            s_vix = 1 if ltst["^VIX"] > 25 else 0
-            s_term = 1 if ltst["^VIX"] > (ltst["^VIX3M"] if "^VIX3M" in ltst else 20) else 0
-            s_dxy = 1 if (ltst["DX-Y.NYB"] if "DX-Y.NYB" in ltst else 100) > 105 else 0
+        s_dxy = (hist_slice.get("DX-Y.NYB", pd.Series(100, index=hist_idx)) > 105).astype(int)
+        
+        # Credit & MOVE (Sample 10 points over 252 days to avoid FRED rate limits/latency)
+        sample_idx = hist_idx[::25] 
+        s_credit = []
+        s_move = []
+        for d in sample_idx:
+            s_credit.append(1 if get_hy_spread(d.date()) > 5 else 0)
+            s_move.append(1 if get_move(d.date()) > 100 else 0)
             
-            heatmap_data.append([s_trend, s_credit, s_move, s_vix, s_term, s_dxy])
-            
-        df_heatmap = pd.DataFrame(heatmap_data, columns=factors, index=hist_idx[::5])
+        # Reconstruct full heatmap data (Sampling 10 points for Credit/MOVE and interpolating)
+        df_heatmap = pd.DataFrame({
+            "Trend": s_trend,
+            "Credit": pd.Series(s_credit, index=sample_idx).reindex(hist_idx, method='ffill').fillna(0),
+            "MOVE": pd.Series(s_move, index=sample_idx).reindex(hist_idx, method='ffill').fillna(0),
+            "VIX": s_vix,
+            "Term Structure": s_term,
+            "DXY": s_dxy
+        }, index=hist_idx)
         
         # Trace for Heatmap
         fig_heat = go.Figure(data=go.Heatmap(
             z=df_heatmap.T.values,
             x=df_heatmap.index,
-            y=factors,
+            y=df_heatmap.columns,
             colorscale=[[0, "#2ecc71"], [1, "#e74c3c"]],
             showscale=False
         ))
         fig_heat.update_layout(height=300, margin=dict(l=20, r=20, t=20, b=20), xaxis_title="Timeline", yaxis_title="Risk Factor")
         st.plotly_chart(fig_heat, use_container_width=True)
-        st.caption("🟢 Stable | 🔴 Risk Threshold Triggered")
+        st.caption("🟢 Stable | 🔴 Risk Threshold Triggered (Interpolated)")
 
 dashboard()
