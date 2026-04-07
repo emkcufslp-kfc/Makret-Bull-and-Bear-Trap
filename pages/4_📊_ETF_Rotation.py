@@ -92,14 +92,20 @@ def build_dashboard():
     
     ref_data = []
     for t in existing_ref:
-        prob = 0.5 # Placeholder or logic from your ML calc
         status = "BULLISH" if d[t].iloc[-1] > d[t].rolling(200).mean().iloc[-1] else "BEARISH"
+        
+        # Institutional Required Action Text
+        if status == "BEARISH":
+            action = "Systemic stress rising. Selective profit taking. Reduce high-beta concentration."
+        else:
+            action = "Condition Normal. Maintain strategic exposure."
+
         ref_data.append({
             "ETF": t,
-            "Name": TICKER_NAMES.get(t, "Unknown Fund"),
+            "Name": TICKER_NAMES.get(t.replace("^", ""), "Unknown Fund"),
             "Predictive Prob.": prob,
             "Status": status,
-            "Required Action": "Maintain Exposure" if status == "BULLISH" else "Reduce Beta"
+            "Required Action": action
         })
     
     df_ref = pd.DataFrame(ref_data)

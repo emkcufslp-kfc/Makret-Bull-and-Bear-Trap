@@ -183,12 +183,20 @@ def dashboard():
         {"Ticker": "DX-Y.NYB", "Indicator": "US Dollar Index", "Value": f"{dxy:.1f}", "Threshold": "105.0"},
         {"Ticker": "WALCL", "Indicator": "Net Liquidity", "Value": f"${liquidity/1e12:.2f}T", "Threshold": "Positive Slope"}
     ]
-    # Add Names
+    # Add Names & Professional Guidance
     from utils.data_engine import TICKER_NAMES
     for row in indicators:
-        row["Ticker Name"] = TICKER_NAMES.get(row["Ticker"], row["Ticker"])
+        # Strip ^ for lookup if needed
+        clean_ticker = row["Ticker"].replace("^", "")
+        row["Ticker Name"] = TICKER_NAMES.get(clean_ticker, row["Ticker"])
+        
+        # Institutional Required Action Text
+        if risk_level != "LOW RISK":
+            row["Required Action"] = "Systemic stress rising. Selective profit taking. Reduce high-beta concentration."
+        else:
+            row["Required Action"] = "Monitor credit/liquidity spreads."
     
-    st.table(pd.DataFrame(indicators)[["Ticker", "Ticker Name", "Indicator", "Value", "Threshold"]])
+    st.table(pd.DataFrame(indicators)[["Indicator", "Ticker Name", "Value", "Threshold", "Required Action"]])
     
     # Breadth proxy: % of data above 200-DMA (SPY only for speed)
     spy_200 = d["SPY"].rolling(200).mean().iloc[-1] if "SPY" in d.columns else sp_price
