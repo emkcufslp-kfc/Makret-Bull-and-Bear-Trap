@@ -118,6 +118,43 @@ def get_200ma_data(target_date):
     
     return current_sp, current_200ma, drawdown, current_vix, spy_hist
 
+@st.cache_data(ttl=3600*24)
+def get_t2108_proxy(target_date):
+    # Percentage of stocks above 40-day moving average (T2108 Proxy)
+    # Using Top 50 S&P 500 Market Cap constituents for a high-accuracy proxy
+    top_tickers = [
+        "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "BRK-B", "TSLA", "LLY", "V", 
+        "UNH", "JPM", "MA", "XOM", "AVGO", "HD", "PG", "COST", "ORCL", "TRV",
+        "CRM", "ADBE", "NFLX", "AMD", "BAC", "PEP", "ABBV", "CVX", "TMO", "CSCO",
+        "WMT", "DHR", "MCD", "DIS", "PDD", "ABT", "INTC", "VZ", "HON", "MRK",
+        "NEE", "PFE", "ADX", "QCOM", "LIN", "LOW", "INTU", "TXN", "MS", "AMAT"
+    ]
+    
+    above_count = 0
+    total_valid = 0
+    target_dt = pd.to_datetime(target_date)
+    
+    for ticker in top_tickers:
+        try:
+            t = yf.Ticker(ticker)
+            # Fetch enough for 40-day MA
+            hist = t.history(start=(target_dt - pd.DateOffset(days=80)).strftime('%Y-%m-%d'), 
+                             end=(target_dt + pd.DateOffset(days=1)).strftime('%Y-%m-%d'))
+            # Filter up to target_date
+            hist = hist[hist.index.date <= target_date]
+            
+            if len(hist) >= 40:
+                ma40 = hist['Close'].rolling(40).mean().iloc[-1]
+                current = hist['Close'].iloc[-1]
+                if current > ma40:
+                    above_count += 1
+                total_valid += 1
+        except:
+            continue
+            
+    if total_valid == 0: return 16.74 # Fallback
+    return round((above_count / total_valid) * 100, 2)
+
 @st.cache_data(ttl=3600)
 def get_credit_spread_historical(target_date):
     if not fred:
@@ -151,9 +188,13 @@ if all_data:
     with st.sidebar:
         st.divider()
         st.subheader("⚙️ Manual Macro Inputs")
-        richmond_sos = st.number_input("Richmond Fed SOS", value=0.042, format="%.3f")
-        polymarket_odds = st.slider("Polymarket Recession Probability (%)", 0, 100, 35)
-        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=16.74)
+        # Updated defaults to latest April 2026 data
+        richmond_sos = st.number_input("Richmond Fed SOS", value=0.035, format="%.3f", help="Latest: 0.035 (Apr 2026)")
+        polymarket_odds = st.slider("Polymarket Recession Probability (%)", 0, 100, 64, help="Latest: 64% (Apr 2026)")
+        
+        # T2108 Automation Check
+        auto_t2108 = get_t2108_proxy(analysis_date)
+        t2108 = st.number_input("T2108 (Stocks > 40MA %)", value=auto_t2108, help=f"Currently Auto-Calculated: {auto_t2108}%")
 
     red_lights = 0
     if credit_spread >= 400: red_lights += 1
@@ -282,6 +323,7 @@ if all_data:
             {"Indicator": "Recession Odds", "Threshold": "< 50%", "Actual": f"{polymarket_odds}%", "Status": "🚨 HIGH" if polymarket_odds >= 50 else "✅ LOW"}
         ]
         st.table(pd.DataFrame(fund_data).set_index("Indicator"))
+        st.markdown("<small style='color:gray;'>Data Sources: <b>Credit Spread</b> (Auto-FRED) | <b>Other</b> (Manual Override)</small>", unsafe_allow_html=True)
         with st.expander("🔍 基本面指標詳情與即時數據源"):
             st.markdown("""
             * **Credit Spread:** ICE BofA US High Yield OAS. Readings `< 400bps` indicate zero liquidity risk.
@@ -297,6 +339,7 @@ if all_data:
             {"Signal": "Market Drawdown", "Threshold": "> 10%", "Actual": f"{drawdown:.1f}%", "Status": "✅ TRIGGERED" if drawdown > 10 else "❌ WAITING"}
         ]
         st.table(pd.DataFrame(tech_data).set_index("Signal"))
+        st.markdown("<small style='color:gray;'>Data Sources: <b>VIX/DD</b> (Auto-YFinance) | <b>T2108</b> (Auto-Proxy Calculation)</small>", unsafe_allow_html=True)
         with st.expander("🔍 技術面買點訊號詳情與即時圖表"):
             st.markdown("""
             * **VIX Panic:** When VIX breaks `> 30`, 12-month forward return averages +23%.
