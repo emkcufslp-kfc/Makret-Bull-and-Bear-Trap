@@ -19,12 +19,12 @@ def render_ntsx_dashboard():
         return
 
     try:
-        with open(html_path, "r", encoding="utf-8") as f:
+        with open(html_path, "r", encoding="utf-8", errors="replace") as f:
             html_content = f.read()
             
         # Optional: Inject JS data if not already embedded
         if os.path.exists(js_path):
-            with open(js_path, "r", encoding="utf-8") as f:
+            with open(js_path, "r", encoding="utf-8", errors="replace") as f:
                 js_data = f.read()
             # Replace the JS source tag with the actual data
             html_content = html_content.replace(
