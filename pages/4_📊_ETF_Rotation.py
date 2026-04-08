@@ -159,7 +159,40 @@ def build_dashboard():
         st.markdown("✅ VIX normal")
         st.markdown("**REQUIRED ACTION:** **Condition Normal. Maintain strategic exposure.**")
 
-    st.divider()
+    # ------------------------------------------------------------------
+    # Core 4 Indicator Signal Dashboard
+    # ------------------------------------------------------------------
+    st.subheader("Indicator Signal Dashboard")
+    
+    core4_etfs = ['XLI', 'XLB', 'XLE', 'XLP']
+    core_data = []
+    
+    for ticker in core4_etfs:
+        if ticker in thresholds_dict and ticker in roc_d.columns:
+            cur_mom = roc_d[ticker].iloc[-1]
+            info = thresholds_dict[ticker]
+            cat = info["Cat"]
+            thr = info["Threshold"]
+            
+            if cat == "Cyclical":
+                breached = cur_mom < thr
+            else:
+                breached = cur_mom > thr
+                
+            status = "🔴 BREACHED" if breached else "✅ Normal"
+            
+            core_data.append({
+                "ETF": ticker,
+                "Momentum": f"{cur_mom:.2f}%" if not np.isnan(cur_mom) else "N/A",
+                "Threshold": f"{thr:.2f}%",
+                "Status": status
+            })
+            
+    if core_data:
+        st.dataframe(pd.DataFrame(core_data), use_container_width=True, hide_index=True)
+        st.info("Historically, the 'Two-Stage' combined signal provides the highest conviction with >60% predictive power for major corrections.")
+
+    st.subheader("🔍 Reference ETF Momentum Analysis (Reference Only)")
 
     # ------------------------------------------------------------------
     # 17 ETF Signal Reference Table
@@ -201,8 +234,6 @@ def build_dashboard():
     
     # Display the final dataframe
     st.dataframe(df_ref, use_container_width=True, hide_index=True)
-    
-    st.info("Historically, the 'Two-Stage' combined signal (pairing SPY/VIX stress with multi-ETF rotational breaches) provides the highest conviction with >60% predictive power for major corrections.")
     
     st.divider()
     
