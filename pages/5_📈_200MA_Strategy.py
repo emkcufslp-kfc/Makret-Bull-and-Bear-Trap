@@ -158,8 +158,23 @@ if res:
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("S&P 500 Price", f"${current_sp:,.2f}")
     m2.metric("200-Day SMA", f"${current_200ma:,.2f}")
-    trend_status = "BULLISH (Wait for Exit)" if current_sp > current_200ma else "BEARISH (Keep Cash)"
-    m3.metric("Trend Status", trend_status)
+    pct_diff = (current_sp - current_200ma) / current_200ma
+    if pct_diff > 0.02:
+        trend_status = "BULLISH (Wait for Exit)"
+        trend_color = "#3dd56d" # Green
+    elif pct_diff >= -0.02:
+        trend_status = "CAUTION (Trend Testing)"
+        trend_color = "#faca2b" # Yellow
+    else:
+        trend_status = "BEARISH (Keep Cash)"
+        trend_color = "#ff4b4b" # Red
+        
+    m3.markdown(f"""
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.875rem; color: rgba(250, 250, 250, 0.6); padding-bottom: 0.25rem;">Trend Status</span>
+            <span style="font-size: 1.75rem; color: {trend_color};">{trend_status}</span>
+        </div>
+    """, unsafe_allow_html=True)
     m4.metric("Max Drawdown (1Y)", f"{drawdown:.2f}%")
 
     # Scorecard Tables
