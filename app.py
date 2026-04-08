@@ -11,18 +11,10 @@ if 'master_date' not in st.session_state:
     import datetime
     st.session_state['master_date'] = datetime.date.today()
 
+from utils.ui_utils import render_ecosystem_sidebar
+
 with st.sidebar:
-    st.markdown("""
-    <div style="background-color: #0f172a; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; border: 1px solid #334155;">
-        <h3 style="color: white; margin-top: 0; font-size: 1.1rem;">🌐 量化決策生態系統</h3>
-        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 12px;">切換至其他專業監控面板</p>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a href="#" target="_blank" style="text-decoration: none; background-color: #ef4444; color: black; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">🚀 底部確認 : FTD 追蹤儀表板</a>
-            <a href="#" target="_blank" style="text-decoration: none; background-color: #22c55e; color: black; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">🛡️ 資產配置 : NTSX 策略儀表板</a>
-            <a href="#" target="_blank" style="text-decoration: none; background-color: #eab308; color: black; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">💎 核心增益 : Platinum 策略儀表板</a>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    render_ecosystem_sidebar()
 
 st.title("📊 Market Regime & Risk Intelligence Suite")
 st.markdown("""

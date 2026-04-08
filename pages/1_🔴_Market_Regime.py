@@ -34,6 +34,9 @@ def dashboard():
     
     # Sidebar
     with st.sidebar:
+        from utils.ui_utils import render_ecosystem_sidebar
+        render_ecosystem_sidebar()
+        st.markdown("---")
         if st.button("🔄 Reset Master Date", use_container_width=True):
             st.session_state['master_date'] = datetime.date.today()
             st.success("Reset to Today!")

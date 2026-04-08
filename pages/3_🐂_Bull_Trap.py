@@ -28,6 +28,9 @@ def dashboard():
         
     # --- Sidebar Configuration ---
     with st.sidebar:
+        from utils.ui_utils import render_ecosystem_sidebar
+        render_ecosystem_sidebar()
+        st.markdown("---")
         # Sync button in sidebar
         if st.button("🔄 Sync with Master Date", use_container_width=True):
             st.session_state['bull_date'] = st.session_state['master_date']
