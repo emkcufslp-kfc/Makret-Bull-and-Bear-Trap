@@ -8,9 +8,11 @@ st.set_page_config(layout="wide", page_title="Market Pulse: FTD Tracker", page_i
 def render_ftd_dashboard():
     # Define relative paths from this file to the source dashboards
     current_dir = os.path.dirname(__file__)
-    # Backtest/Makret-Bull-and-Bear-Trap/pages -> Backtest/Multi indicator/
-    html_path = os.path.abspath(os.path.join(current_dir, "../../Multi indicator/dashboard_follow_through.html"))
-    js_path = os.path.abspath(os.path.join(current_dir, "../../Multi indicator/spy_data.js"))
+    # Repository-root-relative path (from pages/ subdirectory)
+    current_dir = os.path.dirname(__file__)
+    # Backtest/Makret-Bull-and-Bear-Trap/pages -> Backtest/Makret-Bull-and-Bear-Trap/data/Multi_indicator/
+    html_path = os.path.abspath(os.path.join(current_dir, "../data/Multi_indicator/dashboard_follow_through.html"))
+    js_path = os.path.abspath(os.path.join(current_dir, "../data/Multi_indicator/spy_data.js"))
 
     if not os.path.exists(html_path):
         st.error(f"FTD Dashboard HTML not found at {html_path}")

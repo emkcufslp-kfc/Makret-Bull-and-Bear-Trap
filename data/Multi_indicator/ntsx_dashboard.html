@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTSX / KMLM / AVWS Strategy Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="ntsx_data.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        :root {
+            --bg-dark:       #0a0e1a;
+            --bg-card:       #111827;
+            --bg-card2:      #161f35;
+            --border:        rgba(255,255,255,0.07);
+            --text:          #e8eaf6;
+            --text-muted:    #8892a4;
+            --green:         #00e676;
+            --green-dim:     rgba(0,230,118,0.12);
+            --blue:          #2979ff;
+            --blue-dim:      rgba(41,121,255,0.12);
+            --yellow:        #ffea00;
+            --yellow-dim:    rgba(255,234,0,0.1);
+            --red:           #ff1744;
+            --red-dim:       rgba(255,23,68,0.12);
+            --orange:        #ff6d00;
+            --accent:        #00bcd4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #0d1b3e 0%, #0a0e1a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 22px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .header-left h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, var(--green), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-left p { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+        .header-right { text-align: right; font-size: 0.75rem; color: var(--text-muted); }
+        .header-right strong { color: var(--text); }
+
+        /* ===== LAYOUT ===== */
+        .container { max-width: 1600px; margin: 0 auto; padding: 28px 32px 60px; }
+
+        .section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+        }
+        .card-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        /* ===== ACTION SIGNAL ===== */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr 1fr 1fr;
+            gap: 16px;
+            align-items: stretch;
+        }
+        .action-signal-card {
+            background: var(--bg-card);
+            border: 2px solid var(--green);
+            border-radius: 14px;
+            padding: 24px 30px;
+            text-align: center;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .signal-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        .signal-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .days-badge {
+            background: var(--blue-dim);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            color: var(--blue);
+            margin-top: 4px;
+        }
+        .execution-card {
+            grid-column: 2 / -1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .weight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+        .weight-card .wc-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .weight-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.82rem;
+        }
+        .weight-row .label { color: var(--text-muted); }
+        .weight-row .val { font-weight: 600; }
+        .band-bar-wrap {
+            position: relative;
+            height: 8px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            margin: 8px 0 12px;
+            overflow: visible;
+        }
+        .band-fill {
+            position: absolute;
+            height: 100%;
+            background: var(--green-dim);
+            border: 1px solid var(--green);
+            border-radius: 4px;
+        }
+        .current-marker {
+            position: absolute;
+            width: 3px;
+            height: 16px;
+            background: var(--green);
+            border-radius: 2px;
+            top: -4px;
+            transform: translateX(-50%);
+        }
+
+        /* ===== METRICS ===== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+        .metric-card .mc-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+        .metric-pair {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .metric-item { flex: 1; }
+        .metric-item .ticker {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .metric-item .value { font-size: 1.3rem; font-weight: 700; }
+        .metric-divider { width: 1px; background: var(--border); }
+
+        /* ===== CHART ===== */
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .chart-legend {
+            display: flex;
+            gap: 18px;
+            font-size: 0.78rem;
+        }
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        #equityChart { max-height: 360px; }
+
+        /* ===== TABLES ===== */
+        table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        thead th {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+        tbody tr {
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: background 0.15s;
+        }
+        tbody tr:hover { background: rgba(255,255,255,0.03); }
+        tbody td { padding: 10px 14px; vertical-align: middle; }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .tag-green  { background: var(--green-dim);  color: var(--green);  }
+        .tag-red    { background: var(--red-dim);    color: var(--red);    }
+        .tag-yellow { background: var(--yellow-dim); color: var(--yellow); }
+        .tag-blue   { background: var(--blue-dim);   color: var(--blue);   }
+
+        .pos { color: var(--green); }
+        .neg { color: var(--red); }
+
+        /* Weight flow arrow */
+        .arrow { color: var(--text-muted); margin: 0 4px; }
+        .weight-chip {
+            display: inline-block;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 0.72rem;
+            font-family: monospace;
+        }
+
+        /* Year table winner */
+        .winner-port { color: var(--green); font-weight: 700; }
+        .winner-spy  { color: var(--blue);  font-weight: 700; }
+
+        /* scroll */
+        .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); }
+
+        /* responsive */
+        @media (max-width: 1100px) {
+            .action-grid { grid-template-columns: 1fr 1fr; }
+            .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 700px) {
+            .action-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .container { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-left">
+        <h1>NTSX / KMLM / AVWS Strategy Dashboard</h1>
+        <p>Tolerance-Band Rebalancing &nbsp;|&nbsp; 55% NTSX Proxy &nbsp;&bull;&nbsp; 12% AVWS (DFSVX) &nbsp;&bull;&nbsp; 33% KMLM (RYMFX)</p>
+    </div>
+    <div class="header-right">
+        <div>Backtest period: <strong id="hdrPeriod">Mar 2007 – Mar 2026</strong></div>
+        <div id="lastUpdated">Data as of: <strong id="asOfDate">—</strong></div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ===== CURRENT STATUS ===== -->
+    <div class="section-title">Current Status &amp; Action Signal</div>
+    <div class="action-grid" id="actionGrid">
+        <!-- filled by JS -->
+    </div>
+
+    <!-- ===== RISK METRICS ===== -->
+    <div class="section-title">19-Year Risk &amp; Return Metrics</div>
+    <div class="metrics-grid" id="metricsGrid">
+        <!-- filled by JS -->
+    </div>
+
+    <!-- ===== EQUITY CURVE ===== -->
+    <div class="section-title">Equity Curve — Portfolio vs SPY (indexed to 100)</div>
+    <div class="chart-card">
+        <div class="chart-header">
+            <div>
+                <div style="font-size:0.85rem;font-weight:600;">Growth of $100 invested in March 2007</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Vertical lines = rebalance events (26 total)</div>
+            </div>
+            <div class="chart-legend">
+                <span><span class="legend-dot" style="background:var(--green)"></span>Portfolio</span>
+                <span><span class="legend-dot" style="background:var(--blue)"></span>SPY</span>
+                <span><span class="legend-dot" style="background:rgba(255,234,0,0.5);border-radius:0;width:2px;height:10px;"></span>Rebalance</span>
+            </div>
+        </div>
+        <canvas id="equityChart"></canvas>
+    </div>
+
+    <!-- ===== YEAR-BY-YEAR ===== -->
+    <div class="section-title">Year-by-Year Performance</div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Portfolio Return</th>
+                    <th>SPY Return</th>
+                    <th>Portfolio Max DD</th>
+                    <th>SPY Max DD</th>
+                    <th>DD Improvement</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody id="yearlyBody"></tbody>
+        </table>
+    </div>
+
+    <!-- ===== REBALANCE HISTORY ===== -->
+    <div class="section-title">Rebalance History — All 26 Events</div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Trigger Asset</th>
+                    <th>Direction</th>
+                    <th>Weight at Trigger</th>
+                    <th>Band</th>
+                    <th>Weights Before (NTSX / AVWS / KMLM)</th>
+                    <th>Weights After (NTSX / AVWS / KMLM)</th>
+                </tr>
+            </thead>
+            <tbody id="rebalanceBody"></tbody>
+        </table>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+// ====================================================================
+// RENDER FUNCTIONS
+// ====================================================================
+
+// ---- Current Status ----
+function renderStatus() {
+    const d = NTSX_CURRENT;
+    const grid = document.getElementById('actionGrid');
+    document.getElementById('asOfDate').textContent = d.as_of_date;
+
+    let signalBg = d.action_signal === 'HOLD' ? 'rgba(0,230,118,0.06)'
+                 : d.action_signal === 'WATCH' ? 'rgba(255,234,0,0.06)'
+                 : 'rgba(255,23,68,0.10)';
+
+    let subMsg = d.action_signal === 'HOLD' ? 'All weights within tolerance bands'
+               : d.action_signal === 'WATCH' ? 'Approaching tolerance band edges'
+               : 'Tolerance band breached. Rebalance required.';
+
+    let actionHtml = `
+        <div class="action-signal-card" style="border-color:${d.action_color};background:${signalBg}; grid-row: 1 / span 2; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);">Action Signal</div>
+                <div class="signal-badge" style="color:${d.action_color}; margin: 8px 0;">${d.action_signal}</div>
+                <div class="signal-sub">${subMsg}</div>
+                <div class="days-badge" style="display:inline-block; margin-top:12px;">${d.days_since_last_rebalance} days since last rebalance</div>
+                <div style="font-size:0.72rem;color:var(--text-muted);margin-top:6px;">Last: ${d.last_rebalance_date}</div>
+            </div>
+            <div style="width:100%; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; margin-top:24px;">
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;text-align:left;">Total Portfolio Value (TPV)</div>
+                <div style="display:flex; align-items:center; background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:6px; padding:10px 12px;">
+                    <span style="color:var(--text-muted);margin-right:6px;font-size:1.1rem;">$</span>
+                    <input type="number" id="tpvInput" value="100000" style="background:none;border:none;color:white;font-family:monospace;font-size:1.2rem;width:100%;outline:none;font-weight:600;" oninput="updateTrades()">
+                </div>
+            </div>
+        </div>`;
+
+    d.asset_names.forEach((name, i) => {
+        const curr   = d.current_weights[i];
+        const target = d.target_weights[i];
+        const lower  = d.lower_bounds[i];
+        const upper  = d.upper_bounds[i];
+        const dLow   = d.distance_to_lower[i];
+        const dUp    = d.distance_to_upper[i];
+
+        const bandWidth = upper - lower;
+        const markerPct = Math.max(0, Math.min(100, ((curr - lower) / bandWidth * 100))).toFixed(1);
+        const nearEdge  = Math.min(dLow, dUp) < 1.0;
+        let markerColor = 'var(--green)';
+        if (curr < lower || curr > upper) markerColor = 'var(--red)';
+        else if (nearEdge) markerColor = 'var(--yellow)';
+
+        const drift = (curr - target).toFixed(2);
+        const driftStr = drift > 0 ? `+${drift}%` : `${drift}%`;
+        const driftColor = Math.abs(drift) < 1 ? 'var(--green)' : 'var(--yellow)';
+
+        actionHtml += `
+        <div class="weight-card">
+            <div class="wc-name">${name}</div>
+            <div class="weight-row">
+                <span class="label">Current</span>
+                <span class="val" style="color:${markerColor};">${curr}%</span>
+            </div>
+            <div class="weight-row">
+                <span class="label">Target</span>
+                <span class="val">${target}%</span>
+            </div>
+            <div class="weight-row">
+                <span class="label">Drift</span>
+                <span class="val" style="color:${driftColor};">${driftStr}</span>
+            </div>
+            <div class="band-bar-wrap" title="Band: ${lower}%–${upper}%">
+                <div class="band-fill" style="left:0%;width:100%;"></div>
+                <div class="current-marker" style="left:${markerPct}%;background:${markerColor};"></div>
+            </div>
+            <div class="weight-row" style="font-size:0.72rem;">
+                <span class="label" style="color:var(--red);">&#x25BC; ${lower}%</span>
+                <span style="color:var(--text-muted);">Band</span>
+                <span class="label" style="color:var(--green);">&#x25B2; ${upper}%</span>
+            </div>
+            <div class="weight-row" style="font-size:0.72rem;margin-top:4px;">
+                <span style="color:var(--text-muted);">&#x21A7; ${dLow}% to lower</span>
+                <span style="color:var(--text-muted);">&#x21A5; ${dUp}% to upper</span>
+            </div>
+        </div>`;
+    });
+
+    actionHtml += `<div class="execution-card" id="executionCard"></div>`;
+    grid.innerHTML = actionHtml;
+
+    setTimeout(updateTrades, 50);
+}
+
+function updateTrades() {
+    const tpvInput = document.getElementById('tpvInput');
+    if(!tpvInput) return;
+    const tpv = parseFloat(tpvInput.value) || 0;
+    const d = NTSX_CURRENT;
+    let html = `<div style="font-size:0.82rem;font-weight:600;color:var(--accent);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Execution Mechanics: Volatility Harvest</div>`;
+    
+    html += `<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:15px;">`;
+
+    d.asset_names.forEach((name, i) => {
+        const currentDollar = tpv * (d.current_weights[i] / 100);
+        const targetDollar  = tpv * (d.target_weights[i] / 100);
+        const deviation     = currentDollar - targetDollar;
+        
+        let actionTxt = '';
+        if (Math.abs(deviation) < 1) {
+            actionTxt = `<span style="color:var(--text-muted)">Perfectly balanced</span>`;
+        } else if (deviation > 0) {
+            actionTxt = `<strong style="color:var(--red);">SELL $${Math.abs(deviation).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>`;
+        } else {
+            actionTxt = `<strong style="color:var(--green);">BUY $${Math.abs(deviation).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>`;
+        }
+
+        html += `
+        <div style="background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:10px;">${name}</div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:6px;"><span style="color:var(--text-muted)">Current Val:</span> <span>$${currentDollar.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:10px;"><span style="color:var(--text-muted)">Target Val:</span> <span>$${targetDollar.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span></div>
+            <div style="border-top:1px solid var(--border);padding-top:10px;text-align:right;">${actionTxt}</div>
+        </div>`;
+    });
+
+    html += `</div>`;
+
+    if (d.action_signal !== "HOLD") {
+        html += `<div style="margin-top:16px;padding:14px;background:var(--red-dim);border-left:4px solid var(--red);border-radius:6px;font-size:0.8rem;line-height:1.6;">
+            <strong style="color:var(--red)">PROTOCOL TRIGGERED:</strong> You must execute these exact mathematical deviations. Use Limit Orders strictly at the "Ask" or "Bid" to avoid slippage. Do not trade in the first 15 mins or last 15 mins of the market session. Protect this within a tax-advantaged account.
+        </div>`;
+    } else {
+        html += `<div style="margin-top:16px;font-size:0.75rem;color:var(--text-muted);font-style:italic;">
+            * Hypothetical trades if a manual rebalance were forced today. <br>System Status: <strong>NO ACTION REQUIRED</strong> because all mathematical bands are maintained.
+        </div>`;
+    }
+
+    document.getElementById('executionCard').innerHTML = html;
+}
+
+// ---- Risk Metrics ----
+function renderMetrics() {
+    const m = NTSX_METRICS;
+    const grid = document.getElementById('metricsGrid');
+
+    function winner(portVal, spyVal, higherIsBetter=true) {
+        if (higherIsBetter) {
+            return portVal >= spyVal ? ['var(--green)', 'var(--text-muted)'] : ['var(--text-muted)', 'var(--blue)'];
+        } else {
+            return portVal <= spyVal ? ['var(--green)', 'var(--text-muted)'] : ['var(--text-muted)', 'var(--blue)'];
+        }
+    }
+
+    const metrics = [
+        { label:'CAGR', portVal: m.portfolio.cagr, spyVal: m.spy.cagr, fmt: v=>`${v}%`, higher: true },
+        { label:'Max Drawdown', portVal: m.portfolio.max_dd, spyVal: m.spy.max_dd, fmt: v=>`${v}%`, higher: false },
+        { label:'Sharpe Ratio', portVal: m.portfolio.sharpe, spyVal: m.spy.sharpe, fmt: v=>v, higher: true },
+        { label:'Sortino Ratio', portVal: m.portfolio.sortino, spyVal: m.spy.sortino, fmt: v=>v, higher: true },
+        { label:'Calmar Ratio', portVal: m.portfolio.calmar, spyVal: m.spy.calmar, fmt: v=>v, higher: true },
+    ];
+
+    grid.innerHTML = metrics.map(({label, portVal, spyVal, fmt, higher}) => {
+        const [portColor, spyColor] = winner(portVal, spyVal, higher);
+        return `
+        <div class="metric-card">
+            <div class="mc-label">${label}</div>
+            <div class="metric-pair">
+                <div class="metric-item">
+                    <div class="ticker" style="color:var(--green);">Portfolio</div>
+                    <div class="value" style="color:${portColor};">${fmt(portVal)}</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="ticker" style="color:var(--blue);">SPY</div>
+                    <div class="value" style="color:${spyColor};">${fmt(spyVal)}</div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ---- Equity Curve ----
+function renderChart() {
+    const labels = NTSX_EQUITY.map(d => d.date);
+    const portData = NTSX_EQUITY.map(d => d.port);
+    const spyData  = NTSX_EQUITY.map(d => d.spy);
+
+    // Build annotation plugin-free vertical lines using custom plugin
+    const rebalanceSet = new Set(NTSX_REB_DATES.map(d => {
+        // match to nearest monthly date
+        return d.substring(0, 7); // YYYY-MM
+    }));
+
+    const ctx = document.getElementById('equityChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: 'Portfolio',
+                    data: portData,
+                    borderColor: '#00e676',
+                    backgroundColor: 'rgba(0,230,118,0.04)',
+                    borderWidth: 2.2,
+                    pointRadius: 0,
+                    tension: 0.3,
+                    fill: false,
+                },
+                {
+                    label: 'SPY',
+                    data: spyData,
+                    borderColor: '#2979ff',
+                    backgroundColor: 'rgba(41,121,255,0.04)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.3,
+                    fill: false,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#161f35',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1,
+                    titleColor: '#8892a4',
+                    bodyColor: '#e8eaf6',
+                    padding: 12,
+                    callbacks: {
+                        label: ctx => {
+                            const v = ctx.raw;
+                            const ret = ((v - 100) / 100 * 100).toFixed(1);
+                            return `  ${ctx.dataset.label}: $${v.toFixed(0)}  (+${ret}%)`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(255,255,255,0.04)' },
+                    ticks: {
+                        color: '#8892a4', maxTicksLimit: 12,
+                        callback: function(val, idx) {
+                            return this.getLabelForValue(val).substring(0, 7);
+                        }
+                    }
+                },
+                y: {
+                    grid: { color: 'rgba(255,255,255,0.04)' },
+                    ticks: { color: '#8892a4', callback: v=>`$${v}` }
+                }
+            }
+        },
+        plugins: [{
+            // Draw vertical rebalance lines
+            id: 'rebalanceLines',
+            afterDraw(chart) {
+                const {ctx, chartArea, scales} = chart;
+                if (!chartArea) return;
+                ctx.save();
+                ctx.strokeStyle = 'rgba(255,234,0,0.35)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([3, 4]);
+
+                NTSX_REB_DATES.forEach(rebDate => {
+                    const rebMonth = rebDate.substring(0, 7);
+                    const idx = chart.data.labels.findIndex(l => l.startsWith(rebMonth));
+                    if (idx < 0) return;
+                    const x = scales.x.getPixelForValue(idx);
+                    ctx.beginPath();
+                    ctx.moveTo(x, chartArea.top);
+                    ctx.lineTo(x, chartArea.bottom);
+                    ctx.stroke();
+                });
+                ctx.restore();
+            }
+        }]
+    });
+}
+
+// ---- Year-by-Year Table ----
+function renderYearly() {
+    const tbody = document.getElementById('yearlyBody');
+    tbody.innerHTML = NTSX_YEARLY.map(y => {
+        const portClass  = y.port_return >= 0 ? 'pos' : 'neg';
+        const spyClass   = y.spy_return  >= 0 ? 'pos' : 'neg';
+        const ddImp      = y.port_maxdd - y.spy_maxdd;  // negative = portfolio had smaller dd
+        const ddImpStr   = ddImp <= 0 ? `<span class="pos">+${Math.abs(ddImp).toFixed(2)}% less</span>` : `<span class="neg">-${ddImp.toFixed(2)}%</span>`;
+        const winnerHtml = y.winner === 'Portfolio'
+            ? `<span class="tag tag-green winner-port">Portfolio</span>`
+            : `<span class="tag tag-blue winner-spy">SPY</span>`;
+        return `<tr>
+            <td><strong>${y.year}</strong></td>
+            <td class="${portClass}">${y.port_return > 0 ? '+' : ''}${y.port_return}%</td>
+            <td class="${spyClass}">${y.spy_return > 0 ? '+' : ''}${y.spy_return}%</td>
+            <td class="neg">${y.port_maxdd}%</td>
+            <td class="neg">${y.spy_maxdd}%</td>
+            <td>${ddImpStr}</td>
+            <td>${winnerHtml}</td>
+        </tr>`;
+    }).join('');
+}
+
+// ---- Rebalance History Table ----
+function renderRebalances() {
+    const tbody = document.getElementById('rebalanceBody');
+    tbody.innerHTML = NTSX_REBALANCES.map((r, i) => {
+        const trigger = r.triggers[0];
+        const dirClass = trigger.direction.includes('Below') ? 'neg' : 'pos';
+        const dirTag   = trigger.direction.includes('Below')
+            ? `<span class="tag tag-red">&#x25BC; Below Lower</span>`
+            : `<span class="tag tag-yellow">&#x25B2; Above Upper</span>`;
+
+        const before = r.weights_before.map((w, idx) =>
+            `<span class="weight-chip" style="color:${Math.abs(w - r.weights_after[idx]) > 1 ? 'var(--yellow)' : 'var(--text-muted)'}">${w}%</span>`
+        ).join(' ');
+
+        const after = r.weights_after.map(w =>
+            `<span class="weight-chip" style="color:var(--accent)">${w}%</span>`
+        ).join(' ');
+
+        return `<tr>
+            <td style="color:var(--text-muted);font-size:0.72rem;">${i + 1}</td>
+            <td><strong>${r.date}</strong><br><span style="font-size:0.72rem;color:var(--text-muted);">${r.month}</span></td>
+            <td style="color:var(--accent);font-weight:600;">${trigger.asset}</td>
+            <td>${dirTag}</td>
+            <td><span class="${dirClass}" style="font-weight:700;">${trigger.weight_at_trigger}%</span></td>
+            <td style="font-size:0.72rem;color:var(--text-muted);">${trigger.band}</td>
+            <td>${before}</td>
+            <td>${after}</td>
+        </tr>`;
+    }).join('');
+}
+
+// ====================================================================
+// INIT
+// ====================================================================
+window.addEventListener('DOMContentLoaded', () => {
+    renderStatus();
+    renderMetrics();
+    renderYearly();
+    renderRebalances();
+    renderChart();
+
+    if (typeof NTSX_EQUITY !== 'undefined' && NTSX_EQUITY.length > 0) {
+        let latestDateRaw = NTSX_EQUITY[NTSX_EQUITY.length - 1].date;
+        document.getElementById('asOfDate').innerHTML = "<span style='color: var(--green);'>" + latestDateRaw + "</span>";
+        
+        let dDate = new Date(latestDateRaw);
+        let monthName = dDate.toLocaleString('default', { month: 'short' });
+        let yearNum = dDate.getFullYear();
+        document.getElementById('hdrPeriod').innerText = "Mar 2007 – " + monthName + " " + yearNum;
+    }
+});
+</script>
+</body>
+</html>

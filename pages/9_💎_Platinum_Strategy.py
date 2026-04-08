@@ -8,10 +8,10 @@ import os
 st.set_page_config(layout="wide", page_title="Platinum Strategy Dashboard", page_icon="💎")
 
 # Paths - Adjusted for multi-page structure
-# File is in Backtest/Makret-Bull-and-Bear-Trap/pages/
-# Data is in Backtest/Platinum_Results/
+# Repository-root-relative path (from pages/ subdirectory)
 BASE_DIR = os.path.dirname(__file__)
-DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../Platinum_Results"))
+DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "../data/Platinum_Results"))
+DOCS_PATH = os.path.abspath(os.path.join(BASE_DIR, "../data/Platinum_Results/Platinum_Strategy_Docs.md"))
 
 EQUITY_PATH = os.path.join(DATA_DIR, 'Platinum_Equity.csv')
 WEIGHTS_PATH = os.path.join(DATA_DIR, 'Platinum_Weights.csv')
