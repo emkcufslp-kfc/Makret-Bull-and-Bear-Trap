@@ -283,4 +283,25 @@ def render_sidebar_footer():
     st.page_link("pages/3_🐂_Bull_Trap.py", label="🐂 牛市陷阱：Bull Trap", icon="🐂")
     st.page_link("pages/4_📊_ETF_Rotation.py", label="📊 輪動監控：ETF Rotation", icon="🚀")
     st.page_link("pages/5_📈_200MA_Strategy.py", label="📈 趨勢防禦：200MA Strategy", icon="🛡️")
-    st.page_link("pages/6_🎯_Meta_Indicator.py", label="🎯 定向指標：Meta Indicator", icon="💎")
+def get_data_freshness():
+    """Returns information about the freshness of the factual data files."""
+    freshness = []
+    
+    # 1. Master Data (Parquet)
+    if MASTER_FILE.exists():
+        mtime = datetime.datetime.fromtimestamp(MASTER_FILE.stat().st_mtime)
+        freshness.append({"Source": "Master DB (.parquet)", "Last Update": mtime.strftime("%Y-%m-%d %H:%M"), "Status": "OK"})
+    
+    # 2. NTSX Data (JS)
+    ntsx_js = DATA_DIR / "Multi_indicator" / "ntsx_data.js"
+    if ntsx_js.exists():
+        mtime = datetime.datetime.fromtimestamp(ntsx_js.stat().st_mtime)
+        freshness.append({"Source": "NTSX Engine (.js)", "Last Update": mtime.strftime("%Y-%m-%d %H:%M"), "Status": "OK"})
+
+    # 3. Platinum Data (CSV)
+    plat_csv = DATA_DIR / "Platinum_Results" / "Platinum_Equity.csv"
+    if plat_csv.exists():
+        mtime = datetime.datetime.fromtimestamp(plat_csv.stat().st_mtime)
+        freshness.append({"Source": "Platinum Strategy (.csv)", "Last Update": mtime.strftime("%Y-%m-%d %H:%M"), "Status": "OK"})
+        
+    return freshness

@@ -16,32 +16,13 @@ from sklearn.ensemble import RandomForestClassifier
 # --- Page Config ---
 st.set_page_config(page_title="ML Meta-Indicator", layout="wide")
 
-# --- Initialize session state for date sync ---
-if 'master_date' not in st.session_state:
-    st.session_state['master_date'] = datetime.date.today()
-
-if 'meta_date' not in st.session_state:
-    st.session_state['meta_date'] = st.session_state['master_date']
-
-# --- Sidebar: Date Synchronization ---
-# --- Sidebar Configuration ---
+# --- Sidebar & Master Controls ---
 with st.sidebar:
     from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
     render_master_controls()
     render_ecosystem_sidebar()
-    st.markdown("---")
-    if st.button("🔄 Sync with Master Date", use_container_width=True):
-        st.session_state['meta_date'] = st.session_state['master_date']
-        st.rerun()
 
-st.divider()
-
-analysis_date = st.date_input(
-    "Select Analysis Date",
-    value=st.session_state['meta_date'],
-    key="meta_date_input"
-)
-st.session_state['meta_date'] = analysis_date
+analysis_date = st.session_state['master_date']
 
 st.divider()
 

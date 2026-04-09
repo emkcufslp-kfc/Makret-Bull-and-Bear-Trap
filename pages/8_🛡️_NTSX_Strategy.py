@@ -22,14 +22,44 @@ def render_ntsx_dashboard():
         with open(html_path, "r", encoding="utf-8", errors="replace") as f:
             html_content = f.read()
             
-        # Optional: Inject JS data if not already embedded
+        # Robust Regex-based Injection
+        import re
+        master_date_str = st.session_state['master_date'].strftime('%Y-%m-%d')
+        js_data = ""
+        
         if os.path.exists(js_path):
             with open(js_path, "r", encoding="utf-8", errors="replace") as f:
                 js_data = f.read()
-            # Replace the JS source tag with the actual data
+
+            # Prepare the filter script
+            filter_script = f"""
+// Master Date Sync (Enforced)
+if (typeof NTSX_EQUITY !== 'undefined') {{
+    const mDate = '{master_date_str}';
+    const mYear = parseInt(mDate.substring(0,4));
+    NTSX_EQUITY = NTSX_EQUITY.filter(d => d.date <= mDate);
+    NTSX_REBALANCES = NTSX_REBALANCES.filter(r => r.date <= mDate);
+    NTSX_YEARLY = NTSX_YEARLY.filter(y => parseInt(y.year) <= mYear);
+    NTSX_REB_DATES = NTSX_REB_DATES.filter(d => d <= mDate);
+    
+    // Explicitly update NTSX_CURRENT to reflect the filtered state
+    if (NTSX_EQUITY.length > 0) {{
+        const last = NTSX_EQUITY[NTSX_EQUITY.length - 1];
+        if (typeof NTSX_CURRENT !== 'undefined') {{
+            NTSX_CURRENT.as_of_date = last.date;
+        }}
+    }}
+}}
+"""
+            # Replace the JS source tag with the actual data + filter
+            # regex handles whitespace and any tag formatting
+            js_injection = f'<script type="text/javascript">{js_data}\n{filter_script}</script>'
+            html_content = re.sub(r'<script\s+src="ntsx_data\.js"\s*></script>', js_injection, html_content)
+        else:
+            # Fallback filter injection
             html_content = html_content.replace(
-                '<script src="ntsx_data.js"></script>',
-                f'<script type="text/javascript">{js_data}</script>'
+                '</body>',
+                f"<script type='text/javascript'>const mDate = '{master_date_str}'; if (typeof NTSX_EQUITY !== 'undefined') {{ NTSX_EQUITY = NTSX_EQUITY.filter(d => d.date <= mDate); }}</script></body>"
             )
         
         # Render the HTML component

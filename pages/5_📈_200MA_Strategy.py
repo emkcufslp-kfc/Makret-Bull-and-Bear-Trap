@@ -37,35 +37,13 @@ Extracting the 'Golden Rule' of Trend Following.
 *"The 200-day moving average is a measure of risk for me. If the price is below the 200-day, I get out." — Paul Tudor Jones*
 """)
 
-# --- Sync Logic ---
-if 'master_date' not in st.session_state:
-    st.session_state['master_date'] = datetime.date.today()
-
-if 'ma200_date' not in st.session_state:
-    st.session_state['ma200_date'] = st.session_state['master_date']
-
-# --- Sidebar: Date Synchronization ---
+# --- Sidebar & Master Controls ---
 with st.sidebar:
     from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
     render_master_controls()
     render_ecosystem_sidebar()
-    st.markdown("---")
-    st.header("📅 Analysis Date")
-    
-    if st.button("🔄 Sync with Master Date", use_container_width=True):
-        st.session_state['ma200_date'] = st.session_state['master_date']
-        st.rerun()
 
-    analysis_date = st.date_input(
-        "Select Analysis Date",
-        value=st.session_state['ma200_date'],
-        key="ma200_date_input"
-    )
-    st.session_state['ma200_date'] = analysis_date
-
-    st.divider()
-    if st.button("🚀 立即同步 (Sync Now)", use_container_width=True):
-        st.warning("Master Sync 進程啟動中...")
+analysis_date = st.session_state['master_date']
 
 # --- Data Fetching Logic ---
 def get_200ma_data(target_date, master_df):
@@ -150,13 +128,13 @@ def get_sos_indicator(target_date):
 
 # --- Main Dashboard Rendering ---
 master_df = get_clean_master()
-res = get_200ma_data(st.session_state['ma200_date'], master_df)
+res = get_200ma_data(analysis_date, master_df)
 
 if res:
     current_sp, current_200ma, drawdown, current_vix, spy_hist = res
-    t2108 = get_t2108_proxy(st.session_state['ma200_date'], master_df)
-    recession_prob = get_recession_odds(st.session_state['ma200_date'])
-    sos_val = get_sos_indicator(st.session_state['ma200_date'])
+    t2108 = get_t2108_proxy(analysis_date, master_df)
+    recession_prob = get_recession_odds(analysis_date)
+    sos_val = get_sos_indicator(analysis_date)
     
     # Summary Metrics
     m1, m2, m3, m4 = st.columns(4)

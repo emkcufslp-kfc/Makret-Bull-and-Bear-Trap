@@ -105,23 +105,7 @@ def build_dashboard():
         st.error("Failed to load historical data.")
         return
 
-    # Date Sync
-    if 'master_date' not in st.session_state:
-        st.session_state['master_date'] = datetime.date.today()
-    if 'etf_date' not in st.session_state:
-        st.session_state['etf_date'] = st.session_state['master_date']
-        
-    with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
-        render_master_controls()
-        render_ecosystem_sidebar()
-        st.divider()
-        if st.button("🔄 Sync with Master Date", use_container_width=True):
-            st.session_state['etf_date'] = st.session_state['master_date']
-            st.rerun()
-        st.divider()
-        analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['etf_date'])
-        st.session_state['etf_date'] = analysis_date
+    analysis_date = st.session_state['master_date']
 
     actual_date_ts = pd.Timestamp(analysis_date)
     valid_dates = data.index[data.index <= actual_date_ts]

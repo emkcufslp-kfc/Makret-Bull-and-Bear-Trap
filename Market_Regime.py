@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 # --- Page Config ---
 st.set_page_config(page_title="Market Regime & Crash Probability", page_icon="🔴", layout="wide")
 
-from utils.data_engine import get_clean_master, get_hy_spread, get_move, get_gex, get_t2108, get_sp500_drawdown
+from utils.data_engine import get_clean_master, get_hy_spread, get_move, get_gex, get_t2108, get_sp500_drawdown, get_data_freshness
 
 def get_vix_term_structure(target_date):
     try:
@@ -27,13 +27,27 @@ def get_liquidity_proxy(target_date):
 # ----------------------------
 def dashboard():
     st.title("🔴 Market Regime & Crash Probability Dashboard")
+    
+    # Display Data Freshness Badge
+    freshness = get_data_freshness()
+    if freshness:
+        master_update = next((f['Last Update'] for f in freshness if "Master" in f['Source']), "Unknown")
+        st.markdown(f"""
+        <div style="background-color: #1e293b; padding: 5px 15px; border-radius: 20px; border: 1px solid #3b82f6; display: inline-block; margin-bottom: 20px;">
+            <span style="color: #60a5fa; font-size: 0.8rem; font-weight: bold;">📅 數據最後更新 (Latest Sync): {master_update}</span>
+        </div>
+        """, unsafe_allow_html=True)
 
     # Sidebar and Global Controls
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
     with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
         render_master_controls()
         render_ecosystem_sidebar()
 
+    # Priority 1: Master Date from Session State
+    if 'master_date' not in st.session_state:
+        st.session_state['master_date'] = datetime.date.today()
+    
     analysis_date = st.session_state['master_date']
     
     with st.spinner("Analyzing Market Conditions..."):

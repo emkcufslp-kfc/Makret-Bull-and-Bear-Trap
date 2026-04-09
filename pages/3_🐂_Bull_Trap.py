@@ -18,27 +18,7 @@ def dashboard():
     st.title("🐂 Bull Trap Indicator Dashboard")
     st.markdown("Structural transition detector identifying genuine bull markets vs. deceptive bear rallies (bull traps) using a 10-point scoring system.")
     
-    # Date Synchronization Logic
-    if 'master_date' not in st.session_state:
-        st.session_state['master_date'] = datetime.date.today()
-    
-    # Independent local date for this page
-    if 'bull_date' not in st.session_state:
-        st.session_state['bull_date'] = st.session_state['master_date']
-        
-    # Sidebar Configuration
-    with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
-        render_master_controls()
-        render_ecosystem_sidebar()
-        st.markdown("---")
-        # Sync button in sidebar
-        if st.button("🔄 Sync with Master Date", use_container_width=True):
-            st.session_state['bull_date'] = st.session_state['master_date']
-            st.rerun()
-        
-    analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['bull_date'])
-    st.session_state['bull_date'] = analysis_date
+    analysis_date = st.session_state['master_date']
     
     with st.spinner("Loading market data..."):
         data = load_bull_data()

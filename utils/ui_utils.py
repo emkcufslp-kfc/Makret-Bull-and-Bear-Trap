@@ -4,6 +4,8 @@ import os
 import subprocess
 import shutil
 
+from utils.data_engine import get_data_freshness
+
 def render_master_controls():
     """Centralized master date and system synchronization controls."""
     # Initialization
@@ -70,12 +72,46 @@ def render_master_controls():
                     status.update(label="✅ 系統數據已更新！", state="complete", expanded=False)
                     st.toast("數據同步完成！")
                 else:
+                    status.update(label="❌ 無法在雲端直接刷新數據", state="error", expanded=True)
                     if not is_windows:
-                        st.info("💡 系統偵測到目前處於雲端環境。'數據刷新' 僅支援本地端同步。")
+                        st.markdown("""
+                        ### ☁️ 雲端同步工作流 (Workflow)
+                        目前處於雲端環境，無法直接執行本地腳本。請執行以下步驟更新數據：
+                        1. **本地執行**: 在您的電腦上執行 `streamlit run Market_Regime.py`。
+                        2. **點擊刷新**: 在本地端點擊 `⚡ 數據刷新`。
+                        3. **推送 GitHub**: 執行 `git push` 將 `data/` 資料夾推送至倉庫。
+                        4. **自動更新**: Streamlit Cloud 將自動同步最新數據。
+                        """)
                     else:
                         st.error(f"找不到同步腳本，請確認路徑是否正確: {sync_script}")
         except Exception as e:
             st.error(f"同步失敗: {e}")
+
+    # Data Freshness Indicator
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("#### 🕒 數據新鮮度監控 (Data Freshness)")
+    freshness_data = get_data_freshness()
+    
+    # Check if Master Date is ahead of factual data
+    sync_gap_detected = False
+    for item in freshness_data:
+        try:
+            # Parse the "Last Update" string (format: %Y-%m-%d %H:%M)
+            file_date = datetime.datetime.strptime(item["Last Update"], "%Y-%m-%d %H:%M").date()
+            if st.session_state['master_date'] > file_date:
+                sync_gap_detected = True
+        except: pass
+            
+        color = "#22c55e" if "OK" in item["Status"] else "#ef4444"
+        st.sidebar.markdown(f"""
+        <div style="font-size: 0.8rem; margin-bottom: 5px;">
+            <span style="color: #94a3b8;">{item['Source']}:</span><br/>
+            <span style="color: {color}; font-weight: bold;">{item['Last Update']}</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    if sync_gap_detected:
+        st.sidebar.warning(f"⚠️ **數據延誤**: 目前基準日 ({st.session_state['master_date']}) 領先於數據庫。請點擊上方刷新按鈕。")
 
     st.sidebar.markdown("---")
 
@@ -100,7 +136,7 @@ def render_ecosystem_sidebar():
 <div style="margin-top: 15px;"></div>
 """, unsafe_allow_html=True)
     
-    st.page_link("pages/1_🔴_Market_Regime.py", label="市場體系：Market Regime", icon="🚦")
+    st.page_link("Market_Regime.py", label="市場體系：Market Regime", icon="🚦")
     st.page_link("pages/2_🐻_Bear_Trap.py", label="熊市陷阱：Bear Trap", icon="🐻")
     st.page_link("pages/3_🐂_Bull_Trap.py", label="牛市陷阱：Bull Trap", icon="🐂")
     st.page_link("pages/4_📊_ETF_Rotation.py", label="輪動監控：ETF Rotation", icon="🚀")
@@ -110,16 +146,9 @@ def render_ecosystem_sidebar():
     st.markdown("""
 <div style="background-color: #1e293b; padding: 15px; border-radius: 10px; margin-top: 20px; text-align: center; border: 1px solid #475569;">
 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 12px; font-weight: bold;">專業量化策略面板</p>
-<div style="display: flex; flex-direction: column; gap: 10px;">
-<a href="/FTD_Strategy" target="_self" style="text-decoration: none;">
-<div style="background-color: #ef4444; color: black; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; cursor: pointer;">🚀 底部確認 : FTD 追蹤</div>
-</a>
-<a href="/NTSX_Strategy" target="_self" style="text-decoration: none;">
-<div style="background-color: #22c55e; color: black; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; cursor: pointer;">🛡️ 資產配置 : NTSX 策略</div>
-</a>
-<a href="/Platinum_Strategy" target="_self" style="text-decoration: none;">
-<div style="background-color: #eab308; color: black; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; cursor: pointer;">💎 核心增益 : Platinum 策略</div>
-</a>
-</div>
 </div>
 """, unsafe_allow_html=True)
+
+    st.page_link("pages/7_🚀_FTD_Strategy.py", label="底部確認 : FTD 追蹤", icon="🚀")
+    st.page_link("pages/8_🛡️_NTSX_Strategy.py", label="資產配置 : NTSX 策略", icon="🛡️")
+    st.page_link("pages/9_💎_Platinum_Strategy.py", label="核心增益 : Platinum 策略", icon="💎")

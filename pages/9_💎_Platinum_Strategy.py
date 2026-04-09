@@ -39,10 +39,31 @@ def load_data():
 def main():
     st.title("💎 Platinum Strategy Dashboard")
     
-    eq, w, prices, log, monthly, mc, roll = load_data()
+    eq_full, w_full, prices_full, log_full, monthly, mc, roll = load_data()
     
-    if eq is None:
+    if eq_full is None:
         st.warning("Data not found. Please ensure Platinum_Backtest.py has been run and results are in the Platinum_Results folder.")
+        return
+
+    # Master Date Synchronization (Time Travel)
+    selected_date = st.session_state.get('master_date', pd.Timestamp.now().date())
+    sel_dt = pd.Timestamp(selected_date)
+    
+    # Truncate all data to the selected master date
+    eq = eq_full[eq_full.index <= sel_dt]
+    w = w_full[w_full.index <= sel_dt]
+    
+    # Check for data gap (Stale Data)
+    latest_factual_date = eq_full.index.max().date()
+    if selected_date > latest_factual_date:
+        st.warning(f"⚠️ **數據延遲 (Data Gap Detected)**: 您的基準日期為 {selected_date}，但本地數據僅更新至 {latest_factual_date}。")
+        st.info("請在本地端執行 **⚡ 數據刷新** 以獲取最新市場事實資料。")
+    
+    prices = prices_full[prices_full.index <= sel_dt]
+    log = log_full[pd.to_datetime(log_full['Date']) <= sel_dt].copy()
+    
+    if eq.empty:
+        st.error(f"所選日期無效（早於回測開始日）: {selected_date}")
         return
 
     # Ensure Log P&L is numeric
@@ -52,13 +73,14 @@ def main():
     final_eq = eq['Platinum_Equity'].iloc[-1]
     total_ret = (final_eq / 10000) - 1
     days = (eq.index[-1] - eq.index[0]).days
+    if days <= 0: days = 1 # Avoid division by zero
     cagr = (final_eq/10000)**(365.25/days) - 1
     
     dd_curr = (eq['Platinum_Equity'] / eq['Platinum_Equity'].cummax()) - 1
     max_dd = dd_curr.min()
     
     daily_ret = eq['Platinum_Equity'].pct_change().dropna()
-    sharpe = daily_ret.mean() / daily_ret.std() * (252**0.5)
+    sharpe = daily_ret.mean() / daily_ret.std() * (252**0.5) if not daily_ret.empty else 0.0
 
     # --- TABS ---
     tab_action, tab1, tab2, tab3, tab4, tab5 = st.tabs(["🚀 Action Card", "📈 Performance", "📅 Monthly Returns", "📝 Transaction Log", "🎲 Robustness", "🧠 Strategy Logic"])

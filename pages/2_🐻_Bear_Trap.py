@@ -29,23 +29,7 @@ def dashboard():
     if 'master_date' not in st.session_state:
         st.session_state['master_date'] = datetime.date.today()
     
-    # Independent local date for this page
-    if 'bear_date' not in st.session_state:
-        st.session_state['bear_date'] = st.session_state['master_date']
-        
-    # --- Sidebar Configuration ---
-    with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
-        render_master_controls()
-        render_ecosystem_sidebar()
-        st.markdown("---")
-        # Sync button in sidebar
-        if st.button("🔄 Sync with Master Date", use_container_width=True):
-            st.session_state['bear_date'] = st.session_state['master_date']
-            st.rerun()
-        
-    analysis_date = st.date_input("📅 Analysis Date", value=st.session_state['bear_date'])
-    st.session_state['bear_date'] = analysis_date
+    analysis_date = st.session_state['master_date']
     
     with st.spinner("Loading market data..."):
         data = load_bear_data()
