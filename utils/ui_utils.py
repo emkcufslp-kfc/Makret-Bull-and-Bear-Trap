@@ -136,7 +136,7 @@ def render_ecosystem_sidebar():
 <div style="margin-top: 15px;"></div>
 """, unsafe_allow_html=True)
     
-    st.page_link("Market_Regime.py", label="市場體系：Market Regime", icon="🚦")
+    st.page_link("app.py", label="市場體系：Market Regime", icon="🚦")
     st.page_link("pages/2_🐻_Bear_Trap.py", label="熊市陷阱：Bear Trap", icon="🐻")
     st.page_link("pages/3_🐂_Bull_Trap.py", label="牛市陷阱：Bull Trap", icon="🐂")
     st.page_link("pages/4_📊_ETF_Rotation.py", label="輪動監控：ETF Rotation", icon="🚀")
