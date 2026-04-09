@@ -1,3 +1,4 @@
+import datetime
 import streamlit as st
 
 st.set_page_config(
@@ -8,7 +9,6 @@ st.set_page_config(
 
 # Initialize Master Date in Session State
 if 'master_date' not in st.session_state:
-    import datetime
     st.session_state['master_date'] = datetime.date.today()
 
 from utils.ui_utils import render_ecosystem_sidebar, render_master_controls

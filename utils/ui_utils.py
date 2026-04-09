@@ -40,29 +40,29 @@ def render_master_controls():
     if col2.button("⚡ 數據刷新", use_container_width=True):
         try:
             with st.status("正在同步最新市場數據...", expanded=True) as status:
-                # 1. Run sync_all.py in the Multi indicator directory
-                sync_script = r"d:\Backtest\Multi indicator\sync_all.py"
+                # Determine paths (Self-correction for Cloud vs local Windows)
+                is_windows = os.name == 'nt'
+                
+                # Use environment variables if present, else fallback
+                sync_script = os.environ.get("SYNC_SCRIPT_PATH", r"d:\Backtest\Multi indicator\sync_all.py")
+                repo_data_path = os.path.join(os.getcwd(), "data")
+                source_multi = os.environ.get("MULTI_INDICATOR_PATH", r"d:\Backtest\Multi indicator")
+                source_plat = os.environ.get("PLATINUM_RESULTS_PATH", r"d:\Backtest\Platinum_Results")
+
                 if os.path.exists(sync_script):
                     st.write("🛰️ 正在執行 Master Sync 引擎...")
-                    # We run this in the background to avoid blocking too much, 
-                    # but here we wait for it to finish for "factual" parity.
                     subprocess.run(["python", sync_script], check=True)
                     
-                    # 2. Copy the updated results to the repository's data folder
                     st.write("📦 正在佈署數據至本地存儲庫...")
-                    repo_data_path = r"d:\Backtest\Makret-Bull-and-Bear-Trap\data"
-                    
-                    # Copy Multi indicator results
-                    source_multi = r"d:\Backtest\Multi indicator"
                     target_multi = os.path.join(repo_data_path, "Multi_indicator")
                     files_to_sync = ["dashboard_follow_through.html", "spy_data.js", "ntsx_dashboard.html", "ntsx_data.js"]
+                    
+                    os.makedirs(target_multi, exist_ok=True)
                     for f in files_to_sync:
                         src = os.path.join(source_multi, f)
                         if os.path.exists(src):
                             shutil.copy2(src, target_multi)
                     
-                    # Copy Platinum results
-                    source_plat = r"d:\Backtest\Platinum_Results"
                     target_plat = os.path.join(repo_data_path, "Platinum_Results")
                     if os.path.exists(source_plat):
                         shutil.copytree(source_plat, target_plat, dirs_exist_ok=True)
@@ -70,7 +70,10 @@ def render_master_controls():
                     status.update(label="✅ 系統數據已更新！", state="complete", expanded=False)
                     st.toast("數據同步完成！")
                 else:
-                    st.error("找不到同步腳本，請確認路徑是否正確。")
+                    if not is_windows:
+                        st.info("💡 系統偵測到目前處於雲端環境。'數據刷新' 僅支援本地端同步。")
+                    else:
+                        st.error(f"找不到同步腳本，請確認路徑是否正確: {sync_script}")
         except Exception as e:
             st.error(f"同步失敗: {e}")
 
