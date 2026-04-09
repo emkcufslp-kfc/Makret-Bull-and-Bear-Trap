@@ -165,5 +165,4 @@ def dashboard():
     st.subheader("🧬 Historical Risk Clustering Heatmap (12M)")
     st.info("Heatmap tracks Trend, Credit, Bond Vol, Equity Vol, Term Structure, and USD strength across a rolling window.")
 
-if __name__ == "__main__":
-    dashboard()
+dashboard()

@@ -1,12 +1,5 @@
 import streamlit as st
-import sys
-import os
 
-# Set current directory to path
-sys.path.append(os.getcwd())
-
-# Import the main dashboard from Market_Regime
-from Market_Regime import dashboard
-
-if __name__ == "__main__":
-    dashboard()
+# Redirector Pattern: Standard for robust multi-page navigation
+# This ensures the 'Home' page is treated as a standard page in the pages/ folder
+st.switch_page("pages/1_🔴_Market_Regime.py")
