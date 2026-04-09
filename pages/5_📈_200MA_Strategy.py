@@ -46,7 +46,8 @@ if 'ma200_date' not in st.session_state:
 
 # --- Sidebar: Date Synchronization ---
 with st.sidebar:
-    from utils.ui_utils import render_ecosystem_sidebar
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    render_master_controls()
     render_ecosystem_sidebar()
     st.markdown("---")
     st.header("📅 Analysis Date")

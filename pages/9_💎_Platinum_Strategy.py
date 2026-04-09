@@ -20,7 +20,7 @@ LOG_PATH = os.path.join(DATA_DIR, 'Platinum_Transaction_Log.csv')
 MONTHLY_PATH = os.path.join(DATA_DIR, 'Platinum_Monthly_Returns.csv')
 MC_PATH = os.path.join(DATA_DIR, 'Platinum_MonteCarlo.csv')
 ROLL_PATH = os.path.join(DATA_DIR, 'Platinum_Rolling_Start.csv')
-DOCS_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../Platinum_Strategy_Docs.md"))
+# DOCS_PATH already set correctly above
 
 def load_data():
     try:
@@ -66,9 +66,8 @@ def main():
     with tab_action:
         st.header("⚡ Action Required")
         
-        # Date Picker for Time Travel
-        default_date = w.index[-1].date()
-        selected_date = st.date_input("Select Review Date", value=default_date)
+        # Synchronized Master Date
+        selected_date = st.session_state['master_date']
         
         sel_dt = pd.Timestamp(selected_date)
         valid_dates = w.index
@@ -296,7 +295,8 @@ def main():
             with open(DOCS_PATH, "r", encoding="utf-8") as f: st.markdown("---"); st.markdown(f.read())
 
 if __name__ == "__main__":
-    from utils.ui_utils import render_ecosystem_sidebar
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
     with st.sidebar:
+        render_master_controls()
         render_ecosystem_sidebar()
     main()

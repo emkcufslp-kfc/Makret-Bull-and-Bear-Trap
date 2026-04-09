@@ -112,7 +112,8 @@ def build_dashboard():
         st.session_state['etf_date'] = st.session_state['master_date']
         
     with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar
+        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+        render_master_controls()
         render_ecosystem_sidebar()
         st.divider()
         if st.button("🔄 Sync with Master Date", use_container_width=True):

@@ -26,7 +26,8 @@ if 'meta_date' not in st.session_state:
 # --- Sidebar: Date Synchronization ---
 # --- Sidebar Configuration ---
 with st.sidebar:
-    from utils.ui_utils import render_ecosystem_sidebar
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    render_master_controls()
     render_ecosystem_sidebar()
     st.markdown("---")
     if st.button("🔄 Sync with Master Date", use_container_width=True):

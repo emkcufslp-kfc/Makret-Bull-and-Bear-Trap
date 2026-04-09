@@ -11,9 +11,10 @@ if 'master_date' not in st.session_state:
     import datetime
     st.session_state['master_date'] = datetime.date.today()
 
-from utils.ui_utils import render_ecosystem_sidebar
+from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
 
 with st.sidebar:
+    render_master_controls()
     render_ecosystem_sidebar()
 
 st.title("📊 Market Regime & Risk Intelligence Suite")

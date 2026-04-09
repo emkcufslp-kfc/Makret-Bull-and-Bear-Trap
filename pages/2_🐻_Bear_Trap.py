@@ -35,7 +35,8 @@ def dashboard():
         
     # --- Sidebar Configuration ---
     with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar
+        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+        render_master_controls()
         render_ecosystem_sidebar()
         st.markdown("---")
         # Sync button in sidebar

@@ -39,7 +39,8 @@ def render_ntsx_dashboard():
         st.error(f"Error rendering NTSX Dashboard: {e}")
 
 if __name__ == "__main__":
-    from utils.ui_utils import render_ecosystem_sidebar
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
     with st.sidebar:
+        render_master_controls()
         render_ecosystem_sidebar()
     render_ntsx_dashboard()

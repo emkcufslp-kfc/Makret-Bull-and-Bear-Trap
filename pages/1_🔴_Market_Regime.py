@@ -28,28 +28,13 @@ def get_liquidity_proxy(target_date):
 def dashboard():
     st.title("🔴 Market Regime & Crash Probability Dashboard")
 
-    # Date Synchronization Logic
-    if 'master_date' not in st.session_state:
-        st.session_state['master_date'] = datetime.date.today()
-    
-    # Sidebar
+    # Sidebar and Global Controls
     with st.sidebar:
-        from utils.ui_utils import render_ecosystem_sidebar
+        from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+        render_master_controls()
         render_ecosystem_sidebar()
-        st.markdown("---")
-        if st.button("🔄 Reset Master Date", use_container_width=True):
-            st.session_state['master_date'] = datetime.date.today()
-            st.success("Reset to Today!")
-            st.rerun()
 
-    analysis_date_input = st.date_input("📅 Analysis Date (MASTER)", value=st.session_state['master_date'], max_value=datetime.date.today())
-    
-    if isinstance(analysis_date_input, (list, tuple)):
-        analysis_date = analysis_date_input[0]
-    else:
-        analysis_date = analysis_date_input
-        
-    st.session_state['master_date'] = analysis_date
+    analysis_date = st.session_state['master_date']
     
     with st.spinner("Analyzing Market Conditions..."):
         data = get_clean_master()
