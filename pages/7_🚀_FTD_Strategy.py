@@ -42,7 +42,7 @@ if (typeof spyHistoricalData !== 'undefined') {{
             # If the tag is not found (e.g. modified HTML), we append to head or body
             js_injection = f'<script type="text/javascript">{js_data}\n{filter_script}</script>'
             if re.search(r'<script\s+[^>]*src="spy_data\.js"[^>]*></script>', html_content):
-                html_content = re.sub(r'<script\s+[^>]*src="spy_data\.js"[^>]*></script>', js_injection, html_content)
+                html_content = re.sub(r'<script\s+[^>]*src="spy_data\.js"[^>]*></script>', lambda m: js_injection, html_content)
             else:
                 # Prepend to closing body tag if script tag missing
                 html_content = html_content.replace('</body>', f'{js_injection}</body>')

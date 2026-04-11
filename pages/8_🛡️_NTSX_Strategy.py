@@ -52,7 +52,8 @@ if (typeof NTSX_EQUITY !== 'undefined') {{
             # Replace the JS source tag with the actual data + filter
             # regex handles whitespace and any tag formatting
             js_injection = f'<script type="text/javascript">{js_data}\n{filter_script}</script>'
-            html_content = re.sub(r'<script\s+src="ntsx_data\.js"\s*></script>', js_injection, html_content)
+            if re.search(r'<script\s+[^>]*src="ntsx_data\.js"[^>]*></script>', html_content):
+                html_content = re.sub(r'<script\s+[^>]*src="ntsx_data\.js"[^>]*></script>', lambda m: js_injection, html_content)
         else:
             # Fallback filter injection
             html_content = html_content.replace(
