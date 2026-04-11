@@ -24,11 +24,13 @@ def load_bear_data():
     # Use the centralized Incremental Data Engine
     return get_clean_master()
 
+# --- Sidebar & Master Controls ---
+with st.sidebar:
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    render_master_controls()
+    render_ecosystem_sidebar()
+
 def dashboard():
-    # Date Synchronization Logic
-    if 'master_date' not in st.session_state:
-        st.session_state['master_date'] = datetime.date.today()
-    
     analysis_date = st.session_state['master_date']
     
     with st.spinner("Loading market data..."):

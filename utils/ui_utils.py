@@ -1,8 +1,8 @@
-import streamlit as st
-import datetime
 import os
 import subprocess
 import shutil
+import sys
+from pathlib import Path
 
 from utils.data_engine import get_data_freshness
 
@@ -38,52 +38,27 @@ def render_master_controls():
         st.session_state['master_date'] = datetime.date.today()
         st.rerun()
         
-    # Refresh Button (Local Data Update)
+    # Refresh Button (Unified Dashboard Sync)
     if col2.button("⚡ 數據刷新", use_container_width=True):
         try:
             with st.status("正在同步最新市場數據...", expanded=True) as status:
-                # Determine paths (Self-correction for Cloud vs local Windows)
-                is_windows = os.name == 'nt'
-                
-                # Use environment variables if present, else fallback
-                sync_script = os.environ.get("SYNC_SCRIPT_PATH", r"d:\Backtest\Multi indicator\sync_all.py")
-                repo_data_path = os.path.join(os.getcwd(), "data")
-                source_multi = os.environ.get("MULTI_INDICATOR_PATH", r"d:\Backtest\Multi indicator")
-                source_plat = os.environ.get("PLATINUM_RESULTS_PATH", r"d:\Backtest\Platinum_Results")
+                # Unified Backend Path (Robust Pathing)
+                root_path = Path(__file__).parent.parent
+                backend_sync = root_path / "backend" / "sync_engine.py"
 
-                if os.path.exists(sync_script):
-                    st.write("🛰️ 正在執行 Master Sync 引擎...")
-                    subprocess.run(["python", sync_script], check=True)
+                if backend_sync.exists():
+                    st.write("🛰️ **Master Sync 引擎運行中 (Automated Mode)**")
                     
-                    st.write("📦 正在佈署數據至本地存儲庫...")
-                    target_multi = os.path.join(repo_data_path, "Multi_indicator")
-                    files_to_sync = ["dashboard_follow_through.html", "spy_data.js", "ntsx_dashboard.html", "ntsx_data.js"]
+                    # Run the engine
+                    # This will update data/Multi_indicator/ and data/Platinum_Results/ directly
+                    subprocess.run([sys.executable, str(backend_sync)], check=True)
                     
-                    os.makedirs(target_multi, exist_ok=True)
-                    for f in files_to_sync:
-                        src = os.path.join(source_multi, f)
-                        if os.path.exists(src):
-                            shutil.copy2(src, target_multi)
-                    
-                    target_plat = os.path.join(repo_data_path, "Platinum_Results")
-                    if os.path.exists(source_plat):
-                        shutil.copytree(source_plat, target_plat, dirs_exist_ok=True)
-                    
+                    st.info("💡 **自動化通知**: 此系統預設每天在 GitHub 雲端自動同步。手動刷新僅用於本地測試或緊急更新。")
                     status.update(label="✅ 系統數據已更新！", state="complete", expanded=False)
                     st.toast("數據同步完成！")
                 else:
-                    status.update(label="❌ 無法在雲端直接刷新數據", state="error", expanded=True)
-                    if not is_windows:
-                        st.markdown("""
-                        ### ☁️ 雲端同步工作流 (Workflow)
-                        目前處於雲端環境，無法直接執行本地腳本。請執行以下步驟更新數據：
-                        1. **本地執行**: 在您的電腦上執行 `streamlit run Market_Regime.py`。
-                        2. **點擊刷新**: 在本地端點擊 `⚡ 數據刷新`。
-                        3. **推送 GitHub**: 執行 `git push` 將 `data/` 資料夾推送至倉庫。
-                        4. **自動更新**: Streamlit Cloud 將自動同步最新數據。
-                        """)
-                    else:
-                        st.error(f"找不到同步腳本，請確認路徑是否正確: {sync_script}")
+                    status.update(label="❌ 找不到同步引擎", state="error", expanded=True)
+                    st.error("請確認 backend/sync_engine.py 是否存在。")
         except Exception as e:
             st.error(f"同步失敗: {e}")
 

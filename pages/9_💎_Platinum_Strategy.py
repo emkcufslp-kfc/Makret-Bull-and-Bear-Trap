@@ -2,24 +2,24 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from pathlib import Path
 import os
 
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Platinum Strategy Dashboard", page_icon="💎")
 
-# Paths - Adjusted for multi-page structure
-# Repository-root-relative path (from pages/ subdirectory)
-BASE_DIR = os.path.dirname(__file__)
-DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "../data/Platinum_Results"))
-DOCS_PATH = os.path.abspath(os.path.join(BASE_DIR, "../data/Platinum_Results/Platinum_Strategy_Docs.md"))
+# Paths - Adjusted for multi-page structure (Strong Pathing for Public Deployment)
+ROOT_DIR = Path(__file__).parent.parent
+DATA_DIR = ROOT_DIR / "data" / "Platinum_Results"
+DOCS_PATH = DATA_DIR / "Platinum_Strategy_Docs.md"
 
-EQUITY_PATH = os.path.join(DATA_DIR, 'Platinum_Equity.csv')
-WEIGHTS_PATH = os.path.join(DATA_DIR, 'Platinum_Weights.csv')
-PRICES_PATH = os.path.join(DATA_DIR, 'Platinum_Data_Used.csv')
-LOG_PATH = os.path.join(DATA_DIR, 'Platinum_Transaction_Log.csv')
-MONTHLY_PATH = os.path.join(DATA_DIR, 'Platinum_Monthly_Returns.csv')
-MC_PATH = os.path.join(DATA_DIR, 'Platinum_MonteCarlo.csv')
-ROLL_PATH = os.path.join(DATA_DIR, 'Platinum_Rolling_Start.csv')
+EQUITY_PATH = DATA_DIR / 'Platinum_Equity.csv'
+WEIGHTS_PATH = DATA_DIR / 'Platinum_Weights.csv'
+PRICES_PATH = DATA_DIR / 'Platinum_Data_Used.csv'
+LOG_PATH = DATA_DIR / 'Platinum_Transaction_Log.csv'
+MONTHLY_PATH = DATA_DIR / 'Platinum_Monthly_Returns.csv'
+MC_PATH = DATA_DIR / 'Platinum_MonteCarlo.csv'
+ROLL_PATH = DATA_DIR / 'Platinum_Rolling_Start.csv'
 # DOCS_PATH already set correctly above
 
 def load_data():
@@ -313,7 +313,7 @@ def main():
         }}
         ''')
         
-        if os.path.exists(DOCS_PATH):
+        if DOCS_PATH.exists():
             with open(DOCS_PATH, "r", encoding="utf-8") as f: st.markdown("---"); st.markdown(f.read())
 
 if __name__ == "__main__":

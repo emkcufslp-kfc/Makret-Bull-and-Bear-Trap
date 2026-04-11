@@ -14,6 +14,12 @@ def load_bull_data():
     # Use the centralized Incremental Data Engine
     return get_clean_master()
 
+# --- Sidebar & Master Controls ---
+with st.sidebar:
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    render_master_controls()
+    render_ecosystem_sidebar()
+
 def dashboard():
     st.title("🐂 Bull Trap Indicator Dashboard")
     st.markdown("Structural transition detector identifying genuine bull markets vs. deceptive bear rallies (bull traps) using a 10-point scoring system.")

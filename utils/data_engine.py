@@ -6,7 +6,8 @@ import datetime
 from pathlib import Path
 
 # --- Configuration ---
-DATA_DIR = Path("data")
+ROOT_DIR = Path(__file__).parent.parent
+DATA_DIR = ROOT_DIR / "data"
 MASTER_FILE = DATA_DIR / "market_data_master.parquet"
 START_DATE = "2004-01-01"
 

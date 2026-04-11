@@ -1,0 +1,42 @@
+name: Daily Data Sync
+
+on:
+  schedule:
+    # Run at 22:00 UTC (6:00 PM EST) daily after market close
+    - cron: '0 22 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  sync_data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Master Sync Engine
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          GITHUB_ACTIONS: "true"
+        run: |
+          python backend/sync_engine.py
+
+      - name: Commit and Push Data Updates
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Automated Data Sync: ${{ github.event.head_commit.timestamp || github.run_id }}" && git push)

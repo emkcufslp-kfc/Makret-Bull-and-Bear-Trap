@@ -1,21 +1,20 @@
 import streamlit as st
 import streamlit.components.v1 as components
+from pathlib import Path
 import os
+import re
 
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Market Pulse: FTD Tracker", page_icon="🚀")
 
 def render_ftd_dashboard():
-    # Define relative paths from this file to the source dashboards
-    current_dir = os.path.dirname(__file__)
-    # Repository-root-relative path (from pages/ subdirectory)
-    current_dir = os.path.dirname(__file__)
-    # Backtest/Makret-Bull-and-Bear-Trap/pages -> Backtest/Makret-Bull-and-Bear-Trap/data/Multi_indicator/
-    html_path = os.path.abspath(os.path.join(current_dir, "../data/Multi_indicator/dashboard_follow_through.html"))
-    js_path = os.path.abspath(os.path.join(current_dir, "../data/Multi_indicator/spy_data.js"))
+    # Repository-root-relative path (Solid Pathing for Public Deployment)
+    root_path = Path(__file__).parent.parent
+    html_path = root_path / "data" / "Multi_indicator" / "dashboard_follow_through.html"
+    js_path = root_path / "data" / "Multi_indicator" / "spy_data.js"
 
-    if not os.path.exists(html_path):
-        st.error(f"FTD Dashboard HTML not found at {html_path}")
+    if not html_path.exists():
+        st.error(f"FTD Dashboard HTML not found")
         return
 
     try:
@@ -23,11 +22,12 @@ def render_ftd_dashboard():
             html_content = f.read()
             
         # Robust Regex-based Injection
-        import re
         master_date_str = st.session_state['master_date'].strftime('%Y-%m-%d')
         js_data = ""
         
-        if os.path.exists(js_path):
+        js_data = ""
+        
+        if js_path.exists():
             with open(js_path, "r", encoding="utf-8", errors="replace") as f:
                 js_data = f.read()
             

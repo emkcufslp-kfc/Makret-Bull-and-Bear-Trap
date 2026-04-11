@@ -94,6 +94,12 @@ def derive_thresholds_and_probs(data):
         
     return results, roc_3m
 
+# --- Sidebar & Master Controls ---
+with st.sidebar:
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    render_master_controls()
+    render_ecosystem_sidebar()
+
 def build_dashboard():
     st.title("📊 ETF Rotation Threshold Derivation Engine")
     st.markdown("Working backwards from every major S&P 500 crash to statistically extract the leading momentum footprints of rotational shifts.")
