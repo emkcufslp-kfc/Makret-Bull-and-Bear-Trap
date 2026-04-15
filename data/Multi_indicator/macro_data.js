@@ -1,8 +1,8 @@
 const macroData = {
-    "last_updated": "2026-04-14 22:38:13",
-    "indicator_1": 1.0,
-    "indicator_2": 4.93,
+    "last_updated": "2026-04-15 22:34:38",
+    "indicator_1": 0.86,
+    "indicator_2": 5.69,
     "indicator_3": 0.0,
-    "vix": 18.36,
+    "vix": 18.17,
     "status": "Green"
 };
