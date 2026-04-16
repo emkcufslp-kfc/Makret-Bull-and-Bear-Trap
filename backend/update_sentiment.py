@@ -45,6 +45,10 @@ def update_sentiment():
     today_str = datetime.datetime.now().strftime('%b %d, %Y')
     html = re.sub(r'CNN Fear &amp; Greed Index</a>.*?Readings', f'CNN Fear &amp; Greed Index</a> (Live updated {today_str}). Readings', html)
 
+    current_month_year = datetime.datetime.now().strftime('%b %Y')
+    html = re.sub(r'Current macro drivers \(CNN, [A-Za-z]{3} \d{4}\):', f'Current macro drivers (CNN, {current_month_year}):', html)
+    html = re.sub(r'<td><strong>[A-Za-z]{3} \d{4} \(NOW\)</strong></td>', f'<td><strong>{current_month_year} (NOW)</strong></td>', html)
+
     with open(HTML_PATH, 'w', encoding='utf-8') as f: f.write(html)
     return True
 
