@@ -95,6 +95,7 @@ def sync():
     run_script("backend/fetch_spy_data.py")
     run_script("backend/export_dashboard_data.py")
     run_script("backend/export_platinum_data.py")
+    run_script("backend/update_sentiment.py")
     update_macro_indicators()
     
     log_progress("✅ Pipeline execution complete.")
