@@ -192,8 +192,12 @@ def main():
         col3.metric("Max Drawdown", f"{max_dd:.1%}")
         col4.metric("Sharpe Ratio", f"{sharpe:.2f}")
         st.markdown("---")
-        st.subheader("Equity Curve")
-        fig = px.line(eq, x=eq.index, y=['Platinum_Equity', 'Benchmark_Equity'], 
+                st.subheader("Equity Curve")
+        plot_cols = ['Platinum_Equity']
+        if 'Benchmark_Equity' in eq.columns:
+            plot_cols.append('Benchmark_Equity')
+            
+        fig = px.line(eq, x=eq.index, y=plot_cols, 
                       labels={'value': 'Equity ($)', 'index': 'Date'},
                       color_discrete_map={'Platinum_Equity': '#2ecc71', 'Benchmark_Equity': 'gray'})
         fig.update_yaxes(type="log")
@@ -202,9 +206,15 @@ def main():
         st.subheader("Drawdown Profile")
         dd_df = pd.DataFrame()
         dd_df['Platinum_DD'] = (eq['Platinum_Equity'] / eq['Platinum_Equity'].cummax()) - 1
-        dd_df['Benchmark_DD'] = (eq['Benchmark_Equity'] / eq['Benchmark_Equity'].cummax()) - 1
-        fig_dd = px.area(dd_df, x=dd_df.index, y=['Platinum_DD', 'Benchmark_DD'], color_discrete_map={'Platinum_DD': 'red', 'Benchmark_DD': 'gray'})
+        
+        dd_plot_cols = ['Platinum_DD']
+        if 'Benchmark_Equity' in eq.columns:
+            dd_df['Benchmark_DD'] = (eq['Benchmark_Equity'] / eq['Benchmark_Equity'].cummax()) - 1
+            dd_plot_cols.append('Benchmark_DD')
+            
+        fig_dd = px.area(dd_df, x=dd_df.index, y=dd_plot_cols, color_discrete_map={'Platinum_DD': 'red', 'Benchmark_DD': 'gray'})
         st.plotly_chart(fig_dd, use_container_width=True)
+
 
         st.subheader("Annual Performance")
         yearly_eq = eq['Platinum_Equity'].resample('YE').last()
