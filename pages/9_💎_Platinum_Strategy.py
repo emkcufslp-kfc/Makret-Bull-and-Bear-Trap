@@ -192,7 +192,7 @@ def main():
         col3.metric("Max Drawdown", f"{max_dd:.1%}")
         col4.metric("Sharpe Ratio", f"{sharpe:.2f}")
         st.markdown("---")
-                st.subheader("Equity Curve")
+        st.subheader("Equity Curve")
         plot_cols = ['Platinum_Equity']
         if 'Benchmark_Equity' in eq.columns:
             plot_cols.append('Benchmark_Equity')
