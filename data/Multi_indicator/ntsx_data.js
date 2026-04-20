@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-04-19
+// ntsx_data.js — Auto-generated on 2026-04-20
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-04-19"
+  "as_of_date": "2026-04-20"
 };
 const NTSX_REBALANCES  = [
   {
