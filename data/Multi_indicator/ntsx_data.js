@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-04-21
+// ntsx_data.js — Auto-generated on 2026-04-22
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-04-21"
+  "as_of_date": "2026-04-22"
 };
 const NTSX_REBALANCES  = [
   {
@@ -10,14 +10,14 @@ const NTSX_REBALANCES  = [
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 38.62,
+        "weight_at_trigger": 38.99,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      51.48,
-      9.9,
-      38.62
+      51.97,
+      9.04,
+      38.99
     ],
     "weights_after": [
       55.0,
@@ -54,14 +54,14 @@ const NTSX_REBALANCES  = [
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.99,
+        "weight_at_trigger": 27.64,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      58.98,
-      13.03,
-      27.99
+      59.27,
+      13.09,
+      27.64
     ],
     "weights_after": [
       55.0,
@@ -120,14 +120,14 @@ const NTSX_REBALANCES  = [
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.87,
+        "weight_at_trigger": 27.92,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      59.83,
-      12.29,
-      27.87
+      59.94,
+      12.14,
+      27.92
     ],
     "weights_after": [
       55.0,
@@ -136,20 +136,20 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2013-06-28",
-    "month": "Jun 2013",
+    "date": "2013-07-31",
+    "month": "Jul 2013",
     "triggers": [
       {
         "asset": "AVWS (DFSVX)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 15.18,
+        "weight_at_trigger": 15.06,
         "band": "9%\u201315%"
       }
     ],
     "weights_before": [
-      55.38,
-      15.18,
-      29.44
+      56.19,
+      15.06,
+      28.75
     ],
     "weights_after": [
       55.0,
@@ -158,42 +158,20 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2014-05-30",
-    "month": "May 2014",
-    "triggers": [
-      {
-        "asset": "KMLM (RYMFX)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.98,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      58.89,
-      13.13,
-      27.98
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2016-06-30",
-    "month": "Jun 2016",
+    "date": "2015-10-30",
+    "month": "Oct 2015",
     "triggers": [
       {
         "asset": "NTSX",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 60.76,
+        "weight_at_trigger": 61.02,
         "band": "50%\u201360%"
       }
     ],
     "weights_before": [
-      60.76,
-      10.72,
-      28.52
+      61.02,
+      10.31,
+      28.66
     ],
     "weights_after": [
       55.0,
@@ -202,20 +180,20 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2016-12-30",
-    "month": "Dec 2016",
+    "date": "2016-10-31",
+    "month": "Oct 2016",
     "triggers": [
       {
-        "asset": "AVWS (DFSVX)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 15.41,
-        "band": "9%\u201315%"
+        "asset": "KMLM (RYMFX)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.93,
+        "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      53.93,
-      15.41,
-      30.66
+      59.73,
+      12.35,
+      27.93
     ],
     "weights_after": [
       55.0,
@@ -228,16 +206,16 @@ const NTSX_REBALANCES  = [
     "month": "Nov 2018",
     "triggers": [
       {
-        "asset": "NTSX",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 60.21,
-        "band": "50%\u201360%"
+        "asset": "KMLM (RYMFX)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.95,
+        "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      60.21,
-      11.41,
-      28.38
+      59.31,
+      12.74,
+      27.95
     ],
     "weights_after": [
       55.0,
@@ -252,14 +230,14 @@ const NTSX_REBALANCES  = [
       {
         "asset": "AVWS (DFSVX)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 7.95,
+        "weight_at_trigger": 7.36,
         "band": "9%\u201315%"
       }
     ],
     "weights_before": [
-      57.2,
-      7.95,
-      34.86
+      57.56,
+      7.36,
+      35.08
     ],
     "weights_after": [
       55.0,
@@ -324,20 +302,20 @@ const NTSX_REBALANCES  = [
       {
         "asset": "NTSX",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 48.97,
+        "weight_at_trigger": 49.57,
         "band": "50%\u201360%"
       },
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 38.11,
+        "weight_at_trigger": 38.57,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      48.97,
-      12.92,
-      38.11
+      49.57,
+      11.87,
+      38.57
     ],
     "weights_after": [
       55.0,
@@ -396,20 +374,26 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2023-12-29",
-    "month": "Dec 2023",
+    "date": "2024-01-31",
+    "month": "Jan 2024",
     "triggers": [
+      {
+        "asset": "NTSX",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 60.08,
+        "band": "50%\u201360%"
+      },
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.87,
+        "weight_at_trigger": 27.76,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      58.69,
-      13.44,
-      27.87
+      60.08,
+      12.16,
+      27.76
     ],
     "weights_after": [
       55.0,
@@ -424,14 +408,14 @@ const NTSX_REBALANCES  = [
       {
         "asset": "KMLM (RYMFX)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.54,
+        "weight_at_trigger": 27.93,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      59.98,
-      12.48,
-      27.54
+      59.18,
+      12.89,
+      27.93
     ],
     "weights_after": [
       55.0,
