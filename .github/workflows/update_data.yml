@@ -1,0 +1,41 @@
+# .github/workflows/update_data.yml
+name: Update Market Data Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at 00:00 UTC (adjust as needed)
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run data initialization script
+        run: |
+          python initialize_data.py
+
+      - name: Commit and push updated data if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          if [[ `git status --porcelain data/market_data_master.parquet` ]]; then
+            git add data/market_data_master.parquet
+            git commit -m "Update market data to $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No data changes detected."
+          fi
