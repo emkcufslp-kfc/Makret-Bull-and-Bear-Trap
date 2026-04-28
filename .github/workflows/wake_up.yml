@@ -1,0 +1,15 @@
+# .github/workflows/wake_up.yml
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Runs daily at 08:00 UTC (adjust as needed)
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake up Streamlit app
+        # Replace <your-streamlit-app> with your actual Streamlit app subdomain
+        run: |
+          curl -s -o /dev/null https://<makret-bull-and-bear-trap-keumtiwt9uuvbxxccqc5au>.streamlit.app
