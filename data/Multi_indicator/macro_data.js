@@ -1,5 +1,5 @@
 const macroData = {
-    "last_updated": "2026-05-19 22:57:20",
+    "last_updated": "2026-05-20 06:15:58",
     "indicator_1": 2.4,
     "indicator_2": 8.78,
     "indicator_3": -1.93,
