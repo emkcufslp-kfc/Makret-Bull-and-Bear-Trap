@@ -33,6 +33,9 @@ jobs:
           python initialize_data.py
 
       - name: Run full sync pipeline
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          GITHUB_ACTIONS: "true"
         run: |
           python backend/sync_engine.py
 

@@ -12,4 +12,4 @@ jobs:
       - name: Wake up Streamlit app
         # Replace <your-streamlit-app> with your actual Streamlit app subdomain
         run: |
-          curl -s -o /dev/null https://<makret-bull-and-bear-trap-keumtiwt9uuvbxxccqc5au>.streamlit.app
+          curl -s -o /dev/null https://makret-bull-and-bear-trap-keumtiwt9uuvbxxccqc5au.streamlit.app
