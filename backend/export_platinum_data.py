@@ -68,12 +68,34 @@ def export_data():
     DATA_DIR = os.path.abspath(os.path.join(CURR_DIR, "../data/Platinum_Results"))
     os.makedirs(DATA_DIR, exist_ok=True)
     
+    # Calculate benchmark
+    bench_ret = prices['SPY'].pct_change().fillna(0.0)
+    bench_eq = (1 + bench_ret).cumprod() * 10000
+
     # Save CSVs for Python Dashboard
-    equity_df = pd.DataFrame({'Platinum_Equity': equity}) # Add benchmark if needed
+    equity_df = pd.DataFrame({'Platinum_Equity': equity, 'Benchmark_Equity': bench_eq})
     equity_df.to_csv(os.path.join(DATA_DIR, "Platinum_Equity.csv"))
     plat_weights.to_csv(os.path.join(DATA_DIR, "Platinum_Weights.csv"))
     transactions.to_csv(os.path.join(DATA_DIR, "Platinum_Transaction_Log.csv"), index=False)
     prices.to_csv(os.path.join(DATA_DIR, "Platinum_Data_Used.csv"))
+
+    # Calculate and save Monthly Returns
+    print("Calculating Monthly Returns...")
+    monthly_ret = net_ret.resample('ME').apply(lambda x: (1+x).prod() - 1)
+    monthly_table = monthly_ret.groupby([monthly_ret.index.year, monthly_ret.index.month]).sum().unstack()
+    monthly_table.columns = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    monthly_table['Year Total'] = monthly_ret.resample('YE').apply(lambda x: (1+x).prod() - 1).values
+    monthly_table.to_csv(os.path.join(DATA_DIR, "Platinum_Monthly_Returns.csv"))
+
+    # Calculate and save Monte Carlo Simulation
+    print("Running Monte Carlo Simulation...")
+    mc_results = pbb.monte_carlo_simulation(net_ret)
+    mc_results.to_csv(os.path.join(DATA_DIR, "Platinum_MonteCarlo.csv"))
+
+    # Calculate and save Rolling Start analysis
+    print("Running Rolling Start Analysis...")
+    roll_stats = pbb.rolling_start_analysis(equity)
+    roll_stats.to_csv(os.path.join(DATA_DIR, "Platinum_Rolling_Start.csv"), index=False)
 
     # Generate JS for HTML Dashboards
     dates = [d.strftime('%Y-%m-%d') for d in equity.index]

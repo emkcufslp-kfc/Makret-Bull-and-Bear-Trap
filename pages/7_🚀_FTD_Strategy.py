@@ -1,5 +1,10 @@
+import streamlit as st
+import streamlit.components.v1 as components
 import json
 from pathlib import Path
+
+# Set Page Config
+st.set_page_config(layout="wide", page_title="Market Pulse: FTD Tracker", page_icon="🚀")
 
 def render_ftd_dashboard():
     root_path = Path(__file__).parent.parent
@@ -31,3 +36,11 @@ def render_ftd_dashboard():
     html_content = html_content.replace('</body>', inject_script + '</body>')
     
     components.html(html_content, height=1500, scrolling=True)
+
+if __name__ == "__main__":
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    with st.sidebar:
+        render_master_controls()
+        render_ecosystem_sidebar()
+    render_ftd_dashboard()
+

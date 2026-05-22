@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 # ---------------------------------------------------------
 # OUTPUT PATH — adjust if needed
 # ---------------------------------------------------------
-OUTPUT_JS = Path(__file__).parent.parent / "data" / "Multi_indicator" / "ntsx_data.js"
+OUTPUT_JS = Path(__file__).parent.parent.parent / "data" / "Multi_indicator" / "ntsx_data.js"
 
 # ---------------------------------------------------------
 # 1. DOWNLOAD DATA
@@ -231,7 +231,7 @@ with open(OUTPUT_JS, "w", encoding="utf-8") as f:
     f.write(f"const NTSX_METRICS     = {json.dumps(metrics,         indent=2)};\n")
     f.write(f"const NTSX_REB_DATES   = {json.dumps(rebalance_dates, indent=2)};\n")
 
-print(f"\n✅ ntsx_data.js written to: {OUTPUT_JS}")
+print(f"\n[OK] ntsx_data.js written to: {OUTPUT_JS}")
 print(f"   Equity points : {len(equity_data)}")
 print(f"   Rebalances    : {len(rebalance_log)}")
 print(f"   Yearly rows   : {len(yearly_rows)}")

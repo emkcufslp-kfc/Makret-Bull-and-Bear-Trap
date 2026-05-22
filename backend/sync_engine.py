@@ -93,7 +93,7 @@ def sync():
     # 1. Fetch & Update Data Layers
     # We will migrate individual scripts into the backend folder
     run_script("backend/fetch_spy_data.py")
-    run_script("backend/export_dashboard_data.py")
+    run_script("backend/strategies/ntsx_engine.py")
     run_script("backend/export_platinum_data.py")
     run_script("backend/update_sentiment.py")
     update_macro_indicators()
