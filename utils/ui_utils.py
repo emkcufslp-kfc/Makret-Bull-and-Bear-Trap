@@ -127,5 +127,4 @@ def render_ecosystem_sidebar():
 """, unsafe_allow_html=True)
 
     st.page_link("pages/7_🚀_FTD_Strategy.py", label="底部確認 : FTD 追蹤", icon="🚀")
-    st.page_link("pages/8_🛡️_NTSX_Strategy.py", label="資產配置 : NTSX 策略", icon="🛡️")
-    st.page_link("pages/9_💎_Platinum_Strategy.py", label="核心增益 : Platinum 策略", icon="💎")
+    st.page_link("pages/8_📊_Strategies_Dashboard.py", label="量化策略 : Strategies Dashboard", icon="📊")

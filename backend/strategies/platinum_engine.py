@@ -1,11 +1,19 @@
 
 import pandas as pd
 import numpy as np
-import yfinance as yf
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import os
+import sys
+from pathlib import Path
+
+# Set REPO_ROOT and append to sys.path
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+from utils.data_engine import get_clean_master
 
 # ==========================================
 # 0. CONFIGURATION
@@ -30,27 +38,12 @@ def fetch_data():
         'VT', 'EWT', 'IWM', 'VSS', 'FEZ', 'EWJ', 'VIG', 'XLK'
     ]
     tickers = list(set(tickers))
-    print(f"Fetching {len(tickers)} tickers...")
+    print(f"Loading {len(tickers)} tickers from local database...")
     
-    try:
-        df = yf.download(tickers, start=START_DATE, end=END_DATE, progress=False, group_by='ticker', auto_adjust=True)
-    except:
-        df = yf.download(tickers, start=START_DATE, end=END_DATE, progress=False, group_by='ticker')
-        
-    prices = pd.DataFrame()
-    for t in tickers:
-        try:
-            if isinstance(df.columns, pd.MultiIndex):
-                if t in df.columns.levels[0]:
-                    prices[t] = df[t]['Close']
-                elif t in df.columns.levels[1]:
-                    prices[t] = df.xs(t, axis=1, level=1)['Close']
-            else:
-                if t in df.columns:
-                     prices[t] = df['Close']
-        except KeyError:
-            pass
-            
+    master_df = get_clean_master()
+    available_tickers = [t for t in tickers if t in master_df.columns]
+    prices = master_df.loc[START_DATE:END_DATE, available_tickers]
+    
     # Cleaning
     prices.ffill(inplace=True)
     prices.dropna(axis=1, how='all', inplace=True)

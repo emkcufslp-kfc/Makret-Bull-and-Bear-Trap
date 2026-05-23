@@ -1,5 +1,4 @@
 import streamlit as st
-import yfinance as yf
 import pandas as pd
 import datetime
 import os
@@ -12,10 +11,12 @@ from utils.data_engine import get_clean_master, get_hy_spread, get_move, get_gex
 
 def get_vix_term_structure(target_date):
     try:
-        vx = yf.download(["^VIX", "^VIX3M"], start=target_date - datetime.timedelta(days=5), end=target_date + datetime.timedelta(days=1))
-        if vx.empty: return 0.0, 0.0
-        latest = vx["Close"].ffill().iloc[-1]
-        return latest.get("^VIX", 20.0), latest.get("^VIX3M", 20.0)
+        df = get_clean_master()
+        ts = pd.Timestamp(target_date)
+        valid = df.index[df.index <= ts]
+        if len(valid) == 0: return 20.0, 20.0
+        latest = df.loc[valid[-1]]
+        return float(latest.get("^VIX", 20.0)), float(latest.get("^VIX3M", 20.0))
     except:
         return 20.0, 20.0
 

@@ -1,5 +1,4 @@
 import streamlit as st
-import yfinance as yf
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
@@ -99,17 +98,19 @@ class MLMetaIndicator:
 # --- Main Dashboard Logic ---
 @st.cache_data(ttl=3600)
 def get_meta_results(target_date):
-    spy = yf.Ticker("SPY")
-    # Fetch 5 years of training data
-    start_date = (pd.to_datetime(target_date) - pd.DateOffset(years=5)).strftime('%Y-%m-%d')
-    end_date = (pd.to_datetime(target_date) + pd.DateOffset(days=5)).strftime('%Y-%m-%d')
+    from utils.data_engine import get_clean_master
+    master_df = get_clean_master()
+    if 'SPY' not in master_df.columns:
+        return None
     
-    df = spy.history(start=start_date, end=end_date)
-    if df.empty: return None
+    # Get 5 years of training data
+    start_date = pd.to_datetime(target_date) - pd.DateOffset(years=5)
+    end_date = pd.to_datetime(target_date) + pd.DateOffset(days=5)
     
-    # Flatten MultiIndex if necessary
-    if isinstance(df.columns, pd.MultiIndex):
-        df.columns = df.columns.get_level_values(0)
+    # Filter and format
+    df = master_df.loc[start_date:end_date, ['SPY']].rename(columns={'SPY': 'Close'})
+    if df.empty:
+        return None
         
     ml_indicator = MLMetaIndicator()
     results = ml_indicator.fit_predict(df)

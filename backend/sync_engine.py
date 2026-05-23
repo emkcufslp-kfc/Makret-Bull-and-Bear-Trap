@@ -15,6 +15,10 @@ import re
 # Set Working Directory to repo root
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO_ROOT)
+if REPO_ROOT not in sys.path:
+    sys.path.append(REPO_ROOT)
+
+from utils.data_engine import get_master_data
 
 def log_progress(msg):
     try:
@@ -43,17 +47,36 @@ def update_macro_indicators():
     """Calculates high-level metrics for the Market Regime dashboard."""
     log_progress("Updating Macro & Expert Indicators...")
     try:
-        # Fetch SPY for base indicators
-        spy = yf.download("SPY", period="2y", progress=False, auto_adjust=True)
-        vix = yf.download("^VIX", period="2y", progress=False, auto_adjust=True)
-        
-        if spy.empty:
-            log_progress("Market data fetch failed.")
-            return False
-
+        spy = pd.DataFrame()
+        vix = pd.DataFrame()
+        try:
+            # Fetch SPY for base indicators
+            spy = yf.download("SPY", period="2y", progress=False, auto_adjust=True)
+            vix = yf.download("^VIX", period="2y", progress=False, auto_adjust=True)
+        except Exception as e:
+            log_progress(f"yfinance download failed: {e}. Falling back to local master DB.")
+            
         # Flatten MultiIndex if necessary
-        if isinstance(spy.columns, pd.MultiIndex): spy.columns = spy.columns.get_level_values(0)
-        if isinstance(vix.columns, pd.MultiIndex): vix.columns = vix.columns.get_level_values(0)
+        if not spy.empty and isinstance(spy.columns, pd.MultiIndex): spy.columns = spy.columns.get_level_values(0)
+        if not vix.empty and isinstance(vix.columns, pd.MultiIndex): vix.columns = vix.columns.get_level_values(0)
+
+        # Fallback if yfinance failed
+        if spy.empty or vix.empty:
+            master_df = get_master_data()
+            if 'SPY' in master_df.columns:
+                spy = pd.DataFrame({
+                    'Close': master_df['SPY'],
+                    'High': master_df['SPY'],
+                    'Low': master_df['SPY']
+                }).tail(504) # approx 2 years
+            if '^VIX' in master_df.columns:
+                vix = pd.DataFrame({
+                    'Close': master_df['^VIX']
+                }).tail(504)
+
+        if spy.empty:
+            log_progress("Market data fetch/load failed completely.")
+            return False
 
         # Indicator Calculations
         spy['High_Rolling'] = spy['High'].rolling(22).max()
@@ -90,6 +113,15 @@ def update_macro_indicators():
 def sync():
     log_progress("🚀 Starting Ecosystem Master Sync Pipeline...")
     
+    # Update local master Parquet database incrementally (checking delta/missing tickers)
+    log_progress("Updating local master database (market_data_master.parquet)...")
+    try:
+        get_master_data()
+        log_progress("✅ Local master database updated successfully.")
+    except Exception as e:
+        log_progress(f"❌ Failed to update local master database: {e}")
+        # Proceed with execution in case cached data is still present
+
     # 1. Fetch & Update Data Layers
     # We will migrate individual scripts into the backend folder
     run_script("backend/fetch_spy_data.py")

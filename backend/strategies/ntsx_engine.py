@@ -1,12 +1,19 @@
-import yfinance as yf
 import pandas as pd
 import numpy as np
 import json
 import warnings
+import sys
 from pathlib import Path
 from datetime import date
 
 warnings.filterwarnings('ignore')
+
+# Set REPO_ROOT and append to sys.path
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+from utils.data_engine import get_clean_master
 
 # ---------------------------------------------------------
 # OUTPUT PATH — adjust if needed
@@ -14,13 +21,15 @@ warnings.filterwarnings('ignore')
 OUTPUT_JS = Path(__file__).parent.parent.parent / "data" / "Multi_indicator" / "ntsx_data.js"
 
 # ---------------------------------------------------------
-# 1. DOWNLOAD DATA
+# 1. LOAD DATA FROM MASTER DB
 # ---------------------------------------------------------
 TODAY = date.today().strftime('%Y-%m-%d')
-print(f"Downloading data up to {TODAY}...")
+print(f"Loading data from local database up to {TODAY}...")
 
 tickers = ['SPY', 'TLT', 'BIL', 'DFSVX', 'RYMFX']
-data = yf.download(tickers, start="2007-03-01", end=TODAY, auto_adjust=True)['Close']
+master_df = get_clean_master()
+available_tickers = [t for t in tickers if t in master_df.columns]
+data = master_df.loc["2007-03-01":TODAY, available_tickers]
 returns = data.pct_change().dropna()
 
 # ---------------------------------------------------------

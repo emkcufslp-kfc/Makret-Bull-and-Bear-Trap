@@ -65,7 +65,14 @@ T2108_TICKERS = [
     "NEE", "PFE", "ADX", "QCOM", "LIN", "LOW", "INTU", "TXN", "MS", "AMAT"
 ]
 
-ALL_TICKERS = list(set(CORE_TICKERS + SECTOR_TICKERS + REF_TICKERS + T2108_TICKERS))
+NTSX_TICKERS = ["TLT", "BIL", "DFSVX", "RYMFX"]
+
+PLATINUM_TICKERS = [
+    "QQQ", "SHV", "TQQQ", "USD", "QLD", "SSO", "VGK", "VNQ", "GSG", "EEM", 
+    "EFA", "XLC", "USMV", "JNK", "VT", "EWT", "IWM", "VSS", "FEZ", "EWJ", "VIG"
+]
+
+ALL_TICKERS = list(set(CORE_TICKERS + SECTOR_TICKERS + REF_TICKERS + T2108_TICKERS + NTSX_TICKERS + PLATINUM_TICKERS))
 
 def get_master_data():
     """
@@ -89,7 +96,8 @@ def get_master_data():
             master_df = pd.DataFrame()
 
     # --- Step 2: Determine Missing Columns/Dates ---
-    today = datetime.datetime.now().date()
+    # Determine today's date in US Eastern Time (roughly UTC-5) to avoid yfinance timezone-offset errors
+    today = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)).date()
     # Check if we have all tickers
     existing_tickers = set(master_df.columns) if not master_df.empty else set()
     missing_tickers = [t for t in ALL_TICKERS if t not in existing_tickers]

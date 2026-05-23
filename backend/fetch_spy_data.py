@@ -10,13 +10,31 @@ OUT_DIR = os.path.abspath(os.path.join(CURR_DIR, "../data/Multi_indicator"))
 os.makedirs(OUT_DIR, exist_ok=True)
 OUT_PATH = os.path.join(OUT_DIR, "spy_data.js")
 
-print("Downloading SPY data for FTD Dashboard (Max history)...")
-df = yf.download("SPY", period="max", interval="1d", progress=False, auto_adjust=True)
-
-if isinstance(df.columns, pd.MultiIndex):
-    df.columns = df.columns.get_level_values(0)
-
-df.dropna(inplace=True)
+try:
+    print("Downloading SPY data for FTD Dashboard (Max history)...")
+    df = yf.download("SPY", period="max", interval="1d", progress=False, auto_adjust=True)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    df.dropna(inplace=True)
+except Exception as e:
+    print(f"yfinance download failed: {e}. Falling back to local master DB.")
+    try:
+        from utils.data_engine import get_master_data
+        master_df = get_master_data()
+        if 'SPY' in master_df.columns:
+            df = pd.DataFrame({
+                'Open': master_df['SPY'],
+                'High': master_df['SPY'],
+                'Low': master_df['SPY'],
+                'Close': master_df['SPY'],
+                'Volume': 0.0
+            })
+            df.dropna(inplace=True)
+        else:
+            df = pd.DataFrame()
+    except Exception as inner_e:
+        print(f"Failed to load master DB: {inner_e}")
+        df = pd.DataFrame()
 
 data = []
 for index, row in df.iterrows():
