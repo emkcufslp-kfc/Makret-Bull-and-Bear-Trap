@@ -97,7 +97,7 @@
                         💎 Platinum Core/Sat
                     </button>
                     <button onclick="switchStrategy('fund_tactical')" id="strat-btn-fund" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
-                        📐 F-TAA Monthly
+                        📐 F-TAA Weekly
                     </button>
                 </div>
             </section>
@@ -534,7 +534,7 @@
             scCAGR: [],
             meta: {
                 backtestPeriod: 'Jun 2020 - May 2026',
-                executionDescription: 'Monthly tactical rebalance across beta, growth, diversifiers, and cash sleeves.',
+                executionDescription: 'Weekly tactical rebalance across beta, growth, diversifiers, and cash sleeves.',
                 lastActionDate: '2026-05-01',
                 monthlyWinRate: '43.1%',
                 bestEra: '2023-11 (CAGR 13.1%)',
@@ -776,7 +776,7 @@
                 ? "Bands checking calculates mathematical trades to pull assets back to target weights."
                 : (platinumMode
                     ? "Dynamic allocation rules according to daily macro signals and rebalancing thresholds."
-                    : (db.meta?.executionDescription || "Monthly tactical review across diversified sleeves."));
+                    : (db.meta?.executionDescription || "Weekly tactical review across diversified sleeves."));
 
             // 2. Required Checklist Card Style
             if (ntsxMode) {
@@ -819,7 +819,7 @@
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-amber-300">
                         <i class="fa-solid fa-calendar-days text-sm"></i>
-                        <span class="text-xs font-bold uppercase">Monthly Rebalance Playbook</span>
+                        <span class="text-xs font-bold uppercase">Weekly Rebalance Playbook</span>
                     </div>
                     <ul class="space-y-1.5 mt-2 text-xs text-slate-300">
                         <li class="flex items-center gap-1.5">
@@ -828,7 +828,7 @@
                         </li>
                         <li class="flex items-center gap-1.5">
                             <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
-                            Review month-end target changes before placing monthly rebalance orders.
+                            Review the latest target changes before placing weekly rebalance orders.
                         </li>
                         <li class="flex items-center gap-1.5">
                             <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>
@@ -946,7 +946,7 @@
                             </div>
                         </div>
                         <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
-                            Regime engine rotates among U.S. beta, growth leadership, real assets, managed futures, and T-bills using monthly trend and momentum checks with month-end rebalancing.
+                            Regime engine rotates among U.S. beta, growth leadership, real assets, managed futures, and T-bills using weekly rebalancing with trend and momentum checks.
                         </div>
                     </div>
                 `;
@@ -1112,9 +1112,9 @@
                     `;
                 }).join('');
             } else {
-                DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-arrows-rotate mr-1"></i> Monthly Rebalance Log`;
+                DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-arrows-rotate mr-1"></i> Weekly Rebalance Log`;
                 DOM.logTableFilters.innerHTML = `
-                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Month-end rebalance</span>
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Weekly rebalance</span>
                 `;
                 DOM.logTableHead.innerHTML = `
                     <tr>

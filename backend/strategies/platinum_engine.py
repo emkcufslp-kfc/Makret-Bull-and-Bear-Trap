@@ -18,7 +18,7 @@ from utils.data_engine import get_clean_master
 # ==========================================
 # 0. CONFIGURATION
 # ==========================================
-START_DATE = '2010-01-01'
+START_DATE = '2007-05-30'
 END_DATE = datetime.today().strftime('%Y-%m-%d')
 OUTPUT_DIR = 'Platinum_Balanced_Results'
 if not os.path.exists(OUTPUT_DIR):
@@ -32,7 +32,7 @@ TRADE_LAG = 1  # 1-Day Lag
 # ==========================================
 def fetch_data():
     tickers = [
-        'SPY', 'QQQ', 'GLD', 'SHV', 'TQQQ', 'BIL', 'USD', 'QLD', 'SSO', 
+        'SPY', 'QQQ', 'GLD', 'SHV', 'TQQQ', 'BIL', 'USD', 'QLD', 'SSO', 'SMH', 'XLI',
         'VGK', 'VNQ', 'GSG', 'TLT', 'HYG', 'LQD', 'IEF', 'EEM', 'EFA', 'AGG', 
         'XLY', 'XLC', 'XLP', 'XLU', 'XLV', 'USMV', 'JNK', 
         'VT', 'EWT', 'IWM', 'VSS', 'FEZ', 'EWJ', 'VIG', 'XLK'
@@ -47,9 +47,78 @@ def fetch_data():
     # Cleaning
     prices.ffill(inplace=True)
     prices.dropna(axis=1, how='all', inplace=True)
-    prices.bfill(inplace=True) # Backfill for TQQQ inception gaps if any
+    prices = apply_historical_proxies(prices)
     
     return prices
+
+def _synthetic_leveraged_series(base_series, leverage, anchor_series):
+    base = base_series.dropna().copy()
+    if base.empty:
+        return anchor_series
+    base_ret = base.pct_change().fillna(0.0) * leverage
+    synth = (1 + base_ret).cumprod()
+    synth.iloc[0] = 1.0
+
+    anchor_valid = anchor_series.dropna()
+    if not anchor_valid.empty:
+        anchor_date = anchor_valid.index[0]
+        if anchor_date in synth.index:
+            scale = anchor_valid.iloc[0] / synth.loc[anchor_date]
+            synth = synth * scale
+        else:
+            synth = synth * anchor_valid.iloc[0]
+        synth.loc[anchor_valid.index] = anchor_valid
+    else:
+        synth = synth * 100.0
+    return synth.sort_index().ffill()
+
+def _proxy_basket(components, prices, anchor_series):
+    available = {ticker: weight for ticker, weight in components.items() if ticker in prices.columns}
+    if not available:
+        return anchor_series
+    basket = pd.DataFrame({ticker: prices[ticker] for ticker in available}).ffill()
+    basket_ret = basket.pct_change().fillna(0.0)
+    weights = pd.Series(available, dtype=float)
+    weights = weights / weights.sum()
+    basket_eq = (1 + (basket_ret * weights).sum(axis=1)).cumprod()
+    basket_eq.iloc[0] = 1.0
+
+    anchor_valid = anchor_series.dropna()
+    if not anchor_valid.empty:
+        anchor_date = anchor_valid.index[0]
+        if anchor_date in basket_eq.index:
+            scale = anchor_valid.iloc[0] / basket_eq.loc[anchor_date]
+            basket_eq = basket_eq * scale
+        else:
+            basket_eq = basket_eq * anchor_valid.iloc[0]
+        basket_eq.loc[anchor_valid.index] = anchor_valid
+    else:
+        basket_eq = basket_eq * 100.0
+    return basket_eq.sort_index().ffill()
+
+def apply_historical_proxies(prices):
+    proxied = prices.copy()
+
+    if 'QQQ' in proxied.columns and 'QLD' in proxied.columns:
+        proxied['QLD'] = _synthetic_leveraged_series(proxied['QQQ'], 2.0, proxied['QLD'])
+    if 'QQQ' in proxied.columns and 'TQQQ' in proxied.columns:
+        proxied['TQQQ'] = _synthetic_leveraged_series(proxied['QQQ'], 3.0, proxied['TQQQ'])
+    if 'SPY' in proxied.columns and 'SSO' in proxied.columns:
+        proxied['SSO'] = _synthetic_leveraged_series(proxied['SPY'], 2.0, proxied['SSO'])
+    if 'SMH' in proxied.columns and 'USD' in proxied.columns:
+        proxied['USD'] = _synthetic_leveraged_series(proxied['SMH'], 2.0, proxied['USD'])
+
+    if 'XLC' in proxied.columns:
+        proxied['XLC'] = _proxy_basket({'XLK': 0.5, 'XLY': 0.5}, proxied, proxied['XLC'])
+    if 'USMV' in proxied.columns:
+        proxied['USMV'] = _proxy_basket({'XLP': 0.5, 'XLV': 0.5}, proxied, proxied['USMV'])
+    if 'VT' in proxied.columns:
+        proxied['VT'] = _proxy_basket({'SPY': 0.55, 'EFA': 0.30, 'EEM': 0.15}, proxied, proxied['VT'])
+    if 'VSS' in proxied.columns:
+        proxied['VSS'] = _proxy_basket({'EFA': 0.6, 'EEM': 0.4}, proxied, proxied['VSS'])
+
+    proxied = proxied.ffill().dropna(axis=0, how='any')
+    return proxied
 
 # ==========================================
 # 2. STRATEGY LOGIC

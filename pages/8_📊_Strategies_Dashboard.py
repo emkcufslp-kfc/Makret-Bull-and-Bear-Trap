@@ -375,7 +375,7 @@ def load_fund_tactical_json(sel_dt):
             "scCAGR": sc_cagr,
             "meta": {
                 "backtestPeriod": f"{eq.index[0].strftime('%b %Y')} - {eq.index[-1].strftime('%b %Y')}",
-                "executionDescription": "Monthly tactical rebalance that rotates between U.S. beta, growth, diversifiers, and T-bills.",
+                "executionDescription": "Weekly tactical rebalance that rotates between U.S. beta, growth, diversifiers, and T-bills.",
                 "lastActionDate": history[0]["date"] if history else eq.index[-1].strftime("%Y-%m-%d"),
                 "monthlyWinRate": f"{monthly_win_rate * 100:.1f}%",
                 "bestEra": f"{best_start[0]} (CAGR {best_start[2]:.1f}%)",

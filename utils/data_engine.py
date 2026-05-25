@@ -18,6 +18,7 @@ REF_TICKERS = [
     "BND", "AGG", "LQD", "BNDX", "SMH", "VUG", "VV", "VO", "VB", "SCHD", "ESGU", 
     "VEA", "IEMG", "VXUS", "GLD", "USO", "DBA", "HYG", "^MOVE", "^GSPC", "^VIX", "^VIX3M"
 ]
+FUND_TACTICAL_TICKERS = ["GMOM", "RLY", "DBMF", "SGOV"]
 
 TICKER_NAMES = {
     'SPY': 'S&P 500 ETF Trust',
@@ -55,6 +56,10 @@ TICKER_NAMES = {
     'GLD': 'SPDR Gold Shares',
     'USO': 'United States Oil Fund LP',
     'DBA': 'Invesco DB Agriculture Fund'
+    ,'GMOM': 'Cambria Global Momentum ETF'
+    ,'RLY': 'SPDR SSgA Multi-Asset Real Return ETF'
+    ,'DBMF': 'iMGP DBi Managed Futures Strategy ETF'
+    ,'SGOV': 'iShares 0-3 Month Treasury Bond ETF'
 }
 
 T2108_TICKERS = [
@@ -72,7 +77,7 @@ PLATINUM_TICKERS = [
     "EFA", "XLC", "USMV", "JNK", "VT", "EWT", "IWM", "VSS", "FEZ", "EWJ", "VIG"
 ]
 
-ALL_TICKERS = list(set(CORE_TICKERS + SECTOR_TICKERS + REF_TICKERS + T2108_TICKERS + NTSX_TICKERS + PLATINUM_TICKERS))
+ALL_TICKERS = list(set(CORE_TICKERS + SECTOR_TICKERS + REF_TICKERS + FUND_TACTICAL_TICKERS + T2108_TICKERS + NTSX_TICKERS + PLATINUM_TICKERS))
 
 def get_master_data():
     """
