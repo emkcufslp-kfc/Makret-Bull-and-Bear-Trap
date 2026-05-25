@@ -14,6 +14,7 @@ st.set_page_config(layout="wide", page_title="Strategies Dashboard", page_icon="
 ROOT_DIR = Path(__file__).parent.parent
 DATA_DIR_PLATINUM = ROOT_DIR / "data" / "Platinum_Results"
 DATA_DIR_NTSX = ROOT_DIR / "data" / "Multi_indicator"
+DATA_DIR_FUND = ROOT_DIR / "data" / "Fund_Tactical_Results"
 MOCKUP_PATH = ROOT_DIR / "scratch_mockup.html"
 
 def load_ntsx_data(master_date_str):
@@ -207,8 +208,186 @@ def load_platinum_json(sel_dt):
         st.error(f"Error compiling Platinum data: {e}")
         return None
 
+def _build_histogram(series, bins=11):
+    clean = pd.Series(series).dropna()
+    if clean.empty:
+        return [0.0] * bins, [0] * bins
+    counts, edges = np.histogram(clean, bins=bins)
+    return [float(v) for v in edges[:-1]], [int(c) for c in counts]
+
+def _load_fund_prices():
+    prices_path = DATA_DIR_FUND / "Fund_Tactical_Prices.csv"
+    if not prices_path.exists():
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(prices_path, index_col=0, parse_dates=True)
+    except Exception:
+        return pd.DataFrame()
+
+def load_fund_tactical_json(sel_dt):
+    try:
+        perf = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_performance_summary.csv", index_col=0)
+        eq = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_equity_curve.csv", index_col=0, parse_dates=True)
+        w = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_weights.csv", index_col=0, parse_dates=True)
+        reg = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_regimes.csv", index_col=0, parse_dates=True)
+        annual = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_annual_returns.csv", index_col=0, parse_dates=True)
+        wins = pd.read_csv(DATA_DIR_FUND / "Fund_Tactical_win_stats.csv")
+        prices = _load_fund_prices()
+
+        eq = eq[eq.index <= sel_dt]
+        w = w[w.index <= sel_dt]
+        reg = reg[reg.index <= sel_dt]
+        annual = annual[annual.index <= sel_dt]
+
+        if eq.empty or w.empty:
+            return None
+
+        latest_w = w.iloc[-1].fillna(0.0)
+        active_w = latest_w[latest_w > 0.001].sort_values(ascending=False)
+        reg_series = reg["Regime"].dropna()
+        latest_regime = reg_series.iloc[-1] if not reg_series.empty else "WARMUP"
+
+        signal_map = {
+            "US_BULL": ("OVERWEIGHT GROWTH", "bg-indigo-600 text-white shadow-md shadow-indigo-900/30"),
+            "BROAD_BULL": ("BALANCED RISK-ON", "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"),
+            "INFLATION": ("REAL-ASSET TILT", "bg-amber-500/10 text-amber-300 border border-amber-500/30"),
+            "RISK_OFF": ("DEFENSIVE", "bg-red-500/10 text-red-400 border border-red-500/30"),
+            "MIXED": ("HOLD MIXED", "bg-slate-700 text-slate-100 border border-slate-600"),
+            "WARMUP": ("WARMUP", "bg-slate-700 text-slate-100 border border-slate-600"),
+        }
+        signal_text, signal_bg = signal_map.get(latest_regime, ("HOLD", "bg-slate-700 text-slate-100 border border-slate-600"))
+
+        names_map = {
+            "SPY": "SPDR S&P 500 ETF",
+            "QQQ": "Invesco QQQ Trust",
+            "GMOM": "Cambria Global Momentum ETF",
+            "RLY": "SPDR Multi-Asset Real Return ETF",
+            "DBMF": "iMGP DBi Managed Futures Strategy ETF",
+            "SGOV": "iShares 0-3 Month Treasury Bond ETF",
+        }
+
+        visible_prices = prices[prices.index <= sel_dt] if not prices.empty else pd.DataFrame()
+        price_row = visible_prices.iloc[-1] if not visible_prices.empty else pd.Series(dtype=float)
+        prev_price_row = visible_prices.iloc[-2] if len(visible_prices) > 1 else pd.Series(dtype=float)
+
+        assets = []
+        for ticker, weight in active_w.items():
+            px = float(price_row.get(ticker, 100.0))
+            prev_px = float(prev_price_row.get(ticker, px))
+            daily_chg = ((px / prev_px) - 1) * 100 if prev_px else 0.0
+            wt_pct = float(weight * 100)
+            assets.append({
+                "symbol": ticker,
+                "name": names_map.get(ticker, ticker),
+                "price": px,
+                "change": daily_chg,
+                "target": wt_pct,
+                "current": wt_pct,
+                "lower": max(0.0, wt_pct - 5.0),
+                "upper": min(100.0, wt_pct + 5.0),
+            })
+
+        dd_port = (eq["Strategy_Equity"] / eq["Strategy_Equity"].cummax()) - 1
+        dd_spy = (eq["SPY_Equity"] / eq["SPY_Equity"].cummax()) - 1
+        annual_dd_port = dd_port.groupby(dd_port.index.year).min()
+        annual_dd_spy = dd_spy.groupby(dd_spy.index.year).min()
+
+        yearly_stats = []
+        for idx, row in annual.iterrows():
+            year = idx.year
+            port_ret = float(row.get("Dynamic_Strategy", 0.0))
+            spy_ret = float(row.get("SPY", 0.0))
+            yearly_stats.append({
+                "year": str(year),
+                "portRet": f"{port_ret * 100:+.1f}%",
+                "spyRet": f"{spy_ret * 100:+.1f}%",
+                "portDD": f"{annual_dd_port.get(year, 0.0) * 100:.1f}%",
+                "spyDD": f"{annual_dd_spy.get(year, 0.0) * 100:.1f}%",
+                "winner": "Portfolio" if port_ret > spy_ret else "SPY",
+            })
+
+        rebalance_mask = w.diff().abs().sum(axis=1) > 0.001
+        history = []
+        for dt in w.index[rebalance_mask][::-1][:24]:
+            curr = w.loc[dt].fillna(0.0)
+            prev_idx = w.index[w.index < dt]
+            prev = w.loc[prev_idx[-1]].fillna(0.0) if len(prev_idx) else pd.Series(0.0, index=w.columns)
+            diff = (curr - prev).sort_values()
+            biggest_cut = diff.index[0]
+            biggest_add = diff.index[-1]
+            turnover = float((curr - prev).abs().sum() * 100)
+            event_regime = reg.loc[dt, "Regime"] if dt in reg.index and pd.notna(reg.loc[dt, "Regime"]) else latest_regime
+            history.append({
+                "date": dt.strftime("%Y-%m-%d"),
+                "regime": str(event_regime),
+                "add": f"{biggest_add} {diff[biggest_add] * 100:+.1f}%",
+                "cut": f"{biggest_cut} {diff[biggest_cut] * 100:+.1f}%",
+                "turnover": f"{turnover:.1f}%",
+                "mix": " / ".join([f"{k} {v * 100:.0f}%" for k, v in curr[curr > 0.001].sort_values(ascending=False).items()]),
+            })
+
+        rolling_1y = eq["Strategy_Equity"].pct_change(252)
+        mc_values, mc_counts = _build_histogram(rolling_1y * 100)
+
+        start_points = []
+        for start_dt in eq.resample("MS").first().index:
+            sub = eq[eq.index >= start_dt]
+            if len(sub) < 126:
+                continue
+            years = max((sub.index[-1] - sub.index[0]).days / 365.25, 1 / 12)
+            cagr = ((sub["Strategy_Equity"].iloc[-1] / sub["Strategy_Equity"].iloc[0]) ** (1 / years) - 1) * 100
+            maxdd = ((sub["Strategy_Equity"] / sub["Strategy_Equity"].cummax()) - 1).min() * 100
+            start_points.append((start_dt.strftime("%Y-%m"), float(maxdd), float(cagr)))
+
+        sc_dd = [pt[1] for pt in start_points]
+        sc_cagr = [pt[2] for pt in start_points]
+        best_start = max(start_points, key=lambda x: x[2]) if start_points else ("-", 0.0, 0.0)
+        worst_start = min(start_points, key=lambda x: x[2]) if start_points else ("-", 0.0, 0.0)
+
+        monthly_win = wins.loc[wins["Metric"] == "Monthly Win Rate vs SPY", "Dynamic_Strategy"]
+        monthly_win_rate = float(monthly_win.iloc[0]) if not monthly_win.empty else 0.0
+
+        return {
+            "kpi": {
+                "cagr": f"{perf.loc['CAGR', 'Dynamic_Strategy'] * 100:.1f}%",
+                "cagrBench": f"vs SPY: {perf.loc['CAGR', 'SPY'] * 100:.1f}%",
+                "maxdd": f"{perf.loc['Max_Drawdown', 'Dynamic_Strategy'] * 100:.1f}%",
+                "maxddBench": f"vs SPY: {perf.loc['Max_Drawdown', 'SPY'] * 100:.1f}%",
+                "sharpe": f"{perf.loc['Sharpe', 'Dynamic_Strategy']:.2f}",
+                "sharpeBench": f"vs SPY: {perf.loc['Sharpe', 'SPY']:.2f}",
+                "ratios": f"{perf.loc['Calmar', 'Dynamic_Strategy']:.2f} / {perf.loc['Sharpe', 'Dynamic_Strategy']:.2f}",
+                "ratiosBench": f"vs SPY: {perf.loc['Calmar', 'SPY']:.2f} / {perf.loc['Sharpe', 'SPY']:.2f}",
+                "signal": signal_text,
+                "signalBg": signal_bg,
+            },
+            "regime": latest_regime.replace("_", " ").title(),
+            "assets": assets,
+            "yearly": yearly_stats[::-1],
+            "history": history,
+            "chartDates": eq.index.strftime("%Y-%m-%d").tolist()[::5],
+            "chartPort": eq["Strategy_Equity"].tolist()[::5],
+            "chartSpy": eq["SPY_Equity"].tolist()[::5],
+            "chartDDPort": [float(v * 100) for v in dd_port.tolist()[::5]],
+            "chartDDSpy": [float(v * 100) for v in dd_spy.tolist()[::5]],
+            "mcValues": mc_values,
+            "mcCounts": mc_counts,
+            "scDD": sc_dd,
+            "scCAGR": sc_cagr,
+            "meta": {
+                "backtestPeriod": f"{eq.index[0].strftime('%b %Y')} - {eq.index[-1].strftime('%b %Y')}",
+                "executionDescription": "Monthly tactical rebalance that rotates between U.S. beta, growth, diversifiers, and T-bills.",
+                "lastActionDate": history[0]["date"] if history else eq.index[-1].strftime("%Y-%m-%d"),
+                "monthlyWinRate": f"{monthly_win_rate * 100:.1f}%",
+                "bestEra": f"{best_start[0]} (CAGR {best_start[2]:.1f}%)",
+                "worstEra": f"{worst_start[0]} (CAGR {worst_start[2]:.1f}%)",
+            },
+        }
+    except Exception as e:
+        st.error(f"Error compiling Fund Tactical data: {e}")
+        return None
+
 def main():
-    st.title("📊 Strategies Dashboard (NTSX & Platinum)")
+    st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA)")
     
     # Sync with Streamlit Master Date Picker
     selected_date = st.session_state.get('master_date', datetime.date.today())
@@ -227,9 +406,11 @@ def main():
         # 2. Inject NTSX data script
         ntsx_js = load_ntsx_data(master_date_str)
         
-        # 3. Inject Platinum data object
+        # 3. Inject strategy data objects
         plat_data = load_platinum_json(sel_dt)
         plat_js = f"const PLATINUM_DATA_LIVE = {json.dumps(plat_data)};" if plat_data else "const PLATINUM_DATA_LIVE = null;"
+        fund_data = load_fund_tactical_json(sel_dt)
+        fund_js = f"const FUND_TACTICAL_DATA_LIVE = {json.dumps(fund_data)};" if fund_data else "const FUND_TACTICAL_DATA_LIVE = null;"
         
         # 4. Inject JS adapter to map live variables to the dashboard UI
         js_adapter = """
@@ -239,6 +420,9 @@ def main():
             
             // Inject Platinum raw variables
             {PLATINUM_RAW_JS}
+
+            // Inject Fund Tactical raw variables
+            {FUND_RAW_JS}
             
             window.addEventListener('DOMContentLoaded', () => {
                 // Map NTSX Live data
@@ -308,6 +492,11 @@ def main():
                 if (PLATINUM_DATA_LIVE) {
                     Object.assign(PLATINUM_DATA, PLATINUM_DATA_LIVE);
                 }
+
+                // Map Fund Tactical live data
+                if (FUND_TACTICAL_DATA_LIVE) {
+                    Object.assign(FUND_TACTICAL_DATA, FUND_TACTICAL_DATA_LIVE);
+                }
                 
                 // Set initial datepicker and capital value
                 AppState.date = "{MASTER_DATE}";
@@ -321,6 +510,7 @@ def main():
         
         js_adapter = js_adapter.replace("{NTSX_RAW_JS}", ntsx_js)
         js_adapter = js_adapter.replace("{PLATINUM_RAW_JS}", plat_js)
+        js_adapter = js_adapter.replace("{FUND_RAW_JS}", fund_js)
         js_adapter = js_adapter.replace("{MASTER_DATE}", master_date_str)
         
         # Inject adapter right before closing body tag
@@ -336,4 +526,8 @@ def main():
         st.error(f"Error rendering Strategies Dashboard: {e}")
 
 if __name__ == "__main__":
+    from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+    with st.sidebar:
+        render_master_controls()
+        render_ecosystem_sidebar()
     main()

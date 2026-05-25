@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Strategy Dashboard (NTSX & Platinum)</title>
+    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -63,7 +63,7 @@
             <i class="fa-solid fa-gem text-indigo-500 text-2xl animate-pulse"></i>
             <div>
                 <span class="text-lg font-extrabold tracking-wider bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
-                    PLATINUM & NTSX MASTER
+                    STRATEGY MASTER
                 </span>
                 <span class="text-xs text-slate-500 block -mt-1">Quantitative Multi-Asset Strategy Suite</span>
             </div>
@@ -95,6 +95,9 @@
                     </button>
                     <button onclick="switchStrategy('platinum')" id="strat-btn-platinum" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
                         💎 Platinum Core/Sat
+                    </button>
+                    <button onclick="switchStrategy('fund_tactical')" id="strat-btn-fund" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        📐 F-TAA Monthly
                     </button>
                 </div>
             </section>
@@ -396,7 +399,7 @@
         // ====================================================================
 
         const AppState = {
-            currentStrategy: 'ntsx', // 'ntsx' or 'platinum'
+            currentStrategy: 'ntsx', // 'ntsx', 'platinum', or 'fund_tactical'
             currentTab: 'dashboard',  // 'dashboard', 'performance', 'allocation', 'robustness'
             capital: 100000.00,
             date: '2026-05-23'
@@ -496,6 +499,49 @@
             scCAGR: [14.2, 16.5, 18.5, 20.1, 21.8, 23.5]
         };
 
+        // --- FUND TACTICAL DATABASE ---
+        const FUND_TACTICAL_DATA = {
+            kpi: {
+                cagr: '10.0%',
+                cagrBench: 'vs SPY: 17.8%',
+                maxdd: '-18.8%',
+                maxddBench: 'vs SPY: -24.5%',
+                sharpe: '0.68',
+                sharpeBench: 'vs SPY: 0.93',
+                ratios: '0.53 / 0.68',
+                ratiosBench: 'vs SPY: 0.73 / 0.93',
+                signal: 'BALANCED RISK-ON',
+                signalBg: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+            },
+            regime: 'Broad Bull',
+            assets: [
+                { symbol: 'SPY', name: 'SPDR S&P 500 ETF', price: 100.0, change: 0.0, target: 35.0, current: 35.0, lower: 30.0, upper: 40.0 },
+                { symbol: 'GMOM', name: 'Cambria Global Momentum ETF', price: 100.0, change: 0.0, target: 25.0, current: 25.0, lower: 20.0, upper: 30.0 },
+                { symbol: 'RLY', name: 'SPDR Multi-Asset Real Return ETF', price: 100.0, change: 0.0, target: 20.0, current: 20.0, lower: 15.0, upper: 25.0 },
+                { symbol: 'DBMF', name: 'iMGP DBi Managed Futures Strategy ETF', price: 100.0, change: 0.0, target: 10.0, current: 10.0, lower: 5.0, upper: 15.0 },
+                { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 100.0, change: 0.0, target: 10.0, current: 10.0, lower: 5.0, upper: 15.0 }
+            ],
+            yearly: [],
+            history: [],
+            chartDates: [],
+            chartPort: [],
+            chartSpy: [],
+            chartDDPort: [],
+            chartDDSpy: [],
+            mcValues: [],
+            mcCounts: [],
+            scDD: [],
+            scCAGR: [],
+            meta: {
+                backtestPeriod: 'Jun 2020 - May 2026',
+                executionDescription: 'Monthly tactical rebalance across beta, growth, diversifiers, and cash sleeves.',
+                lastActionDate: '2026-05-01',
+                monthlyWinRate: '43.1%',
+                bestEra: '2023-11 (CAGR 13.1%)',
+                worstEra: '2020-06 (CAGR 9.9%)'
+            }
+        };
+
         // --- GLOBAL DOM CACHE ---
         const DOM = {
             masterCapital: document.getElementById('master-capital-input'),
@@ -539,6 +585,7 @@
             logTableHead: document.getElementById('log-table-head'),
             logTableBody: document.getElementById('log-table-body'),
             treeDiagramContent: document.getElementById('tree-diagram-content'),
+            backtestPeriodDisplay: document.getElementById('backtest-period-display'),
 
             // Robustness
             robVar: document.getElementById('rob-var'),
@@ -555,6 +602,12 @@
         const fmtMoney = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
         const fmtPct = (n) => (n > 0 ? '+' : '') + n.toFixed(2) + '%';
         const colorClass = (n) => n >= 0 ? 'profit' : 'loss';
+        const getCurrentDb = () => AppState.currentStrategy === 'ntsx'
+            ? NTSX_DATA
+            : (AppState.currentStrategy === 'platinum' ? PLATINUM_DATA : FUND_TACTICAL_DATA);
+        const isNtsx = () => AppState.currentStrategy === 'ntsx';
+        const isPlatinum = () => AppState.currentStrategy === 'platinum';
+        const isFundTactical = () => AppState.currentStrategy === 'fund_tactical';
 
         // ====================================================================
         // 2. CONTROLLER FUNCTIONS
@@ -566,14 +619,13 @@
             // Toggle active visual states on strategy buttons
             const btnNtsx = document.getElementById('strat-btn-ntsx');
             const btnPlat = document.getElementById('strat-btn-platinum');
-            
-            if (strategyKey === 'ntsx') {
-                btnNtsx.className = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
-                btnPlat.className = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
-            } else {
-                btnNtsx.className = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
-                btnPlat.className = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
-            }
+            const btnFund = document.getElementById('strat-btn-fund');
+            const activeClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
+            const idleClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
+
+            btnNtsx.className = strategyKey === 'ntsx' ? activeClass : idleClass;
+            btnPlat.className = strategyKey === 'platinum' ? activeClass : idleClass;
+            btnFund.className = strategyKey === 'fund_tactical' ? activeClass : idleClass;
 
             renderSidebar();
             renderKPIs();
@@ -636,18 +688,24 @@
         // ====================================================================
 
         function renderSidebar() {
-            const isNtsx = AppState.currentStrategy === 'ntsx';
-            const db = isNtsx ? NTSX_DATA : PLATINUM_DATA;
+            const ntsxMode = isNtsx();
+            const fundMode = isFundTactical();
+            const db = getCurrentDb();
 
             // Update regime box
-            DOM.sidebarRegimeStatus.innerHTML = isNtsx
+            DOM.sidebarRegimeStatus.innerHTML = ntsxMode
                 ? `<span class="h-2 w-2 rounded-full bg-slate-400 inline-block mr-1"></span> ${db.regime}`
-                : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`;
-            DOM.sidebarRegimeStatus.className = isNtsx ? "text-xs font-semibold text-slate-300" : "text-xs font-semibold text-emerald-400";
+                : (fundMode
+                    ? `<span class="h-2 w-2 rounded-full bg-amber-400 inline-block mr-1"></span> ${db.regime}`
+                    : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`);
+            DOM.sidebarRegimeStatus.className = ntsxMode
+                ? "text-xs font-semibold text-slate-300"
+                : (fundMode ? "text-xs font-semibold text-amber-300" : "text-xs font-semibold text-emerald-400");
 
             // Update List header
-            DOM.sidebarListTitle.textContent = isNtsx ? "Tolerance Assets" : "Holding Candidates";
+            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : "Holding Candidates");
             DOM.sidebarListCount.textContent = `${db.assets.length} ETFs`;
+            DOM.backtestPeriodDisplay.textContent = db.meta?.backtestPeriod || (ntsxMode ? 'Mar 2007 - May 2026' : 'Mar 2018 - May 2026');
 
             // Update Asset items
             DOM.sidebarAssetContainer.innerHTML = db.assets.map(asset => {
@@ -659,7 +717,7 @@
                         <div>
                             <div class="font-bold text-slate-200 group-hover:text-white transition-colors flex items-center gap-1.5">
                                 ${asset.symbol}
-                                <span class="text-[9px] bg-slate-900 text-slate-500 px-1 rounded font-normal">${isNtsx ? asset.target + '%' : 'Allocated'}</span>
+                                <span class="text-[9px] bg-slate-900 text-slate-500 px-1 rounded font-normal">${ntsxMode ? asset.target + '%' : 'Allocated'}</span>
                             </div>
                             <div class="text-[10px] text-slate-500 truncate w-32">${asset.name}</div>
                         </div>
@@ -673,7 +731,7 @@
         }
 
         function renderKPIs() {
-            const db = AppState.currentStrategy === 'ntsx' ? NTSX_DATA : PLATINUM_DATA;
+            const db = getCurrentDb();
             DOM.kpiCagr.textContent = db.kpi.cagr;
             DOM.kpiCagrBench.textContent = db.kpi.cagrBench;
             
@@ -709,16 +767,19 @@
 
         // --- TAB 1: DASHBOARD ---
         function renderDashboardTab() {
-            const isNtsx = AppState.currentStrategy === 'ntsx';
-            const db = isNtsx ? NTSX_DATA : PLATINUM_DATA;
+            const ntsxMode = isNtsx();
+            const platinumMode = isPlatinum();
+            const db = getCurrentDb();
 
             // 1. Text description and checklists
-            DOM.executionDescription.textContent = isNtsx
+            DOM.executionDescription.textContent = ntsxMode
                 ? "Bands checking calculates mathematical trades to pull assets back to target weights."
-                : "Dynamic allocation rules according to daily macro signals and rebalancing thresholds.";
+                : (platinumMode
+                    ? "Dynamic allocation rules according to daily macro signals and rebalancing thresholds."
+                    : (db.meta?.executionDescription || "Monthly tactical review across diversified sleeves."));
 
             // 2. Required Checklist Card Style
-            if (isNtsx) {
+            if (ntsxMode) {
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-emerald-500";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-emerald-400">
@@ -730,7 +791,7 @@
                     </p>
                 `;
                 DOM.lastActionTakenDate.textContent = '2026-04-08';
-            } else {
+            } else if (platinumMode) {
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-indigo-500";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-indigo-400">
@@ -753,13 +814,36 @@
                     </ul>
                 `;
                 DOM.lastActionTakenDate.textContent = '2026-05-18';
+            } else {
+                DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-amber-400";
+                DOM.actionChecklistContent.innerHTML = `
+                    <div class="flex items-center space-x-2 text-amber-300">
+                        <i class="fa-solid fa-calendar-days text-sm"></i>
+                        <span class="text-xs font-bold uppercase">Monthly Rebalance Playbook</span>
+                    </div>
+                    <ul class="space-y-1.5 mt-2 text-xs text-slate-300">
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            Keep the highest-conviction sleeves funded based on the current regime.
+                        </li>
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                            Review month-end target changes before placing monthly rebalance orders.
+                        </li>
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>
+                            Monthly win rate vs SPY: <strong>${db.meta?.monthlyWinRate || '-'}</strong>
+                        </li>
+                    </ul>
+                `;
+                DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
             }
 
             // 3. Execution Orders Calculator Grid
             renderExecutionCalculations();
 
             // 4. Left interactive area (Tolerance bands or CSS diagram)
-            if (isNtsx) {
+            if (ntsxMode) {
                 DOM.leftPanelTitle.textContent = "Rebalancing Bands Monitoring";
                 
                 DOM.leftPanelInteractive.innerHTML = db.assets.map(asset => {
@@ -789,7 +873,7 @@
                         </div>
                     `;
                 }).join('');
-            } else {
+            } else if (platinumMode) {
                 DOM.leftPanelTitle.textContent = "Strategy Core / Satellite Buckets";
                 
                 // SVG representation of buckets for Platinum
@@ -827,6 +911,45 @@
                         </div>
                     </div>
                 `;
+            } else {
+                const riskOn = db.assets.filter(a => ['SPY', 'QQQ'].includes(a.symbol)).reduce((sum, a) => sum + a.current, 0);
+                const diversifiers = db.assets.filter(a => ['GMOM', 'RLY', 'DBMF'].includes(a.symbol)).reduce((sum, a) => sum + a.current, 0);
+                const defense = db.assets.filter(a => ['SGOV', 'BIL'].includes(a.symbol)).reduce((sum, a) => sum + a.current, 0);
+                DOM.leftPanelTitle.textContent = "Tactical Sleeve Mix";
+                DOM.leftPanelInteractive.innerHTML = `
+                    <div class="flex flex-col h-full justify-between gap-3">
+                        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-400 uppercase tracking-wider">Risk-On Sleeve</span>
+                                <span class="font-mono text-emerald-400">${riskOn.toFixed(1)}%</span>
+                            </div>
+                            <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
+                                <div class="h-full bg-emerald-500" style="width:${Math.max(0, Math.min(100, riskOn))}%"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-400 uppercase tracking-wider">Diversifiers</span>
+                                <span class="font-mono text-indigo-400">${diversifiers.toFixed(1)}%</span>
+                            </div>
+                            <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
+                                <div class="h-full bg-indigo-500" style="width:${Math.max(0, Math.min(100, diversifiers))}%"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-400 uppercase tracking-wider">Defense / Cash</span>
+                                <span class="font-mono text-amber-300">${defense.toFixed(1)}%</span>
+                            </div>
+                            <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
+                                <div class="h-full bg-amber-400" style="width:${Math.max(0, Math.min(100, defense))}%"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
+                            Regime engine rotates among U.S. beta, growth leadership, real assets, managed futures, and T-bills using monthly trend and momentum checks with month-end rebalancing.
+                        </div>
+                    </div>
+                `;
             }
 
             // 5. Positions Table
@@ -851,8 +974,7 @@
         }
 
         function renderExecutionCalculations() {
-            const isNtsx = AppState.currentStrategy === 'ntsx';
-            const db = isNtsx ? NTSX_DATA : PLATINUM_DATA;
+            const db = getCurrentDb();
 
             DOM.rebalanceOrdersGrid.innerHTML = db.assets.map(asset => {
                 const currVal = AppState.capital * (asset.current / 100);
@@ -895,8 +1017,9 @@
 
         // --- TAB 2: HISTORICAL PERFORMANCE ---
         function renderPerformanceTab() {
-            const isNtsx = AppState.currentStrategy === 'ntsx';
-            const db = isNtsx ? NTSX_DATA : PLATINUM_DATA;
+            const ntsxMode = isNtsx();
+            const fundMode = isFundTactical();
+            const db = getCurrentDb();
 
             // 1. Render Chart.js line charts
             renderLineCharts(db);
@@ -922,7 +1045,7 @@
             }).join('');
 
             // 3. Render Rebalance History (NTSX) or Transaction Log (Platinum)
-            if (isNtsx) {
+            if (ntsxMode) {
                 DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-list mr-1"></i> Rebalance History (All Events)`;
                 DOM.logTableFilters.innerHTML = `
                     <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Tolerance check</span>
@@ -953,7 +1076,7 @@
                         <td class="p-3 text-center font-mono text-emerald-400">${r.after}</td>
                     </tr>
                 `).join('');
-            } else {
+            } else if (!fundMode) {
                 DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-clipboard-list mr-1"></i> Transaction Log (Asset Swings)`;
                 DOM.logTableFilters.innerHTML = `
                     <button class="text-[9px] bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-0.5 rounded font-semibold transition">Export CSV</button>
@@ -988,6 +1111,31 @@
                         </tr>
                     `;
                 }).join('');
+            } else {
+                DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-arrows-rotate mr-1"></i> Monthly Rebalance Log`;
+                DOM.logTableFilters.innerHTML = `
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Month-end rebalance</span>
+                `;
+                DOM.logTableHead.innerHTML = `
+                    <tr>
+                        <th class="p-3 font-medium">Date</th>
+                        <th class="p-3 font-medium">Regime</th>
+                        <th class="p-3 font-medium">Largest Add</th>
+                        <th class="p-3 font-medium">Largest Cut</th>
+                        <th class="p-3 font-medium text-right">Turnover</th>
+                        <th class="p-3 font-medium text-center">Resulting Mix</th>
+                    </tr>
+                `;
+                DOM.logTableBody.innerHTML = db.history.map(r => `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="p-3 font-semibold text-slate-300 font-mono">${r.date}</td>
+                        <td class="p-3 text-amber-300 font-bold">${r.regime}</td>
+                        <td class="p-3 text-emerald-400 font-mono">${r.add}</td>
+                        <td class="p-3 text-red-400 font-mono">${r.cut}</td>
+                        <td class="p-3 text-right font-mono text-slate-300">${r.turnover}</td>
+                        <td class="p-3 text-center font-mono text-slate-400">${r.mix}</td>
+                    </tr>
+                `).join('');
             }
         }
 
@@ -1087,11 +1235,13 @@
 
         // --- TAB 3: ALLOCATION TREE ---
         function renderAllocationTab() {
-            const isNtsx = AppState.currentStrategy === 'ntsx';
+            const ntsxMode = isNtsx();
+            const platinumMode = isPlatinum();
+            const db = getCurrentDb();
             const title = document.getElementById('tree-title');
             const desc = document.getElementById('tree-description');
 
-            if (isNtsx) {
+            if (ntsxMode) {
                 title.textContent = "NTSX Balanced Allocation Model";
                 desc.textContent = "Structural allocations to US Equities (NTSX), International Equities (AVWS), and Trend Managed Futures (KMLM).";
                 
@@ -1140,7 +1290,7 @@
                         </div>
                     </div>
                 `;
-            } else {
+            } else if (platinumMode) {
                 title.textContent = "Platinum Core / Satellite Tree";
                 desc.textContent = "Multi-bucket tree demonstrating core wealth preservation (75%) vs aggressive trend acceleration (25%).";
                 
@@ -1205,26 +1355,61 @@
                         </div>
                     </div>
                 `;
+            } else {
+                const weights = Object.fromEntries(db.assets.map(asset => [asset.symbol, asset.current]));
+                title.textContent = "F-TAA Sleeve Architecture";
+                desc.textContent = "Rule-based tactical allocation that splits capital across growth, diversifiers, and defense depending on trend and momentum leadership.";
+                DOM.treeDiagramContent.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="bg-slate-900 border border-amber-400/40 px-8 py-3 rounded-2xl shadow-lg text-center max-w-sm mb-6">
+                            <span class="text-xs text-amber-300 uppercase tracking-widest block font-bold">F-TAA Portfolio</span>
+                            <span class="text-sm font-mono text-white font-bold block mt-1">100.0% capital</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-emerald-400 block">Growth Beta</span>
+                                <span class="text-sm font-mono text-white block mt-1">${((weights.SPY || 0) + (weights.QQQ || 0)).toFixed(1)}%</span>
+                                <p class="text-[10px] text-slate-500 mt-2">SPY plus QQQ express broad U.S. beta and growth leadership.</p>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-indigo-400 block">Diversifiers</span>
+                                <span class="text-sm font-mono text-white block mt-1">${((weights.GMOM || 0) + (weights.RLY || 0) + (weights.DBMF || 0)).toFixed(1)}%</span>
+                                <p class="text-[10px] text-slate-500 mt-2">GMOM, RLY, and DBMF broaden the opportunity set across macro regimes.</p>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-amber-300 block">Defense</span>
+                                <span class="text-sm font-mono text-white block mt-1">${((weights.SGOV || 0) + (weights.BIL || 0)).toFixed(1)}%</span>
+                                <p class="text-[10px] text-slate-500 mt-2">T-bill exposure expands when both SPY and QQQ lose trend support.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
         }
 
         // --- TAB 4: ROBUSTNESS ---
         function renderRobustnessTab() {
-            const db = AppState.currentStrategy === 'ntsx' ? NTSX_DATA : PLATINUM_DATA;
+            const db = getCurrentDb();
 
             // Configure metrics text
-            if (AppState.currentStrategy === 'ntsx') {
+            if (isNtsx()) {
                 DOM.robVar.textContent = '4.1%';
                 DOM.robMedian.textContent = '9.2%';
                 DOM.robHigh.textContent = '14.2%';
                 DOM.robBestEra.textContent = '2012-08 (CAGR 11.2%)';
                 DOM.robWorstEra.textContent = '2007-10 (CAGR 7.8%)';
-            } else {
+            } else if (isPlatinum()) {
                 DOM.robVar.textContent = '8.8%';
                 DOM.robMedian.textContent = '18.5%';
                 DOM.robHigh.textContent = '28.4%';
                 DOM.robBestEra.textContent = '2012-08 (CAGR 23.5%)';
                 DOM.robWorstEra.textContent = '2007-10 (CAGR 14.2%)';
+            } else {
+                DOM.robVar.textContent = db.mcValues.length ? `${db.mcValues[0].toFixed(1)}%` : '-';
+                DOM.robMedian.textContent = db.kpi.cagr;
+                DOM.robHigh.textContent = db.mcValues.length ? `${db.mcValues[db.mcValues.length - 1].toFixed(1)}%` : '-';
+                DOM.robBestEra.textContent = db.meta?.bestEra || '-';
+                DOM.robWorstEra.textContent = db.meta?.worstEra || '-';
             }
 
             // Monte Carlo Histogram Chart

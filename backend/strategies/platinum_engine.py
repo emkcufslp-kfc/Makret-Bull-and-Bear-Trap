@@ -134,16 +134,17 @@ def get_platinum_weights(prices):
     rsi_sat = rsi < 40
     
     # Vectorized Fed Weights
-    # If Bull: 0.85 * (0.266 QQQ, 0.266 GLD, 0.266 SHV or TQQQ)
+    # If Bull: split the 85% Fed bucket evenly across three sleeves.
     # If Bear: 0.85 * (0.166 QQQ, 0.166 GLD, 0.666 SHV)
     
     alloc_bull = is_bull
     alloc_bear = ~is_bull
     
-    w_ww.loc[alloc_bull, 'QQQ'] += 0.266 * 0.85
-    w_ww.loc[alloc_bull, 'GLD'] += 0.266 * 0.85
-    w_ww.loc[alloc_bull & rsi_sat, 'TQQQ'] += 0.20 * 0.85
-    w_ww.loc[alloc_bull & ~rsi_sat, 'SHV'] += 0.20 * 0.85
+    bull_leg_weight = 0.85 / 3.0
+    w_ww.loc[alloc_bull, 'QQQ'] += bull_leg_weight
+    w_ww.loc[alloc_bull, 'GLD'] += bull_leg_weight
+    w_ww.loc[alloc_bull & rsi_sat, 'TQQQ'] += bull_leg_weight
+    w_ww.loc[alloc_bull & ~rsi_sat, 'SHV'] += bull_leg_weight
     
     w_ww.loc[alloc_bear, 'QQQ'] += 0.166 * 0.85
     w_ww.loc[alloc_bear, 'GLD'] += 0.166 * 0.85
