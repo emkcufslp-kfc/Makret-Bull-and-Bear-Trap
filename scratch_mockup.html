@@ -99,6 +99,9 @@
                     <button onclick="switchStrategy('fund_tactical')" id="strat-btn-fund" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
                         📐 F-TAA Weekly
                     </button>
+                    <button onclick="switchStrategy('best_mix')" id="strat-btn-mix" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        <i class="fa-solid fa-layer-group"></i> Best Mix
+                    </button>
                 </div>
             </section>
 
@@ -189,6 +192,9 @@
                     <button onclick="switchTab('allocation')" id="tab-btn-allocation" class="tab-btn pb-2 text-slate-400 hover:text-white">
                         <i class="fa-solid fa-sitemap mr-1.5"></i> Allocation Tree
                     </button>
+                    <button onclick="switchTab('logic')" id="tab-btn-logic" class="tab-btn pb-2 text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-code-branch mr-1.5"></i> Strategy Logic
+                    </button>
                     <button onclick="switchTab('robustness')" id="tab-btn-robustness" class="tab-btn pb-2 text-slate-400 hover:text-white">
                         <i class="fa-solid fa-dice mr-1.5"></i> Robustness
                     </button>
@@ -242,7 +248,7 @@
                         <!-- Right Panel: Positions Table -->
                         <div class="glass-panel rounded-2xl flex flex-col overflow-hidden">
                             <div class="p-3 border-b border-slate-800/80 bg-slate-950/20 flex justify-between items-center flex-shrink-0">
-                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Current Portfolio Weights</h3>
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Current Stock Weights</h3>
                                 <span class="text-[10px] text-slate-500">Capital Allocated: <strong class="text-slate-300 font-mono" id="capital-allocated-pct">100.0%</strong></span>
                             </div>
                             <div class="flex-1 overflow-auto">
@@ -344,7 +350,54 @@
                     </div>
                 </div>
 
-                <!-- 4. ROBUSTNESS VIEW -->
+                <!-- 4. STRATEGY LOGIC VIEW -->
+                <div id="view-logic" class="absolute inset-0 hidden flex flex-col gap-4 overflow-y-auto pr-1">
+                    <div class="glass-panel rounded-2xl p-5">
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                            <div>
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider" id="logic-title">Strategy Playbook</h3>
+                                <p class="text-xs text-slate-400 mt-1 max-w-3xl" id="logic-subtitle">Rule-based workflow, decision tree, and operating checklist for the active strategy.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 min-w-[280px]">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Cadence</div>
+                                    <div class="text-sm font-semibold text-white mt-1" id="logic-cadence">Monthly review</div>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Primary Trigger</div>
+                                    <div class="text-sm font-semibold text-white mt-1" id="logic-trigger">Drift breach</div>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">User Action</div>
+                                    <div class="text-sm font-semibold text-white mt-1" id="logic-action">Rebalance only when rules say so</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-5 gap-4 flex-1 min-h-[520px]">
+                        <div class="xl:col-span-3 glass-panel rounded-2xl p-5 flex flex-col">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Decision Tree</h3>
+                                <span class="text-[10px] px-2 py-1 rounded bg-slate-900 text-slate-300 border border-slate-800" id="logic-tree-badge">Rules</span>
+                            </div>
+                            <div id="logic-tree-content" class="flex-1"></div>
+                        </div>
+
+                        <div class="xl:col-span-2 flex flex-col gap-4">
+                            <div class="glass-panel rounded-2xl p-5">
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">How To Follow</h3>
+                                <div id="logic-workflow" class="space-y-3"></div>
+                            </div>
+                            <div class="glass-panel rounded-2xl p-5 flex-1">
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Why The Rules Exist</h3>
+                                <div id="logic-explanation" class="space-y-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. ROBUSTNESS VIEW -->
                 <div id="view-robustness" class="absolute inset-0 hidden flex flex-col gap-4 overflow-y-auto pr-1">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
                         <div class="glass-panel rounded-2xl p-4 flex flex-col">
@@ -399,8 +452,8 @@
         // ====================================================================
 
         const AppState = {
-            currentStrategy: 'ntsx', // 'ntsx', 'platinum', or 'fund_tactical'
-            currentTab: 'dashboard',  // 'dashboard', 'performance', 'allocation', 'robustness'
+            currentStrategy: 'ntsx', // 'ntsx', 'platinum', 'fund_tactical', or 'best_mix'
+            currentTab: 'dashboard',  // 'dashboard', 'performance', 'allocation', 'logic', 'robustness'
             capital: 100000.00,
             date: '2026-05-23'
         };
@@ -521,17 +574,29 @@
                 { symbol: 'DBMF', name: 'iMGP DBi Managed Futures Strategy ETF', price: 100.0, change: 0.0, target: 10.0, current: 10.0, lower: 5.0, upper: 15.0 },
                 { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 100.0, change: 0.0, target: 10.0, current: 10.0, lower: 5.0, upper: 15.0 }
             ],
-            yearly: [],
-            history: [],
-            chartDates: [],
-            chartPort: [],
-            chartSpy: [],
-            chartDDPort: [],
-            chartDDSpy: [],
-            mcValues: [],
-            mcCounts: [],
-            scDD: [],
-            scCAGR: [],
+            yearly: [
+                { year: '2025', portRet: '+9.8%', spyRet: '+16.4%', portDD: '-8.1%', spyDD: '-10.9%', winner: 'SPY' },
+                { year: '2024', portRet: '+11.2%', spyRet: '+27.1%', portDD: '-6.4%', spyDD: '-8.8%', winner: 'SPY' },
+                { year: '2023', portRet: '+13.5%', spyRet: '+24.2%', portDD: '-5.9%', spyDD: '-12.1%', winner: 'SPY' },
+                { year: '2022', portRet: '-4.6%', spyRet: '-18.2%', portDD: '-12.8%', spyDD: '-24.5%', winner: 'Portfolio' },
+                { year: '2021', portRet: '+12.8%', spyRet: '+26.7%', portDD: '-4.2%', spyDD: '-5.7%', winner: 'SPY' },
+                { year: '2020', portRet: '+18.1%', spyRet: '+18.4%', portDD: '-10.6%', spyDD: '-33.8%', winner: 'Portfolio' }
+            ],
+            history: [
+                { date: '2026-05-22', regime: 'BROAD_BULL', add: '+GMOM 4.0%', cut: '-SGOV 3.0%', turnover: '8.0%', mix: '35 / 10 / 25 / 15 / 10 / 5' },
+                { date: '2026-05-15', regime: 'MIXED', add: '+DBMF 5.0%', cut: '-QQQ 5.0%', turnover: '10.0%', mix: '30 / 10 / 25 / 20 / 10 / 5' },
+                { date: '2026-05-08', regime: 'RISK_OFF', add: '+SGOV 20.0%', cut: '-SPY 15.0%', turnover: '24.0%', mix: '10 / 0 / 20 / 15 / 25 / 30' },
+                { date: '2026-05-01', regime: 'INFLATION', add: '+RLY 10.0%', cut: '-QQQ 5.0%', turnover: '16.0%', mix: '25 / 5 / 20 / 30 / 15 / 5' }
+            ],
+            chartDates: ['2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+            chartPort: [100, 118, 133, 127, 144, 160, 168],
+            chartSpy: [100, 118, 149, 122, 151, 192, 265],
+            chartDDPort: [0, -3, -10.6, -12.8, -5.9, -4.5, -2.8],
+            chartDDSpy: [0, -5, -33.8, -24.5, -12.1, -8.8, -4.2],
+            mcValues: [3.2, 4.8, 6.1, 7.4, 8.6, 10.0, 11.5, 12.8, 14.2],
+            mcCounts: [10, 28, 56, 102, 164, 210, 155, 82, 24],
+            scDD: [-18.8, -17.2, -15.9, -14.5, -13.4, -12.7],
+            scCAGR: [7.1, 7.8, 8.6, 9.3, 10.0, 10.8],
             meta: {
                 backtestPeriod: 'Jun 2020 - May 2026',
                 executionDescription: 'Weekly tactical rebalance across beta, growth, diversifiers, and cash sleeves.',
@@ -539,6 +604,72 @@
                 monthlyWinRate: '43.1%',
                 bestEra: '2023-11 (CAGR 13.1%)',
                 worstEra: '2020-06 (CAGR 9.9%)'
+            }
+        };
+
+        // --- BEST MIX DATABASE ---
+        const BEST_MIX_DATA = {
+            kpi: {
+                cagr: '11.1%',
+                cagrBench: 'vs SPY: 11.3%',
+                maxdd: '-19.1%',
+                maxddBench: 'vs SPY: -53.9%',
+                sharpe: '0.72',
+                sharpeBench: 'vs SPY: 0.54',
+                ratios: '0.58 / 0.91',
+                ratiosBench: 'vs SPY: 0.21 / 0.66',
+                signal: 'KEEP BLEND',
+                signalBg: 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
+            },
+            regime: 'Optimizer Blend Active (60% Platinum / 38% F-TAA / 2% NTSX)',
+            assets: [
+                { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 445.10, change: 1.80, target: 17.1, current: 17.1, lower: 14.0, upper: 20.0 },
+                { symbol: 'TQQQ', name: 'UltraPro QQQ (3x Leverage)', price: 68.20, change: 3.45, target: 15.0, current: 15.0, lower: 12.0, upper: 18.0 },
+                { symbol: 'SMH', name: 'VanEck Semiconductor ETF', price: 235.40, change: 4.10, target: 13.9, current: 13.9, lower: 11.0, upper: 17.0 },
+                { symbol: 'SPY', name: 'SPDR S&P 500 ETF', price: 590.40, change: 0.95, target: 13.3, current: 13.3, lower: 10.0, upper: 16.0 },
+                { symbol: 'GLD', name: 'SPDR Gold Shares', price: 220.10, change: -1.20, target: 10.2, current: 10.2, lower: 8.0, upper: 13.0 },
+                { symbol: 'GMOM', name: 'Cambria Global Momentum ETF', price: 33.20, change: 0.44, target: 9.5, current: 9.5, lower: 7.0, upper: 12.0 },
+                { symbol: 'SHV', name: 'Short Treasury Bond ETF', price: 110.20, change: 0.01, target: 7.6, current: 7.6, lower: 5.0, upper: 10.0 },
+                { symbol: 'RLY', name: 'SPDR Multi-Asset Real Return ETF', price: 29.80, change: 0.23, target: 7.6, current: 7.6, lower: 5.0, upper: 10.0 },
+                { symbol: 'DBMF', name: 'iMGP DBi Managed Futures Strategy ETF', price: 28.10, change: 0.17, target: 3.8, current: 3.8, lower: 2.0, upper: 6.0 },
+                { symbol: 'NTSX', name: 'WisdomTree 90/60 Balanced', price: 62.50, change: 0.20, target: 1.1, current: 1.1, lower: 0.0, upper: 3.0 },
+                { symbol: 'KMLM', name: 'KFA Mount Lucas Managed Futures', price: 34.10, change: 0.45, target: 0.7, current: 0.7, lower: 0.0, upper: 2.0 },
+                { symbol: 'AVWS', name: 'Avantis All International Markets', price: 18.20, change: -0.05, target: 0.2, current: 0.2, lower: 0.0, upper: 1.0 }
+            ],
+            yearly: [
+                { year: '2025', portRet: '+18.4%', spyRet: '+16.4%', portDD: '-7.8%', spyDD: '-10.9%', winner: 'Portfolio' },
+                { year: '2024', portRet: '+22.7%', spyRet: '+27.1%', portDD: '-8.4%', spyDD: '-8.8%', winner: 'SPY' },
+                { year: '2023', portRet: '+24.8%', spyRet: '+24.2%', portDD: '-9.5%', spyDD: '-12.1%', winner: 'Portfolio' },
+                { year: '2022', portRet: '-11.6%', spyRet: '-18.2%', portDD: '-19.1%', spyDD: '-24.5%', winner: 'Portfolio' },
+                { year: '2021', portRet: '+20.6%', spyRet: '+26.7%', portDD: '-5.1%', spyDD: '-5.7%', winner: 'SPY' },
+                { year: '2020', portRet: '+27.1%', spyRet: '+18.4%', portDD: '-14.2%', spyDD: '-33.8%', winner: 'Portfolio' }
+            ],
+            history: [
+                { date: '2026-05-23', source: 'Platinum', change: '+2.0%', destination: 'F-TAA', rationale: 'Sharpe-preserving trim after momentum surge', weights: '60 / 38 / 2' },
+                { date: '2026-04-25', source: 'F-TAA', change: '+1.0%', destination: 'NTSX', rationale: 'Risk budget top-up after drawdown compression', weights: '59 / 39 / 2' },
+                { date: '2026-03-28', source: 'NTSX', change: '+2.0%', destination: 'Platinum', rationale: 'Optimizer restored max-Calmar blend', weights: '60 / 38 / 2' }
+            ],
+            chartDates: ['2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024', '2026'],
+            chartPort: [100, 126, 168, 224, 282, 346, 438, 389, 553, 692],
+            chartSpy: [100, 109, 131, 177, 199, 253, 314, 251, 418, 691],
+            chartDDPort: [0, -9, -6, -4, -7, -8, -14, -19.1, -6, -3],
+            chartDDSpy: [0, -16, -9, -7, -10, -13, -33.8, -24.5, -9, -4],
+            mcValues: [5.8, 7.2, 8.9, 9.8, 11.1, 12.7, 14.1, 15.5, 17.0],
+            mcCounts: [12, 34, 78, 126, 188, 174, 102, 52, 18],
+            scDD: [-24.2, -22.0, -21.1, -20.0, -19.1, -18.4],
+            scCAGR: [9.4, 9.9, 10.3, 10.8, 11.1, 11.6],
+            meta: {
+                backtestPeriod: 'Dec 2007 - May 2026',
+                executionDescription: 'Monthly strategy-of-strategies rebalance across the optimizer-selected blend.',
+                lastActionDate: '2026-05-23',
+                monthlyWinRate: '48.7%',
+                bestEra: '2013-01 (CAGR 14.8%)',
+                worstEra: '2008-01 (CAGR 9.4%)',
+                sleeves: [
+                    { symbol: 'PLAT', name: 'Platinum sleeve', weight: 60.0 },
+                    { symbol: 'FTAA', name: 'F-TAA sleeve', weight: 38.0 },
+                    { symbol: 'NTSX', name: 'NTSX sleeve', weight: 2.0 }
+                ]
             }
         };
 
@@ -567,6 +698,7 @@
             viewDashboard: document.getElementById('view-dashboard'),
             viewPerformance: document.getElementById('view-performance'),
             viewAllocation: document.getElementById('view-allocation'),
+            viewLogic: document.getElementById('view-logic'),
             viewRobustness: document.getElementById('view-robustness'),
 
             // Dynamic items
@@ -586,6 +718,15 @@
             logTableBody: document.getElementById('log-table-body'),
             treeDiagramContent: document.getElementById('tree-diagram-content'),
             backtestPeriodDisplay: document.getElementById('backtest-period-display'),
+            logicTitle: document.getElementById('logic-title'),
+            logicSubtitle: document.getElementById('logic-subtitle'),
+            logicCadence: document.getElementById('logic-cadence'),
+            logicTrigger: document.getElementById('logic-trigger'),
+            logicAction: document.getElementById('logic-action'),
+            logicTreeBadge: document.getElementById('logic-tree-badge'),
+            logicTreeContent: document.getElementById('logic-tree-content'),
+            logicWorkflow: document.getElementById('logic-workflow'),
+            logicExplanation: document.getElementById('logic-explanation'),
 
             // Robustness
             robVar: document.getElementById('rob-var'),
@@ -604,10 +745,13 @@
         const colorClass = (n) => n >= 0 ? 'profit' : 'loss';
         const getCurrentDb = () => AppState.currentStrategy === 'ntsx'
             ? NTSX_DATA
-            : (AppState.currentStrategy === 'platinum' ? PLATINUM_DATA : FUND_TACTICAL_DATA);
+            : (AppState.currentStrategy === 'platinum'
+                ? PLATINUM_DATA
+                : (AppState.currentStrategy === 'fund_tactical' ? FUND_TACTICAL_DATA : BEST_MIX_DATA));
         const isNtsx = () => AppState.currentStrategy === 'ntsx';
         const isPlatinum = () => AppState.currentStrategy === 'platinum';
         const isFundTactical = () => AppState.currentStrategy === 'fund_tactical';
+        const isBestMix = () => AppState.currentStrategy === 'best_mix';
 
         // ====================================================================
         // 2. CONTROLLER FUNCTIONS
@@ -620,12 +764,14 @@
             const btnNtsx = document.getElementById('strat-btn-ntsx');
             const btnPlat = document.getElementById('strat-btn-platinum');
             const btnFund = document.getElementById('strat-btn-fund');
+            const btnMix = document.getElementById('strat-btn-mix');
             const activeClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
             const idleClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
 
             btnNtsx.className = strategyKey === 'ntsx' ? activeClass : idleClass;
             btnPlat.className = strategyKey === 'platinum' ? activeClass : idleClass;
             btnFund.className = strategyKey === 'fund_tactical' ? activeClass : idleClass;
+            btnMix.className = strategyKey === 'best_mix' ? activeClass : idleClass;
 
             renderSidebar();
             renderKPIs();
@@ -636,7 +782,7 @@
             AppState.currentTab = tabKey;
             
             // Update tab button visual states
-            ['dashboard', 'performance', 'allocation', 'robustness'].forEach(t => {
+            ['dashboard', 'performance', 'allocation', 'logic', 'robustness'].forEach(t => {
                 const btn = document.getElementById(`tab-btn-${t}`);
                 if (t === tabKey) {
                     btn.classList.add('active', 'text-white');
@@ -652,6 +798,7 @@
                 dashboard: DOM.viewDashboard,
                 performance: DOM.viewPerformance,
                 allocation: DOM.viewAllocation,
+                logic: DOM.viewLogic,
                 robustness: DOM.viewRobustness
             };
 
@@ -690,6 +837,7 @@
         function renderSidebar() {
             const ntsxMode = isNtsx();
             const fundMode = isFundTactical();
+            const mixMode = isBestMix();
             const db = getCurrentDb();
 
             // Update regime box
@@ -697,13 +845,15 @@
                 ? `<span class="h-2 w-2 rounded-full bg-slate-400 inline-block mr-1"></span> ${db.regime}`
                 : (fundMode
                     ? `<span class="h-2 w-2 rounded-full bg-amber-400 inline-block mr-1"></span> ${db.regime}`
-                    : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`);
+                    : (mixMode
+                        ? `<span class="h-2 w-2 rounded-full bg-cyan-400 inline-block mr-1"></span> ${db.regime}`
+                        : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`));
             DOM.sidebarRegimeStatus.className = ntsxMode
                 ? "text-xs font-semibold text-slate-300"
-                : (fundMode ? "text-xs font-semibold text-amber-300" : "text-xs font-semibold text-emerald-400");
+                : (fundMode ? "text-xs font-semibold text-amber-300" : (mixMode ? "text-xs font-semibold text-cyan-300" : "text-xs font-semibold text-emerald-400"));
 
             // Update List header
-            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : "Holding Candidates");
+            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : (mixMode ? "Look-Through Holdings" : "Holding Candidates"));
             DOM.sidebarListCount.textContent = `${db.assets.length} ETFs`;
             DOM.backtestPeriodDisplay.textContent = db.meta?.backtestPeriod || (ntsxMode ? 'Mar 2007 - May 2026' : 'Mar 2018 - May 2026');
 
@@ -717,7 +867,7 @@
                         <div>
                             <div class="font-bold text-slate-200 group-hover:text-white transition-colors flex items-center gap-1.5">
                                 ${asset.symbol}
-                                <span class="text-[9px] bg-slate-900 text-slate-500 px-1 rounded font-normal">${ntsxMode ? asset.target + '%' : 'Allocated'}</span>
+                                <span class="text-[9px] bg-slate-900 text-slate-500 px-1 rounded font-normal">${ntsxMode || mixMode ? asset.target + '%' : 'Allocated'}</span>
                             </div>
                             <div class="text-[10px] text-slate-500 truncate w-32">${asset.name}</div>
                         </div>
@@ -759,6 +909,9 @@
                 case 'allocation':
                     renderAllocationTab();
                     break;
+                case 'logic':
+                    renderLogicTab();
+                    break;
                 case 'robustness':
                     renderRobustnessTab();
                     break;
@@ -769,6 +922,7 @@
         function renderDashboardTab() {
             const ntsxMode = isNtsx();
             const platinumMode = isPlatinum();
+            const mixMode = isBestMix();
             const db = getCurrentDb();
 
             // 1. Text description and checklists
@@ -814,6 +968,29 @@
                     </ul>
                 `;
                 DOM.lastActionTakenDate.textContent = '2026-05-18';
+            } else if (mixMode) {
+                DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-cyan-400";
+                DOM.actionChecklistContent.innerHTML = `
+                    <div class="flex items-center space-x-2 text-cyan-300">
+                        <i class="fa-solid fa-layer-group text-sm"></i>
+                        <span class="text-xs font-bold uppercase">Optimizer Blend Locked</span>
+                    </div>
+                    <ul class="space-y-1.5 mt-2 text-xs text-slate-300">
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+                            Keep Platinum as the primary return engine at <strong>60%</strong>.
+                        </li>
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-amber-300"></span>
+                            Keep F-TAA at <strong>38%</strong> as the drawdown dampener and tactical hedge.
+                        </li>
+                        <li class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>
+                            Leave NTSX at <strong>2%</strong> unless the monthly optimizer rerun changes the blend.
+                        </li>
+                    </ul>
+                `;
+                DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
             } else {
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-amber-400";
                 DOM.actionChecklistContent.innerHTML = `
@@ -908,6 +1085,28 @@
 
                         <div class="w-full text-[10px] text-slate-400 text-center leading-normal">
                             * Core safeguards overall portfolio value while Satellite pursues Tech Momentum Alpha.
+                        </div>
+                    </div>
+                `;
+            } else if (mixMode) {
+                const sleeves = db.meta?.sleeves || [];
+                DOM.leftPanelTitle.textContent = "Optimizer Sleeve Map";
+                DOM.leftPanelInteractive.innerHTML = `
+                    <div class="flex flex-col h-full justify-between gap-3">
+                        ${sleeves.map(asset => `
+                            <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-400 uppercase tracking-wider">${asset.symbol}</span>
+                                    <span class="font-mono text-cyan-300">${asset.weight.toFixed(1)}%</span>
+                                </div>
+                                <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
+                                    <div class="h-full bg-cyan-500" style="width:${Math.max(0, Math.min(100, asset.weight))}%"></div>
+                                </div>
+                                <div class="mt-2 text-[10px] text-slate-500">${asset.name}</div>
+                            </div>
+                        `).join('')}
+                        <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
+                            The left panel shows the optimizer sleeves. The holdings table on the right shows the actual look-through ETF weights users would implement in the portfolio.
                         </div>
                     </div>
                 `;
@@ -1019,6 +1218,7 @@
         function renderPerformanceTab() {
             const ntsxMode = isNtsx();
             const fundMode = isFundTactical();
+            const mixMode = isBestMix();
             const db = getCurrentDb();
 
             // 1. Render Chart.js line charts
@@ -1074,6 +1274,31 @@
                         <td class="p-3 text-right font-mono text-slate-500">${r.band}</td>
                         <td class="p-3 text-center font-mono text-slate-400">${r.before}</td>
                         <td class="p-3 text-center font-mono text-emerald-400">${r.after}</td>
+                    </tr>
+                `).join('');
+            } else if (mixMode) {
+                DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-layer-group mr-1"></i> Mix Rebalance Log`;
+                DOM.logTableFilters.innerHTML = `
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Monthly optimizer</span>
+                `;
+                DOM.logTableHead.innerHTML = `
+                    <tr>
+                        <th class="p-3 font-medium">Date</th>
+                        <th class="p-3 font-medium">Trimmed Sleeve</th>
+                        <th class="p-3 font-medium">Shift</th>
+                        <th class="p-3 font-medium">Added Sleeve</th>
+                        <th class="p-3 font-medium">Rationale</th>
+                        <th class="p-3 font-medium text-center">Resulting Mix</th>
+                    </tr>
+                `;
+                DOM.logTableBody.innerHTML = db.history.map(r => `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="p-3 font-semibold text-slate-300 font-mono">${r.date}</td>
+                        <td class="p-3 text-red-400 font-bold">${r.source}</td>
+                        <td class="p-3 text-center font-mono text-cyan-300">${r.change}</td>
+                        <td class="p-3 text-emerald-400 font-bold">${r.destination}</td>
+                        <td class="p-3 text-slate-400">${r.rationale}</td>
+                        <td class="p-3 text-center font-mono text-slate-300">${r.weights}</td>
                     </tr>
                 `).join('');
             } else if (!fundMode) {
@@ -1237,6 +1462,7 @@
         function renderAllocationTab() {
             const ntsxMode = isNtsx();
             const platinumMode = isPlatinum();
+            const mixMode = isBestMix();
             const db = getCurrentDb();
             const title = document.getElementById('tree-title');
             const desc = document.getElementById('tree-description');
@@ -1355,6 +1581,34 @@
                         </div>
                     </div>
                 `;
+            } else if (mixMode) {
+                title.textContent = "Best Mix Sleeve Stack";
+                desc.textContent = "Optimizer-selected strategy-of-strategies blend built to maximize Calmar while preserving double-digit CAGR.";
+                DOM.treeDiagramContent.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="bg-slate-900 border border-cyan-500/50 px-8 py-3 rounded-2xl shadow-lg text-center max-w-sm mb-6">
+                            <span class="text-xs text-cyan-300 uppercase tracking-widest block font-bold">Best Mix Portfolio</span>
+                            <span class="text-sm font-mono text-white font-bold block mt-1">100.0% capital</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-indigo-300 block">Primary Engine</span>
+                                <span class="text-sm font-mono text-white block mt-1">60.0% Platinum</span>
+                                <p class="text-[10px] text-slate-500 mt-2">Main return driver with the strongest standalone CAGR in the research run.</p>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-amber-300 block">Risk Dampener</span>
+                                <span class="text-sm font-mono text-white block mt-1">38.0% F-TAA</span>
+                                <p class="text-[10px] text-slate-500 mt-2">Weekly tactical sleeve that reduces drawdown and smooths regime transitions.</p>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-center">
+                                <span class="text-xs font-bold text-emerald-400 block">Diversifier</span>
+                                <span class="text-sm font-mono text-white block mt-1">2.0% NTSX</span>
+                                <p class="text-[10px] text-slate-500 mt-2">Small structural ballast to preserve multi-asset breadth without dragging the optimizer.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
             } else {
                 const weights = Object.fromEntries(db.assets.map(asset => [asset.symbol, asset.current]));
                 title.textContent = "F-TAA Sleeve Architecture";
@@ -1387,7 +1641,260 @@
             }
         }
 
-        // --- TAB 4: ROBUSTNESS ---
+        // --- TAB 4: STRATEGY LOGIC ---
+        function renderLogicTab() {
+            let content;
+
+            if (isNtsx()) {
+                content = {
+                    title: 'NTSX Decision Tree',
+                    subtitle: 'A low-maintenance tolerance-band strategy. The portfolio only trades when weight drift leaves the approved range.',
+                    cadence: 'Daily drift check, trade only on breach',
+                    trigger: 'Any sleeve outside its band',
+                    action: 'Reset to 55 / 12 / 33 targets',
+                    badge: 'Band Discipline',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-indigo-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Read current weights for NTSX, AVWS, and KMLM.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Step 1</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Compare each sleeve to its band.</div>
+                                    <p class="text-xs text-slate-400 mt-2">NTSX: 50-60%, AVWS: 9-15%, KMLM: 29-37%.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Step 2</div>
+                                    <div class="text-sm font-semibold text-white mt-1">If any sleeve is outside the band, trade.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Sell the overweight sleeve and buy the underweight sleeve until targets are restored.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Step 3</div>
+                                    <div class="text-sm font-semibold text-white mt-1">If all sleeves are inside the band, hold.</div>
+                                    <p class="text-xs text-slate-400 mt-2">No tactical override, no forecast, no partial rebalance.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-emerald-300">Hold Path</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Inside all bands -> Keep current holdings.</div>
+                                </div>
+                                <div class="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-amber-300">Rebalance Path</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Outside any band -> Snap back to target weights.</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'Check the current weights against the preset target and tolerance band.',
+                        'If all three sleeves remain inside range, do nothing and let trends run.',
+                        'If even one sleeve breaches its band, rebalance the full portfolio back to 55% NTSX, 12% AVWS, and 33% KMLM.',
+                        'Record the rebalance date, trigger sleeve, and post-trade weights in the log.'
+                    ],
+                    explanation: [
+                        'NTSX provides leveraged stock-plus-bond beta, AVWS adds international equity breadth, and KMLM adds crisis diversification through trend-following managed futures.',
+                        'The tolerance band is the whole edge: it reduces unnecessary churn, but it still forces discipline after large winners or losers stretch the mix.',
+                        'Users should not second-guess the signal with market opinions. This model is designed to be simple, infrequent, and mechanical.'
+                    ]
+                };
+            } else if (isPlatinum()) {
+                content = {
+                    title: 'Platinum Decision Tree',
+                    subtitle: 'A blended regime engine. The core sleeve rotates between growth and defense, while the satellite sleeve confirms whether leverage should stay on.',
+                    cadence: 'Daily check, monthly core rotation',
+                    trigger: 'Trend state plus momentum leadership',
+                    action: 'Rotate sleeves, then let satellite confirm risk-on or risk-off',
+                    badge: 'Regime Rotation',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-cyan-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Split capital into 75% Core and 25% Satellite.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Core Sleeve</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Fusion + Fed Pivot + Titan Momentum</div>
+                                    <p class="text-xs text-slate-400 mt-2">SPY above its 200-day average keeps the system in bull mode. The monthly leaders and leveraged overlays decide which growth assets carry the core.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Satellite Sleeve</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Ah_Pig confirmation layer</div>
+                                    <p class="text-xs text-slate-400 mt-2">QQQ relative strength versus SPY decides whether the satellite stays aggressive or falls back to defensive ballast.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-emerald-300">Bull Trend</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Allocate toward QQQ, SMH, XLY, XLC, XLK, and leveraged companions.</div>
+                                </div>
+                                <div class="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-amber-300">Mixed Trend</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Keep diversified leaders but taper the highest-octane sleeves.</div>
+                                </div>
+                                <div class="rounded-xl border border-rose-500/25 bg-rose-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-rose-300">Bear Trend</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Shift weight toward GLD, SHV, and lower-beta holdings.</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'First classify the broad market: SPY above or below its 200-day trend line is the main regime gate.',
+                        'Within the 75% core, rotate into the strongest approved growth sleeves when the trend is healthy; otherwise let the defensive components absorb more weight.',
+                        'Use the 25% satellite as a second opinion: if QQQ leadership is strong, it can stay risk-on; if that leadership weakens, move to safer holdings.',
+                        'Review the resulting allocation map rather than chasing every sub-signal manually. The engine already combines the submodels for you.'
+                    ],
+                    explanation: [
+                        'Platinum is designed to chase upside harder than NTSX, but only when the market and leadership backdrop justify it.',
+                        'The core sleeve does the heavy lifting by blending trend-following, sector leadership, and leveraged expression. The satellite sleeve adds a fast sanity check so the portfolio can cool off sooner when growth leadership fades.',
+                        'Users should treat it as an orchestrated stack, not three separate systems to override one by one.'
+                    ]
+                };
+            } else if (isBestMix()) {
+                content = {
+                    title: 'Best Mix Decision Tree',
+                    subtitle: 'An optimizer-defined blend of the three underlying strategies. The user follows the sleeve weights, not the sub-strategies independently.',
+                    cadence: 'Monthly optimizer review',
+                    trigger: 'Blend weight drift or optimizer rerun',
+                    action: 'Reset to 60 / 38 / 2 sleeve targets',
+                    badge: 'Strategy Blend',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-cyan-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Treat each strategy as a sleeve inside one meta-portfolio.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Platinum 60%</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Primary CAGR engine</div>
+                                    <p class="text-xs text-slate-400 mt-2">Carry the largest weight because the backtest gave it the strongest upside contribution.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">F-TAA 38%</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Drawdown reducer</div>
+                                    <p class="text-xs text-slate-400 mt-2">Use the tactical sleeve to soften losses and improve Calmar.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">NTSX 2%</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Minor diversifier</div>
+                                    <p class="text-xs text-slate-400 mt-2">Keep only a small structural weight because larger exposure reduced the optimizer score.</p>
+                                </div>
+                            </div>
+                            <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-emerald-300">Decision Rule</div>
+                                <div class="text-sm font-semibold text-white mt-1">If sleeve weights drift, rebalance the sleeves. Do not manually override the internal logic of each component model.</div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'Run the three underlying strategies first, then read their current sleeve values inside the meta-portfolio.',
+                        'Compare sleeve weights with the optimizer target of 60% Platinum, 38% F-TAA, and 2% NTSX.',
+                        'If the blend has drifted materially or the optimizer is rerun with a new result, rebalance the sleeves back to target.',
+                        'Leave each underlying model to run its own rules internally. The mix layer only controls capital allocation across strategies.'
+                    ],
+                    explanation: [
+                        'This section is the final research output: the optimizer found that a Platinum-heavy blend plus a meaningful F-TAA ballast gave the best combined CAGR and drawdown tradeoff in the tested universe.',
+                        'The point of the mix is separation of jobs. Platinum hunts return, F-TAA controls regime shocks, and NTSX adds a little structural diversification.',
+                        'Users should think of this as a top-level capital allocation recipe rather than a fourth independent signal engine.'
+                    ]
+                };
+            } else {
+                content = {
+                    title: 'F-TAA Weekly Decision Tree',
+                    subtitle: 'A weekly tactical allocator. It classifies the market regime, maps that regime to a base mix, then applies momentum and crash guards before trading.',
+                    cadence: 'Weekly, every Friday',
+                    trigger: 'Regime change or weekly target drift',
+                    action: 'Rebuild weights from the weekly regime map',
+                    badge: 'Weekly Tactical',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-amber-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Each Friday, classify the regime from trend and momentum signals.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">US_BULL</div>
+                                    <div class="text-sm font-semibold text-white mt-1">SPY and QQQ trend healthy.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Lean into US beta with SPY and QQQ.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">BROAD_BULL</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Global breadth wins.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Raise GMOM and RLY participation.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">INFLATION</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Real assets and managed futures lead.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Favor RLY and DBMF.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">RISK_OFF</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Trend breaks across growth.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Push harder into SGOV and DBMF.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">MIXED</div>
+                                    <div class="text-sm font-semibold text-white mt-1">No single regime dominates.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Use the diversified middle mix.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Momentum Tilt</div>
+                                    <div class="text-sm font-semibold text-white mt-1">After the base regime mix is chosen, tilt toward the two strongest sleeves.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Relative winners receive extra weight, funded by weaker sleeves or cash.</p>
+                                </div>
+                                <div class="rounded-xl border border-rose-500/25 bg-rose-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-rose-300">Bear Guard</div>
+                                    <div class="text-sm font-semibold text-white mt-1">If both SPY and QQQ lose trend support, force more SGOV and DBMF.</div>
+                                    <p class="text-xs text-slate-400 mt-2">This is the hard defense layer that limits equity exposure during market damage.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'Review the Friday regime label first. That tells you which base allocation map is active for the coming week.',
+                        'Check whether momentum tilts have promoted the strongest sleeves above the base mix.',
+                        'Confirm whether the bear guard was triggered; if both SPY and QQQ lost trend, SGOV and DBMF should rise automatically.',
+                        'Trade once per weekly rebalance cycle, then hold until the next Friday unless the system is rerun.'
+                    ],
+                    explanation: [
+                        'F-TAA is more tactical than the other two models. It rotates not only by broad trend, but also by leadership between US beta, global momentum, real assets, and managed futures.',
+                        'The weekly schedule keeps the model responsive without turning it into a daily noise-chaser.',
+                        'Users should focus on the regime, the resulting mix, and whether the defensive guard engaged. Those three checks explain almost every allocation change.'
+                    ]
+                };
+            }
+
+            DOM.logicTitle.textContent = content.title;
+            DOM.logicSubtitle.textContent = content.subtitle;
+            DOM.logicCadence.textContent = content.cadence;
+            DOM.logicTrigger.textContent = content.trigger;
+            DOM.logicAction.textContent = content.action;
+            DOM.logicTreeBadge.textContent = content.badge;
+            DOM.logicTreeContent.innerHTML = content.tree;
+            DOM.logicWorkflow.innerHTML = content.workflow.map((step, idx) => `
+                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-3">
+                    <div class="flex items-start gap-3">
+                        <div class="h-6 w-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 flex items-center justify-center text-[11px] font-bold flex-shrink-0">${idx + 1}</div>
+                        <p class="text-xs text-slate-300 leading-relaxed">${step}</p>
+                    </div>
+                </div>
+            `).join('');
+            DOM.logicExplanation.innerHTML = content.explanation.map(item => `
+                <div class="rounded-xl border border-slate-800 bg-slate-950/30 p-3">
+                    <p class="text-xs text-slate-300 leading-relaxed">${item}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- TAB 5: ROBUSTNESS ---
         function renderRobustnessTab() {
             const db = getCurrentDb();
 
@@ -1404,6 +1911,12 @@
                 DOM.robHigh.textContent = '28.4%';
                 DOM.robBestEra.textContent = '2012-08 (CAGR 23.5%)';
                 DOM.robWorstEra.textContent = '2007-10 (CAGR 14.2%)';
+            } else if (isBestMix()) {
+                DOM.robVar.textContent = '5.8%';
+                DOM.robMedian.textContent = '11.1%';
+                DOM.robHigh.textContent = '17.0%';
+                DOM.robBestEra.textContent = '2013-01 (CAGR 14.8%)';
+                DOM.robWorstEra.textContent = '2008-01 (CAGR 9.4%)';
             } else {
                 DOM.robVar.textContent = db.mcValues.length ? `${db.mcValues[0].toFixed(1)}%` : '-';
                 DOM.robMedian.textContent = db.kpi.cagr;
