@@ -15,6 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 from utils.data_engine import (
     get_clean_master,
+    get_data_freshness,
     get_gex,
     get_hy_spread,
     get_move,
@@ -97,9 +98,16 @@ def calc_market_regime(d):
         score += 5
 
     probability = min(score, 100)
+    if probability < 30:
+        regime_status = "LOW RISK REGIME"
+    elif probability < 55:
+        regime_status = "EARLY WARNING"
+    else:
+        regime_status = "HIGH RISK"
     return {
         "probability": round(probability, 1),
         "color": "#22c55e" if probability < 30 else ("#f59e0b" if probability < 55 else "#ef4444"),
+        "status": regime_status,
     }
 
 
@@ -212,11 +220,11 @@ def calc_200ma_strategy(d):
     current_200ma = float(spy_hist["200MA"].iloc[-1])
     pct_diff = (current_sp - current_200ma) / current_200ma
     if pct_diff > 0.02:
-        trend_status, color = "BULLISH (WAIT FOR EXIT)", "#22c55e"
+        trend_status, color = "BULLISH (Wait for Exit)", "#22c55e"
     elif pct_diff >= -0.02:
-        trend_status, color = "CAUTION (TREND TESTING)", "#f59e0b"
+        trend_status, color = "CAUTION (Trend Testing)", "#f59e0b"
     else:
-        trend_status, color = "BEARISH (KEEP CASH)", "#ef4444"
+        trend_status, color = "BEARISH (Keep Cash)", "#ef4444"
     return {"sp_price": current_sp, "sma_200": current_200ma, "trend_status": trend_status, "color": color}
 
 
@@ -288,12 +296,19 @@ def calc_meta_indicator(d, analysis_date):
         return {"trend_probability": 50.0, "meta_score": 50.0, "color": "#94a3b8"}
     current_prob = float(results["Meta_Probability"].iloc[-1] * 100)
     if current_prob > 60:
-        color = "#22c55e"
+        color, status = "#22c55e", "HIGH CONFIDENCE (BUY/HOLD)"
     elif current_prob > 40:
-        color = "#f59e0b"
+        color, status = "#f59e0b", "NEUTRAL / CAUTION"
     else:
-        color = "#ef4444"
-    return {"trend_probability": round(current_prob, 1), "meta_score": round(current_prob, 1), "color": color}
+        color, status = "#ef4444", "LOW CONFIDENCE (REDUCE)"
+    return {"trend_probability": round(current_prob, 1), "meta_score": round(current_prob, 1), "color": color, "status": status}
+
+
+def get_latest_sync_timestamp(source_name_fragment):
+    for item in get_data_freshness():
+        if source_name_fragment.lower() in item["Source"].lower():
+            return item["Last Update"]
+    return "Unknown"
 
 
 def extract_market_pulse():
@@ -304,13 +319,18 @@ def extract_market_pulse():
 
     antiskilled = re.search(r"Antiskilled\s*\((\d+)% majority\)", text, re.IGNORECASE)
     greed = re.search(r"Greed\s*\(([\d.]+)\)", text, re.IGNORECASE)
+    verdict = re.search(r"SFI Contrarian Verdict:\s*([A-Z ]+)", text, re.IGNORECASE)
     contrarian = re.search(r"Contrarian Signal:\s*([A-Z ]+)", text, re.IGNORECASE)
     updated = re.search(r"CNN Fear &amp; Greed Index.*?Live updated ([A-Za-z]+\s+\d{1,2},\s+\d{4})", text, re.IGNORECASE | re.DOTALL)
 
     return {
         "antiskilled_pct": f"{antiskilled.group(1)}%" if antiskilled else defaults["antiskilled_pct"],
         "greed_index": greed.group(1) if greed else defaults["greed_index"],
-        "contrarian_signal": contrarian.group(1).strip() if contrarian else defaults["contrarian_signal"],
+        "contrarian_signal": (
+            verdict.group(1).strip()
+            if verdict
+            else contrarian.group(1).strip() if contrarian else defaults["contrarian_signal"]
+        ),
         "updated": updated.group(1) if updated else defaults["updated"],
     }
 
@@ -339,6 +359,7 @@ def render_page():
     ma_200 = calc_200ma_strategy(data)
     meta_indicator = calc_meta_indicator(data, analysis_date)
     market_pulse = extract_market_pulse()
+    master_sync = get_latest_sync_timestamp("Master DB")
 
     st.markdown(
         """
@@ -389,19 +410,20 @@ def render_page():
         unsafe_allow_html=True,
     )
 
-    market_pulse_badge = "#22c55e" if market_pulse["contrarian_signal"].upper().startswith("BULL") else "#f59e0b"
+    market_pulse_signal = market_pulse["contrarian_signal"].upper()
+    market_pulse_badge = "#22c55e" if "BULL" in market_pulse_signal else "#f59e0b"
     bull_badge = bull_trap["color"]
 
     cards_html = f"""
     <div class="summary-shell">
         <div class="summary-title">Market Summary Dashboard</div>
-        <div class="summary-subtitle">Unified daily readout across all market modules. Updated through {actual_date.strftime('%Y-%m-%d')}.</div>
+        <div class="summary-subtitle">Unified daily readout across all market modules. Analyzed through {actual_date.strftime('%Y-%m-%d')} with master sync {master_sync}.</div>
         <div class="summary-grid">
             <div class="summary-card">
                 <div class="summary-kicker">1. Market Regime</div>
                 <div class="summary-head">Crash Probability</div>
                 <div class="summary-metric" style="color:{market_regime['color']};">{market_regime['probability']:.1f}%</div>
-                <div class="summary-label">Color-only crash gauge</div>
+                <div style="margin-top:1.1rem;">{badge(market_regime['status'], market_regime['color'])}</div>
             </div>
             <div class="summary-card">
                 <div class="summary-kicker">2. Bear Trap</div>
@@ -437,8 +459,7 @@ def render_page():
                 <div class="summary-head">Trend-Following Success</div>
                 <div class="summary-metric" style="color:{meta_indicator['color']};">{meta_indicator['trend_probability']:.1f}%</div>
                 <div class="summary-divider"></div>
-                <div class="summary-label">Meta Probability Score</div>
-                <div class="summary-value" style="color:{meta_indicator['color']}; margin-top:0.25rem;">{meta_indicator['meta_score']:.1f}%</div>
+                {badge(meta_indicator['status'], meta_indicator['color'])}
             </div>
             <div class="summary-card">
                 <div class="summary-kicker">7. Market Pulse</div>
@@ -473,7 +494,7 @@ def render_page():
             </div>
             <div class="snapshot-item">
                 <div class="snapshot-item-title">Machine Learning Overlay</div>
-                <div class="snapshot-item-text">Trend-following success probability is <strong style="color:{meta_indicator['color']};">{meta_indicator['trend_probability']:.1f}%</strong>, which is the same live meta score used in the ML verification page.</div>
+                <div class="snapshot-item-text">Trend-following success probability is <strong style="color:{meta_indicator['color']};">{meta_indicator['trend_probability']:.1f}%</strong>, which currently maps to <strong style="color:{meta_indicator['color']};">{meta_indicator['status']}</strong> on the ML verification page.</div>
             </div>
             <div class="snapshot-item">
                 <div class="snapshot-item-title">Crowd Sentiment</div>
@@ -485,7 +506,7 @@ def render_page():
             </div>
             <div class="snapshot-item">
                 <div class="snapshot-item-title">Data Lineage</div>
-                <div class="snapshot-item-text">Master market calculations are synced to <strong>{actual_date.strftime('%Y-%m-%d')}</strong>. Market Pulse sentiment artifact last references <strong>{market_pulse['updated']}</strong>.</div>
+                <div class="snapshot-item-text">Master calculations are analyzed through <strong>{actual_date.strftime('%Y-%m-%d')}</strong> and the local master DB was last synced at <strong>{master_sync}</strong>. Market Pulse sentiment artifact last references <strong>{market_pulse['updated']}</strong>.</div>
             </div>
         </div>
     </div>
