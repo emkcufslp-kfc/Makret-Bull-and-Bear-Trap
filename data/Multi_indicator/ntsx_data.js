@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-05-25
+// ntsx_data.js — Auto-generated on 2026-05-26
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-05-25",
+  "as_of_date": "2026-05-26",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -38,7 +38,7 @@ const NTSX_CURRENT     = {
     3.63,
     4.54
   ],
-  "days_since_last_rebalance": 546,
+  "days_since_last_rebalance": 547,
   "last_rebalance_date": "2024-11-25"
 };
 const NTSX_REBALANCES  = [
@@ -24469,6 +24469,11 @@ const NTSX_EQUITY      = [
   },
   {
     "date": "2026-05-25",
+    "port": 486.1059,
+    "spy": 690.1376
+  },
+  {
+    "date": "2026-05-26",
     "port": 486.1059,
     "spy": 690.1376
   }
