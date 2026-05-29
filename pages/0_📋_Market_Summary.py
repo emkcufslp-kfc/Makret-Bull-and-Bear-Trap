@@ -1,4 +1,3 @@
-import datetime
 import re
 from pathlib import Path
 
@@ -13,18 +12,18 @@ except ImportError:
 
 from sklearn.ensemble import RandomForestClassifier
 
+from backend.strategies.combined_macro_rwra import compute_combined_snapshot
 from utils.data_engine import (
     get_clean_master,
     get_data_freshness,
     get_gex,
     get_hy_spread,
     get_move,
-    get_sp500_drawdown,
     get_t2108,
 )
 
 
-st.set_page_config(page_title="Market Summary Dashboard", page_icon="📋", layout="wide")
+st.set_page_config(page_title="Market Summary Dashboard", page_icon="MS", layout="wide")
 
 ROOT_DIR = Path(__file__).parent.parent
 MARKET_PULSE_HTML = ROOT_DIR / "data" / "Multi_indicator" / "dashboard_follow_through.html"
@@ -293,7 +292,7 @@ def calc_meta_indicator(d, analysis_date):
     work = spy.loc[start_date:].copy()
     results = MLMetaIndicator().fit_predict(work)
     if results is None or results.empty:
-        return {"trend_probability": 50.0, "meta_score": 50.0, "color": "#94a3b8"}
+        return {"trend_probability": 50.0, "meta_score": 50.0, "color": "#94a3b8", "status": "NEUTRAL / CAUTION"}
     current_prob = float(results["Meta_Probability"].iloc[-1] * 100)
     if current_prob > 60:
         color, status = "#22c55e", "HIGH CONFIDENCE (BUY/HOLD)"
@@ -326,17 +325,98 @@ def extract_market_pulse():
     return {
         "antiskilled_pct": f"{antiskilled.group(1)}%" if antiskilled else defaults["antiskilled_pct"],
         "greed_index": greed.group(1) if greed else defaults["greed_index"],
-        "contrarian_signal": (
-            verdict.group(1).strip()
-            if verdict
-            else contrarian.group(1).strip() if contrarian else defaults["contrarian_signal"]
-        ),
+        "contrarian_signal": verdict.group(1).strip() if verdict else contrarian.group(1).strip() if contrarian else defaults["contrarian_signal"],
         "updated": updated.group(1) if updated else defaults["updated"],
     }
 
 
 def badge(text, color):
     return f"<span class='status-pill' style='background:{color}1a;color:{color};border-color:{color}55;'>{text}</span>"
+
+
+def colored_chip(text, color):
+    return (
+        "<span class='model-chip' "
+        f"style='background:{color}18;color:{color};border-color:{color}55;'>"
+        f"{text}</span>"
+    )
+
+
+@st.cache_data(ttl=1800)
+def load_combined_snapshot(target_date):
+    return compute_combined_snapshot(target_date)
+
+
+def _model_status_snapshot(target_date):
+    data, actual_date = load_master_slice(target_date)
+    if data.empty or actual_date is None or len(data) < 260:
+        return None, None
+
+    market_regime = calc_market_regime(data)
+    bear_trap = calc_bear_trap(data)
+    bull_trap = calc_bull_trap(data)
+    etf_rotation = calc_etf_rotation(data)
+    ma_200 = calc_200ma_strategy(data)
+    meta_indicator = calc_meta_indicator(data, actual_date.date())
+    combined = load_combined_snapshot(actual_date.date())
+
+    snapshot = {
+        "Market Regime": market_regime["status"],
+        "Bear Trap": bear_trap["risk_level"],
+        "Bull Trap": bull_trap["market_status"],
+        "ETF Rotation": etf_rotation["status"],
+        "200MA Strategy": ma_200["trend_status"],
+        "ML Meta-Indicator": meta_indicator["status"],
+        "Combined Macro + RWRA": f"{combined.macro_guardrail} | {combined.execution_status}",
+    }
+    return snapshot, actual_date.date()
+
+
+def _compute_status_shift_monitor(target_date):
+    current_snapshot, _ = _model_status_snapshot(target_date)
+    if current_snapshot is None:
+        return {
+            "tracked_count": 7,
+            "shift_count": 0,
+            "warning_label": "STABLE",
+            "warning_color": "#22c55e",
+            "changed_models": [],
+            "comparison_date": None,
+        }
+
+    data, _ = load_master_slice(target_date)
+    previous_date = data.index[-2].date() if len(data.index) > 1 else None
+    if previous_date is None:
+        return {
+            "tracked_count": len(current_snapshot),
+            "shift_count": 0,
+            "warning_label": "STABLE",
+            "warning_color": "#22c55e",
+            "changed_models": [],
+            "comparison_date": None,
+        }
+
+    previous_snapshot, _ = _model_status_snapshot(previous_date)
+    changed_models = [name for name, status in current_snapshot.items() if previous_snapshot and previous_snapshot.get(name) != status]
+    shift_count = len(changed_models)
+    if shift_count >= 3:
+        warning_label = "REAL WARNING"
+        warning_color = "#ef4444"
+    elif shift_count == 2:
+        warning_label = "WATCH CLOSELY"
+        warning_color = "#f59e0b"
+    else:
+        warning_label = "STABLE"
+        warning_color = "#22c55e"
+
+    return {
+        "tracked_count": len(current_snapshot),
+        "shift_count": shift_count,
+        "warning_label": warning_label,
+        "warning_color": warning_color,
+        "changed_models": changed_models,
+        "comparison_date": previous_date,
+    }
 
 
 def render_page():
@@ -357,54 +437,110 @@ def render_page():
     bull_trap = calc_bull_trap(data)
     etf_rotation = calc_etf_rotation(data)
     ma_200 = calc_200ma_strategy(data)
-    meta_indicator = calc_meta_indicator(data, analysis_date)
+    meta_indicator = calc_meta_indicator(data, actual_date.date())
     market_pulse = extract_market_pulse()
     master_sync = get_latest_sync_timestamp("Master DB")
+    combined_snapshot = load_combined_snapshot(actual_date.date())
+    status_monitor = _compute_status_shift_monitor(actual_date.date())
 
     st.markdown(
         """
         <style>
-        .summary-shell {padding-top: 0.25rem;}
-        .summary-title {font-size: 2.1rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.2rem;}
-        .summary-subtitle {font-size: 0.95rem; color: #94a3b8; margin-bottom: 1.25rem;}
-        .summary-grid {display:grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px;}
+        .summary-shell {padding-top: 0.15rem;}
+        .summary-title {font-size: 2.6rem; font-weight: 900; color: #f8fafc; margin-bottom: 0.15rem; line-height: 1.05;}
+        .summary-topline {font-size: 0.92rem; color: #94a3b8; margin-bottom: 0.9rem;}
+        .hero-card {
+            background: linear-gradient(180deg, rgba(8, 47, 73, 0.26), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(34, 211, 238, 0.35);
+            border-radius: 18px;
+            padding: 20px 20px 18px 20px;
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.33);
+            margin-bottom: 16px;
+        }
+        .hero-layout {display:grid; grid-template-columns: 1.35fr 4fr; gap: 18px; align-items:stretch;}
+        .hero-intro {display:flex; gap: 12px; align-items:flex-start; padding-right: 8px;}
+        .hero-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display:flex; align-items:center; justify-content:center;
+            color:#22d3ee; background:rgba(34,211,238,0.08); border:1px solid rgba(34,211,238,0.24);
+            font-size: 1.7rem; font-weight: 800;
+        }
+        .hero-eyebrow {font-size: 1.45rem; font-weight: 800; color:#22d3ee; margin-bottom: 0.22rem;}
+        .hero-caption {font-size: 0.9rem; color:#cbd5e1; line-height: 1.45;}
+        .hero-metrics {display:grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;}
+        .hero-metric {
+            border-left: 1px solid rgba(71, 85, 105, 0.5);
+            padding-left: 14px;
+            min-height: 98px;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+        }
+        .hero-metric:first-child {border-left: none; padding-left: 0;}
+        .hero-label {font-size: 0.72rem; color:#cbd5e1; text-transform: uppercase; letter-spacing: 0.08em;}
+        .hero-value {font-size: 2rem; font-weight: 900; line-height: 1.05;}
+        .hero-text {font-size: 0.84rem; color:#94a3b8; line-height: 1.35;}
+        .summary-grid {display:grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px;}
         .summary-card {
             background: linear-gradient(180deg, rgba(15,23,42,0.96), rgba(15,23,42,0.88));
             border: 1px solid rgba(71,85,105,0.45);
             border-radius: 16px;
-            padding: 16px 16px 14px 16px;
-            min-height: 208px;
+            padding: 14px 14px 12px 14px;
+            min-height: 196px;
             box-shadow: 0 12px 32px rgba(2, 6, 23, 0.28);
         }
+        .summary-card.combined-card {border-color: rgba(34,197,94,0.65); box-shadow: 0 12px 32px rgba(12, 74, 29, 0.18);}
         .summary-kicker {font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: #94a3b8; margin-bottom: 0.35rem;}
-        .summary-head {font-size: 1rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.9rem;}
-        .summary-metric {font-size: 2rem; font-weight: 800; line-height: 1.05; margin-bottom: 0.5rem;}
+        .summary-head {font-size: 1.08rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.82rem; min-height: 3rem;}
+        .summary-metric {font-size: 2.2rem; font-weight: 900; line-height: 1.05; margin-bottom: 0.5rem;}
         .summary-label {font-size: 0.74rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em;}
         .summary-row {display:flex; justify-content:space-between; align-items:flex-end; gap: 10px; margin-bottom: 0.55rem;}
-        .summary-value {font-size: 1.35rem; font-weight: 800; color: #f8fafc;}
-        .summary-subvalue {font-size: 1.1rem; font-weight: 700; color: #e2e8f0;}
+        .summary-value {font-size: 1.45rem; font-weight: 800; color: #f8fafc;}
+        .summary-subvalue {font-size: 1.16rem; font-weight: 800; color: #e2e8f0;}
         .summary-divider {height: 1px; background: rgba(71,85,105,0.35); margin: 0.8rem 0;}
         .status-pill {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 0.32rem 0.65rem; border-radius: 999px; border: 1px solid;
             font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
         }
-        .snapshot-card {
+        .summary-note {font-size: 0.8rem; color:#94a3b8; line-height: 1.35; margin-top: 0.5rem;}
+        .snapshot-layout {display:grid; grid-template-columns: minmax(0, 2.25fr) minmax(320px, 1fr); gap: 14px; align-items:stretch;}
+        .snapshot-card, .monitor-card {
             background: linear-gradient(180deg, rgba(15,23,42,0.96), rgba(15,23,42,0.88));
             border: 1px solid rgba(71,85,105,0.45);
             border-radius: 18px;
             padding: 18px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .snapshot-header {display:flex; justify-content:space-between; align-items:flex-start; gap: 12px; margin-bottom: 14px;}
-        .snapshot-title {font-size: 1.05rem; font-weight: 800; color: #f8fafc;}
-        .snapshot-subtitle {font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;}
+        .snapshot-title {font-size: 1.35rem; font-weight: 800; color: #f8fafc;}
+        .snapshot-subtitle {font-size: 0.88rem; color: #94a3b8; margin-top: 0.25rem;}
         .snapshot-grid {display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;}
         .snapshot-item {background: rgba(2,6,23,0.3); border: 1px solid rgba(51,65,85,0.5); border-radius: 14px; padding: 14px;}
-        .snapshot-item-title {font-size: 0.82rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.35rem;}
-        .snapshot-item-text {font-size: 0.76rem; color: #94a3b8; line-height: 1.45;}
-        @media (max-width: 1500px) {.summary-grid {grid-template-columns: repeat(4, minmax(0, 1fr));}}
-        @media (max-width: 1100px) {.summary-grid, .snapshot-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
+        .snapshot-item-title {font-size: 0.96rem; font-weight: 800; color: #e2e8f0; margin-bottom: 0.45rem;}
+        .snapshot-item-text {font-size: 0.88rem; color: #94a3b8; line-height: 1.55;}
+        .monitor-card {border-color: rgba(239,68,68,0.55);}
+        .monitor-header {font-size: 1.55rem; font-weight: 800; color:#f87171; margin-bottom: 1rem;}
+        .monitor-grid {display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 1rem;}
+        .monitor-metric {
+            background: rgba(2,6,23,0.28);
+            border: 1px solid rgba(71,85,105,0.45);
+            border-radius: 14px;
+            padding: 14px;
+        }
+        .monitor-label {font-size: 0.8rem; color:#94a3b8; margin-bottom: 0.25rem;}
+        .monitor-value {font-size: 2.1rem; font-weight: 900; color:#f8fafc;}
+        .chip-row {display:flex; flex-wrap:wrap; gap: 8px; margin-top: 0.85rem;}
+        .model-chip {
+            display:inline-flex; align-items:center; justify-content:center;
+            padding: 0.28rem 0.62rem; border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.35); background: rgba(15,23,42,0.75);
+            color:#e2e8f0; font-size: 0.78rem; font-weight: 700;
+        }
+        .monitor-text {font-size: 0.88rem; color:#94a3b8; line-height: 1.5;}
+        @media (max-width: 1700px) {.summary-grid {grid-template-columns: repeat(4, minmax(0, 1fr));} .hero-layout {grid-template-columns: 1fr;} .hero-metrics {grid-template-columns: repeat(3, minmax(0, 1fr));}}
+        @media (max-width: 1300px) {.snapshot-layout {grid-template-columns: 1fr;} .snapshot-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
+        @media (max-width: 980px) {.summary-grid, .snapshot-grid, .hero-metrics, .monitor-grid {grid-template-columns: 1fr;} .summary-title {font-size: 2.2rem;}}
         </style>
         """,
         unsafe_allow_html=True,
@@ -413,11 +549,61 @@ def render_page():
     market_pulse_signal = market_pulse["contrarian_signal"].upper()
     market_pulse_badge = "#22c55e" if "BULL" in market_pulse_signal else "#f59e0b"
     bull_badge = bull_trap["color"]
+    chip_colors = {
+        "Market Regime": market_regime["color"],
+        "Bear Trap": bear_trap["risk_color"],
+        "Bull Trap": bull_badge,
+        "ETF Rotation": etf_rotation["color"],
+        "200MA Strategy": ma_200["color"],
+        "ML Meta-Indicator": meta_indicator["color"],
+        "Combined Macro + RWRA": combined_snapshot.execution_color,
+    }
+    changed_model_chips = "".join(
+        colored_chip(name, chip_colors.get(name, "#94a3b8")) for name in status_monitor["changed_models"]
+    ) or colored_chip("No core model status shifts", "#94a3b8")
 
     cards_html = f"""
     <div class="summary-shell">
         <div class="summary-title">Market Summary Dashboard</div>
-        <div class="summary-subtitle">Unified daily readout across all market modules. Analyzed through {actual_date.strftime('%Y-%m-%d')} with master sync {master_sync}.</div>
+        <div class="summary-topline">Master date: {analysis_date.strftime('%Y-%m-%d')} &nbsp;&nbsp;|&nbsp;&nbsp; Resolved data date: {actual_date.strftime('%Y-%m-%d')} &nbsp;&nbsp;|&nbsp;&nbsp; Unified daily readout across all market modules.</div>
+        <div class="hero-card">
+            <div class="hero-layout">
+                <div class="hero-intro">
+                    <div class="hero-icon">I</div>
+                    <div>
+                        <div class="hero-eyebrow">Integrated Decision Summary</div>
+                        <div class="hero-caption">Macro regime guardrails with RWRA sizing engine. This block is the shared decision layer, while the cards below remain model-specific evidence.</div>
+                    </div>
+                </div>
+                <div class="hero-metrics">
+                    <div class="hero-metric">
+                        <div class="hero-label">Crash Probability</div>
+                        <div class="hero-value" style="color:{market_regime['color']};">{market_regime['probability']:.1f}%</div>
+                        <div class="hero-text">Elevated downside risk</div>
+                    </div>
+                    <div class="hero-metric">
+                        <div class="hero-label">Macro Guardrail</div>
+                        <div class="hero-value" style="color:{combined_snapshot.guardrail_color}; font-size:1.62rem;">{combined_snapshot.macro_guardrail}</div>
+                        <div class="hero-text">{combined_snapshot.risk_note}</div>
+                    </div>
+                    <div class="hero-metric">
+                        <div class="hero-label">RWRA Bull Signal</div>
+                        <div class="hero-value" style="color:#38bdf8;">{combined_snapshot.rwra_bull_signal:.1f}%</div>
+                        <div class="hero-text">Regime-weighted probability for Bull</div>
+                    </div>
+                    <div class="hero-metric">
+                        <div class="hero-label">Execution Status</div>
+                        <div class="hero-value" style="color:{combined_snapshot.execution_color}; font-size:1.7rem;">{combined_snapshot.execution_status}</div>
+                        <div class="hero-text">Turnover signal: {combined_snapshot.turnover_signal:.1f}</div>
+                    </div>
+                    <div class="hero-metric">
+                        <div class="hero-label">As-Of (Execution View)</div>
+                        <div class="hero-value" style="color:#f8fafc; font-size:1.7rem;">{combined_snapshot.resolved_date.strftime('%Y-%m-%d')}</div>
+                        <div class="hero-text">Using nearest prior available date</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="summary-grid">
             <div class="summary-card">
                 <div class="summary-kicker">1. Market Regime</div>
@@ -444,7 +630,8 @@ def render_page():
             <div class="summary-card">
                 <div class="summary-kicker">4. ETF Rotation</div>
                 <div class="summary-head">Current Status</div>
-                <div style="margin-top:2.2rem;">{badge(etf_rotation['status'], etf_rotation['color'])}</div>
+                <div style="margin-top:2.15rem;">{badge(etf_rotation['status'], etf_rotation['color'])}</div>
+                <div class="summary-note">Tilt: {"Defensive / Cash" if etf_rotation['status'] != 'NORMAL' else 'Risk-On / Rotation'}</div>
             </div>
             <div class="summary-card">
                 <div class="summary-kicker">5. 200MA Strategy</div>
@@ -461,8 +648,16 @@ def render_page():
                 <div class="summary-divider"></div>
                 {badge(meta_indicator['status'], meta_indicator['color'])}
             </div>
+            <div class="summary-card combined-card">
+                <div class="summary-kicker">7. Combined Macro + RWRA</div>
+                <div class="summary-head">Combined Signal Stack</div>
+                <div class="summary-metric" style="color:{combined_snapshot.guardrail_color}; font-size:1.85rem;">{combined_snapshot.macro_guardrail}</div>
+                <div class="summary-row"><span class="summary-label">RWRA Bull</span><span class="summary-subvalue" style="color:#22c55e;">{combined_snapshot.rwra_bull_signal:.1f}%</span></div>
+                <div class="summary-divider"></div>
+                {badge(combined_snapshot.execution_status, combined_snapshot.execution_color)}
+            </div>
             <div class="summary-card">
-                <div class="summary-kicker">7. Market Pulse</div>
+                <div class="summary-kicker">8. Market Pulse</div>
                 <div class="summary-head">Crowd / Contrarian Read</div>
                 <div class="summary-row"><span class="summary-label">Antiskilled Finfluencers</span><span class="summary-subvalue" style="color:#f87171;">{market_pulse['antiskilled_pct']}</span></div>
                 <div class="summary-row"><span class="summary-label">Greed Index</span><span class="summary-subvalue" style="color:#fbbf24;">{market_pulse['greed_index']}</span></div>
@@ -475,39 +670,59 @@ def render_page():
     st.markdown(cards_html, unsafe_allow_html=True)
 
     snapshot_html = f"""
-    <div class="snapshot-card">
-        <div class="snapshot-header">
-            <div>
-                <div class="snapshot-title">Cross-Market Snapshot</div>
-                <div class="snapshot-subtitle">Updated Today · Signal Alignment · Confidence Overlay</div>
+    <div class="snapshot-layout">
+        <div class="snapshot-card">
+            <div class="snapshot-header">
+                <div>
+                    <div class="snapshot-title">Cross-Market Snapshot</div>
+                    <div class="snapshot-subtitle">Synthesis across modules with master-date alignment and signal confidence overlay.</div>
+                </div>
+                {badge('Live Summary', '#38bdf8')}
             </div>
-            {badge('Live Summary', '#38bdf8')}
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Risk Stack</div>
+                    <div class="snapshot-item-text">Crash probability is elevated at <strong style="color:{market_regime['color']};">{market_regime['probability']:.1f}%</strong>. Bear Trap now shows <strong>{bear_trap['prob_12m']:.1f}%</strong> 12M risk, while Bull Trap still reads <strong style="color:{bull_trap['color']};">{bull_trap['market_status']}</strong>.</div>
+                </div>
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Trend Filters</div>
+                    <div class="snapshot-item-text">ETF Rotation is <strong style="color:{etf_rotation['color']};">{etf_rotation['status']}</strong>. S&amp;P is <strong>${ma_200['sp_price']:,.0f}</strong> versus a 200SMA of <strong>${ma_200['sma_200']:,.0f}</strong>, keeping the trend regime disciplined.</div>
+                </div>
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Machine Learning Overlay</div>
+                    <div class="snapshot-item-text">Trend-following success reads <strong style="color:{meta_indicator['color']};">{meta_indicator['trend_probability']:.1f}%</strong>, which maps to <strong style="color:{meta_indicator['color']};">{meta_indicator['status']}</strong> on the verification layer.</div>
+                </div>
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Crowd Sentiment</div>
+                    <div class="snapshot-item-text">Crowd leaning <strong style="color:{market_pulse_badge};">{market_pulse['contrarian_signal']}</strong>. Antiskilled finfluencer dominance is <strong>{market_pulse['antiskilled_pct']}</strong> and the Greed Index sits at <strong>{market_pulse['greed_index']}</strong>.</div>
+                </div>
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Data Lineage</div>
+                    <div class="snapshot-item-text">Master calculations are analyzed through <strong>{actual_date.strftime('%Y-%m-%d')}</strong> and the local master DB was last synced at <strong>{master_sync}</strong>. Market Pulse artifact last references <strong>{market_pulse['updated']}</strong>.</div>
+                </div>
+                <div class="snapshot-item">
+                    <div class="snapshot-item-title">Implementation Note</div>
+                    <div class="snapshot-item-text">This page is read-only. It extracts the latest outputs and formulas from the existing modules plus the local Combined Macro + RWRA layer without altering their internal model execution flow.</div>
+                </div>
+            </div>
         </div>
-        <div class="snapshot-grid">
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Risk Stack</div>
-                <div class="snapshot-item-text">Crash probability is <strong style="color:{market_regime['color']};">{market_regime['probability']:.1f}%</strong>, while Bear Trap shows <strong>{bear_trap['prob_12m']:.1f}%</strong> 12M risk. Bull Trap still reads <strong style="color:{bull_trap['color']};">{bull_trap['market_status']}</strong>.</div>
+        <div class="monitor-card">
+            <div class="monitor-header">Model Change Monitor</div>
+            <div class="monitor-grid">
+                <div class="monitor-metric">
+                    <div class="monitor-label">7 Core Models Tracked</div>
+                    <div class="monitor-value">{status_monitor['tracked_count']}</div>
+                </div>
+                <div class="monitor-metric">
+                    <div class="monitor-label">Status Shifts Detected</div>
+                    <div class="monitor-value" style="color:{status_monitor['warning_color']};">{status_monitor['shift_count']}</div>
+                </div>
             </div>
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Trend Filters</div>
-                <div class="snapshot-item-text">ETF Rotation is <strong style="color:{etf_rotation['color']};">{etf_rotation['status']}</strong>. The 200MA system shows the S&amp;P at <strong>${ma_200['sp_price']:,.0f}</strong> versus a 200SMA of <strong>${ma_200['sma_200']:,.0f}</strong>.</div>
-            </div>
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Machine Learning Overlay</div>
-                <div class="snapshot-item-text">Trend-following success probability is <strong style="color:{meta_indicator['color']};">{meta_indicator['trend_probability']:.1f}%</strong>, which currently maps to <strong style="color:{meta_indicator['color']};">{meta_indicator['status']}</strong> on the ML verification page.</div>
-            </div>
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Crowd Sentiment</div>
-                <div class="snapshot-item-text">Market Pulse currently shows <strong>{market_pulse['antiskilled_pct']}</strong> antiskilled finfluencer dominance, Fear &amp; Greed at <strong>{market_pulse['greed_index']}</strong>, and a <strong style="color:{market_pulse_badge};">{market_pulse['contrarian_signal']}</strong> contrarian read.</div>
-            </div>
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Implementation Note</div>
-                <div class="snapshot-item-text">This page is read-only. It extracts the latest outputs and formulas from the existing modules without changing their internal models or execution flow.</div>
-            </div>
-            <div class="snapshot-item">
-                <div class="snapshot-item-title">Data Lineage</div>
-                <div class="snapshot-item-text">Master calculations are analyzed through <strong>{actual_date.strftime('%Y-%m-%d')}</strong> and the local master DB was last synced at <strong>{master_sync}</strong>. Market Pulse sentiment artifact last references <strong>{market_pulse['updated']}</strong>.</div>
-            </div>
+            <div style="margin-bottom:0.9rem;">{badge(status_monitor['warning_label'], status_monitor['warning_color'])}</div>
+            <div class="monitor-text">Trigger: 3 of 7 non-Market-Pulse models changed status. Comparison date: <strong>{status_monitor['comparison_date'].strftime('%Y-%m-%d') if status_monitor['comparison_date'] else 'N/A'}</strong>.</div>
+            <div class="monitor-text" style="margin-top:0.8rem;">Models with status shifts</div>
+            <div class="chip-row">{changed_model_chips}</div>
+            <div class="monitor-text" style="margin-top:0.9rem;">Excludes Market Pulse from change-detection logic.</div>
         </div>
     </div>
     """

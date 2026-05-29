@@ -115,6 +115,7 @@ def render_ecosystem_sidebar():
     st.page_link("pages/4_📊_ETF_Rotation.py", label="ETF Rotation", icon="📊")
     st.page_link("pages/5_📈_200MA_Strategy.py", label="200MA Strategy", icon="📈")
     st.page_link("pages/6_🎯_Meta_Indicator.py", label="Meta Indicator", icon="🎯")
+    st.page_link("pages/10_📒_Model_Change_Worksheet.py", label="Model Change Worksheet", icon="📒")
 
     st.markdown(
         """
