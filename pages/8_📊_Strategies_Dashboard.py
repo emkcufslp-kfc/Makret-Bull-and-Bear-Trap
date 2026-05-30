@@ -7,6 +7,8 @@ import datetime
 from pathlib import Path
 import re
 
+from backend.strategies.allocator_engine import load_allocator_json
+
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Strategies Dashboard", page_icon="📊")
 
@@ -386,8 +388,16 @@ def load_fund_tactical_json(sel_dt):
         st.error(f"Error compiling Fund Tactical data: {e}")
         return None
 
+
+def load_allocator_live_json(sel_dt):
+    try:
+        return load_allocator_json(sel_dt)
+    except Exception as e:
+        st.error(f"Error compiling SPY+QQQ+GLD allocator data: {e}")
+        return None
+
 def main():
-    st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA)")
+    st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD)")
     
     # Sync with Streamlit Master Date Picker
     selected_date = st.session_state.get('master_date', datetime.date.today())
@@ -411,6 +421,8 @@ def main():
         plat_js = f"const PLATINUM_DATA_LIVE = {json.dumps(plat_data)};" if plat_data else "const PLATINUM_DATA_LIVE = null;"
         fund_data = load_fund_tactical_json(sel_dt)
         fund_js = f"const FUND_TACTICAL_DATA_LIVE = {json.dumps(fund_data)};" if fund_data else "const FUND_TACTICAL_DATA_LIVE = null;"
+        allocator_data = load_allocator_live_json(sel_dt)
+        allocator_js = f"const ALLOCATOR_DATA_LIVE = {json.dumps(allocator_data)};" if allocator_data else "const ALLOCATOR_DATA_LIVE = null;"
         
         # 4. Inject JS adapter to map live variables to the dashboard UI
         js_adapter = """
@@ -423,6 +435,9 @@ def main():
 
             // Inject Fund Tactical raw variables
             {FUND_RAW_JS}
+
+            // Inject allocator raw variables
+            {ALLOCATOR_RAW_JS}
             
             window.addEventListener('DOMContentLoaded', () => {
                 // Map NTSX Live data
@@ -497,6 +512,11 @@ def main():
                 if (FUND_TACTICAL_DATA_LIVE) {
                     Object.assign(FUND_TACTICAL_DATA, FUND_TACTICAL_DATA_LIVE);
                 }
+
+                // Map allocator live data
+                if (ALLOCATOR_DATA_LIVE) {
+                    Object.assign(ALLOCATOR_DATA, ALLOCATOR_DATA_LIVE);
+                }
                 
                 // Set initial datepicker and capital value
                 AppState.date = "{MASTER_DATE}";
@@ -511,6 +531,7 @@ def main():
         js_adapter = js_adapter.replace("{NTSX_RAW_JS}", ntsx_js)
         js_adapter = js_adapter.replace("{PLATINUM_RAW_JS}", plat_js)
         js_adapter = js_adapter.replace("{FUND_RAW_JS}", fund_js)
+        js_adapter = js_adapter.replace("{ALLOCATOR_RAW_JS}", allocator_js)
         js_adapter = js_adapter.replace("{MASTER_DATE}", master_date_str)
         
         # Inject adapter right before closing body tag

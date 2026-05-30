@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA)</title>
+    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -101,6 +101,9 @@
                     </button>
                     <button onclick="switchStrategy('best_mix')" id="strat-btn-mix" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
                         <i class="fa-solid fa-layer-group"></i> Best Mix
+                    </button>
+                    <button onclick="switchStrategy('allocator')" id="strat-btn-allocator" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        <i class="fa-solid fa-bullseye"></i> SPY + QQQ + GLD Allocator
                     </button>
                 </div>
             </section>
@@ -224,7 +227,7 @@
 
                         <div class="glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-emerald-500" id="action-checklist-card">
                             <div>
-                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Required Actions</h3>
+                                <h3 id="action-checklist-title" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Required Actions</h3>
                                 <div class="space-y-2 mt-2" id="action-checklist-content">
                                     <!-- Action items -->
                                 </div>
@@ -452,7 +455,7 @@
         // ====================================================================
 
         const AppState = {
-            currentStrategy: 'ntsx', // 'ntsx', 'platinum', 'fund_tactical', or 'best_mix'
+            currentStrategy: 'ntsx', // 'ntsx', 'platinum', 'fund_tactical', 'best_mix', or 'allocator'
             currentTab: 'dashboard',  // 'dashboard', 'performance', 'allocation', 'logic', 'robustness'
             capital: 100000.00,
             date: '2026-05-23'
@@ -673,6 +676,71 @@
             }
         };
 
+        // --- SPY + QQQ + GLD ALLOCATOR DATABASE ---
+        const ALLOCATOR_DATA = {
+            kpi: {
+                cagr: '12.69%',
+                cagrBench: 'vs SPY: 11.39%',
+                maxdd: '-29.39%',
+                maxddBench: 'vs SPY: -55.19%',
+                sharpe: '0.755',
+                sharpeBench: 'vs SPY: 0.550',
+                ratios: '0.432 / 0.987',
+                ratiosBench: 'vs SPY: 0.206 / 0.671',
+                signal: 'REBALANCE',
+                signalBg: 'bg-orange-500/15 text-orange-300 border border-orange-500/40'
+            },
+            regime: 'WARNING | RISK OFF | WARNING MODE ON',
+            assets: [
+                { symbol: 'SPY', name: 'SPDR S&P 500 ETF Trust', price: 590.40, change: 0.95, target: 30.0, current: 34.0, lower: 20.0, upper: 40.0 },
+                { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 522.30, change: 1.33, target: 0.0, current: 4.0, lower: 0.0, upper: 10.0 },
+                { symbol: 'GLD', name: 'SPDR Gold Shares', price: 245.10, change: -0.41, target: 70.0, current: 62.0, lower: 60.0, upper: 80.0 }
+            ],
+            yearly: [],
+            history: [],
+            chartDates: [],
+            chartPort: [],
+            chartSpy: [],
+            chartDDPort: [],
+            chartDDSpy: [],
+            mcValues: [],
+            mcCounts: [],
+            scDD: [],
+            scCAGR: [],
+            meta: {
+                backtestPeriod: 'May 2006 - May 2026',
+                executionDescription: 'Monthly/state allocator that rotates between SPY, QQQ, and GLD using Normal / Warning / Severe weights with 5 bps turnover cost.',
+                lastActionDate: '2026-05-26',
+                monthlyWinRate: '50.2%',
+                bestEra: '2012-08 (CAGR 17.4%)',
+                worstEra: '2007-10 (CAGR 8.7%)',
+                sleeves: [
+                    { symbol: 'SPY', name: 'Core equity beta', weight: 30.0 },
+                    { symbol: 'QQQ', name: 'Growth accelerator', weight: 0.0 },
+                    { symbol: 'GLD', name: 'Defensive shock absorber', weight: 70.0 }
+                ],
+                actionItems: [
+                    { tone: 'sell', label: 'Trim QQQ', detail: 'QQQ should be at 0% in Warning mode.' },
+                    { tone: 'buy', label: 'Add GLD', detail: 'Increase GLD toward the 70% shock-absorber target.' }
+                ],
+                stateWeights: [
+                    { state: 'Normal', mix: 'SPY 50% / QQQ 40% / GLD 10%' },
+                    { state: 'Warning', mix: 'SPY 30% / QQQ 0% / GLD 70%' },
+                    { state: 'Severe', mix: 'SPY 20% / QQQ 0% / GLD 80%' }
+                ],
+                currentState: 'WARNING',
+                warningMode: 'ON',
+                guardrail: 'RISK OFF',
+                riskNote: 'Warning mode is active. Hold QQQ at zero and keep a heavy GLD cushion.',
+                combinedSignal: 'RISK OFF | REBALANCE',
+                tradeCount: 649,
+                turnoverX: 236.95,
+                benchmarkFinalEquity: 860760.22,
+                allocatorFinalEquity: 1085612.94,
+                allocatorVsSpy: 224852.72
+            }
+        };
+
         // --- GLOBAL DOM CACHE ---
         const DOM = {
             masterCapital: document.getElementById('master-capital-input'),
@@ -705,6 +773,7 @@
             executionDescription: document.getElementById('execution-description'),
             rebalanceOrdersGrid: document.getElementById('rebalance-orders-grid'),
             actionChecklistCard: document.getElementById('action-checklist-card'),
+            actionChecklistTitle: document.getElementById('action-checklist-title'),
             actionChecklistContent: document.getElementById('action-checklist-content'),
             lastActionTakenDate: document.getElementById('last-action-taken-date'),
             leftPanelTitle: document.getElementById('left-panel-title'),
@@ -747,11 +816,14 @@
             ? NTSX_DATA
             : (AppState.currentStrategy === 'platinum'
                 ? PLATINUM_DATA
-                : (AppState.currentStrategy === 'fund_tactical' ? FUND_TACTICAL_DATA : BEST_MIX_DATA));
+                : (AppState.currentStrategy === 'fund_tactical'
+                    ? FUND_TACTICAL_DATA
+                    : (AppState.currentStrategy === 'best_mix' ? BEST_MIX_DATA : ALLOCATOR_DATA)));
         const isNtsx = () => AppState.currentStrategy === 'ntsx';
         const isPlatinum = () => AppState.currentStrategy === 'platinum';
         const isFundTactical = () => AppState.currentStrategy === 'fund_tactical';
         const isBestMix = () => AppState.currentStrategy === 'best_mix';
+        const isAllocator = () => AppState.currentStrategy === 'allocator';
 
         // ====================================================================
         // 2. CONTROLLER FUNCTIONS
@@ -765,6 +837,7 @@
             const btnPlat = document.getElementById('strat-btn-platinum');
             const btnFund = document.getElementById('strat-btn-fund');
             const btnMix = document.getElementById('strat-btn-mix');
+            const btnAllocator = document.getElementById('strat-btn-allocator');
             const activeClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
             const idleClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
 
@@ -772,6 +845,7 @@
             btnPlat.className = strategyKey === 'platinum' ? activeClass : idleClass;
             btnFund.className = strategyKey === 'fund_tactical' ? activeClass : idleClass;
             btnMix.className = strategyKey === 'best_mix' ? activeClass : idleClass;
+            btnAllocator.className = strategyKey === 'allocator' ? activeClass : idleClass;
 
             renderSidebar();
             renderKPIs();
@@ -838,6 +912,7 @@
             const ntsxMode = isNtsx();
             const fundMode = isFundTactical();
             const mixMode = isBestMix();
+            const allocatorMode = isAllocator();
             const db = getCurrentDb();
 
             // Update regime box
@@ -847,13 +922,15 @@
                     ? `<span class="h-2 w-2 rounded-full bg-amber-400 inline-block mr-1"></span> ${db.regime}`
                     : (mixMode
                         ? `<span class="h-2 w-2 rounded-full bg-cyan-400 inline-block mr-1"></span> ${db.regime}`
-                        : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`));
+                        : (allocatorMode
+                            ? `<span class="h-2 w-2 rounded-full bg-orange-400 inline-block mr-1"></span> ${db.regime}`
+                            : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`)));
             DOM.sidebarRegimeStatus.className = ntsxMode
                 ? "text-xs font-semibold text-slate-300"
-                : (fundMode ? "text-xs font-semibold text-amber-300" : (mixMode ? "text-xs font-semibold text-cyan-300" : "text-xs font-semibold text-emerald-400"));
+                : (fundMode ? "text-xs font-semibold text-amber-300" : (mixMode ? "text-xs font-semibold text-cyan-300" : (allocatorMode ? "text-xs font-semibold text-orange-300" : "text-xs font-semibold text-emerald-400")));
 
             // Update List header
-            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : (mixMode ? "Look-Through Holdings" : "Holding Candidates"));
+            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : (mixMode ? "Look-Through Holdings" : (allocatorMode ? "Allocator Sleeves" : "Holding Candidates")));
             DOM.sidebarListCount.textContent = `${db.assets.length} ETFs`;
             DOM.backtestPeriodDisplay.textContent = db.meta?.backtestPeriod || (ntsxMode ? 'Mar 2007 - May 2026' : 'Mar 2018 - May 2026');
 
@@ -923,6 +1000,7 @@
             const ntsxMode = isNtsx();
             const platinumMode = isPlatinum();
             const mixMode = isBestMix();
+            const allocatorMode = isAllocator();
             const db = getCurrentDb();
 
             // 1. Text description and checklists
@@ -934,6 +1012,7 @@
 
             // 2. Required Checklist Card Style
             if (ntsxMode) {
+                DOM.actionChecklistTitle.textContent = "Required Actions";
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-emerald-500";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-emerald-400">
@@ -946,6 +1025,7 @@
                 `;
                 DOM.lastActionTakenDate.textContent = '2026-04-08';
             } else if (platinumMode) {
+                DOM.actionChecklistTitle.textContent = "Required Actions";
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-indigo-500";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-indigo-400">
@@ -969,6 +1049,7 @@
                 `;
                 DOM.lastActionTakenDate.textContent = '2026-05-18';
             } else if (mixMode) {
+                DOM.actionChecklistTitle.textContent = "Required Actions";
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-cyan-400";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-cyan-300">
@@ -991,7 +1072,33 @@
                     </ul>
                 `;
                 DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
+            } else if (allocatorMode) {
+                const actionItems = db.meta?.actionItems || [];
+                const hasTrade = actionItems.some(item => item.tone !== 'hold');
+                DOM.actionChecklistTitle.textContent = hasTrade ? "Rebalance Required As Of Master Date" : "As-Of Rebalance Actions";
+                DOM.actionChecklistCard.className = `glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 ${hasTrade ? 'border-orange-400 bg-orange-500/5 shadow-[0_0_0_1px_rgba(251,146,60,0.18),0_0_26px_rgba(249,115,22,0.10)]' : 'border-emerald-500'}`;
+                DOM.actionChecklistContent.innerHTML = `
+                    <div class="flex items-center justify-between gap-3 ${hasTrade ? 'text-orange-300' : 'text-emerald-400'}">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid ${hasTrade ? 'fa-triangle-exclamation' : 'fa-circle-check'} text-sm ${hasTrade ? 'animate-pulse' : ''}"></i>
+                            <span class="text-xs font-bold uppercase">${hasTrade ? 'Action Required As Of Master Date' : 'Balanced As Of Master Date'}</span>
+                        </div>
+                        ${hasTrade ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-orange-500/20 text-orange-200 border border-orange-400/40">Rebalance</span>' : ''}
+                    </div>
+                    ${hasTrade ? '<div class="mt-3 rounded-xl border border-orange-400/25 bg-slate-950/35 px-3 py-2.5"><div class="text-[10px] uppercase tracking-[0.18em] text-orange-200 font-bold">Execution Snapshot</div><div class="mt-1 text-sm font-semibold text-white">Trade to target weights using the selected Master date snapshot.</div></div>' : ''}
+                    <ul class="space-y-1.5 mt-2 text-xs text-slate-300">
+                        ${actionItems.map(item => `
+                            <li class="flex items-start gap-2 ${item.tone === 'buy' ? 'text-emerald-300' : item.tone === 'sell' ? 'text-orange-200' : 'text-slate-300'} ${hasTrade ? 'rounded-lg px-2.5 py-2 bg-slate-950/25 border border-white/5' : ''}">
+                                <span class="h-2 w-2 rounded-full mt-1 ${item.tone === 'buy' ? 'bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.55)]' : item.tone === 'sell' ? 'bg-orange-300 shadow-[0_0_10px_rgba(251,191,36,0.45)]' : 'bg-slate-400'}"></span>
+                                <span><strong>${item.label}</strong>: ${item.detail}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <p class="text-xs ${hasTrade ? 'text-orange-100/90' : 'text-slate-400'} mt-3 leading-relaxed">${db.meta?.riskNote || ''}</p>
+                `;
+                DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
             } else {
+                DOM.actionChecklistTitle.textContent = "Required Actions";
                 DOM.actionChecklistCard.className = "glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 border-amber-400";
                 DOM.actionChecklistContent.innerHTML = `
                     <div class="flex items-center space-x-2 text-amber-300">
@@ -1110,6 +1217,25 @@
                         </div>
                     </div>
                 `;
+            } else if (allocatorMode) {
+                const stateWeights = db.meta?.stateWeights || [];
+                DOM.leftPanelTitle.textContent = "Allocator State Weights";
+                DOM.leftPanelInteractive.innerHTML = `
+                    <div class="flex flex-col h-full justify-between gap-3">
+                        ${stateWeights.map(item => `
+                            <div class="p-3 rounded-xl ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'bg-orange-500/10 border-orange-400/40' : 'bg-slate-950/70 border-slate-800'} border">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-300 uppercase tracking-wider font-bold">${item.state}</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'bg-orange-500/20 text-orange-200' : 'bg-slate-900 text-slate-400'}">${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'ACTIVE' : 'Standby'}</span>
+                                </div>
+                                <div class="mt-2 text-sm font-semibold text-white">${item.mix}</div>
+                            </div>
+                        `).join('')}
+                        <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
+                            Warning mode is <strong class="text-orange-300">${db.meta?.warningMode}</strong>. Combined signal: <strong class="text-slate-200">${db.meta?.combinedSignal}</strong>.
+                        </div>
+                    </div>
+                `;
             } else {
                 const riskOn = db.assets.filter(a => ['SPY', 'QQQ'].includes(a.symbol)).reduce((sum, a) => sum + a.current, 0);
                 const diversifiers = db.assets.filter(a => ['GMOM', 'RLY', 'DBMF'].includes(a.symbol)).reduce((sum, a) => sum + a.current, 0);
@@ -1219,6 +1345,7 @@
             const ntsxMode = isNtsx();
             const fundMode = isFundTactical();
             const mixMode = isBestMix();
+            const allocatorMode = isAllocator();
             const db = getCurrentDb();
 
             // 1. Render Chart.js line charts
@@ -1299,6 +1426,33 @@
                         <td class="p-3 text-emerald-400 font-bold">${r.destination}</td>
                         <td class="p-3 text-slate-400">${r.rationale}</td>
                         <td class="p-3 text-center font-mono text-slate-300">${r.weights}</td>
+                    </tr>
+                `).join('');
+            } else if (allocatorMode) {
+                DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-bullseye mr-1"></i> Allocator Rebalance Log`;
+                DOM.logTableFilters.innerHTML = `
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Monthly + state shift</span>
+                `;
+                DOM.logTableHead.innerHTML = `
+                    <tr>
+                        <th class="p-3 font-medium">Date</th>
+                        <th class="p-3 font-medium">Regime</th>
+                        <th class="p-3 font-medium">Largest Add</th>
+                        <th class="p-3 font-medium">Largest Cut</th>
+                        <th class="p-3 font-medium text-right">Turnover</th>
+                        <th class="p-3 font-medium">Trigger</th>
+                        <th class="p-3 font-medium text-center">Target Mix</th>
+                    </tr>
+                `;
+                DOM.logTableBody.innerHTML = db.history.map(r => `
+                    <tr class="hover:bg-slate-900/20 transition-colors">
+                        <td class="p-3 font-semibold text-slate-300 font-mono">${r.date}</td>
+                        <td class="p-3 text-orange-300 font-bold">${r.regime}</td>
+                        <td class="p-3 text-emerald-400 font-mono">${r.add}</td>
+                        <td class="p-3 text-red-400 font-mono">${r.cut}</td>
+                        <td class="p-3 text-right font-mono text-slate-300">${r.turnover}</td>
+                        <td class="p-3 text-slate-400">${r.event}</td>
+                        <td class="p-3 text-center font-mono text-slate-300">${r.mix}</td>
                     </tr>
                 `).join('');
             } else if (!fundMode) {
@@ -1463,6 +1617,7 @@
             const ntsxMode = isNtsx();
             const platinumMode = isPlatinum();
             const mixMode = isBestMix();
+            const allocatorMode = isAllocator();
             const db = getCurrentDb();
             const title = document.getElementById('tree-title');
             const desc = document.getElementById('tree-description');
@@ -1576,6 +1731,45 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (allocatorMode) {
+                title.textContent = "SPY + QQQ + GLD State Allocator";
+                desc.textContent = "Three-state risk map that rotates between equity beta, growth acceleration, and gold defense depending on warning mode and combined guardrails.";
+                DOM.treeDiagramContent.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="bg-slate-900 border border-orange-500/50 px-8 py-3 rounded-2xl shadow-lg text-center max-w-sm mb-6">
+                            <span class="text-xs text-orange-300 uppercase tracking-widest block font-bold">Allocator Engine</span>
+                            <span class="text-sm font-mono text-white font-bold block mt-1">Current State: ${db.meta?.currentState || 'NORMAL'}</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
+                            ${db.meta?.stateWeights?.map(item => `
+                                <div class="bg-slate-900/70 border ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'border-orange-400/50' : 'border-slate-800'} p-4 rounded-xl text-center">
+                                    <div class="text-xs font-bold text-white block">${item.state}</div>
+                                    <div class="text-xs font-mono text-orange-300 block mt-1">${item.mix}</div>
+                                    <p class="text-[10px] text-slate-500 mt-3 leading-relaxed">
+                                        ${item.state === 'Normal' ? 'Risk-on growth blend with QQQ fully active.' : item.state === 'Warning' ? 'Pause QQQ and rotate the shock sleeve into GLD.' : 'Keep QQQ at zero and push the highest gold cushion.'}
+                                    </p>
+                                </div>
+                            `).join('') || ''}
+                        </div>
+                        <div class="mt-6 max-w-4xl rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left">
+                            <div class="text-xs uppercase tracking-wider text-slate-500">Decision Inputs</div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Warning Mode</div>
+                                    <div class="text-sm font-semibold text-white mt-1">${db.meta?.warningMode}</div>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Combined Guardrail</div>
+                                    <div class="text-sm font-semibold text-white mt-1">${db.meta?.guardrail}</div>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Current Signal</div>
+                                    <div class="text-sm font-semibold text-white mt-1">${db.kpi.signal}</div>
                                 </div>
                             </div>
                         </div>
@@ -1754,6 +1948,55 @@
                         'Users should treat it as an orchestrated stack, not three separate systems to override one by one.'
                     ]
                 };
+            } else if (isAllocator()) {
+                content = {
+                    title: 'SPY + QQQ + GLD Allocator Playbook',
+                    subtitle: 'A three-state allocator that uses warning mode and macro guardrails to rotate between SPY, QQQ, and GLD with explicit action sizing.',
+                    cadence: 'Month start + state shift',
+                    trigger: 'Warning change or guardrail deterioration',
+                    action: 'Rebalance to Normal / Warning / Severe target weights',
+                    badge: 'Action-Driven Allocator',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-orange-500/30 bg-orange-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-orange-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Read warning mode first, then confirm whether the combined guardrail escalates the portfolio into Severe.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-emerald-300">Normal</div>
+                                    <div class="text-sm font-semibold text-white mt-1">SPY 50 / QQQ 40 / GLD 10</div>
+                                    <p class="text-xs text-slate-300 mt-2">Allow QQQ to carry the growth sleeve while GLD stays as a light shock absorber.</p>
+                                </div>
+                                <div class="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-amber-300">Warning</div>
+                                    <div class="text-sm font-semibold text-white mt-1">SPY 30 / QQQ 0 / GLD 70</div>
+                                    <p class="text-xs text-slate-300 mt-2">Remove QQQ completely and let GLD absorb the risk budget while SPY keeps a smaller core foothold.</p>
+                                </div>
+                                <div class="rounded-xl border border-rose-500/25 bg-rose-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-rose-300">Severe</div>
+                                    <div class="text-sm font-semibold text-white mt-1">SPY 20 / QQQ 0 / GLD 80</div>
+                                    <p class="text-xs text-slate-300 mt-2">When the stack escalates to Risk Off or Crisis, increase the defensive gold sleeve to its maximum weight.</p>
+                                </div>
+                            </div>
+                            <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-slate-500">Current operator note</div>
+                                <div class="text-sm font-semibold text-white mt-1">${db.meta?.riskNote || ''}</div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'At each month start, compare the current live weights with the active state target and prepare the rebalance basket.',
+                        'If warning mode switches on intramonth, cut QQQ to zero immediately and rotate the freed capital into GLD and SPY according to the new state.',
+                        'If the combined macro guardrail reaches Risk Off or Crisis, escalate from Warning to Severe and push GLD to its maximum defense weight.',
+                        'If warning mode turns off and the guardrail normalizes, restore the Normal mix on the next rebalance.'
+                    ],
+                    explanation: [
+                        'This allocator is designed to beat a plain SPY path by adding QQQ only when the risk environment is healthy and replacing that growth sleeve with GLD during instability.',
+                        'The user should focus on the state, the target mix, and the required trade list. The engine already translated the warning stack into a simple action plan.',
+                        'Because the model is turnover-aware, the correct behavior is not to freestyle entries. Follow the state weights and only trade when the state or month boundary says to trade.'
+                    ]
+                };
             } else if (isBestMix()) {
                 content = {
                     title: 'Best Mix Decision Tree',
@@ -1917,6 +2160,12 @@
                 DOM.robHigh.textContent = '17.0%';
                 DOM.robBestEra.textContent = '2013-01 (CAGR 14.8%)';
                 DOM.robWorstEra.textContent = '2008-01 (CAGR 9.4%)';
+            } else if (isAllocator()) {
+                DOM.robVar.textContent = db.mcValues.length ? `${db.mcValues[0].toFixed(1)}%` : '-';
+                DOM.robMedian.textContent = db.kpi.cagr;
+                DOM.robHigh.textContent = db.mcValues.length ? `${db.mcValues[db.mcValues.length - 1].toFixed(1)}%` : '-';
+                DOM.robBestEra.textContent = db.meta?.bestEra || '-';
+                DOM.robWorstEra.textContent = db.meta?.worstEra || '-';
             } else {
                 DOM.robVar.textContent = db.mcValues.length ? `${db.mcValues[0].toFixed(1)}%` : '-';
                 DOM.robMedian.textContent = db.kpi.cagr;
