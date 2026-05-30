@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import datetime as dt
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -10,7 +11,9 @@ import pandas as pd
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 EXPORTS_DIR = ROOT_DIR / "exports"
+BUNDLED_DATA_DIR = Path(__file__).resolve().parent / "data"
 WORKSHEET_CSV = EXPORTS_DIR / "model_change_worksheet_full_history.csv"
+BUNDLED_WORKSHEET_CSV = BUNDLED_DATA_DIR / "model_change_worksheet_full_history.csv"
 INITIAL_CAPITAL = 100000.0
 COST_BPS = 5.0
 STATE_WEIGHTS = {
@@ -30,6 +33,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.append(str(ROOT_DIR))
 
 from utils.data_engine import get_clean_master
+from utils.model_change_monitor import ALL_MODELS, get_model_status_row, status_shift_count
 
 
 @dataclass(frozen=True)
@@ -55,10 +59,59 @@ def _load_price_frame() -> pd.DataFrame:
     return prices.drop(columns=["first_trading_day"]).set_index("Date")
 
 
+@lru_cache(maxsize=1)
+def _build_event_frame_fallback() -> pd.DataFrame:
+    master = get_clean_master().ffill().dropna(how="all")
+    if master.empty:
+        return pd.DataFrame()
+
+    rows = []
+    previous_snapshot = None
+    previous_shift_count = 0
+    previous_warning_mode = False
+
+    for ts in master.index:
+        current_snapshot = get_model_status_row(ts.date())
+        if current_snapshot is None:
+            continue
+
+        if previous_snapshot is None:
+            previous_snapshot = current_snapshot
+            continue
+
+        shift_count, changed_models = status_shift_count(previous_snapshot, current_snapshot)
+        current_warning_mode = shift_count >= 3
+
+        if current_warning_mode != previous_warning_mode:
+            event = {
+                "Date": pd.Timestamp(current_snapshot["Date"]),
+                "SPY Price": current_snapshot["SPY Price"],
+                "Prev Shift Count": previous_shift_count,
+                "New Shift Count": shift_count,
+                "Warning Mode Change": "Triggered" if current_warning_mode else "Cleared",
+                "Changed Core Models": ", ".join(changed_models) if changed_models else "None",
+            }
+            for model in ALL_MODELS:
+                event[model] = current_snapshot.get(model)
+            rows.append(event)
+
+        previous_snapshot = current_snapshot
+        previous_shift_count = shift_count
+        previous_warning_mode = current_warning_mode
+
+    return pd.DataFrame(rows)
+
+
 def _load_event_frame() -> pd.DataFrame:
-    if not WORKSHEET_CSV.exists():
-        raise FileNotFoundError(f"Missing worksheet export: {WORKSHEET_CSV}")
-    events = pd.read_csv(WORKSHEET_CSV, parse_dates=["Date"]).sort_values("Date")
+    worksheet_path = WORKSHEET_CSV if WORKSHEET_CSV.exists() else BUNDLED_WORKSHEET_CSV
+    if worksheet_path.exists():
+        events = pd.read_csv(worksheet_path, parse_dates=["Date"]).sort_values("Date")
+    else:
+        events = _build_event_frame_fallback().sort_values("Date")
+        if events.empty:
+            raise FileNotFoundError(
+                f"Missing worksheet export/bundled worksheet and unable to rebuild warning events in memory: {WORKSHEET_CSV}"
+            )
     cols = [
         "Date",
         "Warning Mode Change",
