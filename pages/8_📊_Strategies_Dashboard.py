@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 
 from backend.strategies.allocator_engine import load_allocator_json
+from backend.strategies.ensemble_top100_engine import load_ensemble_top100_json
 
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Strategies Dashboard", page_icon="📊")
@@ -396,8 +397,16 @@ def load_allocator_live_json(sel_dt):
         st.error(f"Error compiling SPY+QQQ+GLD allocator data: {e}")
         return None
 
+
+def load_ensemble_top100_live_json(sel_dt):
+    try:
+        return load_ensemble_top100_json(sel_dt)
+    except Exception as e:
+        st.error(f"Error compiling Ensemble Top-100 ETF data: {e}")
+        return None
+
 def main():
-    st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD)")
+    st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)")
     
     # Sync with Streamlit Master Date Picker
     selected_date = st.session_state.get('master_date', datetime.date.today())
@@ -423,6 +432,8 @@ def main():
         fund_js = f"const FUND_TACTICAL_DATA_LIVE = {json.dumps(fund_data)};" if fund_data else "const FUND_TACTICAL_DATA_LIVE = null;"
         allocator_data = load_allocator_live_json(sel_dt)
         allocator_js = f"const ALLOCATOR_DATA_LIVE = {json.dumps(allocator_data)};" if allocator_data else "const ALLOCATOR_DATA_LIVE = null;"
+        ensemble_data = load_ensemble_top100_live_json(sel_dt)
+        ensemble_js = f"const ENSEMBLE_TOP100_DATA_LIVE = {json.dumps(ensemble_data)};" if ensemble_data else "const ENSEMBLE_TOP100_DATA_LIVE = null;"
         
         # 4. Inject JS adapter to map live variables to the dashboard UI
         js_adapter = """
@@ -438,6 +449,9 @@ def main():
 
             // Inject allocator raw variables
             {ALLOCATOR_RAW_JS}
+
+            // Inject ensemble top-100 raw variables
+            {ENSEMBLE_RAW_JS}
             
             window.addEventListener('DOMContentLoaded', () => {
                 // Map NTSX Live data
@@ -517,6 +531,11 @@ def main():
                 if (ALLOCATOR_DATA_LIVE) {
                     Object.assign(ALLOCATOR_DATA, ALLOCATOR_DATA_LIVE);
                 }
+
+                // Map ensemble top-100 live data
+                if (ENSEMBLE_TOP100_DATA_LIVE) {
+                    Object.assign(ENSEMBLE_TOP100_DATA, ENSEMBLE_TOP100_DATA_LIVE);
+                }
                 
                 // Set initial datepicker and capital value
                 AppState.date = "{MASTER_DATE}";
@@ -532,6 +551,7 @@ def main():
         js_adapter = js_adapter.replace("{PLATINUM_RAW_JS}", plat_js)
         js_adapter = js_adapter.replace("{FUND_RAW_JS}", fund_js)
         js_adapter = js_adapter.replace("{ALLOCATOR_RAW_JS}", allocator_js)
+        js_adapter = js_adapter.replace("{ENSEMBLE_RAW_JS}", ensemble_js)
         js_adapter = js_adapter.replace("{MASTER_DATE}", master_date_str)
         
         # Inject adapter right before closing body tag

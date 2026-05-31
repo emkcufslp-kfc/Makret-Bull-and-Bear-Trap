@@ -60,6 +60,7 @@ TICKER_NAMES = {
     ,'RLY': 'SPDR SSgA Multi-Asset Real Return ETF'
     ,'DBMF': 'iMGP DBi Managed Futures Strategy ETF'
     ,'SGOV': 'iShares 0-3 Month Treasury Bond ETF'
+    ,'KMLM': 'KFA Mount Lucas Managed Futures Index Strategy ETF'
 }
 
 T2108_TICKERS = [
@@ -70,7 +71,9 @@ T2108_TICKERS = [
     "NEE", "PFE", "ADX", "QCOM", "LIN", "LOW", "INTU", "TXN", "MS", "AMAT"
 ]
 
-NTSX_TICKERS = ["TLT", "BIL", "DFSVX", "RYMFX"]
+# Keep DFSVX as the small-cap value sleeve proxy and add live KMLM while
+# preserving the historical RYMFX proxy for pre-launch stitching.
+NTSX_TICKERS = ["TLT", "BIL", "KMLM", "DFSVX", "RYMFX"]
 
 PLATINUM_TICKERS = [
     "QQQ", "SHV", "TQQQ", "USD", "QLD", "SSO", "VGK", "VNQ", "GSG", "EEM", 
@@ -179,8 +182,8 @@ def get_hy_spread(target_date):
             valid = df.index[df.index <= ts]
             if len(valid) == 0: return 4.5
             idx = valid[-1]
-            hyg_20 = df['HYG'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
-            bnd_20 = df['BND'].iloc[:df.index.get_loc(idx)+1].pct_change(20).iloc[-1]
+            hyg_20 = df['HYG'].iloc[:df.index.get_loc(idx)+1].pct_change(20, fill_method=None).iloc[-1]
+            bnd_20 = df['BND'].iloc[:df.index.get_loc(idx)+1].pct_change(20, fill_method=None).iloc[-1]
             return round(4.5 + (bnd_20 - hyg_20) * 100, 2)
     except: pass
     return 4.8

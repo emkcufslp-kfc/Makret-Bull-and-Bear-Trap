@@ -26,19 +26,28 @@ OUTPUT_JS = Path(__file__).parent.parent.parent / "data" / "Multi_indicator" / "
 TODAY = date.today().strftime('%Y-%m-%d')
 print(f"Loading data from local database up to {TODAY}...")
 
-tickers = ['SPY', 'TLT', 'BIL', 'DFSVX', 'RYMFX']
+tickers = ['SPY', 'TLT', 'BIL', 'KMLM', 'DFSVX', 'RYMFX']
 master_df = get_clean_master()
 available_tickers = [t for t in tickers if t in master_df.columns]
 data = master_df.loc["2007-03-01":TODAY, available_tickers]
-returns = data.pct_change().dropna()
+returns = data.pct_change()
 
 # ---------------------------------------------------------
 # 2. CONSTRUCT PROXIES
 # ---------------------------------------------------------
 returns['NTSX_Proxy'] = (0.90 * returns['SPY']) + (0.60 * returns['TLT']) - (0.50 * returns['BIL'])
-assets = returns[['NTSX_Proxy', 'DFSVX', 'RYMFX']]
 
-ASSET_NAMES  = ['NTSX (Proxy)', 'AVWS (DFSVX)', 'KMLM (RYMFX)']
+# Use DFSVX as the small-cap value sleeve proxy and stitch live KMLM onto its
+# historical managed-futures proxy so the dashboard stays current.
+returns['AVWS_Stitched'] = returns.get('DFSVX', pd.Series(index=returns.index, dtype=float))
+returns['KMLM_Stitched'] = returns.get('KMLM', pd.Series(index=returns.index, dtype=float)).combine_first(
+    returns.get('RYMFX', pd.Series(index=returns.index, dtype=float))
+)
+
+returns = returns.loc[:, ['SPY', 'NTSX_Proxy', 'AVWS_Stitched', 'KMLM_Stitched']].dropna().copy()
+assets = returns[['NTSX_Proxy', 'AVWS_Stitched', 'KMLM_Stitched']]
+
+ASSET_NAMES  = ['NTSX (Proxy)', 'AVWS sleeve (DFSVX proxy)', 'KMLM (live / RYMFX proxy)']
 target_weights  = np.array([0.55, 0.12, 0.33])
 lower_bounds    = np.array([0.50, 0.09, 0.28])
 upper_bounds    = np.array([0.60, 0.15, 0.38])

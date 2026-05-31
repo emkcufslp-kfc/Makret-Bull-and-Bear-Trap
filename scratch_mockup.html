@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD)</title>
+    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -105,6 +105,9 @@
                     <button onclick="switchStrategy('allocator')" id="strat-btn-allocator" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
                         <i class="fa-solid fa-bullseye"></i> SPY + QQQ + GLD Allocator
                     </button>
+                    <button onclick="switchStrategy('ensemble_top100')" id="strat-btn-ensemble" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        <i class="fa-solid fa-grid-2"></i> Ensemble Top-100 ETF
+                    </button>
                 </div>
             </section>
 
@@ -126,7 +129,7 @@
 
                     <div>
                         <label class="block text-[11px] text-slate-400 uppercase tracking-wider mb-1.5">Simulation / Cutoff Date</label>
-                        <input type="date" id="master-date-picker" value="2026-05-23" class="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" onchange="handleDateChange(this.value)">
+                        <input type="date" id="master-date-picker" value="2026-05-29" class="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" onchange="handleDateChange(this.value)">
                     </div>
 
                     <div id="sidebar-regime-info" class="p-3 bg-slate-950/50 rounded-xl border border-slate-800/80">
@@ -187,19 +190,19 @@
             <div class="flex items-center justify-between border-b border-slate-800/80 px-2 flex-shrink-0">
                 <div class="flex space-x-6 text-sm font-semibold">
                     <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="tab-btn active pb-2">
-                        <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard
+                        <i class="fa-solid fa-chart-line mr-1.5"></i> <span id="tab-label-dashboard">Dashboard</span>
                     </button>
                     <button onclick="switchTab('performance')" id="tab-btn-performance" class="tab-btn pb-2 text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-table-list mr-1.5"></i> Historical Performance
+                        <i class="fa-solid fa-table-list mr-1.5"></i> <span id="tab-label-performance">Historical Performance</span>
                     </button>
                     <button onclick="switchTab('allocation')" id="tab-btn-allocation" class="tab-btn pb-2 text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-sitemap mr-1.5"></i> Allocation Tree
+                        <i class="fa-solid fa-sitemap mr-1.5"></i> <span id="tab-label-allocation">Allocation Tree</span>
                     </button>
                     <button onclick="switchTab('logic')" id="tab-btn-logic" class="tab-btn pb-2 text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-code-branch mr-1.5"></i> Strategy Logic
+                        <i class="fa-solid fa-code-branch mr-1.5"></i> <span id="tab-label-logic">Strategy Logic</span>
                     </button>
                     <button onclick="switchTab('robustness')" id="tab-btn-robustness" class="tab-btn pb-2 text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-dice mr-1.5"></i> Robustness
+                        <i class="fa-solid fa-dice mr-1.5"></i> <span id="tab-label-robustness">Robustness</span>
                     </button>
                 </div>
                 <div class="text-xs text-slate-500 mb-2">
@@ -458,7 +461,7 @@
             currentStrategy: 'ntsx', // 'ntsx', 'platinum', 'fund_tactical', 'best_mix', or 'allocator'
             currentTab: 'dashboard',  // 'dashboard', 'performance', 'allocation', 'logic', 'robustness'
             capital: 100000.00,
-            date: '2026-05-23'
+            date: '2026-05-29'
         };
 
         // --- NTSX DATABASE ---
@@ -648,7 +651,7 @@
                 { year: '2020', portRet: '+27.1%', spyRet: '+18.4%', portDD: '-14.2%', spyDD: '-33.8%', winner: 'Portfolio' }
             ],
             history: [
-                { date: '2026-05-23', source: 'Platinum', change: '+2.0%', destination: 'F-TAA', rationale: 'Sharpe-preserving trim after momentum surge', weights: '60 / 38 / 2' },
+                { date: '2026-05-29', source: 'Platinum', change: '+2.0%', destination: 'F-TAA', rationale: 'Sharpe-preserving trim after momentum surge', weights: '60 / 38 / 2' },
                 { date: '2026-04-25', source: 'F-TAA', change: '+1.0%', destination: 'NTSX', rationale: 'Risk budget top-up after drawdown compression', weights: '59 / 39 / 2' },
                 { date: '2026-03-28', source: 'NTSX', change: '+2.0%', destination: 'Platinum', rationale: 'Optimizer restored max-Calmar blend', weights: '60 / 38 / 2' }
             ],
@@ -664,7 +667,7 @@
             meta: {
                 backtestPeriod: 'Dec 2007 - May 2026',
                 executionDescription: 'Monthly strategy-of-strategies rebalance across the optimizer-selected blend.',
-                lastActionDate: '2026-05-23',
+                lastActionDate: '2026-05-29',
                 monthlyWinRate: '48.7%',
                 bestEra: '2013-01 (CAGR 14.8%)',
                 worstEra: '2008-01 (CAGR 9.4%)',
@@ -679,65 +682,210 @@
         // --- SPY + QQQ + GLD ALLOCATOR DATABASE ---
         const ALLOCATOR_DATA = {
             kpi: {
-                cagr: '12.69%',
-                cagrBench: 'vs SPY: 11.39%',
+                cagr: '12.72%',
+                cagrBench: 'vs SPY: 11.41%',
                 maxdd: '-29.39%',
                 maxddBench: 'vs SPY: -55.19%',
-                sharpe: '0.755',
-                sharpeBench: 'vs SPY: 0.550',
-                ratios: '0.432 / 0.987',
-                ratiosBench: 'vs SPY: 0.206 / 0.671',
+                sharpe: '0.758',
+                sharpeBench: 'vs SPY: 0.551',
+                ratios: '0.433 / 0.990',
+                ratiosBench: 'vs SPY: 0.207 / 0.672',
                 signal: 'REBALANCE',
                 signalBg: 'bg-orange-500/15 text-orange-300 border border-orange-500/40'
             },
-            regime: 'WARNING | RISK OFF | WARNING MODE ON',
+            regime: 'NORMAL | STRONG BULL | WARNING MODE OFF',
             assets: [
-                { symbol: 'SPY', name: 'SPDR S&P 500 ETF Trust', price: 590.40, change: 0.95, target: 30.0, current: 34.0, lower: 20.0, upper: 40.0 },
-                { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 522.30, change: 1.33, target: 0.0, current: 4.0, lower: 0.0, upper: 10.0 },
-                { symbol: 'GLD', name: 'SPDR Gold Shares', price: 245.10, change: -0.41, target: 70.0, current: 62.0, lower: 60.0, upper: 80.0 }
+                { symbol: 'SPY', name: 'SPDR S&P 500 ETF Trust', price: 590.40, change: 0.95, target: 50.0, current: 48.7, lower: 40.0, upper: 60.0 },
+                { symbol: 'QQQ', name: 'Invesco QQQ Trust', price: 522.30, change: 1.33, target: 40.0, current: 41.3, lower: 30.0, upper: 50.0 },
+                { symbol: 'GLD', name: 'SPDR Gold Shares', price: 245.10, change: -0.41, target: 10.0, current: 10.0, lower: 0.0, upper: 20.0 }
             ],
-            yearly: [],
-            history: [],
-            chartDates: [],
-            chartPort: [],
-            chartSpy: [],
-            chartDDPort: [],
-            chartDDSpy: [],
-            mcValues: [],
-            mcCounts: [],
-            scDD: [],
-            scCAGR: [],
+            yearly: [
+                { year: '2026', portRet: '+9.8%', spyRet: '+11.4%', portDD: '-8.7%', spyDD: '-16.1%', winner: 'SPY' },
+                { year: '2025', portRet: '+18.9%', spyRet: '+17.7%', portDD: '-9.5%', spyDD: '-12.6%', winner: 'Portfolio' },
+                { year: '2024', portRet: '+14.6%', spyRet: '+24.9%', portDD: '-11.8%', spyDD: '-13.8%', winner: 'SPY' },
+                { year: '2023', portRet: '+23.1%', spyRet: '+26.2%', portDD: '-12.4%', spyDD: '-10.5%', winner: 'SPY' },
+                { year: '2022', portRet: '-16.0%', spyRet: '-18.2%', portDD: '-29.4%', spyDD: '-33.7%', winner: 'Portfolio' },
+                { year: '2021', portRet: '+17.5%', spyRet: '+28.7%', portDD: '-8.6%', spyDD: '-8.4%', winner: 'SPY' },
+                { year: '2020', portRet: '+24.4%', spyRet: '+18.3%', portDD: '-27.2%', spyDD: '-33.8%', winner: 'Portfolio' },
+                { year: '2019', portRet: '+20.6%', spyRet: '+31.2%', portDD: '-7.4%', spyDD: '-6.8%', winner: 'SPY' },
+                { year: '2018', portRet: '-6.1%', spyRet: '-4.4%', portDD: '-13.5%', spyDD: '-13.5%', winner: 'SPY' },
+                { year: '2017', portRet: '+20.1%', spyRet: '+21.7%', portDD: '-5.5%', spyDD: '-6.2%', winner: 'SPY' }
+            ],
+            history: [
+                { date: '2026-05-29', regime: 'WARNING', add: 'Add GLD +8.0%', cut: 'Trim QQQ -7.5%', turnover: '15.5%', event: 'Monthly Rebalance', mix: 'SPY 30% / QQQ 0% / GLD 70%' },
+                { date: '2026-04-30', regime: 'WARNING', add: 'Hold stance', cut: 'No change', turnover: '0.0%', event: 'Drift Within Bands', mix: 'SPY 30% / QQQ 0% / GLD 70%' },
+                { date: '2026-03-31', regime: 'NORMAL', add: 'Add QQQ +11.0%', cut: 'Trim GLD -10.0%', turnover: '22.4%', event: 'Monthly Rebalance', mix: 'SPY 50% / QQQ 40% / GLD 10%' },
+                { date: '2026-02-28', regime: 'SEVERE', add: 'Add GLD +12.0%', cut: 'Trim SPY -10.0%', turnover: '19.6%', event: 'Monthly Rebalance', mix: 'SPY 20% / QQQ 0% / GLD 80%' },
+                { date: '2026-01-31', regime: 'WARNING', add: 'Add GLD +5.0%', cut: 'Trim QQQ -5.0%', turnover: '11.8%', event: 'Monthly Rebalance', mix: 'SPY 30% / QQQ 0% / GLD 70%' },
+                { date: '2025-12-31', regime: 'NORMAL', add: 'Add QQQ +9.0%', cut: 'Trim GLD -9.0%', turnover: '18.2%', event: 'Monthly Rebalance', mix: 'SPY 50% / QQQ 40% / GLD 10%' }
+            ],
+            chartDates: ['2006', '2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024', '2026'],
+            chartPort: [100, 81, 122, 163, 222, 298, 344, 479, 402, 588, 713],
+            chartSpy: [100, 63, 101, 128, 171, 206, 235, 318, 260, 431, 566],
+            chartDDPort: [0, -29.4, -10.2, -6.5, -4.8, -8.4, -13.5, -27.2, -19.7, -11.6, -9.8],
+            chartDDSpy: [0, -55.2, -15.8, -9.1, -6.2, -10.4, -13.5, -33.8, -27.1, -13.8, -16.1],
+            mcValues: [6.5, 8.1, 9.7, 11.3, 12.7, 14.1, 15.5, 16.9, 18.3, 19.7, 21.1],
+            mcCounts: [10, 19, 31, 54, 75, 92, 81, 58, 36, 18, 9],
+            scDD: [-29.4, -27.8, -26.1, -24.9, -23.4, -21.7, -19.6, -17.9, -16.1, -14.8],
+            scCAGR: [10.4, 10.9, 11.3, 11.8, 12.2, 12.7, 13.1, 13.6, 14.0, 14.4],
             meta: {
                 backtestPeriod: 'May 2006 - May 2026',
                 executionDescription: 'Monthly/state allocator that rotates between SPY, QQQ, and GLD using Normal / Warning / Severe weights with 5 bps turnover cost.',
-                lastActionDate: '2026-05-26',
+                lastActionDate: '2026-05-01',
                 monthlyWinRate: '50.2%',
-                bestEra: '2012-08 (CAGR 17.4%)',
-                worstEra: '2007-10 (CAGR 8.7%)',
+                bestEra: '2023-10 (CAGR 30.8%)',
+                worstEra: '2008-03 (CAGR 12.2%)',
                 sleeves: [
-                    { symbol: 'SPY', name: 'Core equity beta', weight: 30.0 },
-                    { symbol: 'QQQ', name: 'Growth accelerator', weight: 0.0 },
-                    { symbol: 'GLD', name: 'Defensive shock absorber', weight: 70.0 }
+                    { symbol: 'SPY', name: 'Core equity beta', weight: 50.0 },
+                    { symbol: 'QQQ', name: 'Growth accelerator', weight: 40.0 },
+                    { symbol: 'GLD', name: 'Defensive shock absorber', weight: 10.0 }
                 ],
                 actionItems: [
-                    { tone: 'sell', label: 'Trim QQQ', detail: 'QQQ should be at 0% in Warning mode.' },
-                    { tone: 'buy', label: 'Add GLD', detail: 'Increase GLD toward the 70% shock-absorber target.' }
+                    { tone: 'sell', label: 'Trim QQQ', detail: 'As of 2026-05-29: current 41.3% vs target 40.0% (1,300 USD overweight).' }
                 ],
                 stateWeights: [
                     { state: 'Normal', mix: 'SPY 50% / QQQ 40% / GLD 10%' },
                     { state: 'Warning', mix: 'SPY 30% / QQQ 0% / GLD 70%' },
                     { state: 'Severe', mix: 'SPY 20% / QQQ 0% / GLD 80%' }
                 ],
-                currentState: 'WARNING',
+                currentState: 'NORMAL',
+                warningMode: 'OFF',
+                guardrail: 'STRONG BULL',
+                riskNote: 'As of 2026-05-29, normal regime is active. Maintain the growth blend and rebalance only to target.',
+                combinedSignal: 'STRONG BULL | HOLD',
+                tradeCount: 648,
+                turnoverX: 235.95,
+                benchmarkFinalEquity: 867514.69,
+                allocatorFinalEquity: 1094643.66,
+                allocatorVsSpy: 227128.97
+            }
+        };
+
+        // --- ENSEMBLE TOP-100 ETF DATABASE ---
+        const ENSEMBLE_TOP100_DATA = {
+            kpi: {
+                cagr: '14.75%',
+                cagrBench: 'vs SPY: 11.86%',
+                maxdd: '-23.38%',
+                maxddBench: 'vs SPY: -50.70%',
+                sharpe: '0.800',
+                sharpeBench: 'vs SPY: 0.565',
+                ratios: '0.631 / 1.013',
+                ratiosBench: 'vs SPY: 0.234 / 0.685',
+                signal: 'REBALANCE',
+                signalBg: 'bg-orange-500/15 text-orange-300 border border-orange-500/40'
+            },
+            regime: 'BALANCED | Score 63.9 | WARNING MODE ON',
+            assets: [
+                { symbol: 'SCHF', name: 'Schwab International Equity ETF', price: 22.74, change: 0.11, target: 27.2, current: 25.5, lower: 18.0, upper: 34.0 },
+                { symbol: 'SMH', name: 'VanEck Semiconductor ETF', price: 265.88, change: 1.24, target: 27.2, current: 35.9, lower: 18.0, upper: 34.0 },
+                { symbol: 'SPDW', name: 'SPDR Portfolio Developed World ex-US ETF', price: 39.26, change: 0.08, target: 27.2, current: 25.4, lower: 18.0, upper: 34.0 },
+                { symbol: 'GDX', name: 'VanEck Gold Miners ETF', price: 43.77, change: -0.33, target: 9.1, current: 6.3, lower: 3.0, upper: 14.0 },
+                { symbol: 'SLV', name: 'iShares Silver Trust', price: 28.37, change: -0.27, target: 9.1, current: 6.8, lower: 3.0, upper: 14.0 }
+            ],
+            yearly: [
+                { year: '2026', portRet: '+23.5%', spyRet: '+11.2%', portDD: '-12.4%', spyDD: '-16.1%', winner: 'Portfolio' },
+                { year: '2025', portRet: '+37.8%', spyRet: '+17.7%', portDD: '-8.9%', spyDD: '-12.6%', winner: 'Portfolio' },
+                { year: '2024', portRet: '+20.4%', spyRet: '+24.9%', portDD: '-11.2%', spyDD: '-13.8%', winner: 'SPY' },
+                { year: '2023', portRet: '+23.1%', spyRet: '+26.2%', portDD: '-9.7%', spyDD: '-10.5%', winner: 'SPY' },
+                { year: '2022', portRet: '-16.3%', spyRet: '-18.2%', portDD: '-23.4%', spyDD: '-33.7%', winner: 'Portfolio' },
+                { year: '2021', portRet: '+18.8%', spyRet: '+28.7%', portDD: '-7.8%', spyDD: '-8.4%', winner: 'SPY' },
+                { year: '2020', portRet: '+24.2%', spyRet: '+18.3%', portDD: '-19.1%', spyDD: '-33.8%', winner: 'Portfolio' },
+                { year: '2019', portRet: '+22.5%', spyRet: '+31.2%', portDD: '-6.1%', spyDD: '-6.8%', winner: 'SPY' },
+                { year: '2018', portRet: '-4.8%', spyRet: '-4.4%', portDD: '-10.3%', spyDD: '-13.5%', winner: 'SPY' },
+                { year: '2017', portRet: '+23.6%', spyRet: '+21.7%', portDD: '-5.9%', spyDD: '-6.2%', winner: 'Portfolio' },
+                { year: '2016', portRet: '+12.8%', spyRet: '+12.0%', portDD: '-8.6%', spyDD: '-10.1%', winner: 'Portfolio' },
+                { year: '2015', portRet: '-5.2%', spyRet: '+1.2%', portDD: '-11.4%', spyDD: '-12.8%', winner: 'SPY' },
+                { year: '2014', portRet: '+16.1%', spyRet: '+13.5%', portDD: '-7.2%', spyDD: '-8.3%', winner: 'Portfolio' },
+                { year: '2013', portRet: '+25.2%', spyRet: '+29.0%', portDD: '-9.5%', spyDD: '-11.4%', winner: 'SPY' }
+            ],
+            history: [
+                { date: '2026-03-02', regime: 'TILTED', add: 'Add SPDW +27.2%', cut: 'Trim EFV -21.7%', turnover: '94.1%', event: 'Monthly Rebalance', mix: 'SMH 27.2% / SCHF 27.2% / SPDW 27.2% / SLV 9.1% / GDX 9.1%' },
+                { date: '2026-02-02', regime: 'RISK-ON', add: 'Add SLV +10.7%', cut: 'Trim GDX -13.3%', turnover: '27.4%', event: 'Monthly Rebalance', mix: 'SMH 22.3% / EFV 22.3% / SCHF 22.3% / VEA 22.3% / SLV 10.7%' },
+                { date: '2026-01-02', regime: 'TILTED', add: 'Add GDX +13.3%', cut: 'Trim XLK -21.7%', turnover: '156.7%', event: 'Monthly Rebalance', mix: 'SMH 21.7% / EFV 21.7% / SCHF 21.7% / VEA 21.7% / GDX 13.3%' },
+                { date: '2025-12-01', regime: 'TILTED', add: 'Add SMH +22.0%', cut: 'Trim VBR -20.8%', turnover: '88.5%', event: 'Monthly Rebalance', mix: 'SMH 22.0% / XLK 22.0% / VGT 22.0% / EEM 17.0% / SLV 17.0%' },
+                { date: '2025-11-03', regime: 'BALANCED', add: 'Add SLV +14.2%', cut: 'Trim VGT -18.0%', turnover: '64.8%', event: 'Monthly Rebalance', mix: 'VBR 21.4% / VXF 21.4% / EFV 21.4% / SLV 14.2% / MUB 21.4%' },
+                { date: '2025-10-01', regime: 'CAUTIOUS', add: 'Add MUB +21.5%', cut: 'Trim QQQ -22.1%', turnover: '103.7%', event: 'Monthly Rebalance', mix: 'VBR 21.5% / VXF 21.5% / EFV 21.5% / IJH 21.5% / MUB 14.0%' }
+            ],
+            chartDates: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+            chartPort: [100, 116, 110, 124, 153, 145, 178, 221, 263, 220, 271, 326, 449, 554],
+            chartSpy: [100, 113, 114, 128, 156, 149, 196, 232, 299, 245, 309, 386, 454, 505],
+            chartDDPort: [0, -3.2, -11.4, -4.8, -2.1, -10.3, -4.0, -19.1, -6.2, -23.4, -7.8, -11.2, -8.9, -12.4],
+            chartDDSpy: [0, -4.5, -12.8, -7.2, -3.1, -13.5, -6.5, -33.8, -8.4, -33.7, -10.5, -13.8, -12.6, -16.1],
+            mcValues: [8.5, 10.0, 11.5, 13.0, 14.5, 15.8, 17.3, 18.8, 20.3, 21.8, 23.3],
+            mcCounts: [6, 11, 18, 27, 41, 57, 44, 29, 16, 8, 3],
+            scDD: [-23.4, -21.8, -20.7, -19.5, -18.4, -17.6, -16.2, -15.5, -14.1, -12.8],
+            scCAGR: [12.2, 12.8, 13.1, 13.7, 14.0, 14.4, 14.9, 15.2, 15.8, 16.1],
+            meta: {
+                backtestPeriod: 'May 2008 - May 2026',
+                executionDescription: 'As-of 2026-05-29 PIT instruction set for the frozen no-special ensemble rule. Rebalance monthly into max 5 ETFs using the 7-model score as a risk governor, with 5 bps turnover cost.',
+                lastActionDate: '2026-03-02',
+                monthlyWinRate: '53.0%',
+                bestEra: '2025-09 (CAGR 74.2%)',
+                worstEra: '2011-05 (CAGR 13.7%)',
+                sleeves: [
+                    { symbol: 'SCHF', name: 'International core', weight: 27.2 },
+                    { symbol: 'SMH', name: 'Semiconductor momentum', weight: 27.2 },
+                    { symbol: 'SPDW', name: 'Developed ex-US breadth', weight: 27.2 },
+                    { symbol: 'GDX', name: 'Gold miner defense', weight: 9.1 },
+                    { symbol: 'SLV', name: 'Silver defense', weight: 9.1 }
+                ],
+                actionItems: [
+                    { tone: 'buy', label: 'Add SCHF', detail: 'As of 2026-05-29: current 25.5% vs target 27.2% (1,700 USD underweight).' },
+                    { tone: 'sell', label: 'Trim SMH', detail: 'As of 2026-05-29: current 35.9% vs target 27.2% (8,700 USD overweight).' },
+                    { tone: 'buy', label: 'Add SPDW', detail: 'As of 2026-05-29: current 25.4% vs target 27.2% (1,800 USD underweight).' },
+                    { tone: 'buy', label: 'Add GDX', detail: 'As of 2026-05-29: current 6.3% vs target 9.1% (2,800 USD underweight).' },
+                    { tone: 'buy', label: 'Add SLV', detail: 'As of 2026-05-29: current 6.8% vs target 9.1% (2,300 USD underweight).' }
+                ],
+                stateWeights: [
+                    { state: 'Risk-On', mix: '5 offensive ETFs when score >= 80' },
+                    { state: 'Tilted', mix: '4 offensive / 1 defensive when score 65-79' },
+                    { state: 'Balanced', mix: '3 offensive / 2 defensive when score 50-64' },
+                    { state: 'Cautious', mix: '2 offensive / 3 defensive when score 35-49' },
+                    { state: 'Defensive', mix: '1 offensive / 4 defensive when score < 35' }
+                ],
+                currentState: 'Balanced',
                 warningMode: 'ON',
-                guardrail: 'RISK OFF',
-                riskNote: 'Warning mode is active. Hold QQQ at zero and keep a heavy GLD cushion.',
-                combinedSignal: 'RISK OFF | REBALANCE',
-                tradeCount: 649,
-                turnoverX: 236.95,
-                benchmarkFinalEquity: 860760.22,
-                allocatorFinalEquity: 1085612.94,
-                allocatorVsSpy: 224852.72
+                guardrail: 'BULL',
+                riskNote: 'As of 2026-05-29, the frozen no-special rule keeps the strategy in balanced mode. The 7-model ensemble score is 63.9 after a 4.0-point alert penalty, so the selector favors offensive ETFs but still carries a defensive sleeve.',
+                combinedSignal: 'BULL | HOLD',
+                tradeCount: 214,
+                turnoverX: 215.55,
+                benchmarkFinalEquity: 750687.96,
+                allocatorFinalEquity: 1188520.17,
+                allocatorVsSpy: 437832.21,
+                ensembleScore: 63.86,
+                rawScore: 67.86,
+                warningPenalty: 4.0,
+                shiftCount: 3,
+                changedModels: 'Bull Trap, ML Meta-Indicator, Combined Macro + RWRA',
+                riskStack: [
+                    { label: 'Market Regime', value: 'LOW RISK REGIME' },
+                    { label: 'Bear Trap', value: 'LOW RISK' },
+                    { label: 'Bull Trap', value: 'CAUTION / BULL TRAP RISK' },
+                    { label: 'ETF Rotation', value: 'NORMAL' },
+                    { label: '200MA Strategy', value: 'BULLISH (Wait for Exit)' },
+                    { label: 'ML Meta-Indicator', value: 'LOW CONFIDENCE (REDUCE)' },
+                    { label: 'Combined Macro + RWRA', value: 'BULL | HOLD' }
+                ],
+                logicSummary: {
+                    title: 'Frozen No-Special Ensemble Top-100 Rule',
+                    subtitle: 'This strategy is optimized, but constrained. It uses one fixed no-special configuration rather than a live optimizer, so the dashboard shows a documented rule, not a moving target.',
+                    formula: [
+                        'Map the 7 core models into 0-100 directional scores.',
+                        'Compute model confidence weights from prior historical usefulness only.',
+                        'Raw score = sum(model score × model confidence weight).',
+                        'Apply the alert penalty when the 3-of-7 warning turns on, with extra weight if major models changed.',
+                        'Rank eligible ETFs by defensive-quality momentum and hold at most 5 tickers.'
+                    ],
+                    guardrails: [
+                        'No IBIT and no TQQQ in the deployed dashboard version.',
+                        'Minimum 252 trading days of ETF history.',
+                        'Monthly rebalance cadence and 5 bps turnover cost.',
+                        'This version was chosen because the frozen and walk-forward no-special tests both beat SPY while lowering drawdown.'
+                    ],
+                    caveat: 'This is not overfit-proof. Survivorship bias in the ETF universe and historical rule selection still matter, so the dashboard shows the frozen robust candidate rather than the flashiest full-sample winner.'
+                }
             }
         };
 
@@ -796,6 +944,11 @@
             logicTreeContent: document.getElementById('logic-tree-content'),
             logicWorkflow: document.getElementById('logic-workflow'),
             logicExplanation: document.getElementById('logic-explanation'),
+            tabLabelDashboard: document.getElementById('tab-label-dashboard'),
+            tabLabelPerformance: document.getElementById('tab-label-performance'),
+            tabLabelAllocation: document.getElementById('tab-label-allocation'),
+            tabLabelLogic: document.getElementById('tab-label-logic'),
+            tabLabelRobustness: document.getElementById('tab-label-robustness'),
 
             // Robustness
             robVar: document.getElementById('rob-var'),
@@ -818,12 +971,15 @@
                 ? PLATINUM_DATA
                 : (AppState.currentStrategy === 'fund_tactical'
                     ? FUND_TACTICAL_DATA
-                    : (AppState.currentStrategy === 'best_mix' ? BEST_MIX_DATA : ALLOCATOR_DATA)));
+                    : (AppState.currentStrategy === 'best_mix'
+                        ? BEST_MIX_DATA
+                        : (AppState.currentStrategy === 'allocator' ? ALLOCATOR_DATA : ENSEMBLE_TOP100_DATA))));
         const isNtsx = () => AppState.currentStrategy === 'ntsx';
         const isPlatinum = () => AppState.currentStrategy === 'platinum';
         const isFundTactical = () => AppState.currentStrategy === 'fund_tactical';
         const isBestMix = () => AppState.currentStrategy === 'best_mix';
         const isAllocator = () => AppState.currentStrategy === 'allocator';
+        const isEnsembleTop100 = () => AppState.currentStrategy === 'ensemble_top100';
 
         // ====================================================================
         // 2. CONTROLLER FUNCTIONS
@@ -838,6 +994,7 @@
             const btnFund = document.getElementById('strat-btn-fund');
             const btnMix = document.getElementById('strat-btn-mix');
             const btnAllocator = document.getElementById('strat-btn-allocator');
+            const btnEnsemble = document.getElementById('strat-btn-ensemble');
             const activeClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
             const idleClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
 
@@ -846,7 +1003,9 @@
             btnFund.className = strategyKey === 'fund_tactical' ? activeClass : idleClass;
             btnMix.className = strategyKey === 'best_mix' ? activeClass : idleClass;
             btnAllocator.className = strategyKey === 'allocator' ? activeClass : idleClass;
+            btnEnsemble.className = strategyKey === 'ensemble_top100' ? activeClass : idleClass;
 
+            renderTabLabels();
             renderSidebar();
             renderKPIs();
             renderActiveTab();
@@ -899,9 +1058,26 @@
         function handleDateChange(val) {
             AppState.date = val;
             // Simulated check for data delay
-            if (new Date(val) > new Date('2026-05-23')) {
+            if (new Date(val) > new Date('2026-05-29')) {
                 alert("⚠️ Simulation Date is ahead of local data updates. Displaying latest available historical data.");
             }
+        }
+
+        function renderTabLabels() {
+            if (isEnsembleTop100()) {
+                DOM.tabLabelDashboard.textContent = 'Dashboard';
+                DOM.tabLabelPerformance.textContent = 'Historical Performance';
+                DOM.tabLabelAllocation.textContent = 'Holdings Matrix';
+                DOM.tabLabelLogic.textContent = 'Strategy Logic';
+                DOM.tabLabelRobustness.textContent = 'Robustness & OOS';
+                return;
+            }
+
+            DOM.tabLabelDashboard.textContent = 'Dashboard';
+            DOM.tabLabelPerformance.textContent = 'Historical Performance';
+            DOM.tabLabelAllocation.textContent = 'Allocation Tree';
+            DOM.tabLabelLogic.textContent = 'Strategy Logic';
+            DOM.tabLabelRobustness.textContent = 'Robustness';
         }
 
         // ====================================================================
@@ -913,24 +1089,27 @@
             const fundMode = isFundTactical();
             const mixMode = isBestMix();
             const allocatorMode = isAllocator();
+            const ensembleMode = isEnsembleTop100();
             const db = getCurrentDb();
 
             // Update regime box
             DOM.sidebarRegimeStatus.innerHTML = ntsxMode
                 ? `<span class="h-2 w-2 rounded-full bg-slate-400 inline-block mr-1"></span> ${db.regime}`
-                : (fundMode
-                    ? `<span class="h-2 w-2 rounded-full bg-amber-400 inline-block mr-1"></span> ${db.regime}`
-                    : (mixMode
-                        ? `<span class="h-2 w-2 rounded-full bg-cyan-400 inline-block mr-1"></span> ${db.regime}`
-                        : (allocatorMode
-                            ? `<span class="h-2 w-2 rounded-full bg-orange-400 inline-block mr-1"></span> ${db.regime}`
-                            : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`)));
+                    : (fundMode
+                        ? `<span class="h-2 w-2 rounded-full bg-amber-400 inline-block mr-1"></span> ${db.regime}`
+                        : (mixMode
+                            ? `<span class="h-2 w-2 rounded-full bg-cyan-400 inline-block mr-1"></span> ${db.regime}`
+                            : (allocatorMode
+                                ? `<span class="h-2 w-2 rounded-full bg-orange-400 inline-block mr-1"></span> ${db.regime}`
+                                : (ensembleMode
+                                    ? `<span class="h-2 w-2 rounded-full bg-sky-400 inline-block mr-1"></span> ${db.regime}`
+                                    : `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1"></span> ${db.regime}`))));
             DOM.sidebarRegimeStatus.className = ntsxMode
                 ? "text-xs font-semibold text-slate-300"
-                : (fundMode ? "text-xs font-semibold text-amber-300" : (mixMode ? "text-xs font-semibold text-cyan-300" : (allocatorMode ? "text-xs font-semibold text-orange-300" : "text-xs font-semibold text-emerald-400")));
+                : (fundMode ? "text-xs font-semibold text-amber-300" : (mixMode ? "text-xs font-semibold text-cyan-300" : (allocatorMode ? "text-xs font-semibold text-orange-300" : (ensembleMode ? "text-xs font-semibold text-sky-300" : "text-xs font-semibold text-emerald-400"))));
 
             // Update List header
-            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : (mixMode ? "Look-Through Holdings" : (allocatorMode ? "Allocator Sleeves" : "Holding Candidates")));
+            DOM.sidebarListTitle.textContent = ntsxMode ? "Tolerance Assets" : (fundMode ? "Active Sleeves" : (mixMode ? "Look-Through Holdings" : (allocatorMode ? "Allocator Sleeves" : (ensembleMode ? "Target Holdings" : "Holding Candidates"))));
             DOM.sidebarListCount.textContent = `${db.assets.length} ETFs`;
             DOM.backtestPeriodDisplay.textContent = db.meta?.backtestPeriod || (ntsxMode ? 'Mar 2007 - May 2026' : 'Mar 2018 - May 2026');
 
@@ -1001,6 +1180,7 @@
             const platinumMode = isPlatinum();
             const mixMode = isBestMix();
             const allocatorMode = isAllocator();
+            const ensembleMode = isEnsembleTop100();
             const db = getCurrentDb();
 
             // 1. Text description and checklists
@@ -1072,13 +1252,13 @@
                     </ul>
                 `;
                 DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
-            } else if (allocatorMode) {
+            } else if (allocatorMode || ensembleMode) {
                 const actionItems = db.meta?.actionItems || [];
                 const hasTrade = actionItems.some(item => item.tone !== 'hold');
                 DOM.actionChecklistTitle.textContent = hasTrade ? "Rebalance Required As Of Master Date" : "As-Of Rebalance Actions";
-                DOM.actionChecklistCard.className = `glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 ${hasTrade ? 'border-orange-400 bg-orange-500/5 shadow-[0_0_0_1px_rgba(251,146,60,0.18),0_0_26px_rgba(249,115,22,0.10)]' : 'border-emerald-500'}`;
+                DOM.actionChecklistCard.className = `glass-panel rounded-2xl p-4 flex flex-col justify-between border-l-4 ${hasTrade ? 'border-orange-400 bg-orange-500/5 shadow-[0_0_0_1px_rgba(251,146,60,0.18),0_0_26px_rgba(249,115,22,0.10)]' : (ensembleMode ? 'border-sky-400' : 'border-emerald-500')}`;
                 DOM.actionChecklistContent.innerHTML = `
-                    <div class="flex items-center justify-between gap-3 ${hasTrade ? 'text-orange-300' : 'text-emerald-400'}">
+                    <div class="flex items-center justify-between gap-3 ${hasTrade ? 'text-orange-300' : (ensembleMode ? 'text-sky-300' : 'text-emerald-400')}">
                         <div class="flex items-center space-x-2">
                             <i class="fa-solid ${hasTrade ? 'fa-triangle-exclamation' : 'fa-circle-check'} text-sm ${hasTrade ? 'animate-pulse' : ''}"></i>
                             <span class="text-xs font-bold uppercase">${hasTrade ? 'Action Required As Of Master Date' : 'Balanced As Of Master Date'}</span>
@@ -1095,6 +1275,19 @@
                         `).join('')}
                     </ul>
                     <p class="text-xs ${hasTrade ? 'text-orange-100/90' : 'text-slate-400'} mt-3 leading-relaxed">${db.meta?.riskNote || ''}</p>
+                    ${ensembleMode ? `
+                        <div class="mt-3 rounded-xl border border-slate-800 bg-slate-950/35 p-3">
+                            <div class="text-[10px] uppercase tracking-wider text-slate-500">Risk Stack</div>
+                            <div class="mt-2 space-y-1.5">
+                                ${(db.meta?.riskStack || []).map(item => `
+                                    <div class="flex items-start justify-between gap-3 text-[11px]">
+                                        <span class="text-slate-400">${item.label}</span>
+                                        <span class="text-right text-slate-200 font-medium">${item.value}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
                 `;
                 DOM.lastActionTakenDate.textContent = db.meta?.lastActionDate || AppState.date;
             } else {
@@ -1217,22 +1410,38 @@
                         </div>
                     </div>
                 `;
-            } else if (allocatorMode) {
+            } else if (allocatorMode || ensembleMode) {
                 const stateWeights = db.meta?.stateWeights || [];
-                DOM.leftPanelTitle.textContent = "Allocator State Weights";
+                DOM.leftPanelTitle.textContent = ensembleMode ? "Ensemble Score Ladder" : "Allocator State Weights";
                 DOM.leftPanelInteractive.innerHTML = `
                     <div class="flex flex-col h-full justify-between gap-3">
+                        ${ensembleMode ? `
+                            <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-400 uppercase tracking-wider">Ensemble Score</span>
+                                    <span class="font-mono text-sky-300">${(db.meta?.ensembleScore || 0).toFixed ? db.meta.ensembleScore.toFixed(1) : db.meta?.ensembleScore}</span>
+                                </div>
+                                <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
+                                    <div class="h-full bg-sky-500" style="width:${Math.max(0, Math.min(100, db.meta?.ensembleScore || 0))}%"></div>
+                                </div>
+                                <div class="mt-2 flex justify-between text-[10px] text-slate-500">
+                                    <span>Raw ${db.meta?.rawScore ?? '-'}</span>
+                                    <span>Penalty ${db.meta?.warningPenalty ?? '-'}</span>
+                                    <span>${db.meta?.shiftCount ?? 0} shifts</span>
+                                </div>
+                            </div>
+                        ` : ''}
                         ${stateWeights.map(item => `
-                            <div class="p-3 rounded-xl ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'bg-orange-500/10 border-orange-400/40' : 'bg-slate-950/70 border-slate-800'} border">
+                            <div class="p-3 rounded-xl ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? (ensembleMode ? 'bg-sky-500/10 border-sky-400/40' : 'bg-orange-500/10 border-orange-400/40') : 'bg-slate-950/70 border-slate-800'} border">
                                 <div class="flex items-center justify-between text-xs">
                                     <span class="text-slate-300 uppercase tracking-wider font-bold">${item.state}</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'bg-orange-500/20 text-orange-200' : 'bg-slate-900 text-slate-400'}">${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'ACTIVE' : 'Standby'}</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? (ensembleMode ? 'bg-sky-500/20 text-sky-200' : 'bg-orange-500/20 text-orange-200') : 'bg-slate-900 text-slate-400'}">${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'ACTIVE' : 'Standby'}</span>
                                 </div>
                                 <div class="mt-2 text-sm font-semibold text-white">${item.mix}</div>
                             </div>
                         `).join('')}
                         <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800 text-[10px] text-slate-400 leading-relaxed">
-                            Warning mode is <strong class="text-orange-300">${db.meta?.warningMode}</strong>. Combined signal: <strong class="text-slate-200">${db.meta?.combinedSignal}</strong>.
+                            Warning mode is <strong class="${ensembleMode ? 'text-sky-300' : 'text-orange-300'}">${db.meta?.warningMode}</strong>. Combined signal: <strong class="text-slate-200">${db.meta?.combinedSignal}</strong>.
                         </div>
                     </div>
                 `;
@@ -1346,6 +1555,7 @@
             const fundMode = isFundTactical();
             const mixMode = isBestMix();
             const allocatorMode = isAllocator();
+            const ensembleMode = isEnsembleTop100();
             const db = getCurrentDb();
 
             // 1. Render Chart.js line charts
@@ -1428,10 +1638,10 @@
                         <td class="p-3 text-center font-mono text-slate-300">${r.weights}</td>
                     </tr>
                 `).join('');
-            } else if (allocatorMode) {
+            } else if (allocatorMode || ensembleMode) {
                 DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-bullseye mr-1"></i> Allocator Rebalance Log`;
                 DOM.logTableFilters.innerHTML = `
-                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Monthly + state shift</span>
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">${ensembleMode ? 'Frozen monthly rule' : 'Monthly + state shift'}</span>
                 `;
                 DOM.logTableHead.innerHTML = `
                     <tr>
@@ -1447,7 +1657,7 @@
                 DOM.logTableBody.innerHTML = db.history.map(r => `
                     <tr class="hover:bg-slate-900/20 transition-colors">
                         <td class="p-3 font-semibold text-slate-300 font-mono">${r.date}</td>
-                        <td class="p-3 text-orange-300 font-bold">${r.regime}</td>
+                        <td class="p-3 ${ensembleMode ? 'text-sky-300' : 'text-orange-300'} font-bold">${r.regime}</td>
                         <td class="p-3 text-emerald-400 font-mono">${r.add}</td>
                         <td class="p-3 text-red-400 font-mono">${r.cut}</td>
                         <td class="p-3 text-right font-mono text-slate-300">${r.turnover}</td>
@@ -1618,6 +1828,7 @@
             const platinumMode = isPlatinum();
             const mixMode = isBestMix();
             const allocatorMode = isAllocator();
+            const ensembleMode = isEnsembleTop100();
             const db = getCurrentDb();
             const title = document.getElementById('tree-title');
             const desc = document.getElementById('tree-description');
@@ -1799,6 +2010,43 @@
                                 <span class="text-xs font-bold text-emerald-400 block">Diversifier</span>
                                 <span class="text-sm font-mono text-white block mt-1">2.0% NTSX</span>
                                 <p class="text-[10px] text-slate-500 mt-2">Small structural ballast to preserve multi-asset breadth without dragging the optimizer.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (ensembleMode) {
+                title.textContent = "Ensemble Top-100 ETF Allocation Tree";
+                desc.textContent = "A frozen, no-special, monthly ETF selector. The 7-model ensemble score drives how offensive or defensive the 5-ETF basket should be.";
+                DOM.treeDiagramContent.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="bg-slate-900 border border-sky-500/50 px-8 py-3 rounded-2xl shadow-lg text-center max-w-md mb-6">
+                            <span class="text-xs text-sky-300 uppercase tracking-widest block font-bold">Frozen Robust Candidate</span>
+                            <span class="text-sm font-mono text-white font-bold block mt-1">Current Score: ${db.meta?.ensembleScore ?? '-'} | ${db.meta?.currentState || 'Tilted'}</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
+                            <div class="bg-slate-900/70 border border-slate-800 p-4 rounded-xl">
+                                <div class="text-xs font-bold text-white">1. Score Engine</div>
+                                <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">Convert the 7 models into normalized 0-100 readings, then weight them by prior confidence. Subtract the alert penalty only after the raw score is built.</p>
+                            </div>
+                            <div class="bg-slate-900/70 border border-slate-800 p-4 rounded-xl">
+                                <div class="text-xs font-bold text-white">2. Risk Governor</div>
+                                <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">Use the final score to decide whether the basket should be Risk-On, Tilted, Balanced, Cautious, or Defensive.</p>
+                            </div>
+                            <div class="bg-slate-900/70 border border-slate-800 p-4 rounded-xl">
+                                <div class="text-xs font-bold text-white">3. ETF Selector</div>
+                                <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">Rank eligible top-100 ETFs by defensive-quality momentum and hold at most 5 names, with one defensive sleeve when the score cools.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 max-w-5xl rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left">
+                            <div class="text-xs uppercase tracking-wider text-slate-500">Current target holdings</div>
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mt-3">
+                                ${(db.meta?.sleeves || []).map(item => `
+                                    <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-center">
+                                        <div class="text-[10px] uppercase tracking-wider text-slate-500">${item.symbol}</div>
+                                        <div class="text-sm font-semibold text-white mt-1">${item.weight.toFixed(1)}%</div>
+                                        <div class="text-[10px] text-slate-400 mt-1">${item.name}</div>
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
                     </div>
@@ -1997,6 +2245,53 @@
                         'Because the model is turnover-aware, the correct behavior is not to freestyle entries. Follow the state weights and only trade when the state or month boundary says to trade.'
                     ]
                 };
+            } else if (isEnsembleTop100()) {
+                const logic = db.meta?.logicSummary || {};
+                content = {
+                    title: logic.title || 'Ensemble Top-100 ETF Logic',
+                    subtitle: logic.subtitle || 'Frozen no-special monthly ETF rule governed by the 7-model ensemble score.',
+                    cadence: 'Monthly first-trading-day rebalance',
+                    trigger: 'Frozen score update + target basket drift',
+                    action: 'Rebuild the max-5 ETF basket to the selected target weights',
+                    badge: 'Robust Frozen Rule',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-sky-500/30 bg-sky-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-sky-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Treat the 3-of-7 warning as an alert modifier, not the allocator. The final allocation always comes from the weighted ensemble score plus the ETF ranking engine.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Formula</div>
+                                    <div class="space-y-2 mt-2">
+                                        ${(logic.formula || []).map(item => `<p class="text-xs text-slate-300 leading-relaxed">${item}</p>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Guardrails</div>
+                                    <div class="space-y-2 mt-2">
+                                        ${(logic.guardrails || []).map(item => `<p class="text-xs text-slate-300 leading-relaxed">${item}</p>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-amber-300">Caveat</div>
+                                <div class="text-sm font-semibold text-white mt-1">${logic.caveat || ''}</div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'At each month start, read the prior signal-date status for all 7 core models and convert them into normalized scores.',
+                        'Recompute the confidence weights using prior historical usefulness only, then apply the warning penalty if the alert stack is active.',
+                        'Use the final score to determine how offensive the basket should be, then rank eligible ETFs by the defensive-quality formula and keep at most 5 names.',
+                        'Rebalance the live basket only to the frozen target rule. Do not override the model because the whole robustness premise depends on sticking to one fixed specification.'
+                    ],
+                    explanation: [
+                        'This dashboard version is the robust candidate, not the flashiest optimized backtest. It excludes IBIT and TQQQ and freezes the no-special rule that still beat SPY in the out-of-sample tests.',
+                        'The goal is not to predict every turn. The 7-model score controls how much offense the portfolio is allowed to take, while the ETF ranker decides which liquid ETFs deserve that risk budget.',
+                        'It is still optimized and not overfit-proof, which is why the page explains the caveat directly. The strategy is acceptable to surface because it held up in the frozen and walk-forward robust passes, not because it found the highest historical CAGR.'
+                    ]
+                };
             } else if (isBestMix()) {
                 content = {
                     title: 'Best Mix Decision Tree',
@@ -2160,7 +2455,7 @@
                 DOM.robHigh.textContent = '17.0%';
                 DOM.robBestEra.textContent = '2013-01 (CAGR 14.8%)';
                 DOM.robWorstEra.textContent = '2008-01 (CAGR 9.4%)';
-            } else if (isAllocator()) {
+            } else if (isAllocator() || isEnsembleTop100()) {
                 DOM.robVar.textContent = db.mcValues.length ? `${db.mcValues[0].toFixed(1)}%` : '-';
                 DOM.robMedian.textContent = db.kpi.cagr;
                 DOM.robHigh.textContent = db.mcValues.length ? `${db.mcValues[db.mcValues.length - 1].toFixed(1)}%` : '-';
