@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import datetime
 import os
 import plotly.graph_objects as go
 
@@ -72,6 +71,7 @@ def get_200ma_data(target_date, master_df):
     return current_sp, current_200ma, drawdown, current_vix, spy_hist
 
 from utils.data_engine import get_clean_master
+from utils.ui_utils import resolve_master_date_slice
 
 def get_t2108_proxy(target_date, master_df):
     top_tickers = [
@@ -127,13 +127,18 @@ def get_sos_indicator(target_date):
 
 # --- Main Dashboard Rendering ---
 master_df = get_clean_master()
+_, resolved_date = resolve_master_date_slice(master_df, analysis_date)
 res = get_200ma_data(analysis_date, master_df)
 
-if res:
+if res and resolved_date is not None:
     current_sp, current_200ma, drawdown, current_vix, spy_hist = res
     t2108 = get_t2108_proxy(analysis_date, master_df)
     recession_prob = get_recession_odds(analysis_date)
     sos_val = get_sos_indicator(analysis_date)
+
+    st.caption(
+        f"Master date: {analysis_date.strftime('%Y-%m-%d')} | Resolved data date: {resolved_date.strftime('%Y-%m-%d')}"
+    )
     
     # Summary Metrics
     m1, m2, m3, m4 = st.columns(4)
@@ -206,4 +211,4 @@ if res:
         **The Philosophy:** By taking a small loss when the trend breaks, you explicitly remove the possibility of a catastrophic drop.
         """)
 else:
-    st.error("No market data available for the selected date.")
+    st.error("No market data is available on or before the selected master date.")

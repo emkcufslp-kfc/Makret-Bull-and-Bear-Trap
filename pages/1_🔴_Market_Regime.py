@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import datetime
 import os
 import plotly.graph_objects as go
 
@@ -8,6 +7,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="Market Regime & Crash Probability", page_icon="🔴", layout="wide")
 
 from utils.data_engine import get_clean_master, get_hy_spread, get_move, get_gex, get_t2108, get_sp500_drawdown, get_data_freshness
+from utils.ui_utils import get_latest_master_data_date
 
 def get_vix_term_structure(target_date):
     try:
@@ -47,7 +47,7 @@ def dashboard():
 
     # Priority 1: Master Date from Session State
     if 'master_date' not in st.session_state:
-        st.session_state['master_date'] = datetime.date.today()
+        st.session_state['master_date'] = get_latest_master_data_date()
     
     analysis_date = st.session_state['master_date']
     
@@ -70,6 +70,10 @@ def dashboard():
         st.warning(f"No data available for {analysis_date}. Showing latest.")
         d = data
         actual_date = data.index[-1]
+
+    st.caption(
+        f"Master date: {analysis_date.strftime('%Y-%m-%d')} | Resolved data date: {actual_date.strftime('%Y-%m-%d')}"
+    )
     
     latest = d.iloc[-1]
     

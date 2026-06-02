@@ -120,6 +120,9 @@ def build_dashboard():
         
     actual_date = valid_dates[-1]
     d = data.loc[:actual_date]
+    st.caption(
+        f"Master date: {analysis_date.strftime('%Y-%m-%d')} | Resolved data date: {actual_date.strftime('%Y-%m-%d')}"
+    )
     
     # Derivation Engine
     with st.spinner("Reverse engineering 20-year footprint thresholds..."):

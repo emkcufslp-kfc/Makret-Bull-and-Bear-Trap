@@ -3,15 +3,50 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 
-from utils.data_engine import get_data_freshness
+from utils.data_engine import get_clean_master, get_data_freshness
+
+
+@st.cache_data(ttl=1800)
+def get_latest_master_data_date() -> datetime.date:
+    """Resolve the latest real date supported by the shared master dataset."""
+    try:
+        master = get_clean_master().ffill().dropna(how="all")
+        if not master.empty:
+            return master.index.max().date()
+    except Exception:
+        pass
+    return datetime.date.today()
+
+
+def resolve_master_date_slice(data: pd.DataFrame, selected_date: datetime.date) -> tuple[pd.DataFrame, pd.Timestamp | None]:
+    """Return the frame truncated to the latest available row on or before the selected master date."""
+    if data is None or data.empty:
+        return pd.DataFrame(), None
+
+    clean = data.sort_index().ffill().dropna(how="all")
+    if clean.empty:
+        return pd.DataFrame(), None
+
+    target_ts = pd.Timestamp(selected_date)
+    valid_dates = clean.index[clean.index <= target_ts]
+    if len(valid_dates) == 0:
+        return pd.DataFrame(), None
+
+    actual_date = valid_dates[-1]
+    return clean.loc[:actual_date].copy(), actual_date
 
 
 def render_master_controls():
     """Centralized master date and synchronization controls."""
+    latest_master_date = get_latest_master_data_date()
+
     if "master_date" not in st.session_state:
-        st.session_state["master_date"] = datetime.date.today()
+        st.session_state["master_date"] = latest_master_date
+    elif st.session_state["master_date"] > latest_master_date:
+        st.session_state["master_date"] = latest_master_date
 
     st.sidebar.markdown(
         """
@@ -25,8 +60,8 @@ def render_master_controls():
     new_date = st.sidebar.date_input(
         "Master Date",
         value=st.session_state["master_date"],
-        max_value=datetime.date.today(),
-        help="Synchronize every dashboard to the same analysis date.",
+        max_value=latest_master_date,
+        help="Synchronize every dashboard to the same analysis date using the latest supported data horizon.",
     )
     if new_date != st.session_state["master_date"]:
         st.session_state["master_date"] = new_date
@@ -34,7 +69,7 @@ def render_master_controls():
 
     col1, col2 = st.sidebar.columns(2)
     if col1.button("Reset", use_container_width=True):
-        st.session_state["master_date"] = datetime.date.today()
+        st.session_state["master_date"] = latest_master_date
         st.rerun()
 
     if col2.button("Refresh", use_container_width=True):
@@ -82,6 +117,8 @@ def render_master_controls():
         st.sidebar.warning(
             f"Master date {st.session_state['master_date']} is ahead of one or more local datasets. Consider running Refresh."
         )
+
+    st.sidebar.caption(f"Latest shared master-data date: {latest_master_date:%Y-%m-%d}")
 
     st.sidebar.markdown("---")
 

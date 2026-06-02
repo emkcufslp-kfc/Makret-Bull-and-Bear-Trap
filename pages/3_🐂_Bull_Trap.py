@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.graph_objects as go
-import datetime
 
 st.set_page_config(page_title="Bull Trap Indicator", page_icon="🐂", layout="wide")
 
@@ -20,6 +19,8 @@ with st.sidebar:
     render_ecosystem_sidebar()
 
 def dashboard():
+    from utils.ui_utils import resolve_master_date_slice
+
     st.title("🐂 Bull Trap Indicator Dashboard")
     st.markdown("Structural transition detector identifying genuine bull markets vs. deceptive bear rallies (bull traps) using a 10-point scoring system.")
     
@@ -31,18 +32,10 @@ def dashboard():
             st.error("⚠️ Failed to fetch market data from Yahoo Finance. Please check your internet connection or try again later.")
             return
 
-        # Clean data: Forward fill to handle gaps, then drop rows that are still entirely NaN
-        data = data.ffill().dropna(how='all')
-        if data.empty:
-            st.error("⚠️ Market data is empty after cleaning. One or more tickers may be unavailable.")
+        d, actual_date = resolve_master_date_slice(data, analysis_date)
+        if d.empty or actual_date is None:
+            st.error("No market data is available on or before the selected master date.")
             return
-
-    analysis_ts = pd.Timestamp(analysis_date)
-    d = data.loc[:analysis_ts]
-    if d.empty:
-        # Fallback to the latest available day if the specific date isn't found
-        st.warning(f"No data found for {analysis_date}. Showing latest available data from {data.index[-1].strftime('%Y-%m-%d')}.")
-        d = data
 
     # Final safety check before indexing
     if d.empty or len(d) < 200:
@@ -50,11 +43,13 @@ def dashboard():
         return
 
     latest = d.iloc[-1]
-    actual_date = d.index[-1]
     prev_loc = max(0, len(d) - 23)
     prev_mo = d.iloc[prev_loc]
     
-    st.markdown(f"<p style='color: #8892a4;'>Data as of: <b>{actual_date.strftime('%Y-%m-%d')}</b></p>", unsafe_allow_html=True)
+    st.markdown(
+        f"<p style='color: #8892a4;'>Master date: <b>{analysis_date.strftime('%Y-%m-%d')}</b> | Resolved data date: <b>{actual_date.strftime('%Y-%m-%d')}</b></p>",
+        unsafe_allow_html=True,
+    )
     
     scores = {}
     

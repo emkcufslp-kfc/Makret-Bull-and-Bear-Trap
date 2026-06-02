@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-import datetime
 import logging
 
 try:
@@ -11,6 +10,7 @@ except ImportError:
     GaussianHMM = None
 
 from sklearn.ensemble import RandomForestClassifier
+from utils.ui_utils import resolve_master_date_slice
 
 # --- Page Config ---
 st.set_page_config(page_title="ML Meta-Indicator", layout="wide")
@@ -129,6 +129,11 @@ if results is not None:
     current_prob = results['Meta_Probability'].iloc[-1] * 100
     current_signal = results['Primary_Signal'].iloc[-1]
     last_date = results.index[-1].strftime('%Y-%m-%d')
+    _, resolved_date = resolve_master_date_slice(results, analysis_date)
+    if resolved_date is not None:
+        st.caption(
+            f"Master date: {analysis_date.strftime('%Y-%m-%d')} | Resolved data date: {resolved_date.strftime('%Y-%m-%d')}"
+        )
     
     # --- Status Banner ---
     if current_prob > 60:
@@ -236,4 +241,4 @@ if results is not None:
     """)
 
 else:
-    st.error(f"Waiting for market data for {analysis_date}. Please select a weekday.")
+    st.error(f"No market data is available on or before the selected master date {analysis_date}.")

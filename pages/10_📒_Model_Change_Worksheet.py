@@ -1,10 +1,8 @@
-import datetime
-
 import pandas as pd
 import streamlit as st
 
 from utils.model_change_monitor import ALL_MODELS, build_warning_mode_events
-from utils.ui_utils import render_ecosystem_sidebar, render_master_controls
+from utils.ui_utils import get_latest_master_data_date, render_ecosystem_sidebar, render_master_controls
 
 
 st.set_page_config(page_title="Model Change Monitor Worksheet", page_icon="MC", layout="wide")
@@ -77,7 +75,7 @@ def render_page():
         render_master_controls()
         render_ecosystem_sidebar()
 
-    end_date = st.session_state.get("master_date", datetime.date.today())
+    end_date = st.session_state.get("master_date", get_latest_master_data_date())
     events = build_warning_mode_events(end_date)
 
     st.markdown(

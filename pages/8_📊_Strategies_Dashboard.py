@@ -3,12 +3,12 @@ import streamlit.components.v1 as components
 import pandas as pd
 import numpy as np
 import json
-import datetime
 from pathlib import Path
 import re
 
 from backend.strategies.allocator_engine import load_allocator_json
 from backend.strategies.ensemble_top100_engine import load_ensemble_top100_json
+from utils.ui_utils import get_latest_master_data_date
 
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Strategies Dashboard", page_icon="📊")
@@ -409,7 +409,7 @@ def main():
     st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)")
     
     # Sync with Streamlit Master Date Picker
-    selected_date = st.session_state.get('master_date', datetime.date.today())
+    selected_date = st.session_state.get('master_date', get_latest_master_data_date())
     master_date_str = selected_date.strftime('%Y-%m-%d')
     sel_dt = pd.Timestamp(selected_date)
     
