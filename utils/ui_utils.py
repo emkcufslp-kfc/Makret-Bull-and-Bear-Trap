@@ -43,7 +43,12 @@ def render_master_controls():
     """Centralized master date and synchronization controls."""
     latest_master_date = get_latest_master_data_date()
 
+    if "master_date_auto_follow" not in st.session_state:
+        st.session_state["master_date_auto_follow"] = True
+
     if "master_date" not in st.session_state:
+        st.session_state["master_date"] = latest_master_date
+    elif st.session_state.get("master_date_auto_follow", True):
         st.session_state["master_date"] = latest_master_date
     elif st.session_state["master_date"] > latest_master_date:
         st.session_state["master_date"] = latest_master_date
@@ -65,11 +70,13 @@ def render_master_controls():
     )
     if new_date != st.session_state["master_date"]:
         st.session_state["master_date"] = new_date
+        st.session_state["master_date_auto_follow"] = new_date == latest_master_date
         st.rerun()
 
     col1, col2 = st.sidebar.columns(2)
     if col1.button("Reset", use_container_width=True):
         st.session_state["master_date"] = latest_master_date
+        st.session_state["master_date_auto_follow"] = True
         st.rerun()
 
     if col2.button("Refresh", use_container_width=True):
