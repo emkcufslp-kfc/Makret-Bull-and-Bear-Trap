@@ -15,7 +15,6 @@ BUNDLED_DATA_DIR = Path(__file__).resolve().parent / "data"
 ETF_PRICE_CSV = BUNDLED_DATA_DIR / "top100_etf_prices.csv"
 
 START_DATE = pd.Timestamp("2008-05-30")
-END_DATE = pd.Timestamp("2026-05-29")
 INITIAL_CAPITAL = 100000.0
 TRADE_COST_BPS = 5.0
 RECENT_WINDOW = 36
@@ -249,7 +248,7 @@ def _load_prices() -> pd.DataFrame:
     keep = list(dict.fromkeys([c for c in TOP100_ETFS + ["SPY"] if c in prices.columns]))
     prices = prices.loc[:, ~prices.columns.duplicated()]
     prices = prices[keep]
-    return prices.loc[(prices.index >= START_DATE) & (prices.index <= END_DATE)].copy()
+    return prices.loc[prices.index >= START_DATE].copy()
 
 
 def _build_monthly_signal_table(price_index: pd.DatetimeIndex) -> pd.DataFrame:

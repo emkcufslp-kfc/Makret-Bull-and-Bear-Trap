@@ -18,6 +18,7 @@ os.chdir(REPO_ROOT)
 if REPO_ROOT not in sys.path:
     sys.path.append(REPO_ROOT)
 
+from backend.refresh_strategy_artifacts import refresh_all_strategy_artifacts
 from utils.data_engine import get_master_data
 
 def log_progress(msg):
@@ -130,6 +131,12 @@ def sync():
     run_script("backend/export_fund_tactical_data.py")
     run_script("backend/update_sentiment.py")
     update_macro_indicators()
+    try:
+        log_progress("Refreshing bundled strategy artifacts...")
+        for artifact in refresh_all_strategy_artifacts():
+            log_progress(f"Updated artifact: {artifact}")
+    except Exception as e:
+        log_progress(f"Strategy artifact refresh failed: {e}")
     
     log_progress("✅ Pipeline execution complete.")
 
