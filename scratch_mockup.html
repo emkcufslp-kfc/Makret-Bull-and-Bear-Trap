@@ -1412,6 +1412,18 @@
                 `;
             } else if (allocatorMode || ensembleMode) {
                 const stateWeights = db.meta?.stateWeights || [];
+                const currentState = (db.meta?.currentState || '').toLowerCase();
+                const ensembleScore = Number(db.meta?.ensembleScore ?? 0);
+                const rawScore = db.meta?.rawScore ?? '-';
+                const warningPenalty = db.meta?.warningPenalty ?? '-';
+                const shiftCount = db.meta?.shiftCount ?? 0;
+                const ladderItems = stateWeights.length ? stateWeights : [
+                    { state: 'Risk-On', mix: '5 offensive ETFs when score >= 80' },
+                    { state: 'Tilted', mix: '4 offensive / 1 defensive when score 65-79' },
+                    { state: 'Balanced', mix: '3 offensive / 2 defensive when score 50-64' },
+                    { state: 'Cautious', mix: '2 offensive / 3 defensive when score 35-49' },
+                    { state: 'Defensive', mix: '1 offensive / 4 defensive when score < 35' }
+                ];
                 DOM.leftPanelTitle.textContent = ensembleMode ? "Ensemble Score Ladder" : "Allocator State Weights";
                 DOM.leftPanelInteractive.innerHTML = `
                     <div class="flex flex-col h-full justify-between gap-3">
@@ -1419,23 +1431,23 @@
                             <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
                                 <div class="flex items-center justify-between text-xs">
                                     <span class="text-slate-400 uppercase tracking-wider">Ensemble Score</span>
-                                    <span class="font-mono text-sky-300">${(db.meta?.ensembleScore || 0).toFixed ? db.meta.ensembleScore.toFixed(1) : db.meta?.ensembleScore}</span>
+                                    <span class="font-mono text-sky-300">${ensembleScore.toFixed(1)}</span>
                                 </div>
                                 <div class="mt-2 h-2 rounded-full progress-bg overflow-hidden">
-                                    <div class="h-full bg-sky-500" style="width:${Math.max(0, Math.min(100, db.meta?.ensembleScore || 0))}%"></div>
+                                    <div class="h-full bg-sky-500" style="width:${Math.max(0, Math.min(100, ensembleScore))}%"></div>
                                 </div>
                                 <div class="mt-2 flex justify-between text-[10px] text-slate-500">
-                                    <span>Raw ${db.meta?.rawScore ?? '-'}</span>
-                                    <span>Penalty ${db.meta?.warningPenalty ?? '-'}</span>
-                                    <span>${db.meta?.shiftCount ?? 0} shifts</span>
+                                    <span>Raw ${rawScore}</span>
+                                    <span>Penalty ${warningPenalty}</span>
+                                    <span>${shiftCount} shifts</span>
                                 </div>
                             </div>
                         ` : ''}
-                        ${stateWeights.map(item => `
-                            <div class="p-3 rounded-xl ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? (ensembleMode ? 'bg-sky-500/10 border-sky-400/40' : 'bg-orange-500/10 border-orange-400/40') : 'bg-slate-950/70 border-slate-800'} border">
+                        ${ladderItems.map(item => `
+                            <div class="p-3 rounded-xl ${item.state.toLowerCase() === currentState ? (ensembleMode ? 'bg-sky-500/10 border-sky-400/40' : 'bg-orange-500/10 border-orange-400/40') : 'bg-slate-950/70 border-slate-800'} border">
                                 <div class="flex items-center justify-between text-xs">
                                     <span class="text-slate-300 uppercase tracking-wider font-bold">${item.state}</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded ${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? (ensembleMode ? 'bg-sky-500/20 text-sky-200' : 'bg-orange-500/20 text-orange-200') : 'bg-slate-900 text-slate-400'}">${item.state.toLowerCase() === db.meta?.currentState?.toLowerCase() ? 'ACTIVE' : 'Standby'}</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded ${item.state.toLowerCase() === currentState ? (ensembleMode ? 'bg-sky-500/20 text-sky-200' : 'bg-orange-500/20 text-orange-200') : 'bg-slate-900 text-slate-400'}">${item.state.toLowerCase() === currentState ? 'ACTIVE' : 'Standby'}</span>
                                 </div>
                                 <div class="mt-2 text-sm font-semibold text-white">${item.mix}</div>
                             </div>
@@ -2085,6 +2097,7 @@
 
         // --- TAB 4: STRATEGY LOGIC ---
         function renderLogicTab() {
+            const db = getCurrentDb();
             let content;
 
             if (isNtsx()) {
