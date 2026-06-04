@@ -3,13 +3,11 @@ import streamlit.components.v1 as components
 import pandas as pd
 import numpy as np
 import json
-import datetime
 from pathlib import Path
 import re
 
 from backend.strategies.allocator_engine import load_allocator_json
 from backend.strategies.ensemble_top100_engine import load_ensemble_top100_json
-from utils.data_engine import get_clean_master
 from utils.ui_utils import get_latest_master_data_date
 
 # Set Page Config
@@ -22,42 +20,6 @@ DATA_DIR_NTSX = ROOT_DIR / "data" / "Multi_indicator"
 DATA_DIR_FUND = ROOT_DIR / "data" / "Fund_Tactical_Results"
 MOCKUP_PATH = ROOT_DIR / "scratch_mockup.html"
 
-
-@st.cache_data(ttl=1800)
-def get_strategy_suite_latest_common_date() -> datetime.date:
-    """Latest date that every strategy tab can support at the same time."""
-    candidate_dates: list[datetime.date] = []
-
-    master = get_clean_master().ffill().dropna(how="all")
-    if not master.empty:
-        candidate_dates.append(master.index.max().date())
-
-    ntsx_js = DATA_DIR_NTSX / "ntsx_data.js"
-    if ntsx_js.exists():
-        js_text = ntsx_js.read_text(encoding="utf-8", errors="replace")
-        js_dates = re.findall(r"\d{4}-\d{2}-\d{2}", js_text)
-        if js_dates:
-            candidate_dates.append(pd.to_datetime(max(js_dates)).date())
-
-    platinum_equity = DATA_DIR_PLATINUM / "Platinum_Equity.csv"
-    if platinum_equity.exists():
-        eq = pd.read_csv(platinum_equity, index_col=0, parse_dates=True)
-        if not eq.empty:
-            candidate_dates.append(eq.index.max().date())
-
-    fund_equity = DATA_DIR_FUND / "Fund_Tactical_equity_curve.csv"
-    if fund_equity.exists():
-        eq = pd.read_csv(fund_equity, index_col=0, parse_dates=True)
-        if not eq.empty:
-            candidate_dates.append(eq.index.max().date())
-
-    top100_prices = ROOT_DIR / "backend" / "strategies" / "data" / "top100_etf_prices.csv"
-    if top100_prices.exists():
-        prices = pd.read_csv(top100_prices, index_col=0, parse_dates=True)
-        if not prices.empty:
-            candidate_dates.append(prices.index.max().date())
-
-    return min(candidate_dates) if candidate_dates else get_latest_master_data_date()
 
 def load_ntsx_data(master_date_str):
     js_path = DATA_DIR_NTSX / "ntsx_data.js"
@@ -451,22 +413,13 @@ def load_ensemble_top100_live_json(sel_dt):
 def main():
     st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)")
     
-    # Sync with Streamlit Master Date Picker
-    suite_common_date = get_strategy_suite_latest_common_date()
     selected_date = st.session_state.get('master_date', get_latest_master_data_date())
-    if selected_date > suite_common_date:
-        st.session_state["master_date"] = suite_common_date
-        # Prevent the shared sidebar auto-follow control from immediately
-        # resetting the suite-constrained date back to the latest master date.
-        st.session_state["master_date_auto_follow"] = False
-        st.rerun()
-
     master_date_str = selected_date.strftime('%Y-%m-%d')
     latest_supported_date_str = get_latest_master_data_date().strftime('%Y-%m-%d')
     sel_dt = pd.Timestamp(selected_date)
 
     st.caption(
-        f"Strategy suite master date: {master_date_str} | Latest common date across all strategy tabs: {suite_common_date:%Y-%m-%d}"
+        f"Strategy suite master date: {master_date_str} | Each strategy resolves to the latest available PIT snapshot on or before the selected date."
     )
     
     # 1. Check if mockup HTML template exists
