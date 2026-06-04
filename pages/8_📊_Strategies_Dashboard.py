@@ -411,6 +411,7 @@ def main():
     # Sync with Streamlit Master Date Picker
     selected_date = st.session_state.get('master_date', get_latest_master_data_date())
     master_date_str = selected_date.strftime('%Y-%m-%d')
+    latest_supported_date_str = get_latest_master_data_date().strftime('%Y-%m-%d')
     sel_dt = pd.Timestamp(selected_date)
     
     # 1. Check if mockup HTML template exists
@@ -557,8 +558,15 @@ def main():
         # Inject adapter right before closing body tag
         html_content = html_content.replace("</body>", js_adapter + "\n</body>")
         
-        # Sync Streamlit date value back into HTML default fields
-        html_content = html_content.replace('value="2026-05-23"', f'value="{master_date_str}"')
+        # Override stale mockup defaults so the iframe always boots from live dates.
+        html_content = re.sub(r'value="\d{4}-\d{2}-\d{2}"', f'value="{master_date_str}"', html_content, count=1)
+        html_content = re.sub(r"date:\s*'\d{4}-\d{2}-\d{2}'", f"date: '{master_date_str}'", html_content, count=1)
+        html_content = re.sub(
+            r"new Date\('\d{4}-\d{2}-\d{2}'\)",
+            f"new Date('{latest_supported_date_str}')",
+            html_content,
+            count=1,
+        )
         
         # Render HTML component
         components.html(html_content, height=1200, scrolling=True)
