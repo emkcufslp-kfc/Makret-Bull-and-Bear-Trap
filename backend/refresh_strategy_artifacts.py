@@ -14,11 +14,14 @@ if str(ROOT_DIR) not in sys.path:
 from backend.strategies.ensemble_top100_engine import START_DATE, TOP100_ETFS
 from utils.data_engine import get_clean_master
 from utils.model_change_monitor import build_warning_mode_events
+from utils.yfinance_utils import configure_yfinance_cache
 
 EXPORTS_DIR = ROOT_DIR / "exports"
 STRATEGY_DATA_DIR = ROOT_DIR / "backend" / "strategies" / "data"
 WORKSHEET_NAME = "model_change_worksheet_full_history.csv"
 TOP100_PRICE_NAME = "top100_etf_prices.csv"
+
+configure_yfinance_cache(ROOT_DIR)
 
 
 def _today_us_eastern() -> dt.date:

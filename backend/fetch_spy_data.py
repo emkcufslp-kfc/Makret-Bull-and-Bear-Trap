@@ -2,9 +2,19 @@ import yfinance as yf
 import pandas as pd
 import json
 import os
+import sys
+from pathlib import Path
 
 # Get path relative to this script's location (backend/ folder)
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = Path(CURR_DIR).parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+from utils.yfinance_utils import configure_yfinance_cache
+
+configure_yfinance_cache(REPO_ROOT)
+
 # Output to root/data/Multi_indicator/
 OUT_DIR = os.path.abspath(os.path.join(CURR_DIR, "../data/Multi_indicator"))
 os.makedirs(OUT_DIR, exist_ok=True)

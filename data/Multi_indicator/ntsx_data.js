@@ -1,6 +1,6 @@
 // ntsx_data.js — Auto-generated on 2026-06-08
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-06-08",
+  "as_of_date": "2026-06-05",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -38,7 +38,7 @@ const NTSX_CURRENT     = {
     2.86,
     7.04
   ],
-  "days_since_last_rebalance": 574,
+  "days_since_last_rebalance": 571,
   "last_rebalance_date": "2024-11-11"
 };
 const NTSX_REBALANCES  = [
@@ -24565,22 +24565,17 @@ const NTSX_EQUITY      = [
   },
   {
     "date": "2026-06-03",
-    "port": 491.74,
-    "spy": 698.0974
+    "port": 493.9757,
+    "spy": 703.0307
   },
   {
     "date": "2026-06-04",
-    "port": 491.6481,
-    "spy": 700.7353
+    "port": 490.1053,
+    "spy": 696.8942
   },
   {
     "date": "2026-06-05",
-    "port": 483.6202,
-    "spy": 682.6497
-  },
-  {
-    "date": "2026-06-08",
-    "port": 483.6202,
+    "port": 483.6217,
     "spy": 682.6497
   }
 ];
@@ -24748,7 +24743,7 @@ const NTSX_YEARLY      = [
 ];
 const NTSX_METRICS     = {
   "portfolio": {
-    "cagr": 8.64,
+    "cagr": 8.65,
     "max_dd": -30.83,
     "sharpe": 0.41,
     "sortino": 0.54,

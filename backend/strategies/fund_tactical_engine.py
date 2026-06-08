@@ -243,11 +243,11 @@ def performance_metrics(ret: pd.Series, equity: pd.Series, rf: float):
 
 
 def annual_returns(ret: pd.Series):
-    return (1 + ret).resample("Y").prod() - 1
+    return (1 + ret).resample("YE").prod() - 1
 
 
 def monthly_returns(ret: pd.Series):
-    return (1 + ret).resample("M").prod() - 1
+    return (1 + ret).resample("ME").prod() - 1
 
 
 def rolling_win_rate(lhs: pd.Series, rhs: pd.Series, days: int):
@@ -312,7 +312,7 @@ def save(cfg: Config, outdir: Path):
                 rolling_win_rate(res.Strategy_Return, res.SPY_Return, 252),
                 rolling_win_rate(res.Strategy_Return, res.SPY_Return, 252 * 3),
                 rolling_win_rate(res.Strategy_Return, res.SPY_Return, 252 * 5),
-                res.Turnover.resample("M").sum().mean(),
+                res.Turnover.resample("ME").sum().mean(),
             ],
         }
     )

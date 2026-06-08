@@ -9,3 +9,5 @@ pyarrow>=14.0.0
 scikit-learn>=1.3.0
 fear-and-greed
 hmmlearn>=0.3.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
