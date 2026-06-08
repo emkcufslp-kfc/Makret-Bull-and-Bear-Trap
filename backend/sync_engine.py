@@ -139,6 +139,7 @@ def sync():
     run_script("backend/strategies/ntsx_engine.py")
     run_script("backend/export_platinum_data.py")
     run_script("backend/export_fund_tactical_data.py")
+    run_script("backend/export_warning_dashboard_snapshot.py")
     run_script("backend/update_sentiment.py")
     update_macro_indicators()
     try:

@@ -19,6 +19,7 @@ from backend.strategies.fund_tactical_engine import CONFIG as FUND_TACTICAL_CONF
 from backend.strategies.fund_tactical_engine import load_prices as load_fund_tactical_prices
 from backend.strategies.platinum_engine import fetch_data as load_platinum_prices
 from utils.data_engine import get_clean_master
+from utils.warning_dashboard import build_warning_dashboard
 from utils.yfinance_utils import configure_yfinance_cache
 
 configure_yfinance_cache(ROOT_DIR)
@@ -158,6 +159,16 @@ def main() -> int:
         ROOT_DIR / "backend" / "strategies" / "data" / "model_change_worksheet_full_history.csv",
         errors,
     )
+    check_exists_and_nonempty(
+        "Warning Indicator Matrix Export",
+        ROOT_DIR / "exports" / "warning_indicator_matrix.csv",
+        errors,
+    )
+    check_exists_and_nonempty(
+        "Warning Timeline Export",
+        ROOT_DIR / "exports" / "warning_timeline.csv",
+        errors,
+    )
 
     combined = compute_combined_snapshot(market_expected.date())
     combined_resolved = pd.Timestamp(combined.resolved_date).normalize()
@@ -179,6 +190,19 @@ def main() -> int:
         errors.append("Ensemble Top-100 strategy payload build returned no data.")
     else:
         print("[OK] Ensemble Top-100 strategy payload built successfully.")
+
+    warning_payload = build_warning_dashboard(market_expected.date())
+    if not warning_payload:
+        errors.append("Warning dashboard payload build returned no data.")
+    else:
+        warning_actual = pd.Timestamp(warning_payload["actual_date"]).normalize()
+        if warning_actual > market_expected:
+            errors.append(f"Warning dashboard resolved to future date {warning_actual.date()}")
+        else:
+            print(
+                f"[OK] Warning dashboard payload built successfully "
+                f"({warning_payload['warning_level']} | {warning_payload['active_warnings']} active)"
+            )
 
     if errors:
         print("\nVerification failed:")
