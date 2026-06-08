@@ -11,7 +11,13 @@ from utils.data_engine import get_clean_master, get_data_freshness
 
 @st.cache_data(ttl=1800)
 def get_latest_master_data_date() -> datetime.date:
-    """Resolve the latest real date supported by the shared master dataset."""
+    """Return the calendar master date that dashboards should follow by default."""
+    return datetime.date.today()
+
+
+@st.cache_data(ttl=1800)
+def get_latest_actual_market_data_date() -> datetime.date:
+    """Resolve the latest completed market session supported by the shared dataset."""
     try:
         master = get_clean_master().ffill().dropna(how="all")
         if not master.empty:
@@ -42,6 +48,7 @@ def resolve_master_date_slice(data: pd.DataFrame, selected_date: datetime.date) 
 def render_master_controls():
     """Centralized master date and synchronization controls."""
     latest_master_date = get_latest_master_data_date()
+    latest_actual_market_date = get_latest_actual_market_data_date()
 
     if "master_date_auto_follow" not in st.session_state:
         st.session_state["master_date_auto_follow"] = True
@@ -66,7 +73,7 @@ def render_master_controls():
         "Master Date",
         value=st.session_state["master_date"],
         max_value=latest_master_date,
-        help="Synchronize every dashboard to the same analysis date using the latest supported data horizon.",
+        help="Synchronize every dashboard to the same calendar analysis date. Each module resolves to the latest available market data on or before that date.",
     )
     if new_date != st.session_state["master_date"]:
         st.session_state["master_date"] = new_date
@@ -125,7 +132,8 @@ def render_master_controls():
             f"Master date {st.session_state['master_date']} is ahead of one or more local datasets. Consider running Refresh."
         )
 
-    st.sidebar.caption(f"Latest shared master-data date: {latest_master_date:%Y-%m-%d}")
+    st.sidebar.caption(f"Calendar master date: {latest_master_date:%Y-%m-%d}")
+    st.sidebar.caption(f"Latest completed market-data date: {latest_actual_market_date:%Y-%m-%d}")
 
     st.sidebar.markdown("---")
 
