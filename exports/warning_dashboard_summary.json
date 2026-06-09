@@ -1,13 +1,13 @@
 {
-  "master_date": "2026-06-05",
-  "actual_date": "2026-06-05",
+  "master_date": "2026-06-09",
+  "actual_date": "2026-06-09",
   "warning_level": "Critical",
-  "trigger_score": 11,
+  "trigger_score": 9,
   "active_warnings": 6,
   "escalation_status": "Escalate",
-  "last_signal_change": "2026-06-05",
+  "last_signal_change": "2026-06-09",
   "summary_points": [
-    "5 warning indicators and 1 watch indicators are active on the resolved market date.",
+    "3 warning indicators and 3 watch indicators are active on the resolved market date.",
     "The strongest deterioration is increasing downward momentum based on the current correction-checklist mapping.",
     "Next checkpoint: monitor the next master-date update for any change in increasing downward momentum."
   ]
