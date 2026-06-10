@@ -54,6 +54,7 @@ MARKET_SUMMARY_RYG = {
 }
 RYG_DOT_COUNT = {"Green": 1, "Yellow": 2, "Red": 3}
 RYG_DOT_COLOR = {"Green": "#22c55e", "Yellow": "#f59e0b", "Red": "#ef4444"}
+RYG_COUNT_TEMPLATE = {"Red": 0, "Yellow": 0, "Green": 0, "Total": 0}
 
 
 st.set_page_config(page_title="Market Stage Model", page_icon="MS", layout="wide")
@@ -149,6 +150,159 @@ def render_ryg_dots(status: str) -> str:
     )
 
 
+def _empty_ryg_counts() -> dict[str, int]:
+    return dict(RYG_COUNT_TEMPLATE)
+
+
+def _count_ryg_values(values: list[str]) -> dict[str, int]:
+    counts = _empty_ryg_counts()
+    for value in values:
+        if value in {"Red", "Yellow", "Green"}:
+            counts[value] += 1
+            counts["Total"] += 1
+    return counts
+
+
+def _summary_status_to_ryg(status: str) -> str | None:
+    text = str(status).upper()
+    if not text:
+        return None
+
+    if "HIGH RISK" in text or "BEARISH" in text or "LOW CONFIDENCE" in text or "RISK OFF" in text or "CRISIS" in text:
+        return "Red"
+    if "EARLY WARNING" in text or "CAUTION" in text or "NEUTRAL" in text or "REBALANCE" in text:
+        return "Yellow"
+    if "LOW RISK" in text or "BULLISH" in text or "NORMAL" in text or "HIGH CONFIDENCE" in text or "HOLD" in text:
+        return "Green"
+    return None
+
+
+def _combined_execution_to_ryg(execution_status: str) -> str | None:
+    text = str(execution_status).upper()
+    if "REBALANCE" in text:
+        return "Yellow"
+    if "HOLD" in text:
+        return "Green"
+    return _summary_status_to_ryg(text)
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def warning_ryg_counts_lookup(date_texts: tuple[str, ...]) -> dict[str, dict[str, int]]:
+    _ensure_repo_import_path()
+    try:
+        from utils.data_engine import get_clean_master
+        from utils.warning_dashboard import _build_indicator_rows
+    except Exception:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+
+    try:
+        master = get_clean_master().ffill().dropna(how="all")
+    except Exception:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+    if master.empty:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+
+    out: dict[str, dict[str, int]] = {}
+    status_map = {"Warning": "Red", "Watch": "Yellow", "Normal": "Green"}
+    for date_text in date_texts:
+        try:
+            valid_dates = master.index[master.index <= pd.Timestamp(date_text)]
+            if len(valid_dates) == 0:
+                out[date_text] = _empty_ryg_counts()
+                continue
+
+            actual_date = valid_dates[-1]
+            data = master.loc[:actual_date].copy()
+            if len(data) < 220:
+                out[date_text] = _empty_ryg_counts()
+                continue
+
+            indicators = _build_indicator_rows(data, actual_date)
+            out[date_text] = _count_ryg_values([status_map.get(str(row.status), "") for row in indicators])
+        except Exception:
+            out[date_text] = _empty_ryg_counts()
+    return out
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def market_summary_ryg_counts_lookup(date_texts: tuple[str, ...]) -> dict[str, dict[str, int]]:
+    _ensure_repo_import_path()
+    try:
+        from backend.strategies.combined_macro_rwra import compute_combined_snapshot
+        from utils.data_engine import get_clean_master
+        from utils.model_change_monitor import (
+            calc_200ma_strategy,
+            calc_bear_trap,
+            calc_bull_trap,
+            calc_etf_rotation,
+            calc_market_regime,
+            calc_meta_indicator,
+        )
+    except Exception:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+
+    try:
+        master = get_clean_master().ffill().dropna(how="all")
+    except Exception:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+    if master.empty:
+        return {date_text: _empty_ryg_counts() for date_text in date_texts}
+
+    out: dict[str, dict[str, int]] = {}
+    for date_text in date_texts:
+        try:
+            valid_dates = master.index[master.index <= pd.Timestamp(date_text)]
+            if len(valid_dates) == 0:
+                out[date_text] = _empty_ryg_counts()
+                continue
+
+            actual_date = valid_dates[-1]
+            data = master.loc[:actual_date].copy()
+            if len(data) < 260:
+                out[date_text] = _empty_ryg_counts()
+                continue
+
+            combined = compute_combined_snapshot(actual_date.date())
+            colors = [
+                _summary_status_to_ryg(calc_market_regime(data)["status"]),
+                _summary_status_to_ryg(calc_bear_trap(data)["risk_level"]),
+                _summary_status_to_ryg(calc_bull_trap(data)["market_status"]),
+                _summary_status_to_ryg(calc_etf_rotation(data)["status"]),
+                _summary_status_to_ryg(calc_200ma_strategy(data)["trend_status"]),
+                _summary_status_to_ryg(calc_meta_indicator(data, actual_date.date())["status"]),
+                _combined_execution_to_ryg(combined.execution_status),
+            ]
+            out[date_text] = _count_ryg_values([color for color in colors if color is not None])
+        except Exception:
+            out[date_text] = _empty_ryg_counts()
+    return out
+
+
+def render_ryg_distribution(value: object) -> str:
+    counts = value if isinstance(value, dict) else _empty_ryg_counts()
+    groups = []
+    for label in ["Red", "Yellow", "Green"]:
+        count = int(counts.get(label, 0))
+        color = RYG_DOT_COLOR[label]
+        dot_html = "".join(
+            f'<span style="display:inline-block;width:7px;height:7px;border-radius:999px;background:{color};box-shadow:0 0 7px {color};"></span>'
+            for _ in range(count)
+        )
+        groups.append(
+            '<span style="display:inline-flex;align-items:center;gap:4px;min-width:58px;">'
+            f'<span style="display:inline-flex;gap:2px;min-width:24px;">{dot_html}</span>'
+            f'<span style="color:{color};font-weight:800;">{label[0]} {count}</span>'
+            "</span>"
+        )
+    total = int(counts.get("Total", 0))
+    return (
+        '<span style="display:inline-flex;align-items:center;gap:7px;white-space:nowrap;">'
+        f"{''.join(groups)}"
+        f'<span style="color:#94a3b8;">/{total}</span>'
+        "</span>"
+    )
+
+
 def render_history_table(display_history: pd.DataFrame) -> str:
     headers = "".join(
         f'<th style="padding:9px 10px;text-align:left;border-bottom:1px solid #334155;color:#cbd5e1;font-size:12px;">{html.escape(str(col))}</th>'
@@ -162,7 +316,7 @@ def render_history_table(display_history: pd.DataFrame) -> str:
             value = row[col]
             align = "right" if col in numeric_cols else "left"
             if col in {"Warning RYG", "Summary RYG"}:
-                cell_value = render_ryg_dots(str(value))
+                cell_value = render_ryg_distribution(value)
             else:
                 cell_value = html.escape(str(value))
             cells.append(
@@ -625,10 +779,10 @@ def build_last_month_stage_history(processed: pd.DataFrame) -> pd.DataFrame:
         axis=1,
     )
     history_dates = tuple(history["Date"].tolist())
-    warning_lookup = warning_ryg_lookup(history_dates)
-    market_summary_lookup = market_summary_ryg_lookup(history_dates)
-    history["Warning RYG"] = history["Date"].map(warning_lookup).fillna("Unavailable")
-    history["Summary RYG"] = history["Date"].map(market_summary_lookup).fillna("Unavailable")
+    warning_lookup = warning_ryg_counts_lookup(history_dates)
+    market_summary_lookup = market_summary_ryg_counts_lookup(history_dates)
+    history["Warning RYG"] = history["Date"].map(lambda date_text: warning_lookup.get(date_text, _empty_ryg_counts()))
+    history["Summary RYG"] = history["Date"].map(lambda date_text: market_summary_lookup.get(date_text, _empty_ryg_counts()))
     return history[
         [
             "Date",
@@ -658,8 +812,8 @@ def render_stage_history(processed: pd.DataFrame) -> None:
         f"Real yfinance daily OHLCV only. Stages are computed with the full loaded history, then displayed from {start_date} to {end_date}."
     )
     st.caption(
-        "RYG columns: Red / Yellow / Green from the Warning module and Market Summary dashboard for the same date. "
-        "Dot count is severity: Green = 1 dot, Yellow = 2 dots, Red = 3 dots."
+        "RYG columns show daily component counts. Summary counts the 7 Market Summary modules; "
+        "Warning counts the 8 warning checklist indicators. Red / Yellow / Green dots are repeated by count."
     )
 
     counts = history["Stage"].value_counts()
