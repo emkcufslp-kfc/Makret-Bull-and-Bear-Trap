@@ -181,3 +181,4 @@ def render_ecosystem_sidebar():
 
     st.page_link("pages/7_🚀_FTD_Strategy.py", label="Market Pulse / FTD Strategy", icon="🚀")
     st.page_link("pages/8_📊_Strategies_Dashboard.py", label="Strategies Dashboard", icon="📊")
+    st.page_link("pages/12_Market_Stage_Model.py", label="Market Stage Model", icon="📈")
