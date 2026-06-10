@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import datetime as dt
 import os
+import sys
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -21,6 +22,7 @@ except ModuleNotFoundError:  # Python < 3.11 on some Streamlit deployments.
 
 
 APP_DIR = Path(__file__).resolve().parent
+ROOT_DIR = APP_DIR.parent
 CACHE_DIR = APP_DIR / ".cache" / "yfinance"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 try:
@@ -38,6 +40,17 @@ STAGE_STYLE = {
 }
 
 POLYGON_BASE_URL = "https://api.polygon.io"
+WARNING_RYG = {
+    "Critical": "Red",
+    "Elevated": "Red",
+    "Guarded": "Yellow",
+    "Stable": "Green",
+}
+MARKET_SUMMARY_RYG = {
+    "HIGH RISK": "Red",
+    "EARLY WARNING": "Yellow",
+    "LOW RISK REGIME": "Green",
+}
 
 
 st.set_page_config(page_title="Market Stage Model", page_icon="MS", layout="wide")
@@ -75,6 +88,171 @@ def close_series(data: pd.DataFrame) -> pd.Series:
     if isinstance(close, pd.DataFrame):
         close = close.iloc[:, 0]
     return pd.to_numeric(close, errors="coerce").dropna()
+
+
+def _ensure_repo_import_path() -> None:
+    root_str = str(ROOT_DIR)
+    if root_str not in sys.path:
+        sys.path.insert(0, root_str)
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def warning_ryg_for_date(date_text: str) -> str:
+    _ensure_repo_import_path()
+    try:
+        from utils.warning_dashboard import build_warning_dashboard
+    except Exception:
+        return "Unavailable"
+
+    try:
+        payload = build_warning_dashboard(pd.Timestamp(date_text).date())
+    except Exception:
+        return "Unavailable"
+    if not payload:
+        return "Unavailable"
+
+    return WARNING_RYG.get(str(payload.get("warning_level", "")), "Unavailable")
+
+
+def _safe_float(series: pd.Series, key: str, default: float = 0.0) -> float:
+    value = series.get(key, default)
+    try:
+        return float(value)
+    except Exception:
+        return float(default)
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def market_summary_ryg_for_date(date_text: str) -> str:
+    return market_summary_ryg_lookup((date_text,)).get(date_text, "Unavailable")
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def warning_ryg_lookup(date_texts: tuple[str, ...]) -> dict[str, str]:
+    _ensure_repo_import_path()
+    try:
+        from utils.data_engine import get_clean_master
+        from utils.warning_dashboard import _build_indicator_rows
+    except Exception:
+        return {date_text: "Unavailable" for date_text in date_texts}
+
+    try:
+        master = get_clean_master().ffill().dropna(how="all")
+    except Exception:
+        return {date_text: "Unavailable" for date_text in date_texts}
+    if master.empty:
+        return {date_text: "Unavailable" for date_text in date_texts}
+
+    out: dict[str, str] = {}
+    for date_text in date_texts:
+        try:
+            valid_dates = master.index[master.index <= pd.Timestamp(date_text)]
+            if len(valid_dates) == 0:
+                out[date_text] = "Unavailable"
+                continue
+
+            actual_date = valid_dates[-1]
+            data = master.loc[:actual_date].copy()
+            if len(data) < 220:
+                out[date_text] = "Unavailable"
+                continue
+
+            indicators = _build_indicator_rows(data, actual_date)
+            if not indicators:
+                out[date_text] = "Unavailable"
+                continue
+
+            scores = [int(row.score) for row in indicators]
+            statuses = [str(row.status) for row in indicators]
+            total_score = sum(scores)
+            warning_count = statuses.count("Warning")
+            watch_count = statuses.count("Watch")
+            if total_score >= 11 or warning_count >= 3:
+                level = "Critical"
+            elif total_score >= 7 or warning_count >= 2:
+                level = "Elevated"
+            elif total_score >= 4 or watch_count >= 3:
+                level = "Guarded"
+            else:
+                level = "Stable"
+            out[date_text] = WARNING_RYG.get(level, "Unavailable")
+        except Exception:
+            out[date_text] = "Unavailable"
+    return out
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def market_summary_ryg_lookup(date_texts: tuple[str, ...]) -> dict[str, str]:
+    _ensure_repo_import_path()
+    try:
+        from utils.data_engine import get_clean_master, get_gex, get_hy_spread, get_move, get_t2108
+    except Exception:
+        return {date_text: "Unavailable" for date_text in date_texts}
+
+    try:
+        master = get_clean_master().ffill().dropna(how="all")
+    except Exception:
+        return {date_text: "Unavailable" for date_text in date_texts}
+    if master.empty:
+        return {date_text: "Unavailable" for date_text in date_texts}
+
+    out: dict[str, str] = {}
+    for date_text in date_texts:
+        try:
+            valid_dates = master.index[master.index <= pd.Timestamp(date_text)]
+            if len(valid_dates) == 0:
+                out[date_text] = "Unavailable"
+                continue
+
+            actual_date = valid_dates[-1]
+            d = master.loc[:actual_date].copy()
+            if len(d) < 200 or "^GSPC" not in d.columns:
+                out[date_text] = "Unavailable"
+                continue
+
+            latest = d.iloc[-1]
+            sp_price = _safe_float(latest, "^GSPC")
+            dma200 = float(d["^GSPC"].rolling(200).mean().iloc[-1])
+            vix = _safe_float(latest, "^VIX", 20.0)
+            vix3m = _safe_float(latest, "^VIX3M", 21.0)
+            hy_spread_pct = get_hy_spread(actual_date.date())
+            move = get_move(actual_date.date())
+            t2108 = get_t2108(actual_date.date())
+            dxy = _safe_float(latest, "DX-Y.NYB", 100.0)
+            liquidity = 7.5e12
+            spy_gex = get_gex(actual_date.date())
+
+            score = 0
+            if sp_price < dma200:
+                score += 15
+            if hy_spread_pct > 5:
+                score += 20
+            if move > 100:
+                score += 15
+            if vix > 25:
+                score += 10
+            if vix > vix3m:
+                score += 10
+            if dxy > 105:
+                score += 10
+            if t2108 < 40:
+                score += 10
+            if spy_gex < 0:
+                score += 5
+            if liquidity < 7.0e12:
+                score += 5
+
+            probability = min(score, 100)
+            if probability < 30:
+                status = "LOW RISK REGIME"
+            elif probability < 55:
+                status = "EARLY WARNING"
+            else:
+                status = "HIGH RISK"
+            out[date_text] = MARKET_SUMMARY_RYG.get(status, "Unavailable")
+        except Exception:
+            out[date_text] = "Unavailable"
+    return out
 
 
 @st.cache_data(ttl=300, show_spinner=False)
@@ -393,12 +571,19 @@ def build_last_month_stage_history(processed: pd.DataFrame) -> pd.DataFrame:
         lambda row: f"{row['VWMA_8']:.2f} / {row['VWMA_21']:.2f} / {row['VWMA_34']:.2f}",
         axis=1,
     )
+    history_dates = tuple(history["Date"].tolist())
+    warning_lookup = warning_ryg_lookup(history_dates)
+    market_summary_lookup = market_summary_ryg_lookup(history_dates)
+    history["Warning RYG"] = history["Date"].map(warning_lookup).fillna("Unavailable")
+    history["Summary RYG"] = history["Date"].map(market_summary_lookup).fillna("Unavailable")
     return history[
         [
             "Date",
             "Close",
             "Stage",
             "Signal",
+            "Warning RYG",
+            "Summary RYG",
             "VWMA Stack",
             "VMA_21",
             "Volume",
@@ -419,6 +604,7 @@ def render_stage_history(processed: pd.DataFrame) -> None:
     st.caption(
         f"Real yfinance daily OHLCV only. Stages are computed with the full loaded history, then displayed from {start_date} to {end_date}."
     )
+    st.caption("RYG columns: Red / Yellow / Green from the Warning module and Market Summary dashboard for the same date.")
 
     counts = history["Stage"].value_counts()
     cols = st.columns(4)
@@ -434,16 +620,11 @@ def render_stage_history(processed: pd.DataFrame) -> None:
             unsafe_allow_html=True,
         )
 
-    st.dataframe(
-        history,
-        hide_index=True,
-        use_container_width=True,
-        column_config={
-            "Close": st.column_config.NumberColumn(format="$%.2f"),
-            "VMA 21": st.column_config.NumberColumn(format="%.2f"),
-            "Volume": st.column_config.NumberColumn(format="%d"),
-        },
-    )
+    display_history = history.copy()
+    display_history["Close"] = display_history["Close"].map(lambda value: f"${value:,.2f}")
+    display_history["VMA 21"] = display_history["VMA 21"].map(lambda value: f"{value:,.2f}")
+    display_history["Volume"] = display_history["Volume"].map(lambda value: f"{int(value):,}")
+    st.table(display_history)
 
 
 def render_sentiment_hud(include_partial: bool, polygon_key: str) -> None:
