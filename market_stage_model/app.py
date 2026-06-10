@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import datetime as dt
 import os
-import tomllib
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -14,6 +13,11 @@ import streamlit as st
 import yfinance as yf
 
 from engine import compute_market_stages, latest_stage_snapshot, scan_phase_shifts
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python < 3.11 on some Streamlit deployments.
+    tomllib = None
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -120,7 +124,7 @@ def get_polygon_api_key() -> str:
         return str(secret_key).strip()
 
     local_secrets = APP_DIR / ".streamlit" / "secrets.toml"
-    if local_secrets.exists():
+    if tomllib is not None and local_secrets.exists():
         try:
             with local_secrets.open("rb") as handle:
                 local_key = tomllib.load(handle).get("POLYGON_API_KEY", "")
