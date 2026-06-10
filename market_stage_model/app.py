@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import html
 import os
 import sys
 from pathlib import Path
@@ -51,6 +52,8 @@ MARKET_SUMMARY_RYG = {
     "EARLY WARNING": "Yellow",
     "LOW RISK REGIME": "Green",
 }
+RYG_DOT_COUNT = {"Green": 1, "Yellow": 2, "Red": 3}
+RYG_DOT_COLOR = {"Green": "#22c55e", "Yellow": "#f59e0b", "Red": "#ef4444"}
 
 
 st.set_page_config(page_title="Market Stage Model", page_icon="MS", layout="wide")
@@ -125,6 +128,56 @@ def _safe_float(series: pd.Series, key: str, default: float = 0.0) -> float:
 @st.cache_data(ttl=1800, show_spinner=False)
 def market_summary_ryg_for_date(date_text: str) -> str:
     return market_summary_ryg_lookup((date_text,)).get(date_text, "Unavailable")
+
+
+def render_ryg_dots(status: str) -> str:
+    normalized = str(status)
+    count = RYG_DOT_COUNT.get(normalized, 0)
+    color = RYG_DOT_COLOR.get(normalized, "#64748b")
+    label = html.escape(normalized if count else "Unavailable")
+    dot_html = "".join(
+        f'<span style="display:inline-block;width:8px;height:8px;border-radius:999px;background:{color};box-shadow:0 0 8px {color};"></span>'
+        for _ in range(count)
+    )
+    count_text = "dot" if count == 1 else "dots"
+    return (
+        '<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">'
+        f'<span style="display:inline-flex;gap:3px;min-width:30px;">{dot_html}</span>'
+        f'<span style="color:{color};font-weight:800;">{count} {count_text}</span>'
+        f'<span style="color:#cbd5e1;">{label}</span>'
+        "</span>"
+    )
+
+
+def render_history_table(display_history: pd.DataFrame) -> str:
+    headers = "".join(
+        f'<th style="padding:9px 10px;text-align:left;border-bottom:1px solid #334155;color:#cbd5e1;font-size:12px;">{html.escape(str(col))}</th>'
+        for col in display_history.columns
+    )
+    rows = []
+    numeric_cols = {"Close", "VMA 21", "Volume"}
+    for _, row in display_history.iterrows():
+        cells = []
+        for col in display_history.columns:
+            value = row[col]
+            align = "right" if col in numeric_cols else "left"
+            if col in {"Warning RYG", "Summary RYG"}:
+                cell_value = render_ryg_dots(str(value))
+            else:
+                cell_value = html.escape(str(value))
+            cells.append(
+                f'<td style="padding:8px 10px;text-align:{align};border-bottom:1px solid rgba(51,65,85,0.55);color:#e2e8f0;font-size:12px;vertical-align:middle;">{cell_value}</td>'
+            )
+        rows.append(f"<tr>{''.join(cells)}</tr>")
+
+    return f"""
+    <div style="overflow-x:auto;border:1px solid rgba(51,65,85,0.9);border-radius:8px;background:#0f172a;">
+        <table style="border-collapse:collapse;width:100%;min-width:1120px;">
+            <thead style="background:#111827;"><tr>{headers}</tr></thead>
+            <tbody>{''.join(rows)}</tbody>
+        </table>
+    </div>
+    """
 
 
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -604,7 +657,10 @@ def render_stage_history(processed: pd.DataFrame) -> None:
     st.caption(
         f"Real yfinance daily OHLCV only. Stages are computed with the full loaded history, then displayed from {start_date} to {end_date}."
     )
-    st.caption("RYG columns: Red / Yellow / Green from the Warning module and Market Summary dashboard for the same date.")
+    st.caption(
+        "RYG columns: Red / Yellow / Green from the Warning module and Market Summary dashboard for the same date. "
+        "Dot count is severity: Green = 1 dot, Yellow = 2 dots, Red = 3 dots."
+    )
 
     counts = history["Stage"].value_counts()
     cols = st.columns(4)
@@ -624,7 +680,7 @@ def render_stage_history(processed: pd.DataFrame) -> None:
     display_history["Close"] = display_history["Close"].map(lambda value: f"${value:,.2f}")
     display_history["VMA 21"] = display_history["VMA 21"].map(lambda value: f"{value:,.2f}")
     display_history["Volume"] = display_history["Volume"].map(lambda value: f"{int(value):,}")
-    st.table(display_history)
+    st.markdown(render_history_table(display_history), unsafe_allow_html=True)
 
 
 def render_sentiment_hud(include_partial: bool, polygon_key: str) -> None:
