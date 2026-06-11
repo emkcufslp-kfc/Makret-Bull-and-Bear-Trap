@@ -1134,17 +1134,21 @@ def render_scanner(include_partial: bool) -> None:
         top100_preview = load_us_data_top100_universe()
         us_data_dir = get_us_data_dir()
         if top100_preview.empty:
-            st.warning("No top-100 US-data universe is available to this Streamlit runtime.")
-            st.caption(
-                "Set `US_DATA_DIR` in Streamlit secrets or environment variables to the folder containing "
-                "`universe.json` and the `ohlcv` subfolder. "
-                f"Searched: {describe_us_data_search_paths()}"
-            )
             snapshot = load_top100_scan_snapshot()
             if snapshot:
+                st.info(
+                    "Using committed local top-100 scan snapshot because this Streamlit runtime cannot access the US-data folder."
+                )
                 st.caption(
-                    "Fallback available: committed local top-100 scan snapshot "
-                    f"generated {snapshot.get('generated_at', 'unknown')} from {snapshot.get('source_dir', 'local US-data')}."
+                    f"Snapshot generated {snapshot.get('generated_at', 'unknown')} from {snapshot.get('source_dir', 'local US-data')}; "
+                    f"scanned {int(snapshot.get('loaded_count', 0))} of {int(snapshot.get('universe_count', 0))} top-100 tickers."
+                )
+            else:
+                st.warning("No top-100 US-data universe is available to this Streamlit runtime.")
+                st.caption(
+                    "Set `US_DATA_DIR` in Streamlit secrets or environment variables to the folder containing "
+                    "`universe.json` and the `ohlcv` subfolder. "
+                    f"Searched: {describe_us_data_search_paths()}"
                 )
         else:
             universe_file = us_data_dir / "universe.json" if us_data_dir is not None else "universe.json"
