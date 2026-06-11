@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import datetime as dt
 import html
+import json
+import math
 import os
 import sys
 from pathlib import Path
@@ -25,6 +27,9 @@ except ModuleNotFoundError:  # Python < 3.11 on some Streamlit deployments.
 APP_DIR = Path(__file__).resolve().parent
 ROOT_DIR = APP_DIR.parent
 CACHE_DIR = APP_DIR / ".cache" / "yfinance"
+US_DATA_DIR = Path(r"D:\Codex projects\US-data")
+US_DATA_UNIVERSE_FILE = US_DATA_DIR / "universe.json"
+US_DATA_OHLCV_DIR = US_DATA_DIR / "ohlcv"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 try:
     yf.cache.set_cache_location(str(CACHE_DIR))
@@ -497,6 +502,105 @@ def get_history(ticker: str, days: int, include_partial: bool) -> tuple[pd.DataF
     return pd.DataFrame(), "Unavailable"
 
 
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_us_data_universe() -> pd.DataFrame:
+    if not US_DATA_UNIVERSE_FILE.exists():
+        return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
+
+    try:
+        payload = json.loads(US_DATA_UNIVERSE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
+
+    rows = []
+    for item in payload.get("stocks", []):
+        ticker = str(item.get("ticker", "")).strip().upper()
+        if not ticker:
+            continue
+        market_cap = item.get("market_cap", 0)
+        try:
+            market_cap_value = float(market_cap)
+        except Exception:
+            market_cap_value = 0.0
+        if math.isnan(market_cap_value):
+            market_cap_value = 0.0
+        rows.append(
+            {
+                "Ticker": ticker,
+                "Name": str(item.get("name", "")).strip(),
+                "Sector": str(item.get("sector", "Unknown")).strip() or "Unknown",
+                "Market Cap": market_cap_value,
+            }
+        )
+
+    if not rows:
+        return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
+    return pd.DataFrame(rows).drop_duplicates("Ticker").sort_values("Market Cap", ascending=False).reset_index(drop=True)
+
+
+def load_us_data_top100_universe() -> pd.DataFrame:
+    universe = load_us_data_universe()
+    if universe.empty:
+        return universe
+    available = universe[universe["Ticker"].map(lambda ticker: (US_DATA_OHLCV_DIR / f"{ticker}.json").exists())]
+    return available.head(100).reset_index(drop=True)
+
+
+def sector_lookup_from_us_data() -> dict[str, str]:
+    universe = load_us_data_universe()
+    if universe.empty:
+        return {}
+    return dict(zip(universe["Ticker"], universe["Sector"]))
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_us_data_price_history(ticker: str, days: int, include_partial: bool) -> pd.DataFrame:
+    path = US_DATA_OHLCV_DIR / f"{ticker.upper()}.json"
+    if not path.exists():
+        return pd.DataFrame()
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return pd.DataFrame()
+
+    records = payload.get("data", [])
+    if not records:
+        return pd.DataFrame()
+    data = pd.DataFrame(records)
+    if data.empty or "date" not in data.columns:
+        return pd.DataFrame()
+    data["date"] = pd.to_datetime(data["date"], errors="coerce")
+    data = data.dropna(subset=["date"]).set_index("date").sort_index()
+    data = data.rename(columns={"open": "Open", "high": "High", "low": "Low", "close": "Close", "volume": "Volume"})
+    required = ["Open", "High", "Low", "Close", "Volume"]
+    if not set(required).issubset(data.columns):
+        return pd.DataFrame()
+    data = data[required].apply(pd.to_numeric, errors="coerce").dropna(subset=["Close", "Volume"])
+    if days > 0 and not data.empty:
+        start_date = data.index[-1] - pd.Timedelta(days=days)
+        data = data.loc[data.index >= start_date]
+    return drop_unconfirmed_daily_bar(data, include_partial)
+
+
+def scan_phase_shifts_for_modes(scan_data: dict[str, pd.DataFrame], scan_mode: str) -> pd.DataFrame:
+    if scan_mode == "Both Shifts":
+        frames = [
+            scan_phase_shifts(scan_data, "Acceleration Shift"),
+            scan_phase_shifts(scan_data, "Deceleration Shift"),
+        ]
+        frames = [frame for frame in frames if not frame.empty]
+        return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+    return scan_phase_shifts(scan_data, scan_mode)
+
+
+def attach_scan_sectors(results: pd.DataFrame, sector_by_ticker: dict[str, str]) -> pd.DataFrame:
+    if results.empty:
+        return results
+    out = results.copy()
+    out.insert(1, "Sector", out["Ticker"].map(sector_by_ticker).fillna("Unknown"))
+    return out
+
+
 def get_polygon_api_key() -> str:
     env_key = os.getenv("POLYGON_API_KEY", "").strip()
     if env_key:
@@ -936,25 +1040,68 @@ def render_tracking_matrix(include_partial: bool) -> dict[str, pd.DataFrame]:
 
 def render_scanner(include_partial: bool) -> None:
     st.subheader("Automated Phase-Shift Scanner")
-    scan_universe_input = st.text_input(
-        "Screening tickers",
-        value="AAPL, MSFT, NVDA, AMD, AMZN, GOOG, META, TSLA, NFLX, JPM",
+    universe_source = st.radio(
+        "Scanner universe",
+        ["Manual tickers", "US-data top 100 by market cap"],
+        horizontal=True,
     )
-    scan_mode = st.radio("Target condition", ["Acceleration Shift", "Deceleration Shift"], horizontal=True)
+    manual_scan_universe_input = ""
+    if universe_source == "Manual tickers":
+        manual_scan_universe_input = st.text_input(
+            "Screening tickers",
+            value="AAPL, MSFT, NVDA, AMD, AMZN, GOOG, META, TSLA, NFLX, JPM",
+        )
+    else:
+        top100_preview = load_us_data_top100_universe()
+        if top100_preview.empty:
+            st.warning(f"No top-100 universe found at {US_DATA_UNIVERSE_FILE}.")
+        else:
+            st.caption(
+                f"Using {len(top100_preview)} tickers from {US_DATA_UNIVERSE_FILE} with local OHLCV files in {US_DATA_OHLCV_DIR}."
+            )
+    scan_mode = st.radio(
+        "Target condition",
+        ["Both Shifts", "Acceleration Shift", "Deceleration Shift"],
+        horizontal=True,
+    )
 
     if st.button("Execute Structural Pipeline Scan", type="primary"):
-        tickers = [item.strip().upper() for item in scan_universe_input.split(",") if item.strip()]
+        sector_by_ticker = sector_lookup_from_us_data()
+        if universe_source == "US-data top 100 by market cap":
+            universe = load_us_data_top100_universe()
+            tickers = universe["Ticker"].tolist() if not universe.empty else []
+            if not universe.empty:
+                sector_by_ticker.update(dict(zip(universe["Ticker"], universe["Sector"])))
+            data_loader = load_us_data_price_history
+            source_label = "US-data local OHLCV"
+        else:
+            tickers = [item.strip().upper() for item in manual_scan_universe_input.split(",") if item.strip()]
+            data_loader = load_price_history
+            source_label = "yfinance historical OHLCV"
+
         scan_data = {}
-        with st.spinner("Processing current-bar structural transitions..."):
+        missing_data: list[str] = []
+        with st.spinner(f"Processing current-bar structural transitions from {source_label}..."):
             for ticker in tickers:
-                data, _source = get_history(ticker, 180, include_partial)
+                data = data_loader(ticker, 220, include_partial)
                 if not data.empty:
                     scan_data[ticker] = data
-            results = scan_phase_shifts(scan_data, scan_mode)
+                else:
+                    missing_data.append(ticker)
+            results = attach_scan_sectors(scan_phase_shifts_for_modes(scan_data, scan_mode), sector_by_ticker)
 
         if results.empty:
             st.info("No tickers match the selected current-bar transition.")
         else:
+            if universe_source == "US-data top 100 by market cap":
+                counts = results["Phase Shift"].value_counts()
+                st.caption(
+                    f"Scanned {len(scan_data)} of {len(tickers)} top-100 tickers. "
+                    f"Acceleration: {int(counts.get('Entry Into Acceleration', 0))}; "
+                    f"Deceleration: {int(counts.get('Entry Into Deceleration', 0))}."
+                )
+            if missing_data:
+                st.caption(f"Skipped {len(missing_data)} tickers without usable OHLCV data: {', '.join(missing_data[:12])}.")
             st.dataframe(
                 results,
                 hide_index=True,
