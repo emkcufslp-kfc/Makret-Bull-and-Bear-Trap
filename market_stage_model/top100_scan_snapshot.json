@@ -1,12 +1,14 @@
 {
-  "generated_at": "2026-06-11T08:14:55+08:00",
+  "generated_at": "2026-06-11T20:25:34+08:00",
   "source_dir": "D:\\Codex projects\\US-data",
   "source_universe": "D:\\Codex projects\\US-data\\universe.json",
   "source_ohlcv_dir": "D:\\Codex projects\\US-data\\ohlcv",
   "scan_mode": "Both Shifts",
-  "universe_method": "Top 100 by market_cap from US-data universe.json with local OHLCV availability",
+  "universe_method": "Top 100 by market_cap from refreshed US-data universe.json with local OHLCV availability",
   "universe_count": 100,
   "loaded_count": 100,
+  "missing_count": 0,
+  "missing_tickers": [],
   "as_of": "2026-06-10",
   "results": [
     {
@@ -19,21 +21,21 @@
       "As Of": "2026-06-10"
     },
     {
-      "Ticker": "TJX",
+      "Ticker": "ABNB",
       "Sector": "Consumer Discretionary",
-      "Phase Shift": "Entry Into Acceleration",
-      "Current Stage": "Acceleration",
-      "Close": 167.660004,
-      "Volume Delta 20D": 3.2770258947538933,
+      "Phase Shift": "Entry Into Deceleration",
+      "Current Stage": "Deceleration",
+      "Close": 129.100006,
+      "Volume Delta 20D": -3.620786846502677,
       "As Of": "2026-06-10"
     },
     {
-      "Ticker": "CVS",
-      "Sector": "Health Care",
-      "Phase Shift": "Entry Into Acceleration",
-      "Current Stage": "Acceleration",
-      "Close": 98.019997,
-      "Volume Delta 20D": 9.686092718828876,
+      "Ticker": "XYZ",
+      "Sector": "Financials",
+      "Phase Shift": "Entry Into Deceleration",
+      "Current Stage": "Deceleration",
+      "Close": 66.629997,
+      "Volume Delta 20D": -44.933021318989866,
       "As Of": "2026-06-10"
     }
   ]
