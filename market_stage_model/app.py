@@ -28,6 +28,7 @@ APP_DIR = Path(__file__).resolve().parent
 ROOT_DIR = APP_DIR.parent
 CACHE_DIR = APP_DIR / ".cache" / "yfinance"
 DEFAULT_US_DATA_DIR = Path(r"D:\Codex projects\US-data")
+TOP100_SCAN_SNAPSHOT_FILE = APP_DIR / "top100_scan_snapshot.json"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 try:
     yf.cache.set_cache_location(str(CACHE_DIR))
@@ -651,6 +652,34 @@ def attach_scan_sectors(results: pd.DataFrame, sector_by_ticker: dict[str, str])
     return out
 
 
+@st.cache_data(ttl=300, show_spinner=False)
+def load_top100_scan_snapshot() -> dict[str, object]:
+    if not TOP100_SCAN_SNAPSHOT_FILE.exists():
+        return {}
+    try:
+        payload = json.loads(TOP100_SCAN_SNAPSHOT_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def top100_scan_snapshot_frame(scan_mode: str) -> tuple[pd.DataFrame, dict[str, object]]:
+    payload = load_top100_scan_snapshot()
+    results = payload.get("results", [])
+    if not isinstance(results, list):
+        return pd.DataFrame(), payload
+
+    frame = pd.DataFrame(results)
+    if frame.empty or "Phase Shift" not in frame.columns:
+        return pd.DataFrame(), payload
+
+    if scan_mode == "Acceleration Shift":
+        frame = frame[frame["Phase Shift"] == "Entry Into Acceleration"]
+    elif scan_mode == "Deceleration Shift":
+        frame = frame[frame["Phase Shift"] == "Entry Into Deceleration"]
+    return frame.reset_index(drop=True), payload
+
+
 def get_polygon_api_key() -> str:
     env_key = os.getenv("POLYGON_API_KEY", "").strip()
     if env_key:
@@ -1111,6 +1140,12 @@ def render_scanner(include_partial: bool) -> None:
                 "`universe.json` and the `ohlcv` subfolder. "
                 f"Searched: {describe_us_data_search_paths()}"
             )
+            snapshot = load_top100_scan_snapshot()
+            if snapshot:
+                st.caption(
+                    "Fallback available: committed local top-100 scan snapshot "
+                    f"generated {snapshot.get('generated_at', 'unknown')} from {snapshot.get('source_dir', 'local US-data')}."
+                )
         else:
             universe_file = us_data_dir / "universe.json" if us_data_dir is not None else "universe.json"
             ohlcv_dir = us_data_dir / "ohlcv" if us_data_dir is not None else "ohlcv"
@@ -1139,25 +1174,38 @@ def render_scanner(include_partial: bool) -> None:
 
         scan_data = {}
         missing_data: list[str] = []
+        snapshot_payload: dict[str, object] = {}
         with st.spinner(f"Processing current-bar structural transitions from {source_label}..."):
-            for ticker in tickers:
-                data = data_loader(ticker, 220, include_partial)
-                if not data.empty:
-                    scan_data[ticker] = data
-                else:
-                    missing_data.append(ticker)
-            results = attach_scan_sectors(scan_phase_shifts_for_modes(scan_data, scan_mode), sector_by_ticker)
+            if universe_source == "US-data top 100 by market cap" and not tickers:
+                results, snapshot_payload = top100_scan_snapshot_frame(scan_mode)
+            else:
+                for ticker in tickers:
+                    data = data_loader(ticker, 220, include_partial)
+                    if not data.empty:
+                        scan_data[ticker] = data
+                    else:
+                        missing_data.append(ticker)
+                results = attach_scan_sectors(scan_phase_shifts_for_modes(scan_data, scan_mode), sector_by_ticker)
 
         if results.empty:
             st.info("No tickers match the selected current-bar transition.")
         else:
             if universe_source == "US-data top 100 by market cap":
                 counts = results["Phase Shift"].value_counts()
-                st.caption(
-                    f"Scanned {len(scan_data)} of {len(tickers)} top-100 tickers. "
-                    f"Acceleration: {int(counts.get('Entry Into Acceleration', 0))}; "
-                    f"Deceleration: {int(counts.get('Entry Into Deceleration', 0))}."
-                )
+                if snapshot_payload:
+                    st.caption(
+                        f"Using committed local scan snapshot from {snapshot_payload.get('source_dir', 'US-data')} "
+                        f"generated {snapshot_payload.get('generated_at', 'unknown')}. "
+                        f"Scanned {int(snapshot_payload.get('loaded_count', 0))} of {int(snapshot_payload.get('universe_count', 0))} top-100 tickers. "
+                        f"Acceleration: {int(counts.get('Entry Into Acceleration', 0))}; "
+                        f"Deceleration: {int(counts.get('Entry Into Deceleration', 0))}."
+                    )
+                else:
+                    st.caption(
+                        f"Scanned {len(scan_data)} of {len(tickers)} top-100 tickers. "
+                        f"Acceleration: {int(counts.get('Entry Into Acceleration', 0))}; "
+                        f"Deceleration: {int(counts.get('Entry Into Deceleration', 0))}."
+                    )
             if missing_data:
                 st.caption(f"Skipped {len(missing_data)} tickers without usable OHLCV data: {', '.join(missing_data[:12])}.")
             st.dataframe(

@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-06-11T08:14:55+08:00",
+  "source_dir": "D:\\Codex projects\\US-data",
+  "source_universe": "D:\\Codex projects\\US-data\\universe.json",
+  "source_ohlcv_dir": "D:\\Codex projects\\US-data\\ohlcv",
+  "scan_mode": "Both Shifts",
+  "universe_method": "Top 100 by market_cap from US-data universe.json with local OHLCV availability",
+  "universe_count": 100,
+  "loaded_count": 100,
+  "as_of": "2026-06-10",
+  "results": [
+    {
+      "Ticker": "CVX",
+      "Sector": "Energy",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 189.800003,
+      "Volume Delta 20D": -19.011456047002916,
+      "As Of": "2026-06-10"
+    },
+    {
+      "Ticker": "TJX",
+      "Sector": "Consumer Discretionary",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 167.660004,
+      "Volume Delta 20D": 3.2770258947538933,
+      "As Of": "2026-06-10"
+    },
+    {
+      "Ticker": "CVS",
+      "Sector": "Health Care",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 98.019997,
+      "Volume Delta 20D": 9.686092718828876,
+      "As Of": "2026-06-10"
+    }
+  ]
+}
