@@ -1131,19 +1131,21 @@ def render_scanner(include_partial: bool) -> None:
             value="AAPL, MSFT, NVDA, AMD, AMZN, GOOG, META, TSLA, NFLX, JPM",
         )
     else:
+        use_live_us_data_scan = False
+        snapshot = load_top100_scan_snapshot()
         top100_preview = load_us_data_top100_universe()
         us_data_dir = get_us_data_dir()
+        if snapshot:
+            st.info("Using committed local top-100 scan snapshot. Streamlit does not need to run the US-data scan.")
+            st.caption(
+                f"Snapshot generated {snapshot.get('generated_at', 'unknown')} from {snapshot.get('source_dir', 'local US-data')}; "
+                f"scanned {int(snapshot.get('loaded_count', 0))} of {int(snapshot.get('universe_count', 0))} top-100 tickers."
+            )
+        else:
+            st.warning("No committed top-100 scan snapshot is available.")
+
         if top100_preview.empty:
-            snapshot = load_top100_scan_snapshot()
-            if snapshot:
-                st.info(
-                    "Using committed local top-100 scan snapshot because this Streamlit runtime cannot access the US-data folder."
-                )
-                st.caption(
-                    f"Snapshot generated {snapshot.get('generated_at', 'unknown')} from {snapshot.get('source_dir', 'local US-data')}; "
-                    f"scanned {int(snapshot.get('loaded_count', 0))} of {int(snapshot.get('universe_count', 0))} top-100 tickers."
-                )
-            else:
+            if not snapshot:
                 st.warning("No top-100 US-data universe is available to this Streamlit runtime.")
                 st.caption(
                     "Set `US_DATA_DIR` in Streamlit secrets or environment variables to the folder containing "
@@ -1154,7 +1156,12 @@ def render_scanner(include_partial: bool) -> None:
             universe_file = us_data_dir / "universe.json" if us_data_dir is not None else "universe.json"
             ohlcv_dir = us_data_dir / "ohlcv" if us_data_dir is not None else "ohlcv"
             st.caption(
-                f"Using {len(top100_preview)} tickers from {universe_file} with local OHLCV files in {ohlcv_dir}."
+                f"Live local US-data is available: {len(top100_preview)} tickers from {universe_file}; OHLCV in {ohlcv_dir}."
+            )
+            use_live_us_data_scan = st.checkbox(
+                "Run live local US-data scan instead of committed snapshot",
+                value=False,
+                help="Leave off for Streamlit Cloud. Turn on only when this app runs on a machine with the local US-data folder.",
             )
     scan_mode = st.radio(
         "Target condition",
@@ -1165,12 +1172,17 @@ def render_scanner(include_partial: bool) -> None:
     if st.button("Execute Structural Pipeline Scan", type="primary"):
         sector_by_ticker = sector_lookup_from_us_data()
         if universe_source == "US-data top 100 by market cap":
-            universe = load_us_data_top100_universe()
-            tickers = universe["Ticker"].tolist() if not universe.empty else []
-            if not universe.empty:
-                sector_by_ticker.update(dict(zip(universe["Ticker"], universe["Sector"])))
-            data_loader = load_us_data_price_history
-            source_label = "US-data local OHLCV"
+            if use_live_us_data_scan:
+                universe = load_us_data_top100_universe()
+                tickers = universe["Ticker"].tolist() if not universe.empty else []
+                if not universe.empty:
+                    sector_by_ticker.update(dict(zip(universe["Ticker"], universe["Sector"])))
+                data_loader = load_us_data_price_history
+                source_label = "US-data local OHLCV"
+            else:
+                tickers = []
+                data_loader = load_us_data_price_history
+                source_label = "committed local top-100 scan snapshot"
         else:
             tickers = [item.strip().upper() for item in manual_scan_universe_input.split(",") if item.strip()]
             data_loader = load_price_history
@@ -1212,15 +1224,12 @@ def render_scanner(include_partial: bool) -> None:
                     )
             if missing_data:
                 st.caption(f"Skipped {len(missing_data)} tickers without usable OHLCV data: {', '.join(missing_data[:12])}.")
-            st.dataframe(
-                results,
-                hide_index=True,
-                use_container_width=True,
-                column_config={
-                    "Close": st.column_config.NumberColumn(format="$%.2f"),
-                    "Volume Delta 20D": st.column_config.NumberColumn(format="%.1f%%"),
-                },
-            )
+            display_results = results.copy()
+            if "Close" in display_results.columns:
+                display_results["Close"] = pd.to_numeric(display_results["Close"], errors="coerce").map(lambda value: f"${value:,.2f}")
+            if "Volume Delta 20D" in display_results.columns:
+                display_results["Volume Delta 20D"] = pd.to_numeric(display_results["Volume Delta 20D"], errors="coerce").map(lambda value: f"{value:,.1f}%")
+            st.table(display_results)
 
 
 def render_dashboard(primary_ticker: str, lookback_days: int, include_partial: bool) -> None:
