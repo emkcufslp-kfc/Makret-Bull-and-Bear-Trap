@@ -27,9 +27,7 @@ except ModuleNotFoundError:  # Python < 3.11 on some Streamlit deployments.
 APP_DIR = Path(__file__).resolve().parent
 ROOT_DIR = APP_DIR.parent
 CACHE_DIR = APP_DIR / ".cache" / "yfinance"
-US_DATA_DIR = Path(r"D:\Codex projects\US-data")
-US_DATA_UNIVERSE_FILE = US_DATA_DIR / "universe.json"
-US_DATA_OHLCV_DIR = US_DATA_DIR / "ohlcv"
+DEFAULT_US_DATA_DIR = Path(r"D:\Codex projects\US-data")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 try:
     yf.cache.set_cache_location(str(CACHE_DIR))
@@ -502,13 +500,58 @@ def get_history(ticker: str, days: int, include_partial: bool) -> tuple[pd.DataF
     return pd.DataFrame(), "Unavailable"
 
 
-@st.cache_data(ttl=1800, show_spinner=False)
-def load_us_data_universe() -> pd.DataFrame:
-    if not US_DATA_UNIVERSE_FILE.exists():
-        return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
+def get_us_data_dir_candidates() -> list[Path]:
+    candidates: list[Path] = []
+    env_path = os.getenv("US_DATA_DIR", "").strip()
+    if env_path:
+        candidates.append(Path(env_path))
 
     try:
-        payload = json.loads(US_DATA_UNIVERSE_FILE.read_text(encoding="utf-8"))
+        secret_path = str(st.secrets.get("US_DATA_DIR", "")).strip()
+    except Exception:
+        secret_path = ""
+    if secret_path:
+        candidates.append(Path(secret_path))
+
+    candidates.extend(
+        [
+            DEFAULT_US_DATA_DIR,
+            ROOT_DIR / "US-data",
+            ROOT_DIR / "data" / "US-data",
+            ROOT_DIR / "data" / "us_data",
+        ]
+    )
+
+    unique: list[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        key = str(candidate)
+        if key not in seen:
+            unique.append(candidate)
+            seen.add(key)
+    return unique
+
+
+def get_us_data_dir() -> Path | None:
+    for candidate in get_us_data_dir_candidates():
+        if (candidate / "universe.json").exists() and (candidate / "ohlcv").exists():
+            return candidate
+    return None
+
+
+def describe_us_data_search_paths() -> str:
+    return "; ".join(str(path) for path in get_us_data_dir_candidates())
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_us_data_universe() -> pd.DataFrame:
+    us_data_dir = get_us_data_dir()
+    if us_data_dir is None:
+        return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
+    universe_file = us_data_dir / "universe.json"
+
+    try:
+        payload = json.loads(universe_file.read_text(encoding="utf-8"))
     except Exception:
         return pd.DataFrame(columns=["Ticker", "Name", "Sector", "Market Cap"])
 
@@ -542,7 +585,11 @@ def load_us_data_top100_universe() -> pd.DataFrame:
     universe = load_us_data_universe()
     if universe.empty:
         return universe
-    available = universe[universe["Ticker"].map(lambda ticker: (US_DATA_OHLCV_DIR / f"{ticker}.json").exists())]
+    us_data_dir = get_us_data_dir()
+    if us_data_dir is None:
+        return universe.iloc[0:0].copy()
+    ohlcv_dir = us_data_dir / "ohlcv"
+    available = universe[universe["Ticker"].map(lambda ticker: (ohlcv_dir / f"{ticker}.json").exists())]
     return available.head(100).reset_index(drop=True)
 
 
@@ -555,7 +602,10 @@ def sector_lookup_from_us_data() -> dict[str, str]:
 
 @st.cache_data(ttl=1800, show_spinner=False)
 def load_us_data_price_history(ticker: str, days: int, include_partial: bool) -> pd.DataFrame:
-    path = US_DATA_OHLCV_DIR / f"{ticker.upper()}.json"
+    us_data_dir = get_us_data_dir()
+    if us_data_dir is None:
+        return pd.DataFrame()
+    path = us_data_dir / "ohlcv" / f"{ticker.upper()}.json"
     if not path.exists():
         return pd.DataFrame()
     try:
@@ -1053,11 +1103,19 @@ def render_scanner(include_partial: bool) -> None:
         )
     else:
         top100_preview = load_us_data_top100_universe()
+        us_data_dir = get_us_data_dir()
         if top100_preview.empty:
-            st.warning(f"No top-100 universe found at {US_DATA_UNIVERSE_FILE}.")
-        else:
+            st.warning("No top-100 US-data universe is available to this Streamlit runtime.")
             st.caption(
-                f"Using {len(top100_preview)} tickers from {US_DATA_UNIVERSE_FILE} with local OHLCV files in {US_DATA_OHLCV_DIR}."
+                "Set `US_DATA_DIR` in Streamlit secrets or environment variables to the folder containing "
+                "`universe.json` and the `ohlcv` subfolder. "
+                f"Searched: {describe_us_data_search_paths()}"
+            )
+        else:
+            universe_file = us_data_dir / "universe.json" if us_data_dir is not None else "universe.json"
+            ohlcv_dir = us_data_dir / "ohlcv" if us_data_dir is not None else "ohlcv"
+            st.caption(
+                f"Using {len(top100_preview)} tickers from {universe_file} with local OHLCV files in {ohlcv_dir}."
             )
     scan_mode = st.radio(
         "Target condition",
