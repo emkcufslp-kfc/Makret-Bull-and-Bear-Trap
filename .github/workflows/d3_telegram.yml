@@ -1,4 +1,4 @@
-name: D3 Liquidity Telegram
+name: D3 Liquidity Data Refresh
 
 on:
   schedule:
@@ -9,11 +9,8 @@ permissions:
   contents: write
 
 jobs:
-  send-d3-telegram:
+  refresh-d3-data:
     runs-on: ubuntu-latest
-    env:
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
     steps:
       - name: Checkout repository
@@ -43,6 +40,3 @@ jobs:
             git commit -m "Update D3 liquidity data"
             git push
           fi
-
-      - name: Send D3 Telegram message
-        run: python backend/send_d3_telegram.py
