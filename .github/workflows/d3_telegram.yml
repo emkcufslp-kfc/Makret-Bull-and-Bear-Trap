@@ -5,6 +5,9 @@ on:
     - cron: "30 22 * * 5"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   send-d3-telegram:
     runs-on: ubuntu-latest
@@ -28,6 +31,18 @@ jobs:
 
       - name: Refresh D3 study
         run: python backend/analyze_crash_predictors.py
+
+      - name: Commit refreshed D3 data
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add exports/crash_predictor_study/
+          if git diff --cached --quiet; then
+            echo "No refreshed D3 data changes to commit."
+          else
+            git commit -m "Update D3 liquidity data"
+            git push
+          fi
 
       - name: Send D3 Telegram message
         run: python backend/send_d3_telegram.py
