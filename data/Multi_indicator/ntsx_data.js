@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-06-10
+// ntsx_data.js — Auto-generated on 2026-06-21
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-06-10",
+  "as_of_date": "2026-06-18",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -9,9 +9,9 @@ const NTSX_CURRENT     = {
     "KMLM (live / RYMFX proxy)"
   ],
   "current_weights": [
-    56.41,
-    12.24,
-    31.35
+    57.79,
+    12.06,
+    30.15
   ],
   "target_weights": [
     55.0,
@@ -29,16 +29,16 @@ const NTSX_CURRENT     = {
     38.0
   ],
   "distance_to_lower": [
-    6.41,
-    3.24,
-    3.35
+    7.79,
+    3.06,
+    2.15
   ],
   "distance_to_upper": [
-    3.59,
-    2.76,
-    6.65
+    2.21,
+    2.94,
+    7.85
   ],
-  "days_since_last_rebalance": 576,
+  "days_since_last_rebalance": 584,
   "last_rebalance_date": "2024-11-11"
 };
 const NTSX_REBALANCES  = [
@@ -24597,6 +24597,36 @@ const NTSX_EQUITY      = [
     "date": "2026-06-10",
     "port": 479.9102,
     "spy": 671.4319
+  },
+  {
+    "date": "2026-06-11",
+    "port": 484.7696,
+    "spy": 682.8441
+  },
+  {
+    "date": "2026-06-12",
+    "port": 484.8749,
+    "spy": 686.5371
+  },
+  {
+    "date": "2026-06-15",
+    "port": 488.6068,
+    "spy": 698.6435
+  },
+  {
+    "date": "2026-06-16",
+    "port": 486.6604,
+    "spy": 694.4785
+  },
+  {
+    "date": "2026-06-17",
+    "port": 483.887,
+    "spy": 685.8059
+  },
+  {
+    "date": "2026-06-18",
+    "port": 486.8595,
+    "spy": 691.1557
   }
 ];
 const NTSX_YEARLY      = [
@@ -24754,25 +24784,25 @@ const NTSX_YEARLY      = [
   },
   {
     "year": 2026,
-    "port_return": 7.41,
-    "spy_return": 6.67,
+    "port_return": 8.97,
+    "spy_return": 9.8,
     "port_maxdd": -5.15,
     "spy_maxdd": -8.88,
-    "winner": "Portfolio"
+    "winner": "SPY"
   }
 ];
 const NTSX_METRICS     = {
   "portfolio": {
-    "cagr": 8.59,
+    "cagr": 8.66,
     "max_dd": -30.83,
     "sharpe": 0.41,
-    "sortino": 0.53,
+    "sortino": 0.54,
     "calmar": 0.28
   },
   "spy": {
-    "cagr": 10.53,
+    "cagr": 10.68,
     "max_dd": -55.19,
-    "sharpe": 0.4,
+    "sharpe": 0.41,
     "sortino": 0.5,
     "calmar": 0.19
   }
