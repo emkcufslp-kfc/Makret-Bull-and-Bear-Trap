@@ -592,7 +592,7 @@ def weekly_risk_probability_map(features: pd.DataFrame, as_of_date: dt.date) -> 
     if mapped.empty:
         return mapped
     pct_cols = ["P >=5% Drop 4W", "P >=10% Drop 8W", "P >=10% Drop 13W", "P >=20% Drop 26W"]
-    mapped[pct_cols] = mapped[pct_cols].applymap(lambda value: pct(value) if pd.notna(value) else "n/a")
+    mapped[pct_cols] = mapped[pct_cols].map(lambda value: pct(value) if pd.notna(value) else "n/a")
     mapped["S&P 500"] = mapped["S&P 500"].map(lambda value: fmt(value, "", 1))
     mapped["Composite Risk"] = mapped["Composite Risk"].map(lambda value: fmt(value, "", 1))
     return mapped.iloc[::-1].reset_index(drop=True)
