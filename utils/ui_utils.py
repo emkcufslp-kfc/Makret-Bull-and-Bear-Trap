@@ -170,6 +170,7 @@ def render_ecosystem_sidebar():
     st.page_link("pages/10_📒_Model_Change_Worksheet.py", label="Model Change Worksheet", icon="📒")
     st.page_link("pages/11_⚠️_Warning.py", label="Warning", icon="⚠️")
     st.page_link("pages/13_💧_Liquidity_D3.py", label="Liquidity D3", icon="💧")
+    st.page_link("pages/14_📡_Early_Warning.py", label="Early Warning", icon="📡")
 
     st.markdown(
         """
