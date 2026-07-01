@@ -171,6 +171,7 @@ def render_ecosystem_sidebar():
     st.page_link("pages/11_⚠️_Warning.py", label="Warning", icon="⚠️")
     st.page_link("pages/13_💧_Liquidity_D3.py", label="Liquidity D3", icon="💧")
     st.page_link("pages/14_📡_Early_Warning.py", label="Early Warning", icon="📡")
+    st.page_link("pages/15_📊_R3_Vol_Adjusted_Strategy.py", label="R3 Vol-Adjusted Strategy", icon="📊")
 
     st.markdown(
         """
@@ -182,5 +183,4 @@ def render_ecosystem_sidebar():
     )
 
     st.page_link("pages/7_🚀_FTD_Strategy.py", label="Market Pulse / FTD Strategy", icon="🚀")
-    st.page_link("pages/8_📊_Strategies_Dashboard.py", label="Strategies Dashboard", icon="📊")
-    st.page_link("pages/12_Market_Stage_Model.py", label="Market Stage Model", icon="📈")
+    st.page_link("pages/8_📊_Strategies_Dashboard.py", label="Strategies Dashboard
