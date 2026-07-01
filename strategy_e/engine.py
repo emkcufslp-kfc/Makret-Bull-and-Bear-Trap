@@ -51,10 +51,18 @@ BEAR_SPY_WT  = 0.100         # SPY weight in BEAR regime
 BEAR_IEF_WT  = 0.900         # IEF weight in BEAR regime
 INIT_EQUITY  = 100_000.0
 
+# ── Optimal Rebalance Schedule (from backtest optimisation) ────────────────────
+SIGNAL_DAY   = 1             # Tuesday (0=Mon, 1=Tue, 2=Wed, 3=Thu, 4=Fri)
+EXEC_DAY     = 2             # Wednesday — T+1 execution after Tuesday signal
+
 
 def _weekly(df: pd.DataFrame) -> pd.DataFrame:
-    """Resample daily DataFrame to weekly Friday close, forward-filling."""
-    return df.resample("W-FRI").last().ffill()
+    """Resample daily DataFrame to weekly Tuesday close, forward-filling.
+
+    Changed from W-FRI to W-TUE based on backtest optimisation:
+    System E signal computed on Tuesday close; execute Wednesday open.
+    """
+    return df.resample("W-TUE").last().ffill()
 
 
 def _available_nq(df: pd.DataFrame) -> list[str]:
@@ -67,6 +75,10 @@ def _available_nq(df: pd.DataFrame) -> list[str]:
 def compute_system_e_signal(df: pd.DataFrame) -> dict:
     """
     Compute the current System E signal from daily market data.
+
+    Rebalance schedule (from backtest optimisation):
+        Signal computed on Tuesday close → Execute Wednesday open (T+1).
+        Weekly prices are sampled at Tuesday close (W-TUE resample).
 
     Parameters
     ----------
@@ -171,6 +183,25 @@ def _empty_signal() -> dict:
     }
 
 
+def get_next_execution_date(from_date: "pd.Timestamp | None" = None) -> "pd.Timestamp":
+    """
+    Return the next System E execution date (Wednesday) from *from_date*.
+
+    System E rebalance schedule:
+      Signal day : Tuesday close  (SIGNAL_DAY = 1)
+      Execution  : Wednesday open (EXEC_DAY   = 2)
+
+    If *from_date* is None, today's date is used.
+    The function returns the next Wednesday on or after *from_date*.
+    """
+    import datetime as _dt
+    ref = pd.Timestamp(from_date or _dt.date.today())
+    days_ahead = (EXEC_DAY - ref.weekday()) % 7
+    if days_ahead == 0:          # today is Wednesday — that is the next exec day
+        days_ahead = 0
+    return ref + pd.Timedelta(days=days_ahead)
+
+
 # ── 20-Year Backtest ───────────────────────────────────────────────────────────
 
 def backtest_system_e(df: pd.DataFrame) -> pd.DataFrame:
@@ -208,9 +239,9 @@ def backtest_system_e(df: pd.DataFrame) -> pd.DataFrame:
     nq_ew_daily  = df[[t for t in nq_tickers if t in df.columns]].mean(axis=1)
     spy_ma200_d  = df["SPY"].rolling(200).mean()
     nq_ma200_d   = nq_ew_daily.rolling(200).mean()
-    spy_ma200_w  = spy_ma200_d.resample("W-FRI").last().reindex(spy_w.index).ffill()
-    nq_ma200_w   = nq_ma200_d.resample("W-FRI").last().reindex(spy_w.index).ffill()
-    nq_ew_w      = nq_ew_daily.resample("W-FRI").last().reindex(spy_w.index).ffill()
+    spy_ma200_w  = spy_ma200_d.resample("W-TUE").last().reindex(spy_w.index).ffill()
+    nq_ma200_w   = nq_ma200_d.resample("W-TUE").last().reindex(spy_w.index).ffill()
+    nq_ew_w      = nq_ew_daily.resample("W-TUE").last().reindex(spy_w.index).ffill()
 
     # Weekly returns
     spy_ret  = spy_w.pct_change()
@@ -245,38 +276,4 @@ def backtest_system_e(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # Breadth + top-3
-        row = mom_sc.iloc[i - 1].dropna()
-        breadth = float((row > 0).sum() / len(row)) if len(row) > 0 else 0.0
-        breadth_ok = breadth >= BREADTH_MIN
-        top3 = list(row.nlargest(3).index) if len(row) >= 5 else []
-
-        rs = _safe(spy_ret, i)
-        ri = _safe(ief_ret, i)
-
-        if bull_gate and breadth_ok and len(top3) == 3:
-            stk_r = sum(_safe_col(nq_ret, t, i) for t in top3)
-            pret  = BULL_SPY_WT * rs + BULL_STK_WT * stk_r
-        else:
-            pret = BEAR_SPY_WT * rs + BEAR_IEF_WT * ri
-
-        equity.append(equity[-1] * (1 + pret))
-
-    eq_series = pd.Series(equity, index=spy_w.index, name="System_E")
-    bh_series = (INIT_EQUITY * spy_w / spy_w.dropna().iloc[0]).rename("Buy_Hold_SPY")
-
-    result = pd.concat([eq_series, bh_series], axis=1).dropna(how="all")
-    return result
-
-
-# ── Helpers ────────────────────────────────────────────────────────────────────
-
-def _safe(series: pd.Series, i: int) -> float:
-    v = series.iloc[i]
-    return 0.0 if pd.isna(v) else float(v)
-
-
-def _safe_col(df: pd.DataFrame, col: str, i: int) -> float:
-    if col not in df.columns:
-        return 0.0
-    v = df[col].iloc[i]
-    return 0.0 if pd.isna(v) else float(v)
+        row = 

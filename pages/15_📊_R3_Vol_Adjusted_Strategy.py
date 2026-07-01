@@ -283,6 +283,7 @@ def dashboard():
     # ═══════════════════════════════════════════════════════════════════════════
     st.markdown("---")
     st.subheader("📡 Section 1 — Live Signal")
+    st.caption("⏰ Signal: Thursday close  |  Execute: Friday open  (T+1 execution)")
 
     # Big regime banner
     st.markdown(
@@ -292,7 +293,8 @@ def dashboard():
             <div style="font-size:2.2rem;font-weight:700;color:{regime_colour};">{regime}</div>
             <div style="font-size:3.5rem;font-weight:800;color:{regime_colour};">{deploy_pct:.1f}% Deployed</div>
             <div style="color:#94a3b8;margin-top:6px;font-size:0.9rem;">
-                {actual_date.strftime('%Y-%m-%d')} signal
+                {actual_date.strftime('%Y-%m-%d')} signal &nbsp;|&nbsp;
+                ⏰ Next execution: this Friday (signal locked Thursday close)
             </div>
         </div>
         """,
@@ -602,10 +604,4 @@ quiet markets run further.
 
 **Why this beats binary on/off:**
 Static systems flip from 100% to 0% and suffer from both whipsaws and missed recovery rallies.
-R3's continuous dial — blending regime confidence with real-time volatility — reduces unnecessary
-trading and keeps drawdowns tighter during regime uncertainty.
-            """
-        )
-
-
-dashboard()
+R3's continuous dial — 

@@ -176,6 +176,7 @@ col_e, col_r3 = st.columns(2)
 # ── System E ─────────────────────────────────────────────────────────────────
 with col_e:
     st.subheader("🤖 System E — Dual 200d MA Gate")
+    st.caption("⏰ Signal: Tue close  |  Execute: Wed open")
 
     regime = sig_e["regime"]
     badge_cls = "badge-bull" if regime == "BULL" else ("badge-bear" if regime == "BEAR" else "badge-unknown")
@@ -214,6 +215,7 @@ with col_e:
 # ── R3 Vol-Adjusted ───────────────────────────────────────────────────────────
 with col_r3:
     st.subheader("📊 R3 Vol-Adjusted — Trap Regime Gate")
+    st.caption("⏰ Signal: Thu close  |  Execute: Fri open")
 
     deploy_pct = r3["deploy_pct"]
     if deploy_pct >= 75:
@@ -264,6 +266,68 @@ with col_r3:
             f'<span style="font-size:0.85rem;color:#94a3b8">{pct:.1f}%</span>'
             f'</div>', unsafe_allow_html=True
         )
+
+st.divider()
+
+# ════════════════════════════════════════════════════════════════════════════════
+# REBALANCE CALENDAR
+# ════════════════════════════════════════════════════════════════════════════════
+import datetime as _dt
+
+_today      = _dt.date.today()
+_weekday    = _today.weekday()           # 0=Mon … 6=Sun
+_day_names  = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+_today_name = _day_names[_weekday]
+
+# Next System E signal (Tuesday) and execution (Wednesday)
+_days_to_tue = (1 - _weekday) % 7
+_sys_e_signal_date = _today + _dt.timedelta(days=_days_to_tue)
+_sys_e_exec_date   = _sys_e_signal_date + _dt.timedelta(days=1)
+
+# Next R3 signal (Thursday) and execution (Friday)
+_days_to_thu = (3 - _weekday) % 7
+_r3_signal_date = _today + _dt.timedelta(days=_days_to_thu)
+_r3_exec_date   = _r3_signal_date + _dt.timedelta(days=1)
+
+st.markdown('<div class="section-hdr">📅 Rebalance Calendar</div>', unsafe_allow_html=True)
+cal_c1, cal_c2, cal_c3 = st.columns(3)
+with cal_c1:
+    st.metric("Today", f"{_today_name}, {_today.strftime('%b %d')}")
+with cal_c2:
+    st.metric("System E — Next Signal", _sys_e_signal_date.strftime("%A %b %d"),
+              delta=f"Execute {_sys_e_exec_date.strftime('%A %b %d')}")
+with cal_c3:
+    st.metric("R3 — Next Signal", _r3_signal_date.strftime("%A %b %d"),
+              delta=f"Execute {_r3_exec_date.strftime('%A %b %d')}")
+
+st.markdown(
+    """
+    <div style="background:#0f172a;border:1px solid #334155;border-radius:10px;padding:14px 20px;margin:8px 0 0;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;color:#e2e8f0;">
+      <tr style="color:#94a3b8;border-bottom:1px solid #334155;">
+        <th style="text-align:left;padding:6px 12px">Strategy</th>
+        <th style="text-align:left;padding:6px 12px">Signal Day</th>
+        <th style="text-align:left;padding:6px 12px">Execution Day</th>
+        <th style="text-align:left;padding:6px 12px">Notes</th>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;color:#818cf8;font-weight:600">🤖 System E</td>
+        <td style="padding:8px 12px">Tuesday close</td>
+        <td style="padding:8px 12px">Wednesday open</td>
+        <td style="padding:8px 12px;color:#94a3b8">T+1 · 0.16% round-trip</td>
+      </tr>
+      <tr style="background:#1e293b30">
+        <td style="padding:8px 12px;color:#34d399;font-weight:600">📊 R3 Vol-Adjusted</td>
+        <td style="padding:8px 12px">Thursday close</td>
+        <td style="padding:8px 12px">Friday open</td>
+        <td style="padding:8px 12px;color:#94a3b8">T+1 · 0.16% round-trip</td>
+      </tr>
+    </table>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+st.markdown("")
 
 st.divider()
 
@@ -487,72 +551,4 @@ st.divider()
 # ════════════════════════════════════════════════════════════════════════════════
 # SECTION 5 — When to Use Which
 # ════════════════════════════════════════════════════════════════════════════════
-st.markdown('<div class="section-hdr">🧠 Section 5 — When to Use Which</div>', unsafe_allow_html=True)
-
-col_a, col_b = st.columns(2)
-
-with col_a:
-    st.markdown("""
-<div style='background:#1e1b4b;border:1px solid #4f46e5;border-radius:12px;padding:20px;'>
-<h4 style='color:#818cf8;margin-top:0'>🤖 System E — Maximum Compounding</h4>
-
-**Best for:** Long-term wealth building, investors with high risk tolerance and long horizons.
-
-**Key traits:**
-- Fully deployed (100%) during BULL regimes
-- NQ100 top-3 momentum picks at 21.7% each = concentrated risk, outsized returns
-- Dual 200d MA gate is **binary** — either all-in or defensive
-- CAGR ~31.7%, Sharpe 1.21 — best absolute returns in the ecosystem
-- Max drawdown –26.8% (comparable to R3 despite much higher returns)
-- Beta 0.53 — leveraged exposure to tech/growth trends
-
-**Use when:** You want maximum compounding and can stomach volatile years.
-You are investing capital you won't need for 5+ years.
-
-</div>
-""", unsafe_allow_html=True)
-
-with col_b:
-    st.markdown("""
-<div style='background:#052e16;border:1px solid #16a34a;border-radius:12px;padding:20px;'>
-<h4 style='color:#34d399;margin-top:0'>📊 R3 Vol-Adjusted — Smooth Compounding</h4>
-
-**Best for:** Risk-conscious investors, leveraged accounts, and portfolios where drawdown matters more than max return.
-
-**Key traits:**
-- Deployment scales continuously 10–100% based on trap scores + realised vol
-- Never goes fully binary — always some SPY exposure
-- Same NQ100 top-3 picks, but vol-normalised weighting
-- CAGR ~18.3%, Sharpe 1.25 — **highest Sharpe in the ecosystem**
-- Max drawdown –25.4% — nearly identical to System E but at half the beta
-- Beta 0.28, Alpha 14.3% — true alpha generation with low market correlation
-- Avg deployment only 44% — capital-efficient for leveraged accounts
-
-**Use when:** You want consistent compounding with lower vol. Ideal for
-margin accounts, institutional mandates, or when you want to sleep at night.
-
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
----
-### 🔄 Common Foundation
-Both strategies share the same core ingredients:
-- **Universe:** NQ100 top momentum stocks (91-ticker list)
-- **Signal:** 44-week minus 4-week skip-month momentum ranking
-- **Breadth Filter:** ≥40% of NQ100 must have positive momentum to deploy
-- **Regime:** Bull/Bear Trap composite scoring (SPY + NQ100 EW vs. 200d MA for System E;
-  multi-factor trap scoring for R3)
-
-The difference is purely in **how aggressively** the signal is acted on:
-System E goes all-in; R3 scales position size to risk conditions.
-""")
-
-# ── Footer ────────────────────────────────────────────────────────────────────
-st.markdown("""
-<hr style='border-color:#1e293b;margin-top:40px'>
-<p style='color:#475569;font-size:0.8rem;text-align:center'>
-Backtest period: Jan 2004 – present · $100,000 initial capital · Weekly rebalancing ·
-No transaction costs or slippage · Past performance does not guarantee future results.
-</p>
-""", unsafe_allow_html=True)
+st.markdown('<div cla

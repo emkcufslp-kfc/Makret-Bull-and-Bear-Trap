@@ -21,14 +21,10 @@ venv/
 data/daily_run_log.json
 data/sentiment_cache.json
 data/r3_signal_cache.json
+data/system_e_signal_cache.json
 exports/artifact_snapshot.json
 exports/trap_regime_backtest/
 data/market_data_master.parquet
 
 # IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumb
+.vsco

@@ -387,10 +387,21 @@ def step4_backtest(us_data_dir: Path, top_n: int = 100) -> bool:
         return False
 
 
-# ── Step 5: Export R3 signal cache ────────────────────────────────────────────
+# ── Step 5: Export R3 signal cache (Thursdays only) ───────────────────────────
 def step5_r3_signal_cache() -> bool:
-    """Compute today's R3 deploy signal and write data/r3_signal_cache.json."""
-    log("Step 5: Computing R3 signal cache …")
+    """Compute R3 deploy signal and write data/r3_signal_cache.json.
+
+    R3 rebalance schedule: signal locked on Thursday close, execute Friday open.
+    This cache is only refreshed on Thursdays (weekday == 3) so the stored
+    signal always reflects the Thursday-close snapshot used for Friday execution.
+    """
+    today_wd = dt.date.today().weekday()     # 0=Mon … 4=Fri
+    if today_wd != 3:                        # 3 = Thursday
+        day_name = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][today_wd]
+        log(f"Step 5: SKIP — R3 signal cache only updates on Thursdays (today is {day_name})")
+        return True                          # non-failure skip
+
+    log("Step 5: Computing R3 signal cache (Thursday) …")
     t0 = time.time()
     try:
         import numpy as np
@@ -409,20 +420,4 @@ def step5_r3_signal_cache() -> bool:
             d = pd.DataFrame()
 
         if d.empty or len(d) < 252:
-            log("  SKIP — parquet unavailable or too short; trying yfinance …")
-            import yfinance as yf
-            tickers = ["SPY", "^VIX", "HYG", "IEF", "^TNX", "^IRX", "TIP"]
-            raw = yf.download(tickers, period="3y", auto_adjust=True, progress=False)["Close"]
-            raw.dropna(how="all", inplace=True)
-            raw.ffill(inplace=True)
-            d = raw
-
-        if len(d) < 252:
-            log("  ✗ Insufficient data for R3 signal computation.")
-            return False
-
-        # --- Bull Trap Score ---
-        latest  = d.iloc[-1]
-        prev_mo = d.iloc[max(0, len(d) - 23)]
-
-        curve      = lat
+            log("  SKIP — parquet unavailable 
