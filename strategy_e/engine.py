@@ -276,4 +276,38 @@ def backtest_system_e(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # Breadth + top-3
-        row = 
+        row = mom_sc.iloc[i - 1].dropna()
+        breadth = float((row > 0).sum() / len(row)) if len(row) > 0 else 0.0
+        breadth_ok = breadth >= BREADTH_MIN
+        top3 = list(row.nlargest(3).index) if len(row) >= 5 else []
+
+        rs = _safe(spy_ret, i)
+        ri = _safe(ief_ret, i)
+
+        if bull_gate and breadth_ok and len(top3) == 3:
+            stk_r = sum(_safe_col(nq_ret, t, i) for t in top3)
+            pret  = BULL_SPY_WT * rs + BULL_STK_WT * stk_r
+        else:
+            pret = BEAR_SPY_WT * rs + BEAR_IEF_WT * ri
+
+        equity.append(equity[-1] * (1 + pret))
+
+    eq_series = pd.Series(equity, index=spy_w.index, name="System_E")
+    bh_series = (INIT_EQUITY * spy_w / spy_w.dropna().iloc[0]).rename("Buy_Hold_SPY")
+
+    result = pd.concat([eq_series, bh_series], axis=1).dropna(how="all")
+    return result
+
+
+# ── Helpers ────────────────────────────────────────────────────────────────────
+
+def _safe(series: pd.Series, i: int) -> float:
+    v = series.iloc[i]
+    return 0.0 if pd.isna(v) else float(v)
+
+
+def _safe_col(df: pd.DataFrame, col: str, i: int) -> float:
+    if col not in df.columns:
+        return 0.0
+    v = df[col].iloc[i]
+    return 0.0 if pd.isna(v) else float(v)

@@ -1,42 +1,66 @@
 {
-  "generated_at": "2026-06-11T20:25:34+08:00",
-  "source_dir": "D:\\Codex projects\\US-data",
-  "source_universe": "D:\\Codex projects\\US-data\\universe.json",
-  "source_ohlcv_dir": "D:\\Codex projects\\US-data\\ohlcv",
+  "generated_at": "2026-07-02T06:31:36+08:00",
+  "source_dir": "/sessions/epic-admiring-pascal/mnt/Codex projects/US-data",
   "scan_mode": "Both Shifts",
-  "universe_method": "Top 100 by market_cap from refreshed US-data universe.json with local OHLCV availability",
   "universe_count": 100,
   "loaded_count": 100,
   "missing_count": 0,
   "missing_tickers": [],
-  "as_of": "2026-06-10",
+  "as_of": "2026-06-30",
   "results": [
     {
-      "Ticker": "CVX",
-      "Sector": "Energy",
+      "Ticker": "KO",
+      "Sector": "Consumer Staples",
       "Phase Shift": "Entry Into Acceleration",
       "Current Stage": "Acceleration",
-      "Close": 189.800003,
-      "Volume Delta 20D": -19.011456047002916,
-      "As Of": "2026-06-10"
+      "Close": 81.269997,
+      "Volume Delta 20D": -20.653399955983243,
+      "As Of": "2026-06-30"
     },
     {
-      "Ticker": "ABNB",
-      "Sector": "Consumer Discretionary",
+      "Ticker": "AXON",
+      "Sector": "Industrials",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 560.609985,
+      "Volume Delta 20D": 34.55228574828717,
+      "As Of": "2026-06-30"
+    },
+    {
+      "Ticker": "FIX",
+      "Sector": "Industrials",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 1981.949951,
+      "Volume Delta 20D": -30.1514898666815,
+      "As Of": "2026-06-30"
+    },
+    {
+      "Ticker": "BA",
+      "Sector": "Industrials",
       "Phase Shift": "Entry Into Deceleration",
       "Current Stage": "Deceleration",
-      "Close": 129.100006,
-      "Volume Delta 20D": -3.620786846502677,
-      "As Of": "2026-06-10"
+      "Close": 216.470001,
+      "Volume Delta 20D": 10.889414145566366,
+      "As Of": "2026-06-30"
     },
     {
-      "Ticker": "XYZ",
+      "Ticker": "ARES",
       "Sector": "Financials",
       "Phase Shift": "Entry Into Deceleration",
       "Current Stage": "Deceleration",
-      "Close": 66.629997,
-      "Volume Delta 20D": -44.933021318989866,
-      "As Of": "2026-06-10"
+      "Close": 111.309998,
+      "Volume Delta 20D": 11.713470876904509,
+      "As Of": "2026-06-30"
+    },
+    {
+      "Ticker": "APP",
+      "Sector": "Information Technology",
+      "Phase Shift": "Entry Into Deceleration",
+      "Current Stage": "Deceleration",
+      "Close": 515.22998,
+      "Volume Delta 20D": 4.822419679429757,
+      "As Of": "2026-06-30"
     }
   ]
 }

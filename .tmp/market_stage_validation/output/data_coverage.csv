@@ -1,0 +1,101 @@
+Ticker,Name,Sector,Rows,Start,End,Latest Stage
+APO,Apollo Global Management,Financials,1633,2020-01-02,2026-07-02,Deceleration
+AAPL,Apple Inc.,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+GOOGL,Alphabet Inc. (Class A),Communication Services,1633,2020-01-02,2026-07-02,Deceleration
+GOOG,Alphabet Inc. (Class C),Communication Services,1633,2020-01-02,2026-07-02,Deceleration
+AMZN,Amazon,Consumer Discretionary,1633,2020-01-02,2026-07-02,Deceleration
+AMD,Advanced Micro Devices,Information Technology,1633,2020-01-02,2026-07-02,Acceleration
+AMAT,Applied Materials,Information Technology,1633,2020-01-02,2026-07-02,Acceleration
+ABBV,AbbVie,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+AXP,American Express,Financials,1633,2020-01-02,2026-07-02,Acceleration
+APH,Amphenol,Information Technology,1633,2020-01-02,2026-07-02,Acceleration
+APP,AppLovin,Information Technology,1310,2021-04-15,2026-07-02,Deceleration
+ARES,Ares Management,Financials,1633,2020-01-02,2026-07-02,Deceleration
+COST,Costco,Consumer Staples,1633,2020-01-02,2026-07-02,Deceleration
+BAC,Bank of America,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AMGN,Amgen,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+ANET,Arista Networks,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+ADI,Analog Devices,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+ABT,Abbott Laboratories,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+T,AT&T,Communication Services,1633,2020-01-02,2026-07-02,Deceleration
+MO,Altria,Consumer Staples,1633,2020-01-02,2026-07-02,Acceleration
+ADP,Automatic Data Processing,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+ABNB,Airbnb,Consumer Discretionary,1395,2020-12-10,2026-07-02,Acceleration
+ADBE,Adobe Inc.,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+ACN,Accenture,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+MMM,3M,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+AMT,American Tower,Real Estate,1633,2020-01-02,2026-07-02,Deceleration
+AON,Aon plc,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AEP,American Electric Power,Utilities,1633,2020-01-02,2026-07-02,Acceleration
+APD,Air Products,Materials,1633,2020-01-02,2026-07-02,Accumulation
+AJG,Arthur J. Gallagher & Co.,Financials,1633,2020-01-02,2026-07-02,Acceleration
+ALL,Allstate,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AFL,Aflac,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AME,Ametek,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+BKR,Baker Hughes,Energy,1633,2020-01-02,2026-07-02,Deceleration
+AZO,AutoZone,Consumer Discretionary,1633,2020-01-02,2026-07-02,Distribution
+AXON,Axon Enterprise,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+AMP,Ameriprise Financial,Financials,1633,2020-01-02,2026-07-02,Acceleration
+ADSK,Autodesk,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+BDX,Becton Dickinson,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+AIG,American International Group,Financials,1633,2020-01-02,2026-07-02,Accumulation
+ADM,Archer Daniels Midland,Consumer Staples,1633,2020-01-02,2026-07-02,Deceleration
+A,Agilent Technologies,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+ACGL,Arch Capital Group,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AEE,Ameren,Utilities,1633,2020-01-02,2026-07-02,Acceleration
+ATO,Atmos Energy,Utilities,1633,2020-01-02,2026-07-02,Accumulation
+AVB,AvalonBay Communities,Real Estate,1633,2020-01-02,2026-07-02,Acceleration
+AWK,American Water Works,Utilities,1633,2020-01-02,2026-07-02,Acceleration
+AMCR,Amcor,Materials,1633,2020-01-02,2026-07-02,Acceleration
+LNT,Alliant Energy,Utilities,1633,2020-01-02,2026-07-02,Acceleration
+BALL,Ball Corporation,Materials,1633,2020-01-02,2026-07-02,Acceleration
+AKAM,Akamai Technologies,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+ALB,Albemarle Corporation,Materials,1633,2020-01-02,2026-07-02,Deceleration
+AIZ,Assurant,Financials,1633,2020-01-02,2026-07-02,Acceleration
+ALGN,Align Technology,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+AVY,Avery Dennison,Materials,1633,2020-01-02,2026-07-02,Acceleration
+APTV,Aptiv,Consumer Discretionary,1633,2020-01-02,2026-07-02,Distribution
+ALLE,Allegion,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+BAX,Baxter International,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+APA,APA Corporation,Energy,1633,2020-01-02,2026-07-02,Deceleration
+AES,AES Corporation,Utilities,1633,2020-01-02,2026-07-02,Accumulation
+ARE,Alexandria Real Estate Equities,Real Estate,1633,2020-01-02,2026-07-02,Acceleration
+AOS,A. O. Smith,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+BRK-B,Berkshire Hathaway,Financials,1633,2020-01-02,2026-07-02,Acceleration
+XYZ,"Block, Inc.",Financials,1633,2020-01-02,2026-07-02,Acceleration
+BNY,BNY Mellon,Financials,1633,2020-01-02,2026-07-02,Acceleration
+AVGO,Broadcom,Information Technology,1633,2020-01-02,2026-07-02,Deceleration
+BLK,BlackRock,Financials,1633,2020-01-02,2026-07-02,Deceleration
+BF-B,Brown–Forman,Consumer Staples,1633,2020-01-02,2026-07-02,Acceleration
+CVNA,Carvana,Consumer Discretionary,1633,2020-01-02,2026-07-02,Deceleration
+CASY,Casey's,Consumer Staples,1633,2020-01-02,2026-07-02,Accumulation
+CIEN,Ciena,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+CSCO,Cisco,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+CAT,Caterpillar Inc.,Industrials,1633,2020-01-02,2026-07-02,Acceleration
+KO,Coca-Cola Company (The),Consumer Staples,1633,2020-01-02,2026-07-02,Acceleration
+CVX,Chevron Corporation,Energy,1633,2020-01-02,2026-07-02,Deceleration
+C,Citigroup,Financials,1633,2020-01-02,2026-07-02,Acceleration
+BA,Boeing,Industrials,1633,2020-01-02,2026-07-02,Deceleration
+SCHW,Charles Schwab Corporation,Financials,1633,2020-01-02,2026-07-02,Acceleration
+BX,Blackstone Inc.,Financials,1633,2020-01-02,2026-07-02,Distribution
+BKNG,Booking Holdings,Consumer Discretionary,1633,2020-01-02,2026-07-02,Acceleration
+CB,Chubb Limited,Financials,1633,2020-01-02,2026-07-02,Acceleration
+BMY,Bristol Myers Squibb,Health Care,1633,2020-01-02,2026-07-02,Accumulation
+CDNS,Cadence Design Systems,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+CME,CME Group,Financials,1633,2020-01-02,2026-07-02,Deceleration
+COHR,Coherent Corp.,Information Technology,1633,2020-01-02,2026-07-02,Accumulation
+COIN,Coinbase,Financials,1311,2021-04-14,2026-07-02,Deceleration
+FIX,Comfort Systems USA,Industrials,1633,2020-01-02,2026-07-02,Accumulation
+COP,ConocoPhillips,Energy,1633,2020-01-02,2026-07-02,Deceleration
+COF,Capital One,Financials,1633,2020-01-02,2026-07-02,Acceleration
+CEG,Constellation Energy,Utilities,1117,2022-01-19,2026-07-02,Deceleration
+CMCSA,Comcast,Communication Services,1633,2020-01-02,2026-07-02,Distribution
+CI,Cigna,Health Care,1633,2020-01-02,2026-07-02,Accumulation
+CL,Colgate-Palmolive,Consumer Staples,1633,2020-01-02,2026-07-02,Acceleration
+CTAS,Cintas,Industrials,1633,2020-01-02,2026-07-02,Distribution
+BSX,Boston Scientific,Health Care,1633,2020-01-02,2026-07-02,Deceleration
+CARR,Carrier Global,Industrials,1580,2020-03-19,2026-07-02,Acceleration
+COR,Cencora,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+CAH,Cardinal Health,Health Care,1633,2020-01-02,2026-07-02,Acceleration
+CMG,Chipotle Mexican Grill,Consumer Discretionary,1633,2020-01-02,2026-07-02,Distribution
+ED,Consolidated Edison,Utilities,1633,2020-01-02,2026-07-02,Acceleration

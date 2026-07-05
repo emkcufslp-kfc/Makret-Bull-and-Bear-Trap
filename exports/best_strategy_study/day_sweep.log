@@ -1,0 +1,31 @@
+done sig Mon close, exec +1d
+done sig Mon close, exec +2d
+done sig Mon close, exec +3d
+done sig Tue close, exec +1d
+done sig Tue close, exec +2d
+done sig Tue close, exec +3d
+done sig Wed close, exec +1d
+done sig Wed close, exec +2d
+done sig Wed close, exec +3d
+done sig Thu close, exec +1d
+done sig Thu close, exec +2d
+done sig Thu close, exec +3d
+done sig Fri close, exec +1d
+done sig Fri close, exec +2d
+done sig Fri close, exec +3d
+ Rank                                  Combo  CAGR_%  Max_DD_%  Calmar  Sharpe  Sortino  Vol_%  Win_Rate_%  Best_Year_%  Worst_Year_%  Final_$     Strategy Signal_Day  Exec_Lag_d
+    1     System E | sig Fri close, exec +2d   35.09    -26.44   1.327   1.272    1.905   24.4        59.1        244.0         -14.9 66298655     System E        Fri           2
+    2 E80/R3 Blend | sig Fri close, exec +2d   32.43    -24.50   1.323   1.296    1.961   22.0        59.4        203.3         -15.3 43094749 E80/R3 Blend        Fri           2
+    3     System E | sig Fri close, exec +1d   34.93    -28.50   1.225   1.226    1.684   25.4        60.5        212.3         -16.1 64918908     System E        Fri           1
+    4 E80/R3 Blend | sig Fri close, exec +1d   32.32    -26.75   1.208   1.256    1.744   22.7        60.8        174.9         -16.7 42621254 E80/R3 Blend        Fri           1
+    5 E80/R3 Blend | sig Thu close, exec +3d   30.29    -26.20   1.156   1.214    1.789   22.1        59.6        189.5         -15.7 30174920 E80/R3 Blend        Thu           3
+    6     System E | sig Fri close, exec +3d   34.15    -29.79   1.146   1.287    1.899   23.4        60.2        204.9         -10.7 57015941     System E        Fri           3
+    7 E80/R3 Blend | sig Fri close, exec +3d   31.60    -27.58   1.146   1.318    1.970   21.0        60.2        170.5         -11.5 37668027 E80/R3 Blend        Fri           3
+    8 E80/R3 Blend | sig Mon close, exec +1d   31.48    -27.55   1.142   1.280    1.833   21.6        60.9        161.1         -19.6 36888378 E80/R3 Blend        Mon           1
+    9     System E | sig Thu close, exec +3d   32.74    -28.98   1.130   1.193    1.736   24.6        59.1        224.4         -15.0 45140027     System E        Thu           3
+   10     System E | sig Thu close, exec +1d   33.16    -29.61   1.120   1.225    1.885   24.1        57.8        184.7         -20.9 48600105     System E        Thu           1
+   11     System E | sig Tue close, exec +3d   36.04    -32.33   1.115   1.300    2.003   24.4        58.5        153.9         -21.7 77129702     System E        Tue           3
+   12 E80/R3 Blend | sig Mon close, exec +3d   33.39    -30.51   1.095   1.334    1.883   21.9        60.2        101.5         -22.3 50419045 E80/R3 Blend        Mon           3
+   13     System E | sig Tue close, exec +2d   36.56    -33.46   1.092   1.357    2.106   23.5        60.9        161.4         -22.7 83701486     System E        Tue           2
+   14     System E | sig Mon close, exec +1d   34.10    -31.27   1.091   1.260    1.800   24.0        59.8        185.8         -19.6 56549596     System E        Mon           1
+   15     System E | sig Thu close, exec +2d   32.11    -29.43   1.091   1.127    1.507   25.9        60.3        207.7         -16.1 40942444     System E        Thu           2

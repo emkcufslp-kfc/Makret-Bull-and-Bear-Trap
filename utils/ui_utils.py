@@ -171,7 +171,6 @@ def render_ecosystem_sidebar():
     st.page_link("pages/11_⚠️_Warning.py", label="Warning", icon="⚠️")
     st.page_link("pages/13_💧_Liquidity_D3.py", label="Liquidity D3", icon="💧")
     st.page_link("pages/14_📡_Early_Warning.py", label="Early Warning", icon="📡")
-    st.page_link("pages/15_📊_R3_Vol_Adjusted_Strategy.py", label="R3 Vol-Adjusted Strategy", icon="📊")
 
     st.markdown(
         """
@@ -183,4 +182,10 @@ def render_ecosystem_sidebar():
     )
 
     st.page_link("pages/7_🚀_FTD_Strategy.py", label="Market Pulse / FTD Strategy", icon="🚀")
-    st.page_link("pages/8_📊_Strategies_Dashboard.py", label="Strategies Dashboard
+    st.page_link("pages/8_📊_Strategies_Dashboard.py", label="Strategies Dashboard", icon="📊")
+    st.page_link("pages/12_Market_Stage_Model.py", label="Market Stage Model", icon="🧭")
+    st.page_link("pages/17_🚂_System_E_Strategy.py", label="System E Strategy", icon="🚂")
+    st.page_link("pages/15_📊_R3_Vol_Adjusted_Strategy.py", label="R3 Vol-Adjusted Strategy", icon="📊")
+    st.page_link("pages/16_📊_Strategy_Comparison.py", label="System E vs R3 Comparison", icon="⚖️")
+    st.page_link("pages/18_🏆_E80_R3_Blend_Strategy.py", label="E80/R3 Blend Strategy", icon="🏆")
+    st.page_link("pages/19_🎛️_Action_Panel.py", label="Action Panel", icon="🎛️")

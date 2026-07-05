@@ -604,4 +604,10 @@ quiet markets run further.
 
 **Why this beats binary on/off:**
 Static systems flip from 100% to 0% and suffer from both whipsaws and missed recovery rallies.
-R3's continuous dial — 
+R3's continuous dial — blending regime confidence with real-time volatility — reduces unnecessary
+trading and keeps drawdowns tighter during regime uncertainty.
+            """
+        )
+
+
+dashboard()

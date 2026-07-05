@@ -654,7 +654,7 @@
 
             <h2>&#x1F6A8; Indicator 2: Current Market Sentiment</h2>
 
-            <p style="font-size:0.85rem;color:var(--text-muted);margin-top:-10px;">Sources: <a href="https://www.aaii.com/sentimentsurvey" target="_blank" style="color:var(--accent-blue);">AAII Sentiment Survey</a> (week ending March 25, 2026) &amp; <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" style="color:var(--accent-blue);">CNN Fear &amp; Greed Index</a> (Live updated Jun 22, 2026). Readings at historical extremes are classic contrarian buy signals.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-top:-10px;">Sources: <a href="https://www.aaii.com/sentimentsurvey" target="_blank" style="color:var(--accent-blue);">AAII Sentiment Survey</a> (week ending March 25, 2026) &amp; <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" style="color:var(--accent-blue);">CNN Fear &amp; Greed Index</a> (Live updated Jul 05, 2026). Readings at historical extremes are classic contrarian buy signals.</p>
 
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:15px;">
 
@@ -700,9 +700,9 @@
 
                 <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:4px;">CNN Fear &amp; Greed Index &mdash; 7 Composite Indicators</div>
 
-                <div style="font-size:1.5rem;font-weight:bold;color:var(--red-bear);">&#x1F628; Fear (34.7)</div>
+                <div style="font-size:1.5rem;font-weight:bold;color:var(--red-bear);">&#x1F628; Fear (31.9)</div>
 
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;"><strong>Current macro drivers (CNN, Jun 2026):</strong> Iran war pushing oil prices &amp; mortgage rates higher for a 4th straight week &mdash; "worst week for gold since 1983" &mdash; stocks, bonds &amp; gold slumping simultaneously. Fed held rates unchanged (66.5% of AAII respondents approved). Safe-haven demand signal is elevated, VIX above 50-day MA.</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;"><strong>Current macro drivers (CNN, Jul 2026):</strong> Iran war pushing oil prices &amp; mortgage rates higher for a 4th straight week &mdash; "worst week for gold since 1983" &mdash; stocks, bonds &amp; gold slumping simultaneously. Fed held rates unchanged (66.5% of AAII respondents approved). Safe-haven demand signal is elevated, VIX above 50-day MA.</div>
 
             </div>
 
@@ -774,7 +774,7 @@
 
                     <tr style="background:rgba(255,234,0,0.06)">
 
-                        <td><strong>Jun 2026 (NOW)</strong></td>
+                        <td><strong>Jul 2026 (NOW)</strong></td>
 
                         <td style="color:var(--red-bear);">Bearish 49.8%. CNN: Extreme Fear. Majority finfluencers antiskilled.</td>
 
@@ -1204,174 +1204,4 @@
 
                         `;
 
-                        valBody.appendChild(row);
-
-                    });
-
-                }
-
-            }
-
-        }
-
-
-
-        /**
-
-         * 3. DATA SIMULATOR (Generates explicit 1000-day FTD data)
-
-         * Note: Replace this with a real API fetch (e.g., Alpha Vantage or Polygon) in production.
-
-         */
-
-        function generateMockData() {
-
-            let data = [];
-
-            let price = 500; // Realistic SPY scale
-
-            let date = new Date();
-
-            date.setDate(date.getDate() - 1000); 
-
-
-
-            for (let i = 0; i < 1000; i++) {
-
-                let isFTD = (i > 10 && i % 90 === 0);
-
-                
-
-                let close = price * (1 + (Math.random() - 0.5) * 0.01);
-
-                let dayInCycle = i % 90;
-
-                
-
-                if (dayInCycle >= 60 && dayInCycle <= 80) {
-
-                    close = price * 0.99; // Downtrend to reset rally + RSI
-
-                } else if (dayInCycle === 81) {
-
-                    close = price * 1.01; // Rally Day 1
-
-                } else if (dayInCycle > 81 && dayInCycle < 90) {
-
-                    close = price * 1.002; // Small gains, prevents undercut
-
-                }
-
-                if (isFTD) {
-
-                    close = price * 1.018; // >1.5% gain
-
-                }
-
-                
-
-                let open = price;
-
-                let high = Math.max(open, close) * 1.001;
-
-                let low = Math.min(open, close) * 0.999;
-
-                
-
-                let baseVol = 50000000; // 50M SPY volume
-
-                let volume = baseVol * (1 + (Math.random() - 0.5));
-
-                if (isFTD && i > 0) volume = data[i - 1].volume * 1.5; // High volume for FTD
-
-                if (i > 0 && close < open && Math.random() > 0.8) volume = data[i - 1].volume * 1.2; // Distribution day
-
-                
-
-                data.push({
-
-                    ticker: "SPY", // Dynamic ticker field
-
-                    date: date.toISOString().split('T')[0],
-
-                    open: open,
-
-                    high: high,
-
-                    low: low,
-
-                    close: close,
-
-                    volume: volume
-
-                });
-
-
-
-                price = close;
-
-                date.setDate(date.getDate() + 1);
-
-                if (date.getDay() === 6) date.setDate(date.getDate() + 2);
-
-                if (date.getDay() === 0) date.setDate(date.getDate() + 1);
-
-            }
-
-            return data;
-
-        }
-
-
-
-        // Initialize Dashboard with Real Data
-
-        if (typeof spyHistoricalData !== "undefined" && spyHistoricalData.length > 0) {
-
-            const analysisResults = analyzeMarket(spyHistoricalData);
-
-            updateDashboard(analysisResults);
-
-            
-
-            const lastDate = spyHistoricalData[spyHistoricalData.length - 1].date;
-
-            const dateEl = document.getElementById("lastUpdated");
-
-            if(dateEl) dateEl.innerHTML = "Last Market Close: <b style='color: var(--accent-blue);'>" + lastDate + "</b>";
-
-
-
-            let dDate = new Date(lastDate);
-
-            let monthName = dDate.toLocaleString('default', { month: 'long' });
-
-            let dayNum = dDate.getDate();
-
-            let yearNum = dDate.getFullYear();
-
-            let fDate = monthName + " " + dayNum + ", " + yearNum;
-
-            
-
-            const fDateEl = document.getElementById("finfluencerDate");
-
-            if(fDateEl) fDateEl.innerHTML = "&#x1F4F1; Comprehensive Finfluencer Consensus — " + fDate;
-
-        } else {
-
-            const valBody = document.getElementById("validation-body");
-
-            if (valBody) valBody.innerHTML = "<tr><td colspan='10' style='text-align:center;color:var(--red-bear);'>Error: spy_data.js not loaded. Run fetch_spy_data.py first.</td></tr>";
-
-        }
-
-
-
-    </script>
-
-</body>
-
-
-
-</html>
+                        valBod

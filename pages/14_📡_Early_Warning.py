@@ -29,7 +29,7 @@ STAGE_COLORS = {"Acceleration":"#22c55e","Accumulation":"#f59e0b","Distribution"
 ALERT_LABELS = {0:"ALL CLEAR",1:"MONITOR",2:"WATCH",3:"WARNING"}
 ALERT_ICONS  = {0:"🟢",1:"🟡",2:"🟠",3:"🔴"}
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, ttl=3600)
 def load_weekly():
     df = pd.read_csv(WEEKLY_PATH, index_col=0, parse_dates=True).sort_index()
     df["d1_norm"]     = (df["d1_market_regime_score"] / 85 * 100).round(1)
@@ -49,7 +49,7 @@ def load_weekly():
     df["alert_stage"] = df.apply(_stage, axis=1)
     return df
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, ttl=3600)
 def load_stage_breadth():
     if STAGE_BRD_HIST_PATH.exists():
         brd = pd.read_csv(STAGE_BRD_HIST_PATH, index_col=0, parse_dates=True)
@@ -66,12 +66,12 @@ def load_stage_breadth():
         if c not in breadth.columns: breadth[c]=0.0
     return breadth.reset_index().rename(columns={"Signal Date":"date"})
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, ttl=3600)
 def load_stage_coverage():
     if not STAGE_COVERAGE_PATH.exists(): return pd.DataFrame()
     return pd.read_csv(STAGE_COVERAGE_PATH)
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, ttl=3600)
 def build_stage_history(df_full):
     rows=[]; in_ep=False; ep_start=ep_d1pk=ep_d2pk=ep_spy=ep_max=None
     for date, row in df_full.iterrows():

@@ -551,4 +551,72 @@ st.divider()
 # ════════════════════════════════════════════════════════════════════════════════
 # SECTION 5 — When to Use Which
 # ════════════════════════════════════════════════════════════════════════════════
-st.markdown('<div cla
+st.markdown('<div class="section-hdr">🧠 Section 5 — When to Use Which</div>', unsafe_allow_html=True)
+
+col_a, col_b = st.columns(2)
+
+with col_a:
+    st.markdown("""
+<div style='background:#1e1b4b;border:1px solid #4f46e5;border-radius:12px;padding:20px;'>
+<h4 style='color:#818cf8;margin-top:0'>🤖 System E — Maximum Compounding</h4>
+
+**Best for:** Long-term wealth building, investors with high risk tolerance and long horizons.
+
+**Key traits:**
+- Fully deployed (100%) during BULL regimes
+- NQ100 top-3 momentum picks at 21.7% each = concentrated risk, outsized returns
+- Dual 200d MA gate is **binary** — either all-in or defensive
+- CAGR ~31.7%, Sharpe 1.21 — best absolute returns in the ecosystem
+- Max drawdown –26.8% (comparable to R3 despite much higher returns)
+- Beta 0.53 — leveraged exposure to tech/growth trends
+
+**Use when:** You want maximum compounding and can stomach volatile years.
+You are investing capital you won't need for 5+ years.
+
+</div>
+""", unsafe_allow_html=True)
+
+with col_b:
+    st.markdown("""
+<div style='background:#052e16;border:1px solid #16a34a;border-radius:12px;padding:20px;'>
+<h4 style='color:#34d399;margin-top:0'>📊 R3 Vol-Adjusted — Smooth Compounding</h4>
+
+**Best for:** Risk-conscious investors, leveraged accounts, and portfolios where drawdown matters more than max return.
+
+**Key traits:**
+- Deployment scales continuously 10–100% based on trap scores + realised vol
+- Never goes fully binary — always some SPY exposure
+- Same NQ100 top-3 picks, but vol-normalised weighting
+- CAGR ~18.3%, Sharpe 1.25 — **highest Sharpe in the ecosystem**
+- Max drawdown –25.4% — nearly identical to System E but at half the beta
+- Beta 0.28, Alpha 14.3% — true alpha generation with low market correlation
+- Avg deployment only 44% — capital-efficient for leveraged accounts
+
+**Use when:** You want consistent compounding with lower vol. Ideal for
+margin accounts, institutional mandates, or when you want to sleep at night.
+
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+---
+### 🔄 Common Foundation
+Both strategies share the same core ingredients:
+- **Universe:** NQ100 top momentum stocks (91-ticker list)
+- **Signal:** 44-week minus 4-week skip-month momentum ranking
+- **Breadth Filter:** ≥40% of NQ100 must have positive momentum to deploy
+- **Regime:** Bull/Bear Trap composite scoring (SPY + NQ100 EW vs. 200d MA for System E;
+  multi-factor trap scoring for R3)
+
+The difference is purely in **how aggressively** the signal is acted on:
+System E goes all-in; R3 scales position size to risk conditions.
+""")
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+st.markdown("""
+<hr style='border-color:#1e293b;margin-top:40px'>
+<p style='color:#475569;font-size:0.8rem;text-align:center'>
+Backtest period: Jan 2004 – present · $100,000 initial capital · Weekly rebalancing ·
+No transaction costs or slippage · Past performance does not guarantee future results.
+</p>
+""", unsafe_allow_html=True)

@@ -420,4 +420,197 @@ def step5_r3_signal_cache() -> bool:
             d = pd.DataFrame()
 
         if d.empty or len(d) < 252:
-            log("  SKIP — parquet unavailable 
+            log("  SKIP — parquet unavailable or too short; trying yfinance …")
+            import yfinance as yf
+            tickers = ["SPY", "^VIX", "HYG", "IEF", "^TNX", "^IRX", "TIP"]
+            raw = yf.download(tickers, period="3y", auto_adjust=True, progress=False)["Close"]
+            raw.dropna(how="all", inplace=True)
+            raw.ffill(inplace=True)
+            d = raw
+
+        if len(d) < 252:
+            log("  ✗ Insufficient data for R3 signal computation.")
+            return False
+
+        import pandas as pd
+
+        # --- Bull Trap Score (exact logic from pages/3) ---
+        latest  = d.iloc[-1]
+        prev_mo = d.iloc[max(0, len(d) - 23)]
+
+        curve      = latest["^TNX"] - latest["^IRX"]
+        prev_curve = prev_mo["^TNX"] - prev_mo["^IRX"]
+        if curve > 0 and prev_curve < 0:
+            ys = 1.0
+        elif curve > 0:
+            ys = 0.5
+        else:
+            ys = 0.0
+
+        vix_ma22 = d["^VIX"].rolling(22).mean().iloc[-1]
+        if latest["^VIX"] < 15:
+            vs = 1.0
+        elif latest["^VIX"] < vix_ma22:
+            vs = 0.5
+        else:
+            vs = 0.0
+
+        hyg_ief      = d["HYG"] / d["IEF"]
+        hyg_ief_ma22 = hyg_ief.rolling(22).mean().iloc[-1]
+        cs = 1.0 if hyg_ief.iloc[-1] > hyg_ief_ma22 else 0.0
+
+        spy_200ma = d["SPY"].rolling(200).mean().iloc[-1]
+        if latest["SPY"] > spy_200ma * 1.05:
+            bs = 1.0
+        elif latest["SPY"] > spy_200ma:
+            bs = 0.5
+        else:
+            bs = 0.0
+
+        spy_mom22 = (latest["SPY"] / prev_mo["SPY"]) - 1
+        if spy_mom22 > 0.02:
+            acc = 1.0
+        elif spy_mom22 > 0:
+            acc = 0.5
+        else:
+            acc = 0.0
+
+        if "TIP" in d.columns and len(d) >= 22:
+            tip_trend = d["TIP"].iloc[-1] / d["TIP"].iloc[-22] - 1
+            liq = 1.0 if tip_trend > 0 else 0.0
+        else:
+            liq = 0.5
+
+        bt_score = round(min(10.0, ys + vs + cs + bs + acc + liq + 0.5 + 0.5 + 1.0), 2)
+
+        # --- Bear Trap Score (exact logic from pages/2) ---
+        def _norm(val, lower, upper, inverted=False):
+            if inverted:
+                if val >= lower: return 0.0
+                if val <= upper: return 1.0
+                return round((lower - val) / (lower - upper), 4)
+            if val <= lower: return 0.0
+            if val >= upper: return 1.0
+            return round((val - lower) / (upper - lower), 4)
+
+        irx_ma120     = d["^IRX"].rolling(120).mean().iloc[-1]
+        hyg_ief_ma252 = hyg_ief.rolling(252).mean().iloc[-1]
+
+        bear_score = round(
+            _norm(curve,            1.5,                 -0.5,                inverted=True)  * 0.25 +
+            _norm(latest["^IRX"],   irx_ma120 * 0.8,     irx_ma120 * 1.2)                     * 0.20 +
+            _norm(hyg_ief.iloc[-1], hyg_ief_ma252*1.05,  hyg_ief_ma252*0.90, inverted=True)  * 0.20 +
+            _norm(latest["SPY"],    spy_200ma * 1.05,    spy_200ma * 0.95,   inverted=True)  * 0.15 +
+            _norm(latest["^VIX"],   15,                  35)                                  * 0.10 +
+            0.65 * 0.05 +
+            0.50 * 0.05,
+            4,
+        )
+
+        # --- R3 deploy (vol-adjusted) ---
+        TARGET_VOL     = 0.12
+        bull_weight    = bt_score / 10.0
+        net_confidence = bull_weight * (1.0 - bear_score)
+
+        spy_w   = d["SPY"].resample("W-FRI").last()
+        spy_ret = spy_w.pct_change().dropna().tail(4)
+        if len(spy_ret) >= 2:
+            spy_4wk_vol = float(spy_ret.std() * np.sqrt(52))
+        else:
+            spy_4wk_vol = TARGET_VOL
+        vol_scalar = spy_4wk_vol / TARGET_VOL
+        vol_adj    = net_confidence * min(1.5, 1.0 / vol_scalar) if vol_scalar > 0 else net_confidence
+        deploy     = float(np.clip(0.10 + vol_adj * 0.90, 0.10, 1.00))
+        deploy_pct = round(deploy * 100, 1)
+
+        if deploy_pct >= 70:
+            regime = "FULL DEPLOYMENT"
+        elif deploy_pct >= 40:
+            regime = "CAUTION"
+        else:
+            regime = "DEFENSIVE"
+
+        # --- Top-3 NQ100 picks + breadth from System E weekly signals ---
+        top3_picks, breadth_pct = [], None
+        sig_path = ROOT / "exports" / "trap_regime_backtest" / "system_e_weekly_signals.csv"
+        if sig_path.exists():
+            try:
+                sig_df = pd.read_csv(sig_path, index_col="Date", parse_dates=True).sort_index()
+                if not sig_df.empty:
+                    last = sig_df.iloc[-1]
+                    raw3 = str(last.get("top3_picks", ""))
+                    top3_picks  = [x.strip().strip('"') for x in raw3.split(",") if x.strip()]
+                    breadth_pct = round(float(last.get("breadth_pct", 0.0)), 1)
+            except Exception as exc:
+                log(f"  ! Could not read weekly signals: {exc}")
+
+        # --- Write cache ---
+        today = dt.date.today()
+        cache = {
+            "date":           today.isoformat(),
+            "signal_day":     "Thursday",
+            "exec_day":       "Friday",
+            "bt_score":       bt_score,
+            "bear_score":     bear_score,
+            "net_confidence": round(net_confidence, 4),
+            "vol_scalar":     round(vol_scalar, 4),
+            "deploy_pct":     deploy_pct,
+            "top3_picks":     top3_picks,
+            "breadth_pct":    breadth_pct,
+            "regime":         regime,
+            "next_execution": (today + dt.timedelta(days=(4 - today.weekday()) % 7)).isoformat(),
+        }
+        cache_path = ROOT / "data" / "r3_signal_cache.json"
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_text(json.dumps(cache, indent=2))
+
+        log(f"  ✓ R3 signal cache written in {time.time()-t0:.0f}s  "
+            f"deploy={deploy_pct}%  bt={bt_score}  bear={bear_score}  regime={regime}")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  ✗ R3 signal cache failed: {exc}")
+        return False
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
+    parser.add_argument("--us-data-dir", default=r"D:\Codex projects\US-data",
+                        help="Path to the US OHLCV data directory")
+    parser.add_argument("--top-n", type=int, default=100,
+                        help="Universe size for the stage backtest")
+    parser.add_argument("--skip", default="",
+                        help="Comma-separated step numbers to skip, e.g. --skip 1,4")
+    args = parser.parse_args()
+
+    skip = {s.strip() for s in args.skip.split(",") if s.strip()}
+    us_data_dir = Path(args.us_data_dir)
+
+    log("=" * 70)
+    log("DAILY REFRESH — start")
+    log("=" * 70)
+    t_start = time.time()
+
+    results: dict[str, bool] = {}
+    if "1" not in skip:
+        results["Step 1 (US data)"]         = step1_refresh_us_data(us_data_dir)
+    if "2" not in skip:
+        results["Step 2 (crash predictor)"] = step2_crash_predictor()
+    if "3" not in skip:
+        results["Step 3 (stage breadth)"]   = step3_stage_breadth(us_data_dir)
+    if "4" not in skip:
+        results["Step 4 (backtest)"]        = step4_backtest(us_data_dir, args.top_n)
+    if "5" not in skip:
+        results["Step 5 (R3 signal cache)"] = step5_r3_signal_cache()
+
+    log("=" * 70)
+    for name, ok in results.items():
+        log(f"  {'✓' if ok else '✗'} {name}")
+    log(f"DAILY REFRESH — done in {time.time()-t_start:.0f}s")
+    log("=" * 70)
+    return 0 if all(results.values()) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
