@@ -1,6 +1,15 @@
 # Byte-compiled
 __pycache__/
 *.py[cod]
+*.pyd
+
+# Local dependency caches / scratch (never commit)
+.deps/
+.pylibs_new/
+.pylibs/
+.cache/
+.tmp/
+.codex-review/
 
 # Environment
 .env
@@ -20,11 +29,24 @@ venv/
 # Runtime data files (auto-generated, not source code)
 data/daily_run_log.json
 data/sentiment_cache.json
-data/r3_signal_cache.json
 data/system_e_signal_cache.json
 exports/artifact_snapshot.json
-exports/trap_regime_backtest/
 data/market_data_master.parquet
 
+# R3 signal cache IS needed by the deployed dashboard (small, refreshed Thu)
+!data/r3_signal_cache.json
+
+# Trap regime backtest: ignore bulky raw data, but KEEP dashboard inputs
+exports/trap_regime_backtest/*
+!exports/trap_regime_backtest/risk_allocation/
+exports/trap_regime_backtest/risk_allocation/*
+!exports/trap_regime_backtest/risk_allocation/*.csv
+!exports/trap_regime_backtest/system_e_weekly_signals.csv
+!exports/trap_regime_backtest/system_e_equity_curves.csv
+!exports/trap_regime_backtest/system_e_performance_summary.csv
+
+# Logs
+*.log
+
 # IDE
-.vsco
+.vscode/
