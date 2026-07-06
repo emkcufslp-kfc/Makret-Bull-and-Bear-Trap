@@ -38,6 +38,9 @@ exports/artifact_snapshot.json
 # R3 signal cache IS needed by the deployed dashboard (small, refreshed Thu)
 !data/r3_signal_cache.json
 
+# Live trading records (E80/R3 paper ledger since 2026-07-01) — keep all
+!data/live_trading/r3_signal_history.json
+
 # Trap regime backtest: ignore bulky raw data, but KEEP dashboard inputs
 exports/trap_regime_backtest/*
 !exports/trap_regime_backtest/risk_allocation/

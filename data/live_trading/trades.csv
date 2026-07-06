@@ -1,0 +1,6 @@
+Date,Ticker,Action,Shares,Price,Value,Cost,Realized_PnL,Reason
+2026-07-01,IEF,BUY,13.4638,94.03,1266.0,1.01,0.0,R3 signal 2026-06-25 (36.7% deploy) + Sys E signal 2026-06-30 → rebalance to 80/20 target
+2026-07-01,AMAT,BUY,2.667,650.91,1736.0,1.39,0.0,R3 signal 2026-06-25 (36.7% deploy) + Sys E signal 2026-06-30 → rebalance to 80/20 target
+2026-07-01,AMD,BUY,3.2096,540.88,1736.0,1.39,0.0,R3 signal 2026-06-25 (36.7% deploy) + Sys E signal 2026-06-30 → rebalance to 80/20 target
+2026-07-01,INTC,BUY,14.9189,127.02,1895.0,1.52,0.0,R3 signal 2026-06-25 (36.7% deploy) + Sys E signal 2026-06-30 → rebalance to 80/20 target
+2026-07-01,SPY,BUY,4.5041,745.76,3358.99,2.69,0.0,R3 signal 2026-06-25 (36.7% deploy) + Sys E signal 2026-06-30 → rebalance to 80/20 target
