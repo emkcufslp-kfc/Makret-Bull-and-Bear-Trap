@@ -2,9 +2,9 @@
 sp500,7483.240234375
 gold,4112.7001953125
 net_liquidity_t,5.842152
-net_liquidity_13w_chg,0.014852999999999561
-net_liquidity_26w_chg,0.14483299999999932
-reserve_gdp,9.310622533850717
+net_liquidity_13w_chg,0.0148529999999995
+net_liquidity_26w_chg,0.1448329999999993
+reserve_gdp,9.310622533850715
 cp_sofr_bps,23.0
 hy_spread,2.75
 baa10y_spread,1.54
@@ -19,7 +19,7 @@ dxy,100.86000061035156
 tnx_irx_curve,0.817000150680542
 t2108,50.0
 sp_below_200dma,False
-sp_200dma_diff,0.07715258629387112
+sp_200dma_diff,0.0771525862938711
 liquidity_score,35
 liquidity_divergence,False
 d1_market_regime_score,5

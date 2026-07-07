@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)</title>
+    <title>Master Strategy Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF, E80/R3 Blend)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -107,6 +107,9 @@
                     </button>
                     <button onclick="switchStrategy('ensemble_top100')" id="strat-btn-ensemble" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
                         <i class="fa-solid fa-grid-2"></i> Ensemble Top-100 ETF
+                    </button>
+                    <button onclick="switchStrategy('e80_r3')" id="strat-btn-e80" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        🏆 E80/R3 Blend (Live)
                     </button>
                 </div>
             </section>
@@ -337,6 +340,33 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- E80/R3 Live Account Ledger (visible only for E80/R3 Blend) -->
+                    <div id="e80-ledger-panel" class="glass-panel rounded-2xl flex flex-col overflow-hidden flex-shrink-0 hidden">
+                        <div class="p-3 border-b border-slate-800/80 bg-slate-950/20 flex justify-between items-center">
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-book mr-1"></i> Live Account Ledger (opened 2026-07-01, $10,000)</h3>
+                            <span class="text-[10px] bg-purple-500/10 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded">data/live_trading/ledger.csv</span>
+                        </div>
+                        <div class="overflow-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead class="bg-slate-950/60 text-slate-400 uppercase text-[9px] border-b border-slate-800">
+                                    <tr>
+                                        <th class="p-3 font-medium">Date</th>
+                                        <th class="p-3 font-medium">Description</th>
+                                        <th class="p-3 font-medium text-right">Cash Flow</th>
+                                        <th class="p-3 font-medium text-right">Cash Balance</th>
+                                        <th class="p-3 font-medium text-right">Positions Value</th>
+                                        <th class="p-3 font-medium text-right">Total Equity</th>
+                                        <th class="p-3 font-medium text-right">Daily P&L</th>
+                                        <th class="p-3 font-medium text-right">Total P&L</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="e80-ledger-body" class="divide-y divide-slate-850">
+                                    <!-- Injected -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -965,6 +995,93 @@
         const fmtMoney = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
         const fmtPct = (n) => (n > 0 ? '+' : '') + n.toFixed(2) + '%';
         const colorClass = (n) => n >= 0 ? 'profit' : 'loss';
+        // --- E80/R3 BLEND DATABASE (real data: blend_e_r3_engine backtest + data/live_trading, as of 2026-07-07) ---
+        const E80_R3_DATA = {
+            kpi: {
+                cagr: '29.2%',
+                cagrBench: 'vs SPY: 10.8%',
+                maxdd: '-24.4%',
+                maxddBench: 'vs SPY: -54.6%',
+                sharpe: '1.24',
+                sharpeBench: 'vs SPY: 0.56',
+                ratios: '1.20 / 1.94',
+                ratiosBench: 'vs SPY: 0.20 / 0.70',
+                signal: 'BULL · 80/20 ON',
+                signalBg: 'bg-purple-600 text-white shadow-md shadow-purple-900/30'
+            },
+            regime: 'System E BULL · R3 Deploy 22.3% (CAUTION)',
+            assets: [
+                { symbol: 'SPY', name: 'SPDR S&P 500 ETF Trust', price: 744.78, change: -0.21, target: 33.8, current: 34.6, lower: 28.8, upper: 38.8 },
+                { symbol: 'INTC', name: 'Intel Corp (Sys E Top-3)', price: 120.35, change: -5.33, target: 18.9, current: 18.5, lower: 13.9, upper: 23.9 },
+                { symbol: 'AMD', name: 'Advanced Micro Devices (Sys E Top-3)', price: 517.82, change: -4.34, target: 17.4, current: 17.2, lower: 12.4, upper: 22.4 },
+                { symbol: 'AMAT', name: 'Applied Materials (Sys E Top-3)', price: 603.04, change: -7.43, target: 17.4, current: 16.6, lower: 12.4, upper: 22.4 },
+                { symbol: 'IEF', name: 'iShares 7-10Y Treasury (R3 ballast)', price: 94.12, change: 0.02, target: 12.7, current: 13.1, lower: 7.7, upper: 17.7 }
+            ],
+            yearly: [
+                { year: '2026', portRet: '+60.0%', spyRet: '+9.0%', portDD: '-6.9%', spyDD: '-8.4%', winner: 'Portfolio' },
+                { year: '2025', portRet: '+18.2%', spyRet: '+18.0%', portDD: '-19.1%', spyDD: '-16.9%', winner: 'Portfolio' },
+                { year: '2024', portRet: '+50.2%', spyRet: '+28.8%', portDD: '-18.7%', spyDD: '-5.3%', winner: 'Portfolio' },
+                { year: '2023', portRet: '+26.7%', spyRet: '+24.3%', portDD: '-11.2%', spyDD: '-9.8%', winner: 'Portfolio' },
+                { year: '2022', portRet: '-14.7%', spyRet: '-16.6%', portDD: '-17.4%', spyDD: '-22.5%', winner: 'Portfolio' },
+                { year: '2021', portRet: '+23.5%', spyRet: '+28.7%', portDD: '-24.4%', spyDD: '-3.9%', winner: 'SPY' },
+                { year: '2020', portRet: '+143.4%', spyRet: '+16.6%', portDD: '-14.3%', spyDD: '-31.8%', winner: 'Portfolio' },
+                { year: '2019', portRet: '+30.0%', spyRet: '+30.3%', portDD: '-14.7%', spyDD: '-6.4%', winner: 'SPY' },
+                { year: '2018', portRet: '+8.2%', spyRet: '-7.7%', portDD: '-16.4%', spyDD: '-17.1%', winner: 'Portfolio' },
+                { year: '2017', portRet: '+36.7%', spyRet: '+19.7%', portDD: '-7.7%', spyDD: '-2.1%', winner: 'Portfolio' },
+                { year: '2016', portRet: '+63.3%', spyRet: '+12.0%', portDD: '-7.1%', spyDD: '-8.5%', winner: 'Portfolio' },
+                { year: '2015', portRet: '-9.0%', spyRet: '+2.2%', portDD: '-16.2%', spyDD: '-9.4%', winner: 'SPY' },
+                { year: '2014', portRet: '+24.4%', spyRet: '+16.2%', portDD: '-13.9%', spyDD: '-6.1%', winner: 'Portfolio' },
+                { year: '2013', portRet: '+51.3%', spyRet: '+28.1%', portDD: '-8.5%', spyDD: '-4.3%', winner: 'Portfolio' },
+                { year: '2012', portRet: '+17.3%', spyRet: '+12.1%', portDD: '-12.1%', spyDD: '-9.0%', winner: 'Portfolio' },
+                { year: '2011', portRet: '+14.4%', spyRet: '+0.8%', portDD: '-17.7%', spyDD: '-17.0%', winner: 'Portfolio' },
+                { year: '2010', portRet: '+20.7%', spyRet: '+15.1%', portDD: '-11.3%', spyDD: '-15.7%', winner: 'Portfolio' },
+                { year: '2009', portRet: '+8.8%', spyRet: '+23.8%', portDD: '-6.2%', spyDD: '-25.9%', winner: 'SPY' },
+                { year: '2008', portRet: '+10.1%', spyRet: '-36.8%', portDD: '-6.5%', spyDD: '-43.7%', winner: 'Portfolio' },
+                { year: '2007', portRet: '+57.0%', spyRet: '+6.7%', portDD: '-7.8%', spyDD: '-7.8%', winner: 'Portfolio' },
+                { year: '2006', portRet: '+20.7%', spyRet: '+12.3%', portDD: '-6.0%', spyDD: '-6.4%', winner: 'Portfolio' },
+                { year: '2005', portRet: '+41.9%', spyRet: '+7.0%', portDD: '-4.5%', spyDD: '-6.6%', winner: 'Portfolio' },
+                { year: '2004', portRet: '+18.2%', spyRet: '+10.7%', portDD: '-6.0%', spyDD: '-7.5%', winner: 'Portfolio' }
+            ],
+            // Live trading log — data/live_trading/trades.csv (account opened 2026-07-01, $10,000)
+            history: [
+                { date: '2026-07-01', asset: 'SPY', action: 'BUY', price: '$745.76', size: '4.5041 Shares', val: '$3,358.99', pnl: '-' },
+                { date: '2026-07-01', asset: 'INTC', action: 'BUY', price: '$127.02', size: '14.9189 Shares', val: '$1,895.00', pnl: '-' },
+                { date: '2026-07-01', asset: 'AMD', action: 'BUY', price: '$540.88', size: '3.2096 Shares', val: '$1,736.00', pnl: '-' },
+                { date: '2026-07-01', asset: 'AMAT', action: 'BUY', price: '$650.91', size: '2.6670 Shares', val: '$1,736.00', pnl: '-' },
+                { date: '2026-07-01', asset: 'IEF', action: 'BUY', price: '$94.03', size: '13.4638 Shares', val: '$1,266.00', pnl: '-' }
+            ],
+            // Real backtest curve, annual samples (Jan 2004 = 100), log scale
+            chartDates: ['2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+            chartPort: [118.2, 164.5, 201.8, 314.6, 349.0, 375.6, 451.0, 520.7, 622.3, 989.4, 1201.3, 1070.1, 1736.1, 2371.7, 2696.7, 3530.0, 9011.2, 10971.6, 8637.6, 11223.2, 16242.1, 19649.7, 31803.0],
+            chartSpy: [110.7, 116.1, 134.5, 142.5, 86.3, 114.0, 129.9, 132.4, 151.0, 202.3, 233.8, 235.5, 261.4, 318.1, 301.0, 399.6, 465.3, 606.8, 496.5, 626.5, 794.4, 932.4, 1006.2],
+            chartDDPort: [-6.0, -4.5, -6.0, -7.8, -6.5, -7.0, -11.3, -17.7, -15.3, -8.5, -13.9, -16.2, -16.7, -7.7, -16.4, -16.8, -14.3, -24.4, -23.8, -24.1, -18.7, -19.8, -6.9],
+            chartDDSpy: [-7.5, -6.6, -6.4, -7.8, -48.1, -54.6, -30.5, -21.9, -10.4, -4.3, -6.1, -9.4, -11.2, -2.1, -17.1, -13.1, -31.8, -3.9, -23.9, -17.4, -5.3, -16.9, -8.4],
+            // Bootstrap MC: 1,000 x 10-yr weekly resamples of the real blend curve — CAGR% histogram (5/50/95: 16.4 / 29.3 / 44.8)
+            mcValues: [6.2, 11.1, 15.9, 20.8, 25.7, 30.6, 35.4, 40.3, 45.2, 50.1, 55.0],
+            mcCounts: [5, 11, 62, 160, 201, 222, 179, 85, 46, 19, 10],
+            // Rolling 5-yr windows (starts 2004-2021): Max DD vs CAGR
+            scDD: [-24.4, -24.4, -24.4, -24.4, -24.4, -17.7, -17.7, -17.7, -17.7, -17.7, -16.8, -16.8, -16.7, -16.7, -16.7, -11.3, -7.8, -7.8],
+            scCAGR: [17.3, 28.3, 32.9, 34.6, 44.8, 14.5, 18.8, 21.1, 23.5, 26.4, 24.7, 53.6, 22.9, 26.9, 29.5, 22.0, 26.7, 28.5],
+            meta: {
+                backtestPeriod: 'Jan 2004 - Jul 2026',
+                executionDescription: 'Weekly 80/20 blend: System E (NQ100 top-3 momentum, Tue signal → Wed open) + R3 Vol-Adjusted (trap-score sizing, Thu signal → Fri open). Sleeves embed T+1 + 0.16% RT costs; blend layer pays 10 bps per unit turnover.',
+                lastActionDate: '2026-07-01',
+                monthlyWinRate: '58.5%',
+                bestEra: '2020 start (CAGR 39.2%)',
+                worstEra: '2021 start (CAGR 26.1%)',
+                logScale: true,
+                sleeves: [
+                    { symbol: 'SYS E', name: 'System E — NQ100 top-3 momentum', weight: 80.0 },
+                    { symbol: 'R3', name: 'R3 Vol-Adjusted — trap-score sizing', weight: 20.0 }
+                ],
+                // Live account ledger — data/live_trading/ledger.csv
+                ledger: [
+                    { date: '2026-07-02', desc: 'Mark-to-market', flow: '$0.00', cash: '$0.01', positions: '$9,687.57', equity: '$9,687.58', dayPnl: '-$304.39', totPnl: '-$312.42' },
+                    { date: '2026-07-01', desc: 'Opening deposit $10,000; 5 rebalance trades', flow: '-$9,999.99', cash: '$0.01', positions: '$9,991.96', equity: '$9,991.97', dayPnl: '-$8.03', totPnl: '-$8.03' }
+                ]
+            }
+        };
+
         const getCurrentDb = () => AppState.currentStrategy === 'ntsx'
             ? NTSX_DATA
             : (AppState.currentStrategy === 'platinum'
@@ -973,13 +1090,16 @@
                     ? FUND_TACTICAL_DATA
                     : (AppState.currentStrategy === 'best_mix'
                         ? BEST_MIX_DATA
-                        : (AppState.currentStrategy === 'allocator' ? ALLOCATOR_DATA : ENSEMBLE_TOP100_DATA))));
+                        : (AppState.currentStrategy === 'allocator'
+                            ? ALLOCATOR_DATA
+                            : (AppState.currentStrategy === 'e80_r3' ? E80_R3_DATA : ENSEMBLE_TOP100_DATA)))));
         const isNtsx = () => AppState.currentStrategy === 'ntsx';
         const isPlatinum = () => AppState.currentStrategy === 'platinum';
         const isFundTactical = () => AppState.currentStrategy === 'fund_tactical';
         const isBestMix = () => AppState.currentStrategy === 'best_mix';
         const isAllocator = () => AppState.currentStrategy === 'allocator';
         const isEnsembleTop100 = () => AppState.currentStrategy === 'ensemble_top100';
+        const isE80R3 = () => AppState.currentStrategy === 'e80_r3';
 
         // ====================================================================
         // 2. CONTROLLER FUNCTIONS
@@ -995,6 +1115,7 @@
             const btnMix = document.getElementById('strat-btn-mix');
             const btnAllocator = document.getElementById('strat-btn-allocator');
             const btnEnsemble = document.getElementById('strat-btn-ensemble');
+            const btnE80 = document.getElementById('strat-btn-e80');
             const activeClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-indigo-600 text-white shadow-md flex items-center justify-center gap-2";
             const idleClass = "w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white flex items-center justify-center gap-2 hover:bg-slate-900/50 border border-transparent hover:border-slate-800";
 
@@ -1004,6 +1125,7 @@
             btnMix.className = strategyKey === 'best_mix' ? activeClass : idleClass;
             btnAllocator.className = strategyKey === 'allocator' ? activeClass : idleClass;
             btnEnsemble.className = strategyKey === 'ensemble_top100' ? activeClass : idleClass;
+            btnE80.className = strategyKey === 'e80_r3' ? activeClass : idleClass;
 
             renderTabLabels();
             renderSidebar();
@@ -1738,6 +1860,34 @@
                     </tr>
                 `).join('');
             }
+
+            // E80/R3 extras: retitle the trade log + show the live account ledger
+            const ledgerPanel = document.getElementById('e80-ledger-panel');
+            if (ledgerPanel) {
+                if (isE80R3()) {
+                    DOM.logTableTitle.innerHTML = `<i class="fa-solid fa-clipboard-list mr-1"></i> Live Trading Log (data/live_trading/trades.csv)`;
+                    DOM.logTableFilters.innerHTML = `<span class="text-[10px] bg-purple-500/10 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded">Real account · T+1 execution</span>`;
+                    document.getElementById('e80-ledger-body').innerHTML = (getCurrentDb().meta?.ledger || []).map(r => {
+                        const dayColor = r.dayPnl.startsWith('-') ? 'text-red-400' : 'text-emerald-400';
+                        const totColor = r.totPnl.startsWith('-') ? 'text-red-400' : 'text-emerald-400';
+                        return `
+                            <tr class="hover:bg-slate-900/20 transition-colors">
+                                <td class="p-3 font-semibold text-slate-300 font-mono">${r.date}</td>
+                                <td class="p-3 text-slate-400">${r.desc}</td>
+                                <td class="p-3 text-right font-mono text-slate-300">${r.flow}</td>
+                                <td class="p-3 text-right font-mono text-slate-400">${r.cash}</td>
+                                <td class="p-3 text-right font-mono text-slate-300">${r.positions}</td>
+                                <td class="p-3 text-right font-mono text-white font-bold">${r.equity}</td>
+                                <td class="p-3 text-right font-mono ${dayColor}">${r.dayPnl}</td>
+                                <td class="p-3 text-right font-mono ${totColor} font-bold">${r.totPnl}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                    ledgerPanel.classList.remove('hidden');
+                } else {
+                    ledgerPanel.classList.add('hidden');
+                }
+            }
         }
 
         function renderLineCharts(db) {
@@ -1782,7 +1932,7 @@
                     },
                     scales: {
                         x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 9 } } },
-                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 9 } } }
+                        y: { type: db.meta?.logScale ? 'logarithmic' : 'linear', grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 9 } } }
                     }
                 }
             });
@@ -2352,6 +2502,58 @@
                         'This section is the final research output: the optimizer found that a Platinum-heavy blend plus a meaningful F-TAA ballast gave the best combined CAGR and drawdown tradeoff in the tested universe.',
                         'The point of the mix is separation of jobs. Platinum hunts return, F-TAA controls regime shocks, and NTSX adds a little structural diversification.',
                         'Users should think of this as a top-level capital allocation recipe rather than a fourth independent signal engine.'
+                    ]
+                };
+            } else if (isE80R3()) {
+                content = {
+                    title: 'E80/R3 Blend Playbook',
+                    subtitle: 'The Calmar-optimal 80/20 combination from the strategy study: System E hunts return with NQ100 top-3 momentum, R3 absorbs shocks with continuous trap-score sizing.',
+                    cadence: 'Sys E: Tue signal → Wed open · R3: Thu signal → Fri open',
+                    trigger: 'Regime flip, top-3 rotation, or R3 deploy % change',
+                    action: 'Rebalance sleeves back to 80/20 weekly',
+                    badge: 'Live 80/20 Blend',
+                    tree: `
+                        <div class="space-y-4">
+                            <div class="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4">
+                                <div class="text-[10px] uppercase tracking-wider text-purple-200">Start</div>
+                                <div class="text-sm font-semibold text-white mt-1">Run both sleeves on their own weekly schedules, then correct drift back to 80/20.</div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-amber-300">System E — 80% (return engine)</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Binary all-in/all-out NQ100 momentum.</div>
+                                    <p class="text-xs text-slate-400 mt-2">BULL gate: SPY & NQ100 equal-weight above their 200d MAs + breadth gate. When BULL: 35% SPY + 3 × 21.7% top-momentum NQ100 names. When BEAR: defensive.</p>
+                                </div>
+                                <div class="rounded-xl border border-blue-500/25 bg-blue-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-blue-300">R3 Vol-Adjusted — 20% (shock absorber)</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Continuously sized 10-100% deployment.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Bull/Bear Trap scores + realized volatility set the deploy %. Averages only ~44% deployed; remainder sits in IEF/cash ballast.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-slate-500">Weekly Rebalance</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Correct realized drift back to 80/20 — no look-ahead.</div>
+                                    <p class="text-xs text-slate-400 mt-2">Blend layer pays 10 bps per unit turnover on drift-correction trades.</p>
+                                </div>
+                                <div class="rounded-xl border border-rose-500/25 bg-rose-500/10 p-4">
+                                    <div class="text-[10px] uppercase tracking-wider text-rose-300">Known Weakness</div>
+                                    <div class="text-sm font-semibold text-white mt-1">Both sleeves share the NQ100 momentum engine.</div>
+                                    <p class="text-xs text-slate-400 mt-2">2022-type years still hurt (worst year ≈ −21%). Past performance ≠ future results.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    workflow: [
+                        'Tuesday close: System E signal locks (regime + top-3 momentum picks) → execute at Wednesday open for the 80% sleeve.',
+                        'Thursday close: R3 deploy % locks from trap scores and realized volatility → execute at Friday open for the 20% sleeve.',
+                        'Weekly: rebalance sleeve weights back to 80/20, paying 10 bps on the drift-correction turnover.',
+                        'Record every fill in data/live_trading/trades.csv and mark the account to market daily in ledger.csv.'
+                    ],
+                    explanation: [
+                        'Why 80/20? A grid search over all Sys E / R3 / R7 weight combinations (5% steps, 22.5 years of weekly data) found this blend maximizes Calmar (CAGR ÷ Max DD). Neighbouring blends score nearly identically, so the optimum is robust.',
+                        'System E provides the return engine; R3 dampens drawdowns because it is rarely fully deployed and scales down automatically when trap scores or volatility deteriorate.',
+                        'The backtest embeds T+1 execution and 0.16% round-trip costs in both sleeves — the equity curve on the Performance tab is the realistic, cost-adjusted one.'
                     ]
                 };
             } else {
