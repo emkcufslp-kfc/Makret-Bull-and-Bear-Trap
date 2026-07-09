@@ -130,7 +130,13 @@ def get_master_data():
             master_df = pd.read_parquet(MASTER_FILE)
             master_df.index = pd.to_datetime(master_df.index)
         except Exception as e:
-            st.error(f"Error reading master data: {e}. Re-triggering full download.")
+            # Known cause: parquet file written with a different pandas/pyarrow
+            # version than what's installed (e.g. "No module named
+            # 'pandas.api.internals'"). This is recoverable — we fall back to a
+            # full re-download below and overwrite the file — so this is logged
+            # rather than surfaced as a scary st.error(), which would otherwise
+            # get replayed on every cache hit for the ttl of get_clean_master().
+            print(f"[data_engine] Error reading master data ({e}); re-triggering full download.")
             master_df = pd.DataFrame()
     today = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)).date()
     existing_tickers = set(master_df.columns) if not master_df.empty else set()
@@ -162,7 +168,10 @@ def get_master_data():
 def get_clean_master():
     return get_master_data()
 
-from fredapi import Fred
+try:
+    from fredapi import Fred
+except ImportError:
+    Fred = None
 
 def get_secret(key, default=""):
     try: return st.secrets[key]
@@ -170,7 +179,7 @@ def get_secret(key, default=""):
     return os.environ.get(key, default)
 
 FRED_API_KEY = get_secret("FRED_API_KEY")
-fred = Fred(api_key=FRED_API_KEY) if FRED_API_KEY else None
+fred = Fred(api_key=FRED_API_KEY) if (Fred and FRED_API_KEY) else None
 
 def get_hy_spread(target_date):
     if fred:
