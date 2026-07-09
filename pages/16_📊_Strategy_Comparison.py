@@ -386,11 +386,11 @@ if "System E (Original)" in curves:
             start = date
         elif not is_bear and start is not None:
             fig_eq.add_vrect(x0=start, x1=date,
-                             fillcolor="#ef444430", line_width=0, layer="below")
+                             fillcolor="rgba(239,68,68,0.19)", line_width=0, layer="below")
             start = None
     if start is not None:
         fig_eq.add_vrect(x0=start, x1=s.index[-1],
-                         fillcolor="#ef444430", line_width=0, layer="below")
+                         fillcolor="rgba(239,68,68,0.19)", line_width=0, layer="below")
 
 fig_eq.update_layout(
     template="plotly_dark",

@@ -317,11 +317,11 @@ if not data_missing:
                 bear_start = dt
             elif not is_bear and bear_start is not None:
                 fig_eq.add_vrect(x0=bear_start, x1=dt,
-                                 fillcolor="#f59e0b18", line_width=0, layer="below")
+                                 fillcolor="rgba(245,158,11,0.09)", line_width=0, layer="below")
                 bear_start = None
         if bear_start is not None:
             fig_eq.add_vrect(x0=bear_start, x1=in_d_mode.index[-1],
-                             fillcolor="#f59e0b18", line_width=0, layer="below")
+                             fillcolor="rgba(245,158,11,0.09)", line_width=0, layer="below")
 
     for label, series in curves.items():
         width  = 2.5 if label == "H8b — Hybrid A/D (SPY vol 15%)" else 1.5
@@ -476,7 +476,7 @@ if not data_missing and len(in_d_mode) > 0:
             name="SPY 8-Week Realized Vol",
             line=dict(color="#6366f1", width=1.5),
             fill="tozeroy",
-            fillcolor="#6366f120",
+            fillcolor="rgba(99,102,241,0.13)",
             hovertemplate="%{x|%Y-%m-%d}<br>SPY 8w vol: %{y:.1f}%<extra></extra>",
         ), row=2, col=1)
 
@@ -497,11 +497,11 @@ if not data_missing and len(in_d_mode) > 0:
                     bear_start = dt
                 elif not is_d and bear_start is not None:
                     fig_reg.add_vrect(x0=bear_start, x1=dt, row=2, col=1,
-                                      fillcolor="#f59e0b15", line_width=0, layer="below")
+                                      fillcolor="rgba(245,158,11,0.08)", line_width=0, layer="below")
                     bear_start = None
             if bear_start is not None:
                 fig_reg.add_vrect(x0=bear_start, x1=in_d_mode.index[-1], row=2, col=1,
-                                  fillcolor="#f59e0b15", line_width=0, layer="below")
+                                  fillcolor="rgba(245,158,11,0.08)", line_width=0, layer="below")
 
     fig_reg.update_layout(
         template="plotly_dark",
