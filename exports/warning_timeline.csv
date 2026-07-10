@@ -1,4 +1,7 @@
 ﻿Date,Indicator,Status Change,Severity
+2026-07-10,Theme stocks momentum weakening,Warning -> Normal,Normal
+2026-07-07,Market breadth worsening,Normal -> Watch,Watch
+2026-07-06,Market breadth worsening,Watch -> Normal,Normal
 2026-07-02,Increasing downward momentum,Watch -> Normal,Normal
 2026-06-30,Technical indicators deteriorating,Watch -> Normal,Normal
 2026-06-29,Increasing downward momentum,Warning -> Watch,Watch
@@ -20,6 +23,3 @@
 2026-06-17,Technical indicators deteriorating,Normal -> Watch,Watch
 2026-06-17,Market breadth worsening,Normal -> Warning,Warning
 2026-06-16,Market breadth worsening,Watch -> Normal,Normal
-2026-06-16,Theme stocks momentum weakening,Normal -> Warning,Warning
-2026-06-15,Technical indicators deteriorating,Watch -> Normal,Normal
-2026-06-15,Theme stocks momentum weakening,Warning -> Normal,Normal
