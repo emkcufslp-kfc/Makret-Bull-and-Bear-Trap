@@ -9,6 +9,9 @@ import re
 from backend.strategies.allocator_engine import load_allocator_json
 from backend.strategies.ensemble_top100_engine import load_ensemble_top100_json
 from utils.ui_utils import get_latest_master_data_date
+from utils.data_engine import get_clean_master
+from backend.strategies.blend_e_r3_engine import build_blend_curve, blend_metrics
+from backend.strategies.blend_live_ledger import build_live_state
 
 # Set Page Config
 st.set_page_config(layout="wide", page_title="Strategies Dashboard", page_icon="📊")
@@ -18,6 +21,7 @@ ROOT_DIR = Path(__file__).parent.parent
 DATA_DIR_PLATINUM = ROOT_DIR / "data" / "Platinum_Results"
 DATA_DIR_NTSX = ROOT_DIR / "data" / "Multi_indicator"
 DATA_DIR_FUND = ROOT_DIR / "data" / "Fund_Tactical_Results"
+DATA_DIR_STRATCOMP = ROOT_DIR / "data" / "Strategy_Comparisons"
 MOCKUP_PATH = ROOT_DIR / "scratch_mockup.html"
 
 
@@ -410,6 +414,222 @@ def load_ensemble_top100_live_json(sel_dt):
         st.error(f"Error compiling Ensemble Top-100 ETF data: {e}")
         return None
 
+
+def _yearly_vs_bench(port_eq, bench_eq):
+    """Per-calendar-year return/drawdown table, portfolio vs benchmark."""
+    port_ret = port_eq.pct_change().dropna()
+    bench_ret = bench_eq.pct_change().dropna()
+    port_annual = (1 + port_ret).groupby(port_ret.index.year).prod() - 1
+    bench_annual = (1 + bench_ret).groupby(bench_ret.index.year).prod() - 1
+    port_dd = (port_eq / port_eq.cummax() - 1).groupby(port_eq.index.year).min()
+    bench_dd = (bench_eq / bench_eq.cummax() - 1).groupby(bench_eq.index.year).min()
+    rows = []
+    for yr in port_annual.index:
+        pr = float(port_annual.get(yr, 0.0))
+        br = float(bench_annual.get(yr, 0.0))
+        rows.append({
+            "year": str(yr),
+            "portRet": f"{pr * 100:+.1f}%",
+            "spyRet": f"{br * 100:+.1f}%",
+            "portDD": f"{float(port_dd.get(yr, 0.0)) * 100:.1f}%",
+            "spyDD": f"{float(bench_dd.get(yr, 0.0)) * 100:.1f}%",
+            "winner": "Portfolio" if pr > br else "SPY",
+        })
+    return rows[::-1]
+
+
+def _rolling_start_points(eq_series, min_days=126):
+    pts = []
+    for start_dt in eq_series.resample("MS").first().index:
+        sub = eq_series[eq_series.index >= start_dt]
+        if len(sub) < min_days:
+            continue
+        years = max((sub.index[-1] - sub.index[0]).days / 365.25, 1 / 12)
+        cagr = ((sub.iloc[-1] / sub.iloc[0]) ** (1 / years) - 1) * 100
+        maxdd = ((sub / sub.cummax()) - 1).min() * 100
+        pts.append((float(maxdd), float(cagr)))
+    return [p[0] for p in pts], [p[1] for p in pts]
+
+
+@st.cache_data(ttl=1800)
+def load_e80_r3_live_json(sel_dt):
+    """Live E80/R3 Blend tab: 22-yr backtest KPIs + paper-trading ledger,
+    both filtered/frozen at the selected master date."""
+    try:
+        curves = build_blend_curve()
+        curves = curves[curves.index <= sel_dt]
+        if curves.empty:
+            return None
+
+        port_eq = curves["Blend_E80_R3"]
+        bench_eq = curves["Buy_Hold_SPY"]
+        m = blend_metrics(port_eq, bench_eq)
+        m_spy = blend_metrics(bench_eq, bench_eq)
+
+        dd_port = (port_eq / port_eq.cummax()) - 1
+        dd_spy = (bench_eq / bench_eq.cummax()) - 1
+
+        # Live paper-trading state (positions/trades), capped at sel_dt
+        master = get_clean_master()
+        master = master[master.index <= sel_dt]
+        assets, history, regime, signal_text, signal_bg = [], [], "UNKNOWN", "HOLD", "bg-slate-700 text-slate-100 border border-slate-600"
+        if master is not None and not master.empty:
+            state = build_live_state(master)
+            sig_e = state.get("sys_e_sig", {})
+            e_regime = sig_e.get("regime", "UNKNOWN")
+            r3_deploy = state.get("w_r3", {})
+            deploy_pct = state["summary"].get("equity_exposure_pct", 0.0)
+            regime = f"System E {e_regime} · R3/E80 exposure {deploy_pct:.0f}%"
+            if e_regime == "BULL":
+                signal_text, signal_bg = "BULL · 80/20 ON", "bg-purple-600 text-white shadow-md shadow-purple-900/30"
+            elif e_regime == "BEAR":
+                signal_text, signal_bg = "BEAR · DEFENSIVE", "bg-red-500/10 text-red-400 border border-red-500/30"
+
+            positions = state.get("positions")
+            if positions is not None and not positions.empty:
+                for _, row in positions.iterrows():
+                    assets.append({
+                        "symbol": row["Ticker"],
+                        "name": row["Ticker"],
+                        "price": float(row["Last_Price"]),
+                        "change": 0.0,
+                        "target": float(row["Target_W_%"]),
+                        "current": float(row["Actual_W_%"]),
+                        "lower": max(0.0, float(row["Target_W_%"]) - 5.0),
+                        "upper": float(row["Target_W_%"]) + 5.0,
+                    })
+
+            trades = state.get("trades")
+            if trades is not None and not trades.empty:
+                for _, row in trades.sort_values("Date", ascending=False).head(20).iterrows():
+                    history.append({
+                        "date": str(row["Date"])[:10],
+                        "asset": str(row["Ticker"]),
+                        "action": str(row["Action"]),
+                        "price": f"${float(row['Price']):.2f}",
+                        "size": f"{float(row['Shares']):.2f} Shares",
+                        "val": f"${float(row['Value']):,.0f}",
+                        "pnl": f"${float(row['Realized_PnL']):+,.2f}" if float(row.get("Realized_PnL", 0)) != 0 else "-",
+                    })
+
+        rolling_1y = port_eq.pct_change(252).dropna() * 100
+        mc_values, mc_counts = _build_histogram(rolling_1y)
+        sc_dd, sc_cagr = _rolling_start_points(port_eq)
+
+        return {
+            "kpi": {
+                "cagr": f"{m['CAGR_%']:.1f}%",
+                "cagrBench": f"vs SPY: {m_spy['CAGR_%']:.1f}%",
+                "maxdd": f"{m['Max_DD_%']:.1f}%",
+                "maxddBench": f"vs SPY: {m_spy['Max_DD_%']:.1f}%",
+                "sharpe": f"{m['Sharpe']:.2f}",
+                "sharpeBench": f"vs SPY: {m_spy['Sharpe']:.2f}",
+                "ratios": f"{m['Calmar']:.2f} / {m['Sortino']:.2f}",
+                "ratiosBench": f"vs SPY: {m_spy['Calmar']:.2f} / {m_spy['Sortino']:.2f}",
+                "signal": signal_text,
+                "signalBg": signal_bg,
+            },
+            "regime": regime,
+            "assets": assets,
+            "yearly": _yearly_vs_bench(port_eq, bench_eq),
+            "history": history,
+            "chartDates": port_eq.index.strftime("%Y-%m-%d").tolist()[::5],
+            "chartPort": port_eq.tolist()[::5],
+            "chartSpy": bench_eq.tolist()[::5],
+            "chartDDPort": [float(v * 100) for v in dd_port.tolist()[::5]],
+            "chartDDSpy": [float(v * 100) for v in dd_spy.tolist()[::5]],
+            "mcValues": mc_values,
+            "mcCounts": mc_counts,
+            "scDD": sc_dd,
+            "scCAGR": sc_cagr,
+        }
+    except Exception as e:
+        st.error(f"Error compiling E80/R3 Blend data: {e}")
+        return None
+
+
+@st.cache_data(ttl=1800)
+def load_best_mix_json(sel_dt):
+    """Live Best Mix tab: fixed-weight NTSX/Platinum/F-TAA optimizer blend
+    (weights from data/Strategy_Comparisons/strategy_mix_key_portfolios.csv),
+    equity curve filtered at the selected master date."""
+    try:
+        eq_path = DATA_DIR_STRATCOMP / "recommended_strategy_mix_equity.csv"
+        curves_path = DATA_DIR_STRATCOMP / "long_window_equity_curves.csv"
+        weights_path = DATA_DIR_STRATCOMP / "strategy_mix_key_portfolios.csv"
+        if not (eq_path.exists() and curves_path.exists() and weights_path.exists()):
+            return None
+
+        mix_eq = pd.read_csv(eq_path, index_col=0, parse_dates=True)["Combined_Equity"]
+        bench_eq = pd.read_csv(curves_path, index_col=0, parse_dates=True)["SPY"]
+        weights = pd.read_csv(weights_path, index_col=0)
+
+        mix_eq = mix_eq[mix_eq.index <= sel_dt]
+        bench_eq = bench_eq.reindex(mix_eq.index).ffill()
+        if mix_eq.empty:
+            return None
+
+        w_row = weights.loc["best_calmar"]
+        w_ntsx, w_plat, w_ftaa = float(w_row["NTSX %"]), float(w_row["Platinum %"]), float(w_row["F-TAA %"])
+
+        ret = mix_eq.pct_change().dropna()
+        bret = bench_eq.pct_change().dropna()
+        years = (mix_eq.index[-1] - mix_eq.index[0]).days / 365.25
+        cagr = (mix_eq.iloc[-1] / mix_eq.iloc[0]) ** (1 / years) - 1 if years > 0 else 0.0
+        cagr_spy = (bench_eq.iloc[-1] / bench_eq.iloc[0]) ** (1 / years) - 1 if years > 0 else 0.0
+        vol = ret.std() * (252 ** 0.5)
+        sharpe = (ret.mean() * 252 - 0.02) / vol if vol else 0.0
+        dd = (mix_eq / mix_eq.cummax()) - 1
+        dd_spy = (bench_eq / bench_eq.cummax()) - 1
+        maxdd = dd.min()
+        maxdd_spy = dd_spy.min()
+        calmar = cagr / abs(maxdd) if maxdd else 0.0
+
+        assets = [
+            {"symbol": "PLAT", "name": "Platinum Core/Sat", "price": 100.0, "change": 0.0,
+             "target": w_plat, "current": w_plat, "lower": max(0.0, w_plat - 5.0), "upper": w_plat + 5.0},
+            {"symbol": "FTAA", "name": "F-TAA Stitched", "price": 100.0, "change": 0.0,
+             "target": w_ftaa, "current": w_ftaa, "lower": max(0.0, w_ftaa - 5.0), "upper": w_ftaa + 5.0},
+            {"symbol": "NTSX", "name": "NTSX Rebalancing", "price": 100.0, "change": 0.0,
+             "target": w_ntsx, "current": w_ntsx, "lower": max(0.0, w_ntsx - 5.0), "upper": w_ntsx + 5.0},
+        ]
+
+        rolling_1y = mix_eq.pct_change(252).dropna() * 100
+        mc_values, mc_counts = _build_histogram(rolling_1y)
+        sc_dd, sc_cagr = _rolling_start_points(mix_eq)
+
+        return {
+            "kpi": {
+                "cagr": f"{cagr * 100:.1f}%",
+                "cagrBench": f"vs SPY: {cagr_spy * 100:.1f}%",
+                "maxdd": f"{maxdd * 100:.1f}%",
+                "maxddBench": f"vs SPY: {maxdd_spy * 100:.1f}%",
+                "sharpe": f"{sharpe:.2f}",
+                "sharpeBench": "-",
+                "ratios": f"{calmar:.2f} / -",
+                "ratiosBench": "-",
+                "signal": "KEEP BLEND",
+                "signalBg": "bg-cyan-500/10 text-cyan-300 border border-cyan-500/30",
+            },
+            "regime": f"Optimizer Blend Active ({w_plat:.0f}% Platinum / {w_ftaa:.0f}% F-TAA / {w_ntsx:.0f}% NTSX)",
+            "assets": assets,
+            "yearly": _yearly_vs_bench(mix_eq, bench_eq),
+            "history": [],
+            "chartDates": mix_eq.index.strftime("%Y-%m-%d").tolist()[::10],
+            "chartPort": mix_eq.tolist()[::10],
+            "chartSpy": bench_eq.tolist()[::10],
+            "chartDDPort": [float(v * 100) for v in dd.tolist()[::10]],
+            "chartDDSpy": [float(v * 100) for v in dd_spy.tolist()[::10]],
+            "mcValues": mc_values,
+            "mcCounts": mc_counts,
+            "scDD": sc_dd,
+            "scCAGR": sc_cagr,
+        }
+    except Exception as e:
+        st.error(f"Error compiling Best Mix data: {e}")
+        return None
+
+
 def main():
     st.title("📊 Strategies Dashboard (NTSX, Platinum, F-TAA, SPY+QQQ+GLD, Ensemble Top-100 ETF)")
     
@@ -443,7 +663,11 @@ def main():
         allocator_js = f"const ALLOCATOR_DATA_LIVE = {json.dumps(allocator_data)};" if allocator_data else "const ALLOCATOR_DATA_LIVE = null;"
         ensemble_data = load_ensemble_top100_live_json(sel_dt)
         ensemble_js = f"const ENSEMBLE_TOP100_DATA_LIVE = {json.dumps(ensemble_data)};" if ensemble_data else "const ENSEMBLE_TOP100_DATA_LIVE = null;"
-        
+        e80_r3_data = load_e80_r3_live_json(sel_dt)
+        e80_r3_js = f"const E80_R3_DATA_LIVE = {json.dumps(e80_r3_data)};" if e80_r3_data else "const E80_R3_DATA_LIVE = null;"
+        best_mix_data = load_best_mix_json(sel_dt)
+        best_mix_js = f"const BEST_MIX_DATA_LIVE = {json.dumps(best_mix_data)};" if best_mix_data else "const BEST_MIX_DATA_LIVE = null;"
+
         # 4. Inject JS adapter to map live variables to the dashboard UI
         js_adapter = """
         <script type="text/javascript">
@@ -461,7 +685,13 @@ def main():
 
             // Inject ensemble top-100 raw variables
             {ENSEMBLE_RAW_JS}
-            
+
+            // Inject E80/R3 Blend raw variables
+            {E80_R3_RAW_JS}
+
+            // Inject Best Mix raw variables
+            {BEST_MIX_RAW_JS}
+
             window.addEventListener('DOMContentLoaded', () => {
                 // Map NTSX Live data
                 if (typeof NTSX_CURRENT !== 'undefined') {
@@ -545,7 +775,17 @@ def main():
                 if (ENSEMBLE_TOP100_DATA_LIVE) {
                     Object.assign(ENSEMBLE_TOP100_DATA, ENSEMBLE_TOP100_DATA_LIVE);
                 }
-                
+
+                // Map E80/R3 Blend live data
+                if (E80_R3_DATA_LIVE) {
+                    Object.assign(E80_R3_DATA, E80_R3_DATA_LIVE);
+                }
+
+                // Map Best Mix live data
+                if (BEST_MIX_DATA_LIVE) {
+                    Object.assign(BEST_MIX_DATA, BEST_MIX_DATA_LIVE);
+                }
+
                 // Set initial datepicker and capital value
                 AppState.date = "{MASTER_DATE}";
                 if (DOM.masterDate) DOM.masterDate.value = "{MASTER_DATE}";
@@ -561,6 +801,8 @@ def main():
         js_adapter = js_adapter.replace("{FUND_RAW_JS}", fund_js)
         js_adapter = js_adapter.replace("{ALLOCATOR_RAW_JS}", allocator_js)
         js_adapter = js_adapter.replace("{ENSEMBLE_RAW_JS}", ensemble_js)
+        js_adapter = js_adapter.replace("{E80_R3_RAW_JS}", e80_r3_js)
+        js_adapter = js_adapter.replace("{BEST_MIX_RAW_JS}", best_mix_js)
         js_adapter = js_adapter.replace("{MASTER_DATE}", master_date_str)
         
         # Inject adapter right before closing body tag

@@ -52,18 +52,23 @@ def calculate_metrics(name: str, equity: pd.Series):
 
 
 def simulate_rebalanced_portfolio(returns: pd.DataFrame, weights: np.ndarray, rebalance_freq="ME"):
+    """Numpy-vectorized day loop (no per-row DataFrame overhead) -- same
+    monthly-rebalanced blend math as before, just fast enough to run daily."""
     weights = np.asarray(weights, dtype=float)
     weights = weights / weights.sum()
 
     rebalance_dates = returns.groupby(pd.Grouper(freq=rebalance_freq)).tail(1).index
-    allocations = weights * INITIAL_CAPITAL
-    equity = []
+    rebal_mask = returns.index.isin(rebalance_dates)
+    returns_np = returns.to_numpy(dtype=float)
 
-    for day, row in returns.iterrows():
-        allocations = allocations * (1 + row.values)
+    n = returns_np.shape[0]
+    equity = np.empty(n, dtype=float)
+    allocations = weights * INITIAL_CAPITAL
+    for i in range(n):
+        allocations = allocations * (1 + returns_np[i])
         total_value = allocations.sum()
-        equity.append(total_value)
-        if day in rebalance_dates:
+        equity[i] = total_value
+        if rebal_mask[i]:
             allocations = weights * total_value
 
     return pd.Series(equity, index=returns.index, name="Combined_Equity")

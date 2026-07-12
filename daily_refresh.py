@@ -11,6 +11,9 @@ Refreshes:
   2. exports/crash_predictor_study/     (crash predictor ML pipeline)
   3. .tmp/market_stage_validation/output/stage_breadth_history.csv
   4. .tmp/market_stage_validation/output/  (backtest: forward returns, trade log, etc.)
+  5. data/r3_signal_cache.json           (Thursdays only)
+  6. data/Strategy_Comparisons/          (NTSX/Platinum/F-TAA "Best Mix" optimizer,
+                                          feeds the Strategies Dashboard Best Mix tab)
 """
 from __future__ import annotations
 
@@ -573,6 +576,35 @@ def step5_r3_signal_cache() -> bool:
         return False
 
 
+# ── Step 6: Refresh Best Mix (Strategy_Comparisons) artifacts ────────────────
+def step6_best_mix() -> bool:
+    """Rebuild data/Strategy_Comparisons/*.csv — the NTSX/Platinum/F-TAA
+    optimizer blend that feeds the Strategies Dashboard "Best Mix" tab.
+
+    Depends on already-fresh NTSX (ntsx_data.js), Platinum
+    (Platinum_Equity.csv), and F-TAA (via fund_tactical_engine / shared
+    master data), so this should run after steps 1-5.
+    """
+    log("Step 6: Refreshing Best Mix (data/Strategy_Comparisons/)")
+    t0 = time.time()
+    try:
+        backend_dir = ROOT / "backend"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+        import compare_long_window_models
+        import optimize_strategy_mix
+
+        start, end, _report = compare_long_window_models.build_report()
+        optimize_strategy_mix.build_report()
+        log(f"  ✓ Best Mix artifacts refreshed in {time.time()-t0:.0f}s "
+            f"({start.date()} → {end.date()})")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  ✗ Best Mix refresh failed: {exc}")
+        return False
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main() -> int:
     parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
@@ -603,6 +635,8 @@ def main() -> int:
         results["Step 4 (backtest)"]        = step4_backtest(us_data_dir, args.top_n)
     if "5" not in skip:
         results["Step 5 (R3 signal cache)"] = step5_r3_signal_cache()
+    if "6" not in skip:
+        results["Step 6 (Best Mix)"] = step6_best_mix()
 
     log("=" * 70)
     for name, ok in results.items():

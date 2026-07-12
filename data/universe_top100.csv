@@ -1,0 +1,101 @@
+Ticker,Name,Sector
+APO,Apollo Global Management,Financials
+AAPL,Apple Inc.,Information Technology
+GOOGL,Alphabet Inc. (Class A),Communication Services
+GOOG,Alphabet Inc. (Class C),Communication Services
+AMZN,Amazon,Consumer Discretionary
+AMD,Advanced Micro Devices,Information Technology
+AMAT,Applied Materials,Information Technology
+ABBV,AbbVie,Health Care
+AXP,American Express,Financials
+APP,AppLovin,Information Technology
+ARES,Ares Management,Financials
+COST,Costco,Consumer Staples
+BAC,Bank of America,Financials
+ANET,Arista Networks,Information Technology
+AMGN,Amgen,Health Care
+APH,Amphenol,Information Technology
+ADI,Analog Devices,Information Technology
+ABT,Abbott Laboratories,Health Care
+T,AT&T,Communication Services
+MO,Altria,Consumer Staples
+ADP,Automatic Data Processing,Industrials
+ADBE,Adobe Inc.,Information Technology
+ABNB,Airbnb,Consumer Discretionary
+ACN,Accenture,Information Technology
+MMM,3M,Industrials
+AMT,American Tower,Real Estate
+AON,Aon plc,Financials
+AEP,American Electric Power,Utilities
+APD,Air Products,Materials
+AJG,Arthur J. Gallagher & Co.,Financials
+ALL,Allstate,Financials
+AFL,Aflac,Financials
+BKR,Baker Hughes,Energy
+AME,Ametek,Industrials
+AZO,AutoZone,Consumer Discretionary
+AXON,Axon Enterprise,Industrials
+AMP,Ameriprise Financial,Financials
+ADSK,Autodesk,Information Technology
+AIG,American International Group,Financials
+BDX,Becton Dickinson,Health Care
+ADM,Archer Daniels Midland,Consumer Staples
+A,Agilent Technologies,Health Care
+ACGL,Arch Capital Group,Financials
+AEE,Ameren,Utilities
+ATO,Atmos Energy,Utilities
+AVB,AvalonBay Communities,Real Estate
+AWK,American Water Works,Utilities
+LNT,Alliant Energy,Utilities
+AMCR,Amcor,Materials
+AKAM,Akamai Technologies,Information Technology
+BALL,Ball Corporation,Materials
+ALB,Albemarle Corporation,Materials
+AIZ,Assurant,Financials
+ALGN,Align Technology,Health Care
+APTV,Aptiv,Consumer Discretionary
+APA,APA Corporation,Energy
+AVY,Avery Dennison,Materials
+ALLE,Allegion,Industrials
+BAX,Baxter International,Health Care
+AES,AES Corporation,Utilities
+ARE,Alexandria Real Estate Equities,Real Estate
+AOS,A. O. Smith,Industrials
+BRK-B,Berkshire Hathaway,Financials
+XYZ,"Block, Inc.",Financials
+BNY,BNY Mellon,Financials
+AVGO,Broadcom,Information Technology
+BLK,BlackRock,Financials
+BF-B,Brown–Forman,Consumer Staples
+CVNA,Carvana,Consumer Discretionary
+CASY,Casey's,Consumer Staples
+CIEN,Ciena,Information Technology
+CSCO,Cisco,Information Technology
+CAT,Caterpillar Inc.,Industrials
+KO,Coca-Cola Company (The),Consumer Staples
+CVX,Chevron Corporation,Energy
+C,Citigroup,Financials
+BA,Boeing,Industrials
+SCHW,Charles Schwab Corporation,Financials
+BX,Blackstone Inc.,Financials
+CB,Chubb Limited,Financials
+BKNG,Booking Holdings,Consumer Discretionary
+BMY,Bristol Myers Squibb,Health Care
+CDNS,Cadence Design Systems,Information Technology
+CME,CME Group,Financials
+COHR,Coherent Corp.,Information Technology
+COIN,Coinbase,Financials
+FIX,Comfort Systems USA,Industrials
+COP,ConocoPhillips,Energy
+COF,Capital One,Financials
+CEG,Constellation Energy,Utilities
+CMCSA,Comcast,Communication Services
+CI,Cigna,Health Care
+CL,Colgate-Palmolive,Consumer Staples
+CTAS,Cintas,Industrials
+BSX,Boston Scientific,Health Care
+COR,Cencora,Health Care
+CAH,Cardinal Health,Health Care
+CARR,Carrier Global,Industrials
+CMG,Chipotle Mexican Grill,Consumer Discretionary
+ED,Consolidated Edison,Utilities

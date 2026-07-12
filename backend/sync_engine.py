@@ -148,7 +148,21 @@ def sync():
             log_progress(f"Updated artifact: {artifact}")
     except Exception as e:
         log_progress(f"Strategy artifact refresh failed: {e}")
-    
+
+    # Best Mix (NTSX/Platinum/F-TAA optimizer blend) — feeds the Strategies
+    # Dashboard "Best Mix" tab. Depends on NTSX/Platinum/F-TAA/master data
+    # already being fresh, so it runs last.
+    log_progress("Refreshing Best Mix (data/Strategy_Comparisons/)...")
+    ok, out = run_script("backend/compare_long_window_models.py")
+    if ok:
+        ok2, out2 = run_script("backend/optimize_strategy_mix.py")
+        if ok2:
+            log_progress("Best Mix artifacts refreshed.")
+        else:
+            log_progress(f"Best Mix optimizer step failed: {out2[:500]}")
+    else:
+        log_progress(f"Best Mix long-window comparison step failed: {out[:500]}")
+
     log_progress("Pipeline execution complete.")
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
