@@ -35,6 +35,18 @@ jobs:
         run: |
           python backend/sync_engine.py
 
+      - name: Refresh Early Warning / crash predictor exports
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          GITHUB_ACTIONS: "true"
+        run: |
+          # Steps 1, 3, 4 need a local Windows OHLCV folder (D:\Codex projects\US-data)
+          # that doesn't exist on the CI runner; they self-skip gracefully, but we
+          # skip them explicitly to save time. Step 2 (crash predictor /
+          # weekly_feature_outcomes.csv — what the Early Warning page reads) and
+          # step 6 (Best Mix) are self-contained. Step 5 (R3 cache) only writes Thursdays.
+          python daily_refresh.py --skip 1,3,4
+
       - name: Verify latest trading-day coverage and strategy payloads
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
