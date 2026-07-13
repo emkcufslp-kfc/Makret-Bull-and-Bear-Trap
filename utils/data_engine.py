@@ -121,6 +121,21 @@ def _trim_to_latest_market_session(df: pd.DataFrame) -> pd.DataFrame:
         return df
     return df.loc[:latest_spy_idx.max()].copy()
 
+def _stale_or_missing_tickers(master_df, min_valid_points=250):
+    """Tickers that either don't have a column yet, or whose column exists but
+    is mostly/entirely NaN (e.g. a ticker added recently whose one-time
+    historical backfill silently failed due to a transient Yahoo/yfinance
+    glitch — the daily incremental fetch then keeps appending fresh rows
+    forever without ever repairing the historical gap). Treating both cases
+    the same way lets a fresh full re-backfill fix it automatically."""
+    stale = []
+    for t in ALL_TICKERS:
+        if master_df.empty or t not in master_df.columns:
+            stale.append(t)
+        elif master_df[t].dropna().shape[0] < min_valid_points:
+            stale.append(t)
+    return stale
+
 def get_master_data():
     if not DATA_DIR.exists():
         DATA_DIR.mkdir()
@@ -139,18 +154,30 @@ def get_master_data():
             print(f"[data_engine] Error reading master data ({e}); re-triggering full download.")
             master_df = pd.DataFrame()
     today = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)).date()
-    existing_tickers = set(master_df.columns) if not master_df.empty else set()
-    missing_tickers = [t for t in ALL_TICKERS if t not in existing_tickers]
+    missing_tickers = _stale_or_missing_tickers(master_df)
     last_date = master_df.index.max().date() if not master_df.empty else datetime.date(2004, 1, 1)
     needs_incremental = today > last_date
     if missing_tickers or needs_incremental:
         if missing_tickers:
-            print(f"Refilling missing tickers: {missing_tickers}")
+            print(f"Refilling missing/stale tickers: {missing_tickers}")
             full_missing = yf.download(missing_tickers, start=START_DATE, auto_adjust=True, threads=True)['Close']
             if isinstance(full_missing.columns, pd.MultiIndex): full_missing.columns = full_missing.columns.get_level_values(0)
+            # Guard against a repeat of the original bug: if this backfill
+            # itself came back empty/all-NaN (e.g. Yahoo hiccup), don't let it
+            # clobber whatever data we already have for these tickers.
+            good_cols = [c for c in full_missing.columns if full_missing[c].notna().sum() >= min(250, len(full_missing))]
+            dropped = [c for c in full_missing.columns if c not in good_cols]
+            if dropped:
+                print(f"[data_engine] Backfill for {dropped} still came back empty/short; leaving existing data untouched, will retry next run.")
+            full_missing = full_missing[good_cols]
             if master_df.empty:
                 master_df = full_missing
             else:
+                # Drop any existing (possibly corrupt) versions of the columns
+                # we're about to refill, so concat doesn't create duplicates.
+                cols_to_drop = [c for c in full_missing.columns if c in master_df.columns]
+                if cols_to_drop:
+                    master_df = master_df.drop(columns=cols_to_drop)
                 master_df = pd.concat([master_df, full_missing], axis=1)
         if needs_incremental:
             fetch_start = (last_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
