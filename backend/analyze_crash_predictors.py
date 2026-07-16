@@ -18,7 +18,7 @@ OUT_DIR = ROOT / "exports" / "crash_predictor_study"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 START = dt.date(1990, 1, 1)
-END = dt.date(2026, 6, 19)
+END = dt.date.today()
 
 MARKET_TICKERS = [
     "^GSPC",
