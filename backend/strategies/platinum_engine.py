@@ -1,17 +1,42 @@
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
 import os
 import sys
+import subprocess
 from pathlib import Path
 
 # Set REPO_ROOT and append to sys.path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.append(str(REPO_ROOT))
+
+# ── Dep bootstrap (sandbox disk-space workaround; see CLAUDE.md) ──────────────
+# /tmp/pkgs2 does not survive a cold sandbox restart, so fall back to an
+# on-demand pip install targeting /tmp when the cache is missing.
+for _p in ("/tmp/pkgs2", "/tmp/pkgs"):
+    if os.path.isdir(_p) and _p not in sys.path:
+        sys.path.insert(0, _p)
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+
+try:
+    import pandas  # noqa: F401
+    import yfinance  # noqa: F401
+except ImportError:
+    _FALLBACK_PKG_DIR = "/tmp/pkgs_fallback"
+    if _FALLBACK_PKG_DIR not in sys.path:
+        sys.path.insert(0, _FALLBACK_PKG_DIR)
+    subprocess.run(
+        [sys.executable, "-m", "pip", "install", "yfinance>=0.2.30", "pandas>=2.0.0",
+         "numpy>=1.24.0", "matplotlib>=3.8.0", "seaborn>=0.13.0", "pyarrow>=14.0.0",
+         "--target", _FALLBACK_PKG_DIR, "--no-cache-dir", "--quiet"],
+        env={**os.environ, "HOME": "/tmp", "TMPDIR": "/tmp"},
+        capture_output=True,
+    )
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
 
 from utils.data_engine import get_clean_master
 
