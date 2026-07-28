@@ -188,7 +188,5 @@ def render_ecosystem_sidebar():
     st.page_link("pages/15_📊_R3_Vol_Adjusted_Strategy.py", label="R3 Vol-Adjusted Strategy", icon="📊")
     st.page_link("pages/16_📊_Strategy_Comparison.py", label="System E vs R3 Comparison", icon="⚖️")
     st.page_link("pages/18_🏆_E80_R3_Blend_Strategy.py", label="E80/R3 Blend Strategy", icon="🏆")
-    st.page_link("pages/20_💼_E80_R3_Live_Trading.py", label="E80/R3 Live Trading", icon="💼")
     st.page_link("pages/21_🔀_Hybrid_AD_Strategy.py", label="Hybrid A/D Strategy", icon="🔀")
-    st.page_link("pages/22_🔀_Hybrid_AD_Live_Trading.py", label="Hybrid A/D Live Trading", icon="🔀")
     st.page_link("pages/19_🎛️_Action_Panel.py", label="Action Panel", icon="🎛️")
