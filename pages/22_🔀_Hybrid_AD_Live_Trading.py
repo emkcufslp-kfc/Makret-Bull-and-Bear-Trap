@@ -150,6 +150,40 @@ act_df = pd.DataFrame(rows).sort_values("Δ Value $") if rows else pd.DataFrame(
     columns=["Action", "Ticker", "Target %", "Now %", "Δ Shares", "Δ Value $", "Ref Price"])
 n_act = int((~act_df["Action"].str.contains("HOLD")).sum()) if not act_df.empty else 0
 
+# ── One-line plain-English verdict — is this a regime change or routine drift? ─
+if not act_df.empty:
+    buy_val = float(act_df.loc[act_df["Action"].str.contains("BUY"), "Δ Value $"].sum())
+    sell_val = float(-act_df.loc[act_df["Action"].str.contains("SELL"), "Δ Value $"].sum())
+else:
+    buy_val = sell_val = 0.0
+net_flow = buy_val - sell_val   # positive = net buying (rising net exposure)
+
+if n_act == 0:
+    verdict, v_icon, v_colour = "HOLD — no trades needed, book matches target.", "✅", "#10b981"
+elif in_defensive:
+    verdict = (f"DEFENSIVE REBALANCE — vol threshold triggered, scaling exposure to ×{expo:.2f}. "
+              f"{n_act} trade{'s' if n_act != 1 else ''} to reach the reduced target.")
+    v_icon, v_colour = "🛡️", "#f59e0b"
+elif abs(net_flow) < 0.01 * pv:
+    verdict = (f"REBALANCE ONLY — {n_act} trade{'s' if n_act != 1 else ''} to realign with this "
+              f"week's signal update (weights shifted within Strategy A, no regime change, no "
+              f"net change in overall exposure).")
+    v_icon, v_colour = "🔄", "#38bdf8"
+elif net_flow > 0:
+    verdict = f"INCREASING EXPOSURE — net buying ${net_flow:,.0f} across {n_act} trades."
+    v_icon, v_colour = "🟢", "#22c55e"
+else:
+    verdict = f"REDUCING EXPOSURE — net selling ${abs(net_flow):,.0f} across {n_act} trades."
+    v_icon, v_colour = "🔴", "#ef4444"
+
+st.markdown(
+    f"""<div style="border-left:4px solid {v_colour};background:#0f172a;border-radius:6px;
+                padding:10px 16px;margin-bottom:14px;">
+        <span style="font-size:1.1rem;font-weight:700;color:{v_colour}">{v_icon} {verdict}</span>
+    </div>""",
+    unsafe_allow_html=True,
+)
+
 c1, c2 = st.columns([3, 2])
 with c1:
     st.markdown(f"#### Today's Actions ({n_act} trade{'s' if n_act != 1 else ''} needed)")
