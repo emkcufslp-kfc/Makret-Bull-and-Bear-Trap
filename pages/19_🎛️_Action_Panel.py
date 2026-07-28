@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 from utils.data_engine import get_clean_master
 from backend.strategies.blend_e_r3_engine import blend_metrics, build_blend_curve, compute_blend_signal
 from backend.strategies.blend_live_ledger import build_live_state
+from backend.strategies.hybrid_ad_live_ledger import build_hybrid_live_state
 from backend.strategies.allocator_engine import load_allocator_json
 from backend.strategies.ensemble_top100_engine import load_ensemble_top100_json
 
@@ -122,6 +123,11 @@ def load_ensemble_live(sel_dt):
 @st.cache_data(ttl=1800)
 def load_live_blend_state(_df):
     return build_live_state(_df)
+
+
+@st.cache_data(ttl=1800)
+def load_hybrid_live_state(_df):
+    return build_hybrid_live_state(_df)
 
 
 def _fallback_row(name: str, exc: Exception) -> dict:
@@ -285,34 +291,56 @@ def build_action_rows(data: pd.DataFrame) -> list[dict]:
         rows.append(_fallback_row("📊 R3 Vol-Adjusted", exc))
         rows.append(_fallback_row("🏆 E80/R3 Blend (Model)", exc))
 
-    # ── 7) Hybrid A/D — vol-regime mode switch ─────────────────────────────────
+    # ── 7) Hybrid A/D Live — real tracked book (paper ledger since 2026-07-01),
+    #        same pattern as row #1 (E80/R3 Live): true BUY/SELL/TRIM drift vs
+    #        a live position book, not just a theoretical model target. The book
+    #        applies the 80%SysE/20%R3 blend at full exposure in Strategy A
+    #        (bull/low-vol), scaled exposure in Strategy D once SPY 8wk vol is
+    #        ≥15% for 2 consecutive Friday closes (deb2w signal, Calmar 1.404).
     try:
-        VOL_THRESHOLD, VOL_WEEKS = 0.15, 8
-        spy_weekly = data["SPY"].resample("W-FRI").last().dropna()
-        spy_ret = spy_weekly.pct_change().dropna()
-        if len(spy_ret) >= VOL_WEEKS:
-            vol = float(spy_ret.rolling(VOL_WEEKS).std().iloc[-1] * np.sqrt(52))
-            in_defensive = vol >= VOL_THRESHOLD
+        hstate = load_hybrid_live_state(data)
+        h_positions = hstate.get("positions")
+        h_summary = hstate.get("summary", {})
+        h_expo = hstate.get("expo", 1.0)
+        h_in_def = h_summary.get("in_defensive", False)
+        h_vol_now = h_summary.get("vol_now", float("nan"))
+        h_vol_prev = h_summary.get("vol_prev", float("nan"))
+        vol_now_str = f"{h_vol_now*100:.1f}%" if h_vol_now == h_vol_now else "—"  # NaN check
+        vol_prev_str = f"{h_vol_prev*100:.1f}%" if h_vol_prev == h_vol_prev else "—"
+        mode_str = (f"DEFENSIVE ×{h_expo:.2f} (vol {vol_now_str} & prior {vol_prev_str} both ≥15%)"
+                    if h_in_def else f"FULL exposure (vol {vol_now_str}, need 2 consec wks ≥15% to switch)")
+
+        if h_positions is not None and not h_positions.empty:
+            for _, p in h_positions.iterrows():
+                tgt, act = float(p["Target_W_%"]), float(p["Actual_W_%"])
+                drift = tgt - act
+                if abs(drift) < 2.0:
+                    action, pri = "HOLD", P_MONITOR
+                elif drift > 0:
+                    action, pri = "ADD", P_ACT
+                else:
+                    action, pri = "TRIM", P_ACT
+                rows.append(action_row(
+                    "🔀 Hybrid A/D Live", action, p["Ticker"],
+                    f"{act:.1f}% → target {tgt:.1f}% ({drift:+.1f}pp)",
+                    f"{mode_str} · equity exposure {h_summary.get('equity_exposure_pct', 0):.0f}%",
+                    f"Stop {p['Stop_(2xATR14)']:.2f} ({p['Stop_Dist_%']:.1f}% away)",
+                    "Live book (T+1 executed)", pri,
+                ))
+        for p in hstate.get("pending", []):
             rows.append(action_row(
-                "🔀 Hybrid A/D", "DEFENSIVE" if in_defensive else "HOLD",
-                "Strategy D (vol-target overlay)" if in_defensive else "Strategy A (full 80/20 exposure)",
-                "—",
-                f"SPY 8wk realized vol {vol * 100:.1f}% vs {VOL_THRESHOLD * 100:.0f}% threshold",
-                "Mode switch only — reduces sizing, doesn't change tickers",
-                "Weekly (Friday close check)", P_REBAL if in_defensive else P_MONITOR,
+                "🔀 Hybrid A/D Live", "PENDING", p["sleeve"].replace("_", " "),
+                "—", p["note"], "Executes at next open — size unconfirmed until fill",
+                f"Signal {p['signal_date']} → next open", P_PENDING,
             ))
-        else:
-            # Not enough weekly history to compute realized vol yet — still
-            # show the strategy, just flagged as insufficient data rather
-            # than silently omitted.
+        if not hstate.get("pending") and (h_positions is None or h_positions.empty):
             rows.append(action_row(
-                "🔀 Hybrid A/D", "INFO", "—", "—",
-                f"Insufficient weekly history ({len(spy_ret)} < {VOL_WEEKS} weeks) to compute vol regime",
-                "—", "Weekly (Friday close check)", P_MONITOR,
+                "🔀 Hybrid A/D Live", "INFO", "No open positions",
+                "—", "Ledger has no live trades yet", "—", "—", P_MONITOR,
             ))
     except Exception as exc:
-        st.caption(f"⚠️ Hybrid A/D signal unavailable: {exc}")
-        rows.append(_fallback_row("🔀 Hybrid A/D", exc))
+        st.caption(f"⚠️ Hybrid A/D Live signal unavailable: {exc}")
+        rows.append(_fallback_row("🔀 Hybrid A/D Live", exc))
 
     # ── 8) 200MA Strategy — classic trend rule (index proxy) ───────────────────
     try:
@@ -513,14 +541,16 @@ try:
     else:
         MISSING_FROM_COMPARISON += ["Platinum", "NTSX", "F-TAA"]
 
-    # Hybrid A/D — the live H8b_SPYvol>=15pct column from the debounce study
-    # matches the exact rule used in Section 1's live signal (15% vol threshold).
+    # Hybrid A/D — use deb2w variant (SPY vol ≥ 15% for 2 consecutive weeks).
+    # This is the production signal: Calmar 1.404, OOS 1.403, max DD -20.2%.
+    # Falls back to the raw 1-week variant if deb2w column not yet generated.
     try:
         hybrid_csv = ROOT / "exports" / "best_strategy_study" / "hybrid_regime_backtest.csv"
         if hybrid_csv.exists():
             hdf = pd.read_csv(hybrid_csv, index_col="Date", parse_dates=True).sort_index()
-            if "H8b_SPYvol>=15pct" in hdf.columns:
-                curves["Hybrid A/D"] = hdf["H8b_SPYvol>=15pct"].resample("W-FRI").last().dropna()
+            col = "H8b_SPYvol>=15pct_deb2w" if "H8b_SPYvol>=15pct_deb2w" in hdf.columns else "H8b_SPYvol>=15pct"
+            if col in hdf.columns:
+                curves["Hybrid A/D"] = hdf[col].resample("W-FRI").last().dropna()
             else:
                 MISSING_FROM_COMPARISON.append("Hybrid A/D")
         else:

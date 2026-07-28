@@ -53,7 +53,7 @@ def fetch_fred_data(start: dt.date, end: dt.date) -> pd.DataFrame:
 def fetch_market_data(start: dt.date, end: dt.date) -> pd.DataFrame:
     raw = yf.download(["^GSPC", "GC=F"], start=start, end=end + dt.timedelta(days=1), auto_adjust=True, progress=False)
     if raw.empty:
-        return pd.DataFrame(columns=["SP_500", "Gold"])
+        return pd.DataFrame(columns=["SP_500", "Gold"], index=pd.DatetimeIndex([], name="Date"))
 
     prices = raw["Close"] if isinstance(raw.columns, pd.MultiIndex) else raw
     prices = prices.rename(columns={"^GSPC": "SP_500", "GC=F": "Gold"})

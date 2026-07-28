@@ -62,7 +62,9 @@ st.title("🔀 Hybrid A/D Regime Strategy")
 st.caption(
     "Switches between **Strategy A** (80% SysE / 20% R3, full exposure) and "
     "**Strategy D** (15% vol-target overlay on A) based on SPY 8-week realized volatility. "
-    "Best variant: **H8b** — enter D when SPY vol ≥ 15%, exit when vol drops back below threshold."
+    "**Production signal: H8b + 2-week debounce** — enter D only after SPY vol ≥ 15% for "
+    "2 consecutive weeks (fewer whipsaws), exit immediately once vol drops back below threshold. "
+    "Calmar 1.404 vs 1.268 for the raw 1-week signal, with 62 switches vs 72 over 22.5 years."
 )
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
@@ -73,10 +75,14 @@ HYBRID_CSV    = STUDY_DIR / "hybrid_regime_backtest.csv"
 DEBOUNCE_CSV  = STUDY_DIR / "hybrid_debounce_results.csv"
 RESULTS_JSON  = STUDY_DIR / "hybrid_results.json"
 
-# Column name for H8b in hybrid_regime_backtest.csv
-H8B_COL       = "H8b_SPYvol>=15pct"
+# Column name for H8b in hybrid_regime_backtest.csv — production signal uses the
+# 2-week entry debounce (Calmar 1.404 vs 1.268 for the raw 1-week signal).
+# Falls back to the raw column if the debounce variant hasn't been generated yet.
+H8B_COL_DEB   = "H8b_SPYvol>=15pct_deb2w"
+H8B_COL_RAW   = "H8b_SPYvol>=15pct"
 VOL_THRESHOLD = 0.15   # 15%
 VOL_WINDOW    = 8      # 8 weeks
+DEBOUNCE_WEEKS = 2     # consecutive weeks above threshold required to enter Strategy D
 
 
 # ── Data loaders ──────────────────────────────────────────────────────────────
@@ -123,15 +129,25 @@ def load_results_json():
         return {}
 
 
-# ── Compute live SPY realized vol ─────────────────────────────────────────────
-def compute_spy_vol(df: pd.DataFrame, weeks: int = 8) -> tuple[float, float, bool]:
-    """Returns (current_vol, threshold, in_defensive)."""
+# ── Compute live SPY realized vol (with 2-week entry debounce) ────────────────
+def compute_spy_vol(df: pd.DataFrame, weeks: int = 8) -> tuple[float, float, bool, float, bool]:
+    """Returns (current_vol, threshold, in_defensive, prior_vol, prior_breach).
+
+    in_defensive uses the production rule: current AND prior week's vol must both
+    be >= threshold (2-week entry confirmation). Exit is immediate — as soon as
+    current vol drops below threshold, in_defensive is False regardless of history.
+    """
     spy_weekly = df["SPY"].resample("W-FRI").last().dropna()
     spy_ret    = spy_weekly.pct_change().dropna()
-    if len(spy_ret) < weeks:
-        return np.nan, VOL_THRESHOLD, False
-    realized = spy_ret.rolling(weeks).std().iloc[-1] * np.sqrt(52)
-    return float(realized), VOL_THRESHOLD, float(realized) >= VOL_THRESHOLD
+    if len(spy_ret) < weeks + 1:
+        return np.nan, VOL_THRESHOLD, False, np.nan, False
+    rvol = spy_ret.rolling(weeks).std() * np.sqrt(52)
+    realized  = float(rvol.iloc[-1])
+    prior_vol = float(rvol.iloc[-2])
+    breach_now   = realized  >= VOL_THRESHOLD
+    breach_prior = prior_vol >= VOL_THRESHOLD
+    in_defensive = breach_now and breach_prior   # 2-week confirmation to enter
+    return realized, VOL_THRESHOLD, in_defensive, prior_vol, breach_prior
 
 
 # ════════════════════════════════════════════════════════════════════════════════
@@ -142,10 +158,10 @@ st.markdown('<div class="section-hdr">📡 Section 1 — Live Signal Today</div>
 
 try:
     market_df = load_market_data()
-    spy_vol, threshold, in_defensive = compute_spy_vol(market_df)
+    spy_vol, threshold, in_defensive, prior_vol, breach_prior = compute_spy_vol(market_df)
     live_ok = True
 except Exception as e:
-    spy_vol, threshold, in_defensive = np.nan, VOL_THRESHOLD, False
+    spy_vol, threshold, in_defensive, prior_vol, breach_prior = np.nan, VOL_THRESHOLD, False, np.nan, False
     live_ok = False
     st.warning(f"Could not compute live vol: {e}")
 
@@ -163,8 +179,9 @@ with col_badge:
             unsafe_allow_html=True
         )
         st.markdown("")
-        st.info("🛡️ **Strategy D is active.** Vol-target overlay reduces exposure. "
-                "Strategy A resumes once SPY 8-week vol drops below 15%.")
+        st.info("🛡️ **Strategy D is active.** Vol-target overlay reduces exposure "
+                "(2-week confirmation met — both this week and prior week's vol were ≥15%). "
+                "Strategy A resumes immediately once vol drops below 15%.")
     else:
         st.markdown(
             '<span class="badge-strategy-a">MODE: STRATEGY A<br>'
@@ -173,8 +190,13 @@ with col_badge:
             unsafe_allow_html=True
         )
         st.markdown("")
-        st.success("✅ **Strategy A is active.** Full 80% SysE / 20% R3 deployment. "
-                   "No vol-target overlay needed.")
+        if not np.isnan(spy_vol) and spy_vol >= VOL_THRESHOLD and not breach_prior:
+            st.warning(f"⏳ **Watching.** SPY vol {spy_vol*100:.1f}% is above the 15% threshold this week, "
+                       f"but prior week ({prior_vol*100:.1f}%) was not — needs 2 consecutive weeks to "
+                       f"switch to Strategy D. Currently still on Strategy A.")
+        else:
+            st.success("✅ **Strategy A is active.** Full 80% SysE / 20% R3 deployment. "
+                       "No vol-target overlay needed.")
 
 with col_gauge:
     st.markdown("**SPY 8-Week Realized Vol**")
@@ -226,11 +248,13 @@ with col_info:
     st.markdown("""
 <div class="info-card">
 <b>Entry → Strategy D (defensive)</b><br>
-SPY 8-week realized vol ≥ <b>15%</b> annualized — triggered <i>immediately</i>.<br><br>
+SPY 8-week realized vol ≥ <b>15%</b> annualized for <b>2 consecutive weeks</b> — the
+confirmation reduces whipsaw switching (62 vs 72 switches over 22.5y).<br><br>
 <b>Exit → Strategy A (bull / full exposure)</b><br>
-SPY vol drops back below 15% threshold (1-week, symmetric for H8b).<br><br>
-<b>Debounced variants</b> (exit after N consecutive weeks below threshold)<br>
-reduce whipsaw switching at the cost of slightly lower Calmar.
+Immediate — reverts to full A as soon as vol drops back below 15%, no exit debounce.<br><br>
+<b>Why 2-week entry / 1-week exit:</b> asymmetric confirmation catches genuine vol
+regime shifts while still exiting fast once the storm passes. Calmar 1.404 vs 1.268
+for the raw (no-debounce) signal; production choice, replacing the earlier 1-week rule.
 </div>
 """, unsafe_allow_html=True)
 
@@ -254,22 +278,32 @@ st.divider()
 hybrid_df, hybrid_err = load_hybrid_curves()
 ra_df = load_ra_curves()
 
+# Resolve which H8b column is available — prefer the 2-week debounced production
+# signal, fall back to the raw 1-week variant if the debounce columns haven't been
+# generated yet (keeps the page from breaking on stale data).
+if hybrid_df is not None and H8B_COL_DEB in hybrid_df.columns:
+    H8B_COL = H8B_COL_DEB
+    H8B_LABEL = "H8b + 2wk debounce — Hybrid A/D (SPY vol 15%)"
+else:
+    H8B_COL = H8B_COL_RAW
+    H8B_LABEL = "H8b (raw 1wk) — Hybrid A/D (SPY vol 15%)"
+
 # Build named curve dict
 CURVE_DEFS = {
-    "H8b — Hybrid A/D (SPY vol 15%)": (hybrid_df, H8B_COL),
+    H8B_LABEL:                          (hybrid_df, H8B_COL),
     "A: 80%SysE/20%R3 static":        (hybrid_df, "A: 80%SysE/20%R3 static"),
     "D: 15% vol-target on A":          (hybrid_df, "D: 15%vol-target on A (always)"),
     "SPY Buy & Hold":                   (hybrid_df, "SPY Buy & Hold"),
 }
 
 COLORS = {
-    "H8b — Hybrid A/D (SPY vol 15%)": "#f59e0b",
+    H8B_LABEL: "#f59e0b",
     "A: 80%SysE/20%R3 static":        "#6366f1",
     "D: 15% vol-target on A":          "#10b981",
     "SPY Buy & Hold":                   "#94a3b8",
 }
 DASHES = {
-    "H8b — Hybrid A/D (SPY vol 15%)": "solid",
+    H8B_LABEL: "solid",
     "A: 80%SysE/20%R3 static":        "dot",
     "D: 15% vol-target on A":          "dash",
     "SPY Buy & Hold":                   "longdash",
@@ -324,7 +358,7 @@ if not data_missing:
                              fillcolor="rgba(245,158,11,0.09)", line_width=0, layer="below")
 
     for label, series in curves.items():
-        width  = 2.5 if label == "H8b — Hybrid A/D (SPY vol 15%)" else 1.5
+        width  = 2.5 if label == H8B_LABEL else 1.5
         fig_eq.add_trace(go.Scatter(
             x=series.index, y=series,
             name=label,
@@ -408,8 +442,8 @@ if not data_missing:
     st.dataframe(styled, use_container_width=True, hide_index=True)
 
     # Callout: H8b vs pure A
-    if "H8b — Hybrid A/D (SPY vol 15%)" in curves and "A: 80%SysE/20%R3 static" in curves:
-        h8b_s = curves["H8b — Hybrid A/D (SPY vol 15%)"]
+    if H8B_LABEL in curves and "A: 80%SysE/20%R3 static" in curves:
+        h8b_s = curves[H8B_LABEL]
         a_s   = curves["A: 80%SysE/20%R3 static"]
         h8b_dd = ((h8b_s / h8b_s.cummax()) - 1).min() * 100
         a_dd   = ((a_s   / a_s.cummax())   - 1).min() * 100
@@ -422,7 +456,7 @@ if not data_missing:
                 f"{h8b_dd:.1f}%",
                 delta=f"{dd_improvement:+.1f}% vs pure A",
                 delta_color="normal" if dd_improvement > 0 else "inverse",
-                help="H8b improves max drawdown by spending ~34% of time in Strategy D"
+                help="H8b (2wk debounce) improves max drawdown by spending ~31% of time in Strategy D"
             )
         with col_c2:
             pct_d = in_d_mode.mean() * 100 if len(in_d_mode) > 0 else 0.0
@@ -546,7 +580,7 @@ if not data_missing:
 
     fig_yr = go.Figure()
     bar_colors = {
-        "H8b — Hybrid A/D (SPY vol 15%)": "#f59e0b",
+        H8B_LABEL: "#f59e0b",
         "A: 80%SysE/20%R3 static":        "#6366f1",
         "D: 15% vol-target on A":          "#10b981",
         "SPY Buy & Hold":                   "#64748b",
@@ -598,19 +632,22 @@ st.divider()
 st.markdown('<div class="section-hdr">🔧 Section 6 — Debounce Grid Results</div>',
             unsafe_allow_html=True)
 st.caption(
-    "Results from `hybrid_debounce_study.py` — 16-combo grid of vol threshold × exit debounce weeks. "
-    "Lower exit weeks = faster re-entry to Strategy A. Higher = fewer whipsaw switches."
+    "Two debounce methodologies compared: **[EntryDeb]** requires N consecutive weeks "
+    "*above* threshold before switching to D (from the extended hybrid backtest); "
+    "**[ExitDeb]** requires N consecutive weeks *below* threshold before reverting to A "
+    "(from `hybrid_debounce_study.py`, the originally-scripted grid). Entry-debounce wins: "
+    "best Calmar 1.404 vs 1.279 for the best exit-debounce variant."
 )
 
 deb_df = load_debounce_results()
 if deb_df is not None:
-    # Filter to grid variants only
-    grid_mask = deb_df["Strategy"].str.startswith(("Deb_", "Comp_"))
+    # Filter to grid/comparison variants only — both methodologies use bracket prefixes
+    grid_mask = deb_df["Strategy"].str.startswith(("[EntryDeb]", "[ExitDeb]"))
     grid_df   = deb_df[grid_mask].copy()
 
     if not grid_df.empty:
         show_cols = [
-            "Strategy", "Vol_Thresh_%", "Exit_Weeks",
+            "Strategy", "Methodology", "Vol_Thresh_%", "Exit_Weeks",
             "CAGR_%", "Max_DD_%", "Calmar", "Sharpe", "Sortino",
             "Pct_Defensive_%", "N_Switches"
         ]
@@ -626,14 +663,16 @@ if deb_df is not None:
         st.dataframe(styled_grid, use_container_width=True, hide_index=True)
 
         best_row = grid_show.iloc[0]
-        h8b_calmar = deb_df[deb_df["Strategy"].str.contains("H8b_baseline")]["Calmar"].values
+        # Compare against the raw (no-debounce) H8b baseline, whichever labeling is present
+        h8b_mask = deb_df["Strategy"].str.contains("H8b_baseline", na=False)
+        h8b_calmar = deb_df.loc[h8b_mask, "Calmar"].values
         if len(h8b_calmar) > 0:
             improve = (best_row["Calmar"] - h8b_calmar[0]) / abs(h8b_calmar[0]) * 100
             st.caption(
-                f"🏆 Best: **{best_row['Strategy']}** — "
+                f"🏆 Best overall: **{best_row['Strategy']}** ({best_row.get('Methodology','?')}) — "
                 f"Calmar {best_row['Calmar']:.3f}, "
                 f"CAGR {best_row['CAGR_%']:.1f}%, MaxDD {best_row['Max_DD_%']:.1f}% "
-                f"({improve:+.1f}% Calmar improvement vs H8b baseline)"
+                f"({improve:+.1f}% Calmar improvement vs raw H8b baseline, no debounce)"
             )
     else:
         st.info("No grid results found in debounce CSV.")
@@ -647,7 +686,7 @@ else:
 st.markdown("""
 ---
 <div style="color:#475569;font-size:0.8rem;text-align:center">
-Hybrid A/D Strategy · H8b (SPY 8-week vol ≥ 15% → Strategy D) ·
+Hybrid A/D Strategy · H8b + 2wk entry debounce (SPY 8-week vol ≥ 15% for 2 consecutive weeks → Strategy D) ·
 Backtest 2004–2026 · 5 bps/unit turnover cost · No look-ahead bias (signal shift=1 week)
 </div>
 """, unsafe_allow_html=True)

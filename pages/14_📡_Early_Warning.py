@@ -32,6 +32,11 @@ ALERT_ICONS  = {0:"🟢",1:"🟡",2:"🟠",3:"🔴"}
 @st.cache_data(show_spinner=False, ttl=3600)
 def load_weekly():
     df = pd.read_csv(WEEKLY_PATH, index_col=0, parse_dates=True).sort_index()
+    # Multiple scheduled refresh jobs (GitHub Actions + Cowork tasks) write this CSV
+    # independently; a race between them can leave duplicate-date rows that break
+    # index.get_indexer(method="nearest") below (requires a unique index). Keep the
+    # most-recently-written row per date.
+    df = df[~df.index.duplicated(keep="last")]
     df["d1_norm"]     = (df["d1_market_regime_score"] / 85 * 100).round(1)
     df["d2_norm"]     = ((df["d2_score"] - 2) / 12 * 100).clip(0,100).round(1)
     df["d3_norm"]     = df["liquidity_score"].astype(float)
