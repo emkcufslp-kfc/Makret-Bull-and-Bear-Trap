@@ -14,6 +14,9 @@ Refreshes:
   5. data/r3_signal_cache.json           (Thursdays only)
   6. data/Strategy_Comparisons/          (NTSX/Platinum/F-TAA "Best Mix" optimizer,
                                           feeds the Strategies Dashboard Best Mix tab)
+  7. data/hy_spread_fred_cache.csv + data/market_regime_calibration.json
+                                          (real FRED HY spread + calibrated crash
+                                          probability for the Market Regime page)
 """
 from __future__ import annotations
 
@@ -30,7 +33,7 @@ from pathlib import Path
 
 warnings.filterwarnings("ignore")
 
-# ── Paths ─────────────────────────────────────────────────────────────────────
+# -- Paths ---------------------------------------------------------------------
 ROOT      = Path(__file__).resolve().parent
 MODEL_DIR = ROOT / "market_stage_model"
 OUT_DIR   = ROOT / ".tmp" / "market_stage_validation" / "output"
@@ -40,7 +43,7 @@ TMP_CACHE = ROOT / ".tmp" / "raw_ohlcv_cache.parquet"
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(MODEL_DIR))
 
-# ── Dep bootstrap ─────────────────────────────────────────────────────────────
+# -- Dep bootstrap -------------------------------------------------------------
 PKG_DIR = "/tmp/pkgs2"
 if os.path.isdir(PKG_DIR):
     sys.path.insert(0, PKG_DIR)
@@ -51,11 +54,11 @@ def log(msg: str) -> None:
     print(f"[{ts}] {msg}", flush=True)
 
 
-# ── Step 1: Update US-data OHLCV ─────────────────────────────────────────────
+# -- Step 1: Update US-data OHLCV ---------------------------------------------
 def step1_refresh_us_data(us_data_dir: Path) -> bool:
     loader = us_data_dir / "US_data_loader.py"
     if not loader.exists():
-        log(f"SKIP step 1 — US_data_loader.py not found at {loader}")
+        log(f"SKIP step 1 -- US_data_loader.py not found at {loader}")
         return False
     log(f"Step 1: Running US_data_loader.py --mode ohlcv --refresh-stale in {us_data_dir}")
     t0 = time.time()
@@ -66,18 +69,18 @@ def step1_refresh_us_data(us_data_dir: Path) -> bool:
     )
     elapsed = time.time() - t0
     if result.returncode == 0:
-        log(f"  ✓ US-data OHLCV refreshed in {elapsed:.0f}s")
+        log(f"  OK: US-data OHLCV refreshed in {elapsed:.0f}s")
         # Print last few log lines
         for line in (result.stdout or "").splitlines()[-5:]:
             log(f"    {line}")
         return True
     else:
-        log(f"  ✗ US_data_loader.py failed (rc={result.returncode}) in {elapsed:.0f}s")
+        log(f"  FAIL: US_data_loader.py failed (rc={result.returncode}) in {elapsed:.0f}s")
         log(f"    {(result.stderr or '')[:400]}")
         return False
 
 
-# ── Step 2: Refresh crash predictor exports ───────────────────────────────────
+# -- Step 2: Refresh crash predictor exports -----------------------------------
 def step2_crash_predictor() -> bool:
     log("Step 2: Refreshing exports/crash_predictor_study/")
     t0 = time.time()
@@ -107,7 +110,7 @@ def step2_crash_predictor() -> bool:
             prices = prices.sort_index().ffill()
             features = pd.read_parquet(str(features_cache))
         else:
-            log("  Cache miss — running full download_prices + build_fred_weekly + build_feature_table")
+            log("  Cache miss -- running full download_prices + build_fred_weekly + build_feature_table")
             prices   = globs["download_prices"]()
             fred     = globs["build_fred_weekly"]()
             features = globs["build_feature_table"](prices, fred)
@@ -149,15 +152,15 @@ def step2_crash_predictor() -> bool:
             "rows": len(features),
         })
         coverage.to_csv(EXPORT_DIR / "data_coverage.csv")
-        log(f"  ✓ Crash predictor done in {time.time()-t0:.0f}s  "
-            f"({features.index.min().date()} → {features.index.max().date()})")
+        log(f"  OK: Crash predictor done in {time.time()-t0:.0f}s  "
+            f"({features.index.min().date()} -> {features.index.max().date()})")
         return True
     except Exception as exc:
-        log(f"  ✗ Crash predictor failed: {exc}")
+        log(f"  FAIL: Crash predictor failed: {exc}")
         return False
 
 
-# ── Step 3: Refresh stage breadth history ────────────────────────────────────
+# -- Step 3: Refresh stage breadth history ------------------------------------
 def step3_stage_breadth(us_data_dir: Path) -> bool:
     log("Step 3: Refreshing stage_breadth_history.csv")
     t0 = time.time()
@@ -169,11 +172,11 @@ def step3_stage_breadth(us_data_dir: Path) -> bool:
 
         cov_path = OUT_DIR / "data_coverage.csv"
         if not cov_path.exists():
-            log("  SKIP — data_coverage.csv not found (run backtest first)")
+            log("  SKIP -- data_coverage.csv not found (run backtest first)")
             return False
         cov     = pd.read_csv(cov_path)
         tickers = cov["Ticker"].dropna().str.upper().unique().tolist()
-        log(f"  Downloading {len(tickers)} tickers from 2003-01-01…")
+        log(f"  Downloading {len(tickers)} tickers from 2003-01-01...")
 
         raw = yf.download(tickers, start="2003-01-01", interval="1d",
                           auto_adjust=True, progress=False, threads=True)
@@ -214,15 +217,15 @@ def step3_stage_breadth(us_data_dir: Path) -> bool:
 
         OUT_DIR.mkdir(parents=True, exist_ok=True)
         breadth.to_csv(OUT_DIR / "stage_breadth_history.csv")
-        log(f"  ✓ Stage breadth done in {time.time()-t0:.0f}s  "
-            f"({breadth.index[0].date()} → {breadth.index[-1].date()}, {len(failed)} failed)")
+        log(f"  OK: Stage breadth done in {time.time()-t0:.0f}s  "
+            f"({breadth.index[0].date()} -> {breadth.index[-1].date()}, {len(failed)} failed)")
         return True
     except Exception as exc:
-        log(f"  ✗ Stage breadth failed: {exc}")
+        log(f"  FAIL: Stage breadth failed: {exc}")
         return False
 
 
-# ── Step 4: Refresh backtest outputs ─────────────────────────────────────────
+# -- Step 4: Refresh backtest outputs -----------------------------------------
 def step4_backtest(us_data_dir: Path, top_n: int = 100) -> bool:
     log(f"Step 4: Refreshing backtest outputs (top {top_n} tickers)")
     t0 = time.time()
@@ -237,7 +240,7 @@ def step4_backtest(us_data_dir: Path, top_n: int = 100) -> bool:
 
         uni_path = us_data_dir / "universe.json"
         if not uni_path.exists():
-            log(f"  SKIP — universe.json not found at {uni_path}")
+            log(f"  SKIP -- universe.json not found at {uni_path}")
             return False
 
         uni   = json.loads(uni_path.read_text(encoding="utf-8"))
@@ -380,17 +383,17 @@ def step4_backtest(us_data_dir: Path, top_n: int = 100) -> bool:
                       {"check":"equity","status":"PASS","detail":f"Ending={ending:,.0f}"}
                       ]).to_csv(OUT_DIR / "validation_checks.csv", index=False)
 
-        log(f"  ✓ Backtest done in {time.time()-t0:.0f}s  "
+        log(f"  OK: Backtest done in {time.time()-t0:.0f}s  "
             f"trades={len(trade_log)}  CAGR={cagr*100:.1f}%  Sharpe={sharpe:.2f}  MaxDD={dd*100:.1f}%")
         if failed: log(f"  Skipped: {', '.join(failed[:10])}")
         return True
     except Exception as exc:
         import traceback; traceback.print_exc()
-        log(f"  ✗ Backtest failed: {exc}")
+        log(f"  FAIL: Backtest failed: {exc}")
         return False
 
 
-# ── Step 5: Export R3 signal cache (Thursdays only) ───────────────────────────
+# -- Step 5: Export R3 signal cache (Thursdays only) ---------------------------
 def step5_r3_signal_cache() -> bool:
     """Compute R3 deploy signal and write data/r3_signal_cache.json.
 
@@ -398,13 +401,13 @@ def step5_r3_signal_cache() -> bool:
     This cache is only refreshed on Thursdays (weekday == 3) so the stored
     signal always reflects the Thursday-close snapshot used for Friday execution.
     """
-    today_wd = dt.date.today().weekday()     # 0=Mon … 4=Fri
+    today_wd = dt.date.today().weekday()     # 0=Mon ... 4=Fri
     if today_wd != 3:                        # 3 = Thursday
         day_name = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][today_wd]
-        log(f"Step 5: SKIP — R3 signal cache only updates on Thursdays (today is {day_name})")
+        log(f"Step 5: SKIP -- R3 signal cache only updates on Thursdays (today is {day_name})")
         return True                          # non-failure skip
 
-    log("Step 5: Computing R3 signal cache (Thursday) …")
+    log("Step 5: Computing R3 signal cache (Thursday) ...")
     t0 = time.time()
     try:
         import numpy as np
@@ -423,7 +426,7 @@ def step5_r3_signal_cache() -> bool:
             d = pd.DataFrame()
 
         if d.empty or len(d) < 252:
-            log("  SKIP — parquet unavailable or too short; trying yfinance …")
+            log("  SKIP -- parquet unavailable or too short; trying yfinance ...")
             import yfinance as yf
             tickers = ["SPY", "^VIX", "HYG", "IEF", "^TNX", "^IRX", "TIP"]
             raw = yf.download(tickers, period="3y", auto_adjust=True, progress=False)["Close"]
@@ -432,7 +435,7 @@ def step5_r3_signal_cache() -> bool:
             d = raw
 
         if len(d) < 252:
-            log("  ✗ Insufficient data for R3 signal computation.")
+            log("  FAIL: Insufficient data for R3 signal computation.")
             return False
 
         import pandas as pd
@@ -567,18 +570,18 @@ def step5_r3_signal_cache() -> bool:
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_text(json.dumps(cache, indent=2))
 
-        log(f"  ✓ R3 signal cache written in {time.time()-t0:.0f}s  "
+        log(f"  OK: R3 signal cache written in {time.time()-t0:.0f}s  "
             f"deploy={deploy_pct}%  bt={bt_score}  bear={bear_score}  regime={regime}")
         return True
     except Exception as exc:
         import traceback; traceback.print_exc()
-        log(f"  ✗ R3 signal cache failed: {exc}")
+        log(f"  FAIL: R3 signal cache failed: {exc}")
         return False
 
 
-# ── Step 6: Refresh Best Mix (Strategy_Comparisons) artifacts ────────────────
+# -- Step 6: Refresh Best Mix (Strategy_Comparisons) artifacts ----------------
 def step6_best_mix() -> bool:
-    """Rebuild data/Strategy_Comparisons/*.csv — the NTSX/Platinum/F-TAA
+    """Rebuild data/Strategy_Comparisons/*.csv -- the NTSX/Platinum/F-TAA
     optimizer blend that feeds the Strategies Dashboard "Best Mix" tab.
 
     Depends on already-fresh NTSX (ntsx_data.js), Platinum
@@ -596,16 +599,43 @@ def step6_best_mix() -> bool:
 
         start, end, _report = compare_long_window_models.build_report()
         optimize_strategy_mix.build_report()
-        log(f"  ✓ Best Mix artifacts refreshed in {time.time()-t0:.0f}s "
-            f"({start.date()} → {end.date()})")
+        log(f"  OK: Best Mix artifacts refreshed in {time.time()-t0:.0f}s "
+            f"({start.date()} -> {end.date()})")
         return True
     except Exception as exc:
         import traceback; traceback.print_exc()
-        log(f"  ✗ Best Mix refresh failed: {exc}")
+        log(f"  FAIL: Best Mix refresh failed: {exc}")
         return False
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# -- Step 7: Refresh Market Regime calibration --------------------------------
+def step7_market_regime_calibration() -> bool:
+    """Refresh the FRED HY spread cache and rebuild data/market_regime_calibration.json
+    -- the walk-forward-calibrated raw-score-to-probability mapping used by
+    pages/1_Market_Regime.py. See backend/calibrate_market_regime.py for the
+    methodology (isotonic regression, ~1s to run; safe to redo every day)."""
+    log("Step 7: Refreshing Market Regime calibration")
+    t0 = time.time()
+    try:
+        backend_dir = ROOT / "backend"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+        import calibrate_market_regime
+        calibration = calibrate_market_regime.build_calibration()
+        calibrate_market_regime.CALIBRATION_FILE.parent.mkdir(parents=True, exist_ok=True)
+        calibrate_market_regime.CALIBRATION_FILE.write_text(json.dumps(calibration, indent=2))
+        log(f"  OK: elevated>={calibration['thresholds']['elevated']}%  "
+            f"warning>={calibration['thresholds']['warning']}%  "
+            f"ceiling={calibration['max_observed_calibrated_probability']}%  "
+            f"in {time.time()-t0:.0f}s")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  FAILED: Market Regime calibration: {exc}")
+        return False
+
+
+# -- Main ----------------------------------------------------------------------
 def main() -> int:
     parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
     parser.add_argument("--us-data-dir", default=r"D:\Codex projects\US-data",
@@ -620,7 +650,7 @@ def main() -> int:
     us_data_dir = Path(args.us_data_dir)
 
     log("=" * 70)
-    log("DAILY REFRESH — start")
+    log("DAILY REFRESH -- start")
     log("=" * 70)
     t_start = time.time()
 
@@ -637,11 +667,13 @@ def main() -> int:
         results["Step 5 (R3 signal cache)"] = step5_r3_signal_cache()
     if "6" not in skip:
         results["Step 6 (Best Mix)"] = step6_best_mix()
+    if "7" not in skip:
+        results["Step 7 (Market Regime calibration)"] = step7_market_regime_calibration()
 
     log("=" * 70)
     for name, ok in results.items():
-        log(f"  {'✓' if ok else '✗'} {name}")
-    log(f"DAILY REFRESH — done in {time.time()-t_start:.0f}s")
+        log(f"  {'OK:' if ok else 'FAIL:'} {name}")
+    log(f"DAILY REFRESH -- done in {time.time()-t_start:.0f}s")
     log("=" * 70)
     return 0 if all(results.values()) else 1
 

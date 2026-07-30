@@ -208,6 +208,41 @@ def get_secret(key, default=""):
 FRED_API_KEY = get_secret("FRED_API_KEY")
 fred = Fred(api_key=FRED_API_KEY) if (Fred and FRED_API_KEY) else None
 
+HY_SPREAD_CACHE_FILE = DATA_DIR / "hy_spread_fred_cache.csv"
+
+
+def refresh_hy_spread_cache() -> bool:
+    """Pull full BAMLH0A0HYM2 (ICE BofA HY OAS) history from FRED and cache it
+    to disk. Run daily by daily_refresh.py so get_hy_spread() and the market
+    regime calibration trainer both get real spread data instead of the
+    HYG/BND proxy, without needing a live FRED call on every page load.
+    """
+    if not fred:
+        return False
+    try:
+        series = fred.get_series("BAMLH0A0HYM2", observation_start="2000-01-01")
+        series.index = pd.to_datetime(series.index)
+        series = series.dropna()
+        if series.empty:
+            return False
+        HY_SPREAD_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        series.rename("hy_oas_pct").to_csv(HY_SPREAD_CACHE_FILE)
+        return True
+    except Exception:
+        return False
+
+
+@st.cache_data(ttl=3600)
+def _load_hy_spread_cache():
+    if not HY_SPREAD_CACHE_FILE.exists():
+        return pd.Series(dtype=float)
+    try:
+        cached = pd.read_csv(HY_SPREAD_CACHE_FILE, index_col=0, parse_dates=True)
+        return cached["hy_oas_pct"]
+    except Exception:
+        return pd.Series(dtype=float)
+
+
 def get_hy_spread(target_date):
     if fred:
         try:
@@ -218,17 +253,35 @@ def get_hy_spread(target_date):
                 return float(hy_series.loc[valid[-1]])
         except: pass
     try:
+        cached = _load_hy_spread_cache()
+        if not cached.empty:
+            ts = pd.Timestamp(target_date)
+            valid = cached.index[cached.index <= ts]
+            if len(valid) > 0:
+                return float(cached.loc[valid[-1]])
+    except: pass
+    try:
         df = get_clean_master()
         if 'HYG' in df.columns and 'BND' in df.columns:
             ts = pd.Timestamp(target_date)
             valid = df.index[df.index <= ts]
             if len(valid) == 0: return 4.5
-            idx = valid[-1]
-            hyg_20 = df['HYG'].iloc[:df.index.get_loc(idx)+1].pct_change(20, fill_method=None).iloc[-1]
-            bnd_20 = df['BND'].iloc[:df.index.get_loc(idx)+1].pct_change(20, fill_method=None).iloc[-1]
-            return round(4.5 + (bnd_20 - hyg_20) * 100, 2)
+            proxy = hy_spread_proxy_series(df)
+            val = proxy.loc[valid[-1]]
+            return float(val) if pd.notna(val) else 4.5
     except: pass
     return 4.8
+
+
+def hy_spread_proxy_series(df: pd.DataFrame) -> pd.Series:
+    """HYG/BND-momentum stand-in for the real HY OAS spread, used only when
+    FRED (live or cached) is unavailable. Shared with backend/calibrate_market_regime.py
+    so the historical calibration is trained on exactly what get_hy_spread()
+    would have returned on its worst-case (proxy) path.
+    """
+    hyg_20 = df['HYG'].pct_change(20, fill_method=None)
+    bnd_20 = df['BND'].pct_change(20, fill_method=None)
+    return (4.5 + (bnd_20 - hyg_20) * 100).round(2)
 
 def get_richmond_fed_sos(target_date):
     if fred:

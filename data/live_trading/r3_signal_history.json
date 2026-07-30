@@ -25,5 +25,14 @@
       "META"
     ],
     "source": "cache"
+  },
+  "2026-07-30": {
+    "deploy_pct": 35.7,
+    "top3_picks": [
+      "AMAT",
+      "AAPL",
+      "AMD"
+    ],
+    "source": "cache"
   }
 }

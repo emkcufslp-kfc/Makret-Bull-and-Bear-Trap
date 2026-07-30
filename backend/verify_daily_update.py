@@ -170,6 +170,24 @@ def main() -> int:
         errors,
     )
 
+    calibration_path = ROOT_DIR / "data" / "market_regime_calibration.json"
+    if not calibration_path.exists():
+        errors.append(f"Market Regime calibration: missing file {calibration_path}")
+    else:
+        try:
+            import json as _json
+            calibration = _json.loads(calibration_path.read_text(encoding="utf-8"))
+            if not calibration.get("lookup"):
+                errors.append("Market Regime calibration: file has no lookup table")
+            else:
+                print(
+                    f"[OK] Market Regime calibration: elevated>={calibration['thresholds']['elevated']}% "
+                    f"warning>={calibration['thresholds']['warning']}% "
+                    f"ceiling={calibration['max_observed_calibrated_probability']}%"
+                )
+        except Exception as exc:
+            errors.append(f"Market Regime calibration: failed to read {calibration_path} ({exc})")
+
     combined = compute_combined_snapshot(market_expected.date())
     combined_resolved = pd.Timestamp(combined.resolved_date).normalize()
     if combined_resolved > market_expected:
