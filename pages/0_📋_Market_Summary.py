@@ -16,10 +16,24 @@ from backend.strategies.combined_macro_rwra import compute_combined_snapshot
 from utils.data_engine import (
     get_clean_master,
     get_data_freshness,
-    get_gex,
     get_hy_spread,
     get_move,
     get_t2108,
+)
+from utils.market_regime_engine import (
+    compute_score as mr_compute_score,
+    load_calibration as mr_load_calibration,
+    calibrated_probability as mr_calibrated_probability,
+)
+from utils.bear_trap_engine import (
+    compute_score as bear_compute_score,
+    load_calibration as bear_load_calibration,
+    calibrated_probability as bear_calibrated_probability,
+)
+from utils.bull_trap_engine import (
+    compute_score as bull_compute_score,
+    load_calibration as bull_load_calibration,
+    calibrated_probability as bull_calibrated_probability,
 )
 
 
@@ -27,20 +41,6 @@ st.set_page_config(page_title="Market Summary Dashboard", page_icon="MS", layout
 
 ROOT_DIR = Path(__file__).parent.parent
 MARKET_PULSE_HTML = ROOT_DIR / "data" / "Multi_indicator" / "dashboard_follow_through.html"
-
-
-def normalize(val, lower, upper, inverted=False):
-    if inverted:
-        if val >= lower:
-            return 0.0
-        if val <= upper:
-            return 1.0
-        return round((lower - val) / (lower - upper), 2)
-    if val <= lower:
-        return 0.0
-    if val >= upper:
-        return 1.0
-    return round((val - lower) / (upper - lower), 2)
 
 
 def safe_float(series, key, default=0.0):
@@ -64,6 +64,13 @@ def load_master_slice(target_date):
 
 
 def calc_market_regime(d):
+    # Delegates to utils/market_regime_engine.py -- the same calibrated scorecard
+    # rendered on pages/1_Market_Regime.py -- instead of a separate, drifted copy
+    # of the rubric. The two dead rules this used to inline (GEX < 0, liquidity <
+    # $7.0T) were hardcoded stubs in data_engine that could never fire; the engine
+    # already dropped them. The raw score is then mapped through the same
+    # walk-forward isotonic calibration (data/market_regime_calibration.json) the
+    # main page uses, rather than treating the raw point count as a probability.
     latest = d.iloc[-1]
     sp_price = safe_float(latest, "^GSPC")
     dma200 = float(d["^GSPC"].rolling(200).mean().iloc[-1]) if "^GSPC" in d.columns else 0.0
@@ -73,133 +80,115 @@ def calc_market_regime(d):
     move = get_move(d.index[-1].date())
     t2108 = get_t2108(d.index[-1].date())
     dxy = safe_float(latest, "DX-Y.NYB", 100.0)
-    liquidity = 7.5e12
-    spy_gex = get_gex(d.index[-1].date())
 
-    score = 0
-    if sp_price < dma200:
-        score += 15
-    if hy_spread_pct > 5:
-        score += 20
-    if move > 100:
-        score += 15
-    if vix > 25:
-        score += 10
-    if vix > vix3m:
-        score += 10
-    if dxy > 105:
-        score += 10
-    if t2108 < 40:
-        score += 10
-    if spy_gex < 0:
-        score += 5
-    if liquidity < 7.0e12:
-        score += 5
+    scored = mr_compute_score(sp_price, dma200, hy_spread_pct, move, vix, vix3m, dxy, t2108)
+    calibration = mr_load_calibration()
+    probability = mr_calibrated_probability(scored["raw_score"], calibration)
+    thresholds = (calibration or {}).get("thresholds", {})
+    elevated_th = thresholds.get("elevated", 20)
+    warning_th = thresholds.get("warning", 40)
 
-    probability = min(score, 100)
-    if probability < 30:
-        regime_status = "LOW RISK REGIME"
-    elif probability < 55:
-        regime_status = "EARLY WARNING"
+    if probability < elevated_th:
+        regime_status, color = "LOW RISK REGIME", "#22c55e"
+    elif probability < warning_th:
+        regime_status, color = "EARLY WARNING", "#f59e0b"
     else:
-        regime_status = "HIGH RISK"
-    return {
-        "probability": round(probability, 1),
-        "color": "#22c55e" if probability < 30 else ("#f59e0b" if probability < 55 else "#ef4444"),
-        "status": regime_status,
-    }
+        regime_status, color = "HIGH RISK", "#ef4444"
+
+    return {"probability": round(probability, 1), "color": color, "status": regime_status}
 
 
 def calc_bear_trap(d):
+    # Delegates to utils/bear_trap_engine.py -- the same calibrated composite
+    # rendered on pages/2_Bear_Trap.py. The two static legs (Valuation 0.65,
+    # Positioning 0.50) this used to add inline are hardcoded stubs, dropped by
+    # the engine; the remaining 5 weights are renormalized to sum to 1.0, and
+    # the 3/6/12M numbers are walk-forward isotonic calibrations against real
+    # forward drawdowns (data/bear_trap_calibration.json), not raw_score
+    # scaled by an arbitrary 0.60/0.85/1.0 multiplier.
     latest = d.iloc[-1]
     yield_curve = safe_float(latest, "^TNX") - safe_float(latest, "^IRX")
-    macro_score = normalize(yield_curve, 1.5, -0.5, inverted=True)
-
     irx_avg = d["^IRX"].rolling(120).mean().iloc[-1]
-    liquidity_score = normalize(safe_float(latest, "^IRX"), irx_avg * 0.8, irx_avg * 1.2)
-
     hyg_ief = d["HYG"] / d["IEF"]
     hyg_ief_avg = hyg_ief.rolling(252).mean().iloc[-1]
     current_hyg_ief = hyg_ief.iloc[-1]
-    credit_score = normalize(current_hyg_ief, hyg_ief_avg * 1.05, hyg_ief_avg * 0.9, inverted=True)
-
     spy_200ma = d["SPY"].rolling(200).mean().iloc[-1]
-    breadth_score = normalize(safe_float(latest, "SPY"), spy_200ma * 1.05, spy_200ma * 0.95, inverted=True)
-    vix_score = normalize(safe_float(latest, "^VIX"), 15, 35)
 
-    total_score = (
-        (macro_score * 0.25)
-        + (liquidity_score * 0.20)
-        + (credit_score * 0.20)
-        + (breadth_score * 0.15)
-        + (vix_score * 0.10)
-        + (0.65 * 0.05)
-        + (0.50 * 0.05)
+    scored = bear_compute_score(
+        yield_curve=yield_curve, irx=safe_float(latest, "^IRX"), irx_avg120=irx_avg,
+        hyg_ief=current_hyg_ief, hyg_ief_avg252=hyg_ief_avg,
+        spy=safe_float(latest, "SPY"), spy_200ma=spy_200ma, vix=safe_float(latest, "^VIX"),
     )
+    raw_score = scored["raw_score"]
+    calibration = bear_load_calibration()
+    prob_3m = bear_calibrated_probability(raw_score, calibration, "3m")
+    prob_6m = bear_calibrated_probability(raw_score, calibration, "6m")
+    prob_12m = bear_calibrated_probability(raw_score, calibration, "12m")
+    thresholds = (calibration or {}).get("thresholds", {})
+    elevated_th = thresholds.get("elevated", 20)
+    warning_th = thresholds.get("warning", 40)
 
-    if total_score < 0.4:
+    if prob_3m < elevated_th:
         risk_level, risk_color = "LOW RISK", "#22c55e"
-    elif total_score < 0.55:
+    elif prob_3m < warning_th:
         risk_level, risk_color = "EARLY WARNING", "#f59e0b"
     else:
         risk_level, risk_color = "HIGH RISK", "#ef4444"
 
     return {
-        "prob_3m": round(total_score * 0.60 * 100, 1),
-        "prob_6m": round(total_score * 0.85 * 100, 1),
-        "prob_12m": round(total_score * 100, 1),
+        "prob_3m": prob_3m,
+        "prob_6m": prob_6m,
+        "prob_12m": prob_12m,
         "risk_level": risk_level,
         "risk_color": risk_color,
     }
 
 
 def calc_bull_trap(d):
+    # Delegates to utils/bull_trap_engine.py -- the same calibrated composite
+    # rendered on pages/3_Bull_Trap.py. The old version of this function (and
+    # of that page) hardcoded 'Valuation'/'Insider Buying' at 0.5 each plus a
+    # flat +1.0 baseline, letting the score reach 8.0/10 even with every real
+    # indicator at zero, and read the result off five hand-picked anchors
+    # (20/40/65/85/95%) with no historical backing. The engine drops the
+    # static legs and the probability below is a walk-forward isotonic
+    # calibration against real forward S&P 500 returns
+    # (data/bull_trap_calibration.json), matching the main page exactly.
     latest = d.iloc[-1]
     prev_mo = d.iloc[max(0, len(d) - 23)]
-    scores = {}
 
     curve = safe_float(latest, "^TNX") - safe_float(latest, "^IRX")
     prev_curve = safe_float(prev_mo, "^TNX") - safe_float(prev_mo, "^IRX")
-    scores["Yield Curve"] = 1.0 if curve > 0 and prev_curve < 0 else (0.5 if curve > 0 else 0.0)
-
     vix_mavg = d["^VIX"].rolling(22).mean().iloc[-1]
-    vix = safe_float(latest, "^VIX")
-    scores["VIX Regime"] = 1.0 if vix < 15 else (0.5 if vix < vix_mavg else 0.0)
-
-    hyg_ief = d["HYG"] / d["IEF"]
-    scores["Credit Stress"] = 1.0 if hyg_ief.iloc[-1] > hyg_ief.rolling(22).mean().iloc[-1] else 0.0
-
+    hyg_ief_series = d["HYG"] / d["IEF"]
+    hyg_ief = hyg_ief_series.iloc[-1]
+    hyg_ief_mavg = hyg_ief_series.rolling(22).mean().iloc[-1]
     spy_200ma = d["SPY"].rolling(200).mean().iloc[-1]
     spy = safe_float(latest, "SPY")
-    scores["Market Breadth"] = 1.0 if spy > spy_200ma * 1.05 else (0.5 if spy > spy_200ma else 0.0)
-
     spy_mom = (spy / safe_float(prev_mo, "SPY")) - 1
-    scores["Accumulation"] = 1.0 if spy_mom > 0.02 else (0.5 if spy_mom > 0 else 0.0)
+    tip_now = d["TIP"].iloc[-1] if "TIP" in d.columns else float("nan")
+    tip_start = d["TIP"].iloc[-22] if "TIP" in d.columns and len(d) >= 22 else float("nan")
 
-    scores["Liquidity"] = 1.0 if ("TIP" in d.columns and len(d) >= 22 and d["TIP"].iloc[-1] > d["TIP"].iloc[-22]) else 0.0
-    scores["Valuation"] = 0.5
-    scores["Insider Buying"] = 0.5
+    scored = bull_compute_score(
+        curve=curve, prev_curve=prev_curve, vix=safe_float(latest, "^VIX"), vix_mavg=vix_mavg,
+        hyg_ief=hyg_ief, hyg_ief_mavg=hyg_ief_mavg, spy=spy, spy_200ma=spy_200ma,
+        spy_mom=spy_mom, tip_now=tip_now, tip_start=tip_start,
+    )
+    raw_score = scored["raw_score"]
+    calibration = bull_load_calibration()
+    probability = bull_calibrated_probability(raw_score, calibration, "6m")
+    thresholds = (calibration or {}).get("thresholds", {})
+    confirmed_th = thresholds.get("confirmed", 60)
+    strong_th = thresholds.get("strong", 75)
 
-    total_score = min(10.0, sum(scores.values()) + 1.0)
-    if total_score >= 10:
-        regime, prob = "Structural Bull Market", 95.0
-    elif total_score >= 8:
-        regime, prob = "Strong Bull Market", 85.0
-    elif total_score >= 6:
-        regime, prob = "Early Bull Market", 65.0
-    elif total_score >= 4:
-        regime, prob = "Bull Trap Risk", 40.0
+    if probability < confirmed_th:
+        regime, color = "Bull Trap Risk / Low Confidence", "#ef4444"
+    elif probability < strong_th:
+        regime, color = "Early Bull Market", "#f59e0b"
     else:
-        regime, prob = "Bear Market", 20.0
+        regime, color = "Confirmed Bull Market", "#22c55e"
 
-    if total_score >= 6:
-        market_status, color = "BULLISH / LOW RISK", "#22c55e"
-    elif total_score >= 4:
-        market_status, color = "CAUTION / BULL TRAP RISK", "#f59e0b"
-    else:
-        market_status, color = "BEARISH / HIGH RISK", "#ef4444"
-
-    return {"probability": prob, "regime": regime, "market_status": market_status, "color": color}
+    return {"probability": probability, "regime": regime, "market_status": regime, "color": color}
 
 
 def calc_etf_rotation(d):
