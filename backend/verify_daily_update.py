@@ -188,6 +188,25 @@ def main() -> int:
         except Exception as exc:
             errors.append(f"Market Regime calibration: failed to read {calibration_path} ({exc})")
 
+    bear_trap_calibration_path = ROOT_DIR / "data" / "bear_trap_calibration.json"
+    if not bear_trap_calibration_path.exists():
+        errors.append(f"Bear Trap calibration: missing file {bear_trap_calibration_path}")
+    else:
+        try:
+            import json as _json
+            bear_calibration = _json.loads(bear_trap_calibration_path.read_text(encoding="utf-8"))
+            primary = bear_calibration.get("horizons", {}).get(bear_calibration.get("primary_horizon", "3m"), {})
+            if not primary.get("lookup"):
+                errors.append("Bear Trap calibration: file has no lookup table")
+            else:
+                print(
+                    f"[OK] Bear Trap calibration: 3M elevated>={bear_calibration['thresholds']['elevated']}% "
+                    f"warning>={bear_calibration['thresholds']['warning']}% "
+                    f"ceiling={primary['max_observed_calibrated_probability']}%"
+                )
+        except Exception as exc:
+            errors.append(f"Bear Trap calibration: failed to read {bear_trap_calibration_path} ({exc})")
+
     combined = compute_combined_snapshot(market_expected.date())
     combined_resolved = pd.Timestamp(combined.resolved_date).normalize()
     if combined_resolved > market_expected:

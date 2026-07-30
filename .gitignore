@@ -41,6 +41,9 @@ exports/artifact_snapshot.json
 # Market Regime calibration IS needed by the deployed dashboard (small, refreshed daily)
 !data/market_regime_calibration.json
 
+# Bear Trap calibration IS needed by the deployed dashboard (small, refreshed daily)
+!data/bear_trap_calibration.json
+
 # Live trading records (E80/R3 paper ledger since 2026-07-01) — keep all
 !data/live_trading/r3_signal_history.json
 

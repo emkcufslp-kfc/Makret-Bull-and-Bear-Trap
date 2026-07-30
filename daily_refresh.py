@@ -17,6 +17,8 @@ Refreshes:
   7. data/hy_spread_fred_cache.csv + data/market_regime_calibration.json
                                           (real FRED HY spread + calibrated crash
                                           probability for the Market Regime page)
+  8. data/bear_trap_calibration.json     (calibrated crash probability for the
+                                          Bear Trap page, 3/6/12-month horizons)
 """
 from __future__ import annotations
 
@@ -635,6 +637,34 @@ def step7_market_regime_calibration() -> bool:
         return False
 
 
+# -- Step 8: Refresh Bear Trap calibration -------------------------------------
+def step8_bear_trap_calibration() -> bool:
+    """Rebuild data/bear_trap_calibration.json -- the walk-forward-calibrated
+    raw-score-to-probability mapping (one per 3/6/12-month horizon) used by
+    pages/2_Bear_Trap.py. See backend/calibrate_bear_trap.py (isotonic
+    regression per horizon, ~1s to run; safe to redo every day)."""
+    log("Step 8: Refreshing Bear Trap calibration")
+    t0 = time.time()
+    try:
+        backend_dir = ROOT / "backend"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+        import calibrate_bear_trap
+        calibration = calibrate_bear_trap.build_calibration()
+        calibrate_bear_trap.CALIBRATION_FILE.parent.mkdir(parents=True, exist_ok=True)
+        calibrate_bear_trap.CALIBRATION_FILE.write_text(json.dumps(calibration, indent=2))
+        primary = calibration["horizons"][calibration["primary_horizon"]]
+        log(f"  OK: 3M elevated>={calibration['thresholds']['elevated']}%  "
+            f"warning>={calibration['thresholds']['warning']}%  "
+            f"ceiling={primary['max_observed_calibrated_probability']}%  "
+            f"in {time.time()-t0:.0f}s")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  FAILED: Bear Trap calibration: {exc}")
+        return False
+
+
 # -- Main ----------------------------------------------------------------------
 def main() -> int:
     parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
@@ -669,6 +699,8 @@ def main() -> int:
         results["Step 6 (Best Mix)"] = step6_best_mix()
     if "7" not in skip:
         results["Step 7 (Market Regime calibration)"] = step7_market_regime_calibration()
+    if "8" not in skip:
+        results["Step 8 (Bear Trap calibration)"] = step8_bear_trap_calibration()
 
     log("=" * 70)
     for name, ok in results.items():
