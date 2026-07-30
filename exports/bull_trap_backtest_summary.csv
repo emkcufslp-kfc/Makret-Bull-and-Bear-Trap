@@ -1,0 +1,6 @@
+regime,n_days,stated_prob,mean_fwd_ret_6m,pct_positive_fwd_6m,pct_trap_10pct_3m,pct_trap_10pct_6m,mean_fwd_dd_3m
+Bear Market,760.0,20.0,0.07,70.39,37.24,50.53,-0.1
+Bull Trap Risk,2283.0,40.0,0.05,78.49,19.1,29.79,-0.07
+Early Bull Market,2440.0,65.0,0.06,78.4,11.07,24.75,-0.06
+Strong Bull Market,11.0,85.0,0.07,81.82,0.0,0.0,-0.06
+Structural Bull Market,,,,,,,

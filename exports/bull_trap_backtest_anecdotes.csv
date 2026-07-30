@@ -1,0 +1,20 @@
+label,resolved_date,score,model_prob,regime,fwd_ret_3m_pct,fwd_ret_6m_pct,fwd_dd_3m_pct
+2008 GFC dead-cat bounce (Dow +11% day),2008-10-13,2.5,20.0,Bear Market,-13.4,-14.6,-25.6
+2008 Obama-election relief rally,2008-11-04,4.0,40.0,Bull Trap Risk,-15.1,-8.1,-24.9
+2009 actual GFC bottom,2009-03-09,2.5,20.0,Bear Market,39.2,51.8,-5.2
+2009 early recovery,2009-06-01,6.5,65.0,Early Bull Market,9.7,16.8,-7.0
+2011 pre-debt-ceiling peak,2011-07-07,7.0,65.0,Early Bull Market,-15.0,-4.3,-18.4
+2011 European-crisis relief rally peak,2011-10-27,6.5,65.0,Early Bull Market,2.8,9.9,-9.6
+2015 pre-China-deval peak,2015-07-20,4.5,40.0,Bull Trap Risk,-3.9,-10.7,-11.9
+2016 China/oil selloff bottom,2016-02-11,3.5,20.0,Bear Market,13.5,20.8,-2.4
+2018 pre-Q4-selloff peak,2018-09-20,6.5,65.0,Early Bull Market,-15.4,-3.5,-15.4
+2018 Christmas Eve bottom,2018-12-24,3.5,20.0,Bear Market,19.9,25.1,-2.4
+2019 Fed-pivot continuation,2019-04-01,7.0,65.0,Early Bull Market,3.9,4.8,-6.6
+2020 pre-COVID all-time high,2020-02-19,6.5,65.0,Early Bull Market,-13.2,1.1,-33.7
+2020 COVID bottom,2020-03-23,3.0,20.0,Bear Market,39.9,47.9,-7.0
+2020 V-recovery point,2020-06-08,7.0,65.0,Early Bull Market,6.5,15.4,-7.0
+2022 bear market start (ATH),2022-01-03,7.0,65.0,Early Bull Market,-4.1,-19.2,-12.9
+2022 summer bear-market-rally peak (real trap),2022-08-16,6.5,65.0,Early Bull Market,-7.7,-2.8,-16.7
+2022 actual bottom,2022-10-13,3.5,20.0,Bear Market,9.4,14.1,-7.2
+2023 AI-rally continuation,2023-07-31,6.0,65.0,Early Bull Market,-10.0,8.0,-10.0
+2024 pre-Aug-2024 selloff peak,2024-07-16,7.0,65.0,Early Bull Market,3.8,3.7,-8.4
