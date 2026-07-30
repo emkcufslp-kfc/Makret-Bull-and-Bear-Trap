@@ -392,6 +392,26 @@ def render_daily_confirmation_panel(daily_view: pd.DataFrame, daily_eval: pd.Dat
     st.dataframe(daily_confirmation_table(daily_eval, weekly_state, daily_state), use_container_width=True, hide_index=True)
 
 
+def _brier_honesty_check(features: pd.DataFrame) -> dict | None:
+    """Out-of-sample honesty check for composite_risk_score, mirroring the one
+    already shown on the Bear Trap / Bull Trap pages: is the raw 0-100 reading,
+    taken literally as a percent, actually a better forecast of a real >=10%
+    drawdown within 13 weeks than just always guessing the historical base
+    rate? `features` is already time-travel-sliced to the selected as-of date,
+    so this only ever uses what was visible on that date."""
+    if "composite_risk_score" not in features.columns or "drop_10_13w" not in features.columns:
+        return None
+    valid = features.dropna(subset=["composite_risk_score", "drop_10_13w"])
+    if len(valid) < 50:
+        return None
+    p = valid["composite_risk_score"] / 100.0
+    y = valid["drop_10_13w"].astype(float)
+    base_rate = float(y.mean())
+    brier_model = float(((p - y) ** 2).mean())
+    brier_base = float(((base_rate - y) ** 2).mean())
+    return {"n": int(len(valid)), "base_rate": base_rate, "brier_model": brier_model, "brier_base": brier_base}
+
+
 def render_probability_panel(features: pd.DataFrame, evals: pd.DataFrame, grid: pd.DataFrame, bins: pd.DataFrame, as_of_date: dt.date) -> None:
     latest = features.iloc[-1]
     state = str(latest.get("composite_risk_state", "Unavailable"))
@@ -400,6 +420,7 @@ def render_probability_panel(features: pd.DataFrame, evals: pd.DataFrame, grid: 
     best = grid.iloc[0] if not grid.empty else pd.Series(dtype=object)
     severity_color = status_color(state)
     current_drivers = relevant_indicators(latest)
+    honesty = _brier_honesty_check(features)
 
     st.subheader("Mapped Crash / Drop Probability")
     st.markdown(
@@ -408,13 +429,26 @@ def render_probability_panel(features: pd.DataFrame, evals: pd.DataFrame, grid: 
             <div style="font-size:0.78rem; color:#cbd5e1; font-weight:700;">COMPOSITE D1 / D2 / D3 RISK STATE AS OF {features.index[-1].date()}</div>
             <div style="font-size:1.45rem; color:{severity_color}; font-weight:900;">{state} / {fmt(score, '', 1)}/100</div>
             <div style="color:#dbeafe; margin-top:4px;">
-                Probability is mapped from the walk-forward weekly backtest. The indicator is learned from Dashboard 3 liquidity,
-                Dashboard 1 macro/trend context, and all Dashboard 2 warning indicators instead of being manually added together.
+                This 0-100 reading is a rank/state-assignment score, not itself a calibrated probability -- it decides which
+                row of the table below to read. The <strong>Probability</strong> column in that table is the real,
+                historically-honest number.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    if honesty:
+        beats_base_rate = honesty["brier_model"] < honesty["brier_base"]
+        if not beats_base_rate:
+            st.warning(
+                f"⚠️ Out-of-sample honesty check: taken literally as a %, this 0-100 score's Brier score "
+                f"({honesty['brier_model']:.4f} over {honesty['n']:,} weeks visible as of this date) is "
+                f"**worse** than just always guessing the historical base rate "
+                f"({honesty['brier_base']:.4f}, base rate {honesty['base_rate']*100:.1f}%). It has swung from "
+                "under 3% to over 97% within a few weeks during real crises (e.g. Sept-Oct 2008) and gotten "
+                "stuck near its ceiling for months during the 2020 recovery -- treat the number above as which "
+                "bucket to read below, not as odds in itself."
+            )
     st.markdown(
         f"""
         <div class="lq-status-ledger">

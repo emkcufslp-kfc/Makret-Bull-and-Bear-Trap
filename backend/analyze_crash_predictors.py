@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import sys
 from io import StringIO
 from pathlib import Path
 
@@ -12,8 +13,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from utils.bear_trap_engine import compute_score as bear_compute_score
+from utils.bull_trap_engine import compute_score as bull_compute_score
+
 OUT_DIR = ROOT / "exports" / "crash_predictor_study"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -179,22 +185,6 @@ def status_from_counts(count: int, watch: int, warning: int) -> str:
     if count >= watch:
         return "Watch"
     return "Normal"
-
-
-def normalize(val: float, lower: float, upper: float, inverted: bool = False) -> float:
-    if pd.isna(val):
-        return np.nan
-    if inverted:
-        if val >= lower:
-            return 0.0
-        if val <= upper:
-            return 1.0
-        return float((lower - val) / (lower - upper))
-    if val <= lower:
-        return 0.0
-    if val >= upper:
-        return 1.0
-    return float((val - lower) / (upper - lower))
 
 
 def latest_valid(frame: pd.DataFrame, date: pd.Timestamp) -> pd.DataFrame:
@@ -420,32 +410,43 @@ def build_feature_table(prices: pd.DataFrame, fred: pd.DataFrame) -> pd.DataFram
         yield_curve = tnx - irx if pd.notna(tnx) and pd.notna(irx) else np.nan
         irx_avg = d["^IRX"].rolling(120).mean().iloc[-1] if "^IRX" in d else np.nan
         hyg_ief = d["HYG"] / d["IEF"] if {"HYG", "IEF"}.issubset(d.columns) else pd.Series(dtype=float)
-        hyg_ief_avg = hyg_ief.rolling(252).mean().iloc[-1] if not hyg_ief.empty else np.nan
+        hyg_ief_avg252 = hyg_ief.rolling(252).mean().iloc[-1] if not hyg_ief.empty else np.nan
+        hyg_ief_avg22 = hyg_ief.rolling(22).mean().iloc[-1] if not hyg_ief.empty else np.nan
+        hyg_ief_last = hyg_ief.iloc[-1] if not hyg_ief.empty else np.nan
         spy_sma200 = d["SPY"].rolling(200).mean().iloc[-1] if "SPY" in d else np.nan
-        macro_score = normalize(yield_curve, 1.5, -0.5, inverted=True)
-        liquidity_score = normalize(irx, irx_avg * 0.8, irx_avg * 1.2)
-        credit_score = normalize(hyg_ief.iloc[-1] if not hyg_ief.empty else np.nan, hyg_ief_avg * 1.05, hyg_ief_avg * 0.9, inverted=True)
-        breadth_score = normalize(spy, spy_sma200 * 1.05, spy_sma200 * 0.95, inverted=True)
-        vix_score = normalize(vix, 15, 35)
-        d1_bear_prob12 = (
-            macro_score * 0.25
-            + liquidity_score * 0.20
-            + credit_score * 0.20
-            + breadth_score * 0.15
-            + vix_score * 0.10
-            + 0.65 * 0.05
-            + 0.50 * 0.05
-        ) * 100 if all(pd.notna(x) for x in [macro_score, liquidity_score, credit_score, breadth_score, vix_score]) else np.nan
+        vix_mavg22 = d["^VIX"].rolling(22).mean().iloc[-1] if "^VIX" in d else np.nan
+
+        # d1_bear_prob12 / d1_bull_prob feed both the composite model below and
+        # the Liquidity dashboard's own "Bear 12M" / "Bull Prob" mini-cards.
+        # They used to duplicate the Bear/Bull Trap rubrics inline, including
+        # two hardcoded static legs and a flat +1.0 baseline that let the bull
+        # score read as high as 8.0/10 with every real input at zero, mapped to
+        # five hand-picked anchors (20/40/65/85/95). Delegating to the same
+        # shared engines the standalone Bear Trap / Bull Trap pages already use
+        # (utils/bear_trap_engine.py, utils/bull_trap_engine.py) keeps this
+        # feature table aligned with the rest of the app instead of quietly
+        # drifting back to the pre-fix math.
+        bear_scored = bear_compute_score(
+            yield_curve=yield_curve, irx=irx, irx_avg120=irx_avg,
+            hyg_ief=hyg_ief_last, hyg_ief_avg252=hyg_ief_avg252,
+            spy=spy, spy_200ma=spy_sma200, vix=vix,
+        )
+        d1_bear_prob12 = bear_scored["raw_score"]
 
         prev_mo = d.iloc[max(0, len(d) - 23)]
-        bull_yield_curve = 1.0 if pd.notna(yield_curve) and pd.notna(prev_mo.get("^TNX", np.nan)) and yield_curve > 0 and (prev_mo.get("^TNX", np.nan) - prev_mo.get("^IRX", np.nan)) < 0 else (0.5 if pd.notna(yield_curve) and yield_curve > 0 else 0.0)
-        bull_vix = 1.0 if pd.notna(vix) and vix < 15 else (0.5 if pd.notna(vix) and vix < d["^VIX"].rolling(22).mean().iloc[-1] else 0.0)
-        bull_credit = 1.0 if not hyg_ief.empty and hyg_ief.iloc[-1] > hyg_ief.rolling(22).mean().iloc[-1] else 0.0
-        bull_breadth = 1.0 if pd.notna(spy) and pd.notna(spy_sma200) and spy > spy_sma200 * 1.05 else (0.5 if pd.notna(spy) and pd.notna(spy_sma200) and spy > spy_sma200 else 0.0)
-        bull_accum = 1.0 if "SPY" in d.columns and len(d) >= 23 and spy / float(prev_mo.get("SPY", np.nan)) - 1 > 0.02 else (0.5 if "SPY" in d.columns and len(d) >= 23 and spy / float(prev_mo.get("SPY", np.nan)) - 1 > 0 else 0.0)
-        bull_tip = 1.0 if "TIP" in d.columns and len(d) >= 22 and d["TIP"].iloc[-1] > d["TIP"].iloc[-22] else 0.0
-        d1_bull_score = min(10.0, bull_yield_curve + bull_vix + bull_credit + bull_breadth + bull_accum + bull_tip + 0.5 + 0.5 + 1.0)
-        d1_bull_prob = 95.0 if d1_bull_score >= 10 else 85.0 if d1_bull_score >= 8 else 65.0 if d1_bull_score >= 6 else 40.0 if d1_bull_score >= 4 else 20.0
+        prev_curve = prev_mo.get("^TNX", np.nan) - prev_mo.get("^IRX", np.nan)
+        prev_spy = float(prev_mo.get("SPY", np.nan))
+        spy_mom = spy / prev_spy - 1 if pd.notna(prev_spy) and prev_spy else np.nan
+        tip_now = float(d["TIP"].iloc[-1]) if "TIP" in d.columns else np.nan
+        tip_start = float(d["TIP"].iloc[-22]) if "TIP" in d.columns and len(d) >= 22 else np.nan
+
+        bull_scored = bull_compute_score(
+            curve=yield_curve, prev_curve=prev_curve, vix=vix, vix_mavg=vix_mavg22,
+            hyg_ief=hyg_ief_last, hyg_ief_mavg=hyg_ief_avg22,
+            spy=spy, spy_200ma=spy_sma200, spy_mom=spy_mom, tip_now=tip_now, tip_start=tip_start,
+        )
+        d1_bull_prob = bull_scored["raw_score"]
+        d1_bull_score = d1_bull_prob / 10.0  # kept on its historical 0-10 scale for this column name
 
         d1_etf_warning = bool((pd.notna(spy) and pd.notna(spy_sma200) and spy < spy_sma200) or (pd.notna(vix) and vix > 20))
         d1_200ma_diff = sp / sma200 - 1
@@ -601,7 +602,19 @@ def add_composite_indicator(features: pd.DataFrame) -> pd.DataFrame:
         x_now = out.iloc[[i]][feature_cols].replace([np.inf, -np.inf], np.nan).fillna(medians).fillna(0)
         scores.iloc[i] = float(model.predict_proba(x_now)[0, 1] * 100.0)
 
-    out["composite_risk_score"] = scores
+    # A 22-year backtest of this indicator found it swinging from ~0.0000000000003%
+    # to 100% within a few weeks during the same ongoing crisis (Sept-Oct 2008),
+    # and getting stuck at ~100% for 10 straight weeks through the 2020 bottom --
+    # a classic small-sample/imbalanced logistic-regression overconfidence
+    # pattern (Brier 0.218 vs. 0.119 for just guessing the base rate). Two
+    # cheap, honest fixes: clip away the false-precision extremes the model
+    # hasn't earned, then take a short trailing median so a single noisy
+    # week can't flip the regime state on its own. Both use only
+    # already-computed past/current values -- no lookahead. The unclipped,
+    # unsmoothed weekly score is kept as composite_risk_score_raw for
+    # transparency/diagnostics.
+    out["composite_risk_score_raw"] = scores
+    out["composite_risk_score"] = scores.clip(lower=2.0, upper=98.0).rolling(3, min_periods=1).median()
     out["composite_risk_state"] = "Unavailable"
     out.loc[out["composite_risk_score"] < 30, "composite_risk_state"] = "Normal"
     out.loc[(out["composite_risk_score"] >= 30) & (out["composite_risk_score"] < 55), "composite_risk_state"] = "Watch"
