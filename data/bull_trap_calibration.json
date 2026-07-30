@@ -1,0 +1,3468 @@
+{
+  "generated_at": "2026-07-30T22:13:37",
+  "method": "isotonic_regression_full_sample_per_horizon",
+  "target": "S&P 500 total return over horizon is positive",
+  "trap_target": "<= -10% SPX drawdown within 3 months of a high-conviction reading",
+  "primary_horizon": "6m",
+  "history_start": "2007-05-10",
+  "history_end": "2026-07-29",
+  "max_raw_score": 100.0,
+  "weights_pct": {
+    "yield_curve": 16.7,
+    "vix": 16.7,
+    "credit": 16.7,
+    "breadth": 16.7,
+    "momentum": 16.7,
+    "liquidity": 16.7
+  },
+  "thresholds": {
+    "confirmed": 70,
+    "strong": 75
+  },
+  "strong_raw_threshold": 66,
+  "history_table": [
+    {
+      "raw_score_bucket": 0.0,
+      "n_days": 2,
+      "actual_hit_rate_pct": 100.0,
+      "calibrated_probability_pct": 57.5
+    },
+    {
+      "raw_score_bucket": 10.0,
+      "n_days": 158,
+      "actual_hit_rate_pct": 57.0,
+      "calibrated_probability_pct": 59.91
+    },
+    {
+      "raw_score_bucket": 15.0,
+      "n_days": 139,
+      "actual_hit_rate_pct": 77.0,
+      "calibrated_probability_pct": 67.13
+    },
+    {
+      "raw_score_bucket": 25.0,
+      "n_days": 406,
+      "actual_hit_rate_pct": 67.0,
+      "calibrated_probability_pct": 69.54
+    },
+    {
+      "raw_score_bucket": 35.0,
+      "n_days": 402,
+      "actual_hit_rate_pct": 70.6,
+      "calibrated_probability_pct": 70.94
+    },
+    {
+      "raw_score_bucket": 40.0,
+      "n_days": 366,
+      "actual_hit_rate_pct": 74.3,
+      "calibrated_probability_pct": 71.83
+    },
+    {
+      "raw_score_bucket": 50.0,
+      "n_days": 493,
+      "actual_hit_rate_pct": 70.8,
+      "calibrated_probability_pct": 72.13
+    },
+    {
+      "raw_score_bucket": 60.0,
+      "n_days": 515,
+      "actual_hit_rate_pct": 71.8,
+      "calibrated_probability_pct": 72.81
+    },
+    {
+      "raw_score_bucket": 65.0,
+      "n_days": 819,
+      "actual_hit_rate_pct": 75.8,
+      "calibrated_probability_pct": 74.87
+    },
+    {
+      "raw_score_bucket": 75.0,
+      "n_days": 658,
+      "actual_hit_rate_pct": 75.2,
+      "calibrated_probability_pct": 75.56
+    },
+    {
+      "raw_score_bucket": 85.0,
+      "n_days": 529,
+      "actual_hit_rate_pct": 79.8,
+      "calibrated_probability_pct": 79.57
+    },
+    {
+      "raw_score_bucket": 90.0,
+      "n_days": 215,
+      "actual_hit_rate_pct": 79.1,
+      "calibrated_probability_pct": 79.57
+    },
+    {
+      "raw_score_bucket": 100.0,
+      "n_days": 11,
+      "actual_hit_rate_pct": 81.8,
+      "calibrated_probability_pct": 81.82
+    }
+  ],
+  "threshold_horizon_table": [
+    {
+      "score_threshold": 0,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 4776,
+      "probability_pct": 71.1
+    },
+    {
+      "score_threshold": 0,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 4713,
+      "probability_pct": 73.5
+    },
+    {
+      "score_threshold": 0,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 4587,
+      "probability_pct": 80.5
+    },
+    {
+      "score_threshold": 10,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 4615,
+      "probability_pct": 71.6
+    },
+    {
+      "score_threshold": 10,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 4553,
+      "probability_pct": 74.0
+    },
+    {
+      "score_threshold": 10,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 4427,
+      "probability_pct": 80.7
+    },
+    {
+      "score_threshold": 20,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 4475,
+      "probability_pct": 71.7
+    },
+    {
+      "score_threshold": 20,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 4414,
+      "probability_pct": 73.9
+    },
+    {
+      "score_threshold": 20,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 4288,
+      "probability_pct": 80.7
+    },
+    {
+      "score_threshold": 30,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 4063,
+      "probability_pct": 71.5
+    },
+    {
+      "score_threshold": 30,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 4008,
+      "probability_pct": 74.7
+    },
+    {
+      "score_threshold": 30,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 3887,
+      "probability_pct": 81.9
+    },
+    {
+      "score_threshold": 40,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 3646,
+      "probability_pct": 71.8
+    },
+    {
+      "score_threshold": 40,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 3606,
+      "probability_pct": 75.1
+    },
+    {
+      "score_threshold": 40,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 3488,
+      "probability_pct": 82.4
+    },
+    {
+      "score_threshold": 50,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 3198,
+      "probability_pct": 72.1
+    },
+    {
+      "score_threshold": 50,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 3173,
+      "probability_pct": 75.4
+    },
+    {
+      "score_threshold": 50,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 3062,
+      "probability_pct": 83.0
+    },
+    {
+      "score_threshold": 60,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 2250,
+      "probability_pct": 73.0
+    },
+    {
+      "score_threshold": 60,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 2232,
+      "probability_pct": 76.9
+    },
+    {
+      "score_threshold": 60,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 2159,
+      "probability_pct": 85.8
+    },
+    {
+      "score_threshold": 70,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 1425,
+      "probability_pct": 73.5
+    },
+    {
+      "score_threshold": 70,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 1413,
+      "probability_pct": 77.6
+    },
+    {
+      "score_threshold": 70,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 1366,
+      "probability_pct": 84.6
+    },
+    {
+      "score_threshold": 80,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 766,
+      "probability_pct": 73.2
+    },
+    {
+      "score_threshold": 80,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 755,
+      "probability_pct": 79.6
+    },
+    {
+      "score_threshold": 80,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 741,
+      "probability_pct": 86.4
+    },
+    {
+      "score_threshold": 90,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 226,
+      "probability_pct": 63.7
+    },
+    {
+      "score_threshold": 90,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 226,
+      "probability_pct": 79.2
+    },
+    {
+      "score_threshold": 90,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 225,
+      "probability_pct": 83.1
+    },
+    {
+      "score_threshold": 100,
+      "horizon_key": "3m",
+      "horizon_label": "3 Months",
+      "n_days_at_or_above": 0,
+      "probability_pct": null
+    },
+    {
+      "score_threshold": 100,
+      "horizon_key": "6m",
+      "horizon_label": "6 Months",
+      "n_days_at_or_above": 0,
+      "probability_pct": null
+    },
+    {
+      "score_threshold": 100,
+      "horizon_key": "12m",
+      "horizon_label": "12 Months",
+      "n_days_at_or_above": 0,
+      "probability_pct": null
+    }
+  ],
+  "bull_trap_episodes": [
+    {
+      "start_date": "2007-05-10",
+      "end_date": "2007-06-06",
+      "trading_days": 19,
+      "peak_raw_score": 100.0,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-06-08",
+      "end_date": "2007-06-11",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-06-13",
+      "end_date": "2007-06-14",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -7.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-06-18",
+      "end_date": "2007-06-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -8.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-07-13",
+      "end_date": "2007-07-13",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -9.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-08-30",
+      "end_date": "2007-09-06",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-09-11",
+      "end_date": "2007-10-12",
+      "trading_days": 24,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2007-12-06",
+      "end_date": "2007-12-06",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -15.5,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2007-12-10",
+      "end_date": "2007-12-10",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -16.0,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2007-12-12",
+      "end_date": "2007-12-12",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -14.3,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2007-12-20",
+      "end_date": "2007-12-20",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -12.8,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2008-02-26",
+      "end_date": "2008-02-26",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -7.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2008-04-04",
+      "end_date": "2008-04-07",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -7.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2008-04-23",
+      "end_date": "2008-04-23",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -12.0,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2008-05-16",
+      "end_date": "2008-05-20",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -14.8,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2008-12-18",
+      "end_date": "2008-12-29",
+      "trading_days": 7,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -23.6,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2009-01-02",
+      "end_date": "2009-01-06",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -27.4,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2009-01-08",
+      "end_date": "2009-01-08",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -25.6,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2009-03-23",
+      "end_date": "2009-03-27",
+      "trading_days": 5,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-03-31",
+      "end_date": "2009-04-17",
+      "trading_days": 13,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 1.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-05-18",
+      "end_date": "2009-05-26",
+      "trading_days": 6,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-05-29",
+      "end_date": "2009-06-15",
+      "trading_days": 12,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-06-29",
+      "end_date": "2009-06-29",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -5.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-07-15",
+      "end_date": "2009-08-05",
+      "trading_days": 16,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-08-07",
+      "end_date": "2009-08-14",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -3.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-08-20",
+      "end_date": "2009-08-28",
+      "trading_days": 7,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-09-08",
+      "end_date": "2009-09-30",
+      "trading_days": 17,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-10-07",
+      "end_date": "2009-10-27",
+      "trading_days": 15,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-10-29",
+      "end_date": "2009-10-29",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-11-02",
+      "end_date": "2009-11-12",
+      "trading_days": 9,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-11-17",
+      "end_date": "2009-11-17",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-11-24",
+      "end_date": "2009-11-25",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-12-01",
+      "end_date": "2009-12-09",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-12-15",
+      "end_date": "2009-12-16",
+      "trading_days": 2,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-12-22",
+      "end_date": "2009-12-28",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -5.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2009-12-30",
+      "end_date": "2009-12-30",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -6.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-01-04",
+      "end_date": "2010-01-20",
+      "trading_days": 12,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -6.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-03-02",
+      "end_date": "2010-03-24",
+      "trading_days": 17,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-03-26",
+      "end_date": "2010-04-15",
+      "trading_days": 14,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -10.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-04-20",
+      "end_date": "2010-04-26",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -15.3,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2010-06-21",
+      "end_date": "2010-06-22",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -8.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-07-12",
+      "end_date": "2010-07-12",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-08-03",
+      "end_date": "2010-08-05",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-09-13",
+      "end_date": "2010-09-22",
+      "trading_days": 8,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-09-24",
+      "end_date": "2010-09-24",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-09-30",
+      "end_date": "2010-10-01",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-10-12",
+      "end_date": "2010-11-11",
+      "trading_days": 23,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-11-18",
+      "end_date": "2010-11-19",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-12-02",
+      "end_date": "2010-12-06",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2010-12-10",
+      "end_date": "2010-12-30",
+      "trading_days": 14,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-01-05",
+      "end_date": "2011-01-05",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-01-07",
+      "end_date": "2011-01-19",
+      "trading_days": 8,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-01-25",
+      "end_date": "2011-01-27",
+      "trading_days": 3,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-01-31",
+      "end_date": "2011-02-18",
+      "trading_days": 15,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-03-02",
+      "end_date": "2011-03-03",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-03-07",
+      "end_date": "2011-03-08",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-03-24",
+      "end_date": "2011-05-02",
+      "trading_days": 27,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -3.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-05-19",
+      "end_date": "2011-05-19",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -16.7,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2011-07-01",
+      "end_date": "2011-07-11",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -16.4,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2011-07-13",
+      "end_date": "2011-07-18",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -16.6,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2011-07-20",
+      "end_date": "2011-07-26",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -17.1,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2011-10-25",
+      "end_date": "2011-10-31",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -5.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-11-03",
+      "end_date": "2011-11-08",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -8.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-12-06",
+      "end_date": "2011-12-06",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-12-20",
+      "end_date": "2011-12-23",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2011-12-28",
+      "end_date": "2011-12-28",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-01-03",
+      "end_date": "2012-01-04",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-01-06",
+      "end_date": "2012-02-14",
+      "trading_days": 27,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-02-16",
+      "end_date": "2012-03-05",
+      "trading_days": 12,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-03-09",
+      "end_date": "2012-03-28",
+      "trading_days": 14,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -6.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-03-30",
+      "end_date": "2012-04-03",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -9.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-04-25",
+      "end_date": "2012-04-26",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -8.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-04-30",
+      "end_date": "2012-05-03",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -8.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-06-15",
+      "end_date": "2012-06-21",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-06-26",
+      "end_date": "2012-06-27",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-06-29",
+      "end_date": "2012-07-05",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-07-09",
+      "end_date": "2012-07-13",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-07-17",
+      "end_date": "2012-07-19",
+      "trading_days": 3,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-07-27",
+      "end_date": "2012-07-31",
+      "trading_days": 3,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-08-02",
+      "end_date": "2012-08-22",
+      "trading_days": 15,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-08-24",
+      "end_date": "2012-08-24",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-08-28",
+      "end_date": "2012-08-28",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-09-06",
+      "end_date": "2012-09-11",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -5.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-09-13",
+      "end_date": "2012-09-25",
+      "trading_days": 9,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -7.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-09-27",
+      "end_date": "2012-09-27",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-10-04",
+      "end_date": "2012-10-05",
+      "trading_days": 2,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -7.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-11-28",
+      "end_date": "2012-12-03",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-12-06",
+      "end_date": "2012-12-06",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-12-10",
+      "end_date": "2012-12-12",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-12-18",
+      "end_date": "2012-12-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2012-12-21",
+      "end_date": "2012-12-24",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-01-02",
+      "end_date": "2013-01-30",
+      "trading_days": 20,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-02-01",
+      "end_date": "2013-02-01",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-02-05",
+      "end_date": "2013-02-06",
+      "trading_days": 2,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -1.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-02-13",
+      "end_date": "2013-02-13",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-02-19",
+      "end_date": "2013-02-19",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-03-04",
+      "end_date": "2013-04-12",
+      "trading_days": 29,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 1.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-04-16",
+      "end_date": "2013-04-16",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-04-19",
+      "end_date": "2013-05-30",
+      "trading_days": 29,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-07-05",
+      "end_date": "2013-08-13",
+      "trading_days": 28,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-09-11",
+      "end_date": "2013-09-11",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-09-16",
+      "end_date": "2013-09-26",
+      "trading_days": 9,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -2.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-10-10",
+      "end_date": "2013-12-04",
+      "trading_days": 39,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-12-06",
+      "end_date": "2013-12-10",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2013-12-18",
+      "end_date": "2014-01-23",
+      "trading_days": 24,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -3.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-02-11",
+      "end_date": "2014-03-12",
+      "trading_days": 21,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-03-18",
+      "end_date": "2014-03-18",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-03-20",
+      "end_date": "2014-03-20",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-03-24",
+      "end_date": "2014-04-03",
+      "trading_days": 9,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-04-08",
+      "end_date": "2014-04-09",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-04-16",
+      "end_date": "2014-04-24",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-04-28",
+      "end_date": "2014-05-01",
+      "trading_days": 4,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-05-07",
+      "end_date": "2014-06-30",
+      "trading_days": 38,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-07-02",
+      "end_date": "2014-07-29",
+      "trading_days": 19,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -3.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-08-14",
+      "end_date": "2014-08-14",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -4.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-08-18",
+      "end_date": "2014-09-08",
+      "trading_days": 15,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -5.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-09-10",
+      "end_date": "2014-09-12",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-09-16",
+      "end_date": "2014-09-22",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-10-28",
+      "end_date": "2014-11-13",
+      "trading_days": 13,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-11-26",
+      "end_date": "2014-11-28",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -4.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2014-12-23",
+      "end_date": "2014-12-26",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-02-05",
+      "end_date": "2015-02-10",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-02-12",
+      "end_date": "2015-03-05",
+      "trading_days": 15,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-03-18",
+      "end_date": "2015-03-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-03-20",
+      "end_date": "2015-03-23",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-04-07",
+      "end_date": "2015-04-16",
+      "trading_days": 8,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-04-20",
+      "end_date": "2015-05-04",
+      "trading_days": 11,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -2.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-05-08",
+      "end_date": "2015-05-08",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-05-14",
+      "end_date": "2015-05-22",
+      "trading_days": 7,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-07-13",
+      "end_date": "2015-07-14",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -11.0,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2015-07-16",
+      "end_date": "2015-07-16",
+      "trading_days": 1,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -12.1,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2015-07-31",
+      "end_date": "2015-07-31",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -11.2,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2015-10-08",
+      "end_date": "2015-10-12",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-10-15",
+      "end_date": "2015-10-19",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -7.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-10-21",
+      "end_date": "2015-11-03",
+      "trading_days": 10,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -7.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2015-11-06",
+      "end_date": "2015-11-06",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -11.7,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2016-02-22",
+      "end_date": "2016-02-22",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-02-25",
+      "end_date": "2016-03-14",
+      "trading_days": 13,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-03-16",
+      "end_date": "2016-03-24",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-03-29",
+      "end_date": "2016-04-04",
+      "trading_days": 5,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-04-06",
+      "end_date": "2016-04-06",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-04-12",
+      "end_date": "2016-04-27",
+      "trading_days": 12,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -3.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-05-24",
+      "end_date": "2016-06-09",
+      "trading_days": 12,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -3.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-06-21",
+      "end_date": "2016-06-21",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-06-23",
+      "end_date": "2016-06-23",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -5.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-07-08",
+      "end_date": "2016-08-01",
+      "trading_days": 17,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-08-04",
+      "end_date": "2016-09-08",
+      "trading_days": 25,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -3.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-09-22",
+      "end_date": "2016-09-23",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -4.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-09-28",
+      "end_date": "2016-09-28",
+      "trading_days": 1,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-09-30",
+      "end_date": "2016-10-05",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-10-19",
+      "end_date": "2016-10-24",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-11-15",
+      "end_date": "2016-11-17",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2016-11-21",
+      "end_date": "2017-01-13",
+      "trading_days": 37,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-01-18",
+      "end_date": "2017-03-07",
+      "trading_days": 34,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-03-17",
+      "end_date": "2017-03-22",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-03-30",
+      "end_date": "2017-03-31",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-04-07",
+      "end_date": "2017-04-10",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-04-21",
+      "end_date": "2017-05-16",
+      "trading_days": 18,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-05-22",
+      "end_date": "2017-05-30",
+      "trading_days": 6,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-06-01",
+      "end_date": "2017-06-16",
+      "trading_days": 12,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-06-22",
+      "end_date": "2017-07-03",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-07-07",
+      "end_date": "2017-07-07",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-07-12",
+      "end_date": "2017-08-09",
+      "trading_days": 21,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-08-14",
+      "end_date": "2017-08-16",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-08-31",
+      "end_date": "2017-09-01",
+      "trading_days": 2,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-09-11",
+      "end_date": "2017-10-12",
+      "trading_days": 24,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-10-16",
+      "end_date": "2017-11-10",
+      "trading_days": 20,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2017-11-15",
+      "end_date": "2018-02-01",
+      "trading_days": 53,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-03-08",
+      "end_date": "2018-03-16",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -5.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-04-26",
+      "end_date": "2018-04-30",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-05-07",
+      "end_date": "2018-05-15",
+      "trading_days": 7,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-05-22",
+      "end_date": "2018-05-25",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-05-30",
+      "end_date": "2018-05-30",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-06-01",
+      "end_date": "2018-06-22",
+      "trading_days": 16,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-07-10",
+      "end_date": "2018-07-10",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-07-12",
+      "end_date": "2018-08-09",
+      "trading_days": 21,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2018-08-17",
+      "end_date": "2018-10-05",
+      "trading_days": 35,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -7.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-01-18",
+      "end_date": "2019-03-06",
+      "trading_days": 32,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-03-11",
+      "end_date": "2019-03-19",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-03-21",
+      "end_date": "2019-03-21",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-04-01",
+      "end_date": "2019-05-03",
+      "trading_days": 24,
+      "peak_raw_score": 100.0,
+      "fwd_3m_drawdown_from_start_pct": -4.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-06-18",
+      "end_date": "2019-06-24",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-06-26",
+      "end_date": "2019-07-30",
+      "trading_days": 24,
+      "peak_raw_score": 100.0,
+      "fwd_3m_drawdown_from_start_pct": -2.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-09-05",
+      "end_date": "2019-09-09",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-09-11",
+      "end_date": "2019-09-19",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -3.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-09-23",
+      "end_date": "2019-09-23",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-10-14",
+      "end_date": "2019-12-02",
+      "trading_days": 35,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": 0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2019-12-04",
+      "end_date": "2020-01-24",
+      "trading_days": 35,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -5.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-02-06",
+      "end_date": "2020-02-06",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -33.1,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2020-02-12",
+      "end_date": "2020-02-19",
+      "trading_days": 5,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -33.8,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2020-04-14",
+      "end_date": "2020-04-23",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-04-27",
+      "end_date": "2020-05-01",
+      "trading_days": 5,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-05-05",
+      "end_date": "2020-05-05",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-05-08",
+      "end_date": "2020-05-11",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-05-18",
+      "end_date": "2020-05-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-05-20",
+      "end_date": "2020-05-26",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-05-28",
+      "end_date": "2020-05-28",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-06-01",
+      "end_date": "2020-06-03",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-06-05",
+      "end_date": "2020-06-10",
+      "trading_days": 4,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -6.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-06-12",
+      "end_date": "2020-06-18",
+      "trading_days": 5,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-07-06",
+      "end_date": "2020-07-06",
+      "trading_days": 1,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-07-10",
+      "end_date": "2020-07-10",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-07-14",
+      "end_date": "2020-09-02",
+      "trading_days": 37,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-09-09",
+      "end_date": "2020-09-09",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-10-08",
+      "end_date": "2020-10-16",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -5.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-10-21",
+      "end_date": "2020-10-21",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -4.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-10-23",
+      "end_date": "2020-10-26",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -5.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-11-04",
+      "end_date": "2020-11-10",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2020-11-13",
+      "end_date": "2021-01-08",
+      "trading_days": 38,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-01-12",
+      "end_date": "2021-01-26",
+      "trading_days": 10,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-01-28",
+      "end_date": "2021-01-28",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-02-01",
+      "end_date": "2021-02-19",
+      "trading_days": 14,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-02-24",
+      "end_date": "2021-02-24",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-03-01",
+      "end_date": "2021-03-01",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-03-24",
+      "end_date": "2021-04-19",
+      "trading_days": 18,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-04-21",
+      "end_date": "2021-04-21",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-04-23",
+      "end_date": "2021-05-03",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-05-05",
+      "end_date": "2021-05-05",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-05-07",
+      "end_date": "2021-05-11",
+      "trading_days": 3,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-05-14",
+      "end_date": "2021-05-14",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-06-01",
+      "end_date": "2021-06-03",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-06-07",
+      "end_date": "2021-06-07",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-06-11",
+      "end_date": "2021-06-15",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-06-21",
+      "end_date": "2021-07-07",
+      "trading_days": 12,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 0.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-07-09",
+      "end_date": "2021-07-12",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-07-14",
+      "end_date": "2021-07-14",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-08-05",
+      "end_date": "2021-08-16",
+      "trading_days": 8,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-08-23",
+      "end_date": "2021-08-24",
+      "trading_days": 2,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-08-27",
+      "end_date": "2021-09-03",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-09-08",
+      "end_date": "2021-09-13",
+      "trading_days": 4,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-09-15",
+      "end_date": "2021-09-16",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-10-19",
+      "end_date": "2021-11-08",
+      "trading_days": 15,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-11-11",
+      "end_date": "2021-11-16",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-11-23",
+      "end_date": "2021-11-23",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -9.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2021-12-07",
+      "end_date": "2021-12-07",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -11.0,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2021-12-27",
+      "end_date": "2022-01-04",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -13.0,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2022-03-22",
+      "end_date": "2022-03-25",
+      "trading_days": 4,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -18.7,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2022-07-15",
+      "end_date": "2022-07-15",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -7.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2022-07-20",
+      "end_date": "2022-08-19",
+      "trading_days": 23,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -9.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2022-10-26",
+      "end_date": "2022-10-27",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2022-10-31",
+      "end_date": "2022-11-01",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2022-11-08",
+      "end_date": "2022-11-08",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2022-11-30",
+      "end_date": "2022-11-30",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -7.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-01-20",
+      "end_date": "2023-01-23",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-01-26",
+      "end_date": "2023-01-27",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -5.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-01-31",
+      "end_date": "2023-02-07",
+      "trading_days": 6,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -5.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-03-30",
+      "end_date": "2023-04-03",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-04-10",
+      "end_date": "2023-04-14",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-04-18",
+      "end_date": "2023-04-24",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-04-27",
+      "end_date": "2023-04-28",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-06-02",
+      "end_date": "2023-06-09",
+      "trading_days": 6,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-06-13",
+      "end_date": "2023-06-23",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-06-27",
+      "end_date": "2023-07-05",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-07-07",
+      "end_date": "2023-07-07",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-07-11",
+      "end_date": "2023-08-01",
+      "trading_days": 16,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-08-07",
+      "end_date": "2023-08-08",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -8.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-09-13",
+      "end_date": "2023-09-19",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -7.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-11-02",
+      "end_date": "2023-11-08",
+      "trading_days": 5,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2023-11-10",
+      "end_date": "2024-01-17",
+      "trading_days": 45,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-01-19",
+      "end_date": "2024-01-30",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-02-01",
+      "end_date": "2024-02-12",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": 0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-02-14",
+      "end_date": "2024-02-16",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-02-22",
+      "end_date": "2024-03-04",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-03-06",
+      "end_date": "2024-03-08",
+      "trading_days": 3,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-03-12",
+      "end_date": "2024-04-02",
+      "trading_days": 15,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-05-07",
+      "end_date": "2024-05-07",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-05-10",
+      "end_date": "2024-05-10",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-05-14",
+      "end_date": "2024-07-18",
+      "trading_days": 45,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-07-22",
+      "end_date": "2024-07-23",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -6.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-08-19",
+      "end_date": "2024-08-19",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-08-22",
+      "end_date": "2024-08-30",
+      "trading_days": 7,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-09-19",
+      "end_date": "2024-10-01",
+      "trading_days": 9,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-10-03",
+      "end_date": "2024-10-04",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-10-08",
+      "end_date": "2024-10-08",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-11-08",
+      "end_date": "2024-11-18",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-11-21",
+      "end_date": "2024-11-21",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-11-27",
+      "end_date": "2024-12-09",
+      "trading_days": 8,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-12-11",
+      "end_date": "2024-12-17",
+      "trading_days": 5,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -9.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2024-12-24",
+      "end_date": "2024-12-26",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -8.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-01-22",
+      "end_date": "2025-01-27",
+      "trading_days": 4,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -18.1,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2025-01-31",
+      "end_date": "2025-01-31",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -17.5,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2025-02-05",
+      "end_date": "2025-02-05",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -17.8,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2025-02-07",
+      "end_date": "2025-02-20",
+      "trading_days": 9,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -17.3,
+      "trap_followed": true
+    },
+    {
+      "start_date": "2025-05-08",
+      "end_date": "2025-05-09",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-05-13",
+      "end_date": "2025-05-22",
+      "trading_days": 8,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-05-29",
+      "end_date": "2025-05-30",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-06-16",
+      "end_date": "2025-06-16",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.1,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-06-24",
+      "end_date": "2025-07-30",
+      "trading_days": 26,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -0.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-08-08",
+      "end_date": "2025-08-08",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -0.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-08-12",
+      "end_date": "2025-08-18",
+      "trading_days": 5,
+      "peak_raw_score": 91.7,
+      "fwd_3m_drawdown_from_start_pct": -1.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-08-22",
+      "end_date": "2025-08-28",
+      "trading_days": 5,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -0.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-09-02",
+      "end_date": "2025-09-09",
+      "trading_days": 6,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": 0.5,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-09-11",
+      "end_date": "2025-09-12",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -0.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-09-18",
+      "end_date": "2025-10-06",
+      "trading_days": 13,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -1.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-10-24",
+      "end_date": "2025-11-03",
+      "trading_days": 7,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -3.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-11-05",
+      "end_date": "2025-11-06",
+      "trading_days": 2,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -3.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-11-10",
+      "end_date": "2025-11-12",
+      "trading_days": 3,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -4.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-12-02",
+      "end_date": "2025-12-04",
+      "trading_days": 3,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -1.6,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-12-10",
+      "end_date": "2025-12-11",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -3.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2025-12-18",
+      "end_date": "2026-01-06",
+      "trading_days": 12,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -4.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-01-09",
+      "end_date": "2026-01-16",
+      "trading_days": 6,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -8.9,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-01-21",
+      "end_date": "2026-01-21",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -7.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-01-23",
+      "end_date": "2026-02-04",
+      "trading_days": 9,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -8.3,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-04-13",
+      "end_date": "2026-05-14",
+      "trading_days": 24,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": 1.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-05-18",
+      "end_date": "2026-05-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -1.8,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-05-20",
+      "end_date": "2026-06-04",
+      "trading_days": 12,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.2,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-06-15",
+      "end_date": "2026-06-15",
+      "trading_days": 1,
+      "peak_raw_score": 75.0,
+      "fwd_3m_drawdown_from_start_pct": -2.7,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-06-18",
+      "end_date": "2026-06-18",
+      "trading_days": 1,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.0,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-07-09",
+      "end_date": "2026-07-10",
+      "trading_days": 2,
+      "peak_raw_score": 83.3,
+      "fwd_3m_drawdown_from_start_pct": -2.4,
+      "trap_followed": false
+    },
+    {
+      "start_date": "2026-07-14",
+      "end_date": "2026-07-15",
+      "trading_days": 2,
+      "peak_raw_score": 66.7,
+      "fwd_3m_drawdown_from_start_pct": -2.4,
+      "trap_followed": false
+    }
+  ],
+  "bull_trap_episode_summary": {
+    "n_episodes": 310,
+    "n_traps": 27,
+    "trap_rate_pct": 8.7,
+    "unconditional_base_trap_rate_pct": 16.0
+  },
+  "horizons": {
+    "3m": {
+      "label": "3 Months",
+      "forward_days": 63,
+      "n_observations": 4776,
+      "base_rate_pct": 75.54,
+      "min_observed_calibrated_probability": 56.5,
+      "max_observed_calibrated_probability": 73.5,
+      "thresholds": {
+        "confirmed": 70,
+        "strong": 75
+      },
+      "lookup": {
+        "0": 56.52,
+        "1": 56.52,
+        "2": 56.52,
+        "3": 56.52,
+        "4": 56.52,
+        "5": 56.52,
+        "6": 56.52,
+        "7": 56.52,
+        "8": 56.52,
+        "9": 57.57,
+        "10": 59.15,
+        "11": 60.73,
+        "12": 62.3,
+        "13": 63.88,
+        "14": 65.46,
+        "15": 67.03,
+        "16": 68.61,
+        "17": 69.66,
+        "18": 69.66,
+        "19": 69.66,
+        "20": 69.66,
+        "21": 69.66,
+        "22": 69.66,
+        "23": 69.66,
+        "24": 69.66,
+        "25": 69.66,
+        "26": 69.66,
+        "27": 69.66,
+        "28": 69.66,
+        "29": 69.66,
+        "30": 69.66,
+        "31": 69.66,
+        "32": 69.66,
+        "33": 69.66,
+        "34": 69.66,
+        "35": 69.66,
+        "36": 69.66,
+        "37": 69.66,
+        "38": 69.66,
+        "39": 69.66,
+        "40": 69.66,
+        "41": 69.66,
+        "42": 69.66,
+        "43": 69.66,
+        "44": 69.66,
+        "45": 69.66,
+        "46": 69.66,
+        "47": 69.66,
+        "48": 69.66,
+        "49": 69.66,
+        "50": 69.66,
+        "51": 69.99,
+        "52": 70.32,
+        "53": 70.65,
+        "54": 70.98,
+        "55": 71.31,
+        "56": 71.64,
+        "57": 71.97,
+        "58": 72.3,
+        "59": 72.41,
+        "60": 72.41,
+        "61": 72.41,
+        "62": 72.41,
+        "63": 72.41,
+        "64": 72.41,
+        "65": 72.41,
+        "66": 72.41,
+        "67": 72.45,
+        "68": 72.58,
+        "69": 72.71,
+        "70": 72.83,
+        "71": 72.96,
+        "72": 73.09,
+        "73": 73.22,
+        "74": 73.35,
+        "75": 73.47,
+        "76": 73.47,
+        "77": 73.47,
+        "78": 73.47,
+        "79": 73.47,
+        "80": 73.47,
+        "81": 73.47,
+        "82": 73.47,
+        "83": 73.47,
+        "84": 73.47,
+        "85": 73.47,
+        "86": 73.47,
+        "87": 73.47,
+        "88": 73.47,
+        "89": 73.47,
+        "90": 73.47,
+        "91": 73.47,
+        "92": 73.47,
+        "93": 73.47,
+        "94": 73.47,
+        "95": 73.47,
+        "96": 73.47,
+        "97": 73.47,
+        "98": 73.47,
+        "99": 73.47,
+        "100": 73.47
+      },
+      "walkforward_diagnostics": {
+        "n_evaluated_days": 4276,
+        "base_rate_pct": 75.54,
+        "brier_raw_score_as_pct": 0.2639,
+        "brier_always_base_rate": 0.1848,
+        "brier_walkforward_calibrated": 0.21,
+        "threshold_grid": [
+          {
+            "cutoff": 10,
+            "n_days_flagged": 4276,
+            "precision": 0.755378858746492,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 15,
+            "n_days_flagged": 4276,
+            "precision": 0.755378858746492,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 20,
+            "n_days_flagged": 4276,
+            "precision": 0.755378858746492,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 25,
+            "n_days_flagged": 4275,
+            "precision": 0.7553216374269006,
+            "recall": 0.9996904024767802
+          },
+          {
+            "cutoff": 30,
+            "n_days_flagged": 4263,
+            "precision": 0.7546328876378138,
+            "recall": 0.9959752321981424
+          },
+          {
+            "cutoff": 35,
+            "n_days_flagged": 4200,
+            "precision": 0.7509523809523809,
+            "recall": 0.9764705882352941
+          },
+          {
+            "cutoff": 40,
+            "n_days_flagged": 4189,
+            "precision": 0.7505371210312723,
+            "recall": 0.973374613003096
+          },
+          {
+            "cutoff": 45,
+            "n_days_flagged": 4149,
+            "precision": 0.7490961677512654,
+            "recall": 0.9622291021671827
+          },
+          {
+            "cutoff": 50,
+            "n_days_flagged": 3890,
+            "precision": 0.7437017994858612,
+            "recall": 0.8956656346749226
+          },
+          {
+            "cutoff": 55,
+            "n_days_flagged": 3679,
+            "precision": 0.7531938026637673,
+            "recall": 0.8578947368421053
+          },
+          {
+            "cutoff": 60,
+            "n_days_flagged": 3537,
+            "precision": 0.7438507209499576,
+            "recall": 0.8145510835913312
+          },
+          {
+            "cutoff": 65,
+            "n_days_flagged": 2839,
+            "precision": 0.7337090524832688,
+            "recall": 0.6448916408668731
+          },
+          {
+            "cutoff": 70,
+            "n_days_flagged": 1590,
+            "precision": 0.7427672955974842,
+            "recall": 0.3656346749226006
+          },
+          {
+            "cutoff": 75,
+            "n_days_flagged": 146,
+            "precision": 0.684931506849315,
+            "recall": 0.030959752321981424
+          },
+          {
+            "cutoff": 80,
+            "n_days_flagged": 27,
+            "precision": 0.48148148148148145,
+            "recall": 0.004024767801857585
+          }
+        ]
+      }
+    },
+    "6m": {
+      "label": "6 Months",
+      "forward_days": 126,
+      "n_observations": 4713,
+      "base_rate_pct": 79.47,
+      "min_observed_calibrated_probability": 57.5,
+      "max_observed_calibrated_probability": 81.8,
+      "thresholds": {
+        "confirmed": 70,
+        "strong": 75
+      },
+      "lookup": {
+        "0": 57.5,
+        "1": 57.5,
+        "2": 57.5,
+        "3": 57.5,
+        "4": 57.5,
+        "5": 57.5,
+        "6": 57.5,
+        "7": 57.5,
+        "8": 57.5,
+        "9": 58.46,
+        "10": 59.91,
+        "11": 61.35,
+        "12": 62.8,
+        "13": 64.24,
+        "14": 65.69,
+        "15": 67.13,
+        "16": 68.58,
+        "17": 69.54,
+        "18": 69.54,
+        "19": 69.54,
+        "20": 69.54,
+        "21": 69.54,
+        "22": 69.54,
+        "23": 69.54,
+        "24": 69.54,
+        "25": 69.54,
+        "26": 69.67,
+        "27": 69.81,
+        "28": 69.94,
+        "29": 70.07,
+        "30": 70.2,
+        "31": 70.34,
+        "32": 70.47,
+        "33": 70.6,
+        "34": 70.77,
+        "35": 70.94,
+        "36": 71.12,
+        "37": 71.3,
+        "38": 71.47,
+        "39": 71.65,
+        "40": 71.83,
+        "41": 72.01,
+        "42": 72.13,
+        "43": 72.13,
+        "44": 72.13,
+        "45": 72.13,
+        "46": 72.13,
+        "47": 72.13,
+        "48": 72.13,
+        "49": 72.13,
+        "50": 72.13,
+        "51": 72.13,
+        "52": 72.13,
+        "53": 72.13,
+        "54": 72.13,
+        "55": 72.13,
+        "56": 72.13,
+        "57": 72.13,
+        "58": 72.13,
+        "59": 72.4,
+        "60": 72.81,
+        "61": 73.22,
+        "62": 73.64,
+        "63": 74.05,
+        "64": 74.46,
+        "65": 74.87,
+        "66": 75.28,
+        "67": 75.56,
+        "68": 75.56,
+        "69": 75.56,
+        "70": 75.56,
+        "71": 75.56,
+        "72": 75.56,
+        "73": 75.56,
+        "74": 75.56,
+        "75": 75.56,
+        "76": 76.04,
+        "77": 76.52,
+        "78": 77.0,
+        "79": 77.48,
+        "80": 77.97,
+        "81": 78.45,
+        "82": 78.93,
+        "83": 79.41,
+        "84": 79.57,
+        "85": 79.57,
+        "86": 79.57,
+        "87": 79.57,
+        "88": 79.57,
+        "89": 79.57,
+        "90": 79.57,
+        "91": 79.57,
+        "92": 79.66,
+        "93": 79.93,
+        "94": 80.2,
+        "95": 80.47,
+        "96": 80.74,
+        "97": 81.01,
+        "98": 81.28,
+        "99": 81.55,
+        "100": 81.82
+      },
+      "walkforward_diagnostics": {
+        "n_evaluated_days": 4213,
+        "base_rate_pct": 79.47,
+        "brier_raw_score_as_pct": 0.2552,
+        "brier_always_base_rate": 0.1632,
+        "brier_walkforward_calibrated": 0.2062,
+        "threshold_grid": [
+          {
+            "cutoff": 10,
+            "n_days_flagged": 4213,
+            "precision": 0.794683123664847,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 15,
+            "n_days_flagged": 4213,
+            "precision": 0.794683123664847,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 20,
+            "n_days_flagged": 4213,
+            "precision": 0.794683123664847,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 25,
+            "n_days_flagged": 4164,
+            "precision": 0.7922670509125841,
+            "recall": 0.9853643966547192
+          },
+          {
+            "cutoff": 30,
+            "n_days_flagged": 4127,
+            "precision": 0.7904046522897988,
+            "recall": 0.9743130227001194
+          },
+          {
+            "cutoff": 35,
+            "n_days_flagged": 4044,
+            "precision": 0.7863501483679525,
+            "recall": 0.9498207885304659
+          },
+          {
+            "cutoff": 40,
+            "n_days_flagged": 3977,
+            "precision": 0.7882826250942921,
+            "recall": 0.9363799283154122
+          },
+          {
+            "cutoff": 45,
+            "n_days_flagged": 3907,
+            "precision": 0.7844893780394164,
+            "recall": 0.9154719235364397
+          },
+          {
+            "cutoff": 50,
+            "n_days_flagged": 3659,
+            "precision": 0.7854605083356109,
+            "recall": 0.8584229390681004
+          },
+          {
+            "cutoff": 55,
+            "n_days_flagged": 3348,
+            "precision": 0.78584229390681,
+            "recall": 0.78584229390681
+          },
+          {
+            "cutoff": 60,
+            "n_days_flagged": 3111,
+            "precision": 0.7981356477017036,
+            "recall": 0.741636798088411
+          },
+          {
+            "cutoff": 65,
+            "n_days_flagged": 2655,
+            "precision": 0.7890772128060264,
+            "recall": 0.6257467144563919
+          },
+          {
+            "cutoff": 70,
+            "n_days_flagged": 1969,
+            "precision": 0.7795835449466735,
+            "recall": 0.4584826762246117
+          },
+          {
+            "cutoff": 75,
+            "n_days_flagged": 951,
+            "precision": 0.7318611987381703,
+            "recall": 0.2078853046594982
+          },
+          {
+            "cutoff": 80,
+            "n_days_flagged": 197,
+            "precision": 0.7868020304568528,
+            "recall": 0.046296296296296294
+          }
+        ]
+      }
+    },
+    "12m": {
+      "label": "12 Months",
+      "forward_days": 252,
+      "n_observations": 4587,
+      "base_rate_pct": 86.86,
+      "min_observed_calibrated_probability": 73.0,
+      "max_observed_calibrated_probability": 86.4,
+      "thresholds": {
+        "confirmed": 80,
+        "strong": 80
+      },
+      "lookup": {
+        "0": 73.0,
+        "1": 73.0,
+        "2": 73.0,
+        "3": 73.0,
+        "4": 73.0,
+        "5": 73.0,
+        "6": 73.0,
+        "7": 73.0,
+        "8": 73.0,
+        "9": 73.0,
+        "10": 73.0,
+        "11": 73.0,
+        "12": 73.0,
+        "13": 73.0,
+        "14": 73.0,
+        "15": 73.0,
+        "16": 73.0,
+        "17": 73.0,
+        "18": 73.0,
+        "19": 73.0,
+        "20": 73.0,
+        "21": 73.0,
+        "22": 73.0,
+        "23": 73.0,
+        "24": 73.0,
+        "25": 73.0,
+        "26": 73.48,
+        "27": 73.97,
+        "28": 74.45,
+        "29": 74.93,
+        "30": 75.42,
+        "31": 75.9,
+        "32": 76.38,
+        "33": 76.86,
+        "34": 77.03,
+        "35": 77.03,
+        "36": 77.03,
+        "37": 77.03,
+        "38": 77.03,
+        "39": 77.03,
+        "40": 77.03,
+        "41": 77.03,
+        "42": 77.03,
+        "43": 77.03,
+        "44": 77.03,
+        "45": 77.03,
+        "46": 77.03,
+        "47": 77.03,
+        "48": 77.03,
+        "49": 77.03,
+        "50": 77.03,
+        "51": 77.03,
+        "52": 77.03,
+        "53": 77.03,
+        "54": 77.03,
+        "55": 77.03,
+        "56": 77.03,
+        "57": 77.03,
+        "58": 77.03,
+        "59": 77.7,
+        "60": 78.71,
+        "61": 79.73,
+        "62": 80.74,
+        "63": 81.76,
+        "64": 82.77,
+        "65": 83.78,
+        "66": 84.8,
+        "67": 85.47,
+        "68": 85.47,
+        "69": 85.47,
+        "70": 85.47,
+        "71": 85.47,
+        "72": 85.47,
+        "73": 85.47,
+        "74": 85.47,
+        "75": 85.47,
+        "76": 85.58,
+        "77": 85.69,
+        "78": 85.8,
+        "79": 85.9,
+        "80": 86.01,
+        "81": 86.12,
+        "82": 86.23,
+        "83": 86.33,
+        "84": 86.37,
+        "85": 86.37,
+        "86": 86.37,
+        "87": 86.37,
+        "88": 86.37,
+        "89": 86.37,
+        "90": 86.37,
+        "91": 86.37,
+        "92": 86.37,
+        "93": 86.37,
+        "94": 86.37,
+        "95": 86.37,
+        "96": 86.37,
+        "97": 86.37,
+        "98": 86.37,
+        "99": 86.37,
+        "100": 86.37
+      },
+      "walkforward_diagnostics": {
+        "n_evaluated_days": 4087,
+        "base_rate_pct": 86.86,
+        "brier_raw_score_as_pct": 0.2414,
+        "brier_always_base_rate": 0.1141,
+        "brier_walkforward_calibrated": 0.1564,
+        "threshold_grid": [
+          {
+            "cutoff": 10,
+            "n_days_flagged": 4087,
+            "precision": 0.8686077807682897,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 15,
+            "n_days_flagged": 4087,
+            "precision": 0.8686077807682897,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 20,
+            "n_days_flagged": 4087,
+            "precision": 0.8686077807682897,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 25,
+            "n_days_flagged": 4087,
+            "precision": 0.8686077807682897,
+            "recall": 1.0
+          },
+          {
+            "cutoff": 30,
+            "n_days_flagged": 4057,
+            "precision": 0.8676361843726892,
+            "recall": 0.9915492957746479
+          },
+          {
+            "cutoff": 35,
+            "n_days_flagged": 3990,
+            "precision": 0.8654135338345864,
+            "recall": 0.9726760563380281
+          },
+          {
+            "cutoff": 40,
+            "n_days_flagged": 3952,
+            "precision": 0.8641194331983806,
+            "recall": 0.9619718309859155
+          },
+          {
+            "cutoff": 45,
+            "n_days_flagged": 3889,
+            "precision": 0.8619182309076884,
+            "recall": 0.9442253521126761
+          },
+          {
+            "cutoff": 50,
+            "n_days_flagged": 3816,
+            "precision": 0.8592767295597484,
+            "recall": 0.9236619718309859
+          },
+          {
+            "cutoff": 55,
+            "n_days_flagged": 3687,
+            "precision": 0.8584214808787632,
+            "recall": 0.8915492957746479
+          },
+          {
+            "cutoff": 60,
+            "n_days_flagged": 3595,
+            "precision": 0.8584144645340751,
+            "recall": 0.8692957746478873
+          },
+          {
+            "cutoff": 65,
+            "n_days_flagged": 3367,
+            "precision": 0.8512028512028512,
+            "recall": 0.8073239436619718
+          },
+          {
+            "cutoff": 70,
+            "n_days_flagged": 3049,
+            "precision": 0.8488028861921941,
+            "recall": 0.7290140845070423
+          },
+          {
+            "cutoff": 75,
+            "n_days_flagged": 2431,
+            "precision": 0.8473879062114357,
+            "recall": 0.5802816901408451
+          },
+          {
+            "cutoff": 80,
+            "n_days_flagged": 1878,
+            "precision": 0.8578274760383386,
+            "recall": 0.45380281690140845
+          }
+        ]
+      }
+    }
+  }
+}
