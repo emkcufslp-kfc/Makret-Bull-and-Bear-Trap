@@ -21,6 +21,8 @@ Refreshes:
                                           Bear Trap page, 3/6/12-month horizons)
   9. data/bull_trap_calibration.json     (calibrated bull-continuation probability
                                           for the Bull Trap page, 3/6/12-month horizons)
+ 10. data/early_warning_calibration.json (live Lead/Lift stats + corrected episode
+                                          table for the Early Warning page's 3-stage pipeline)
 """
 from __future__ import annotations
 
@@ -695,6 +697,33 @@ def step9_bull_trap_calibration() -> bool:
         return False
 
 
+# -- Step 10: Refresh Early Warning calibration ---------------------------------
+def step10_early_warning_calibration() -> bool:
+    """Rebuild data/early_warning_calibration.json -- the live Lead/Lift stats
+    and corrected episode table for the 3-stage pipeline on pages/14_Early_Warning.py,
+    replacing what used to be hardcoded chip strings. Depends on Step 2's
+    exports/crash_predictor_study/weekly_feature_outcomes.csv having already run
+    this pass. See backend/calibrate_early_warning.py (~1s to run)."""
+    log("Step 10: Refreshing Early Warning calibration")
+    t0 = time.time()
+    try:
+        backend_dir = ROOT / "backend"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+        import calibrate_early_warning
+        calibration = calibrate_early_warning.build_calibration()
+        calibrate_early_warning.CALIBRATION_FILE.parent.mkdir(parents=True, exist_ok=True)
+        calibrate_early_warning.CALIBRATION_FILE.write_text(json.dumps(calibration, indent=2))
+        s1, s2, s3 = calibration["stages"]["1"], calibration["stages"]["2"], calibration["stages"]["3"]
+        log(f"  OK: Stage 1 lift={s1['lift']}x  Stage 2 lift={s2['lift']}x  Stage 3 lift={s3['lift']}x  "
+            f"in {time.time()-t0:.0f}s")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  FAILED: Early Warning calibration: {exc}")
+        return False
+
+
 # -- Main ----------------------------------------------------------------------
 def main() -> int:
     parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
@@ -733,6 +762,8 @@ def main() -> int:
         results["Step 8 (Bear Trap calibration)"] = step8_bear_trap_calibration()
     if "9" not in skip:
         results["Step 9 (Bull Trap calibration)"] = step9_bull_trap_calibration()
+    if "10" not in skip:
+        results["Step 10 (Early Warning calibration)"] = step10_early_warning_calibration()
 
     log("=" * 70)
     for name, ok in results.items():

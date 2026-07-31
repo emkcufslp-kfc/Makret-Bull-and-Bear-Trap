@@ -1,6 +1,7 @@
 """14_📡_Early_Warning.py — Unified Early Warning System"""
 from __future__ import annotations
 import warnings; warnings.filterwarnings("ignore")
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -15,6 +16,16 @@ WEEKLY_PATH         = ROOT_DIR / "exports" / "crash_predictor_study" / "weekly_f
 STAGE_RETURNS_PATH  = ROOT_DIR / ".tmp" / "market_stage_validation" / "output" / "stage_forward_returns.csv"
 STAGE_COVERAGE_PATH = ROOT_DIR / ".tmp" / "market_stage_validation" / "output" / "data_coverage.csv"
 STAGE_BRD_HIST_PATH = ROOT_DIR / ".tmp" / "market_stage_validation" / "output" / "stage_breadth_history.csv"
+EARLY_WARNING_CALIBRATION_PATH = ROOT_DIR / "data" / "early_warning_calibration.json"
+
+# Fallback chip text if the calibration cache hasn't been built yet (see
+# backend/calibrate_early_warning.py) -- the live-computed values replace
+# these once data/early_warning_calibration.json exists.
+DEFAULT_STAGE_TEXT = {
+    1: {"lead": "n/a", "lift": "n/a"},
+    2: {"lead": "n/a", "lift": "n/a"},
+    3: {"lead": "n/a", "lift": "n/a"},
+}
 
 CRASH_ZONES = [
     ("1998-07-17","1998-10-08","LTCM","#f59e0b"),
@@ -37,7 +48,7 @@ def load_weekly():
     # index.get_indexer(method="nearest") below (requires a unique index). Keep the
     # most-recently-written row per date.
     df = df[~df.index.duplicated(keep="last")]
-    df["d1_norm"]     = (df["d1_market_regime_score"] / 85 * 100).round(1)
+    df["d1_norm"]     = (df["d1_market_regime_score"] / 85 * 100).clip(0,100).round(1)
     df["d2_norm"]     = ((df["d2_score"] - 2) / 12 * 100).clip(0,100).round(1)
     df["d3_norm"]     = df["liquidity_score"].astype(float)
     df["credit_norm"] = ((df["credit_spread_for_model"] - 1.0) / 5.0 * 100).clip(0,100).round(1)
@@ -77,38 +88,17 @@ def load_stage_coverage():
     return pd.read_csv(STAGE_COVERAGE_PATH)
 
 @st.cache_data(show_spinner=False, ttl=3600)
-def build_stage_history(df_full):
-    rows=[]; in_ep=False; ep_start=ep_d1pk=ep_d2pk=ep_spy=ep_max=None
-    for date, row in df_full.iterrows():
-        stage = int(row["alert_stage"])
-        if stage >= 2:
-            if not in_ep:
-                in_ep=True; ep_start=date; ep_max=stage
-                ep_d1pk=row["d1_norm"]; ep_d2pk=row["d2_norm"] if pd.notna(row["d2_norm"]) else 0.0
-                ep_spy=row["sp500"]
-            else:
-                ep_max=max(ep_max,stage); ep_d1pk=max(ep_d1pk,row["d1_norm"])
-                if pd.notna(row["d2_norm"]): ep_d2pk=max(ep_d2pk,row["d2_norm"])
-        else:
-            if in_ep:
-                ep_end=date
-                fi=df_full.index.get_indexer([ep_end+pd.Timedelta(weeks=13)],method="nearest")[0]
-                spy_chg=((df_full.iloc[fi]["sp500"]/ep_spy)-1)*100 if 0<=fi<len(df_full) else np.nan
-                outcome=("🔴 Drop" if (not np.isnan(spy_chg) and spy_chg<-5)
-                         else "🟡 Flat" if (not np.isnan(spy_chg) and spy_chg<5) else "🟢 Rally")
-                rows.append({"Start":ep_start.strftime("%Y-%m-%d"),"End":ep_end.strftime("%Y-%m-%d"),
-                             "Stage":"🔴 Stage 3" if ep_max==3 else "🟠 Stage 2",
-                             "D1 peak":f"{ep_d1pk:.0f}","D2 peak":f"{ep_d2pk:.0f}",
-                             "SPY entry":f"{ep_spy:,.0f}",
-                             "SPY +13w":f"{spy_chg:+.1f}%" if not np.isnan(spy_chg) else "N/A",
-                             "Outcome":outcome})
-                in_ep=False
-    if in_ep:
-        rows.append({"Start":ep_start.strftime("%Y-%m-%d"),"End":"ONGOING",
-                     "Stage":"🔴 Stage 3" if ep_max==3 else "🟠 Stage 2",
-                     "D1 peak":f"{ep_d1pk:.0f}","D2 peak":f"{ep_d2pk:.0f}",
-                     "SPY entry":f"{ep_spy:,.0f}","SPY +13w":"—","Outcome":"⏳ Active"})
-    return pd.DataFrame(rows)
+def load_early_warning_calibration():
+    """Lead/Lift stats + corrected episode table for the 3-stage chips and the
+    historical episode table below, rebuilt by backend/calibrate_early_warning.py
+    (daily_refresh.py Step 10). Replaces what used to be hardcoded chip strings
+    that were never recomputed from data."""
+    if not EARLY_WARNING_CALIBRATION_PATH.exists():
+        return None
+    try:
+        return json.loads(EARLY_WARNING_CALIBRATION_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
 def smooth(s, w): return s if w<=1 else s.rolling(w, min_periods=max(1,w//2)).mean()
 
@@ -150,6 +140,8 @@ k5.metric("D1 Streak",f"{streak_curr}w >= 25"); k6.metric("Alert Stage",f"{ALERT
 
 # 3-stage pipeline
 st.markdown("### 🚨 3-Stage Alert Pipeline")
+ew_calibration = load_early_warning_calibration()
+
 def _chip(title,desc,active,lead,lift):
     fg="#ef4444" if active else "#6b7280"; bg="rgba(239,68,68,0.1)" if active else "rgba(31,41,55,0.6)"
     bdr="#ef4444" if active else "#374151"; ico="🔴 ACTIVE" if active else "inactive"
@@ -158,10 +150,40 @@ def _chip(title,desc,active,lead,lift):
             f"<div style='font-size:1rem;font-weight:700;color:{fg};margin:4px 0;'>{ico}</div>"
             f"<div style='font-size:0.75rem;color:#6b7280;'>{desc}</div>"
             f"<div style='font-size:0.72rem;color:#9ca3af;margin-top:4px;'>Lead: {lead} | Lift: {lift}</div></div>")
+
+def _stage_chip_text(stage_num):
+    """Lead/Lift text computed live from data/early_warning_calibration.json
+    (backend/calibrate_early_warning.py) instead of a hardcoded string that
+    was never recomputed -- a 35-year audit found Stage 1's old figure (0.62x)
+    used a different masking convention than Stage 2's, and Stage 3's (~34%)
+    had drifted as new episodes accumulated. All three now use one documented
+    convention (alert_stage >= N) against one canonical outcome."""
+    if not ew_calibration:
+        d = DEFAULT_STAGE_TEXT[stage_num]
+        return d["lead"], d["lift"]
+    s = ew_calibration["stages"].get(str(stage_num))
+    if not s or s.get("median_lead_weeks_to_trough") is None:
+        return "n/a", "n/a"
+    return f"~{s['median_lead_weeks_to_trough']:.0f}w to trough", f"{s['lift']:.2f}x"
+
+lead1, lift1 = _stage_chip_text(1)
+lead2, lift2 = _stage_chip_text(2)
+lead3, lift3 = _stage_chip_text(3)
 c1,c2,c3=st.columns(3)
-c1.markdown(_chip("Stage 1 · Monitor","D3 >= 65 or Credit >= 50",s1_active,"15-20w","0.62x"),unsafe_allow_html=True)
-c2.markdown(_chip("Stage 2 · Actionable","D1 raw > 25 for >= 4 weeks",s2_active,"10-12w","2.23x"),unsafe_allow_html=True)
-c3.markdown(_chip("Stage 3 · High Conviction","D1 streak >= 8w AND D2/Credit >= 50",s3_active,"6-8w","~34% drop prob"),unsafe_allow_html=True)
+c1.markdown(_chip("Stage 1 · Monitor","D3 >= 65 or Credit >= 50",s1_active,lead1,lift1),unsafe_allow_html=True)
+c2.markdown(_chip("Stage 2 · Actionable","D1 raw > 25 for >= 4 weeks",s2_active,lead2,lift2),unsafe_allow_html=True)
+c3.markdown(_chip("Stage 3 · High Conviction","D1 streak >= 8w AND D2/Credit >= 50",s3_active,lead3,lift3),unsafe_allow_html=True)
+if ew_calibration:
+    st.caption(
+        f"Lead = median weeks from an episode's start to the S&P 500 trough within it (episode-level, "
+        f"n={ew_calibration['stages']['2']['n_episodes']} Stage 2+ episodes since {ew_calibration['history_start']}). "
+        f"Lift = P({ew_calibration['canonical_outcome_label']} | alert_stage >= N) vs. the unconditional base rate "
+        f"({ew_calibration['stages']['1']['base_rate_pct']}%), the same convention for all three chips. "
+        "Recomputed each refresh -- see the Historical Episodes table below for why episode-level and week-level "
+        "read differently."
+    )
+else:
+    st.info("Lead/Lift not calibrated yet — run `python backend/calibrate_early_warning.py`.")
 st.markdown("---")
 
 # Inspector slider
@@ -324,13 +346,45 @@ with p_right:
 
 # Historical episode table
 st.markdown("---"); st.markdown("### 📅 Historical Early Warning Episodes")
-st.caption("All Stage 2+ activations since 1991. Shows when the pipeline fired and what SPY did 13 weeks later.")
-hist=build_stage_history(df)
-if not hist.empty:
-    drops=(hist["Outcome"]=="🔴 Drop").sum()
-    st.dataframe(hist,use_container_width=True,hide_index=True)
-    st.caption(f"{len(hist)} episodes total  |  Drops (SPY <-5% in 13w): {drops}  |  "
-               f"Current: {ALERT_ICONS[alert_curr]} {ALERT_LABELS[alert_curr]}")
+st.caption("All Stage 2+ activations since 1991. Shows when the pipeline fired and what actually followed.")
+if ew_calibration and ew_calibration.get("episodes"):
+    episodes = ew_calibration["episodes"]
+    outcome_icon = {"Confirmed Drop": "🔴", "Contained": "🟡", "No Confirmed Drop": "🟢", "Active": "⏳"}
+    old_icon = {"Drop": "🔴", "Flat": "🟡", "Rally": "🟢", "Active": "⏳"}
+    hist = pd.DataFrame([
+        {
+            "Start": e["start_date"], "End": e["end_date"],
+            "Stage": "🔴 Stage 3" if e["peak_stage"] == 3 else "🟠 Stage 2",
+            "D1 peak": f"{e['d1_peak']:.0f}", "D2 peak": f"{e['d2_peak']:.0f}",
+            "SPY entry": f"{e['spy_entry']:,.0f}",
+            "SPY +13w from start (old metric)": (
+                f"{old_icon.get(e['old_outcome_label'],'')} {e['spy_chg_13w_from_start_pct']:+.1f}%"
+                if e["spy_chg_13w_from_start_pct"] is not None else f"{old_icon.get(e['old_outcome_label'],'')} —"
+            ),
+            "Worst drawdown, episode+13w (corrected)": f"{outcome_icon.get(e['corrected_outcome_label'],'')} {e['worst_drawdown_during_episode_pct']:+.1f}%",
+        }
+        for e in episodes
+    ])
+    st.dataframe(hist, use_container_width=True, hide_index=True)
+    es = ew_calibration["episode_summary"]
+    st.caption(
+        f"{es['n_episodes']} episodes total  |  Confirmed drop (≥10% worst drawdown): {es['n_confirmed_drop']}  |  "
+        f"Contained (5-10%): {es['n_contained']}  |  No confirmed drop: {es['n_no_confirmed_drop']}  |  "
+        f"Current: {ALERT_ICONS[alert_curr]} {ALERT_LABELS[alert_curr]}"
+    )
+    st.caption(
+        "Two outcome columns on purpose. **Old metric** (SPY change exactly 13 weeks after the episode "
+        "*started*) is what this table used to show alone -- it can mislabel an episode that fired near a "
+        "trough as a 'Rally' even when the alert correctly caught a crash already underway (2020-03-19 is "
+        "the clean example: +44.6% by the old metric, because the episode began right at the COVID bottom). "
+        "**Corrected metric** (worst drawdown reached at any point from the episode's start through 13 weeks "
+        "after it ends) answers the more useful question and matches the methodology the Lift figures above "
+        "already use. Even under the corrected metric, most Stage 2+ activations are still false alarms in "
+        "absolute terms -- but that's expected and doesn't contradict the Lift numbers, which measure "
+        "improvement *over the base rate*, not a >50% hit-rate guarantee."
+    )
+else:
+    st.info("Episode table not available yet — run `python backend/calibrate_early_warning.py`.")
 
 # Current stage snapshot
 if not stage_cov.empty:
@@ -356,16 +410,23 @@ if not stage_cov.empty:
 
 st.markdown("---")
 with st.expander("📖 Signal lead-time reference",expanded=False):
-    st.markdown("""
-| Signal | Lead time | Lift |
+    if ew_calibration:
+        s1d,s2d,s3d = ew_calibration["stages"]["1"],ew_calibration["stages"]["2"],ew_calibration["stages"]["3"]
+        st.markdown(f"""
+| Signal | Lead time (median, to trough) | Lift ({ew_calibration['canonical_outcome_label']}) |
 |---|---|---|
-| D3 peaks / Credit rising | ~19 weeks | 0.62x (background only) |
-| D1 >= 25 for 4+ weeks | ~10-12 weeks | **2.23x actionable** |
-| D1 streak >= 8w + D2/Credit | ~6-8 weeks | **~34% drop prob in 13w** |
-| Market Stage Decel >= 50% | Same week | Confirming signal |
+| D3 >= 65 or Credit >= 50 (Stage 1) | ~{s1d['median_lead_weeks_to_trough']:.0f} weeks | {s1d['lift']:.2f}x |
+| D1 raw > 25 for 4+ weeks (Stage 2) | ~{s2d['median_lead_weeks_to_trough']:.0f} weeks | **{s2d['lift']:.2f}x actionable** |
+| D1 streak >= 8w + D2/Credit (Stage 3) | ~{s3d['median_lead_weeks_to_trough']:.0f} weeks | **{s3d['lift']:.2f}x, {s3d['pct_episodes_confirmed_drop']:.0f}% of episodes confirmed drop** |
+| Market Stage Decel >= 50% | Same week | Confirming signal (not separately calibrated) |
 
-**D3 limitation:** does not detect exogenous shocks (2025 tariff: D3 stayed at 20 throughout).
+Recomputed from {ew_calibration['n_weeks']:,} weekly observations, {ew_calibration['history_start']} to {ew_calibration['history_end']} — see `backend/calibrate_early_warning.py`.
+
+**D3 limitation:** does not detect exogenous shocks (2025 tariff: D3 stayed at 20 throughout — confirmed directly against the data; the pipeline still escalated to Stage 3 via D1 and credit instead).
 
 **To fill stage breadth history:** run `python compute_stage_breadth_history.py` once from the project folder.
 """)
+    else:
+        st.info("Lead/Lift table not calibrated yet — run `python backend/calibrate_early_warning.py`.")
+        st.markdown("**To fill stage breadth history:** run `python compute_stage_breadth_history.py` once from the project folder.")
 st.caption("weekly_feature_outcomes.csv (1991-2026) | .tmp/market_stage_validation/ (Feb 2020-2026) | credit_spread_for_model = BAA10Y/HY blend")
