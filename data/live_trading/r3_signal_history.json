@@ -34,5 +34,14 @@
       "AMD"
     ],
     "source": "cache"
+  },
+  "2026-08-06": {
+    "deploy_pct": 27.6,
+    "top3_picks": [
+      "MSFT",
+      "AMZN",
+      "AMAT"
+    ],
+    "source": "cache"
   }
 }

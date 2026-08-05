@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-08-01
+// ntsx_data.js — Auto-generated on 2026-08-06
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-07-31",
+  "as_of_date": "2026-08-05",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -9,9 +9,9 @@ const NTSX_CURRENT     = {
     "KMLM (live / RYMFX proxy)"
   ],
   "current_weights": [
-    55.81,
-    12.64,
-    31.55
+    57.04,
+    12.77,
+    30.19
   ],
   "target_weights": [
     55.0,
@@ -29,16 +29,16 @@ const NTSX_CURRENT     = {
     38.0
   ],
   "distance_to_lower": [
-    5.81,
-    3.64,
-    3.55
+    7.04,
+    3.77,
+    2.19
   ],
   "distance_to_upper": [
-    4.19,
-    2.36,
-    6.45
+    2.96,
+    2.23,
+    7.81
   ],
-  "days_since_last_rebalance": 627,
+  "days_since_last_rebalance": 632,
   "last_rebalance_date": "2024-11-11"
 };
 const NTSX_REBALANCES  = [
@@ -24762,6 +24762,21 @@ const NTSX_EQUITY      = [
     "date": "2026-07-31",
     "port": 490.1076,
     "spy": 693.2058
+  },
+  {
+    "date": "2026-08-03",
+    "port": 490.7165,
+    "spy": 703.0791
+  },
+  {
+    "date": "2026-08-04",
+    "port": 496.0151,
+    "spy": 715.7549
+  },
+  {
+    "date": "2026-08-05",
+    "port": 496.0183,
+    "spy": 714.3259
   }
 ];
 const NTSX_YEARLY      = [
@@ -24919,8 +24934,8 @@ const NTSX_YEARLY      = [
   },
   {
     "year": 2026,
-    "port_return": 9.7,
-    "spy_return": 10.13,
+    "port_return": 11.02,
+    "spy_return": 13.49,
     "port_maxdd": -5.15,
     "spy_maxdd": -8.88,
     "winner": "SPY"
@@ -24928,18 +24943,18 @@ const NTSX_YEARLY      = [
 ];
 const NTSX_METRICS     = {
   "portfolio": {
-    "cagr": 8.65,
+    "cagr": 8.71,
     "max_dd": -30.83,
-    "sharpe": 0.41,
-    "sortino": 0.54,
+    "sharpe": 0.42,
+    "sortino": 0.55,
     "calmar": 0.28
   },
   "spy": {
-    "cagr": 10.64,
+    "cagr": 10.8,
     "max_dd": -55.19,
-    "sharpe": 0.41,
-    "sortino": 0.5,
-    "calmar": 0.19
+    "sharpe": 0.42,
+    "sortino": 0.51,
+    "calmar": 0.2
   }
 };
 const NTSX_REB_DATES   = [

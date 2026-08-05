@@ -1,18 +1,18 @@
 {
-  "date": "2026-07-30",
+  "date": "2026-08-06",
   "signal_day": "Thursday",
   "exec_day": "Friday",
-  "bt_score": 3.5,
-  "bear_score": 0.32,
-  "net_confidence": 0.238,
-  "vol_scalar": 0.648,
-  "deploy_pct": 35.7,
+  "bt_score": 6.0,
+  "bear_score": 0.285,
+  "net_confidence": 0.429,
+  "vol_scalar": 1.554,
+  "deploy_pct": 27.6,
   "top3_picks": [
-    "AMAT",
-    "AAPL",
-    "AMD"
+    "MSFT",
+    "AMZN",
+    "AMAT"
   ],
   "breadth_pct": 21.4,
-  "regime": "BEAR",
-  "next_execution": "2026-07-31"
+  "regime": "BULL",
+  "next_execution": "2026-08-07"
 }
