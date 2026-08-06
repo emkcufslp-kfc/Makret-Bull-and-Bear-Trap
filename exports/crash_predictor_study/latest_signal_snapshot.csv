@@ -1,6 +1,6 @@
 ,latest
 sp500,7723.5498046875
-gold,4308.39990234375
+gold,4327.7998046875
 net_liquidity_t,5.825764
 net_liquidity_13w_chg,-0.0052069999999995
 net_liquidity_26w_chg,0.130376
@@ -15,7 +15,7 @@ vix,15.8100004196167
 vix3m,18.950000762939453
 vix_term_inverted,False
 move,73.58090209960938
-dxy,99.69000244140624
+dxy,99.66300201416016
 tnx_irx_curve,0.8919997215270996
 t2108,70.0
 sp_below_200dma,False
@@ -55,9 +55,9 @@ d2_score,6.0
 d2_warning_count,3.0
 d2_watch_count,0.0
 d2_level,Critical
-d2_rsi14,64.81842820098646
+d2_rsi14,64.81842818752602
 d2_dist50,3.227668312142784
-d2_z20,2.0875320087315576
+d2_z20,2.087532008744186
 d2_momentum_count,0.0
 d2_technical_count,0.0
 d2_pct_above_50dma,72.0
@@ -67,7 +67,7 @@ d2_vix,15.8100004196167
 d2_vix_chg5,-23.47531202137412
 d2_breakout_win_rate,26.057906458797326
 d2_breakdown_rate,2.0
-d2_theme_worst_underperf,-7.063916528007486
+d2_theme_worst_underperf,-7.063916528007475
 d2_theme_worst_pct50,20.0
 fwd_max_dd_4w,
 drop_5_4w,False
@@ -89,8 +89,8 @@ drop_5_26w,False
 drop_10_26w,False
 drop_15_26w,False
 drop_20_26w,False
-composite_risk_score_raw,58.476306756808086
-composite_risk_score,59.24069225219471
+composite_risk_score_raw,58.55567238812379
+composite_risk_score,59.40758718809784
 composite_risk_state,Warning
 model_liquidity_only,False
 model_correction_watch,False
