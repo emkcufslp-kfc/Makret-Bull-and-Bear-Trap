@@ -1,18 +1,18 @@
 {
-  "date": "2026-08-06",
+  "date": "2026-08-13",
   "signal_day": "Thursday",
   "exec_day": "Friday",
-  "bt_score": 6.0,
-  "bear_score": 0.285,
-  "net_confidence": 0.429,
-  "vol_scalar": 1.554,
-  "deploy_pct": 27.6,
+  "bt_score": 6.5,
+  "bear_score": 0.26,
+  "net_confidence": 0.481,
+  "vol_scalar": 1.309,
+  "deploy_pct": 36.7,
   "top3_picks": [
     "MSFT",
     "AMZN",
-    "AMAT"
+    "AVGO"
   ],
-  "breadth_pct": 21.4,
+  "breadth_pct": 64.3,
   "regime": "BULL",
-  "next_execution": "2026-08-07"
+  "next_execution": "2026-08-14"
 }
