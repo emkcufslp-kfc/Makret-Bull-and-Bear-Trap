@@ -99,15 +99,24 @@ def step2_crash_predictor() -> bool:
         prices_cache   = Path("/tmp/prices_cache.parquet")
 
         import unittest.mock as mock
-        sys.modules.setdefault("streamlit", mock.MagicMock())
+        _added_streamlit_stub = "streamlit" not in sys.modules
+        if _added_streamlit_stub:
+            sys.modules["streamlit"] = mock.MagicMock()
 
-        src = open(ROOT / "backend" / "analyze_crash_predictors.py").read()
-        src_no_main = src[: src.rfind("if __name__")]
-        globs = {
-            "__file__": str(ROOT / "backend" / "analyze_crash_predictors.py"),
-            "__name__": "analyze_crash_predictors",
-        }
-        exec(compile(src_no_main, "analyze_crash_predictors.py", "exec"), globs)
+        try:
+            src = open(ROOT / "backend" / "analyze_crash_predictors.py").read()
+            src_no_main = src[: src.rfind("if __name__")]
+            globs = {
+                "__file__": str(ROOT / "backend" / "analyze_crash_predictors.py"),
+                "__name__": "analyze_crash_predictors",
+            }
+            exec(compile(src_no_main, "analyze_crash_predictors.py", "exec"), globs)
+        finally:
+            # Don't let the fake streamlit module leak into later steps (e.g. Step 6's
+            # utils.data_engine import), which would silently corrupt @st.cache_data
+            # decorators and turn get_clean_master() into a MagicMock.
+            if _added_streamlit_stub:
+                del sys.modules["streamlit"]
 
         if features_cache.exists() and prices_cache.exists():
             log("  Using cached features + prices")
