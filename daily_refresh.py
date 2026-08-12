@@ -23,6 +23,8 @@ Refreshes:
                                           for the Bull Trap page, 3/6/12-month horizons)
  10. data/early_warning_calibration.json (live Lead/Lift stats + corrected episode
                                           table for the Early Warning page's 3-stage pipeline)
+ 11. market_stage_model/top100_scan_snapshot.json (top-100 phase-shift scan
+                                          snapshot for the Market Stage Model page)
 """
 from __future__ import annotations
 
@@ -733,6 +735,29 @@ def step10_early_warning_calibration() -> bool:
         return False
 
 
+# -- Step 11: Refresh top-100 phase-shift scan snapshot ------------------------
+def step11_market_stage_snapshot() -> bool:
+    """Rebuild market_stage_model/top100_scan_snapshot.json -- the top-100
+    phase-shift scan snapshot shown on the Market Stage Model page. Uses the
+    static universe in data/universe_top100.csv, priced live via yfinance.
+    See backend/refresh_market_stage_data.py (~1-2 min to run)."""
+    log("Step 11: Refreshing top-100 phase-shift scan snapshot")
+    t0 = time.time()
+    try:
+        backend_dir = ROOT / "backend"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+        import refresh_market_stage_data
+        result = refresh_market_stage_data.refresh_market_stage_data()
+        log(f"  OK: {result['coverage_count']} tickers, {result['scan_hits']} phase-shift "
+            f"hits, breadth through {result['breadth_end']} in {time.time()-t0:.0f}s")
+        return True
+    except Exception as exc:
+        import traceback; traceback.print_exc()
+        log(f"  FAILED: Top-100 scan snapshot refresh: {exc}")
+        return False
+
+
 # -- Main ----------------------------------------------------------------------
 def main() -> int:
     parser = argparse.ArgumentParser(description="Daily Early Warning data refresh")
@@ -773,6 +798,8 @@ def main() -> int:
         results["Step 9 (Bull Trap calibration)"] = step9_bull_trap_calibration()
     if "10" not in skip:
         results["Step 10 (Early Warning calibration)"] = step10_early_warning_calibration()
+    if "11" not in skip:
+        results["Step 11 (Market Stage scan snapshot)"] = step11_market_stage_snapshot()
 
     log("=" * 70)
     for name, ok in results.items():
