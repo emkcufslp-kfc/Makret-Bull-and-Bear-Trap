@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T20:50:38+08:00",
+  "generated_at": "2026-08-13T08:18:52+08:00",
   "source_dir": "yfinance (static universe: data/universe_top100.csv)",
   "source_universe": "data/universe_top100.csv",
   "scan_mode": "Both Shifts",
@@ -8,25 +8,52 @@
   "loaded_count": 100,
   "missing_count": 0,
   "missing_tickers": [],
-  "as_of": "2026-08-11",
+  "as_of": "2026-08-12",
   "results": [
     {
-      "Ticker": "AVB",
-      "Phase Shift": "Entry Into Deceleration",
-      "Current Stage": "Deceleration",
-      "Close": 181.75999450683594,
-      "Volume Delta 20D": -20.60789055680371,
-      "As Of": "2026-08-11",
-      "Sector": "Real Estate"
+      "Ticker": "BNY",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 162.92999267578125,
+      "Volume Delta 20D": -54.398201945470305,
+      "As Of": "2026-08-12",
+      "Sector": "Financials"
     },
     {
-      "Ticker": "CI",
+      "Ticker": "CSCO",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 123.87999725341797,
+      "Volume Delta 20D": 67.71939632760828,
+      "As Of": "2026-08-12",
+      "Sector": "Information Technology"
+    },
+    {
+      "Ticker": "CL",
+      "Phase Shift": "Entry Into Acceleration",
+      "Current Stage": "Acceleration",
+      "Close": 92.31999969482422,
+      "Volume Delta 20D": -42.907577364214525,
+      "As Of": "2026-08-12",
+      "Sector": "Consumer Staples"
+    },
+    {
+      "Ticker": "ATO",
       "Phase Shift": "Entry Into Deceleration",
       "Current Stage": "Deceleration",
-      "Close": 273.8699951171875,
-      "Volume Delta 20D": -16.61016786731606,
-      "As Of": "2026-08-11",
-      "Sector": "Health Care"
+      "Close": 169.58999633789062,
+      "Volume Delta 20D": 25.327639031902983,
+      "As Of": "2026-08-12",
+      "Sector": "Utilities"
+    },
+    {
+      "Ticker": "CMG",
+      "Phase Shift": "Entry Into Deceleration",
+      "Current Stage": "Deceleration",
+      "Close": 32.63999938964844,
+      "Volume Delta 20D": -10.405952194509705,
+      "As Of": "2026-08-12",
+      "Sector": "Consumer Discretionary"
     }
   ]
 }

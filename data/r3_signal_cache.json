@@ -3,16 +3,16 @@
   "signal_day": "Thursday",
   "exec_day": "Friday",
   "bt_score": 6.5,
-  "bear_score": 0.26,
-  "net_confidence": 0.481,
-  "vol_scalar": 1.309,
-  "deploy_pct": 36.7,
+  "bear_score": 0.2603,
+  "net_confidence": 0.4808,
+  "vol_scalar": 1.0993,
+  "deploy_pct": 49.4,
   "top3_picks": [
-    "MSFT",
-    "AMZN",
-    "AVGO"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 64.3,
-  "regime": "BULL",
+  "breadth_pct": 58.1,
+  "regime": "CAUTION",
   "next_execution": "2026-08-14"
 }

@@ -43,5 +43,14 @@
       "AMAT"
     ],
     "source": "cache"
+  },
+  "2026-08-13": {
+    "deploy_pct": 36.7,
+    "top3_picks": [
+      "MSFT",
+      "AMZN",
+      "AVGO"
+    ],
+    "source": "cache"
   }
 }
