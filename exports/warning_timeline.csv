@@ -1,4 +1,5 @@
 ﻿Date,Indicator,Status Change,Severity
+2026-08-14,Theme stocks momentum weakening,Normal -> Watch,Watch
 2026-08-13,S&P 500 overextension,Normal -> Watch,Watch
 2026-08-13,Market breadth worsening,Warning -> Normal,Normal
 2026-08-13,Theme stocks momentum weakening,Warning -> Normal,Normal
@@ -22,4 +23,3 @@
 2026-07-28,Market breadth worsening,Watch -> Normal,Normal
 2026-07-23,Increasing downward momentum,Watch -> Warning,Warning
 2026-07-23,Top range formation & breakdown from range,Normal -> Watch,Watch
-2026-07-23,Technical indicators deteriorating,Normal -> Warning,Warning
