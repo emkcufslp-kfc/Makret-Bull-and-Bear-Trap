@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-16T21:27:43",
+  "generated_at": "2026-08-17T21:27:40",
   "method": "isotonic_regression_full_sample",
   "target": ">= 10% SPX drawdown within 63 trading days",
   "history_start": "2004-10-11",
-  "history_end": "2026-08-14",
-  "n_observations": 5507,
+  "history_end": "2026-08-17",
+  "n_observations": 5508,
   "max_raw_score": 90,
   "max_observed_calibrated_probability": 47.0,
   "hy_spread_source": "FRED real (13% of days), proxy fallback for the rest",
@@ -15,9 +15,9 @@
   "warning_raw_threshold": 74,
   "lookup": {
     "0": 6.69,
-    "1": 6.75,
+    "1": 6.74,
     "2": 6.8,
-    "3": 6.86,
+    "3": 6.85,
     "4": 6.91,
     "5": 6.97,
     "6": 7.02,
@@ -109,7 +109,7 @@
   "history_table": [
     {
       "raw_score": 0,
-      "n_days": 2646,
+      "n_days": 2647,
       "actual_hit_rate_pct": 6.7,
       "calibrated_probability_pct": 6.69
     },
@@ -203,21 +203,21 @@
       "score_threshold": 0,
       "horizon_days": 21,
       "horizon_label": "1 Month",
-      "n_days_at_or_above": 5506,
+      "n_days_at_or_above": 5507,
       "probability_pct": 4.3
     },
     {
       "score_threshold": 0,
       "horizon_days": 63,
       "horizon_label": "3 Months",
-      "n_days_at_or_above": 5506,
+      "n_days_at_or_above": 5507,
       "probability_pct": 14.0
     },
     {
       "score_threshold": 0,
       "horizon_days": 126,
       "horizon_label": "6 Months",
-      "n_days_at_or_above": 5506,
+      "n_days_at_or_above": 5507,
       "probability_pct": 22.9
     },
     {
@@ -752,9 +752,9 @@
     }
   ],
   "walkforward_diagnostics": {
-    "n_evaluated_days": 5007,
+    "n_evaluated_days": 5008,
     "base_rate_pct": 15.44,
-    "brier_raw_score_as_pct": 0.1481,
+    "brier_raw_score_as_pct": 0.148,
     "brier_always_base_rate": 0.1305,
     "brier_walkforward_calibrated": 0.1283,
     "threshold_grid": [

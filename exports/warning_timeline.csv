@@ -1,4 +1,8 @@
 ﻿Date,Indicator,Status Change,Severity
+2026-08-17,S&P 500 overextension,Watch -> Normal,Normal
+2026-08-17,Increasing downward momentum,Normal -> Watch,Watch
+2026-08-17,Market breadth worsening,Normal -> Warning,Warning
+2026-08-17,Theme stocks momentum weakening,Watch -> Warning,Warning
 2026-08-14,Theme stocks momentum weakening,Normal -> Watch,Watch
 2026-08-13,S&P 500 overextension,Normal -> Watch,Watch
 2026-08-13,Market breadth worsening,Warning -> Normal,Normal
@@ -19,7 +23,3 @@
 2026-07-31,Technical indicators deteriorating,Warning -> Normal,Normal
 2026-07-30,Market breadth worsening,Normal -> Watch,Watch
 2026-07-30,VIX > 20 / VIX spike,Watch -> Normal,Normal
-2026-07-29,VIX > 20 / VIX spike,Normal -> Watch,Watch
-2026-07-28,Market breadth worsening,Watch -> Normal,Normal
-2026-07-23,Increasing downward momentum,Watch -> Warning,Warning
-2026-07-23,Top range formation & breakdown from range,Normal -> Watch,Watch
