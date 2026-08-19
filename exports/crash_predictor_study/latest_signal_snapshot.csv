@@ -14,12 +14,12 @@ credit_stress,False
 vix,14.630000114440918
 vix3m,
 vix_term_inverted,False
-move,70.87999725341797
+move,69.2300033569336
 dxy,99.95999908447266
 tnx_irx_curve,0.935999870300293
 t2108,68.0
 sp_below_200dma,False
-sp_200dma_diff,0.10258934103678796
+sp_200dma_diff,0.1027247319891258
 liquidity_score,50
 liquidity_divergence,False
 d1_market_regime_score,5
@@ -55,9 +55,9 @@ d2_score,5.0
 d2_warning_count,2.0
 d2_watch_count,1.0
 d2_level,Elevated
-d2_rsi14,67.42335985224432
+d2_rsi14,67.42335986640498
 d2_dist50,3.9857266623623877
-d2_z20,1.4843559207966497
+d2_z20,1.4843559207923072
 d2_momentum_count,1.0
 d2_technical_count,0.0
 d2_pct_above_50dma,70.0
@@ -67,7 +67,7 @@ d2_vix,14.630000114440918
 d2_vix_chg5,-3.4323400474105203
 d2_breakout_win_rate,25.400457665903893
 d2_breakdown_rate,4.0
-d2_theme_worst_underperf,0.5550833443535907
+d2_theme_worst_underperf,0.5550833443536352
 d2_theme_worst_pct50,20.0
 fwd_max_dd_4w,
 drop_5_4w,False
@@ -89,8 +89,8 @@ drop_5_26w,False
 drop_10_26w,False
 drop_15_26w,False
 drop_20_26w,False
-composite_risk_score_raw,52.17964327827311
-composite_risk_score,52.17964327827311
+composite_risk_score_raw,51.90665724564434
+composite_risk_score,51.90665724564434
 composite_risk_state,Watch
 model_liquidity_only,False
 model_correction_watch,False
