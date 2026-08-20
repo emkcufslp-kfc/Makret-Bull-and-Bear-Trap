@@ -1,14 +1,14 @@
 {
-  "master_date": "2026-08-17",
-  "actual_date": "2026-08-17",
-  "warning_level": "Critical",
-  "trigger_score": 7,
+  "master_date": "2026-08-19",
+  "actual_date": "2026-08-19",
+  "warning_level": "Elevated",
+  "trigger_score": 6,
   "active_warnings": 4,
-  "escalation_status": "Escalate",
-  "last_signal_change": "2026-08-17",
+  "escalation_status": "Tighten",
+  "last_signal_change": "2026-08-19",
   "summary_points": [
-    "3 warning indicators and 1 watch indicators are active on the resolved market date.",
-    "The strongest deterioration is market breadth worsening based on the current correction-checklist mapping.",
-    "Next checkpoint: monitor the next master-date update for any change in market breadth worsening."
+    "2 warning indicators and 2 watch indicators are active on the resolved market date.",
+    "The strongest deterioration is individual stocks breakout win rate decreased or breakdown rate increased based on the current correction-checklist mapping.",
+    "Next checkpoint: monitor the next master-date update for any change in individual stocks breakout win rate decreased or breakdown rate increased."
   ]
 }

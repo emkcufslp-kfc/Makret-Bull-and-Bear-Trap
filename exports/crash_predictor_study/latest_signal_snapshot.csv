@@ -12,9 +12,9 @@ credit_spread_for_model,2.71
 credit_spread_source,HY_OAS
 credit_stress,False
 vix,14.630000114440918
-vix3m,20.540000915527344
+vix3m,
 vix_term_inverted,False
-move,70.87999725341797
+move,69.2300033569336
 dxy,99.95999908447266
 tnx_irx_curve,0.935999870300293
 t2108,68.0
@@ -23,7 +23,7 @@ sp_200dma_diff,0.10258934103678796
 liquidity_score,50
 liquidity_divergence,False
 d1_market_regime_score,5
-d1_bear_prob12,23.26
+d1_bear_prob12,
 d1_bull_prob,75.0
 d1_bull_score,7.5
 d1_etf_rotation_warning,False
@@ -65,7 +65,7 @@ d2_pct_above_200dma,70.0
 d2_breadth_drop5,2.0
 d2_vix,14.630000114440918
 d2_vix_chg5,-3.4323400474105203
-d2_breakout_win_rate,25.454545454545453
+d2_breakout_win_rate,25.400457665903893
 d2_breakdown_rate,4.0
 d2_theme_worst_underperf,0.5550833443535685
 d2_theme_worst_pct50,20.0
