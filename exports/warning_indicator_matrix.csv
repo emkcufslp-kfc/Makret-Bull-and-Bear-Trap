@@ -1,9 +1,9 @@
 ﻿Indicator,Status,Value,Threshold,Note,Score
-S&P 500 overextension,Normal,RSI14 57.8 | Dist50 2.5% | Z20 0.55,"High if Dist50 >= 7% + RSI >= 70, or Z20 >= 2.0",Measures whether SPY is materially stretched above its medium trend.,0
-Increasing downward momentum,Watch,Bearish 3/6 | 5D -0.4%,Watch at 2 of 6 bearish conditions; high at 4 of 6,Counts short-term momentum and trend-friction conditions on SPY.,1
-Top range formation & breakdown from range,Normal,DD from 20D high -1.1% | Below 20D low False,Watch on range weakness; high on break + DD <= -5%,Flags failed range behavior after recent highs.,0
-Technical indicators deteriorating,Normal,Bearish 0/5 | MACD 0.33,Watch at 2 of 5 technical breaks; high at 3 of 5,"Aggregates moving-average, RSI, and MACD deterioration.",0
-Market breadth worsening,Watch,>%50DMA 62.0% | >200DMA 68.0% | 5D -6.0 pts,Watch if >50DMA <= 55%; high if >50DMA <= 45% or 5D breadth drop <= -10,Uses available master-universe constituents to gauge how broad the tape remains.,1
-VIX > 20 / VIX spike,Normal,VIX 14.89 | 5D 2.3%,Watch if VIX >= 20; high if VIX >= 25 or 5D spike >= 40%,Tracks volatility stress using spot VIX level and short-term acceleration.,0
-Individual stocks breakout win rate decreased or breakdown rate increased,Warning,Win rate 25.3% | Breakdown 12.0%,Watch if win rate < 55% or breakdown >= 5%; high if win rate < 45% or breakdown >= 8%,Measures whether individual-stock breakouts are still working or rolling over.,2
-Theme stocks momentum weakening,Warning,Weakest Semiconductors | Underperf -10.5 pts | >50DMA 20.0%,Watch on RS underperformance / weaker theme breadth; high on material underperformance,Checks whether leadership groups are still confirming the broad market trend.,2
+S&P 500 overextension,Normal,RSI14 51.6 | Dist50 1.6% | Z20 0.09,"High if Dist50 >= 7% + RSI >= 70, or Z20 >= 2.0",Measures whether SPY is materially stretched above its medium trend.,0
+Increasing downward momentum,Warning,Bearish 5/6 | 5D -2.0%,Watch at 2 of 6 bearish conditions; high at 4 of 6,Counts short-term momentum and trend-friction conditions on SPY.,2
+Top range formation & breakdown from range,Normal,DD from 20D high -2.0% | Below 20D low False,Watch on range weakness; high on break + DD <= -5%,Flags failed range behavior after recent highs.,0
+Technical indicators deteriorating,Normal,Bearish 1/5 | MACD -0.56,Watch at 2 of 5 technical breaks; high at 3 of 5,"Aggregates moving-average, RSI, and MACD deterioration.",0
+Market breadth worsening,Warning,>%50DMA 56.0% | >200DMA 66.0% | 5D -14.0 pts,Watch if >50DMA <= 55%; high if >50DMA <= 45% or 5D breadth drop <= -10,Uses available master-universe constituents to gauge how broad the tape remains.,2
+VIX > 20 / VIX spike,Normal,VIX 16.01 | 5D 9.4%,Watch if VIX >= 20; high if VIX >= 25 or 5D spike >= 40%,Tracks volatility stress using spot VIX level and short-term acceleration.,0
+Individual stocks breakout win rate decreased or breakdown rate increased,Warning,Win rate 26.1% | Breakdown 12.0%,Watch if win rate < 55% or breakdown >= 5%; high if win rate < 45% or breakdown >= 8%,Measures whether individual-stock breakouts are still working or rolling over.,2
+Theme stocks momentum weakening,Warning,Weakest Semiconductors | Underperf -9.8 pts | >50DMA 20.0%,Watch on RS underperformance / weaker theme breadth; high on material underperformance,Checks whether leadership groups are still confirming the broad market trend.,2
