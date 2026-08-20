@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T08:18:52+08:00",
+  "generated_at": "2026-08-19T08:26:38+08:00",
   "source_dir": "yfinance (static universe: data/universe_top100.csv)",
   "source_universe": "data/universe_top100.csv",
   "scan_mode": "Both Shifts",
@@ -8,52 +8,43 @@
   "loaded_count": 100,
   "missing_count": 0,
   "missing_tickers": [],
-  "as_of": "2026-08-12",
+  "as_of": "2026-08-18",
   "results": [
     {
-      "Ticker": "BNY",
+      "Ticker": "APH",
       "Phase Shift": "Entry Into Acceleration",
       "Current Stage": "Acceleration",
-      "Close": 162.92999267578125,
-      "Volume Delta 20D": -54.398201945470305,
-      "As Of": "2026-08-12",
-      "Sector": "Financials"
-    },
-    {
-      "Ticker": "CSCO",
-      "Phase Shift": "Entry Into Acceleration",
-      "Current Stage": "Acceleration",
-      "Close": 123.87999725341797,
-      "Volume Delta 20D": 67.71939632760828,
-      "As Of": "2026-08-12",
+      "Close": 159.57000732421875,
+      "Volume Delta 20D": -6.363570194467005,
+      "As Of": "2026-08-18",
       "Sector": "Information Technology"
     },
     {
-      "Ticker": "CL",
+      "Ticker": "COHR",
       "Phase Shift": "Entry Into Acceleration",
       "Current Stage": "Acceleration",
-      "Close": 92.31999969482422,
-      "Volume Delta 20D": -42.907577364214525,
-      "As Of": "2026-08-12",
-      "Sector": "Consumer Staples"
+      "Close": 306.42999267578125,
+      "Volume Delta 20D": 21.104900491181944,
+      "As Of": "2026-08-18",
+      "Sector": "Information Technology"
     },
     {
-      "Ticker": "ATO",
+      "Ticker": "AAPL",
       "Phase Shift": "Entry Into Deceleration",
       "Current Stage": "Deceleration",
-      "Close": 169.58999633789062,
-      "Volume Delta 20D": 25.327639031902983,
-      "As Of": "2026-08-12",
-      "Sector": "Utilities"
+      "Close": 310.0299987792969,
+      "Volume Delta 20D": -10.57993682587658,
+      "As Of": "2026-08-18",
+      "Sector": "Information Technology"
     },
     {
-      "Ticker": "CMG",
+      "Ticker": "CB",
       "Phase Shift": "Entry Into Deceleration",
       "Current Stage": "Deceleration",
-      "Close": 32.63999938964844,
-      "Volume Delta 20D": -10.405952194509705,
-      "As Of": "2026-08-12",
-      "Sector": "Consumer Discretionary"
+      "Close": 345.2900085449219,
+      "Volume Delta 20D": -33.482065404535675,
+      "As Of": "2026-08-18",
+      "Sector": "Financials"
     }
   ]
 }
