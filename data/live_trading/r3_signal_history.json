@@ -52,5 +52,14 @@
       "AVGO"
     ],
     "source": "cache"
+  },
+  "2026-08-20": {
+    "deploy_pct": 46.2,
+    "top3_picks": [
+      "MSFT",
+      "AMZN",
+      "NVDA"
+    ],
+    "source": "cache"
   }
 }
