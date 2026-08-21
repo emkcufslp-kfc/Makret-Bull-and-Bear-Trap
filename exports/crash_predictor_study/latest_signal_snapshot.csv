@@ -12,7 +12,7 @@ credit_spread_for_model,2.75
 credit_spread_source,HY_OAS
 credit_stress,False
 vix,16.010000228881836
-vix3m,20.540000915527344
+vix3m,
 vix_term_inverted,False
 move,73.18000030517578
 dxy,98.9000015258789
@@ -55,9 +55,9 @@ d2_score,8.0
 d2_warning_count,4.0
 d2_watch_count,0.0
 d2_level,Critical
-d2_rsi14,51.78543085199231
+d2_rsi14,51.78543084802665
 d2_dist50,1.5831467047612513
-d2_z20,0.10510634475529486
+d2_z20,0.10510634475529337
 d2_momentum_count,5.0
 d2_technical_count,1.0
 d2_pct_above_50dma,56.00000000000001
@@ -89,8 +89,8 @@ drop_5_26w,False
 drop_10_26w,False
 drop_15_26w,False
 drop_20_26w,False
-composite_risk_score_raw,52.51894897621852
-composite_risk_score,52.51894897621852
+composite_risk_score_raw,51.7552898829021
+composite_risk_score,51.7552898829021
 composite_risk_state,Watch
 model_liquidity_only,False
 model_correction_watch,False
