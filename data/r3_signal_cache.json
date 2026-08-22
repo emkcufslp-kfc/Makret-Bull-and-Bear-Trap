@@ -2,17 +2,17 @@
   "date": "2026-08-20",
   "signal_day": "Thursday",
   "exec_day": "Friday",
-  "bt_score": 7.5,
-  "bear_score": 0.267,
-  "net_confidence": 0.55,
-  "vol_scalar": 1.189,
-  "deploy_pct": 46.2,
+  "bt_score": 6.5,
+  "bear_score": 0.2643,
+  "net_confidence": 0.4782,
+  "vol_scalar": 1.3076,
+  "deploy_pct": 42.9,
   "top3_picks": [
-    "MSFT",
-    "AMZN",
-    "NVDA"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 57.1,
-  "regime": "BULL",
+  "breadth_pct": 58.1,
+  "regime": "CAUTION",
   "next_execution": "2026-08-21"
 }
