@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T08:31:53",
+  "generated_at": "2026-08-22T21:29:08",
   "mask_convention": "inclusive: alert_stage >= N (documented, applied consistently to all three chips)",
   "canonical_outcome": "drop_10_13w",
   "canonical_outcome_label": ">=10% S&P 500 drawdown within 13 weeks",

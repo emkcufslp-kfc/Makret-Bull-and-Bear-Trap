@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T08:31:53",
+  "generated_at": "2026-08-22T21:29:08",
   "method": "isotonic_regression_full_sample_per_horizon",
   "target": "S&P 500 total return over horizon is positive",
   "trap_target": "<= -10% SPX drawdown within 3 months of a high-conviction reading",
