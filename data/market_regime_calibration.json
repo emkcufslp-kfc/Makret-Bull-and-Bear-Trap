@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T22:34:55",
+  "generated_at": "2026-08-23T21:26:47",
   "method": "isotonic_regression_full_sample",
   "target": ">= 10% SPX drawdown within 63 trading days",
   "history_start": "2004-10-11",
