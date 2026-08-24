@@ -1,13 +1,13 @@
 {
-  "master_date": "2026-08-21",
-  "actual_date": "2026-08-21",
+  "master_date": "2026-08-24",
+  "actual_date": "2026-08-24",
   "warning_level": "Critical",
-  "trigger_score": 8,
-  "active_warnings": 4,
+  "trigger_score": 9,
+  "active_warnings": 5,
   "escalation_status": "Escalate",
-  "last_signal_change": "2026-08-20",
+  "last_signal_change": "2026-08-24",
   "summary_points": [
-    "4 warning indicators and 0 watch indicators are active on the resolved market date.",
+    "4 warning indicators and 1 watch indicators are active on the resolved market date.",
     "The strongest deterioration is increasing downward momentum based on the current correction-checklist mapping.",
     "Next checkpoint: monitor the next master-date update for any change in increasing downward momentum."
   ]
