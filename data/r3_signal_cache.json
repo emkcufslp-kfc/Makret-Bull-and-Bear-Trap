@@ -5,14 +5,14 @@
   "bt_score": 7.0,
   "bear_score": 0.26,
   "net_confidence": 0.518,
-  "vol_scalar": 1.383,
-  "deploy_pct": 37.5,
+  "vol_scalar": 1.2357,
+  "deploy_pct": 47.7,
   "top3_picks": [
-    "MSFT",
-    "AMZN",
-    "AAPL"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 50.0,
-  "regime": "BULL",
+  "breadth_pct": 58.1,
+  "regime": "CAUTION",
   "next_execution": "2026-08-28"
 }
