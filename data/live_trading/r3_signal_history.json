@@ -61,5 +61,14 @@
       "NVDA"
     ],
     "source": "cache"
+  },
+  "2026-08-27": {
+    "deploy_pct": 37.5,
+    "top3_picks": [
+      "MSFT",
+      "AMZN",
+      "AAPL"
+    ],
+    "source": "cache"
   }
 }

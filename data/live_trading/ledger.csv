@@ -38,3 +38,5 @@ Date,Description,Cash_Flow,Cash_Balance,Positions_Value,Total_Equity,Daily_PnL,T
 2026-08-21,8 rebalance trades,0.0,-0.03,8868.77,8868.74,-23.8,-1131.26
 2026-08-24,Mark-to-market,0.0,-0.03,8734.36,8734.33,-134.41,-1265.67
 2026-08-25,Mark-to-market,0.0,-0.03,8816.7,8816.67,82.34,-1183.33
+2026-08-26,7 rebalance trades,0.01,-0.02,8831.51,8831.49,14.82,-1168.51
+2026-08-27,Mark-to-market,0.0,-0.02,8926.08,8926.06,94.57,-1073.94
