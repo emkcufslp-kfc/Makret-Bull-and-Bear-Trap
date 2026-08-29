@@ -55,9 +55,9 @@ d2_score,6.0
 d2_warning_count,2.0
 d2_watch_count,2.0
 d2_level,Elevated
-d2_rsi14,58.62642437137243
+d2_rsi14,58.62642436605646
 d2_dist50,2.356231371793882
-d2_z20,0.43504463641903457
+d2_z20,0.435044636416495
 d2_momentum_count,2.0
 d2_technical_count,1.0
 d2_pct_above_50dma,52.0
@@ -89,8 +89,8 @@ drop_5_26w,False
 drop_10_26w,False
 drop_15_26w,False
 drop_20_26w,False
-composite_risk_score_raw,52.56534971902557
-composite_risk_score,52.56534971902557
+composite_risk_score_raw,52.56486262443533
+composite_risk_score,52.56486262443533
 composite_risk_state,Watch
 model_liquidity_only,False
 model_correction_watch,False
