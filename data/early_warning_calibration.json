@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T23:17:00",
+  "generated_at": "2026-09-01T00:24:59",
   "mask_convention": "inclusive: alert_stage >= N (documented, applied consistently to all three chips)",
   "canonical_outcome": "drop_10_13w",
   "canonical_outcome_label": ">=10% S&P 500 drawdown within 13 weeks",
@@ -9,11 +9,11 @@
   "stages": {
     "1": {
       "label": "Monitor",
-      "n_weeks_active": 374,
-      "n_scored_weeks": 374,
+      "n_weeks_active": 373,
+      "n_scored_weeks": 373,
       "base_rate_pct": 10.9,
       "hit_rate_pct": 19.8,
-      "lift": 1.81,
+      "lift": 1.82,
       "n_episodes": 43,
       "median_lead_weeks_to_trough": 4.0,
       "median_worst_drawdown_pct": -3.4,
