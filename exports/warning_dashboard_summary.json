@@ -1,13 +1,13 @@
 {
-  "master_date": "2026-08-27",
-  "actual_date": "2026-08-27",
+  "master_date": "2026-09-03",
+  "actual_date": "2026-09-03",
   "warning_level": "Elevated",
-  "trigger_score": 6,
-  "active_warnings": 4,
+  "trigger_score": 4,
+  "active_warnings": 2,
   "escalation_status": "Tighten",
-  "last_signal_change": "2026-08-27",
+  "last_signal_change": "2026-09-03",
   "summary_points": [
-    "2 warning indicators and 2 watch indicators are active on the resolved market date.",
+    "2 warning indicators and 0 watch indicators are active on the resolved market date.",
     "The strongest deterioration is individual stocks breakout win rate decreased or breakdown rate increased based on the current correction-checklist mapping.",
     "Next checkpoint: monitor the next master-date update for any change in individual stocks breakout win rate decreased or breakdown rate increased."
   ]
