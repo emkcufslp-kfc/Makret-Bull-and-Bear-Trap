@@ -70,5 +70,14 @@
       "AAPL"
     ],
     "source": "cache"
+  },
+  "2026-09-03": {
+    "deploy_pct": 35.9,
+    "top3_picks": [
+      "MSFT",
+      "NVDA",
+      "AMZN"
+    ],
+    "source": "cache"
   }
 }
