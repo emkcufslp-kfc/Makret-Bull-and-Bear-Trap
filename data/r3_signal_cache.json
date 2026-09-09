@@ -1,18 +1,18 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-09-10",
   "signal_day": "Thursday",
   "exec_day": "Friday",
   "bt_score": 4.5,
-  "bear_score": 0.262,
-  "net_confidence": 0.332,
-  "vol_scalar": 0.926,
-  "deploy_pct": 35.9,
+  "bear_score": 0.268,
+  "net_confidence": 0.33,
+  "vol_scalar": 0.86,
+  "deploy_pct": 38.3,
   "top3_picks": [
     "MSFT",
     "NVDA",
-    "AMZN"
+    "NFLX"
   ],
   "breadth_pct": 42.9,
   "regime": "CAUTION",
-  "next_execution": "2026-09-04"
+  "next_execution": "2026-09-11"
 }
