@@ -79,5 +79,14 @@
       "AMZN"
     ],
     "source": "cache"
+  },
+  "2026-09-10": {
+    "deploy_pct": 38.3,
+    "top3_picks": [
+      "MSFT",
+      "NVDA",
+      "NFLX"
+    ],
+    "source": "cache"
   }
 }
