@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T22:57:14",
+  "generated_at": "2026-09-13T00:01:53",
   "method": "isotonic_regression_full_sample_per_horizon",
   "target": ">= 10% SPX drawdown",
   "primary_horizon": "3m",
