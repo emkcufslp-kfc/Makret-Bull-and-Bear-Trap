@@ -3,16 +3,16 @@
   "signal_day": "Thursday",
   "exec_day": "Friday",
   "bt_score": 4.5,
-  "bear_score": 0.268,
-  "net_confidence": 0.33,
-  "vol_scalar": 0.86,
-  "deploy_pct": 38.3,
+  "bear_score": 0.2672,
+  "net_confidence": 0.3298,
+  "vol_scalar": 0.626,
+  "deploy_pct": 54.5,
   "top3_picks": [
-    "MSFT",
-    "NVDA",
-    "NFLX"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 42.9,
+  "breadth_pct": 58.1,
   "regime": "CAUTION",
   "next_execution": "2026-09-11"
 }
