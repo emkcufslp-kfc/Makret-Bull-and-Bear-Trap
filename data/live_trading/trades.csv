@@ -129,3 +129,11 @@ Date,Ticker,Action,Shares,Price,Value,Cost,Realized_PnL,Reason
 2026-09-09,NVDA,BUY,0.0789,223.67,17.64,0.01,0.0,Sys E signal 2026-09-08 → rebalance to 80/20 target
 2026-09-09,IEF,BUY,0.4875,91.89,44.8,0.04,0.0,Sys E signal 2026-09-08 → rebalance to 80/20 target
 2026-09-09,SPY,BUY,0.1509,762.4,115.01,0.09,0.0,Sys E signal 2026-09-08 → rebalance to 80/20 target
+2026-09-11,AMZN,SELL,0.5688,256.78,146.06,0.12,-6.3,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,IEF,SELL,0.5117,91.01,46.57,0.04,-1.04,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,SPY,SELL,0.0221,764.29,16.9,0.01,0.32,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,MSFT,BUY,0.0125,495.63,6.19,0.0,0.0,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,NVDA,BUY,0.0495,218.29,10.81,0.01,0.0,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,AMAT,BUY,0.0499,456.49,22.76,0.02,0.0,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,INTC,BUY,0.294,102.94,30.27,0.02,0.0,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
+2026-09-11,NFLX,BUY,1.798,77.4,139.17,0.11,0.0,R3 signal 2026-09-10 (38.3% deploy) → rebalance to 80/20 target
