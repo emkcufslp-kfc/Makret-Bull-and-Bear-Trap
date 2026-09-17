@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-16T23:38:30",
+  "generated_at": "2026-09-17T23:26:45",
   "mask_convention": "inclusive: alert_stage >= N (documented, applied consistently to all three chips)",
   "canonical_outcome": "drop_10_13w",
   "canonical_outcome_label": ">=10% S&P 500 drawdown within 13 weeks",
   "history_start": "1991-01-03",
-  "history_end": "2026-09-10",
-  "n_weeks": 1863,
+  "history_end": "2026-09-17",
+  "n_weeks": 1864,
   "stages": {
     "1": {
       "label": "Monitor",

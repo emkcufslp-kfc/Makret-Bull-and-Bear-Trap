@@ -1,18 +1,18 @@
 {
-  "date": "2026-09-10",
+  "date": "2026-09-17",
   "signal_day": "Thursday",
   "exec_day": "Friday",
-  "bt_score": 4.5,
-  "bear_score": 0.268,
-  "net_confidence": 0.33,
-  "vol_scalar": 0.86,
-  "deploy_pct": 38.3,
+  "bt_score": 5.0,
+  "bear_score": 0.2849,
+  "net_confidence": 0.3576,
+  "vol_scalar": 0.3164,
+  "deploy_pct": 58.3,
   "top3_picks": [
-    "MSFT",
-    "NVDA",
-    "NFLX"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 42.9,
+  "breadth_pct": 58.1,
   "regime": "CAUTION",
-  "next_execution": "2026-09-11"
+  "next_execution": "2026-09-18"
 }

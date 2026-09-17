@@ -1,4 +1,6 @@
 ﻿Date,Indicator,Status Change,Severity
+2026-09-17,Top range formation & breakdown from range,Watch -> Normal,Normal
+2026-09-17,Theme stocks momentum weakening,Warning -> Normal,Normal
 2026-09-16,Market breadth worsening,Warning -> Watch,Watch
 2026-09-15,Top range formation & breakdown from range,Normal -> Watch,Watch
 2026-09-14,Technical indicators deteriorating,Watch -> Warning,Warning
@@ -21,5 +23,3 @@
 2026-09-03,Technical indicators deteriorating,Watch -> Normal,Normal
 2026-09-02,Top range formation & breakdown from range,Watch -> Normal,Normal
 2026-09-02,Technical indicators deteriorating,Warning -> Watch,Watch
-2026-09-02,Market breadth worsening,Watch -> Normal,Normal
-2026-09-01,Increasing downward momentum,Watch -> Warning,Warning
