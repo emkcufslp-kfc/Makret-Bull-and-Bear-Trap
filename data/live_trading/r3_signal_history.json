@@ -88,5 +88,14 @@
       "NFLX"
     ],
     "source": "cache"
+  },
+  "2026-09-17": {
+    "deploy_pct": 40.5,
+    "top3_picks": [
+      "MSFT",
+      "NFLX",
+      "INTC"
+    ],
+    "source": "cache"
   }
 }
