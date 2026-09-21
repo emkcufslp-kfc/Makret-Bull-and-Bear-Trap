@@ -1,25 +1,25 @@
 ﻿Date,Indicator,Status Change,Severity
-2026-09-18,Market breadth worsening,Watch -> Warning,Warning
-2026-09-17,Top range formation & breakdown from range,Watch -> Normal,Normal
-2026-09-17,Theme stocks momentum weakening,Warning -> Normal,Normal
-2026-09-16,Market breadth worsening,Warning -> Watch,Watch
-2026-09-15,Top range formation & breakdown from range,Normal -> Watch,Watch
-2026-09-14,Technical indicators deteriorating,Watch -> Warning,Warning
-2026-09-14,Market breadth worsening,Normal -> Warning,Warning
-2026-09-14,Theme stocks momentum weakening,Normal -> Warning,Warning
-2026-09-11,Top range formation & breakdown from range,Watch -> Normal,Normal
-2026-09-11,Technical indicators deteriorating,Warning -> Watch,Watch
-2026-09-11,Market breadth worsening,Warning -> Normal,Normal
 2026-09-11,VIX > 20 / VIX spike,Watch -> Normal,Normal
-2026-09-10,Top range formation & breakdown from range,Normal -> Watch,Watch
-2026-09-10,Market breadth worsening,Watch -> Warning,Warning
+2026-09-11,Market breadth worsening,Warning -> Normal,Normal
+2026-09-11,Technical indicators deteriorating,Warning -> Watch,Watch
+2026-09-11,Top range formation & breakdown from range,Watch -> Normal,Normal
 2026-09-10,VIX > 20 / VIX spike,Normal -> Watch,Watch
+2026-09-10,Market breadth worsening,Watch -> Warning,Warning
+2026-09-10,Top range formation & breakdown from range,Normal -> Watch,Watch
 2026-09-09,Increasing downward momentum,Watch -> Warning,Warning
 2026-09-09,Technical indicators deteriorating,Watch -> Warning,Warning
 2026-09-09,Market breadth worsening,Normal -> Watch,Watch
-2026-09-08,Increasing downward momentum,Normal -> Watch,Watch
-2026-09-08,Technical indicators deteriorating,Normal -> Watch,Watch
 2026-09-08,Theme stocks momentum weakening,Warning -> Normal,Normal
-2026-09-03,Increasing downward momentum,Warning -> Normal,Normal
+2026-09-08,Technical indicators deteriorating,Normal -> Watch,Watch
+2026-09-08,Increasing downward momentum,Normal -> Watch,Watch
 2026-09-03,Technical indicators deteriorating,Watch -> Normal,Normal
+2026-09-03,Increasing downward momentum,Warning -> Normal,Normal
+2026-09-02,Market breadth worsening,Watch -> Normal,Normal
+2026-09-02,Technical indicators deteriorating,Warning -> Watch,Watch
 2026-09-02,Top range formation & breakdown from range,Watch -> Normal,Normal
+2026-09-01,Increasing downward momentum,Watch -> Warning,Warning
+2026-09-01,Top range formation & breakdown from range,Normal -> Watch,Watch
+2026-09-01,Technical indicators deteriorating,Watch -> Warning,Warning
+2026-08-31,Market breadth worsening,Normal -> Watch,Watch
+2026-08-31,Technical indicators deteriorating,Normal -> Watch,Watch
+2026-08-28,Market breadth worsening,Watch -> Normal,Normal
