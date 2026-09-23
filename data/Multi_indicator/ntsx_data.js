@@ -1,6 +1,6 @@
 // ntsx_data.js — Auto-generated on 2026-09-23
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-09-22",
+  "as_of_date": "2026-09-23",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -9,9 +9,9 @@ const NTSX_CURRENT     = {
     "KMLM (live / RYMFX proxy)"
   ],
   "current_weights": [
-    55.85,
-    12.13,
-    32.02
+    55.19,
+    12.18,
+    32.63
   ],
   "target_weights": [
     55.0,
@@ -29,16 +29,16 @@ const NTSX_CURRENT     = {
     38.0
   ],
   "distance_to_lower": [
-    5.85,
-    3.13,
-    4.02
+    5.19,
+    3.18,
+    4.63
   ],
   "distance_to_upper": [
-    4.15,
-    2.87,
-    5.98
+    4.81,
+    2.82,
+    5.37
   ],
-  "days_since_last_rebalance": 680,
+  "days_since_last_rebalance": 681,
   "last_rebalance_date": "2024-11-11"
 };
 const NTSX_REBALANCES  = [
@@ -24947,6 +24947,11 @@ const NTSX_EQUITY      = [
     "date": "2026-09-22",
     "port": 504.5093,
     "spy": 717.6571
+  },
+  {
+    "date": "2026-09-23",
+    "port": 502.3587,
+    "spy": 712.4884
   }
 ];
 const NTSX_YEARLY      = [
@@ -25104,8 +25109,8 @@ const NTSX_YEARLY      = [
   },
   {
     "year": 2026,
-    "port_return": 12.92,
-    "spy_return": 14.01,
+    "port_return": 12.44,
+    "spy_return": 13.19,
     "port_maxdd": -5.15,
     "spy_maxdd": -8.88,
     "winner": "SPY"
@@ -25113,14 +25118,14 @@ const NTSX_YEARLY      = [
 ];
 const NTSX_METRICS     = {
   "portfolio": {
-    "cagr": 8.75,
+    "cagr": 8.72,
     "max_dd": -30.83,
     "sharpe": 0.42,
     "sortino": 0.55,
     "calmar": 0.28
   },
   "spy": {
-    "cagr": 10.75,
+    "cagr": 10.71,
     "max_dd": -55.19,
     "sharpe": 0.41,
     "sortino": 0.51,
