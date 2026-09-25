@@ -97,5 +97,14 @@
       "INTC"
     ],
     "source": "cache"
+  },
+  "2026-09-24": {
+    "deploy_pct": 48.1,
+    "top3_picks": [
+      "INTC",
+      "MSFT",
+      "META"
+    ],
+    "source": "cache"
   }
 }
