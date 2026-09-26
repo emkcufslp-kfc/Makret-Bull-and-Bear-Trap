@@ -55,9 +55,9 @@ d2_score,6.0
 d2_warning_count,3.0
 d2_watch_count,0.0
 d2_level,Critical
-d2_rsi14,53.6411362756911
+d2_rsi14,53.64113624623881
 d2_dist50,0.9651101404734019
-d2_z20,0.5633358155427713
+d2_z20,0.5633358155275199
 d2_momentum_count,0.0
 d2_technical_count,0.0
 d2_pct_above_50dma,40.0
@@ -67,7 +67,7 @@ d2_vix,15.670000076293945
 d2_vix_chg5,1.4896405580403282
 d2_breakout_win_rate,23.708920187793428
 d2_breakdown_rate,18.0
-d2_theme_worst_underperf,3.1220049586912935
+d2_theme_worst_underperf,3.122004958691227
 d2_theme_worst_pct50,40.0
 fwd_max_dd_4w,
 drop_5_4w,False
@@ -89,8 +89,8 @@ drop_5_26w,False
 drop_10_26w,False
 drop_15_26w,False
 drop_20_26w,False
-composite_risk_score_raw,55.868526429529695
-composite_risk_score,54.35734619610856
+composite_risk_score_raw,55.87149169669927
+composite_risk_score,54.3489888845439
 composite_risk_state,Watch
 model_liquidity_only,True
 model_correction_watch,True
