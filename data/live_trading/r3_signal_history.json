@@ -106,5 +106,14 @@
       "META"
     ],
     "source": "cache"
+  },
+  "2026-10-08": {
+    "deploy_pct": 49.5,
+    "top3_picks": [
+      "AMD",
+      "META",
+      "INTC"
+    ],
+    "source": "cache"
   }
 }
