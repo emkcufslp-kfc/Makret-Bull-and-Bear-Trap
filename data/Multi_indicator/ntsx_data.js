@@ -1,4 +1,4 @@
-// ntsx_data.js — Auto-generated on 2026-10-10
+// ntsx_data.js — Auto-generated on 2026-10-11
 const NTSX_CURRENT     = {
   "as_of_date": "2026-10-09",
   "action_signal": "HOLD",
