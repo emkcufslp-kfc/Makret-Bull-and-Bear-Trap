@@ -1,0 +1,58 @@
+{
+  "run_date": "2026-10-12",
+  "run_time": "2026-10-12T22:29:30",
+  "files": {
+    "market_data_master.parquet": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "spy_data.js": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "macro_data.js": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "Platinum CSVs": {
+      "age": 1,
+      "status": "1 day old"
+    },
+    "Fund Tactical CSVs": {
+      "age": null,
+      "status": "MISSING"
+    },
+    "top100_etf_prices.csv": {
+      "age": null,
+      "status": "MISSING"
+    },
+    "FTD dashboard HTML": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "sentiment_cache.json": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "ntsx_data.js": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "D3 weekly_features.csv": {
+      "age": 4,
+      "status": "4 days old"
+    },
+    "model_change_worksheet.csv": {
+      "age": 1,
+      "status": "1 day old"
+    },
+    "stage_breadth_history.csv": {
+      "age": 0,
+      "status": "fresh (today)"
+    },
+    "top100_scan_snapshot.json": {
+      "age": 28,
+      "status": "28 days old"
+    }
+  }
+}

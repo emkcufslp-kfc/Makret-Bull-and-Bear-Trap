@@ -1,6 +1,6 @@
-// ntsx_data.js — Auto-generated on 2026-10-11
+// ntsx_data.js — Auto-generated on 2026-10-12 (T+1 close rebalance, 8 bps/side)
 const NTSX_CURRENT     = {
-  "as_of_date": "2026-10-09",
+  "as_of_date": "2026-10-12",
   "action_signal": "HOLD",
   "action_color": "#00e676",
   "asset_names": [
@@ -9,9 +9,9 @@ const NTSX_CURRENT     = {
     "KMLM (live / RYMFX proxy)"
   ],
   "current_weights": [
-    55.31,
-    11.95,
-    32.74
+    52.29,
+    12.55,
+    35.15
   ],
   "target_weights": [
     55.0,
@@ -29,34 +29,36 @@ const NTSX_CURRENT     = {
     38.0
   ],
   "distance_to_lower": [
-    5.31,
-    2.95,
-    4.74
+    2.29,
+    3.55,
+    7.15
   ],
   "distance_to_upper": [
-    4.69,
-    3.05,
-    5.26
+    7.71,
+    2.45,
+    2.85
   ],
-  "days_since_last_rebalance": 697,
-  "last_rebalance_date": "2024-11-11"
+  "days_since_last_rebalance": 395,
+  "last_rebalance_date": "2025-09-12",
+  "execution": "band breach at close t -> rebalance at close t+1, 8 bps/side"
 };
 const NTSX_REBALANCES  = [
   {
-    "date": "2008-01-15",
+    "date": "2008-01-16",
+    "signal_date": "2008-01-15",
     "month": "Jan 2008",
     "triggers": [
       {
         "asset": "AVWS sleeve (DFSVX proxy)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 9.0,
+        "weight_at_trigger": 8.99,
         "band": "9%\u201315%"
       }
     ],
     "weights_before": [
-      54.73,
-      9.0,
-      36.27
+      54.81,
+      8.99,
+      36.21
     ],
     "weights_after": [
       55.0,
@@ -65,20 +67,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2008-10-06",
+    "date": "2008-10-07",
+    "signal_date": "2008-10-06",
     "month": "Oct 2008",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 38.1,
+        "weight_at_trigger": 38.03,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      50.38,
-      11.52,
-      38.1
+      50.62,
+      11.35,
+      38.03
     ],
     "weights_after": [
       55.0,
@@ -87,20 +90,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2008-10-24",
+    "date": "2008-10-27",
+    "signal_date": "2008-10-24",
     "month": "Oct 2008",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 39.11,
+        "weight_at_trigger": 38.18,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      50.68,
-      10.21,
-      39.11
+      51.25,
+      10.57,
+      38.18
     ],
     "weights_after": [
       55.0,
@@ -110,19 +114,20 @@ const NTSX_REBALANCES  = [
   },
   {
     "date": "2008-12-17",
+    "signal_date": "2008-12-16",
     "month": "Dec 2008",
     "triggers": [
       {
         "asset": "NTSX (Proxy)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 60.04,
+        "weight_at_trigger": 60.31,
         "band": "50%\u201360%"
       }
     ],
     "weights_before": [
-      60.04,
-      11.02,
-      28.94
+      60.31,
+      11.16,
+      28.53
     ],
     "weights_after": [
       55.0,
@@ -131,20 +136,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2009-02-23",
+    "date": "2009-02-24",
+    "signal_date": "2009-02-23",
     "month": "Feb 2009",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
         "direction": "Above Upper Band",
-        "weight_at_trigger": 38.63,
+        "weight_at_trigger": 38.64,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      50.55,
+      50.54,
       10.82,
-      38.63
+      38.64
     ],
     "weights_after": [
       55.0,
@@ -153,20 +159,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2009-05-04",
-    "month": "May 2009",
+    "date": "2009-07-17",
+    "signal_date": "2009-07-16",
+    "month": "Jul 2009",
     "triggers": [
       {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.67,
-        "band": "28%\u201338%"
+        "asset": "AVWS sleeve (DFSVX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 15.03,
+        "band": "9%\u201315%"
       }
     ],
     "weights_before": [
-      57.43,
-      14.9,
-      27.67
+      56.66,
+      15.03,
+      28.31
     ],
     "weights_after": [
       55.0,
@@ -175,20 +182,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2010-03-02",
+    "date": "2010-03-08",
+    "signal_date": "2010-03-05",
     "month": "Mar 2010",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.91,
+        "weight_at_trigger": 27.85,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      57.81,
-      14.28,
-      27.91
+      58.0,
+      14.15,
+      27.85
     ],
     "weights_after": [
       55.0,
@@ -197,20 +205,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2011-05-05",
+    "date": "2011-05-09",
+    "signal_date": "2011-05-06",
     "month": "May 2011",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 27.69,
+        "weight_at_trigger": 27.97,
         "band": "28%\u201338%"
       }
     ],
     "weights_before": [
-      59.19,
-      13.12,
-      27.69
+      59.17,
+      12.86,
+      27.97
     ],
     "weights_after": [
       55.0,
@@ -219,20 +228,21 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2011-10-03",
+    "date": "2011-10-04",
+    "signal_date": "2011-10-03",
     "month": "Oct 2011",
     "triggers": [
       {
         "asset": "AVWS sleeve (DFSVX proxy)",
         "direction": "Below Lower Band",
-        "weight_at_trigger": 8.9,
+        "weight_at_trigger": 8.85,
         "band": "9%\u201315%"
       }
     ],
     "weights_before": [
-      58.11,
-      8.9,
-      32.99
+      58.2,
+      8.85,
+      32.95
     ],
     "weights_after": [
       55.0,
@@ -241,372 +251,9 @@ const NTSX_REBALANCES  = [
     ]
   },
   {
-    "date": "2012-01-27",
-    "month": "Jan 2012",
-    "triggers": [
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.97,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      57.67,
-      14.36,
-      27.97
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2012-12-10",
-    "month": "Dec 2012",
-    "triggers": [
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.97,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      59.67,
-      12.36,
-      27.97
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2013-12-23",
-    "month": "Dec 2013",
-    "triggers": [
-      {
-        "asset": "AVWS sleeve (DFSVX proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 15.03,
-        "band": "9%\u201315%"
-      }
-    ],
-    "weights_before": [
-      55.5,
-      15.03,
-      29.48
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2015-10-09",
-    "month": "Oct 2015",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 60.2,
-        "band": "50%\u201360%"
-      }
-    ],
-    "weights_before": [
-      60.2,
-      10.21,
-      29.59
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2016-08-12",
-    "month": "Aug 2016",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 60.16,
-        "band": "50%\u201360%"
-      }
-    ],
-    "weights_before": [
-      60.16,
-      11.27,
-      28.57
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2016-12-08",
-    "month": "Dec 2016",
-    "triggers": [
-      {
-        "asset": "AVWS sleeve (DFSVX proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 15.03,
-        "band": "9%\u201315%"
-      }
-    ],
-    "weights_before": [
-      53.62,
-      15.03,
-      31.36
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2018-11-16",
-    "month": "Nov 2018",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 60.12,
-        "band": "50%\u201360%"
-      }
-    ],
-    "weights_before": [
-      60.12,
-      10.82,
-      29.06
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2019-08-15",
-    "month": "Aug 2019",
-    "triggers": [
-      {
-        "asset": "AVWS sleeve (DFSVX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 9.0,
-        "band": "9%\u201315%"
-      }
-    ],
-    "weights_before": [
-      58.73,
-      9.0,
-      32.27
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2020-03-16",
-    "month": "Mar 2020",
-    "triggers": [
-      {
-        "asset": "AVWS sleeve (DFSVX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 8.96,
-        "band": "9%\u201315%"
-      }
-    ],
-    "weights_before": [
-      56.27,
-      8.96,
-      34.77
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2020-06-02",
-    "month": "Jun 2020",
-    "triggers": [
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.86,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      58.99,
-      13.15,
-      27.86
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2021-01-06",
-    "month": "Jan 2021",
-    "triggers": [
-      {
-        "asset": "AVWS sleeve (DFSVX proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 15.1,
-        "band": "9%\u201315%"
-      }
-    ],
-    "weights_before": [
-      55.37,
-      15.1,
-      29.53
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2022-04-11",
-    "month": "Apr 2022",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 49.56,
-        "band": "50%\u201360%"
-      }
-    ],
-    "weights_before": [
-      49.56,
-      13.0,
-      37.44
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2022-06-09",
-    "month": "Jun 2022",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 49.5,
-        "band": "50%\u201360%"
-      },
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 38.2,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      49.5,
-      12.3,
-      38.2
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2022-10-14",
-    "month": "Oct 2022",
-    "triggers": [
-      {
-        "asset": "NTSX (Proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 49.88,
-        "band": "50%\u201360%"
-      },
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Above Upper Band",
-        "weight_at_trigger": 38.09,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      49.88,
-      12.02,
-      38.09
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2022-11-15",
-    "month": "Nov 2022",
-    "triggers": [
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.91,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      58.92,
-      13.18,
-      27.91
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2023-12-13",
-    "month": "Dec 2023",
-    "triggers": [
-      {
-        "asset": "KMLM (live / RYMFX proxy)",
-        "direction": "Below Lower Band",
-        "weight_at_trigger": 27.83,
-        "band": "28%\u201338%"
-      }
-    ],
-    "weights_before": [
-      59.94,
-      12.22,
-      27.83
-    ],
-    "weights_after": [
-      55.0,
-      12.0,
-      33.0
-    ]
-  },
-  {
-    "date": "2024-11-11",
-    "month": "Nov 2024",
+    "date": "2012-02-14",
+    "signal_date": "2012-02-13",
+    "month": "Feb 2012",
     "triggers": [
       {
         "asset": "KMLM (live / RYMFX proxy)",
@@ -616,9 +263,435 @@ const NTSX_REBALANCES  = [
       }
     ],
     "weights_before": [
-      59.02,
-      13.02,
+      58.07,
+      13.97,
       27.96
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2013-01-23",
+    "signal_date": "2013-01-22",
+    "month": "Jan 2013",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.91,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.18,
+      12.91,
+      27.91
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2014-04-24",
+    "signal_date": "2014-04-23",
+    "month": "Apr 2014",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 28.0,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      58.0,
+      14.0,
+      28.0
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2016-01-20",
+    "signal_date": "2016-01-19",
+    "month": "Jan 2016",
+    "triggers": [
+      {
+        "asset": "AVWS sleeve (DFSVX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 8.92,
+        "band": "9%\u201315%"
+      }
+    ],
+    "weights_before": [
+      56.66,
+      8.92,
+      34.42
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2016-04-28",
+    "signal_date": "2016-04-27",
+    "month": "Apr 2016",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.98,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      58.46,
+      13.56,
+      27.98
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2017-04-24",
+    "signal_date": "2017-04-21",
+    "month": "Apr 2017",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 26.93,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.3,
+      13.77,
+      26.93
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2019-03-22",
+    "signal_date": "2019-03-21",
+    "month": "Mar 2019",
+    "triggers": [
+      {
+        "asset": "NTSX (Proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 60.15,
+        "band": "50%\u201360%"
+      }
+    ],
+    "weights_before": [
+      60.15,
+      10.96,
+      28.9
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2020-03-03",
+    "signal_date": "2020-03-02",
+    "month": "Mar 2020",
+    "triggers": [
+      {
+        "asset": "NTSX (Proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 60.38,
+        "band": "50%\u201360%"
+      }
+    ],
+    "weights_before": [
+      60.38,
+      9.57,
+      30.05
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2020-03-19",
+    "signal_date": "2020-03-18",
+    "month": "Mar 2020",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 39.31,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      51.6,
+      9.09,
+      39.31
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2020-04-30",
+    "signal_date": "2020-04-29",
+    "month": "Apr 2020",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.77,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.34,
+      12.88,
+      27.77
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2020-11-25",
+    "signal_date": "2020-11-24",
+    "month": "Nov 2020",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.78,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      57.65,
+      14.57,
+      27.78
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2021-03-09",
+    "signal_date": "2021-03-08",
+    "month": "Mar 2021",
+    "triggers": [
+      {
+        "asset": "AVWS sleeve (DFSVX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 15.0,
+        "band": "9%\u201315%"
+      }
+    ],
+    "weights_before": [
+      50.23,
+      15.0,
+      34.77
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2022-04-18",
+    "signal_date": "2022-04-14",
+    "month": "Apr 2022",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 38.21,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      50.42,
+      11.37,
+      38.21
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2022-06-14",
+    "signal_date": "2022-06-13",
+    "month": "Jun 2022",
+    "triggers": [
+      {
+        "asset": "NTSX (Proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 49.11,
+        "band": "50%\u201360%"
+      },
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 39.06,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      49.11,
+      11.83,
+      39.06
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2022-07-29",
+    "signal_date": "2022-07-28",
+    "month": "Jul 2022",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.96,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.97,
+      12.07,
+      27.96
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2022-09-23",
+    "signal_date": "2022-09-22",
+    "month": "Sep 2022",
+    "triggers": [
+      {
+        "asset": "NTSX (Proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 49.94,
+        "band": "50%\u201360%"
+      },
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Above Upper Band",
+        "weight_at_trigger": 38.38,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      49.94,
+      11.68,
+      38.38
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2022-12-02",
+    "signal_date": "2022-12-01",
+    "month": "Dec 2022",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.8,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      58.43,
+      13.77,
+      27.8
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2024-06-06",
+    "signal_date": "2024-06-05",
+    "month": "Jun 2024",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.99,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.55,
+      12.46,
+      27.99
+    ],
+    "weights_after": [
+      55.0,
+      12.0,
+      33.0
+    ]
+  },
+  {
+    "date": "2025-09-12",
+    "signal_date": "2025-09-11",
+    "month": "Sep 2025",
+    "triggers": [
+      {
+        "asset": "KMLM (live / RYMFX proxy)",
+        "direction": "Below Lower Band",
+        "weight_at_trigger": 27.92,
+        "band": "28%\u201338%"
+      }
+    ],
+    "weights_before": [
+      59.63,
+      12.45,
+      27.92
     ],
     "weights_after": [
       55.0,
@@ -630,24402 +703,24407 @@ const NTSX_REBALANCES  = [
 const NTSX_EQUITY      = [
   {
     "date": "2007-05-31",
-    "port": 99.9857,
-    "spy": 99.8957
+    "port": 100.0,
+    "spy": 100.0
   },
   {
     "date": "2007-06-01",
-    "port": 100.2662,
-    "spy": 100.3909
+    "port": 100.2798,
+    "spy": 100.4957
   },
   {
     "date": "2007-06-04",
-    "port": 100.6475,
-    "spy": 100.404
+    "port": 100.6605,
+    "spy": 100.5088
   },
   {
     "date": "2007-06-05",
-    "port": 100.0724,
-    "spy": 100.0065
+    "port": 100.0844,
+    "spy": 100.1109
   },
   {
     "date": "2007-06-06",
-    "port": 99.4355,
-    "spy": 98.9314
+    "port": 99.4461,
+    "spy": 99.0347
   },
   {
     "date": "2007-06-07",
-    "port": 97.8348,
-    "spy": 97.1462
+    "port": 97.8422,
+    "spy": 97.2476
   },
   {
     "date": "2007-06-08",
-    "port": 98.3631,
-    "spy": 98.4102
+    "port": 98.3714,
+    "spy": 98.5129
   },
   {
     "date": "2007-06-11",
-    "port": 98.5284,
-    "spy": 98.5796
+    "port": 98.5358,
+    "spy": 98.6825
   },
   {
     "date": "2007-06-12",
-    "port": 97.3954,
-    "spy": 97.5046
+    "port": 97.4008,
+    "spy": 97.6063
   },
   {
     "date": "2007-06-13",
-    "port": 98.7201,
-    "spy": 98.964
+    "port": 98.7266,
+    "spy": 99.0673
   },
   {
     "date": "2007-06-14",
-    "port": 99.1971,
-    "spy": 99.596
+    "port": 99.2031,
+    "spy": 99.7
   },
   {
     "date": "2007-06-15",
-    "port": 99.9569,
-    "spy": 100.1627
+    "port": 99.9628,
+    "spy": 100.2672
   },
   {
     "date": "2007-06-18",
-    "port": 99.8396,
-    "spy": 100.0449
+    "port": 99.8447,
+    "spy": 100.1494
   },
   {
     "date": "2007-06-19",
-    "port": 100.0497,
-    "spy": 100.2936
+    "port": 100.0558,
+    "spy": 100.3982
   },
   {
     "date": "2007-06-20",
-    "port": 98.9948,
-    "spy": 98.8998
+    "port": 98.9987,
+    "spy": 99.003
   },
   {
     "date": "2007-06-21",
-    "port": 99.0911,
-    "spy": 99.4495
+    "port": 99.0949,
+    "spy": 99.5533
   },
   {
     "date": "2007-06-22",
-    "port": 98.6497,
-    "spy": 98.5137
+    "port": 98.6529,
+    "spy": 98.6165
   },
   {
     "date": "2007-06-25",
-    "port": 98.4739,
-    "spy": 98.0426
+    "port": 98.4769,
+    "spy": 98.1449
   },
   {
     "date": "2007-06-26",
-    "port": 97.8687,
-    "spy": 97.0349
+    "port": 97.8705,
+    "spy": 97.1362
   },
   {
     "date": "2007-06-27",
-    "port": 98.684,
-    "spy": 98.4156
+    "port": 98.6866,
+    "spy": 98.5183
   },
   {
     "date": "2007-06-28",
-    "port": 98.7129,
-    "spy": 98.4025
+    "port": 98.715,
+    "spy": 98.5052
   },
   {
     "date": "2007-06-29",
-    "port": 99.0996,
-    "spy": 98.4352
+    "port": 99.1017,
+    "spy": 98.5379
   },
   {
     "date": "2007-07-02",
-    "port": 99.9339,
-    "spy": 99.3251
+    "port": 99.9362,
+    "spy": 99.4288
   },
   {
     "date": "2007-07-03",
-    "port": 99.9271,
-    "spy": 99.6851
+    "port": 99.9289,
+    "spy": 99.7891
   },
   {
     "date": "2007-07-05",
-    "port": 99.6717,
-    "spy": 99.5803
+    "port": 99.6719,
+    "spy": 99.6843
   },
   {
     "date": "2007-07-06",
-    "port": 99.9103,
-    "spy": 100.1038
+    "port": 99.91,
+    "spy": 100.2083
   },
   {
     "date": "2007-07-09",
-    "port": 100.0699,
-    "spy": 100.1823
+    "port": 100.0695,
+    "spy": 100.2869
   },
   {
     "date": "2007-07-10",
-    "port": 99.6993,
-    "spy": 98.7558
+    "port": 99.6986,
+    "spy": 98.8589
   },
   {
     "date": "2007-07-11",
-    "port": 99.7373,
-    "spy": 99.456
+    "port": 99.7361,
+    "spy": 99.5598
   },
   {
     "date": "2007-07-12",
-    "port": 100.5597,
-    "spy": 101.0265
+    "port": 100.559,
+    "spy": 101.1319
   },
   {
     "date": "2007-07-13",
-    "port": 100.8886,
-    "spy": 101.3275
+    "port": 100.8876,
+    "spy": 101.4332
   },
   {
     "date": "2007-07-16",
-    "port": 100.7275,
-    "spy": 101.3144
+    "port": 100.7277,
+    "spy": 101.4201
   },
   {
     "date": "2007-07-17",
     "port": 100.4831,
-    "spy": 101.262
+    "spy": 101.3677
   },
   {
     "date": "2007-07-18",
-    "port": 100.6306,
-    "spy": 101.0788
+    "port": 100.6299,
+    "spy": 101.1843
   },
   {
     "date": "2007-07-19",
-    "port": 100.9586,
-    "spy": 101.4714
+    "port": 100.9575,
+    "spy": 101.5774
   },
   {
     "date": "2007-07-20",
-    "port": 100.3808,
-    "spy": 100.4441
+    "port": 100.3795,
+    "spy": 100.5489
   },
   {
     "date": "2007-07-23",
-    "port": 100.2305,
-    "spy": 100.7517
+    "port": 100.2296,
+    "spy": 100.8568
   },
   {
     "date": "2007-07-24",
-    "port": 99.0205,
-    "spy": 99.0045
+    "port": 99.0187,
+    "spy": 99.1078
   },
   {
     "date": "2007-07-25",
-    "port": 99.3198,
-    "spy": 99.2073
+    "port": 99.3174,
+    "spy": 99.3108
   },
   {
     "date": "2007-07-26",
-    "port": 97.9478,
-    "spy": 96.8582
+    "port": 97.9443,
+    "spy": 96.9593
   },
   {
     "date": "2007-07-27",
-    "port": 97.018,
-    "spy": 94.954
+    "port": 97.0126,
+    "spy": 95.0531
   },
   {
     "date": "2007-07-30",
-    "port": 97.7993,
-    "spy": 96.4394
+    "port": 97.7944,
+    "spy": 96.5401
   },
   {
     "date": "2007-07-31",
-    "port": 97.3909,
-    "spy": 95.3532
+    "port": 97.385,
+    "spy": 95.4527
   },
   {
     "date": "2007-08-01",
-    "port": 97.3877,
-    "spy": 95.8178
+    "port": 97.3821,
+    "spy": 95.9178
   },
   {
     "date": "2007-08-02",
-    "port": 97.8932,
-    "spy": 96.5834
+    "port": 97.8879,
+    "spy": 96.6842
   },
   {
     "date": "2007-08-03",
-    "port": 96.2822,
-    "spy": 94.0968
+    "port": 96.2758,
+    "spy": 94.195
   },
   {
     "date": "2007-08-06",
-    "port": 96.6099,
-    "spy": 95.6738
+    "port": 96.6045,
+    "spy": 95.7736
   },
   {
     "date": "2007-08-07",
-    "port": 97.1959,
-    "spy": 96.6947
+    "port": 97.1907,
+    "spy": 96.7956
   },
   {
     "date": "2007-08-08",
-    "port": 97.6816,
-    "spy": 98.0426
+    "port": 97.6762,
+    "spy": 98.1449
   },
   {
     "date": "2007-08-09",
-    "port": 95.9901,
-    "spy": 95.1372
+    "port": 95.9824,
+    "spy": 95.2365
   },
   {
     "date": "2007-08-10",
-    "port": 95.8031,
-    "spy": 94.6923
+    "port": 95.7943,
+    "spy": 94.7911
   },
   {
     "date": "2007-08-13",
-    "port": 96.0227,
-    "spy": 95.0326
+    "port": 96.0139,
+    "spy": 95.1317
   },
   {
     "date": "2007-08-14",
-    "port": 95.1484,
-    "spy": 93.5799
+    "port": 95.1385,
+    "spy": 93.6776
   },
   {
     "date": "2007-08-15",
-    "port": 94.1933,
-    "spy": 92.2908
+    "port": 94.1821,
+    "spy": 92.3871
   },
   {
     "date": "2007-08-16",
-    "port": 94.7604,
-    "spy": 92.9844
+    "port": 94.7501,
+    "spy": 93.0815
   },
   {
     "date": "2007-08-17",
-    "port": 95.8826,
-    "spy": 94.6923
+    "port": 95.8723,
+    "spy": 94.7911
   },
   {
     "date": "2007-08-20",
-    "port": 95.7622,
-    "spy": 94.6465
+    "port": 95.7516,
+    "spy": 94.7453
   },
   {
     "date": "2007-08-21",
-    "port": 96.0318,
-    "spy": 94.8362
+    "port": 96.0212,
+    "spy": 94.9352
   },
   {
     "date": "2007-08-22",
-    "port": 96.7839,
-    "spy": 95.9617
+    "port": 96.7733,
+    "spy": 96.0619
   },
   {
     "date": "2007-08-23",
-    "port": 96.8474,
-    "spy": 95.8766
+    "port": 96.8364,
+    "spy": 95.9767
   },
   {
     "date": "2007-08-24",
-    "port": 97.8889,
-    "spy": 97.061
+    "port": 97.8781,
+    "spy": 97.1624
   },
   {
     "date": "2007-08-27",
-    "port": 97.5815,
-    "spy": 96.158
+    "port": 97.5699,
+    "spy": 96.2584
   },
   {
     "date": "2007-08-28",
-    "port": 96.2239,
-    "spy": 94.0445
+    "port": 96.2108,
+    "spy": 94.1426
   },
   {
     "date": "2007-08-29",
-    "port": 97.4226,
-    "spy": 95.8898
+    "port": 97.4097,
+    "spy": 95.9898
   },
   {
     "date": "2007-08-30",
-    "port": 97.4911,
-    "spy": 95.6345
+    "port": 97.4778,
+    "spy": 95.7344
   },
   {
     "date": "2007-08-31",
-    "port": 98.1341,
-    "spy": 96.5768
+    "port": 98.121,
+    "spy": 96.6776
   },
   {
     "date": "2007-09-04",
-    "port": 98.8686,
-    "spy": 97.5518
+    "port": 98.8554,
+    "spy": 97.6536
   },
   {
     "date": "2007-09-05",
-    "port": 98.6461,
-    "spy": 96.7077
+    "port": 98.6322,
+    "spy": 96.8086
   },
   {
     "date": "2007-09-06",
-    "port": 98.6252,
-    "spy": 96.9302
+    "port": 98.611,
+    "spy": 97.0313
   },
   {
     "date": "2007-09-07",
-    "port": 98.4483,
-    "spy": 95.5822
+    "port": 98.433,
+    "spy": 95.6819
   },
   {
     "date": "2007-09-10",
-    "port": 98.5857,
-    "spy": 95.399
+    "port": 98.5702,
+    "spy": 95.4986
   },
   {
     "date": "2007-09-11",
-    "port": 99.1884,
-    "spy": 96.5114
+    "port": 99.1734,
+    "spy": 96.6121
   },
   {
     "date": "2007-09-12",
-    "port": 99.1489,
-    "spy": 96.76
+    "port": 99.1333,
+    "spy": 96.861
   },
   {
     "date": "2007-09-13",
-    "port": 99.0961,
-    "spy": 97.4406
+    "port": 99.0805,
+    "spy": 97.5423
   },
   {
     "date": "2007-09-14",
-    "port": 99.1736,
-    "spy": 97.434
+    "port": 99.1575,
+    "spy": 97.5357
   },
   {
     "date": "2007-09-17",
-    "port": 98.9268,
-    "spy": 96.9106
+    "port": 98.9103,
+    "spy": 97.0117
   },
   {
     "date": "2007-09-18",
-    "port": 100.5691,
-    "spy": 99.7636
+    "port": 100.5533,
+    "spy": 99.8677
   },
   {
     "date": "2007-09-19",
-    "port": 100.4837,
-    "spy": 100.3525
+    "port": 100.4677,
+    "spy": 100.4572
   },
   {
     "date": "2007-09-20",
-    "port": 99.4265,
-    "spy": 99.6457
+    "port": 99.4087,
+    "spy": 99.7497
   },
   {
     "date": "2007-09-21",
-    "port": 99.8984,
-    "spy": 99.9146
+    "port": 99.8806,
+    "spy": 100.0189
   },
   {
     "date": "2007-09-24",
-    "port": 99.692,
-    "spy": 99.7306
+    "port": 99.6741,
+    "spy": 99.8346
   },
   {
     "date": "2007-09-25",
-    "port": 99.4339,
-    "spy": 99.5333
+    "port": 99.4152,
+    "spy": 99.6372
   },
   {
     "date": "2007-09-26",
-    "port": 99.8922,
-    "spy": 100.0593
+    "port": 99.8732,
+    "spy": 100.1638
   },
   {
     "date": "2007-09-27",
-    "port": 100.6059,
-    "spy": 100.6511
+    "port": 100.5869,
+    "spy": 100.7561
   },
   {
     "date": "2007-09-28",
-    "port": 100.4239,
-    "spy": 100.3157
+    "port": 100.4045,
+    "spy": 100.4204
   },
   {
     "date": "2007-10-01",
-    "port": 101.2514,
-    "spy": 101.4466
+    "port": 101.2325,
+    "spy": 101.5525
   },
   {
     "date": "2007-10-02",
-    "port": 101.2107,
-    "spy": 101.3085
+    "port": 101.1917,
+    "spy": 101.4142
   },
   {
     "date": "2007-10-03",
-    "port": 100.8581,
-    "spy": 101.1047
+    "port": 100.8386,
+    "spy": 101.2102
   },
   {
     "date": "2007-10-04",
-    "port": 101.1621,
-    "spy": 101.2625
+    "port": 101.1421,
+    "spy": 101.3682
   },
   {
     "date": "2007-10-05",
-    "port": 101.549,
-    "spy": 102.4656
+    "port": 101.5289,
+    "spy": 102.5726
   },
   {
     "date": "2007-10-08",
-    "port": 100.8195,
-    "spy": 101.92
+    "port": 100.7993,
+    "spy": 102.0263
   },
   {
     "date": "2007-10-09",
-    "port": 101.4271,
-    "spy": 102.8799
+    "port": 101.4068,
+    "spy": 102.9872
   },
   {
     "date": "2007-10-10",
-    "port": 101.4573,
-    "spy": 102.7089
+    "port": 101.4361,
+    "spy": 102.8161
   },
   {
     "date": "2007-10-11",
-    "port": 101.2593,
-    "spy": 102.2158
+    "port": 101.237,
+    "spy": 102.3225
   },
   {
     "date": "2007-10-12",
-    "port": 101.4414,
-    "spy": 102.7812
+    "port": 101.4187,
+    "spy": 102.8885
   },
   {
     "date": "2007-10-15",
-    "port": 101.1216,
-    "spy": 101.9134
+    "port": 101.0975,
+    "spy": 102.0197
   },
   {
     "date": "2007-10-16",
-    "port": 100.6233,
-    "spy": 101.1047
+    "port": 100.5984,
+    "spy": 101.2102
   },
   {
     "date": "2007-10-17",
-    "port": 101.1506,
-    "spy": 101.4137
+    "port": 101.1258,
+    "spy": 101.5195
   },
   {
     "date": "2007-10-18",
-    "port": 101.3866,
-    "spy": 101.0455
+    "port": 101.3608,
+    "spy": 101.151
   },
   {
     "date": "2007-10-19",
-    "port": 100.2059,
-    "spy": 98.4025
+    "port": 100.1791,
+    "spy": 98.5052
   },
   {
     "date": "2007-10-22",
-    "port": 100.4624,
-    "spy": 98.9745
+    "port": 100.4357,
+    "spy": 99.0778
   },
   {
     "date": "2007-10-23",
-    "port": 100.8708,
-    "spy": 99.7766
+    "port": 100.8442,
+    "spy": 99.8807
   },
   {
     "date": "2007-10-24",
-    "port": 101.0548,
-    "spy": 99.5925
+    "port": 101.0277,
+    "spy": 99.6964
   },
   {
     "date": "2007-10-25",
-    "port": 101.3394,
-    "spy": 99.8292
+    "port": 101.3112,
+    "spy": 99.9334
   },
   {
     "date": "2007-10-26",
-    "port": 102.2629,
-    "spy": 100.9995
+    "port": 102.2341,
+    "spy": 101.1049
   },
   {
     "date": "2007-10-29",
-    "port": 102.7487,
-    "spy": 101.3348
+    "port": 102.7192,
+    "spy": 101.4406
   },
   {
     "date": "2007-10-30",
-    "port": 102.0815,
-    "spy": 100.6313
+    "port": 102.0518,
+    "spy": 100.7363
   },
   {
     "date": "2007-10-31",
-    "port": 102.7314,
-    "spy": 101.6766
+    "port": 102.7006,
+    "spy": 101.7828
   },
   {
     "date": "2007-11-01",
-    "port": 101.4011,
-    "spy": 99.2966
+    "port": 101.3699,
+    "spy": 99.4003
   },
   {
     "date": "2007-11-02",
-    "port": 101.7722,
-    "spy": 99.4084
+    "port": 101.7401,
+    "spy": 99.5122
   },
   {
     "date": "2007-11-05",
-    "port": 101.172,
-    "spy": 98.6523
+    "port": 101.1394,
+    "spy": 98.7553
   },
   {
     "date": "2007-11-06",
-    "port": 102.0717,
-    "spy": 99.9804
+    "port": 102.0384,
+    "spy": 100.0848
   },
   {
     "date": "2007-11-07",
-    "port": 100.5004,
-    "spy": 97.2454
+    "port": 100.4653,
+    "spy": 97.3469
   },
   {
     "date": "2007-11-08",
-    "port": 100.3553,
-    "spy": 96.7523
+    "port": 100.3192,
+    "spy": 96.8533
   },
   {
     "date": "2007-11-09",
-    "port": 99.984,
-    "spy": 95.4242
+    "port": 99.9468,
+    "spy": 95.5238
   },
   {
     "date": "2007-11-12",
-    "port": 99.378,
-    "spy": 94.4774
+    "port": 99.3404,
+    "spy": 94.576
   },
   {
     "date": "2007-11-13",
-    "port": 100.7735,
-    "spy": 97.3572
+    "port": 100.7373,
+    "spy": 97.4588
   },
   {
     "date": "2007-11-14",
-    "port": 100.6632,
-    "spy": 97.0876
+    "port": 100.6263,
+    "spy": 97.1889
   },
   {
     "date": "2007-11-15",
-    "port": 100.0967,
-    "spy": 95.6872
+    "port": 100.0591,
+    "spy": 95.7871
   },
   {
     "date": "2007-11-16",
-    "port": 100.2614,
-    "spy": 95.8515
+    "port": 100.2234,
+    "spy": 95.9516
   },
   {
     "date": "2007-11-19",
-    "port": 99.6129,
-    "spy": 94.5169
+    "port": 99.5741,
+    "spy": 94.6155
   },
   {
     "date": "2007-11-20",
-    "port": 100.1737,
-    "spy": 95.0955
+    "port": 100.134,
+    "spy": 95.1947
   },
   {
     "date": "2007-11-21",
-    "port": 99.3438,
-    "spy": 93.1494
+    "port": 99.3026,
+    "spy": 93.2466
   },
   {
     "date": "2007-11-23",
-    "port": 100.6424,
-    "spy": 94.7602
+    "port": 100.6011,
+    "spy": 94.8591
   },
   {
     "date": "2007-11-26",
-    "port": 100.0029,
-    "spy": 92.6694
+    "port": 99.961,
+    "spy": 92.7662
   },
   {
     "date": "2007-11-27",
-    "port": 100.0244,
-    "spy": 93.7345
+    "port": 99.9829,
+    "spy": 93.8324
   },
   {
     "date": "2007-11-28",
-    "port": 101.4193,
-    "spy": 96.7326
+    "port": 101.3789,
+    "spy": 96.8336
   },
   {
     "date": "2007-11-29",
-    "port": 101.6373,
-    "spy": 96.7654
+    "port": 101.597,
+    "spy": 96.8664
   },
   {
     "date": "2007-11-30",
-    "port": 101.6992,
-    "spy": 97.7385
+    "port": 101.6595,
+    "spy": 97.8405
   },
   {
     "date": "2007-12-03",
-    "port": 101.6816,
-    "spy": 97.0941
+    "port": 101.6412,
+    "spy": 97.1955
   },
   {
     "date": "2007-12-04",
-    "port": 101.2113,
-    "spy": 96.2263
+    "port": 101.1699,
+    "spy": 96.3267
   },
   {
     "date": "2007-12-05",
-    "port": 101.6525,
-    "spy": 97.8371
+    "port": 101.6112,
+    "spy": 97.9392
   },
   {
     "date": "2007-12-06",
-    "port": 102.4871,
-    "spy": 99.2375
+    "port": 102.4451,
+    "spy": 99.3411
   },
   {
     "date": "2007-12-07",
-    "port": 101.8814,
-    "spy": 99.2178
+    "port": 101.839,
+    "spy": 99.3213
   },
   {
     "date": "2007-12-10",
-    "port": 102.2423,
-    "spy": 99.987
+    "port": 102.1993,
+    "spy": 100.0913
   },
   {
     "date": "2007-12-11",
-    "port": 101.4202,
-    "spy": 97.2454
+    "port": 101.3758,
+    "spy": 97.3469
   },
   {
     "date": "2007-12-12",
-    "port": 102.0025,
-    "spy": 98.2053
+    "port": 101.9569,
+    "spy": 98.3078
   },
   {
     "date": "2007-12-13",
-    "port": 101.2651,
-    "spy": 98.0015
+    "port": 101.2191,
+    "spy": 98.1038
   },
   {
     "date": "2007-12-14",
-    "port": 100.0316,
-    "spy": 96.7588
+    "port": 99.9853,
+    "spy": 96.8598
   },
   {
     "date": "2007-12-17",
-    "port": 99.5246,
-    "spy": 95.3781
+    "port": 99.4776,
+    "spy": 95.4777
   },
   {
     "date": "2007-12-18",
-    "port": 100.132,
-    "spy": 95.9107
+    "port": 100.0848,
+    "spy": 96.0108
   },
   {
     "date": "2007-12-19",
-    "port": 100.6395,
-    "spy": 95.9107
+    "port": 100.5921,
+    "spy": 96.0108
   },
   {
     "date": "2007-12-20",
-    "port": 100.9775,
-    "spy": 96.5156
+    "port": 100.9298,
+    "spy": 96.6163
   },
   {
     "date": "2007-12-21",
-    "port": 101.4549,
-    "spy": 97.9069
+    "port": 101.4065,
+    "spy": 98.0091
   },
   {
     "date": "2007-12-24",
-    "port": 101.7887,
-    "spy": 98.6339
+    "port": 101.7399,
+    "spy": 98.7369
   },
   {
     "date": "2007-12-26",
-    "port": 101.8281,
-    "spy": 98.8454
+    "port": 101.7782,
+    "spy": 98.9486
   },
   {
     "date": "2007-12-27",
-    "port": 101.4164,
-    "spy": 97.6029
+    "port": 101.3658,
+    "spy": 97.7048
   },
   {
     "date": "2007-12-28",
-    "port": 101.9108,
-    "spy": 97.3583
+    "port": 101.8599,
+    "spy": 97.4599
   },
   {
     "date": "2007-12-31",
-    "port": 101.7138,
-    "spy": 96.6378
+    "port": 101.6623,
+    "spy": 96.7387
   },
   {
     "date": "2008-01-02",
-    "port": 102.1545,
-    "spy": 95.7919
+    "port": 102.1015,
+    "spy": 95.8918
   },
   {
     "date": "2008-01-03",
-    "port": 101.9447,
-    "spy": 95.7456
+    "port": 101.8914,
+    "spy": 95.8455
   },
   {
     "date": "2008-01-04",
-    "port": 100.4406,
-    "spy": 93.3992
+    "port": 100.3862,
+    "spy": 93.4967
   },
   {
     "date": "2008-01-07",
-    "port": 100.3332,
-    "spy": 93.3199
+    "port": 100.2789,
+    "spy": 93.4173
   },
   {
     "date": "2008-01-08",
-    "port": 99.3311,
-    "spy": 91.8129
+    "port": 99.2759,
+    "spy": 91.9087
   },
   {
     "date": "2008-01-09",
-    "port": 100.0168,
-    "spy": 92.7779
+    "port": 99.9615,
+    "spy": 92.8747
   },
   {
     "date": "2008-01-10",
-    "port": 99.8941,
-    "spy": 93.386
+    "port": 99.8383,
+    "spy": 93.4834
   },
   {
     "date": "2008-01-11",
-    "port": 99.6436,
-    "spy": 92.6325
+    "port": 99.5873,
+    "spy": 92.7292
   },
   {
     "date": "2008-01-14",
-    "port": 100.418,
-    "spy": 93.3793
+    "port": 100.3611,
+    "spy": 93.4768
   },
   {
     "date": "2008-01-15",
-    "port": 99.436,
-    "spy": 91.3238
+    "port": 99.3786,
+    "spy": 91.4191
   },
   {
     "date": "2008-01-16",
-    "port": 98.7474,
-    "spy": 90.5373
+    "port": 98.6478,
+    "spy": 90.6318
   },
   {
     "date": "2008-01-17",
-    "port": 97.5628,
-    "spy": 88.1909
+    "port": 97.4648,
+    "spy": 88.2829
   },
   {
     "date": "2008-01-18",
-    "port": 96.6937,
-    "spy": 87.2854
+    "port": 96.594,
+    "spy": 87.3765
   },
   {
     "date": "2008-01-22",
-    "port": 96.4407,
-    "spy": 86.3997
+    "port": 96.3401,
+    "spy": 86.4899
   },
   {
     "date": "2008-01-23",
-    "port": 97.6816,
-    "spy": 88.4751
+    "port": 97.5783,
+    "spy": 88.5674
   },
   {
     "date": "2008-01-24",
-    "port": 97.7048,
-    "spy": 89.222
+    "port": 97.5988,
+    "spy": 89.3151
   },
   {
     "date": "2008-01-25",
-    "port": 97.684,
-    "spy": 87.9331
+    "port": 97.5776,
+    "spy": 88.0249
   },
   {
     "date": "2008-01-28",
-    "port": 98.7471,
-    "spy": 89.3872
+    "port": 98.6376,
+    "spy": 89.4805
   },
   {
     "date": "2008-01-29",
-    "port": 98.7444,
-    "spy": 89.83
+    "port": 98.6337,
+    "spy": 89.9238
   },
   {
     "date": "2008-01-30",
-    "port": 98.1019,
-    "spy": 89.1691
+    "port": 97.9904,
+    "spy": 89.2622
   },
   {
     "date": "2008-01-31",
-    "port": 99.5497,
-    "spy": 90.795
+    "port": 99.4362,
+    "spy": 90.8898
   },
   {
     "date": "2008-02-01",
-    "port": 100.6333,
-    "spy": 92.2557
+    "port": 100.5196,
+    "spy": 92.352
   },
   {
     "date": "2008-02-04",
-    "port": 99.6395,
-    "spy": 91.0925
+    "port": 99.5234,
+    "spy": 91.1876
   },
   {
     "date": "2008-02-05",
-    "port": 98.1915,
-    "spy": 88.6536
+    "port": 98.0765,
+    "spy": 88.7461
   },
   {
     "date": "2008-02-06",
-    "port": 97.5319,
-    "spy": 87.9397
+    "port": 97.4162,
+    "spy": 88.0315
   },
   {
     "date": "2008-02-07",
-    "port": 97.2682,
-    "spy": 88.5214
+    "port": 97.1479,
+    "spy": 88.6138
   },
   {
     "date": "2008-02-08",
-    "port": 97.5911,
-    "spy": 87.953
+    "port": 97.4706,
+    "spy": 88.0448
   },
   {
     "date": "2008-02-11",
-    "port": 98.0918,
-    "spy": 88.4024
+    "port": 97.9713,
+    "spy": 88.4947
   },
   {
     "date": "2008-02-12",
-    "port": 98.2331,
-    "spy": 89.222
+    "port": 98.1127,
+    "spy": 89.3151
   },
   {
     "date": "2008-02-13",
-    "port": 98.6299,
-    "spy": 90.1341
+    "port": 98.5052,
+    "spy": 90.2282
   },
   {
     "date": "2008-02-14",
-    "port": 97.8078,
-    "spy": 89.341
+    "port": 97.6819,
+    "spy": 89.4342
   },
   {
     "date": "2008-02-15",
-    "port": 97.966,
-    "spy": 89.3211
+    "port": 97.8419,
+    "spy": 89.4143
   },
   {
     "date": "2008-02-19",
-    "port": 98.1382,
-    "spy": 89.5723
+    "port": 98.011,
+    "spy": 89.6657
   },
   {
     "date": "2008-02-20",
-    "port": 98.6358,
-    "spy": 89.8367
+    "port": 98.5071,
+    "spy": 89.9304
   },
   {
     "date": "2008-02-21",
-    "port": 98.3701,
-    "spy": 89.0897
+    "port": 98.2443,
+    "spy": 89.1827
   },
   {
     "date": "2008-02-22",
-    "port": 98.6376,
-    "spy": 89.6384
+    "port": 98.5112,
+    "spy": 89.7319
   },
   {
     "date": "2008-02-25",
-    "port": 99.3102,
-    "spy": 90.7686
+    "port": 99.1799,
+    "spy": 90.8634
   },
   {
     "date": "2008-02-26",
-    "port": 100.0629,
-    "spy": 91.4494
+    "port": 99.9301,
+    "spy": 91.5449
   },
   {
     "date": "2008-02-27",
-    "port": 100.0246,
-    "spy": 91.3568
+    "port": 99.8913,
+    "spy": 91.4522
   },
   {
     "date": "2008-02-28",
-    "port": 100.2368,
-    "spy": 90.4646
+    "port": 100.1061,
+    "spy": 90.559
   },
   {
     "date": "2008-02-29",
-    "port": 99.3704,
-    "spy": 88.4486
+    "port": 99.2424,
+    "spy": 88.541
   },
   {
     "date": "2008-03-03",
-    "port": 99.2737,
-    "spy": 88.2371
+    "port": 99.1449,
+    "spy": 88.3292
   },
   {
     "date": "2008-03-04",
-    "port": 98.4991,
-    "spy": 87.9001
+    "port": 98.3694,
+    "spy": 87.9918
   },
   {
     "date": "2008-03-05",
-    "port": 98.8396,
-    "spy": 88.4553
+    "port": 98.7071,
+    "spy": 88.5476
   },
   {
     "date": "2008-03-06",
-    "port": 97.6298,
-    "spy": 86.6244
+    "port": 97.4994,
+    "spy": 86.7148
   },
   {
     "date": "2008-03-07",
-    "port": 97.0396,
-    "spy": 85.7322
+    "port": 96.9078,
+    "spy": 85.8216
   },
   {
     "date": "2008-03-10",
-    "port": 96.8708,
-    "spy": 84.6019
+    "port": 96.7408,
+    "spy": 84.6902
   },
   {
     "date": "2008-03-11",
-    "port": 98.7348,
-    "spy": 87.6423
+    "port": 98.6016,
+    "spy": 87.7338
   },
   {
     "date": "2008-03-12",
-    "port": 99.0409,
-    "spy": 86.8227
+    "port": 98.9095,
+    "spy": 86.9133
   },
   {
     "date": "2008-03-13",
-    "port": 99.3236,
-    "spy": 87.0144
+    "port": 99.1865,
+    "spy": 87.1052
   },
   {
     "date": "2008-03-14",
-    "port": 98.628,
-    "spy": 85.6661
+    "port": 98.4942,
+    "spy": 85.7555
   },
   {
     "date": "2008-03-17",
-    "port": 97.6707,
-    "spy": 84.8002
+    "port": 97.5409,
+    "spy": 84.8887
   },
   {
     "date": "2008-03-18",
-    "port": 100.1233,
-    "spy": 88.3231
+    "port": 99.9908,
+    "spy": 88.4153
   },
   {
     "date": "2008-03-19",
-    "port": 98.4629,
-    "spy": 86.1353
+    "port": 98.3352,
+    "spy": 86.2252
   },
   {
     "date": "2008-03-20",
-    "port": 99.3521,
-    "spy": 87.7308
+    "port": 99.2242,
+    "spy": 87.8223
   },
   {
     "date": "2008-03-24",
-    "port": 100.0378,
-    "spy": 89.4844
+    "port": 99.9054,
+    "spy": 89.5778
   },
   {
     "date": "2008-03-25",
-    "port": 100.7336,
-    "spy": 89.5708
+    "port": 100.5982,
+    "spy": 89.6642
   },
   {
     "date": "2008-03-26",
-    "port": 100.3314,
-    "spy": 88.4747
+    "port": 100.1924,
+    "spy": 88.5671
   },
   {
     "date": "2008-03-27",
-    "port": 99.8218,
-    "spy": 88.1958
+    "port": 99.6838,
+    "spy": 88.2878
   },
   {
     "date": "2008-03-28",
-    "port": 99.4093,
-    "spy": 87.3522
+    "port": 99.2733,
+    "spy": 87.4434
   },
   {
     "date": "2008-03-31",
-    "port": 99.499,
-    "spy": 87.6577
+    "port": 99.3629,
+    "spy": 87.7492
   },
   {
     "date": "2008-04-01",
-    "port": 100.7345,
-    "spy": 90.7397
+    "port": 100.5977,
+    "spy": 90.8345
   },
   {
     "date": "2008-04-02",
-    "port": 101.1849,
-    "spy": 90.7995
+    "port": 101.0465,
+    "spy": 90.8943
   },
   {
     "date": "2008-04-03",
-    "port": 101.2705,
-    "spy": 91.0254
+    "port": 101.1328,
+    "spy": 91.1204
   },
   {
     "date": "2008-04-04",
-    "port": 101.7388,
-    "spy": 90.9257
+    "port": 101.6007,
+    "spy": 91.0206
   },
   {
     "date": "2008-04-07",
-    "port": 101.6694,
-    "spy": 90.9722
+    "port": 101.53,
+    "spy": 91.0672
   },
   {
     "date": "2008-04-08",
-    "port": 101.387,
-    "spy": 90.8792
+    "port": 101.2473,
+    "spy": 90.9741
   },
   {
     "date": "2008-04-09",
-    "port": 101.5459,
-    "spy": 90.2216
+    "port": 101.4083,
+    "spy": 90.3158
   },
   {
     "date": "2008-04-10",
-    "port": 101.5578,
-    "spy": 90.3478
+    "port": 101.4175,
+    "spy": 90.4421
   },
   {
     "date": "2008-04-11",
-    "port": 100.4893,
-    "spy": 88.5943
+    "port": 100.3513,
+    "spy": 88.6868
   },
   {
     "date": "2008-04-14",
-    "port": 100.1647,
-    "spy": 88.2954
+    "port": 100.025,
+    "spy": 88.3876
   },
   {
     "date": "2008-04-15",
-    "port": 100.0621,
-    "spy": 88.5013
+    "port": 99.9188,
+    "spy": 88.5937
   },
   {
     "date": "2008-04-16",
-    "port": 101.5601,
-    "spy": 90.8991
+    "port": 101.4137,
+    "spy": 90.994
   },
   {
     "date": "2008-04-17",
-    "port": 101.3188,
-    "spy": 91.0319
+    "port": 101.1743,
+    "spy": 91.1269
   },
   {
     "date": "2008-04-18",
-    "port": 101.9877,
-    "spy": 91.9819
+    "port": 101.841,
+    "spy": 92.0779
   },
   {
     "date": "2008-04-21",
-    "port": 102.0444,
-    "spy": 92.0283
+    "port": 101.8995,
+    "spy": 92.1244
   },
   {
     "date": "2008-04-22",
-    "port": 101.8563,
-    "spy": 91.6231
+    "port": 101.7144,
+    "spy": 91.7188
   },
   {
     "date": "2008-04-23",
-    "port": 101.4508,
-    "spy": 91.477
+    "port": 101.3092,
+    "spy": 91.5725
   },
   {
     "date": "2008-04-24",
-    "port": 101.2801,
-    "spy": 91.8756
+    "port": 101.1358,
+    "spy": 91.9715
   },
   {
     "date": "2008-04-25",
-    "port": 101.6332,
-    "spy": 92.7258
+    "port": 101.4884,
+    "spy": 92.8226
   },
   {
     "date": "2008-04-28",
-    "port": 101.9641,
-    "spy": 92.7457
+    "port": 101.8174,
+    "spy": 92.8425
   },
   {
     "date": "2008-04-29",
-    "port": 101.5,
-    "spy": 92.3804
+    "port": 101.3551,
+    "spy": 92.4768
   },
   {
     "date": "2008-04-30",
-    "port": 101.3547,
-    "spy": 91.8357
+    "port": 101.2108,
+    "spy": 91.9316
   },
   {
     "date": "2008-05-01",
-    "port": 102.3881,
-    "spy": 93.7354
+    "port": 102.2439,
+    "spy": 93.8332
   },
   {
     "date": "2008-05-02",
-    "port": 102.2871,
-    "spy": 93.9944
+    "port": 102.1417,
+    "spy": 94.0925
   },
   {
     "date": "2008-05-05",
-    "port": 102.3106,
-    "spy": 93.5428
+    "port": 102.1633,
+    "spy": 93.6404
   },
   {
     "date": "2008-05-06",
-    "port": 102.6773,
-    "spy": 94.3531
+    "port": 102.528,
+    "spy": 94.4516
   },
   {
     "date": "2008-05-07",
-    "port": 101.7364,
-    "spy": 92.6726
+    "port": 101.5874,
+    "spy": 92.7693
   },
   {
     "date": "2008-05-08",
-    "port": 101.8146,
-    "spy": 92.4335
+    "port": 101.6656,
+    "spy": 92.53
   },
   {
     "date": "2008-05-09",
-    "port": 101.8559,
-    "spy": 92.2608
+    "port": 101.7064,
+    "spy": 92.3571
   },
   {
     "date": "2008-05-12",
-    "port": 102.557,
-    "spy": 93.297
+    "port": 102.4055,
+    "spy": 93.3944
   },
   {
     "date": "2008-05-13",
-    "port": 102.5211,
-    "spy": 93.3103
+    "port": 102.3657,
+    "spy": 93.4077
   },
   {
     "date": "2008-05-14",
-    "port": 102.6615,
-    "spy": 93.5029
+    "port": 102.506,
+    "spy": 93.6005
   },
   {
     "date": "2008-05-15",
-    "port": 103.6635,
-    "spy": 94.6719
+    "port": 103.5088,
+    "spy": 94.7708
   },
   {
     "date": "2008-05-16",
-    "port": 103.559,
-    "spy": 94.7583
+    "port": 103.4044,
+    "spy": 94.8572
   },
   {
     "date": "2008-05-19",
-    "port": 103.7298,
-    "spy": 95.0173
+    "port": 103.5757,
+    "spy": 95.1165
   },
   {
     "date": "2008-05-20",
-    "port": 103.6086,
-    "spy": 94.2469
+    "port": 103.4533,
+    "spy": 94.3453
   },
   {
     "date": "2008-05-21",
-    "port": 102.7213,
-    "spy": 92.6527
+    "port": 102.5647,
+    "spy": 92.7494
   },
   {
     "date": "2008-05-22",
-    "port": 102.501,
-    "spy": 92.666
+    "port": 102.3407,
+    "spy": 92.7627
   },
   {
     "date": "2008-05-23",
-    "port": 101.7142,
-    "spy": 91.4239
+    "port": 101.5552,
+    "spy": 91.5193
   },
   {
     "date": "2008-05-27",
-    "port": 102.0049,
-    "spy": 92.1014
+    "port": 101.8434,
+    "spy": 92.1975
   },
   {
     "date": "2008-05-28",
-    "port": 102.0823,
-    "spy": 92.5265
+    "port": 101.919,
+    "spy": 92.6231
   },
   {
     "date": "2008-05-29",
-    "port": 102.137,
-    "spy": 92.9915
+    "port": 101.9717,
+    "spy": 93.0886
   },
   {
     "date": "2008-05-30",
-    "port": 102.4144,
-    "spy": 93.224
+    "port": 102.2495,
+    "spy": 93.3213
   },
   {
     "date": "2008-06-02",
-    "port": 101.8371,
-    "spy": 92.2608
+    "port": 101.6727,
+    "spy": 92.3571
   },
   {
     "date": "2008-06-03",
-    "port": 101.788,
-    "spy": 91.7228
+    "port": 101.6231,
+    "spy": 91.8185
   },
   {
     "date": "2008-06-04",
-    "port": 101.3918,
-    "spy": 91.6763
+    "port": 101.225,
+    "spy": 91.772
   },
   {
     "date": "2008-06-05",
-    "port": 102.6418,
-    "spy": 93.5096
+    "port": 102.4716,
+    "spy": 93.6072
   },
   {
     "date": "2008-06-06",
-    "port": 101.3286,
-    "spy": 90.5271
+    "port": 101.1599,
+    "spy": 90.6216
   },
   {
     "date": "2008-06-09",
-    "port": 101.2062,
-    "spy": 90.7464
+    "port": 101.0394,
+    "spy": 90.8411
   },
   {
     "date": "2008-06-10",
-    "port": 100.6732,
-    "spy": 90.2947
+    "port": 100.5052,
+    "spy": 90.389
   },
   {
     "date": "2008-06-11",
-    "port": 99.5849,
-    "spy": 88.9663
+    "port": 99.4182,
+    "spy": 89.0591
   },
   {
     "date": "2008-06-12",
-    "port": 99.668,
-    "spy": 89.305
+    "port": 99.499,
+    "spy": 89.3982
   },
   {
     "date": "2008-06-13",
-    "port": 100.1417,
-    "spy": 90.4342
+    "port": 99.9718,
+    "spy": 90.5286
   },
   {
     "date": "2008-06-16",
-    "port": 100.2392,
-    "spy": 90.4874
+    "port": 100.0674,
+    "spy": 90.5818
   },
   {
     "date": "2008-06-17",
-    "port": 99.8778,
-    "spy": 90.049
+    "port": 99.7071,
+    "spy": 90.143
   },
   {
     "date": "2008-06-18",
-    "port": 99.5799,
-    "spy": 89.1722
+    "port": 99.4099,
+    "spy": 89.2653
   },
   {
     "date": "2008-06-19",
-    "port": 99.4163,
-    "spy": 89.2851
+    "port": 99.2445,
+    "spy": 89.3783
   },
   {
     "date": "2008-06-20",
-    "port": 98.73,
-    "spy": 87.8358
+    "port": 98.5588,
+    "spy": 87.9275
   },
   {
     "date": "2008-06-23",
-    "port": 98.7512,
-    "spy": 87.749
+    "port": 98.5816,
+    "spy": 87.8406
   },
   {
     "date": "2008-06-24",
-    "port": 98.6834,
-    "spy": 87.5755
+    "port": 98.517,
+    "spy": 87.6669
   },
   {
     "date": "2008-06-25",
-    "port": 98.8035,
-    "spy": 87.9894
+    "port": 98.6363,
+    "spy": 88.0812
   },
   {
     "date": "2008-06-26",
-    "port": 97.3271,
-    "spy": 85.5995
+    "port": 97.1616,
+    "spy": 85.6889
   },
   {
     "date": "2008-06-27",
-    "port": 97.3452,
-    "spy": 85.1323
+    "port": 97.1807,
+    "spy": 85.2212
   },
   {
     "date": "2008-06-30",
-    "port": 97.4721,
-    "spy": 85.4327
+    "port": 97.3102,
+    "spy": 85.5219
   },
   {
     "date": "2008-07-01",
-    "port": 97.4784,
-    "spy": 85.6997
+    "port": 97.3163,
+    "spy": 85.7891
   },
   {
     "date": "2008-07-02",
-    "port": 96.518,
-    "spy": 84.2311
+    "port": 96.3589,
+    "spy": 84.319
   },
   {
     "date": "2008-07-03",
-    "port": 96.3037,
-    "spy": 84.3179
+    "port": 96.1464,
+    "spy": 84.4059
   },
   {
     "date": "2008-07-07",
-    "port": 95.5805,
-    "spy": 83.4567
+    "port": 95.4251,
+    "spy": 83.5438
   },
   {
     "date": "2008-07-08",
-    "port": 96.6249,
-    "spy": 84.9387
+    "port": 96.4672,
+    "spy": 85.0273
   },
   {
     "date": "2008-07-09",
-    "port": 95.6412,
-    "spy": 83.3032
+    "port": 95.4854,
+    "spy": 83.3902
   },
   {
     "date": "2008-07-10",
-    "port": 96.1455,
-    "spy": 83.6437
+    "port": 95.9875,
+    "spy": 83.731
   },
   {
     "date": "2008-07-11",
-    "port": 95.2742,
-    "spy": 82.669
+    "port": 95.112,
+    "spy": 82.7553
   },
   {
     "date": "2008-07-14",
-    "port": 94.9028,
-    "spy": 81.9214
+    "port": 94.7432,
+    "spy": 82.0069
   },
   {
     "date": "2008-07-15",
-    "port": 93.7462,
-    "spy": 80.7665
+    "port": 93.5876,
+    "spy": 80.8508
   },
   {
     "date": "2008-07-16",
-    "port": 94.5224,
-    "spy": 82.7491
+    "port": 94.3587,
+    "spy": 82.8355
   },
   {
     "date": "2008-07-17",
-    "port": 94.7335,
-    "spy": 83.5769
+    "port": 94.5679,
+    "spy": 83.6641
   },
   {
     "date": "2008-07-18",
-    "port": 94.6657,
-    "spy": 84.0976
+    "port": 94.5013,
+    "spy": 84.1854
   },
   {
     "date": "2008-07-21",
-    "port": 94.9462,
-    "spy": 84.1443
+    "port": 94.7803,
+    "spy": 84.2321
   },
   {
     "date": "2008-07-22",
-    "port": 95.3242,
-    "spy": 85.0989
+    "port": 95.1551,
+    "spy": 85.1877
   },
   {
     "date": "2008-07-23",
-    "port": 95.2186,
-    "spy": 85.5595
+    "port": 95.0504,
+    "spy": 85.6488
   },
   {
     "date": "2008-07-24",
-    "port": 94.1894,
-    "spy": 83.7838
+    "port": 94.0245,
+    "spy": 83.8713
   },
   {
     "date": "2008-07-25",
-    "port": 93.9658,
-    "spy": 83.7638
+    "port": 93.7975,
+    "spy": 83.8512
   },
   {
     "date": "2008-07-28",
-    "port": 93.4704,
-    "spy": 82.5355
+    "port": 93.3041,
+    "spy": 82.6217
   },
   {
     "date": "2008-07-29",
-    "port": 94.4812,
-    "spy": 84.2978
+    "port": 94.3119,
+    "spy": 84.3858
   },
   {
     "date": "2008-07-30",
-    "port": 95.5611,
-    "spy": 85.7998
+    "port": 95.3923,
+    "spy": 85.8894
   },
   {
     "date": "2008-07-31",
-    "port": 95.1281,
-    "spy": 84.665
+    "port": 94.9596,
+    "spy": 84.7533
   },
   {
     "date": "2008-08-01",
-    "port": 94.8854,
-    "spy": 84.2178
+    "port": 94.7156,
+    "spy": 84.3057
   },
   {
     "date": "2008-08-04",
-    "port": 93.8594,
-    "spy": 83.4367
+    "port": 93.6923,
+    "spy": 83.5238
   },
   {
     "date": "2008-08-05",
-    "port": 94.885,
-    "spy": 85.6863
+    "port": 94.7163,
+    "spy": 85.7758
   },
   {
     "date": "2008-08-06",
-    "port": 95.2021,
-    "spy": 86.0668
+    "port": 95.0321,
+    "spy": 86.1567
   },
   {
     "date": "2008-08-07",
-    "port": 94.5763,
-    "spy": 84.7851
+    "port": 94.4102,
+    "spy": 84.8736
   },
   {
     "date": "2008-08-08",
-    "port": 96.1777,
-    "spy": 86.3605
+    "port": 96.0064,
+    "spy": 86.4507
   },
   {
     "date": "2008-08-11",
-    "port": 96.6742,
-    "spy": 87.2551
+    "port": 96.498,
+    "spy": 87.3461
   },
   {
     "date": "2008-08-12",
-    "port": 96.3765,
-    "spy": 86.3472
+    "port": 96.2008,
+    "spy": 86.4373
   },
   {
     "date": "2008-08-13",
-    "port": 95.5897,
-    "spy": 85.8265
+    "port": 95.4135,
+    "spy": 85.9161
   },
   {
     "date": "2008-08-14",
-    "port": 96.2215,
-    "spy": 86.474
+    "port": 96.0448,
+    "spy": 86.5643
   },
   {
     "date": "2008-08-15",
-    "port": 97.0732,
-    "spy": 86.8946
+    "port": 96.896,
+    "spy": 86.9853
   },
   {
     "date": "2008-08-18",
-    "port": 96.1018,
-    "spy": 85.7064
+    "port": 95.9273,
+    "spy": 85.7958
   },
   {
     "date": "2008-08-19",
-    "port": 95.1838,
-    "spy": 84.7718
+    "port": 95.0102,
+    "spy": 84.8603
   },
   {
     "date": "2008-08-20",
-    "port": 95.409,
-    "spy": 85.1657
+    "port": 95.2359,
+    "spy": 85.2545
   },
   {
     "date": "2008-08-21",
-    "port": 94.9585,
-    "spy": 85.3125
+    "port": 94.7882,
+    "spy": 85.4016
   },
   {
     "date": "2008-08-22",
-    "port": 96.0183,
-    "spy": 86.5475
+    "port": 95.845,
+    "spy": 86.6378
   },
   {
     "date": "2008-08-25",
-    "port": 95.0661,
-    "spy": 84.7918
+    "port": 94.8954,
+    "spy": 84.8803
   },
   {
     "date": "2008-08-26",
-    "port": 95.2883,
-    "spy": 85.0388
+    "port": 95.1165,
+    "spy": 85.1276
   },
   {
     "date": "2008-08-27",
-    "port": 95.9791,
-    "spy": 85.8666
+    "port": 95.8057,
+    "spy": 85.9562
   },
   {
     "date": "2008-08-28",
-    "port": 96.8873,
-    "spy": 86.908
+    "port": 96.7111,
+    "spy": 86.9987
   },
   {
     "date": "2008-08-29",
-    "port": 96.0897,
-    "spy": 85.9734
+    "port": 95.9133,
+    "spy": 86.0631
   },
   {
     "date": "2008-09-02",
-    "port": 96.2793,
-    "spy": 85.4393
+    "port": 96.1013,
+    "spy": 85.5285
   },
   {
     "date": "2008-09-03",
-    "port": 96.5241,
-    "spy": 85.3659
+    "port": 96.3438,
+    "spy": 85.455
   },
   {
     "date": "2008-09-04",
-    "port": 95.0066,
-    "spy": 82.7959
+    "port": 94.8282,
+    "spy": 82.8823
   },
   {
     "date": "2008-09-05",
-    "port": 95.504,
-    "spy": 83.0562
+    "port": 95.3234,
+    "spy": 83.1429
   },
   {
     "date": "2008-09-08",
-    "port": 97.0033,
-    "spy": 84.7718
+    "port": 96.8202,
+    "spy": 84.8603
   },
   {
     "date": "2008-09-09",
-    "port": 95.6021,
-    "spy": 82.2551
+    "port": 95.4217,
+    "spy": 82.341
   },
   {
     "date": "2008-09-10",
-    "port": 95.9642,
-    "spy": 82.5889
+    "port": 95.7796,
+    "spy": 82.6751
   },
   {
     "date": "2008-09-11",
-    "port": 96.6987,
-    "spy": 83.7838
+    "port": 96.5146,
+    "spy": 83.8713
   },
   {
     "date": "2008-09-12",
-    "port": 96.1347,
-    "spy": 84.171
+    "port": 95.9512,
+    "spy": 84.2588
   },
   {
     "date": "2008-09-15",
-    "port": 94.3734,
-    "spy": 80.1657
+    "port": 94.1945,
+    "spy": 80.2494
   },
   {
     "date": "2008-09-16",
-    "port": 95.7857,
-    "spy": 81.5075
+    "port": 95.6017,
+    "spy": 81.5926
   },
   {
     "date": "2008-09-17",
-    "port": 92.6491,
-    "spy": 77.8427
+    "port": 92.4709,
+    "spy": 77.9239
   },
   {
     "date": "2008-09-18",
-    "port": 94.4593,
-    "spy": 80.1524
+    "port": 94.2701,
+    "spy": 80.236
   },
   {
     "date": "2008-09-19",
-    "port": 95.6388,
-    "spy": 83.3355
+    "port": 95.4434,
+    "spy": 83.4225
   },
   {
     "date": "2008-09-22",
-    "port": 93.3241,
-    "spy": 81.4489
+    "port": 93.1379,
+    "spy": 81.5339
   },
   {
     "date": "2008-09-23",
-    "port": 92.0698,
-    "spy": 79.5958
+    "port": 91.8824,
+    "spy": 79.6789
   },
   {
     "date": "2008-09-24",
-    "port": 92.2979,
-    "spy": 79.8509
+    "port": 92.1144,
+    "spy": 79.9343
   },
   {
     "date": "2008-09-25",
-    "port": 93.0903,
-    "spy": 81.0997
+    "port": 92.9058,
+    "spy": 81.1844
   },
   {
     "date": "2008-09-26",
-    "port": 93.3303,
-    "spy": 81.14
+    "port": 93.1464,
+    "spy": 81.2247
   },
   {
     "date": "2008-09-29",
-    "port": 90.3535,
-    "spy": 74.7818
+    "port": 90.1724,
+    "spy": 74.8598
   },
   {
     "date": "2008-09-30",
-    "port": 92.2246,
-    "spy": 77.8769
+    "port": 92.0394,
+    "spy": 77.9582
   },
   {
     "date": "2008-10-01",
-    "port": 92.6507,
-    "spy": 77.924
+    "port": 92.4674,
+    "spy": 78.0053
   },
   {
     "date": "2008-10-02",
-    "port": 91.3407,
-    "spy": 75.0973
+    "port": 91.1604,
+    "spy": 75.1757
   },
   {
     "date": "2008-10-03",
-    "port": 90.7217,
-    "spy": 74.0835
+    "port": 90.545,
+    "spy": 74.1608
   },
   {
     "date": "2008-10-06",
-    "port": 89.8298,
-    "spy": 70.3101
+    "port": 89.6497,
+    "spy": 70.3835
   },
   {
     "date": "2008-10-07",
-    "port": 86.8392,
-    "spy": 67.1612
+    "port": 86.8256,
+    "spy": 67.2313
   },
   {
     "date": "2008-10-08",
-    "port": 85.0483,
-    "spy": 65.4693
+    "port": 85.0134,
+    "spy": 65.5376
   },
   {
     "date": "2008-10-09",
-    "port": 80.9329,
-    "spy": 60.897
+    "port": 80.8417,
+    "spy": 60.9605
   },
   {
     "date": "2008-10-10",
-    "port": 80.9608,
-    "spy": 59.4199
+    "port": 80.8506,
+    "spy": 59.4819
   },
   {
     "date": "2008-10-13",
-    "port": 86.5132,
-    "spy": 68.0475
+    "port": 86.4844,
+    "spy": 68.1185
   },
   {
     "date": "2008-10-14",
-    "port": 85.2601,
-    "spy": 67.0404
+    "port": 85.221,
+    "spy": 67.1103
   },
   {
     "date": "2008-10-15",
-    "port": 81.2119,
-    "spy": 60.4404
+    "port": 81.0933,
+    "spy": 60.5035
   },
   {
     "date": "2008-10-16",
-    "port": 83.3125,
-    "spy": 62.9582
+    "port": 83.2211,
+    "spy": 63.0239
   },
   {
     "date": "2008-10-17",
-    "port": 82.5224,
-    "spy": 62.5822
+    "port": 82.4257,
+    "spy": 62.6475
   },
   {
     "date": "2008-10-20",
-    "port": 85.3091,
-    "spy": 66.3421
+    "port": 85.2434,
+    "spy": 66.4114
   },
   {
     "date": "2008-10-21",
-    "port": 84.404,
-    "spy": 64.3614
+    "port": 84.3081,
+    "spy": 64.4286
   },
   {
     "date": "2008-10-22",
-    "port": 83.1177,
-    "spy": 60.8567
+    "port": 82.9696,
+    "spy": 60.9202
   },
   {
     "date": "2008-10-23",
-    "port": 83.6846,
-    "spy": 61.5617
+    "port": 83.5314,
+    "spy": 61.6259
   },
   {
     "date": "2008-10-24",
-    "port": 81.6471,
-    "spy": 58.4396
+    "port": 81.452,
+    "spy": 58.5006
   },
   {
     "date": "2008-10-27",
-    "port": 79.721,
-    "spy": 56.3649
+    "port": 79.6535,
+    "spy": 56.4238
   },
   {
     "date": "2008-10-28",
-    "port": 84.123,
-    "spy": 62.9515
+    "port": 84.1065,
+    "spy": 63.0172
   },
   {
     "date": "2008-10-29",
-    "port": 83.2001,
-    "spy": 62.4949
+    "port": 83.1958,
+    "spy": 62.5602
   },
   {
     "date": "2008-10-30",
-    "port": 84.943,
-    "spy": 64.6569
+    "port": 84.9533,
+    "spy": 64.7244
   },
   {
     "date": "2008-10-31",
-    "port": 85.511,
-    "spy": 65.0127
+    "port": 85.5245,
+    "spy": 65.0806
   },
   {
     "date": "2008-11-03",
-    "port": 85.7776,
-    "spy": 65.2007
+    "port": 85.792,
+    "spy": 65.2688
   },
   {
     "date": "2008-11-04",
-    "port": 87.5517,
-    "spy": 67.4164
+    "port": 87.5925,
+    "spy": 67.4867
   },
   {
     "date": "2008-11-05",
-    "port": 85.7748,
-    "spy": 64.583
+    "port": 85.7841,
+    "spy": 64.6504
   },
   {
     "date": "2008-11-06",
-    "port": 83.1478,
-    "spy": 61.0044
+    "port": 83.12,
+    "spy": 61.0681
   },
   {
     "date": "2008-11-07",
-    "port": 84.4335,
-    "spy": 63.0186
+    "port": 84.4181,
+    "spy": 63.0844
   },
   {
     "date": "2008-11-10",
-    "port": 83.5758,
-    "spy": 62.1928
+    "port": 83.5562,
+    "spy": 62.2577
   },
   {
     "date": "2008-11-11",
-    "port": 82.4629,
-    "spy": 60.2726
+    "port": 82.4234,
+    "spy": 60.3355
   },
   {
     "date": "2008-11-12",
-    "port": 80.609,
-    "spy": 57.6205
+    "port": 80.5392,
+    "spy": 57.6806
   },
   {
     "date": "2008-11-13",
-    "port": 82.9819,
-    "spy": 61.2125
+    "port": 82.9431,
+    "spy": 61.2764
   },
   {
     "date": "2008-11-14",
-    "port": 80.5663,
-    "spy": 58.1576
+    "port": 80.5079,
+    "spy": 58.2183
   },
   {
     "date": "2008-11-17",
-    "port": 80.1142,
-    "spy": 57.3855
+    "port": 80.0474,
+    "spy": 57.4454
   },
   {
     "date": "2008-11-18",
-    "port": 81.1998,
-    "spy": 58.4665
+    "port": 81.1399,
+    "spy": 58.5275
   },
   {
     "date": "2008-11-19",
-    "port": 78.6638,
-    "spy": 54.72
+    "port": 78.5752,
+    "spy": 54.7771
   },
   {
     "date": "2008-11-20",
-    "port": 76.7583,
-    "spy": 50.6579
+    "port": 76.6428,
+    "spy": 50.7108
   },
   {
     "date": "2008-11-21",
-    "port": 78.6946,
-    "spy": 53.3906
+    "port": 78.5992,
+    "spy": 53.4463
   },
   {
     "date": "2008-11-24",
-    "port": 80.9824,
-    "spy": 57.0901
+    "port": 80.928,
+    "spy": 57.1497
   },
   {
     "date": "2008-11-25",
-    "port": 82.0952,
-    "spy": 57.5131
+    "port": 82.0534,
+    "spy": 57.5731
   },
   {
     "date": "2008-11-26",
-    "port": 84.241,
-    "spy": 59.7354
+    "port": 84.2218,
+    "spy": 59.7978
   },
   {
     "date": "2008-11-28",
-    "port": 85.3631,
-    "spy": 60.4874
+    "port": 85.3519,
+    "spy": 60.5506
   },
   {
     "date": "2008-12-01",
-    "port": 81.8435,
-    "spy": 55.1295
+    "port": 81.7812,
+    "spy": 55.1871
   },
   {
     "date": "2008-12-02",
-    "port": 84.0494,
-    "spy": 57.2512
+    "port": 84.0078,
+    "spy": 57.311
   },
   {
     "date": "2008-12-03",
-    "port": 85.5813,
-    "spy": 58.6276
+    "port": 85.5511,
+    "spy": 58.6888
   },
   {
     "date": "2008-12-04",
-    "port": 85.1655,
-    "spy": 57.2713
+    "port": 85.1217,
+    "spy": 57.3311
   },
   {
     "date": "2008-12-05",
-    "port": 86.752,
-    "spy": 59.0372
+    "port": 86.7143,
+    "spy": 59.0988
   },
   {
     "date": "2008-12-08",
-    "port": 88.022,
-    "spy": 61.0984
+    "port": 88.0142,
+    "spy": 61.1622
   },
   {
     "date": "2008-12-09",
-    "port": 87.8104,
-    "spy": 60.0913
+    "port": 87.7909,
+    "spy": 60.154
   },
   {
     "date": "2008-12-10",
-    "port": 87.8261,
-    "spy": 60.5009
+    "port": 87.8186,
+    "spy": 60.564
   },
   {
     "date": "2008-12-11",
-    "port": 86.0873,
-    "spy": 59.0439
+    "port": 86.0681,
+    "spy": 59.1055
   },
   {
     "date": "2008-12-12",
-    "port": 86.9966,
-    "spy": 59.7489
+    "port": 86.9861,
+    "spy": 59.8112
   },
   {
     "date": "2008-12-15",
-    "port": 86.2255,
-    "spy": 58.9163
+    "port": 86.2107,
+    "spy": 58.9778
   },
   {
     "date": "2008-12-16",
-    "port": 89.4586,
-    "spy": 61.6892
+    "port": 89.4813,
+    "spy": 61.7536
   },
   {
     "date": "2008-12-17",
-    "port": 89.8779,
-    "spy": 61.0917
+    "port": 89.8982,
+    "spy": 61.1554
   },
   {
     "date": "2008-12-18",
-    "port": 89.7227,
-    "spy": 59.9503
+    "port": 89.7426,
+    "spy": 60.0129
   },
   {
     "date": "2008-12-19",
-    "port": 89.944,
-    "spy": 59.6924
+    "port": 89.9635,
+    "spy": 59.7547
   },
   {
     "date": "2008-12-22",
-    "port": 88.7311,
-    "spy": 58.9275
+    "port": 88.7499,
+    "spy": 58.989
   },
   {
     "date": "2008-12-23",
-    "port": 88.0594,
-    "spy": 58.3184
+    "port": 88.0777,
+    "spy": 58.3793
   },
   {
     "date": "2008-12-24",
-    "port": 88.1712,
-    "spy": 58.6568
+    "port": 88.1892,
+    "spy": 58.718
   },
   {
     "date": "2008-12-26",
-    "port": 88.3937,
-    "spy": 58.9953
+    "port": 88.4113,
+    "spy": 59.0568
   },
   {
     "date": "2008-12-29",
-    "port": 88.2662,
-    "spy": 58.826
+    "port": 88.2834,
+    "spy": 58.8874
   },
   {
     "date": "2008-12-30",
-    "port": 89.8039,
-    "spy": 60.2203
+    "port": 89.821,
+    "spy": 60.2832
   },
   {
     "date": "2008-12-31",
-    "port": 89.811,
-    "spy": 61.0799
+    "port": 89.8277,
+    "spy": 61.1437
   },
   {
     "date": "2009-01-02",
-    "port": 90.3599,
-    "spy": 62.921
+    "port": 90.3764,
+    "spy": 62.9867
   },
   {
     "date": "2009-01-05",
-    "port": 89.485,
-    "spy": 62.8466
+    "port": 89.5009,
+    "spy": 62.9122
   },
   {
     "date": "2009-01-06",
-    "port": 89.2598,
-    "spy": 63.2662
+    "port": 89.2753,
+    "spy": 63.3323
   },
   {
     "date": "2009-01-07",
-    "port": 88.0088,
-    "spy": 61.371
+    "port": 88.0237,
+    "spy": 61.4351
   },
   {
     "date": "2009-01-08",
-    "port": 88.5575,
-    "spy": 61.6215
+    "port": 88.5721,
+    "spy": 61.6858
   },
   {
     "date": "2009-01-09",
-    "port": 86.9107,
-    "spy": 60.3016
+    "port": 86.9247,
+    "spy": 60.3645
   },
   {
     "date": "2009-01-12",
-    "port": 86.4207,
-    "spy": 58.8531
+    "port": 86.4342,
+    "spy": 58.9145
   },
   {
     "date": "2009-01-13",
-    "port": 86.563,
-    "spy": 58.9614
+    "port": 86.5762,
+    "spy": 59.023
   },
   {
     "date": "2009-01-14",
-    "port": 85.2407,
-    "spy": 57.1068
+    "port": 85.2534,
+    "spy": 57.1664
   },
   {
     "date": "2009-01-15",
-    "port": 85.3337,
-    "spy": 57.1271
+    "port": 85.346,
+    "spy": 57.1867
   },
   {
     "date": "2009-01-16",
-    "port": 85.1073,
-    "spy": 57.5738
+    "port": 85.1193,
+    "spy": 57.6339
   },
   {
     "date": "2009-01-20",
-    "port": 82.3913,
-    "spy": 54.5347
+    "port": 82.4026,
+    "spy": 54.5916
   },
   {
     "date": "2009-01-21",
-    "port": 83.5666,
-    "spy": 56.8902
+    "port": 83.5777,
+    "spy": 56.9496
   },
   {
     "date": "2009-01-22",
-    "port": 82.2099,
-    "spy": 56.0103
+    "port": 82.2205,
+    "spy": 56.0687
   },
   {
     "date": "2009-01-23",
-    "port": 82.1436,
-    "spy": 56.2539
+    "port": 82.1538,
+    "spy": 56.3126
   },
   {
     "date": "2009-01-26",
-    "port": 82.1523,
-    "spy": 56.6398
+    "port": 82.1622,
+    "spy": 56.6989
   },
   {
     "date": "2009-01-27",
-    "port": 83.6275,
-    "spy": 57.2151
+    "port": 83.6372,
+    "spy": 57.2748
   },
   {
     "date": "2009-01-28",
-    "port": 84.4953,
-    "spy": 59.1509
+    "port": 84.5047,
+    "spy": 59.2126
   },
   {
     "date": "2009-01-29",
-    "port": 82.1167,
-    "spy": 57.2286
+    "port": 82.1256,
+    "spy": 57.2884
   },
   {
     "date": "2009-01-30",
-    "port": 80.9508,
-    "spy": 56.0644
+    "port": 80.9593,
+    "spy": 56.1229
   },
   {
     "date": "2009-02-02",
-    "port": 81.5381,
-    "spy": 55.8952
+    "port": 81.5463,
+    "spy": 55.9535
   },
   {
     "date": "2009-02-03",
-    "port": 81.5166,
-    "spy": 56.6804
+    "port": 81.5245,
+    "spy": 56.7395
   },
   {
     "date": "2009-02-04",
-    "port": 81.0706,
-    "spy": 56.4028
+    "port": 81.0781,
+    "spy": 56.4617
   },
   {
     "date": "2009-02-05",
-    "port": 81.6387,
-    "spy": 57.2421
+    "port": 81.6458,
+    "spy": 57.3019
   },
   {
     "date": "2009-02-06",
-    "port": 82.8889,
-    "spy": 58.8734
+    "port": 82.8957,
+    "spy": 58.9349
   },
   {
     "date": "2009-02-09",
-    "port": 82.8514,
-    "spy": 58.9546
+    "port": 82.8578,
+    "spy": 59.0162
   },
   {
     "date": "2009-02-10",
-    "port": 81.3599,
-    "spy": 56.2539
+    "port": 81.366,
+    "spy": 56.3126
   },
   {
     "date": "2009-02-11",
-    "port": 82.1149,
-    "spy": 56.5856
+    "port": 82.1207,
+    "spy": 56.6447
   },
   {
     "date": "2009-02-12",
-    "port": 81.991,
-    "spy": 56.6262
+    "port": 81.9965,
+    "spy": 56.6853
   },
   {
     "date": "2009-02-13",
-    "port": 80.7684,
-    "spy": 56.017
+    "port": 80.7736,
+    "spy": 56.0755
   },
   {
     "date": "2009-02-17",
-    "port": 79.991,
-    "spy": 53.621
+    "port": 79.9959,
+    "spy": 53.6769
   },
   {
     "date": "2009-02-18",
-    "port": 79.5807,
-    "spy": 53.4923
+    "port": 79.5854,
+    "spy": 53.5482
   },
   {
     "date": "2009-02-19",
-    "port": 78.428,
-    "spy": 52.917
+    "port": 78.4324,
+    "spy": 52.9722
   },
   {
     "date": "2009-02-20",
-    "port": 78.2684,
-    "spy": 52.4026
+    "port": 78.2724,
+    "spy": 52.4573
   },
   {
     "date": "2009-02-23",
-    "port": 76.8149,
-    "spy": 50.5277
+    "port": 76.8186,
+    "spy": 50.5804
   },
   {
     "date": "2009-02-24",
-    "port": 78.4158,
-    "spy": 52.4432
+    "port": 78.2016,
+    "spy": 52.498
   },
   {
     "date": "2009-02-25",
-    "port": 77.5283,
-    "spy": 52.0303
+    "port": 77.3301,
+    "spy": 52.0846
   },
   {
     "date": "2009-02-26",
-    "port": 76.4238,
-    "spy": 51.1842
+    "port": 76.2398,
+    "spy": 51.2377
   },
   {
     "date": "2009-02-27",
-    "port": 75.4417,
-    "spy": 50.0404
+    "port": 75.2801,
+    "spy": 50.0926
   },
   {
     "date": "2009-03-02",
-    "port": 74.3125,
-    "spy": 47.7864
+    "port": 74.1742,
+    "spy": 47.8363
   },
   {
     "date": "2009-03-03",
-    "port": 73.0894,
-    "spy": 47.4277
+    "port": 72.9755,
+    "spy": 47.4772
   },
   {
     "date": "2009-03-04",
-    "port": 73.8071,
-    "spy": 48.5513
+    "port": 73.668,
+    "spy": 48.602
   },
   {
     "date": "2009-03-05",
-    "port": 72.5548,
-    "spy": 46.5681
+    "port": 72.4497,
+    "spy": 46.6167
   },
   {
     "date": "2009-03-06",
-    "port": 72.417,
-    "spy": 46.6493
+    "port": 72.3101,
+    "spy": 46.698
   },
   {
     "date": "2009-03-09",
-    "port": 71.7516,
-    "spy": 46.101
+    "port": 71.6606,
+    "spy": 46.1491
   },
   {
     "date": "2009-03-10",
-    "port": 73.8643,
-    "spy": 48.8491
+    "port": 73.7234,
+    "spy": 48.9001
   },
   {
     "date": "2009-03-11",
-    "port": 74.3892,
-    "spy": 49.1672
+    "port": 74.2406,
+    "spy": 49.2186
   },
   {
     "date": "2009-03-12",
-    "port": 76.4024,
-    "spy": 51.103
+    "port": 76.2059,
+    "spy": 51.1564
   },
   {
     "date": "2009-03-13",
-    "port": 76.6605,
-    "spy": 51.5024
+    "port": 76.4585,
+    "spy": 51.5561
   },
   {
     "date": "2009-03-16",
-    "port": 75.8238,
-    "spy": 51.3467
+    "port": 75.6263,
+    "spy": 51.4003
   },
   {
     "date": "2009-03-17",
-    "port": 77.2639,
-    "spy": 52.917
+    "port": 77.0366,
+    "spy": 52.9722
   },
   {
     "date": "2009-03-18",
-    "port": 79.2223,
-    "spy": 54.1015
+    "port": 78.9454,
+    "spy": 54.158
   },
   {
     "date": "2009-03-19",
-    "port": 78.3142,
-    "spy": 53.4314
+    "port": 78.0374,
+    "spy": 53.4872
   },
   {
     "date": "2009-03-20",
-    "port": 77.1445,
-    "spy": 52.2937
+    "port": 76.8948,
+    "spy": 52.3483
   },
   {
     "date": "2009-03-23",
-    "port": 80.5106,
-    "spy": 56.0499
+    "port": 80.1911,
+    "spy": 56.1084
   },
   {
     "date": "2009-03-24",
-    "port": 79.5921,
-    "spy": 54.9455
+    "port": 79.297,
+    "spy": 55.0029
   },
   {
     "date": "2009-03-25",
-    "port": 79.9593,
-    "spy": 55.5249
+    "port": 79.6577,
+    "spy": 55.5829
   },
   {
     "date": "2009-03-26",
-    "port": 81.6438,
-    "spy": 56.6566
+    "port": 81.3094,
+    "spy": 56.7157
   },
   {
     "date": "2009-03-27",
-    "port": 80.8472,
-    "spy": 55.634
+    "port": 80.5371,
+    "spy": 55.6921
   },
   {
     "date": "2009-03-30",
-    "port": 79.1966,
-    "spy": 53.7116
+    "port": 78.9238,
+    "spy": 53.7677
   },
   {
     "date": "2009-03-31",
-    "port": 79.6285,
-    "spy": 54.2093
+    "port": 79.3329,
+    "spy": 54.2658
   },
   {
     "date": "2009-04-01",
-    "port": 80.9506,
-    "spy": 55.2591
+    "port": 80.632,
+    "spy": 55.3168
   },
   {
     "date": "2009-04-02",
-    "port": 82.1972,
-    "spy": 56.8747
+    "port": 81.8378,
+    "spy": 56.9341
   },
   {
     "date": "2009-04-03",
-    "port": 82.0476,
-    "spy": 57.4406
+    "port": 81.6805,
+    "spy": 57.5005
   },
   {
     "date": "2009-04-06",
-    "port": 81.3658,
-    "spy": 56.9906
+    "port": 81.0126,
+    "spy": 57.0501
   },
   {
     "date": "2009-04-07",
-    "port": 80.144,
-    "spy": 55.6613
+    "port": 79.8184,
+    "spy": 55.7194
   },
   {
     "date": "2009-04-08",
-    "port": 81.0618,
-    "spy": 56.2612
+    "port": 80.7164,
+    "spy": 56.3199
   },
   {
     "date": "2009-04-09",
-    "port": 83.1669,
-    "spy": 58.4972
+    "port": 82.778,
+    "spy": 58.5582
   },
   {
     "date": "2009-04-13",
-    "port": 83.6002,
-    "spy": 58.5108
+    "port": 83.2098,
+    "spy": 58.5719
   },
   {
     "date": "2009-04-14",
-    "port": 82.5007,
-    "spy": 57.5019
+    "port": 82.1289,
+    "spy": 57.5619
   },
   {
     "date": "2009-04-15",
-    "port": 83.1954,
-    "spy": 58.1155
+    "port": 82.8124,
+    "spy": 58.1761
   },
   {
     "date": "2009-04-16",
-    "port": 83.8001,
-    "spy": 58.9676
+    "port": 83.3952,
+    "spy": 59.0291
   },
   {
     "date": "2009-04-17",
-    "port": 83.9297,
-    "spy": 59.363
+    "port": 83.5177,
+    "spy": 59.4249
   },
   {
     "date": "2009-04-20",
-    "port": 81.7909,
-    "spy": 56.8747
+    "port": 81.4277,
+    "spy": 56.9341
   },
   {
     "date": "2009-04-21",
-    "port": 82.7873,
-    "spy": 57.9859
+    "port": 82.3964,
+    "spy": 58.0464
   },
   {
     "date": "2009-04-22",
-    "port": 82.3349,
-    "spy": 57.6314
+    "port": 81.948,
+    "spy": 57.6916
   },
   {
     "date": "2009-04-23",
-    "port": 82.5684,
-    "spy": 58.1972
+    "port": 82.178,
+    "spy": 58.258
   },
   {
     "date": "2009-04-24",
-    "port": 83.2964,
-    "spy": 59.0767
+    "port": 82.8907,
+    "spy": 59.1383
   },
   {
     "date": "2009-04-27",
-    "port": 82.7704,
-    "spy": 58.5176
+    "port": 82.3791,
+    "spy": 58.5787
   },
   {
     "date": "2009-04-28",
-    "port": 82.1843,
-    "spy": 58.3336
+    "port": 81.796,
+    "spy": 58.3945
   },
   {
     "date": "2009-04-29",
-    "port": 83.3458,
-    "spy": 59.5743
+    "port": 82.9312,
+    "spy": 59.6365
   },
   {
     "date": "2009-04-30",
-    "port": 83.1375,
-    "spy": 59.5947
+    "port": 82.7258,
+    "spy": 59.6569
   },
   {
     "date": "2009-05-01",
-    "port": 83.1355,
-    "spy": 59.9152
+    "port": 82.7212,
+    "spy": 59.9777
   },
   {
     "date": "2009-05-04",
-    "port": 85.4156,
-    "spy": 61.9534
+    "port": 84.9644,
+    "spy": 62.0181
   },
   {
     "date": "2009-05-05",
-    "port": 85.0795,
-    "spy": 61.7421
+    "port": 84.6207,
+    "spy": 61.8066
   },
   {
     "date": "2009-05-06",
-    "port": 85.987,
-    "spy": 62.8124
+    "port": 85.5481,
+    "spy": 62.8779
   },
   {
     "date": "2009-05-07",
-    "port": 84.4776,
-    "spy": 61.9398
+    "port": 83.9324,
+    "spy": 62.0044
   },
   {
     "date": "2009-05-08",
-    "port": 86.1027,
-    "spy": 63.385
+    "port": 85.6665,
+    "spy": 63.4512
   },
   {
     "date": "2009-05-11",
-    "port": 85.2945,
-    "spy": 62.1988
+    "port": 84.8158,
+    "spy": 62.2638
   },
   {
     "date": "2009-05-12",
-    "port": 85.1235,
-    "spy": 62.0148
+    "port": 84.5992,
+    "spy": 62.0795
   },
   {
     "date": "2009-05-13",
-    "port": 83.7293,
-    "spy": 60.4537
+    "port": 83.0981,
+    "spy": 60.5168
   },
   {
     "date": "2009-05-14",
-    "port": 84.4943,
-    "spy": 60.9718
+    "port": 83.9018,
+    "spy": 61.0354
   },
   {
     "date": "2009-05-15",
-    "port": 83.807,
-    "spy": 60.4741
+    "port": 83.2117,
+    "spy": 60.5373
   },
   {
     "date": "2009-05-18",
-    "port": 85.2296,
-    "spy": 62.192
+    "port": 84.7109,
+    "spy": 62.2569
   },
   {
     "date": "2009-05-19",
-    "port": 85.0772,
-    "spy": 62.1171
+    "port": 84.5288,
+    "spy": 62.1819
   },
   {
     "date": "2009-05-20",
-    "port": 85.0741,
-    "spy": 61.7012
+    "port": 84.4971,
+    "spy": 61.7656
   },
   {
     "date": "2009-05-21",
-    "port": 83.674,
-    "spy": 60.815
+    "port": 83.0155,
+    "spy": 60.8784
   },
   {
     "date": "2009-05-22",
-    "port": 83.3798,
-    "spy": 60.6854
+    "port": 82.6691,
+    "spy": 60.7488
   },
   {
     "date": "2009-05-26",
-    "port": 84.5665,
-    "spy": 62.2398
+    "port": 83.9579,
+    "spy": 62.3047
   },
   {
     "date": "2009-05-27",
-    "port": 83.1847,
-    "spy": 61.1286
+    "port": 82.4869,
+    "spy": 61.1924
   },
   {
     "date": "2009-05-28",
-    "port": 84.2856,
-    "spy": 61.9807
+    "port": 83.6088,
+    "spy": 62.0454
   },
   {
     "date": "2009-05-29",
-    "port": 86.0573,
-    "spy": 63.0782
+    "port": 85.4331,
+    "spy": 63.1441
   },
   {
     "date": "2009-06-01",
-    "port": 87.1408,
-    "spy": 64.6053
+    "port": 86.5482,
+    "spy": 64.6727
   },
   {
     "date": "2009-06-02",
-    "port": 87.4165,
-    "spy": 64.6598
+    "port": 86.8394,
+    "spy": 64.7273
   },
   {
     "date": "2009-06-03",
-    "port": 86.4972,
-    "spy": 63.8418
+    "port": 85.9557,
+    "spy": 63.9084
   },
   {
     "date": "2009-06-04",
-    "port": 87.0227,
-    "spy": 64.4417
+    "port": 86.454,
+    "spy": 64.5089
   },
   {
     "date": "2009-06-05",
-    "port": 86.6262,
-    "spy": 64.4553
+    "port": 86.0693,
+    "spy": 64.5226
   },
   {
     "date": "2009-06-08",
-    "port": 86.1808,
-    "spy": 64.1895
+    "port": 85.6092,
+    "spy": 64.2565
   },
   {
     "date": "2009-06-09",
-    "port": 86.7168,
-    "spy": 64.5167
+    "port": 86.1331,
+    "spy": 64.584
   },
   {
     "date": "2009-06-10",
-    "port": 86.1992,
-    "spy": 64.353
+    "port": 85.5704,
+    "spy": 64.4202
   },
   {
     "date": "2009-06-11",
-    "port": 87.0159,
-    "spy": 64.6394
+    "port": 86.3811,
+    "spy": 64.7068
   },
   {
     "date": "2009-06-12",
-    "port": 87.0714,
-    "spy": 64.8166
+    "port": 86.4737,
+    "spy": 64.8843
   },
   {
     "date": "2009-06-15",
-    "port": 85.6005,
-    "spy": 63.3305
+    "port": 84.9766,
+    "spy": 63.3966
   },
   {
     "date": "2009-06-16",
-    "port": 85.241,
-    "spy": 62.4715
+    "port": 84.5877,
+    "spy": 62.5367
   },
   {
     "date": "2009-06-17",
-    "port": 85.0943,
-    "spy": 62.4102
+    "port": 84.4308,
+    "spy": 62.4753
   },
   {
     "date": "2009-06-18",
-    "port": 85.0226,
-    "spy": 62.8669
+    "port": 84.3597,
+    "spy": 62.9325
   },
   {
     "date": "2009-06-19",
-    "port": 85.3356,
-    "spy": 63.0986
+    "port": 84.7381,
+    "spy": 63.1645
   },
   {
     "date": "2009-06-22",
-    "port": 83.4014,
-    "spy": 61.2065
+    "port": 82.7518,
+    "spy": 61.2704
   },
   {
     "date": "2009-06-23",
-    "port": 83.9405,
-    "spy": 61.2545
+    "port": 83.2518,
+    "spy": 61.3184
   },
   {
     "date": "2009-06-24",
-    "port": 84.13,
-    "spy": 61.7824
+    "port": 83.4691,
+    "spy": 61.8469
   },
   {
     "date": "2009-06-25",
-    "port": 85.9487,
-    "spy": 63.1261
+    "port": 85.3686,
+    "spy": 63.1919
   },
   {
     "date": "2009-06-26",
-    "port": 85.9703,
-    "spy": 62.9615
+    "port": 85.4268,
+    "spy": 63.0272
   },
   {
     "date": "2009-06-29",
-    "port": 86.4834,
-    "spy": 63.5511
+    "port": 85.9345,
+    "spy": 63.6174
   },
   {
     "date": "2009-06-30",
-    "port": 85.7344,
-    "spy": 63.0369
+    "port": 85.1984,
+    "spy": 63.1027
   },
   {
     "date": "2009-07-01",
-    "port": 86.172,
-    "spy": 63.2975
+    "port": 85.6821,
+    "spy": 63.3635
   },
   {
     "date": "2009-07-02",
-    "port": 84.3036,
-    "spy": 61.5699
+    "port": 83.7491,
+    "spy": 61.6341
   },
   {
     "date": "2009-07-06",
-    "port": 83.7918,
-    "spy": 61.563
+    "port": 83.2685,
+    "spy": 61.6273
   },
   {
     "date": "2009-07-07",
-    "port": 82.6596,
-    "spy": 60.3702
+    "port": 82.1298,
+    "spy": 60.4332
   },
   {
     "date": "2009-07-08",
-    "port": 82.96,
-    "spy": 60.329
+    "port": 82.4408,
+    "spy": 60.392
   },
   {
     "date": "2009-07-09",
-    "port": 82.83,
-    "spy": 60.4455
+    "port": 82.2905,
+    "spy": 60.5086
   },
   {
     "date": "2009-07-10",
-    "port": 82.94,
-    "spy": 60.3016
+    "port": 82.4243,
+    "spy": 60.3645
   },
   {
     "date": "2009-07-13",
-    "port": 84.0603,
-    "spy": 61.7687
+    "port": 83.6344,
+    "spy": 61.8331
   },
   {
     "date": "2009-07-14",
-    "port": 83.9842,
-    "spy": 62.1183
+    "port": 83.5608,
+    "spy": 62.1831
   },
   {
     "date": "2009-07-15",
-    "port": 85.3229,
-    "spy": 63.935
+    "port": 84.947,
+    "spy": 64.0017
   },
   {
     "date": "2009-07-16",
-    "port": 85.7961,
-    "spy": 63.8322
+    "port": 85.4401,
+    "spy": 63.8988
   },
   {
     "date": "2009-07-17",
-    "port": 85.8372,
-    "spy": 64.5315
+    "port": 85.4598,
+    "spy": 64.5988
   },
   {
     "date": "2009-07-20",
-    "port": 86.845,
-    "spy": 65.217
+    "port": 86.4604,
+    "spy": 65.2851
   },
   {
     "date": "2009-07-21",
-    "port": 87.584,
-    "spy": 65.5187
+    "port": 87.1995,
+    "spy": 65.5871
   },
   {
     "date": "2009-07-22",
-    "port": 87.5511,
-    "spy": 65.5049
+    "port": 87.1644,
+    "spy": 65.5733
   },
   {
     "date": "2009-07-23",
-    "port": 88.3088,
-    "spy": 66.9515
+    "port": 87.9076,
+    "spy": 67.0214
   },
   {
     "date": "2009-07-24",
-    "port": 88.8894,
-    "spy": 67.2257
+    "port": 88.4851,
+    "spy": 67.2959
   },
   {
     "date": "2009-07-27",
-    "port": 88.8054,
-    "spy": 67.4245
+    "port": 88.3987,
+    "spy": 67.4949
   },
   {
     "date": "2009-07-28",
-    "port": 88.7117,
-    "spy": 67.1092
+    "port": 88.3035,
+    "spy": 67.1792
   },
   {
     "date": "2009-07-29",
-    "port": 88.2907,
-    "spy": 66.9446
+    "port": 87.8828,
+    "spy": 67.0145
   },
   {
     "date": "2009-07-30",
-    "port": 89.6262,
-    "spy": 67.6439
+    "port": 89.2078,
+    "spy": 67.7145
   },
   {
     "date": "2009-07-31",
-    "port": 90.5066,
-    "spy": 67.7399
+    "port": 90.0865,
+    "spy": 67.8106
   },
   {
     "date": "2009-08-03",
-    "port": 91.2861,
-    "spy": 68.8573
+    "port": 90.8567,
+    "spy": 68.9292
   },
   {
     "date": "2009-08-04",
-    "port": 91.3841,
-    "spy": 69.0356
+    "port": 90.9508,
+    "spy": 69.1076
   },
   {
     "date": "2009-08-05",
-    "port": 90.8276,
-    "spy": 68.8367
+    "port": 90.3997,
+    "spy": 68.9086
   },
   {
     "date": "2009-08-06",
-    "port": 90.5276,
-    "spy": 68.4803
+    "port": 90.1049,
+    "spy": 68.5517
   },
   {
     "date": "2009-08-07",
-    "port": 91.1037,
-    "spy": 69.3784
+    "port": 90.6667,
+    "spy": 69.4508
   },
   {
     "date": "2009-08-10",
-    "port": 91.4981,
-    "spy": 69.2344
+    "port": 91.0593,
+    "spy": 69.3067
   },
   {
     "date": "2009-08-11",
-    "port": 90.9003,
-    "spy": 68.3706
+    "port": 90.4689,
+    "spy": 68.4419
   },
   {
     "date": "2009-08-12",
-    "port": 91.3527,
-    "spy": 69.1041
+    "port": 90.9132,
+    "spy": 69.1763
   },
   {
     "date": "2009-08-13",
-    "port": 92.3505,
-    "spy": 69.632
+    "port": 91.9054,
+    "spy": 69.7047
   },
   {
     "date": "2009-08-14",
-    "port": 91.6151,
-    "spy": 69.0973
+    "port": 91.1782,
+    "spy": 69.1694
   },
   {
     "date": "2009-08-17",
-    "port": 90.4628,
-    "spy": 67.3971
+    "port": 90.0402,
+    "spy": 67.4674
   },
   {
     "date": "2009-08-18",
-    "port": 90.9919,
-    "spy": 67.9318
+    "port": 90.5609,
+    "spy": 68.0027
   },
   {
     "date": "2009-08-19",
-    "port": 91.9554,
-    "spy": 68.5282
+    "port": 91.5194,
+    "spy": 68.5998
   },
   {
     "date": "2009-08-20",
-    "port": 92.6966,
-    "spy": 69.2344
+    "port": 92.2519,
+    "spy": 69.3067
   },
   {
     "date": "2009-08-21",
-    "port": 93.4312,
-    "spy": 70.5918
+    "port": 92.9747,
+    "spy": 70.6655
   },
   {
     "date": "2009-08-24",
-    "port": 93.8847,
-    "spy": 70.5849
+    "port": 93.426,
+    "spy": 70.6586
   },
   {
     "date": "2009-08-25",
-    "port": 94.0876,
-    "spy": 70.722
+    "port": 93.624,
+    "spy": 70.7958
   },
   {
     "date": "2009-08-26",
-    "port": 94.2002,
-    "spy": 70.7289
+    "port": 93.7356,
+    "spy": 70.8027
   },
   {
     "date": "2009-08-27",
-    "port": 94.3212,
-    "spy": 70.8866
+    "port": 93.8555,
+    "spy": 70.9606
   },
   {
     "date": "2009-08-28",
-    "port": 94.377,
-    "spy": 70.8729
+    "port": 93.9123,
+    "spy": 70.9468
   },
   {
     "date": "2009-08-31",
-    "port": 93.5566,
-    "spy": 70.2421
+    "port": 93.0996,
+    "spy": 70.3155
   },
   {
     "date": "2009-09-01",
-    "port": 91.97,
-    "spy": 68.6928
+    "port": 91.528,
+    "spy": 68.7645
   },
   {
     "date": "2009-09-02",
-    "port": 92.2902,
-    "spy": 68.4323
+    "port": 91.8499,
+    "spy": 68.5037
   },
   {
     "date": "2009-09-03",
-    "port": 92.6939,
-    "spy": 69.0013
+    "port": 92.2464,
+    "spy": 69.0733
   },
   {
     "date": "2009-09-04",
-    "port": 92.9883,
-    "spy": 69.968
+    "port": 92.5326,
+    "spy": 70.041
   },
   {
     "date": "2009-09-08",
-    "port": 93.6132,
-    "spy": 70.5712
+    "port": 93.1538,
+    "spy": 70.6449
   },
   {
     "date": "2009-09-09",
-    "port": 94.2024,
-    "spy": 71.1128
+    "port": 93.7331,
+    "spy": 71.187
   },
   {
     "date": "2009-09-10",
-    "port": 95.6375,
-    "spy": 71.8395
+    "port": 95.1571,
+    "spy": 71.9145
   },
   {
     "date": "2009-09-11",
-    "port": 95.6472,
-    "spy": 71.8258
+    "port": 95.1661,
+    "spy": 71.9008
   },
   {
     "date": "2009-09-14",
-    "port": 95.658,
-    "spy": 72.1754
+    "port": 95.172,
+    "spy": 72.2507
   },
   {
     "date": "2009-09-15",
-    "port": 95.7825,
-    "spy": 72.4771
+    "port": 95.2897,
+    "spy": 72.5527
   },
   {
     "date": "2009-09-16",
-    "port": 97.1979,
-    "spy": 73.574
+    "port": 96.6929,
+    "spy": 73.6507
   },
   {
     "date": "2009-09-17",
-    "port": 97.4646,
-    "spy": 73.4643
+    "port": 96.9605,
+    "spy": 73.5409
   },
   {
     "date": "2009-09-18",
-    "port": 97.1564,
-    "spy": 73.5111
+    "port": 96.6511,
+    "spy": 73.5878
   },
   {
     "date": "2009-09-21",
-    "port": 96.8064,
-    "spy": 73.3251
+    "port": 96.3027,
+    "spy": 73.4016
   },
   {
     "date": "2009-09-22",
-    "port": 97.6153,
-    "spy": 73.7522
+    "port": 97.1061,
+    "spy": 73.8292
   },
   {
     "date": "2009-09-23",
-    "port": 96.8176,
-    "spy": 73.1391
+    "port": 96.3138,
+    "spy": 73.2155
   },
   {
     "date": "2009-09-24",
-    "port": 95.818,
-    "spy": 72.3332
+    "port": 95.3237,
+    "spy": 72.4087
   },
   {
     "date": "2009-09-25",
-    "port": 95.9604,
-    "spy": 71.9475
+    "port": 95.4682,
+    "spy": 72.0226
   },
   {
     "date": "2009-09-28",
-    "port": 97.5138,
-    "spy": 73.2356
+    "port": 97.005,
+    "spy": 73.312
   },
   {
     "date": "2009-09-29",
-    "port": 97.2949,
-    "spy": 73.0152
+    "port": 96.7871,
+    "spy": 73.0914
   },
   {
     "date": "2009-09-30",
-    "port": 97.2468,
-    "spy": 72.7327
+    "port": 96.7474,
+    "spy": 72.8086
   },
   {
     "date": "2009-10-01",
-    "port": 95.9237,
-    "spy": 70.928
+    "port": 95.4434,
+    "spy": 71.0021
   },
   {
     "date": "2009-10-02",
-    "port": 95.3779,
-    "spy": 70.5974
+    "port": 94.9023,
+    "spy": 70.6711
   },
   {
     "date": "2009-10-05",
-    "port": 96.5597,
-    "spy": 71.6513
+    "port": 96.0722,
+    "spy": 71.7261
   },
   {
     "date": "2009-10-06",
-    "port": 97.1652,
-    "spy": 72.6776
+    "port": 96.6656,
+    "spy": 72.7535
   },
   {
     "date": "2009-10-07",
-    "port": 97.6667,
-    "spy": 72.8774
+    "port": 97.1641,
+    "spy": 72.9534
   },
   {
     "date": "2009-10-08",
-    "port": 97.866,
-    "spy": 73.4353
+    "port": 97.3564,
+    "spy": 73.512
   },
   {
     "date": "2009-10-09",
-    "port": 97.2995,
-    "spy": 73.8831
+    "port": 96.7851,
+    "spy": 73.9602
   },
   {
     "date": "2009-10-12",
-    "port": 97.3802,
-    "spy": 74.1724
+    "port": 96.864,
+    "spy": 74.2498
   },
   {
     "date": "2009-10-13",
-    "port": 97.4257,
-    "spy": 74.0208
+    "port": 96.9106,
+    "spy": 74.0981
   },
   {
     "date": "2009-10-14",
-    "port": 98.137,
-    "spy": 75.2952
+    "port": 97.6089,
+    "spy": 75.3737
   },
   {
     "date": "2009-10-15",
-    "port": 98.1101,
-    "spy": 75.5707
+    "port": 97.5817,
+    "spy": 75.6496
   },
   {
     "date": "2009-10-16",
-    "port": 97.7857,
-    "spy": 75.0059
+    "port": 97.2647,
+    "spy": 75.0841
   },
   {
     "date": "2009-10-19",
-    "port": 98.6368,
-    "spy": 75.6258
+    "port": 98.1076,
+    "spy": 75.7047
   },
   {
     "date": "2009-10-20",
-    "port": 98.4143,
-    "spy": 75.2263
+    "port": 97.8913,
+    "spy": 75.3048
   },
   {
     "date": "2009-10-21",
-    "port": 97.4356,
-    "spy": 74.5512
+    "port": 96.9211,
+    "spy": 74.629
   },
   {
     "date": "2009-10-22",
-    "port": 97.9237,
-    "spy": 75.3089
+    "port": 97.3995,
+    "spy": 75.3875
   },
   {
     "date": "2009-10-23",
-    "port": 96.7415,
-    "spy": 74.4479
+    "port": 96.2322,
+    "spy": 74.5256
   },
   {
     "date": "2009-10-26",
-    "port": 95.5347,
-    "spy": 73.642
+    "port": 95.036,
+    "spy": 73.7188
   },
   {
     "date": "2009-10-27",
-    "port": 95.6797,
-    "spy": 73.3044
+    "port": 95.186,
+    "spy": 73.3809
   },
   {
     "date": "2009-10-28",
-    "port": 94.4234,
-    "spy": 71.9199
+    "port": 93.9479,
+    "spy": 71.995
   },
   {
     "date": "2009-10-29",
-    "port": 95.4391,
-    "spy": 73.4629
+    "port": 94.9493,
+    "spy": 73.5396
   },
   {
     "date": "2009-10-30",
-    "port": 94.1245,
-    "spy": 71.3344
+    "port": 93.6543,
+    "spy": 71.4089
   },
   {
     "date": "2009-11-02",
-    "port": 94.1292,
-    "spy": 71.8579
+    "port": 93.6587,
+    "spy": 71.9329
   },
   {
     "date": "2009-11-03",
-    "port": 94.4951,
-    "spy": 72.0853
+    "port": 94.0195,
+    "spy": 72.1605
   },
   {
     "date": "2009-11-04",
-    "port": 94.2616,
-    "spy": 72.2712
+    "port": 93.7921,
+    "spy": 72.3467
   },
   {
     "date": "2009-11-05",
-    "port": 95.4364,
-    "spy": 73.6006
+    "port": 94.9478,
+    "spy": 73.6775
   },
   {
     "date": "2009-11-06",
-    "port": 95.3574,
-    "spy": 73.7935
+    "port": 94.8674,
+    "spy": 73.8705
   },
   {
     "date": "2009-11-09",
-    "port": 97.131,
-    "spy": 75.4742
+    "port": 96.6269,
+    "spy": 75.553
   },
   {
     "date": "2009-11-10",
-    "port": 96.9339,
-    "spy": 75.488
+    "port": 96.4337,
+    "spy": 75.5668
   },
   {
     "date": "2009-11-11",
-    "port": 97.5064,
-    "spy": 75.8737
+    "port": 96.9997,
+    "spy": 75.9529
   },
   {
     "date": "2009-11-12",
-    "port": 96.3776,
-    "spy": 75.1023
+    "port": 95.8815,
+    "spy": 75.1807
   },
   {
     "date": "2009-11-13",
-    "port": 96.9895,
-    "spy": 75.5087
+    "port": 96.4877,
+    "spy": 75.5875
   },
   {
     "date": "2009-11-16",
-    "port": 98.9145,
-    "spy": 76.6039
+    "port": 98.3977,
+    "spy": 76.6839
   },
   {
     "date": "2009-11-17",
-    "port": 99.2072,
-    "spy": 76.6934
+    "port": 98.6891,
+    "spy": 76.7735
   },
   {
     "date": "2009-11-18",
-    "port": 98.9505,
-    "spy": 76.6452
+    "port": 98.4341,
+    "spy": 76.7252
   },
   {
     "date": "2009-11-19",
-    "port": 97.8646,
-    "spy": 75.6464
+    "port": 97.361,
+    "spy": 75.7254
   },
   {
     "date": "2009-11-20",
-    "port": 97.6387,
-    "spy": 75.3778
+    "port": 97.1354,
+    "spy": 75.4565
   },
   {
     "date": "2009-11-23",
-    "port": 98.5256,
-    "spy": 76.3353
+    "port": 98.0129,
+    "spy": 76.415
   },
   {
     "date": "2009-11-24",
-    "port": 98.6351,
-    "spy": 76.4524
+    "port": 98.1227,
+    "spy": 76.5322
   },
   {
     "date": "2009-11-25",
-    "port": 99.4091,
-    "spy": 76.721
+    "port": 98.8972,
+    "spy": 76.8011
   },
   {
     "date": "2009-11-27",
-    "port": 98.1043,
-    "spy": 75.4742
+    "port": 97.6056,
+    "spy": 75.553
   },
   {
     "date": "2009-11-30",
-    "port": 98.5644,
-    "spy": 75.7291
+    "port": 98.0634,
+    "spy": 75.8081
   },
   {
     "date": "2009-12-01",
-    "port": 99.158,
-    "spy": 76.6659
+    "port": 98.6491,
+    "spy": 76.7459
   },
   {
     "date": "2009-12-02",
-    "port": 99.0785,
-    "spy": 76.6315
+    "port": 98.5637,
+    "spy": 76.7115
   },
   {
     "date": "2009-12-03",
-    "port": 98.0416,
-    "spy": 76.0322
+    "port": 97.5352,
+    "spy": 76.1116
   },
   {
     "date": "2009-12-04",
-    "port": 97.918,
-    "spy": 76.4662
+    "port": 97.3977,
+    "spy": 76.546
   },
   {
     "date": "2009-12-07",
-    "port": 97.9269,
-    "spy": 76.349
+    "port": 97.4056,
+    "spy": 76.4287
   },
   {
     "date": "2009-12-08",
-    "port": 97.1272,
-    "spy": 75.5018
+    "port": 96.6111,
+    "spy": 75.5806
   },
   {
     "date": "2009-12-09",
-    "port": 96.962,
-    "spy": 75.7842
+    "port": 96.4438,
+    "spy": 75.8633
   },
   {
     "date": "2009-12-10",
-    "port": 96.7877,
-    "spy": 76.2113
+    "port": 96.272,
+    "spy": 76.2909
   },
   {
     "date": "2009-12-11",
-    "port": 97.0512,
-    "spy": 76.5351
+    "port": 96.5293,
+    "spy": 76.6149
   },
   {
     "date": "2009-12-14",
-    "port": 97.7655,
-    "spy": 77.0586
+    "port": 97.2354,
+    "spy": 77.139
   },
   {
     "date": "2009-12-15",
-    "port": 97.2449,
-    "spy": 76.7004
+    "port": 96.7185,
+    "spy": 76.7804
   },
   {
     "date": "2009-12-16",
-    "port": 97.5487,
-    "spy": 76.8175
+    "port": 97.0176,
+    "spy": 76.8977
   },
   {
     "date": "2009-12-17",
-    "port": 97.0532,
-    "spy": 75.8944
+    "port": 96.5251,
+    "spy": 75.9736
   },
   {
     "date": "2009-12-18",
-    "port": 97.3436,
-    "spy": 76.3238
+    "port": 96.81,
+    "spy": 76.4035
   },
   {
     "date": "2009-12-21",
-    "port": 97.2008,
-    "spy": 77.0994
+    "port": 96.6604,
+    "spy": 77.1799
   },
   {
     "date": "2009-12-22",
-    "port": 97.2303,
-    "spy": 77.3764
+    "port": 96.6847,
+    "spy": 77.4572
   },
   {
     "date": "2009-12-23",
-    "port": 97.7522,
-    "spy": 77.5288
+    "port": 97.2027,
+    "spy": 77.6097
   },
   {
     "date": "2009-12-24",
-    "port": 97.7634,
-    "spy": 77.8959
+    "port": 97.2115,
+    "spy": 77.9772
   },
   {
     "date": "2009-12-28",
-    "port": 98.0076,
-    "spy": 78.0621
+    "port": 97.4571,
+    "spy": 78.1435
   },
   {
     "date": "2009-12-29",
-    "port": 98.0955,
-    "spy": 77.9512
+    "port": 97.544,
+    "spy": 78.0326
   },
   {
     "date": "2009-12-30",
-    "port": 98.3317,
-    "spy": 77.9235
+    "port": 97.779,
+    "spy": 78.0049
   },
   {
     "date": "2009-12-31",
-    "port": 97.4834,
-    "spy": 77.1756
+    "port": 96.9384,
+    "spy": 77.2561
   },
   {
     "date": "2010-01-04",
-    "port": 99.0145,
-    "spy": 78.4845
+    "port": 98.4547,
+    "spy": 78.5664
   },
   {
     "date": "2010-01-05",
-    "port": 99.4143,
-    "spy": 78.6922
+    "port": 98.8534,
+    "spy": 78.7744
   },
   {
     "date": "2010-01-06",
-    "port": 99.0898,
-    "spy": 78.7476
+    "port": 98.5314,
+    "spy": 78.8298
   },
   {
     "date": "2010-01-07",
-    "port": 99.4143,
-    "spy": 79.08
+    "port": 98.8486,
+    "spy": 79.1626
   },
   {
     "date": "2010-01-08",
-    "port": 99.6558,
-    "spy": 79.3432
+    "port": 99.0851,
+    "spy": 79.426
   },
   {
     "date": "2010-01-11",
-    "port": 99.3613,
-    "spy": 79.454
+    "port": 98.7913,
+    "spy": 79.537
   },
   {
     "date": "2010-01-12",
-    "port": 98.8161,
-    "spy": 78.713
+    "port": 98.2508,
+    "spy": 78.7952
   },
   {
     "date": "2010-01-13",
-    "port": 99.1105,
-    "spy": 79.3779
+    "port": 98.5389,
+    "spy": 79.4607
   },
   {
     "date": "2010-01-14",
-    "port": 99.7046,
-    "spy": 79.5925
+    "port": 99.1264,
+    "spy": 79.6756
   },
   {
     "date": "2010-01-15",
-    "port": 98.9922,
-    "spy": 78.6992
+    "port": 98.4212,
+    "spy": 78.7813
   },
   {
     "date": "2010-01-19",
-    "port": 99.8386,
-    "spy": 79.6826
+    "port": 99.2576,
+    "spy": 79.7657
   },
   {
     "date": "2010-01-20",
-    "port": 99.2595,
-    "spy": 78.8723
+    "port": 98.6845,
+    "spy": 78.9546
   },
   {
     "date": "2010-01-21",
-    "port": 98.0189,
-    "spy": 77.3557
+    "port": 97.4546,
+    "spy": 77.4364
   },
   {
     "date": "2010-01-22",
-    "port": 96.4414,
-    "spy": 75.6313
+    "port": 95.8902,
+    "spy": 75.7102
   },
   {
     "date": "2010-01-25",
-    "port": 96.6505,
-    "spy": 76.0191
+    "port": 96.0972,
+    "spy": 76.0984
   },
   {
     "date": "2010-01-26",
-    "port": 96.1842,
-    "spy": 75.7005
+    "port": 95.6343,
+    "spy": 75.7795
   },
   {
     "date": "2010-01-27",
-    "port": 96.2782,
-    "spy": 76.0606
+    "port": 95.7217,
+    "spy": 76.14
   },
   {
     "date": "2010-01-28",
-    "port": 95.4272,
-    "spy": 75.188
+    "port": 94.8812,
+    "spy": 75.2665
   },
   {
     "date": "2010-01-29",
-    "port": 94.9127,
-    "spy": 74.3708
+    "port": 94.3718,
+    "spy": 74.4484
   },
   {
     "date": "2010-02-01",
-    "port": 95.8024,
-    "spy": 75.5274
+    "port": 95.2529,
+    "spy": 75.6062
   },
   {
     "date": "2010-02-02",
-    "port": 96.8354,
-    "spy": 76.4415
+    "port": 96.2791,
+    "spy": 76.5213
   },
   {
     "date": "2010-02-03",
-    "port": 96.0311,
-    "spy": 76.0606
+    "port": 95.4798,
+    "spy": 76.14
   },
   {
     "date": "2010-02-04",
-    "port": 94.8619,
-    "spy": 73.7129
+    "port": 94.3326,
+    "spy": 73.7899
   },
   {
     "date": "2010-02-05",
-    "port": 95.144,
-    "spy": 73.8653
+    "port": 94.6113,
+    "spy": 73.9424
   },
   {
     "date": "2010-02-08",
-    "port": 94.6378,
-    "spy": 73.3321
+    "port": 94.1107,
+    "spy": 73.4086
   },
   {
     "date": "2010-02-09",
-    "port": 95.0197,
-    "spy": 74.2531
+    "port": 94.4815,
+    "spy": 74.3306
   },
   {
     "date": "2010-02-10",
-    "port": 94.6176,
-    "spy": 74.1077
+    "port": 94.0796,
+    "spy": 74.1851
   },
   {
     "date": "2010-02-11",
-    "port": 95.0885,
-    "spy": 74.8833
+    "port": 94.5403,
+    "spy": 74.9615
   },
   {
     "date": "2010-02-12",
-    "port": 95.3539,
-    "spy": 74.821
+    "port": 94.8014,
+    "spy": 74.8991
   },
   {
     "date": "2010-02-16",
-    "port": 96.1741,
-    "spy": 75.9983
+    "port": 95.6069,
+    "spy": 76.0776
   },
   {
     "date": "2010-02-17",
-    "port": 96.2225,
-    "spy": 76.3584
+    "port": 95.6527,
+    "spy": 76.4381
   },
   {
     "date": "2010-02-18",
-    "port": 96.4807,
-    "spy": 76.8086
+    "port": 95.9055,
+    "spy": 76.8887
   },
   {
     "date": "2010-02-19",
-    "port": 96.8127,
-    "spy": 76.9679
+    "port": 96.2319,
+    "spy": 77.0482
   },
   {
     "date": "2010-02-22",
-    "port": 96.6772,
-    "spy": 76.9817
+    "port": 96.0954,
+    "spy": 77.0621
   },
   {
     "date": "2010-02-23",
-    "port": 96.566,
-    "spy": 76.0468
+    "port": 95.9919,
+    "spy": 76.1262
   },
   {
     "date": "2010-02-24",
-    "port": 97.1552,
-    "spy": 76.7463
+    "port": 96.5742,
+    "spy": 76.8264
   },
   {
     "date": "2010-02-25",
-    "port": 97.3985,
-    "spy": 76.6424
+    "port": 96.816,
+    "spy": 76.7224
   },
   {
     "date": "2010-02-26",
-    "port": 97.373,
-    "spy": 76.6908
+    "port": 96.7905,
+    "spy": 76.7709
   },
   {
     "date": "2010-03-01",
-    "port": 98.2668,
-    "spy": 77.4872
+    "port": 97.6706,
+    "spy": 77.5681
   },
   {
     "date": "2010-03-02",
-    "port": 98.4152,
-    "spy": 77.7019
+    "port": 97.8135,
+    "spy": 77.783
   },
   {
     "date": "2010-03-03",
-    "port": 98.2966,
-    "spy": 77.7712
+    "port": 97.7177,
+    "spy": 77.8524
   },
   {
     "date": "2010-03-04",
-    "port": 98.7461,
-    "spy": 78.0066
+    "port": 98.1822,
+    "spy": 78.0881
   },
   {
     "date": "2010-03-05",
-    "port": 99.1862,
-    "spy": 79.1216
+    "port": 98.6819,
+    "spy": 79.2042
   },
   {
     "date": "2010-03-08",
-    "port": 99.0272,
-    "spy": 79.1355
+    "port": 98.5147,
+    "spy": 79.2181
   },
   {
     "date": "2010-03-09",
-    "port": 99.2414,
-    "spy": 79.2671
+    "port": 98.7269,
+    "spy": 79.3498
   },
   {
     "date": "2010-03-10",
-    "port": 99.3846,
-    "spy": 79.6202
+    "port": 98.8653,
+    "spy": 79.7033
   },
   {
     "date": "2010-03-11",
-    "port": 99.789,
-    "spy": 79.9527
+    "port": 99.2664,
+    "spy": 80.0361
   },
   {
     "date": "2010-03-12",
-    "port": 99.9262,
-    "spy": 79.9596
+    "port": 99.4021,
+    "spy": 80.0431
   },
   {
     "date": "2010-03-15",
-    "port": 99.9125,
-    "spy": 79.9804
+    "port": 99.39,
+    "spy": 80.0638
   },
   {
     "date": "2010-03-16",
-    "port": 100.6794,
-    "spy": 80.6175
+    "port": 100.1486,
+    "spy": 80.7016
   },
   {
     "date": "2010-03-17",
-    "port": 101.1719,
-    "spy": 81.0953
+    "port": 100.6341,
+    "spy": 81.18
   },
   {
     "date": "2010-03-18",
-    "port": 101.0594,
-    "spy": 81.0538
+    "port": 100.524,
+    "spy": 81.1384
   },
   {
     "date": "2010-03-19",
-    "port": 100.7029,
-    "spy": 80.6435
+    "port": 100.1735,
+    "spy": 80.7277
   },
   {
     "date": "2010-03-22",
-    "port": 101.1606,
-    "spy": 81.0746
+    "port": 100.6236,
+    "spy": 81.1593
   },
   {
     "date": "2010-03-23",
-    "port": 101.5375,
-    "spy": 81.6449
+    "port": 100.9947,
+    "spy": 81.7301
   },
   {
     "date": "2010-03-24",
-    "port": 100.4616,
-    "spy": 81.2485
+    "port": 99.9258,
+    "spy": 81.3333
   },
   {
     "date": "2010-03-25",
-    "port": 100.0917,
-    "spy": 81.1163
+    "port": 99.5611,
+    "spy": 81.201
   },
   {
     "date": "2010-03-26",
-    "port": 100.1542,
-    "spy": 81.0677
+    "port": 99.6223,
+    "spy": 81.1523
   },
   {
     "date": "2010-03-29",
-    "port": 100.4785,
-    "spy": 81.5823
+    "port": 99.9426,
+    "spy": 81.6674
   },
   {
     "date": "2010-03-30",
-    "port": 100.628,
-    "spy": 81.6379
+    "port": 100.09,
+    "spy": 81.7231
   },
   {
     "date": "2010-03-31",
-    "port": 100.5724,
-    "spy": 81.3597
+    "port": 100.0368,
+    "spy": 81.4447
   },
   {
     "date": "2010-04-01",
-    "port": 100.9323,
-    "spy": 81.9161
+    "port": 100.3902,
+    "spy": 82.0016
   },
   {
     "date": "2010-04-05",
-    "port": 101.2406,
-    "spy": 82.5836
+    "port": 100.6905,
+    "spy": 82.6698
   },
   {
     "date": "2010-04-06",
-    "port": 101.5231,
-    "spy": 82.7783
+    "port": 100.9691,
+    "spy": 82.8647
   },
   {
     "date": "2010-04-07",
-    "port": 101.5506,
-    "spy": 82.3055
+    "port": 100.9941,
+    "spy": 82.3914
   },
   {
     "date": "2010-04-08",
-    "port": 101.8197,
-    "spy": 82.5906
+    "port": 101.261,
+    "spy": 82.6768
   },
   {
     "date": "2010-04-09",
-    "port": 102.2384,
-    "spy": 83.133
+    "port": 101.6742,
+    "spy": 83.2198
   },
   {
     "date": "2010-04-12",
-    "port": 102.4113,
-    "spy": 83.2651
+    "port": 101.8421,
+    "spy": 83.352
   },
   {
     "date": "2010-04-13",
-    "port": 102.5163,
-    "spy": 83.3277
+    "port": 101.9453,
+    "spy": 83.4147
   },
   {
     "date": "2010-04-14",
-    "port": 103.1681,
-    "spy": 84.2734
+    "port": 102.5838,
+    "spy": 84.3614
   },
   {
     "date": "2010-04-15",
-    "port": 103.2995,
-    "spy": 84.3429
+    "port": 102.7122,
+    "spy": 84.431
   },
   {
     "date": "2010-04-16",
-    "port": 102.3287,
-    "spy": 83.0009
+    "port": 101.7502,
+    "spy": 83.0875
   },
   {
     "date": "2010-04-19",
-    "port": 102.5434,
-    "spy": 83.3138
+    "port": 101.9659,
+    "spy": 83.4007
   },
   {
     "date": "2010-04-20",
-    "port": 103.3291,
-    "spy": 84.0578
+    "port": 102.7409,
+    "spy": 84.1456
   },
   {
     "date": "2010-04-21",
-    "port": 103.6205,
-    "spy": 83.9048
+    "port": 103.0271,
+    "spy": 83.9924
   },
   {
     "date": "2010-04-22",
-    "port": 103.9189,
-    "spy": 84.1552
+    "port": 103.3183,
+    "spy": 84.243
   },
   {
     "date": "2010-04-23",
-    "port": 104.3935,
-    "spy": 84.7045
+    "port": 103.7859,
+    "spy": 84.7929
   },
   {
     "date": "2010-04-26",
-    "port": 104.2134,
-    "spy": 84.3846
+    "port": 103.6078,
+    "spy": 84.4727
   },
   {
     "date": "2010-04-27",
-    "port": 103.0099,
-    "spy": 82.3889
+    "port": 102.4209,
+    "spy": 82.4749
   },
   {
     "date": "2010-04-28",
-    "port": 103.2357,
-    "spy": 83.0148
+    "port": 102.6448,
+    "spy": 83.1014
   },
   {
     "date": "2010-04-29",
-    "port": 104.2139,
-    "spy": 84.0439
+    "port": 103.6074,
+    "spy": 84.1316
   },
   {
     "date": "2010-04-30",
-    "port": 103.1812,
-    "spy": 82.6184
+    "port": 102.591,
+    "spy": 82.7046
   },
   {
     "date": "2010-05-03",
-    "port": 104.2444,
-    "spy": 83.6893
+    "port": 103.6422,
+    "spy": 83.7766
   },
   {
     "date": "2010-05-04",
-    "port": 103.0361,
-    "spy": 81.7213
+    "port": 102.4526,
+    "spy": 81.8066
   },
   {
     "date": "2010-05-05",
-    "port": 102.6302,
-    "spy": 81.2346
+    "port": 102.0541,
+    "spy": 81.3194
   },
   {
     "date": "2010-05-06",
-    "port": 101.2532,
-    "spy": 78.5365
+    "port": 100.6957,
+    "spy": 78.6185
   },
   {
     "date": "2010-05-07",
-    "port": 99.5986,
-    "spy": 77.3682
+    "port": 99.0607,
+    "spy": 77.449
   },
   {
     "date": "2010-05-10",
-    "port": 102.016,
-    "spy": 80.7756
+    "port": 101.446,
+    "spy": 80.8599
   },
   {
     "date": "2010-05-11",
-    "port": 101.9268,
-    "spy": 80.5462
+    "port": 101.3548,
+    "spy": 80.6302
   },
   {
     "date": "2010-05-12",
-    "port": 102.8641,
-    "spy": 81.6727
+    "port": 102.2774,
+    "spy": 81.7579
   },
   {
     "date": "2010-05-13",
-    "port": 102.2996,
-    "spy": 80.6574
+    "port": 101.7194,
+    "spy": 80.7416
   },
   {
     "date": "2010-05-14",
-    "port": 101.6335,
-    "spy": 79.1971
+    "port": 101.0644,
+    "spy": 79.2798
   },
   {
     "date": "2010-05-17",
-    "port": 101.4889,
-    "spy": 79.2388
+    "port": 100.9191,
+    "spy": 79.3215
   },
   {
     "date": "2010-05-18",
-    "port": 101.0324,
-    "spy": 78.161
+    "port": 100.4715,
+    "spy": 78.2426
   },
   {
     "date": "2010-05-19",
-    "port": 100.4407,
-    "spy": 77.716
+    "port": 99.8843,
+    "spy": 77.7971
   },
   {
     "date": "2010-05-20",
-    "port": 98.2339,
-    "spy": 74.7815
+    "port": 97.7045,
+    "spy": 74.8595
   },
   {
     "date": "2010-05-21",
-    "port": 99.0898,
-    "spy": 75.8732
+    "port": 98.5483,
+    "spy": 75.9524
   },
   {
     "date": "2010-05-24",
-    "port": 98.2112,
-    "spy": 74.8996
+    "port": 97.6806,
+    "spy": 74.9778
   },
   {
     "date": "2010-05-25",
-    "port": 98.4318,
-    "spy": 74.9761
+    "port": 97.9,
+    "spy": 75.0544
   },
   {
     "date": "2010-05-26",
-    "port": 98.2079,
-    "spy": 74.5241
+    "port": 97.6776,
+    "spy": 74.6019
   },
   {
     "date": "2010-05-27",
-    "port": 99.8188,
-    "spy": 77.0206
+    "port": 99.2647,
+    "spy": 77.101
   },
   {
     "date": "2010-05-28",
-    "port": 99.2933,
-    "spy": 76.054
+    "port": 98.7487,
+    "spy": 76.1334
   },
   {
     "date": "2010-06-01",
-    "port": 98.1673,
-    "spy": 74.7745
+    "port": 97.6403,
+    "spy": 74.8525
   },
   {
     "date": "2010-06-02",
-    "port": 99.6867,
-    "spy": 76.7215
+    "port": 99.1437,
+    "spy": 76.8016
   },
   {
     "date": "2010-06-03",
-    "port": 99.8485,
-    "spy": 76.9858
+    "port": 99.303,
+    "spy": 77.0662
   },
   {
     "date": "2010-06-04",
-    "port": 98.3636,
-    "spy": 74.2807
+    "port": 97.8428,
+    "spy": 74.3583
   },
   {
     "date": "2010-06-07",
-    "port": 97.9119,
-    "spy": 73.3559
+    "port": 97.4046,
+    "spy": 73.4325
   },
   {
     "date": "2010-06-08",
-    "port": 98.1646,
-    "spy": 74.1417
+    "port": 97.6549,
+    "spy": 74.2191
   },
   {
     "date": "2010-06-09",
-    "port": 97.8012,
-    "spy": 73.7453
+    "port": 97.2927,
+    "spy": 73.8223
   },
   {
     "date": "2010-06-10",
-    "port": 98.8053,
-    "spy": 75.901
+    "port": 98.2759,
+    "spy": 75.9802
   },
   {
     "date": "2010-06-11",
-    "port": 99.5883,
-    "spy": 76.2695
+    "port": 99.0486,
+    "spy": 76.3491
   },
   {
     "date": "2010-06-14",
-    "port": 99.1848,
-    "spy": 76.1513
+    "port": 98.6426,
+    "spy": 76.2308
   },
   {
     "date": "2010-06-15",
-    "port": 100.3832,
-    "spy": 77.8829
+    "port": 99.8224,
+    "spy": 77.9641
   },
   {
     "date": "2010-06-16",
-    "port": 100.4967,
-    "spy": 77.855
+    "port": 99.9361,
+    "spy": 77.9363
   },
   {
     "date": "2010-06-17",
-    "port": 100.9055,
-    "spy": 77.9802
+    "port": 100.3438,
+    "spy": 78.0616
   },
   {
     "date": "2010-06-18",
-    "port": 100.9513,
-    "spy": 78.0647
+    "port": 100.388,
+    "spy": 78.1462
   },
   {
     "date": "2010-06-21",
-    "port": 100.4916,
-    "spy": 77.8411
+    "port": 99.9325,
+    "spy": 77.9224
   },
   {
     "date": "2010-06-22",
-    "port": 99.8675,
-    "spy": 76.5555
+    "port": 99.32,
+    "spy": 76.6354
   },
   {
     "date": "2010-06-23",
-    "port": 99.9873,
-    "spy": 76.318
+    "port": 99.4402,
+    "spy": 76.3977
   },
   {
     "date": "2010-06-24",
-    "port": 98.6693,
-    "spy": 75.0534
+    "port": 98.1357,
+    "spy": 75.1317
   },
   {
     "date": "2010-06-25",
-    "port": 99.2081,
-    "spy": 75.3678
+    "port": 98.664,
+    "spy": 75.4464
   },
   {
     "date": "2010-06-28",
-    "port": 99.3676,
-    "spy": 75.1302
+    "port": 98.8251,
+    "spy": 75.2086
   },
   {
     "date": "2010-06-29",
-    "port": 98.0425,
-    "spy": 72.8106
+    "port": 97.5258,
+    "spy": 72.8866
   },
   {
     "date": "2010-06-30",
-    "port": 97.4901,
-    "spy": 72.1189
+    "port": 96.9783,
+    "spy": 72.1942
   },
   {
     "date": "2010-07-01",
-    "port": 96.9191,
-    "spy": 71.7975
+    "port": 96.4094,
+    "spy": 71.8724
   },
   {
     "date": "2010-07-02",
-    "port": 96.2282,
-    "spy": 71.4062
+    "port": 95.7252,
+    "spy": 71.4807
   },
   {
     "date": "2010-07-06",
-    "port": 96.5935,
-    "spy": 71.8743
+    "port": 96.0911,
+    "spy": 71.9493
   },
   {
     "date": "2010-07-07",
-    "port": 97.9329,
-    "spy": 74.1381
+    "port": 97.4081,
+    "spy": 74.2155
   },
   {
     "date": "2010-07-08",
-    "port": 98.2203,
-    "spy": 74.8717
+    "port": 97.6859,
+    "spy": 74.9499
   },
   {
     "date": "2010-07-09",
-    "port": 98.5855,
-    "spy": 75.4307
+    "port": 98.0436,
+    "spy": 75.5094
   },
   {
     "date": "2010-07-12",
-    "port": 98.5321,
-    "spy": 75.4796
+    "port": 97.9945,
+    "spy": 75.5583
   },
   {
     "date": "2010-07-13",
-    "port": 99.3681,
-    "spy": 76.6185
+    "port": 98.8131,
+    "spy": 76.6984
   },
   {
     "date": "2010-07-14",
-    "port": 99.5979,
-    "spy": 76.6114
+    "port": 99.0411,
+    "spy": 76.6914
   },
   {
     "date": "2010-07-15",
-    "port": 99.7254,
-    "spy": 76.6324
+    "port": 99.168,
+    "spy": 76.7124
   },
   {
     "date": "2010-07-16",
-    "port": 98.0881,
-    "spy": 74.5224
+    "port": 97.5537,
+    "spy": 74.6002
   },
   {
     "date": "2010-07-19",
-    "port": 98.2365,
-    "spy": 74.9625
+    "port": 97.6994,
+    "spy": 75.0408
   },
   {
     "date": "2010-07-20",
-    "port": 99.0504,
-    "spy": 75.794
+    "port": 98.5016,
+    "spy": 75.8731
   },
   {
     "date": "2010-07-21",
-    "port": 98.7579,
-    "spy": 74.8088
+    "port": 98.215,
+    "spy": 74.8869
   },
   {
     "date": "2010-07-22",
-    "port": 99.8383,
-    "spy": 76.4787
+    "port": 99.2752,
+    "spy": 76.5585
   },
   {
     "date": "2010-07-23",
-    "port": 100.1291,
-    "spy": 77.1425
+    "port": 99.5557,
+    "spy": 77.223
   },
   {
     "date": "2010-07-26",
-    "port": 100.876,
-    "spy": 77.9459
+    "port": 100.2925,
+    "spy": 78.0273
   },
   {
     "date": "2010-07-27",
-    "port": 100.3825,
-    "spy": 77.939
+    "port": 99.8014,
+    "spy": 78.0203
   },
   {
     "date": "2010-07-28",
-    "port": 99.8836,
-    "spy": 77.4359
+    "port": 99.3086,
+    "spy": 77.5168
   },
   {
     "date": "2010-07-29",
-    "port": 99.6393,
-    "spy": 77.0586
+    "port": 99.0634,
+    "spy": 77.139
   },
   {
     "date": "2010-07-30",
-    "port": 100.0844,
-    "spy": 77.0446
+    "port": 99.5044,
+    "spy": 77.125
   },
   {
     "date": "2010-08-02",
-    "port": 100.818,
-    "spy": 78.7844
+    "port": 100.2251,
+    "spy": 78.8666
   },
   {
     "date": "2010-08-03",
-    "port": 100.6794,
-    "spy": 78.4071
+    "port": 100.0918,
+    "spy": 78.4889
   },
   {
     "date": "2010-08-04",
-    "port": 100.7203,
-    "spy": 78.9311
+    "port": 100.1257,
+    "spy": 79.0135
   },
   {
     "date": "2010-08-05",
-    "port": 100.8519,
-    "spy": 78.8473
+    "port": 100.2599,
+    "spy": 78.9296
   },
   {
     "date": "2010-08-06",
-    "port": 100.9354,
-    "spy": 78.5259
+    "port": 100.3443,
+    "spy": 78.6078
   },
   {
     "date": "2010-08-09",
-    "port": 101.1879,
-    "spy": 78.9451
+    "port": 100.5895,
+    "spy": 79.0275
   },
   {
     "date": "2010-08-10",
-    "port": 100.6583,
-    "spy": 78.5189
+    "port": 100.0686,
+    "spy": 78.6008
   },
   {
     "date": "2010-08-11",
-    "port": 98.9836,
-    "spy": 76.3669
+    "port": 98.4149,
+    "spy": 76.4466
   },
   {
     "date": "2010-08-12",
-    "port": 98.5674,
-    "spy": 75.8988
+    "port": 98.0032,
+    "spy": 75.978
   },
   {
     "date": "2010-08-13",
-    "port": 98.6958,
-    "spy": 75.6752
+    "port": 98.1332,
+    "spy": 75.7542
   },
   {
     "date": "2010-08-16",
-    "port": 99.7026,
-    "spy": 75.6403
+    "port": 99.1311,
+    "spy": 75.7192
   },
   {
     "date": "2010-08-17",
-    "port": 100.4135,
-    "spy": 76.5695
+    "port": 99.832,
+    "spy": 76.6495
   },
   {
     "date": "2010-08-18",
-    "port": 100.6582,
-    "spy": 76.7093
+    "port": 100.0739,
+    "spy": 76.7893
   },
   {
     "date": "2010-08-19",
-    "port": 99.9625,
-    "spy": 75.3748
+    "port": 99.3901,
+    "spy": 75.4534
   },
   {
     "date": "2010-08-20",
-    "port": 99.6705,
-    "spy": 75.1302
+    "port": 99.0992,
+    "spy": 75.2086
   },
   {
     "date": "2010-08-23",
-    "port": 99.3219,
-    "spy": 74.8438
+    "port": 98.7577,
+    "spy": 74.9219
   },
   {
     "date": "2010-08-24",
-    "port": 98.85,
-    "spy": 73.7328
+    "port": 98.2909,
+    "spy": 73.8098
   },
   {
     "date": "2010-08-25",
-    "port": 98.9416,
-    "spy": 74.0193
+    "port": 98.3757,
+    "spy": 74.0966
   },
   {
     "date": "2010-08-26",
-    "port": 99.0242,
-    "spy": 73.5232
+    "port": 98.4623,
+    "spy": 73.6
   },
   {
     "date": "2010-08-27",
-    "port": 99.1588,
-    "spy": 74.6621
+    "port": 98.5883,
+    "spy": 74.7401
   },
   {
     "date": "2010-08-30",
-    "port": 98.8727,
-    "spy": 73.5791
+    "port": 98.3113,
+    "spy": 73.6559
   },
   {
     "date": "2010-08-31",
-    "port": 99.2296,
-    "spy": 73.5791
+    "port": 98.6637,
+    "spy": 73.6559
   },
   {
     "date": "2010-09-01",
-    "port": 100.6564,
-    "spy": 75.78
+    "port": 100.0714,
+    "spy": 75.8591
   },
   {
     "date": "2010-09-02",
-    "port": 100.9501,
-    "spy": 76.4857
+    "port": 100.3598,
+    "spy": 76.5655
   },
   {
     "date": "2010-09-03",
-    "port": 101.5789,
-    "spy": 77.4778
+    "port": 100.9804,
+    "spy": 77.5587
   },
   {
     "date": "2010-09-07",
-    "port": 101.581,
-    "spy": 76.6045
+    "port": 100.9909,
+    "spy": 76.6845
   },
   {
     "date": "2010-09-08",
-    "port": 101.7107,
-    "spy": 77.1425
+    "port": 101.1166,
+    "spy": 77.223
   },
   {
     "date": "2010-09-09",
-    "port": 101.2674,
-    "spy": 77.4988
+    "port": 100.6752,
+    "spy": 77.5797
   },
   {
     "date": "2010-09-10",
-    "port": 101.3567,
-    "spy": 77.8901
+    "port": 100.7615,
+    "spy": 77.9714
   },
   {
     "date": "2010-09-13",
-    "port": 102.5507,
-    "spy": 78.7564
+    "port": 101.9407,
+    "spy": 78.8386
   },
   {
     "date": "2010-09-14",
-    "port": 102.952,
-    "spy": 78.7076
+    "port": 102.342,
+    "spy": 78.7897
   },
   {
     "date": "2010-09-15",
-    "port": 102.4566,
-    "spy": 79.008
+    "port": 101.8448,
+    "spy": 79.0904
   },
   {
     "date": "2010-09-16",
-    "port": 101.985,
-    "spy": 78.987
+    "port": 101.3789,
+    "spy": 79.0695
   },
   {
     "date": "2010-09-17",
-    "port": 102.4021,
-    "spy": 79.0165
+    "port": 101.7937,
+    "spy": 79.099
   },
   {
     "date": "2010-09-20",
-    "port": 103.7579,
-    "spy": 80.2247
+    "port": 103.1313,
+    "spy": 80.3084
   },
   {
     "date": "2010-09-21",
-    "port": 104.0689,
-    "spy": 80.0631
+    "port": 103.4411,
+    "spy": 80.1467
   },
   {
     "date": "2010-09-22",
-    "port": 104.0021,
-    "spy": 79.6698
+    "port": 103.3789,
+    "spy": 79.7529
   },
   {
     "date": "2010-09-23",
-    "port": 103.506,
-    "spy": 79.0235
+    "port": 102.8896,
+    "spy": 79.106
   },
   {
     "date": "2010-09-24",
-    "port": 104.7115,
-    "spy": 80.6532
+    "port": 104.0781,
+    "spy": 80.7374
   },
   {
     "date": "2010-09-27",
-    "port": 105.0772,
-    "spy": 80.2668
+    "port": 104.4427,
+    "spy": 80.3506
   },
   {
     "date": "2010-09-28",
-    "port": 105.6385,
-    "spy": 80.5478
+    "port": 104.9957,
+    "spy": 80.6319
   },
   {
     "date": "2010-09-29",
-    "port": 105.3364,
-    "spy": 80.4073
+    "port": 104.6932,
+    "spy": 80.4913
   },
   {
     "date": "2010-09-30",
-    "port": 105.1029,
-    "spy": 80.1685
+    "port": 104.461,
+    "spy": 80.2522
   },
   {
     "date": "2010-10-01",
-    "port": 104.9382,
-    "spy": 80.5057
+    "port": 104.292,
+    "spy": 80.5897
   },
   {
     "date": "2010-10-04",
-    "port": 104.3784,
-    "spy": 79.9016
+    "port": 103.7401,
+    "spy": 79.985
   },
   {
     "date": "2010-10-05",
-    "port": 105.8835,
-    "spy": 81.5102
+    "port": 105.2282,
+    "spy": 81.5952
   },
   {
     "date": "2010-10-06",
-    "port": 106.3358,
-    "spy": 81.5031
+    "port": 105.6774,
+    "spy": 81.5882
   },
   {
     "date": "2010-10-07",
-    "port": 105.9226,
-    "spy": 81.4048
+    "port": 105.2674,
+    "spy": 81.4897
   },
   {
     "date": "2010-10-08",
-    "port": 106.8121,
-    "spy": 81.8614
+    "port": 106.1521,
+    "spy": 81.9468
   },
   {
     "date": "2010-10-11",
-    "port": 106.9117,
-    "spy": 81.9386
+    "port": 106.2515,
+    "spy": 82.0241
   },
   {
     "date": "2010-10-12",
-    "port": 106.9093,
-    "spy": 82.1915
+    "port": 106.2497,
+    "spy": 82.2773
   },
   {
     "date": "2010-10-13",
-    "port": 107.5134,
-    "spy": 82.8307
+    "port": 106.8441,
+    "spy": 82.9172
   },
   {
     "date": "2010-10-14",
-    "port": 106.7818,
-    "spy": 82.5076
+    "port": 106.1188,
+    "spy": 82.5937
   },
   {
     "date": "2010-10-15",
-    "port": 106.2818,
-    "spy": 82.6762
+    "port": 105.6216,
+    "spy": 82.7625
   },
   {
     "date": "2010-10-18",
-    "port": 107.0674,
-    "spy": 83.0836
+    "port": 106.3982,
+    "spy": 83.1703
   },
   {
     "date": "2010-10-19",
-    "port": 105.915,
-    "spy": 81.9949
+    "port": 105.2559,
+    "spy": 82.0804
   },
   {
     "date": "2010-10-20",
-    "port": 107.1201,
-    "spy": 82.7956
+    "port": 106.4529,
+    "spy": 82.882
   },
   {
     "date": "2010-10-21",
-    "port": 106.5408,
-    "spy": 82.9782
+    "port": 105.8764,
+    "spy": 83.0648
   },
   {
     "date": "2010-10-22",
-    "port": 106.944,
-    "spy": 83.1328
+    "port": 106.2754,
+    "spy": 83.2195
   },
   {
     "date": "2010-10-25",
-    "port": 107.4642,
-    "spy": 83.3786
+    "port": 106.7922,
+    "spy": 83.4656
   },
   {
     "date": "2010-10-26",
-    "port": 106.8196,
-    "spy": 83.3927
+    "port": 106.1511,
+    "spy": 83.4797
   },
   {
     "date": "2010-10-27",
-    "port": 106.1042,
-    "spy": 83.1538
+    "port": 105.4402,
+    "spy": 83.2406
   },
   {
     "date": "2010-10-28",
-    "port": 106.3432,
-    "spy": 83.1678
+    "port": 105.6814,
+    "spy": 83.2546
   },
   {
     "date": "2010-10-29",
-    "port": 106.862,
-    "spy": 83.2311
+    "port": 106.1964,
+    "spy": 83.318
   },
   {
     "date": "2010-11-01",
-    "port": 106.6011,
-    "spy": 83.2592
+    "port": 105.9379,
+    "spy": 83.3461
   },
   {
     "date": "2010-11-02",
-    "port": 107.9921,
-    "spy": 83.9195
+    "port": 107.3133,
+    "spy": 84.007
   },
   {
     "date": "2010-11-03",
-    "port": 107.5016,
-    "spy": 84.2566
+    "port": 106.8246,
+    "spy": 84.3446
   },
   {
     "date": "2010-11-04",
-    "port": 109.7073,
-    "spy": 85.8793
+    "port": 109.01,
+    "spy": 85.9689
   },
   {
     "date": "2010-11-05",
-    "port": 109.3495,
-    "spy": 86.2024
+    "port": 108.6525,
+    "spy": 86.2924
   },
   {
     "date": "2010-11-08",
-    "port": 109.4081,
-    "spy": 86.0408
+    "port": 108.7103,
+    "spy": 86.1307
   },
   {
     "date": "2010-11-09",
-    "port": 107.934,
-    "spy": 85.4227
+    "port": 107.2509,
+    "spy": 85.5118
   },
   {
     "date": "2010-11-10",
-    "port": 108.417,
-    "spy": 85.7669
+    "port": 107.7256,
+    "spy": 85.8564
   },
   {
     "date": "2010-11-11",
-    "port": 108.0033,
-    "spy": 85.4437
+    "port": 107.3142,
+    "spy": 85.5329
   },
   {
     "date": "2010-11-12",
-    "port": 106.3484,
-    "spy": 84.4323
+    "port": 105.6697,
+    "spy": 84.5204
   },
   {
     "date": "2010-11-15",
-    "port": 105.5075,
-    "spy": 84.3128
+    "port": 104.8341,
+    "spy": 84.4008
   },
   {
     "date": "2010-11-16",
-    "port": 104.755,
-    "spy": 82.9993
+    "port": 104.0859,
+    "spy": 83.0859
   },
   {
     "date": "2010-11-17",
-    "port": 104.5515,
-    "spy": 83.0414
+    "port": 103.8814,
+    "spy": 83.1281
   },
   {
     "date": "2010-11-18",
-    "port": 106.1001,
-    "spy": 84.2637
+    "port": 105.4166,
+    "spy": 84.3516
   },
   {
     "date": "2010-11-19",
-    "port": 106.3893,
-    "spy": 84.4955
+    "port": 105.6988,
+    "spy": 84.5837
   },
   {
     "date": "2010-11-22",
-    "port": 106.4746,
-    "spy": 84.4253
+    "port": 105.7822,
+    "spy": 84.5134
   },
   {
     "date": "2010-11-23",
-    "port": 105.5783,
-    "spy": 83.203
+    "port": 104.8948,
+    "spy": 83.2898
   },
   {
     "date": "2010-11-24",
-    "port": 106.2682,
-    "spy": 84.4323
+    "port": 105.5745,
+    "spy": 84.5204
   },
   {
     "date": "2010-11-26",
-    "port": 105.8815,
-    "spy": 83.4489
+    "port": 105.1901,
+    "spy": 83.536
   },
   {
     "date": "2010-11-29",
-    "port": 106.4576,
-    "spy": 83.7017
+    "port": 105.7619,
+    "spy": 83.7891
   },
   {
     "date": "2010-11-30",
-    "port": 106.1404,
-    "spy": 83.2311
+    "port": 105.4475,
+    "spy": 83.318
   },
   {
     "date": "2010-12-01",
-    "port": 107.2555,
-    "spy": 85.0012
+    "port": 106.5535,
+    "spy": 85.09
   },
   {
     "date": "2010-12-02",
-    "port": 108.1822,
-    "spy": 86.09
+    "port": 107.4698,
+    "spy": 86.1799
   },
   {
     "date": "2010-12-03",
-    "port": 108.3019,
-    "spy": 86.3218
+    "port": 107.5875,
+    "spy": 86.4119
   },
   {
     "date": "2010-12-06",
-    "port": 108.8281,
-    "spy": 86.2305
+    "port": 108.1067,
+    "spy": 86.3205
   },
   {
     "date": "2010-12-07",
-    "port": 108.0984,
-    "spy": 86.2797
+    "port": 107.3805,
+    "spy": 86.3697
   },
   {
     "date": "2010-12-08",
-    "port": 108.0849,
-    "spy": 86.5957
+    "port": 107.368,
+    "spy": 86.6861
   },
   {
     "date": "2010-12-09",
-    "port": 108.5422,
-    "spy": 86.9329
+    "port": 107.8185,
+    "spy": 87.0236
   },
   {
     "date": "2010-12-10",
-    "port": 108.8309,
-    "spy": 87.4387
+    "port": 108.1007,
+    "spy": 87.5299
   },
   {
     "date": "2010-12-13",
-    "port": 109.0262,
-    "spy": 87.4949
+    "port": 108.2982,
+    "spy": 87.5862
   },
   {
     "date": "2010-12-14",
-    "port": 108.5461,
-    "spy": 87.5721
+    "port": 107.8218,
+    "spy": 87.6635
   },
   {
     "date": "2010-12-15",
-    "port": 107.7657,
-    "spy": 87.1717
+    "port": 107.0493,
+    "spy": 87.2627
   },
   {
     "date": "2010-12-16",
-    "port": 108.3796,
-    "spy": 87.6775
+    "port": 107.653,
+    "spy": 87.769
   },
   {
     "date": "2010-12-17",
-    "port": 109.2517,
-    "spy": 87.7714
+    "port": 108.5194,
+    "spy": 87.863
   },
   {
     "date": "2010-12-20",
-    "port": 109.5799,
-    "spy": 87.9832
+    "port": 108.8452,
+    "spy": 88.0751
   },
   {
     "date": "2010-12-21",
-    "port": 110.4932,
-    "spy": 88.5411
+    "port": 109.748,
+    "spy": 88.6335
   },
   {
     "date": "2010-12-22",
-    "port": 110.5765,
-    "spy": 88.8165
+    "port": 109.831,
+    "spy": 88.9092
   },
   {
     "date": "2010-12-23",
-    "port": 110.4132,
-    "spy": 88.6894
+    "port": 109.6694,
+    "spy": 88.7819
   },
   {
     "date": "2010-12-27",
-    "port": 110.7956,
-    "spy": 88.7247
+    "port": 110.0465,
+    "spy": 88.8173
   },
   {
     "date": "2010-12-28",
-    "port": 110.2816,
-    "spy": 88.8518
+    "port": 109.5397,
+    "spy": 88.9445
   },
   {
     "date": "2010-12-29",
-    "port": 110.861,
-    "spy": 88.9153
+    "port": 110.1115,
+    "spy": 89.0081
   },
   {
     "date": "2010-12-30",
-    "port": 110.6094,
-    "spy": 88.7741
+    "port": 109.8601,
+    "spy": 88.8668
   },
   {
     "date": "2010-12-31",
-    "port": 111.1816,
-    "spy": 88.7953
+    "port": 110.4321,
+    "spy": 88.8879
   },
   {
     "date": "2011-01-03",
-    "port": 111.764,
-    "spy": 89.7132
+    "port": 111.0022,
+    "spy": 89.8069
   },
   {
     "date": "2011-01-04",
-    "port": 111.2674,
-    "spy": 89.6638
+    "port": 110.5104,
+    "spy": 89.7574
   },
   {
     "date": "2011-01-05",
-    "port": 111.0086,
-    "spy": 90.1299
+    "port": 110.2516,
+    "spy": 90.2239
   },
   {
     "date": "2011-01-06",
-    "port": 110.8023,
-    "spy": 89.9533
+    "port": 110.0459,
+    "spy": 90.0472
   },
   {
     "date": "2011-01-07",
-    "port": 110.7573,
-    "spy": 89.7768
+    "port": 110.0012,
+    "spy": 89.8705
   },
   {
     "date": "2011-01-10",
-    "port": 111.0675,
-    "spy": 89.6638
+    "port": 110.3085,
+    "spy": 89.7574
   },
   {
     "date": "2011-01-11",
-    "port": 111.262,
-    "spy": 89.9816
+    "port": 110.5009,
+    "spy": 90.0755
   },
   {
     "date": "2011-01-12",
-    "port": 111.8029,
-    "spy": 90.7936
+    "port": 111.0365,
+    "spy": 90.8884
   },
   {
     "date": "2011-01-13",
-    "port": 111.826,
-    "spy": 90.6453
+    "port": 111.0571,
+    "spy": 90.7399
   },
   {
     "date": "2011-01-14",
-    "port": 112.1985,
-    "spy": 91.302
+    "port": 111.4235,
+    "spy": 91.3973
   },
   {
     "date": "2011-01-18",
-    "port": 112.1533,
-    "spy": 91.4574
+    "port": 111.3787,
+    "spy": 91.5528
   },
   {
     "date": "2011-01-19",
-    "port": 111.4208,
-    "spy": 90.5606
+    "port": 110.6607,
+    "spy": 90.6551
   },
   {
     "date": "2011-01-20",
-    "port": 110.5897,
-    "spy": 90.4406
+    "port": 109.837,
+    "spy": 90.535
   },
   {
     "date": "2011-01-21",
-    "port": 111.0026,
-    "spy": 90.6453
+    "port": 110.249,
+    "spy": 90.7399
   },
   {
     "date": "2011-01-24",
-    "port": 111.3964,
-    "spy": 91.1608
+    "port": 110.6344,
+    "spy": 91.256
   },
   {
     "date": "2011-01-25",
-    "port": 111.5977,
-    "spy": 91.2103
+    "port": 110.8297,
+    "spy": 91.3055
   },
   {
     "date": "2011-01-26",
-    "port": 111.8151,
-    "spy": 91.5633
+    "port": 111.0431,
+    "spy": 91.6589
   },
   {
     "date": "2011-01-27",
-    "port": 112.0078,
-    "spy": 91.7892
+    "port": 111.23,
+    "spy": 91.885
   },
   {
     "date": "2011-01-28",
-    "port": 110.9747,
-    "spy": 90.1864
+    "port": 110.2159,
+    "spy": 90.2805
   },
   {
     "date": "2011-01-31",
-    "port": 111.5016,
-    "spy": 90.8642
+    "port": 110.7401,
+    "spy": 90.9591
   },
   {
     "date": "2011-02-01",
-    "port": 112.7899,
-    "spy": 92.3188
+    "port": 112.0116,
+    "spy": 92.4152
   },
   {
     "date": "2011-02-02",
-    "port": 112.7187,
-    "spy": 92.1424
+    "port": 111.9434,
+    "spy": 92.2385
   },
   {
     "date": "2011-02-03",
-    "port": 112.4224,
-    "spy": 92.3471
+    "port": 111.6468,
+    "spy": 92.4435
   },
   {
     "date": "2011-02-04",
-    "port": 112.1025,
-    "spy": 92.6083
+    "port": 111.3271,
+    "spy": 92.705
   },
   {
     "date": "2011-02-07",
-    "port": 112.768,
-    "spy": 93.1874
+    "port": 111.9814,
+    "spy": 93.2847
   },
   {
     "date": "2011-02-08",
-    "port": 112.9139,
-    "spy": 93.611
+    "port": 112.1245,
+    "spy": 93.7088
   },
   {
     "date": "2011-02-09",
-    "port": 113.1601,
-    "spy": 93.3992
+    "port": 112.3717,
+    "spy": 93.4967
   },
   {
     "date": "2011-02-10",
-    "port": 112.6699,
-    "spy": 93.4346
+    "port": 111.8823,
+    "spy": 93.5321
   },
   {
     "date": "2011-02-11",
-    "port": 113.6521,
-    "spy": 93.9924
+    "port": 112.8499,
+    "spy": 94.0905
   },
   {
     "date": "2011-02-14",
-    "port": 113.944,
-    "spy": 94.2183
+    "port": 113.1375,
+    "spy": 94.3167
   },
   {
     "date": "2011-02-15",
-    "port": 113.6414,
-    "spy": 93.9217
+    "port": 112.8364,
+    "spy": 94.0197
   },
   {
     "date": "2011-02-16",
-    "port": 114.1872,
-    "spy": 94.5149
+    "port": 113.3738,
+    "spy": 94.6135
   },
   {
     "date": "2011-02-17",
-    "port": 114.7443,
-    "spy": 94.7974
+    "port": 113.9248,
+    "spy": 94.8963
   },
   {
     "date": "2011-02-18",
-    "port": 114.7405,
-    "spy": 94.9951
+    "port": 113.9208,
+    "spy": 95.0942
   },
   {
     "date": "2011-02-22",
-    "port": 113.5061,
-    "spy": 93.0885
+    "port": 112.7034,
+    "spy": 93.1857
   },
   {
     "date": "2011-02-23",
-    "port": 113.31,
-    "spy": 92.5166
+    "port": 112.5178,
+    "spy": 92.6131
   },
   {
     "date": "2011-02-24",
-    "port": 113.4259,
-    "spy": 92.453
+    "port": 112.6287,
+    "spy": 92.5495
   },
   {
     "date": "2011-02-25",
-    "port": 115.002,
-    "spy": 93.4416
+    "port": 114.1885,
+    "spy": 93.5391
   },
   {
     "date": "2011-02-28",
-    "port": 115.523,
-    "spy": 94.0206
+    "port": 114.7046,
+    "spy": 94.1188
   },
   {
     "date": "2011-03-01",
-    "port": 114.4512,
-    "spy": 92.453
+    "port": 113.6497,
+    "spy": 92.5495
   },
   {
     "date": "2011-03-02",
-    "port": 114.1905,
-    "spy": 92.6507
+    "port": 113.3905,
+    "spy": 92.7474
   },
   {
     "date": "2011-03-03",
-    "port": 115.2486,
-    "spy": 94.2466
+    "port": 114.4334,
+    "spy": 94.3449
   },
   {
     "date": "2011-03-04",
-    "port": 115.0859,
-    "spy": 93.5405
+    "port": 114.2747,
+    "spy": 93.6381
   },
   {
     "date": "2011-03-07",
-    "port": 114.0398,
-    "spy": 92.8061
+    "port": 113.2413,
+    "spy": 92.9029
   },
   {
     "date": "2011-03-08",
-    "port": 114.4456,
-    "spy": 93.6181
+    "port": 113.6353,
+    "spy": 93.7158
   },
   {
     "date": "2011-03-09",
-    "port": 114.6522,
-    "spy": 93.484
+    "port": 113.8394,
+    "spy": 93.5815
   },
   {
     "date": "2011-03-10",
-    "port": 113.4153,
-    "spy": 91.754
+    "port": 112.617,
+    "spy": 91.8497
   },
   {
     "date": "2011-03-11",
-    "port": 113.6518,
-    "spy": 92.3895
+    "port": 112.8498,
+    "spy": 92.4859
   },
   {
     "date": "2011-03-14",
-    "port": 113.1939,
-    "spy": 91.8316
+    "port": 112.3979,
+    "spy": 91.9275
   },
   {
     "date": "2011-03-15",
-    "port": 112.4168,
-    "spy": 90.7795
+    "port": 111.6221,
+    "spy": 90.8743
   },
   {
     "date": "2011-03-16",
-    "port": 111.5229,
-    "spy": 89.0989
+    "port": 110.7392,
+    "spy": 89.1919
   },
   {
     "date": "2011-03-17",
-    "port": 112.6949,
-    "spy": 90.2781
+    "port": 111.9071,
+    "spy": 90.3724
   },
   {
     "date": "2011-03-18",
-    "port": 113.2732,
-    "spy": 90.6065
+    "port": 112.478,
+    "spy": 90.701
   },
   {
     "date": "2011-03-21",
-    "port": 114.4742,
-    "spy": 92.0107
+    "port": 113.6617,
+    "spy": 92.1067
   },
   {
     "date": "2011-03-22",
-    "port": 114.4718,
-    "spy": 91.6916
+    "port": 113.6621,
+    "spy": 91.7873
   },
   {
     "date": "2011-03-23",
-    "port": 114.6237,
-    "spy": 91.954
+    "port": 113.8113,
+    "spy": 92.0499
   },
   {
     "date": "2011-03-24",
-    "port": 115.0687,
-    "spy": 92.8334
+    "port": 114.2512,
+    "spy": 92.9303
   },
   {
     "date": "2011-03-25",
-    "port": 115.3141,
-    "spy": 93.1171
+    "port": 114.4914,
+    "spy": 93.2142
   },
   {
     "date": "2011-03-28",
-    "port": 114.9351,
-    "spy": 92.8901
+    "port": 114.1135,
+    "spy": 92.9871
   },
   {
     "date": "2011-03-29",
-    "port": 115.1605,
-    "spy": 93.5142
+    "port": 114.3328,
+    "spy": 93.6118
   },
   {
     "date": "2011-03-30",
-    "port": 116.0903,
-    "spy": 94.1595
+    "port": 115.2499,
+    "spy": 94.2578
   },
   {
     "date": "2011-03-31",
-    "port": 116.1803,
-    "spy": 94.0319
+    "port": 115.341,
+    "spy": 94.1301
   },
   {
     "date": "2011-04-01",
-    "port": 116.7408,
-    "spy": 94.4291
+    "port": 115.8943,
+    "spy": 94.5276
   },
   {
     "date": "2011-04-04",
-    "port": 116.8064,
-    "spy": 94.507
+    "port": 115.9572,
+    "spy": 94.6057
   },
   {
     "date": "2011-04-05",
-    "port": 116.8228,
-    "spy": 94.4929
+    "port": 115.9734,
+    "spy": 94.5915
   },
   {
     "date": "2011-04-06",
-    "port": 116.5854,
-    "spy": 94.7907
+    "port": 115.739,
+    "spy": 94.8897
   },
   {
     "date": "2011-04-07",
-    "port": 116.3013,
-    "spy": 94.5497
+    "port": 115.4585,
+    "spy": 94.6483
   },
   {
     "date": "2011-04-08",
-    "port": 115.9122,
-    "spy": 94.2234
+    "port": 115.079,
+    "spy": 94.3217
   },
   {
     "date": "2011-04-11",
-    "port": 115.4333,
-    "spy": 93.9397
+    "port": 114.605,
+    "spy": 94.0378
   },
   {
     "date": "2011-04-12",
-    "port": 114.9926,
-    "spy": 93.2376
+    "port": 114.1697,
+    "spy": 93.335
   },
   {
     "date": "2011-04-13",
-    "port": 115.2661,
-    "spy": 93.2305
+    "port": 114.442,
+    "spy": 93.3278
   },
   {
     "date": "2011-04-14",
-    "port": 115.4493,
-    "spy": 93.3014
+    "port": 114.6247,
+    "spy": 93.3988
   },
   {
     "date": "2011-04-15",
-    "port": 116.3,
-    "spy": 93.6418
+    "port": 115.4637,
+    "spy": 93.7396
   },
   {
     "date": "2011-04-18",
-    "port": 115.2373,
-    "spy": 92.5923
+    "port": 114.4117,
+    "spy": 92.6889
   },
   {
     "date": "2011-04-19",
-    "port": 115.8517,
-    "spy": 93.1241
+    "port": 115.0205,
+    "spy": 93.2213
   },
   {
     "date": "2011-04-20",
-    "port": 116.9533,
-    "spy": 94.3936
+    "port": 116.1098,
+    "spy": 94.4921
   },
   {
     "date": "2011-04-21",
-    "port": 117.376,
-    "spy": 94.8758
+    "port": 116.5265,
+    "spy": 94.9749
   },
   {
     "date": "2011-04-25",
-    "port": 117.3007,
-    "spy": 94.7766
+    "port": 116.4504,
+    "spy": 94.8755
   },
   {
     "date": "2011-04-26",
-    "port": 118.3819,
-    "spy": 95.5921
+    "port": 117.5176,
+    "spy": 95.6919
   },
   {
     "date": "2011-04-27",
-    "port": 118.6036,
-    "spy": 96.2162
+    "port": 117.7385,
+    "spy": 96.3167
   },
   {
     "date": "2011-04-28",
-    "port": 119.1493,
-    "spy": 96.5283
+    "port": 118.2779,
+    "spy": 96.629
   },
   {
     "date": "2011-04-29",
-    "port": 119.5309,
-    "spy": 96.7552
+    "port": 118.6543,
+    "spy": 96.8562
   },
   {
     "date": "2011-05-02",
-    "port": 119.1888,
-    "spy": 96.6062
+    "port": 118.3173,
+    "spy": 96.7071
   },
   {
     "date": "2011-05-03",
-    "port": 118.844,
-    "spy": 96.2588
+    "port": 117.9771,
+    "spy": 96.3593
   },
   {
     "date": "2011-05-04",
-    "port": 118.2611,
-    "spy": 95.6205
+    "port": 117.4009,
+    "spy": 95.7203
   },
   {
     "date": "2011-05-05",
-    "port": 117.3183,
-    "spy": 94.7553
+    "port": 116.4564,
+    "spy": 94.8542
   },
   {
     "date": "2011-05-06",
-    "port": 117.3367,
-    "spy": 95.1737
+    "port": 116.5018,
+    "spy": 95.273
   },
   {
     "date": "2011-05-09",
-    "port": 118.0553,
-    "spy": 95.5425
+    "port": 117.1646,
+    "spy": 95.6422
   },
   {
     "date": "2011-05-10",
-    "port": 118.5242,
-    "spy": 96.3581
+    "port": 117.6287,
+    "spy": 96.4586
   },
   {
     "date": "2011-05-11",
-    "port": 117.3561,
-    "spy": 95.3439
+    "port": 116.4703,
+    "spy": 95.4434
   },
   {
     "date": "2011-05-12",
-    "port": 117.3864,
-    "spy": 95.7978
+    "port": 116.4996,
+    "spy": 95.8978
   },
   {
     "date": "2011-05-13",
-    "port": 117.0367,
-    "spy": 95.0602
+    "port": 116.1531,
+    "spy": 95.1594
   },
   {
     "date": "2011-05-16",
-    "port": 116.6308,
-    "spy": 94.4574
+    "port": 115.7506,
+    "spy": 94.556
   },
   {
     "date": "2011-05-17",
-    "port": 116.9595,
-    "spy": 94.4432
+    "port": 116.0775,
+    "spy": 94.5418
   },
   {
     "date": "2011-05-18",
-    "port": 117.3861,
-    "spy": 95.2872
+    "port": 116.499,
+    "spy": 95.3866
   },
   {
     "date": "2011-05-19",
-    "port": 117.5701,
-    "spy": 95.5141
+    "port": 116.6811,
+    "spy": 95.6138
   },
   {
     "date": "2011-05-20",
-    "port": 117.0038,
-    "spy": 94.7553
+    "port": 116.1183,
+    "spy": 94.8542
   },
   {
     "date": "2011-05-23",
-    "port": 116.2873,
-    "spy": 93.6561
+    "port": 115.407,
+    "spy": 93.7538
   },
   {
     "date": "2011-05-24",
-    "port": 116.3562,
-    "spy": 93.578
+    "port": 115.4754,
+    "spy": 93.6757
   },
   {
     "date": "2011-05-25",
-    "port": 116.551,
-    "spy": 93.8901
+    "port": 115.6673,
+    "spy": 93.9881
   },
   {
     "date": "2011-05-26",
-    "port": 117.4317,
-    "spy": 94.3227
+    "port": 116.5411,
+    "spy": 94.4211
   },
   {
     "date": "2011-05-27",
-    "port": 117.8832,
-    "spy": 94.6844
+    "port": 116.9882,
+    "spy": 94.7832
   },
   {
     "date": "2011-05-31",
-    "port": 118.7386,
-    "spy": 95.6702
+    "port": 117.8369,
+    "spy": 95.77
   },
   {
     "date": "2011-06-01",
-    "port": 117.623,
-    "spy": 93.5213
+    "port": 116.73,
+    "spy": 93.6189
   },
   {
     "date": "2011-06-02",
-    "port": 116.9049,
-    "spy": 93.422
+    "port": 116.0151,
+    "spy": 93.5195
   },
   {
     "date": "2011-06-03",
-    "port": 116.4033,
-    "spy": 92.493
+    "port": 115.5173,
+    "spy": 92.5895
   },
   {
     "date": "2011-06-06",
-    "port": 115.1994,
-    "spy": 91.5143
+    "port": 114.3216,
+    "spy": 91.6098
   },
   {
     "date": "2011-06-07",
-    "port": 115.4417,
-    "spy": 91.4576
+    "port": 114.5615,
+    "spy": 91.553
   },
   {
     "date": "2011-06-08",
-    "port": 115.3806,
-    "spy": 91.0746
+    "port": 114.5012,
+    "spy": 91.1696
   },
   {
     "date": "2011-06-09",
-    "port": 115.6664,
-    "spy": 91.7696
+    "port": 114.7846,
+    "spy": 91.8654
   },
   {
     "date": "2011-06-10",
-    "port": 114.8866,
-    "spy": 90.493
+    "port": 114.0103,
+    "spy": 90.5875
   },
   {
     "date": "2011-06-13",
-    "port": 114.6807,
-    "spy": 90.564
+    "port": 113.8055,
+    "spy": 90.6585
   },
   {
     "date": "2011-06-14",
-    "port": 114.8445,
-    "spy": 91.7129
+    "port": 113.9666,
+    "spy": 91.8086
   },
   {
     "date": "2011-06-15",
-    "port": 114.1235,
-    "spy": 90.0817
+    "port": 113.2516,
+    "spy": 90.1757
   },
   {
     "date": "2011-06-16",
-    "port": 114.3588,
-    "spy": 90.2803
+    "port": 113.4851,
+    "spy": 90.3745
   },
   {
     "date": "2011-06-17",
-    "port": 114.4504,
-    "spy": 90.5497
+    "port": 113.5752,
+    "spy": 90.6442
   },
   {
     "date": "2011-06-20",
-    "port": 114.851,
-    "spy": 91.013
+    "port": 113.9723,
+    "spy": 91.1079
   },
   {
     "date": "2011-06-21",
-    "port": 115.8602,
-    "spy": 92.2602
+    "port": 114.9728,
+    "spy": 92.3565
   },
   {
     "date": "2011-06-22",
-    "port": 115.303,
-    "spy": 91.7043
+    "port": 114.4195,
+    "spy": 91.8
   },
   {
     "date": "2011-06-23",
-    "port": 115.3259,
-    "spy": 91.4406
+    "port": 114.442,
+    "spy": 91.536
   },
   {
     "date": "2011-06-24",
-    "port": 114.2695,
-    "spy": 90.3786
+    "port": 113.3924,
+    "spy": 90.473
   },
   {
     "date": "2011-06-27",
-    "port": 114.3869,
-    "spy": 91.184
+    "port": 113.5076,
+    "spy": 91.2791
   },
   {
     "date": "2011-06-28",
-    "port": 115.0392,
-    "spy": 92.3742
+    "port": 114.1541,
+    "spy": 92.4706
   },
   {
     "date": "2011-06-29",
-    "port": 115.2099,
-    "spy": 93.1653
+    "port": 114.3233,
+    "spy": 93.2626
   },
   {
     "date": "2011-06-30",
-    "port": 115.9256,
-    "spy": 94.0562
+    "port": 115.033,
+    "spy": 94.1544
   },
   {
     "date": "2011-07-01",
-    "port": 116.8844,
-    "spy": 95.446
+    "port": 115.9843,
+    "spy": 95.5456
   },
   {
     "date": "2011-07-05",
-    "port": 116.693,
-    "spy": 95.3676
+    "port": 115.7943,
+    "spy": 95.4672
   },
   {
     "date": "2011-07-06",
-    "port": 117.0261,
-    "spy": 95.4816
+    "port": 116.1245,
+    "spy": 95.5813
   },
   {
     "date": "2011-07-07",
-    "port": 117.6045,
-    "spy": 96.4723
+    "port": 116.6977,
+    "spy": 96.573
   },
   {
     "date": "2011-07-08",
-    "port": 117.6271,
-    "spy": 95.7881
+    "port": 116.7205,
+    "spy": 95.8881
   },
   {
     "date": "2011-07-11",
-    "port": 116.874,
-    "spy": 94.0562
+    "port": 115.9734,
+    "spy": 94.1544
   },
   {
     "date": "2011-07-12",
-    "port": 116.6448,
-    "spy": 93.6499
+    "port": 115.7456,
+    "spy": 93.7477
   },
   {
     "date": "2011-07-13",
-    "port": 116.8877,
-    "spy": 93.9636
+    "port": 115.9862,
+    "spy": 94.0616
   },
   {
     "date": "2011-07-14",
-    "port": 115.6806,
-    "spy": 93.315
+    "port": 114.7873,
+    "spy": 93.4124
   },
   {
     "date": "2011-07-15",
-    "port": 116.19,
-    "spy": 93.8566
+    "port": 115.2923,
+    "spy": 93.9546
   },
   {
     "date": "2011-07-18",
-    "port": 115.1285,
-    "spy": 93.0869
+    "port": 114.2382,
+    "spy": 93.1841
   },
   {
     "date": "2011-07-19",
-    "port": 117.163,
-    "spy": 94.5979
+    "port": 116.2581,
+    "spy": 94.6966
   },
   {
     "date": "2011-07-20",
-    "port": 116.7192,
-    "spy": 94.5409
+    "port": 115.8162,
+    "spy": 94.6395
   },
   {
     "date": "2011-07-21",
-    "port": 117.5986,
-    "spy": 95.8523
+    "port": 116.688,
+    "spy": 95.9523
   },
   {
     "date": "2011-07-22",
-    "port": 117.8568,
-    "spy": 95.9164
+    "port": 116.9445,
+    "spy": 96.0165
   },
   {
     "date": "2011-07-25",
-    "port": 117.0435,
-    "spy": 95.3818
+    "port": 116.1363,
+    "spy": 95.4814
   },
   {
     "date": "2011-07-26",
-    "port": 116.9374,
-    "spy": 95.0255
+    "port": 116.0311,
+    "spy": 95.1247
   },
   {
     "date": "2011-07-27",
-    "port": 115.2742,
-    "spy": 93.0798
+    "port": 114.3803,
+    "spy": 93.177
   },
   {
     "date": "2011-07-28",
-    "port": 115.2543,
-    "spy": 92.809
+    "port": 114.3602,
+    "spy": 92.9058
   },
   {
     "date": "2011-07-29",
-    "port": 115.9241,
-    "spy": 92.1747
+    "port": 115.0247,
+    "spy": 92.2709
   },
   {
     "date": "2011-08-01",
-    "port": 115.8595,
-    "spy": 91.7826
+    "port": 114.9608,
+    "spy": 91.8784
   },
   {
     "date": "2011-08-02",
-    "port": 115.0947,
-    "spy": 89.4379
+    "port": 114.2033,
+    "spy": 89.5312
   },
   {
     "date": "2011-08-03",
-    "port": 115.545,
-    "spy": 89.9225
+    "port": 114.65,
+    "spy": 90.0163
   },
   {
     "date": "2011-08-04",
-    "port": 113.4203,
-    "spy": 85.7104
+    "port": 112.543,
+    "spy": 85.7999
   },
   {
     "date": "2011-08-05",
-    "port": 111.8723,
-    "spy": 85.5821
+    "port": 111.0058,
+    "spy": 85.6714
   },
   {
     "date": "2011-08-08",
-    "port": 108.6207,
-    "spy": 80.0087
+    "port": 107.78,
+    "spy": 80.0922
   },
   {
     "date": "2011-08-09",
-    "port": 112.0941,
-    "spy": 83.7291
+    "port": 111.2268,
+    "spy": 83.8165
   },
   {
     "date": "2011-08-10",
-    "port": 110.2771,
-    "spy": 80.0301
+    "port": 109.424,
+    "spy": 80.1136
   },
   {
     "date": "2011-08-11",
-    "port": 111.1485,
-    "spy": 83.6222
+    "port": 110.2865,
+    "spy": 83.7094
   },
   {
     "date": "2011-08-12",
-    "port": 112.1884,
-    "spy": 84.1852
+    "port": 111.3199,
+    "spy": 84.2731
   },
   {
     "date": "2011-08-15",
-    "port": 113.2094,
-    "spy": 85.967
+    "port": 112.3322,
+    "spy": 86.0567
   },
   {
     "date": "2011-08-16",
-    "port": 113.1716,
-    "spy": 85.2329
+    "port": 112.2956,
+    "spy": 85.3218
   },
   {
     "date": "2011-08-17",
-    "port": 113.9256,
-    "spy": 85.2899
+    "port": 113.0444,
+    "spy": 85.3789
   },
   {
     "date": "2011-08-18",
-    "port": 111.7725,
-    "spy": 81.6123
+    "port": 110.908,
+    "spy": 81.6975
   },
   {
     "date": "2011-08-19",
-    "port": 110.9452,
-    "spy": 80.2796
+    "port": 110.0865,
+    "spy": 80.3634
   },
   {
     "date": "2011-08-22",
-    "port": 110.8432,
-    "spy": 80.3437
+    "port": 109.985,
+    "spy": 80.4276
   },
   {
     "date": "2011-08-23",
-    "port": 112.411,
-    "spy": 82.9878
+    "port": 111.5399,
+    "spy": 83.0745
   },
   {
     "date": "2011-08-24",
-    "port": 112.1276,
-    "spy": 84.1567
+    "port": 111.257,
+    "spy": 84.2445
   },
   {
     "date": "2011-08-25",
-    "port": 111.4199,
-    "spy": 82.8738
+    "port": 110.5551,
+    "spy": 82.9603
   },
   {
     "date": "2011-08-26",
-    "port": 112.7729,
-    "spy": 84.0783
+    "port": 111.8977,
+    "spy": 84.166
   },
   {
     "date": "2011-08-29",
-    "port": 114.3394,
-    "spy": 86.4944
+    "port": 113.4504,
+    "spy": 86.5847
   },
   {
     "date": "2011-08-30",
-    "port": 115.3177,
-    "spy": 86.7224
+    "port": 114.4216,
+    "spy": 86.8129
   },
   {
     "date": "2011-08-31",
-    "port": 114.917,
-    "spy": 87.1073
+    "port": 114.0229,
+    "spy": 87.1982
   },
   {
     "date": "2011-09-01",
-    "port": 114.7075,
-    "spy": 86.195
+    "port": 113.8168,
+    "spy": 86.285
   },
   {
     "date": "2011-09-02",
-    "port": 114.1935,
-    "spy": 83.9928
+    "port": 113.3081,
+    "spy": 84.0804
   },
   {
     "date": "2011-09-06",
-    "port": 113.8073,
-    "spy": 83.3798
+    "port": 112.9251,
+    "spy": 83.4669
   },
   {
     "date": "2011-09-07",
-    "port": 115.1333,
-    "spy": 85.7318
+    "port": 114.2391,
+    "spy": 85.8212
   },
   {
     "date": "2011-09-08",
-    "port": 114.4746,
-    "spy": 84.8409
+    "port": 113.5862,
+    "spy": 84.9294
   },
   {
     "date": "2011-09-09",
-    "port": 112.948,
-    "spy": 82.6172
+    "port": 112.0709,
+    "spy": 82.7035
   },
   {
     "date": "2011-09-12",
-    "port": 113.3743,
-    "spy": 83.1518
+    "port": 112.4937,
+    "spy": 83.2386
   },
   {
     "date": "2011-09-13",
-    "port": 113.447,
-    "spy": 83.9144
+    "port": 112.5643,
+    "spy": 84.002
   },
   {
     "date": "2011-09-14",
-    "port": 114.8107,
-    "spy": 85.0761
+    "port": 113.9177,
+    "spy": 85.1649
   },
   {
     "date": "2011-09-15",
-    "port": 115.1693,
-    "spy": 86.5443
+    "port": 114.2729,
+    "spy": 86.6346
   },
   {
     "date": "2011-09-16",
-    "port": 115.8034,
-    "spy": 87.0565
+    "port": 114.9027,
+    "spy": 87.1473
   },
   {
     "date": "2011-09-19",
-    "port": 115.8831,
-    "spy": 86.1897
+    "port": 114.9825,
+    "spy": 86.2796
   },
   {
     "date": "2011-09-20",
-    "port": 115.8017,
-    "spy": 86.0893
+    "port": 114.9025,
+    "spy": 86.1792
   },
   {
     "date": "2011-09-21",
-    "port": 114.8168,
-    "spy": 83.5533
+    "port": 113.9266,
+    "spy": 83.6405
   },
   {
     "date": "2011-09-22",
-    "port": 114.0299,
-    "spy": 80.8525
+    "port": 113.1465,
+    "spy": 80.9369
   },
   {
     "date": "2011-09-23",
-    "port": 113.4659,
-    "spy": 81.3396
+    "port": 112.5856,
+    "spy": 81.4245
   },
   {
     "date": "2011-09-26",
-    "port": 114.3661,
-    "spy": 83.2739
+    "port": 113.4782,
+    "spy": 83.3609
   },
   {
     "date": "2011-09-27",
-    "port": 114.4923,
-    "spy": 84.2052
+    "port": 113.602,
+    "spy": 84.2931
   },
   {
     "date": "2011-09-28",
-    "port": 113.0688,
-    "spy": 82.4859
+    "port": 112.1893,
+    "spy": 82.572
   },
   {
     "date": "2011-09-29",
-    "port": 113.8756,
-    "spy": 83.1378
+    "port": 112.9894,
+    "spy": 83.2246
   },
   {
     "date": "2011-09-30",
-    "port": 113.5374,
-    "spy": 81.0603
+    "port": 112.6536,
+    "spy": 81.1449
   },
   {
     "date": "2011-10-03",
-    "port": 112.5708,
-    "spy": 78.7535
+    "port": 111.6959,
+    "spy": 78.8357
   },
   {
     "date": "2011-10-04",
-    "port": 114.0686,
-    "spy": 80.48
+    "port": 112.9933,
+    "spy": 80.564
   },
   {
     "date": "2011-10-05",
-    "port": 115.0149,
-    "spy": 81.9701
+    "port": 113.9191,
+    "spy": 82.0556
   },
   {
     "date": "2011-10-06",
-    "port": 115.599,
-    "spy": 83.453
+    "port": 114.4782,
+    "spy": 83.5401
   },
   {
     "date": "2011-10-07",
-    "port": 114.5452,
-    "spy": 82.8942
+    "port": 113.452,
+    "spy": 82.9807
   },
   {
     "date": "2011-10-10",
-    "port": 116.1663,
-    "spy": 85.6667
+    "port": 115.0193,
+    "spy": 85.7561
   },
   {
     "date": "2011-10-11",
-    "port": 116.0131,
-    "spy": 85.7526
+    "port": 114.8581,
+    "spy": 85.8421
   },
   {
     "date": "2011-10-12",
-    "port": 116.045,
-    "spy": 86.5049
+    "port": 114.8711,
+    "spy": 86.5952
   },
   {
     "date": "2011-10-13",
-    "port": 116.3417,
-    "spy": 86.3329
+    "port": 115.1698,
+    "spy": 86.423
   },
   {
     "date": "2011-10-14",
-    "port": 116.8262,
-    "spy": 87.8087
+    "port": 115.6294,
+    "spy": 87.9003
   },
   {
     "date": "2011-10-17",
-    "port": 116.1057,
-    "spy": 86.1323
+    "port": 114.9478,
+    "spy": 86.2222
   },
   {
     "date": "2011-10-18",
-    "port": 117.5002,
-    "spy": 87.8158
+    "port": 116.3038,
+    "spy": 87.9075
   },
   {
     "date": "2011-10-19",
-    "port": 116.6826,
-    "spy": 86.7771
+    "port": 115.5121,
+    "spy": 86.8677
   },
   {
     "date": "2011-10-20",
-    "port": 116.7473,
-    "spy": 87.1568
+    "port": 115.5734,
+    "spy": 87.2477
   },
   {
     "date": "2011-10-21",
-    "port": 117.5566,
-    "spy": 88.8116
+    "port": 116.3559,
+    "spy": 88.9043
   },
   {
     "date": "2011-10-24",
-    "port": 118.5811,
-    "spy": 89.9006
+    "port": 117.3408,
+    "spy": 89.9944
   },
   {
     "date": "2011-10-25",
-    "port": 117.9771,
-    "spy": 88.1526
+    "port": 116.7668,
+    "spy": 88.2446
   },
   {
     "date": "2011-10-26",
-    "port": 118.145,
-    "spy": 89.0481
+    "port": 116.9157,
+    "spy": 89.141
   },
   {
     "date": "2011-10-27",
-    "port": 119.1155,
-    "spy": 92.1501
+    "port": 117.824,
+    "spy": 92.2462
   },
   {
     "date": "2011-10-28",
-    "port": 119.4777,
-    "spy": 92.1286
+    "port": 118.1896,
+    "spy": 92.2247
   },
   {
     "date": "2011-10-31",
-    "port": 119.4258,
-    "spy": 89.9077
+    "port": 118.1673,
+    "spy": 90.0016
   },
   {
     "date": "2011-11-01",
-    "port": 118.7316,
-    "spy": 87.4003
+    "port": 117.5141,
+    "spy": 87.4916
   },
   {
     "date": "2011-11-02",
-    "port": 119.634,
-    "spy": 88.826
+    "port": 118.3855,
+    "spy": 88.9187
   },
   {
     "date": "2011-11-03",
-    "port": 120.4414,
-    "spy": 90.445
+    "port": 119.161,
+    "spy": 90.5394
   },
   {
     "date": "2011-11-04",
-    "port": 120.0781,
-    "spy": 89.8934
+    "port": 118.8056,
+    "spy": 89.9872
   },
   {
     "date": "2011-11-07",
-    "port": 120.7001,
-    "spy": 90.4522
+    "port": 119.4222,
+    "spy": 90.5466
   },
   {
     "date": "2011-11-08",
-    "port": 121.1811,
-    "spy": 91.6128
+    "port": 119.8862,
+    "spy": 91.7084
   },
   {
     "date": "2011-11-09",
-    "port": 118.9924,
-    "spy": 88.2314
+    "port": 117.7566,
+    "spy": 88.3235
   },
   {
     "date": "2011-11-10",
-    "port": 119.2483,
-    "spy": 89.0624
+    "port": 118.0013,
+    "spy": 89.1553
   },
   {
     "date": "2011-11-11",
-    "port": 120.6023,
-    "spy": 90.7388
+    "port": 119.326,
+    "spy": 90.8335
   },
   {
     "date": "2011-11-14",
-    "port": 120.4024,
-    "spy": 89.8791
+    "port": 119.1394,
+    "spy": 89.9729
   },
   {
     "date": "2011-11-15",
-    "port": 120.7125,
-    "spy": 90.3233
+    "port": 119.435,
+    "spy": 90.4175
   },
   {
     "date": "2011-11-16",
-    "port": 119.7871,
-    "spy": 88.8905
+    "port": 118.5331,
+    "spy": 88.9832
   },
   {
     "date": "2011-11-17",
-    "port": 119.0881,
-    "spy": 87.4792
+    "port": 117.8567,
+    "spy": 87.5705
   },
   {
     "date": "2011-11-18",
-    "port": 119.0332,
-    "spy": 87.386
+    "port": 117.7989,
+    "spy": 87.4772
   },
   {
     "date": "2011-11-21",
-    "port": 117.8276,
-    "spy": 85.724
+    "port": 116.6232,
+    "spy": 85.8135
   },
   {
     "date": "2011-11-22",
-    "port": 117.9786,
-    "spy": 85.3873
+    "port": 116.7812,
+    "spy": 85.4764
   },
   {
     "date": "2011-11-23",
-    "port": 116.5898,
-    "spy": 83.5031
+    "port": 115.4295,
+    "spy": 83.5903
   },
   {
     "date": "2011-11-25",
-    "port": 115.651,
-    "spy": 83.3455
+    "port": 114.5059,
+    "spy": 83.4325
   },
   {
     "date": "2011-11-28",
-    "port": 117.9281,
-    "spy": 85.7598
+    "port": 116.7298,
+    "spy": 85.8493
   },
   {
     "date": "2011-11-29",
-    "port": 117.6386,
-    "spy": 86.0034
+    "port": 116.4426,
+    "spy": 86.0931
   },
   {
     "date": "2011-11-30",
-    "port": 120.3092,
-    "spy": 89.5424
+    "port": 119.0414,
+    "spy": 89.6358
   },
   {
     "date": "2011-12-01",
-    "port": 119.9848,
-    "spy": 89.528
+    "port": 118.7277,
+    "spy": 89.6215
   },
   {
     "date": "2011-12-02",
-    "port": 120.7109,
-    "spy": 89.4492
+    "port": 119.4424,
+    "spy": 89.5426
   },
   {
     "date": "2011-12-05",
-    "port": 121.4927,
-    "spy": 90.4236
+    "port": 120.2046,
+    "spy": 90.5179
   },
   {
     "date": "2011-12-06",
-    "port": 121.0801,
-    "spy": 90.4522
+    "port": 119.7946,
+    "spy": 90.5466
   },
   {
     "date": "2011-12-07",
-    "port": 121.5077,
-    "spy": 90.7889
+    "port": 120.2169,
+    "spy": 90.8837
   },
   {
     "date": "2011-12-08",
-    "port": 120.0845,
-    "spy": 88.7973
+    "port": 118.8323,
+    "spy": 88.89
   },
   {
     "date": "2011-12-09",
-    "port": 120.8119,
-    "spy": 90.3018
+    "port": 119.5278,
+    "spy": 90.396
   },
   {
     "date": "2011-12-12",
-    "port": 120.2397,
-    "spy": 88.9836
+    "port": 118.9769,
+    "spy": 89.0765
   },
   {
     "date": "2011-12-13",
-    "port": 119.9149,
-    "spy": 88.1526
+    "port": 118.6751,
+    "spy": 88.2446
   },
   {
     "date": "2011-12-14",
-    "port": 119.9282,
-    "spy": 87.2141
+    "port": 118.6963,
+    "spy": 87.3051
   },
   {
     "date": "2011-12-15",
-    "port": 120.0582,
-    "spy": 87.5293
+    "port": 118.8154,
+    "spy": 87.6207
   },
   {
     "date": "2011-12-16",
-    "port": 120.6176,
-    "spy": 87.6591
+    "port": 119.3607,
+    "spy": 87.7506
   },
   {
     "date": "2011-12-19",
-    "port": 120.1357,
-    "spy": 86.7219
+    "port": 118.9,
+    "spy": 86.8124
   },
   {
     "date": "2011-12-20",
-    "port": 121.5947,
-    "spy": 89.3461
+    "port": 120.3121,
+    "spy": 89.4393
   },
   {
     "date": "2011-12-21",
-    "port": 121.3328,
-    "spy": 89.5191
+    "port": 120.0435,
+    "spy": 89.6125
   },
   {
     "date": "2011-12-22",
-    "port": 122.2122,
-    "spy": 90.3121
+    "port": 120.9089,
+    "spy": 90.4064
   },
   {
     "date": "2011-12-23",
-    "port": 122.3349,
-    "spy": 91.1196
+    "port": 121.0268,
+    "spy": 91.2147
   },
   {
     "date": "2011-12-27",
-    "port": 122.5509,
-    "spy": 91.1917
+    "port": 121.2375,
+    "spy": 91.2869
   },
   {
     "date": "2011-12-28",
-    "port": 122.2233,
-    "spy": 89.9949
+    "port": 120.9312,
+    "spy": 90.0888
   },
   {
     "date": "2011-12-29",
-    "port": 123.1843,
-    "spy": 90.925
+    "port": 121.8718,
+    "spy": 91.0199
   },
   {
     "date": "2011-12-30",
-    "port": 122.6918,
-    "spy": 90.4779
+    "port": 121.3849,
+    "spy": 90.5724
   },
   {
     "date": "2012-01-03",
-    "port": 123.3143,
-    "spy": 91.9198
+    "port": 121.9842,
+    "spy": 92.0158
   },
   {
     "date": "2012-01-04",
-    "port": 122.989,
-    "spy": 92.064
+    "port": 121.6679,
+    "spy": 92.1601
   },
   {
     "date": "2012-01-05",
-    "port": 123.311,
-    "spy": 92.3091
+    "port": 121.9851,
+    "spy": 92.4055
   },
   {
     "date": "2012-01-06",
-    "port": 123.5355,
-    "spy": 92.0712
+    "port": 122.2112,
+    "spy": 92.1673
   },
   {
     "date": "2012-01-09",
-    "port": 123.4625,
-    "spy": 92.2947
+    "port": 122.1328,
+    "spy": 92.3911
   },
   {
     "date": "2012-01-10",
-    "port": 124.0265,
-    "spy": 93.095
+    "port": 122.6747,
+    "spy": 93.1921
   },
   {
     "date": "2012-01-11",
-    "port": 124.7706,
-    "spy": 93.1454
+    "port": 123.4104,
+    "spy": 93.2426
   },
   {
     "date": "2012-01-12",
-    "port": 125.0469,
-    "spy": 93.3689
+    "port": 123.6797,
+    "spy": 93.4664
   },
   {
     "date": "2012-01-13",
-    "port": 125.2291,
-    "spy": 92.8859
+    "port": 123.8699,
+    "spy": 92.9828
   },
   {
     "date": "2012-01-17",
-    "port": 125.4776,
-    "spy": 93.2464
+    "port": 124.1128,
+    "spy": 93.3437
   },
   {
     "date": "2012-01-18",
-    "port": 125.9327,
-    "spy": 94.2773
+    "port": 124.5442,
+    "spy": 94.3757
   },
   {
     "date": "2012-01-19",
-    "port": 125.5038,
-    "spy": 94.7747
+    "port": 124.1117,
+    "spy": 94.8737
   },
   {
     "date": "2012-01-20",
-    "port": 125.2817,
-    "spy": 95.128
+    "port": 123.8858,
+    "spy": 95.2273
   },
   {
     "date": "2012-01-23",
-    "port": 124.5884,
-    "spy": 94.8829
+    "port": 123.1959,
+    "spy": 94.9819
   },
   {
     "date": "2012-01-24",
-    "port": 124.7217,
-    "spy": 94.7747
+    "port": 123.3213,
+    "spy": 94.8737
   },
   {
     "date": "2012-01-25",
-    "port": 125.1292,
-    "spy": 95.5678
+    "port": 123.7164,
+    "spy": 95.6675
   },
   {
     "date": "2012-01-26",
-    "port": 125.2024,
-    "spy": 95.0775
+    "port": 123.7935,
+    "spy": 95.1768
   },
   {
     "date": "2012-01-27",
-    "port": 125.3326,
-    "spy": 95.0343
+    "port": 123.9132,
+    "spy": 95.1335
   },
   {
     "date": "2012-01-30",
-    "port": 125.7987,
-    "spy": 94.7098
+    "port": 124.332,
+    "spy": 94.8087
   },
   {
     "date": "2012-01-31",
-    "port": 126.1852,
-    "spy": 94.6738
+    "port": 124.7408,
+    "spy": 94.7726
   },
   {
     "date": "2012-02-01",
-    "port": 126.4084,
-    "spy": 95.5029
+    "port": 125.0346,
+    "spy": 95.6026
   },
   {
     "date": "2012-02-02",
-    "port": 126.5916,
-    "spy": 95.6543
+    "port": 125.2237,
+    "spy": 95.7541
   },
   {
     "date": "2012-02-03",
-    "port": 126.7726,
-    "spy": 96.9952
+    "port": 125.4681,
+    "spy": 97.0965
   },
   {
     "date": "2012-02-06",
-    "port": 127.1393,
-    "spy": 96.9304
+    "port": 125.8438,
+    "spy": 97.0315
   },
   {
     "date": "2012-02-07",
-    "port": 126.6486,
-    "spy": 97.1755
+    "port": 125.3503,
+    "spy": 97.2769
   },
   {
     "date": "2012-02-08",
-    "port": 126.9314,
-    "spy": 97.4638
+    "port": 125.6452,
+    "spy": 97.5656
   },
   {
     "date": "2012-02-09",
-    "port": 126.7093,
-    "spy": 97.5864
+    "port": 125.3996,
+    "spy": 97.6883
   },
   {
     "date": "2012-02-10",
-    "port": 126.6247,
-    "spy": 96.8655
+    "port": 125.2825,
+    "spy": 96.9666
   },
   {
     "date": "2012-02-13",
-    "port": 127.2575,
-    "spy": 97.5864
+    "port": 125.9731,
+    "spy": 97.6883
   },
   {
     "date": "2012-02-14",
-    "port": 127.3102,
-    "spy": 97.4638
+    "port": 126.0145,
+    "spy": 97.5656
   },
   {
     "date": "2012-02-15",
-    "port": 126.8501,
-    "spy": 97.0097
+    "port": 125.5638,
+    "spy": 97.1109
   },
   {
     "date": "2012-02-16",
-    "port": 127.411,
-    "spy": 98.0839
+    "port": 126.1085,
+    "spy": 98.1862
   },
   {
     "date": "2012-02-17",
-    "port": 127.3877,
-    "spy": 98.3434
+    "port": 126.0794,
+    "spy": 98.446
   },
   {
     "date": "2012-02-21",
-    "port": 126.9098,
-    "spy": 98.3867
+    "port": 125.6108,
+    "spy": 98.4894
   },
   {
     "date": "2012-02-22",
-    "port": 127.0272,
-    "spy": 98.0694
+    "port": 125.7255,
+    "spy": 98.1718
   },
   {
     "date": "2012-02-23",
-    "port": 127.5701,
-    "spy": 98.502
+    "port": 126.2581,
+    "spy": 98.6048
   },
   {
     "date": "2012-02-24",
-    "port": 127.8248,
-    "spy": 98.7183
+    "port": 126.5061,
+    "spy": 98.8213
   },
   {
     "date": "2012-02-27",
-    "port": 128.3248,
-    "spy": 98.8841
+    "port": 126.9968,
+    "spy": 98.9873
   },
   {
     "date": "2012-02-28",
-    "port": 128.3118,
-    "spy": 99.1724
+    "port": 126.9834,
+    "spy": 99.276
   },
   {
     "date": "2012-02-29",
-    "port": 127.3889,
-    "spy": 98.7832
+    "port": 126.074,
+    "spy": 98.8863
   },
   {
     "date": "2012-03-01",
-    "port": 127.5045,
-    "spy": 99.2951
+    "port": 126.1891,
+    "spy": 99.3987
   },
   {
     "date": "2012-03-02",
-    "port": 127.3939,
-    "spy": 98.9922
+    "port": 126.0801,
+    "spy": 99.0956
   },
   {
     "date": "2012-03-05",
-    "port": 126.6972,
-    "spy": 98.5885
+    "port": 125.3928,
+    "spy": 98.6914
   },
   {
     "date": "2012-03-06",
-    "port": 125.6797,
-    "spy": 97.1466
+    "port": 124.3887,
+    "spy": 97.248
   },
   {
     "date": "2012-03-07",
-    "port": 126.084,
-    "spy": 97.8243
+    "port": 124.7853,
+    "spy": 97.9264
   },
   {
     "date": "2012-03-08",
-    "port": 126.6237,
-    "spy": 98.7976
+    "port": 125.3169,
+    "spy": 98.9007
   },
   {
     "date": "2012-03-09",
-    "port": 127.235,
-    "spy": 99.1797
+    "port": 125.917,
+    "spy": 99.2832
   },
   {
     "date": "2012-03-12",
-    "port": 127.125,
-    "spy": 99.1869
+    "port": 125.8081,
+    "spy": 99.2904
   },
   {
     "date": "2012-03-13",
-    "port": 127.935,
-    "spy": 100.9748
+    "port": 126.6011,
+    "spy": 101.0802
   },
   {
     "date": "2012-03-14",
-    "port": 126.5078,
-    "spy": 100.8667
+    "port": 125.1953,
+    "spy": 100.972
   },
   {
     "date": "2012-03-15",
-    "port": 127.2487,
-    "spy": 101.4506
+    "port": 125.9243,
+    "spy": 101.5565
   },
   {
     "date": "2012-03-16",
-    "port": 127.6271,
-    "spy": 101.5911
+    "port": 126.3009,
+    "spy": 101.6971
   },
   {
     "date": "2012-03-19",
-    "port": 127.4756,
-    "spy": 101.9894
+    "port": 126.15,
+    "spy": 102.0958
   },
   {
     "date": "2012-03-20",
-    "port": 127.0447,
-    "spy": 101.6925
+    "port": 125.7212,
+    "spy": 101.7986
   },
   {
     "date": "2012-03-21",
-    "port": 127.4258,
-    "spy": 101.526
+    "port": 126.0956,
+    "spy": 101.6319
   },
   {
     "date": "2012-03-22",
-    "port": 126.7344,
-    "spy": 100.7946
+    "port": 125.4117,
+    "spy": 100.8998
   },
   {
     "date": "2012-03-23",
-    "port": 127.7391,
-    "spy": 101.1205
+    "port": 126.4027,
+    "spy": 101.226
   },
   {
     "date": "2012-03-26",
-    "port": 128.8739,
-    "spy": 102.5397
+    "port": 127.5186,
+    "spy": 102.6467
   },
   {
     "date": "2012-03-27",
-    "port": 128.6882,
-    "spy": 102.2211
+    "port": 127.3327,
+    "spy": 102.3278
   },
   {
     "date": "2012-03-28",
-    "port": 128.0899,
-    "spy": 101.7142
+    "port": 126.7413,
+    "spy": 101.8204
   },
   {
     "date": "2012-03-29",
-    "port": 128.0507,
-    "spy": 101.5404
+    "port": 126.6966,
+    "spy": 101.6464
   },
   {
     "date": "2012-03-30",
-    "port": 127.7932,
-    "spy": 101.9604
+    "port": 126.451,
+    "spy": 102.0668
   },
   {
     "date": "2012-04-02",
-    "port": 128.8725,
-    "spy": 102.7063
+    "port": 127.5131,
+    "spy": 102.8135
   },
   {
     "date": "2012-04-03",
-    "port": 127.6924,
-    "spy": 102.2862
+    "port": 126.3533,
+    "spy": 102.393
   },
   {
     "date": "2012-04-04",
-    "port": 127.1648,
-    "spy": 101.2725
+    "port": 125.8307,
+    "spy": 101.3782
   },
   {
     "date": "2012-04-05",
-    "port": 127.2442,
-    "spy": 101.2218
+    "port": 125.9049,
+    "spy": 101.3275
   },
   {
     "date": "2012-04-09",
-    "port": 127.088,
-    "spy": 100.085
+    "port": 125.7485,
+    "spy": 100.1895
   },
   {
     "date": "2012-04-10",
-    "port": 126.0441,
-    "spy": 98.4051
+    "port": 124.7238,
+    "spy": 98.5078
   },
   {
     "date": "2012-04-11",
-    "port": 126.3024,
-    "spy": 99.2016
+    "port": 124.9755,
+    "spy": 99.3051
   },
   {
     "date": "2012-04-12",
-    "port": 127.1035,
-    "spy": 100.4977
+    "port": 125.756,
+    "spy": 100.6026
   },
   {
     "date": "2012-04-13",
-    "port": 126.8523,
-    "spy": 99.303
+    "port": 125.5138,
+    "spy": 99.4066
   },
   {
     "date": "2012-04-16",
-    "port": 126.8111,
-    "spy": 99.2378
+    "port": 125.4728,
+    "spy": 99.3414
   },
   {
     "date": "2012-04-17",
-    "port": 128.0509,
-    "spy": 100.7077
+    "port": 126.6893,
+    "spy": 100.8128
   },
   {
     "date": "2012-04-18",
-    "port": 127.9487,
-    "spy": 100.3674
+    "port": 126.5933,
+    "spy": 100.4721
   },
   {
     "date": "2012-04-19",
-    "port": 127.3553,
-    "spy": 99.723
+    "port": 126.0073,
+    "spy": 99.8271
   },
   {
     "date": "2012-04-20",
-    "port": 127.5275,
-    "spy": 99.8895
+    "port": 126.1743,
+    "spy": 99.9938
   },
   {
     "date": "2012-04-23",
-    "port": 127.0483,
-    "spy": 99.0496
+    "port": 125.7044,
+    "spy": 99.153
   },
   {
     "date": "2012-04-24",
-    "port": 127.1222,
-    "spy": 99.4261
+    "port": 125.7759,
+    "spy": 99.5298
   },
   {
     "date": "2012-04-25",
-    "port": 128.0757,
-    "spy": 100.7874
+    "port": 126.7114,
+    "spy": 100.8926
   },
   {
     "date": "2012-04-26",
-    "port": 128.8157,
-    "spy": 101.4897
+    "port": 127.4351,
+    "spy": 101.5957
   },
   {
     "date": "2012-04-27",
-    "port": 128.9839,
-    "spy": 101.6563
+    "port": 127.5948,
+    "spy": 101.7624
   },
   {
     "date": "2012-04-30",
-    "port": 128.5158,
-    "spy": 101.2798
+    "port": 127.134,
+    "spy": 101.3855
   },
   {
     "date": "2012-05-01",
-    "port": 128.7154,
-    "spy": 101.9097
+    "port": 127.3299,
+    "spy": 102.0161
   },
   {
     "date": "2012-05-02",
-    "port": 129.0592,
-    "spy": 101.6057
+    "port": 127.6711,
+    "spy": 101.7117
   },
   {
     "date": "2012-05-03",
-    "port": 128.2882,
-    "spy": 100.8308
+    "port": 126.9148,
+    "spy": 100.9361
   },
   {
     "date": "2012-05-04",
-    "port": 127.2588,
-    "spy": 99.2016
+    "port": 125.9057,
+    "spy": 99.3051
   },
   {
     "date": "2012-05-07",
-    "port": 127.3951,
-    "spy": 99.274
+    "port": 126.0394,
+    "spy": 99.3776
   },
   {
     "date": "2012-05-08",
-    "port": 127.3654,
-    "spy": 98.8758
+    "port": 126.0097,
+    "spy": 98.979
   },
   {
     "date": "2012-05-09",
-    "port": 126.8361,
-    "spy": 98.2892
+    "port": 125.4883,
+    "spy": 98.3918
   },
   {
     "date": "2012-05-10",
-    "port": 127.0032,
-    "spy": 98.492
+    "port": 125.653,
+    "spy": 98.5948
   },
   {
     "date": "2012-05-11",
-    "port": 126.9809,
-    "spy": 98.1951
+    "port": 125.6284,
+    "spy": 98.2976
   },
   {
     "date": "2012-05-14",
-    "port": 126.6759,
-    "spy": 97.109
+    "port": 125.3298,
+    "spy": 97.2103
   },
   {
     "date": "2012-05-15",
-    "port": 126.6077,
-    "spy": 96.5514
+    "port": 125.2667,
+    "spy": 96.6522
   },
   {
     "date": "2012-05-16",
-    "port": 126.4881,
-    "spy": 96.1821
+    "port": 125.1534,
+    "spy": 96.2825
   },
   {
     "date": "2012-05-17",
-    "port": 125.9224,
-    "spy": 94.7556
+    "port": 124.5978,
+    "spy": 94.8545
   },
   {
     "date": "2012-05-18",
-    "port": 125.168,
-    "spy": 93.9446
+    "port": 123.8551,
+    "spy": 94.0427
   },
   {
     "date": "2012-05-21",
-    "port": 126.5938,
-    "spy": 95.5594
+    "port": 125.2551,
+    "spy": 95.6591
   },
   {
     "date": "2012-05-22",
-    "port": 126.0925,
-    "spy": 95.7259
+    "port": 124.7622,
+    "spy": 95.8258
   },
   {
     "date": "2012-05-23",
-    "port": 126.5734,
-    "spy": 95.7766
+    "port": 125.2345,
+    "spy": 95.8766
   },
   {
     "date": "2012-05-24",
-    "port": 126.4975,
-    "spy": 95.9649
+    "port": 125.1578,
+    "spy": 96.065
   },
   {
     "date": "2012-05-25",
-    "port": 126.4724,
-    "spy": 95.6535
+    "port": 125.1336,
+    "spy": 95.7534
   },
   {
     "date": "2012-05-29",
-    "port": 127.2675,
-    "spy": 96.812
+    "port": 125.9104,
+    "spy": 96.9131
   },
   {
     "date": "2012-05-30",
-    "port": 127.1535,
-    "spy": 95.4073
+    "port": 125.8012,
+    "spy": 95.5069
   },
   {
     "date": "2012-05-31",
-    "port": 127.3725,
-    "spy": 95.1974
+    "port": 126.0121,
+    "spy": 95.2967
   },
   {
     "date": "2012-06-01",
-    "port": 126.2499,
-    "spy": 92.8006
+    "port": 124.9113,
+    "spy": 92.8974
   },
   {
     "date": "2012-06-04",
-    "port": 125.6577,
-    "spy": 92.7571
+    "port": 124.3249,
+    "spy": 92.8539
   },
   {
     "date": "2012-06-05",
-    "port": 125.726,
-    "spy": 93.4595
+    "port": 124.3908,
+    "spy": 93.557
   },
   {
     "date": "2012-06-06",
-    "port": 126.2791,
-    "spy": 95.5594
+    "port": 124.9194,
+    "spy": 95.6591
   },
   {
     "date": "2012-06-07",
-    "port": 126.1361,
-    "spy": 95.6173
+    "port": 124.7743,
+    "spy": 95.7171
   },
   {
     "date": "2012-06-08",
-    "port": 126.8889,
-    "spy": 96.3776
+    "port": 125.5146,
+    "spy": 96.4782
   },
   {
     "date": "2012-06-11",
-    "port": 125.9872,
-    "spy": 95.1539
+    "port": 124.6331,
+    "spy": 95.2532
   },
   {
     "date": "2012-06-12",
-    "port": 126.4115,
-    "spy": 96.2473
+    "port": 125.045,
+    "spy": 96.3477
   },
   {
     "date": "2012-06-13",
-    "port": 126.3666,
-    "spy": 95.6318
+    "port": 125.0056,
+    "spy": 95.7316
   },
   {
     "date": "2012-06-14",
-    "port": 127.0982,
-    "spy": 96.6455
+    "port": 125.7191,
+    "spy": 96.7464
   },
   {
     "date": "2012-06-15",
-    "port": 128.22,
-    "spy": 97.634
+    "port": 126.8193,
+    "spy": 97.7359
   },
   {
     "date": "2012-06-18",
-    "port": 128.3927,
-    "spy": 97.8232
+    "port": 126.9843,
+    "spy": 97.9253
   },
   {
     "date": "2012-06-19",
-    "port": 128.3682,
-    "spy": 98.7694
+    "port": 126.9462,
+    "spy": 98.8725
   },
   {
     "date": "2012-06-20",
-    "port": 128.4687,
-    "spy": 98.6092
+    "port": 127.0449,
+    "spy": 98.7122
   },
   {
     "date": "2012-06-21",
-    "port": 127.1107,
-    "spy": 96.3966
+    "port": 125.7228,
+    "spy": 96.4972
   },
   {
     "date": "2012-06-22",
-    "port": 127.1559,
-    "spy": 97.139
+    "port": 125.7627,
+    "spy": 97.2404
   },
   {
     "date": "2012-06-25",
-    "port": 126.2223,
-    "spy": 95.5814
+    "port": 124.8416,
+    "spy": 95.6812
   },
   {
     "date": "2012-06-26",
-    "port": 126.3519,
-    "spy": 96.0618
+    "port": 124.9655,
+    "spy": 96.1621
   },
   {
     "date": "2012-06-27",
-    "port": 127.1289,
-    "spy": 96.9279
+    "port": 125.7234,
+    "spy": 97.0291
   },
   {
     "date": "2012-06-28",
-    "port": 127.1701,
-    "spy": 96.6514
+    "port": 125.7653,
+    "spy": 96.7522
   },
   {
     "date": "2012-06-29",
-    "port": 128.0933,
-    "spy": 99.0605
+    "port": 126.6521,
+    "spy": 99.1639
   },
   {
     "date": "2012-07-02",
-    "port": 128.9113,
-    "spy": 99.359
+    "port": 127.4536,
+    "spy": 99.4627
   },
   {
     "date": "2012-07-03",
-    "port": 128.898,
-    "spy": 100.014
+    "port": 127.4294,
+    "spy": 100.1184
   },
   {
     "date": "2012-07-05",
-    "port": 129.3705,
-    "spy": 99.5628
+    "port": 127.9071,
+    "spy": 99.6667
   },
   {
     "date": "2012-07-06",
-    "port": 129.0772,
-    "spy": 98.6166
+    "port": 127.622,
+    "spy": 98.7195
   },
   {
     "date": "2012-07-09",
-    "port": 129.4841,
-    "spy": 98.4928
+    "port": 128.0256,
+    "spy": 98.5956
   },
   {
     "date": "2012-07-10",
-    "port": 128.8843,
-    "spy": 97.634
+    "port": 127.4387,
+    "spy": 97.7359
   },
   {
     "date": "2012-07-11",
-    "port": 128.7676,
-    "spy": 97.6485
+    "port": 127.3195,
+    "spy": 97.7505
   },
   {
     "date": "2012-07-12",
-    "port": 128.8635,
-    "spy": 97.1754
+    "port": 127.4183,
+    "spy": 97.2768
   },
   {
     "date": "2012-07-13",
-    "port": 129.9906,
-    "spy": 98.8058
+    "port": 128.5199,
+    "spy": 98.9089
   },
   {
     "date": "2012-07-16",
-    "port": 130.1833,
-    "spy": 98.5728
+    "port": 128.7153,
+    "spy": 98.6757
   },
   {
     "date": "2012-07-17",
-    "port": 130.3316,
-    "spy": 99.2498
+    "port": 128.8594,
+    "spy": 99.3534
   },
   {
     "date": "2012-07-18",
-    "port": 131.1633,
-    "spy": 99.9849
+    "port": 129.6797,
+    "spy": 100.0893
   },
   {
     "date": "2012-07-19",
-    "port": 131.1871,
-    "spy": 100.2469
+    "port": 129.7045,
+    "spy": 100.3516
   },
   {
     "date": "2012-07-20",
-    "port": 131.2047,
-    "spy": 99.3299
+    "port": 129.7296,
+    "spy": 99.4336
   },
   {
     "date": "2012-07-23",
-    "port": 130.4691,
-    "spy": 98.3254
+    "port": 129.0078,
+    "spy": 98.4281
   },
   {
     "date": "2012-07-24",
-    "port": 129.9082,
-    "spy": 97.4811
+    "port": 128.4555,
+    "spy": 97.5828
   },
   {
     "date": "2012-07-25",
-    "port": 130.1226,
-    "spy": 97.5029
+    "port": 128.6664,
+    "spy": 97.6047
   },
   {
     "date": "2012-07-26",
-    "port": 130.7681,
-    "spy": 99.1115
+    "port": 129.2906,
+    "spy": 99.215
   },
   {
     "date": "2012-07-27",
-    "port": 131.5932,
-    "spy": 100.9384
+    "port": 130.0974,
+    "spy": 101.0437
   },
   {
     "date": "2012-07-30",
-    "port": 132.1112,
-    "spy": 100.9384
+    "port": 130.6112,
+    "spy": 101.0437
   },
   {
     "date": "2012-07-31",
-    "port": 131.5589,
-    "spy": 100.2324
+    "port": 130.0667,
+    "spy": 100.337
   },
   {
     "date": "2012-08-01",
-    "port": 131.016,
-    "spy": 100.145
+    "port": 129.5356,
+    "spy": 100.2496
   },
   {
     "date": "2012-08-02",
-    "port": 130.555,
-    "spy": 99.4536
+    "port": 129.0795,
+    "spy": 99.5574
   },
   {
     "date": "2012-08-03",
-    "port": 131.6113,
-    "spy": 101.4261
+    "port": 130.1126,
+    "spy": 101.5319
   },
   {
     "date": "2012-08-06",
-    "port": 131.8888,
-    "spy": 101.6226
+    "port": 130.3834,
+    "spy": 101.7286
   },
   {
     "date": "2012-08-07",
-    "port": 131.798,
-    "spy": 102.1321
+    "port": 130.2925,
+    "spy": 102.2387
   },
   {
     "date": "2012-08-08",
-    "port": 131.7792,
-    "spy": 102.2558
+    "port": 130.276,
+    "spy": 102.3625
   },
   {
     "date": "2012-08-09",
-    "port": 131.9956,
-    "spy": 102.3431
+    "port": 130.4899,
+    "spy": 102.45
   },
   {
     "date": "2012-08-10",
-    "port": 132.29,
-    "spy": 102.5105
+    "port": 130.7781,
+    "spy": 102.6175
   },
   {
     "date": "2012-08-13",
-    "port": 131.988,
-    "spy": 102.4596
+    "port": 130.4772,
+    "spy": 102.5665
   },
   {
     "date": "2012-08-14",
-    "port": 131.3183,
-    "spy": 102.4741
+    "port": 129.8194,
+    "spy": 102.5811
   },
   {
     "date": "2012-08-15",
-    "port": 130.962,
-    "spy": 102.5906
+    "port": 129.4698,
+    "spy": 102.6977
   },
   {
     "date": "2012-08-16",
-    "port": 131.1473,
-    "spy": 103.3476
+    "port": 129.647,
+    "spy": 103.4555
   },
   {
     "date": "2012-08-17",
-    "port": 131.649,
-    "spy": 103.4859
+    "port": 130.1392,
+    "spy": 103.5939
   },
   {
     "date": "2012-08-20",
-    "port": 131.8428,
-    "spy": 103.4931
+    "port": 130.3318,
+    "spy": 103.6012
   },
   {
     "date": "2012-08-21",
-    "port": 131.8376,
-    "spy": 103.1802
+    "port": 130.3267,
+    "spy": 103.2879
   },
   {
     "date": "2012-08-22",
-    "port": 132.5867,
-    "spy": 103.2239
+    "port": 131.0636,
+    "spy": 103.3316
   },
   {
     "date": "2012-08-23",
-    "port": 131.8999,
-    "spy": 102.3796
+    "port": 130.3852,
+    "spy": 102.4864
   },
   {
     "date": "2012-08-24",
-    "port": 132.2182,
-    "spy": 102.9982
+    "port": 130.6945,
+    "spy": 103.1057
   },
   {
     "date": "2012-08-27",
-    "port": 132.4768,
-    "spy": 103.02
+    "port": 130.9467,
+    "spy": 103.1275
   },
   {
     "date": "2012-08-28",
-    "port": 132.5798,
-    "spy": 102.9181
+    "port": 131.0461,
+    "spy": 103.0256
   },
   {
     "date": "2012-08-29",
-    "port": 132.6074,
-    "spy": 102.9982
+    "port": 131.0755,
+    "spy": 103.1057
   },
   {
     "date": "2012-08-30",
-    "port": 132.1995,
-    "spy": 102.2558
+    "port": 130.6762,
+    "spy": 102.3625
   },
   {
     "date": "2012-08-31",
-    "port": 133.3474,
-    "spy": 102.7435
+    "port": 131.8036,
+    "spy": 102.8507
   },
   {
     "date": "2012-09-04",
-    "port": 133.344,
-    "spy": 102.6488
+    "port": 131.797,
+    "spy": 102.756
   },
   {
     "date": "2012-09-05",
-    "port": 132.8995,
-    "spy": 102.5615
+    "port": 131.3564,
+    "spy": 102.6686
   },
   {
     "date": "2012-09-06",
-    "port": 133.8018,
-    "spy": 104.6431
+    "port": 132.2371,
+    "spy": 104.7524
   },
   {
     "date": "2012-09-07",
-    "port": 133.9222,
-    "spy": 105.0508
+    "port": 132.3519,
+    "spy": 105.1604
   },
   {
     "date": "2012-09-10",
-    "port": 133.5205,
-    "spy": 104.4539
+    "port": 131.9554,
+    "spy": 104.563
   },
   {
     "date": "2012-09-11",
-    "port": 133.5176,
-    "spy": 104.7451
+    "port": 131.9518,
+    "spy": 104.8544
   },
   {
     "date": "2012-09-12",
-    "port": 133.2376,
-    "spy": 105.0944
+    "port": 131.6758,
+    "spy": 105.2041
   },
   {
     "date": "2012-09-13",
-    "port": 134.4559,
-    "spy": 106.6957
+    "port": 132.8715,
+    "spy": 106.8071
   },
   {
     "date": "2012-09-14",
-    "port": 133.5189,
-    "spy": 107.1688
+    "port": 131.9451,
+    "spy": 107.2807
   },
   {
     "date": "2012-09-17",
-    "port": 133.3272,
-    "spy": 106.8049
+    "port": 131.7483,
+    "spy": 106.9164
   },
   {
     "date": "2012-09-18",
-    "port": 133.3214,
-    "spy": 106.7175
+    "port": 131.7397,
+    "spy": 106.8289
   },
   {
     "date": "2012-09-19",
-    "port": 133.5706,
-    "spy": 106.7758
+    "port": 131.9803,
+    "spy": 106.8872
   },
   {
     "date": "2012-09-20",
-    "port": 133.6912,
-    "spy": 106.7831
+    "port": 132.101,
+    "spy": 106.8945
   },
   {
     "date": "2012-09-21",
-    "port": 133.8591,
-    "spy": 106.7384
+    "port": 132.2665,
+    "spy": 106.8498
   },
   {
     "date": "2012-09-24",
-    "port": 133.9926,
-    "spy": 106.5774
+    "port": 132.3949,
+    "spy": 106.6887
   },
   {
     "date": "2012-09-25",
-    "port": 133.4667,
-    "spy": 105.4432
+    "port": 131.8811,
+    "spy": 105.5533
   },
   {
     "date": "2012-09-26",
-    "port": 133.4332,
-    "spy": 104.8505
+    "port": 131.8475,
+    "spy": 104.96
   },
   {
     "date": "2012-09-27",
-    "port": 134.0866,
-    "spy": 105.8384
+    "port": 132.4905,
+    "spy": 105.9489
   },
   {
     "date": "2012-09-28",
-    "port": 133.7633,
-    "spy": 105.3481
+    "port": 132.1769,
+    "spy": 105.4581
   },
   {
     "date": "2012-10-01",
-    "port": 134.1546,
-    "spy": 105.6262
+    "port": 132.5571,
+    "spy": 105.7364
   },
   {
     "date": "2012-10-02",
-    "port": 134.0201,
-    "spy": 105.736
+    "port": 132.4201,
+    "spy": 105.8463
   },
   {
     "date": "2012-10-03",
-    "port": 134.1359,
-    "spy": 106.1677
+    "port": 132.5293,
+    "spy": 106.2785
   },
   {
     "date": "2012-10-04",
-    "port": 134.381,
-    "spy": 106.9287
+    "port": 132.7722,
+    "spy": 107.0403
   },
   {
     "date": "2012-10-05",
-    "port": 133.6824,
-    "spy": 106.936
+    "port": 132.083,
+    "spy": 107.0476
   },
   {
     "date": "2012-10-08",
-    "port": 133.7551,
-    "spy": 106.5701
+    "port": 132.1536,
+    "spy": 106.6813
   },
   {
     "date": "2012-10-09",
-    "port": 132.834,
-    "spy": 105.5164
+    "port": 131.2519,
+    "spy": 105.6265
   },
   {
     "date": "2012-10-10",
-    "port": 132.6941,
-    "spy": 104.8432
+    "port": 131.1147,
+    "spy": 104.9526
   },
   {
     "date": "2012-10-11",
-    "port": 133.1848,
-    "spy": 104.9017
+    "port": 131.5971,
+    "spy": 105.0112
   },
   {
     "date": "2012-10-12",
-    "port": 132.9171,
-    "spy": 104.5578
+    "port": 131.3343,
+    "spy": 104.667
   },
   {
     "date": "2012-10-15",
-    "port": 133.4656,
-    "spy": 105.4286
+    "port": 131.8702,
+    "spy": 105.5386
   },
   {
     "date": "2012-10-16",
-    "port": 133.6962,
-    "spy": 106.4969
+    "port": 132.0948,
+    "spy": 106.6081
   },
   {
     "date": "2012-10-17",
-    "port": 133.6862,
-    "spy": 106.9799
+    "port": 132.0811,
+    "spy": 107.0915
   },
   {
     "date": "2012-10-18",
-    "port": 132.9982,
-    "spy": 106.7018
+    "port": 131.4027,
+    "spy": 106.8132
   },
   {
     "date": "2012-10-19",
-    "port": 131.9978,
-    "spy": 104.9237
+    "port": 130.4184,
+    "spy": 105.0332
   },
   {
     "date": "2012-10-22",
-    "port": 131.5594,
-    "spy": 104.9383
+    "port": 129.9838,
+    "spy": 105.0479
   },
   {
     "date": "2012-10-23",
-    "port": 131.0435,
-    "spy": 103.4822
+    "port": 129.4754,
+    "spy": 103.5902
   },
   {
     "date": "2012-10-24",
-    "port": 130.2091,
-    "spy": 103.1895
+    "port": 128.6519,
+    "spy": 103.2972
   },
   {
     "date": "2012-10-25",
-    "port": 130.2784,
-    "spy": 103.4895
+    "port": 128.7204,
+    "spy": 103.5975
   },
   {
     "date": "2012-10-26",
-    "port": 130.87,
-    "spy": 103.431
+    "port": 129.3026,
+    "spy": 103.5389
   },
   {
     "date": "2012-10-31",
-    "port": 131.2253,
-    "spy": 103.431
+    "port": 129.6499,
+    "spy": 103.5389
   },
   {
     "date": "2012-11-01",
-    "port": 131.8291,
-    "spy": 104.5139
+    "port": 130.2405,
+    "spy": 104.623
   },
   {
     "date": "2012-11-02",
-    "port": 130.763,
-    "spy": 103.5846
+    "port": 129.1907,
+    "spy": 103.6927
   },
   {
     "date": "2012-11-05",
-    "port": 131.3385,
-    "spy": 103.7968
+    "port": 129.7555,
+    "spy": 103.9052
   },
   {
     "date": "2012-11-06",
-    "port": 131.7322,
-    "spy": 104.6091
+    "port": 130.1439,
+    "spy": 104.7182
   },
   {
     "date": "2012-11-07",
-    "port": 130.1056,
-    "spy": 102.2383
+    "port": 128.5386,
+    "spy": 102.345
   },
   {
     "date": "2012-11-08",
-    "port": 129.8586,
-    "spy": 101.0089
+    "port": 128.2999,
+    "spy": 101.1143
   },
   {
     "date": "2012-11-09",
-    "port": 130.0243,
-    "spy": 101.0967
+    "port": 128.4621,
+    "spy": 101.2023
   },
   {
     "date": "2012-11-12",
-    "port": 130.2217,
-    "spy": 101.1772
+    "port": 128.6571,
+    "spy": 101.2828
   },
   {
     "date": "2012-11-13",
-    "port": 130.1269,
-    "spy": 100.826
+    "port": 128.5659,
+    "spy": 100.9312
   },
   {
     "date": "2012-11-14",
-    "port": 128.9301,
-    "spy": 99.465
+    "port": 127.3932,
+    "spy": 99.5688
   },
   {
     "date": "2012-11-15",
-    "port": 128.6152,
-    "spy": 99.2966
+    "port": 127.0838,
+    "spy": 99.4003
   },
   {
     "date": "2012-11-16",
-    "port": 129.1049,
-    "spy": 99.7869
+    "port": 127.5654,
+    "spy": 99.8911
   },
   {
     "date": "2012-11-19",
-    "port": 130.5024,
-    "spy": 101.8065
+    "port": 128.9305,
+    "spy": 101.9127
   },
   {
     "date": "2012-11-20",
-    "port": 130.1383,
-    "spy": 101.8504
+    "port": 128.5746,
+    "spy": 101.9567
   },
   {
     "date": "2012-11-21",
-    "port": 130.4562,
-    "spy": 102.0407
+    "port": 128.8886,
+    "spy": 102.1472
   },
   {
     "date": "2012-11-23",
-    "port": 131.7001,
-    "spy": 103.431
+    "port": 130.1108,
+    "spy": 103.5389
   },
   {
     "date": "2012-11-26",
-    "port": 131.674,
-    "spy": 103.2114
+    "port": 130.0811,
+    "spy": 103.3191
   },
   {
     "date": "2012-11-27",
-    "port": 131.3982,
-    "spy": 102.6846
+    "port": 129.8076,
+    "spy": 102.7918
   },
   {
     "date": "2012-11-28",
-    "port": 132.0125,
-    "spy": 103.5115
+    "port": 130.4076,
+    "spy": 103.6195
   },
   {
     "date": "2012-11-29",
-    "port": 132.4366,
-    "spy": 103.9944
+    "port": 130.8195,
+    "spy": 104.1029
   },
   {
     "date": "2012-11-30",
-    "port": 132.3468,
-    "spy": 104.0164
+    "port": 130.7307,
+    "spy": 104.1249
   },
   {
     "date": "2012-12-03",
-    "port": 131.9759,
-    "spy": 103.5041
+    "port": 130.3647,
+    "spy": 103.6121
   },
   {
     "date": "2012-12-04",
-    "port": 132.1546,
-    "spy": 103.3578
+    "port": 130.5388,
+    "spy": 103.4657
   },
   {
     "date": "2012-12-05",
-    "port": 132.2924,
-    "spy": 103.5407
+    "port": 130.675,
+    "spy": 103.6488
   },
   {
     "date": "2012-12-06",
-    "port": 132.6234,
-    "spy": 103.892
+    "port": 130.9986,
+    "spy": 104.0004
   },
   {
     "date": "2012-12-07",
-    "port": 132.3774,
-    "spy": 104.2066
+    "port": 130.755,
+    "spy": 104.3153
   },
   {
     "date": "2012-12-10",
-    "port": 132.7542,
-    "spy": 104.2505
+    "port": 131.1248,
+    "spy": 104.3593
   },
   {
     "date": "2012-12-11",
-    "port": 133.0089,
-    "spy": 104.9603
+    "port": 131.3867,
+    "spy": 105.0698
   },
   {
     "date": "2012-12-12",
-    "port": 132.5306,
-    "spy": 105.0115
+    "port": 130.8616,
+    "spy": 105.1211
   },
   {
     "date": "2012-12-13",
-    "port": 131.9485,
-    "spy": 104.3676
+    "port": 130.27,
+    "spy": 104.4765
   },
   {
     "date": "2012-12-14",
-    "port": 132.0779,
-    "spy": 103.9797
+    "port": 130.4012,
+    "spy": 104.0883
   },
   {
     "date": "2012-12-17",
-    "port": 132.4124,
-    "spy": 105.2018
+    "port": 130.7433,
+    "spy": 105.3116
   },
   {
     "date": "2012-12-18",
-    "port": 132.9733,
-    "spy": 106.3725
+    "port": 131.3159,
+    "spy": 106.4836
   },
   {
     "date": "2012-12-19",
-    "port": 132.7335,
-    "spy": 105.5822
+    "port": 131.045,
+    "spy": 105.6924
   },
   {
     "date": "2012-12-20",
-    "port": 133.2867,
-    "spy": 106.1896
+    "port": 131.6103,
+    "spy": 106.3005
   },
   {
     "date": "2012-12-21",
-    "port": 132.8892,
-    "spy": 105.2257
+    "port": 131.2286,
+    "spy": 105.3355
   },
   {
     "date": "2012-12-24",
-    "port": 132.4695,
-    "spy": 104.9015
+    "port": 130.8022,
+    "spy": 105.011
   },
   {
     "date": "2012-12-26",
-    "port": 132.4678,
-    "spy": 104.4593
+    "port": 130.7585,
+    "spy": 104.5683
   },
   {
     "date": "2012-12-27",
-    "port": 132.6345,
-    "spy": 104.3193
+    "port": 130.907,
+    "spy": 104.4282
   },
   {
     "date": "2012-12-28",
-    "port": 132.0164,
-    "spy": 103.1918
+    "port": 130.2642,
+    "spy": 103.2995
   },
   {
     "date": "2012-12-31",
-    "port": 132.9148,
-    "spy": 104.9457
+    "port": 131.1622,
+    "spy": 105.0552
   },
   {
     "date": "2013-01-02",
-    "port": 134.4982,
-    "spy": 107.6354
+    "port": 132.8132,
+    "spy": 107.7478
   },
   {
     "date": "2013-01-03",
-    "port": 133.582,
-    "spy": 107.3923
+    "port": 131.8697,
+    "spy": 107.5044
   },
   {
     "date": "2013-01-04",
-    "port": 134.3416,
-    "spy": 107.8639
+    "port": 132.6336,
+    "spy": 107.9765
   },
   {
     "date": "2013-01-07",
-    "port": 134.0024,
-    "spy": 107.5692
+    "port": 132.2933,
+    "spy": 107.6814
   },
   {
     "date": "2013-01-08",
-    "port": 134.06,
-    "spy": 107.2596
+    "port": 132.3626,
+    "spy": 107.3716
   },
   {
     "date": "2013-01-09",
-    "port": 134.3054,
-    "spy": 107.5323
+    "port": 132.6066,
+    "spy": 107.6445
   },
   {
     "date": "2013-01-10",
-    "port": 134.853,
-    "spy": 108.3871
+    "port": 133.1674,
+    "spy": 108.5002
   },
   {
     "date": "2013-01-11",
-    "port": 135.14,
-    "spy": 108.3798
+    "port": 133.4908,
+    "spy": 108.4929
   },
   {
     "date": "2013-01-14",
-    "port": 134.9058,
-    "spy": 108.306
+    "port": 133.2513,
+    "spy": 108.4191
   },
   {
     "date": "2013-01-15",
-    "port": 135.0212,
-    "spy": 108.3798
+    "port": 133.4126,
+    "spy": 108.4929
   },
   {
     "date": "2013-01-16",
-    "port": 134.9961,
-    "spy": 108.365
+    "port": 133.4043,
+    "spy": 108.4781
   },
   {
     "date": "2013-01-17",
-    "port": 135.2758,
-    "spy": 109.0651
+    "port": 133.6644,
+    "spy": 109.1789
   },
   {
     "date": "2013-01-18",
-    "port": 135.7777,
-    "spy": 109.3083
+    "port": 134.2039,
+    "spy": 109.4224
   },
   {
     "date": "2013-01-22",
-    "port": 136.3964,
-    "spy": 109.8978
+    "port": 134.848,
+    "spy": 110.0125
   },
   {
     "date": "2013-01-23",
-    "port": 136.3375,
-    "spy": 110.0747
+    "port": 134.7891,
+    "spy": 110.1896
   },
   {
     "date": "2013-01-24",
-    "port": 136.5028,
-    "spy": 110.1042
+    "port": 134.9543,
+    "spy": 110.2191
   },
   {
     "date": "2013-01-25",
-    "port": 136.3659,
-    "spy": 110.7232
+    "port": 134.8167,
+    "spy": 110.8388
   },
   {
     "date": "2013-01-28",
-    "port": 136.2347,
-    "spy": 110.5905
+    "port": 134.6854,
+    "spy": 110.706
   },
   {
     "date": "2013-01-29",
-    "port": 136.4327,
-    "spy": 111.0253
+    "port": 134.8803,
+    "spy": 111.1412
   },
   {
     "date": "2013-01-30",
-    "port": 135.9208,
-    "spy": 110.5905
+    "port": 134.385,
+    "spy": 110.706
   },
   {
     "date": "2013-01-31",
-    "port": 136.1176,
-    "spy": 110.3179
+    "port": 134.5722,
+    "spy": 110.433
   },
   {
     "date": "2013-02-01",
-    "port": 136.6891,
-    "spy": 111.4527
+    "port": 135.1295,
+    "spy": 111.569
   },
   {
     "date": "2013-02-04",
-    "port": 136.029,
-    "spy": 110.2
+    "port": 134.4849,
+    "spy": 110.315
   },
   {
     "date": "2013-02-05",
-    "port": 136.5744,
-    "spy": 111.3127
+    "port": 135.0131,
+    "spy": 111.4289
   },
   {
     "date": "2013-02-06",
-    "port": 137.2158,
-    "spy": 111.3937
+    "port": 135.6451,
+    "spy": 111.51
   },
   {
     "date": "2013-02-07",
-    "port": 136.9291,
-    "spy": 111.2464
+    "port": 135.3585,
+    "spy": 111.3625
   },
   {
     "date": "2013-02-08",
-    "port": 137.6608,
-    "spy": 111.8654
+    "port": 136.0788,
+    "spy": 111.9822
   },
   {
     "date": "2013-02-11",
-    "port": 137.6315,
-    "spy": 111.8433
+    "port": 136.0483,
+    "spy": 111.96
   },
   {
     "date": "2013-02-12",
-    "port": 137.8335,
-    "spy": 112.0275
+    "port": 136.2427,
+    "spy": 112.1445
   },
   {
     "date": "2013-02-13",
-    "port": 137.5997,
-    "spy": 112.1233
+    "port": 136.006,
+    "spy": 112.2404
   },
   {
     "date": "2013-02-14",
-    "port": 138.1833,
-    "spy": 112.2264
+    "port": 136.5785,
+    "spy": 112.3436
   },
   {
     "date": "2013-02-15",
-    "port": 137.9468,
-    "spy": 112.0939
+    "port": 136.3444,
+    "spy": 112.2109
   },
   {
     "date": "2013-02-19",
-    "port": 138.5645,
-    "spy": 112.934
+    "port": 136.9489,
+    "spy": 113.0518
   },
   {
     "date": "2013-02-20",
-    "port": 137.1242,
-    "spy": 111.5264
+    "port": 135.542,
+    "spy": 111.6429
   },
   {
     "date": "2013-02-21",
-    "port": 136.4105,
-    "spy": 110.8485
+    "port": 134.8334,
+    "spy": 110.9642
   },
   {
     "date": "2013-02-22",
-    "port": 137.5383,
-    "spy": 111.9318
+    "port": 135.942,
+    "spy": 112.0486
   },
   {
     "date": "2013-02-25",
-    "port": 136.3825,
-    "spy": 109.802
+    "port": 134.8166,
+    "spy": 109.9166
   },
   {
     "date": "2013-02-26",
-    "port": 136.6901,
-    "spy": 110.5537
+    "port": 135.1141,
+    "spy": 110.6691
   },
   {
     "date": "2013-02-27",
-    "port": 137.8077,
-    "spy": 111.9465
+    "port": 136.2116,
+    "spy": 112.0633
   },
   {
     "date": "2013-02-28",
-    "port": 137.8202,
-    "spy": 111.7254
+    "port": 136.2249,
+    "spy": 111.842
   },
   {
     "date": "2013-03-01",
-    "port": 138.5315,
-    "spy": 112.0939
+    "port": 136.93,
+    "spy": 112.2109
   },
   {
     "date": "2013-03-04",
-    "port": 138.6354,
-    "spy": 112.6908
+    "port": 137.0271,
+    "spy": 112.8084
   },
   {
     "date": "2013-03-05",
-    "port": 139.5793,
-    "spy": 113.7004
+    "port": 137.953,
+    "spy": 113.819
   },
   {
     "date": "2013-03-06",
-    "port": 139.5415,
-    "spy": 113.8551
+    "port": 137.9163,
+    "spy": 113.974
   },
   {
     "date": "2013-03-07",
-    "port": 139.2319,
-    "spy": 114.0615
+    "port": 137.6009,
+    "spy": 114.1806
   },
   {
     "date": "2013-03-08",
-    "port": 139.467,
-    "spy": 114.5478
+    "port": 137.8314,
+    "spy": 114.6674
   },
   {
     "date": "2013-03-11",
-    "port": 139.739,
-    "spy": 114.9826
+    "port": 138.0974,
+    "spy": 115.1026
   },
   {
     "date": "2013-03-12",
-    "port": 139.8426,
-    "spy": 114.7247
+    "port": 138.1986,
+    "spy": 114.8444
   },
   {
     "date": "2013-03-13",
-    "port": 140.0112,
-    "spy": 114.8868
+    "port": 138.3593,
+    "spy": 115.0068
   },
   {
     "date": "2013-03-14",
-    "port": 140.564,
-    "spy": 115.4985
+    "port": 138.8969,
+    "spy": 115.619
   },
   {
     "date": "2013-03-15",
-    "port": 140.7365,
-    "spy": 115.346
+    "port": 139.0673,
+    "spy": 115.4664
   },
   {
     "date": "2013-03-18",
-    "port": 140.5427,
-    "spy": 114.7094
+    "port": 138.8781,
+    "spy": 114.8291
   },
   {
     "date": "2013-03-19",
-    "port": 140.6108,
-    "spy": 114.4429
+    "port": 138.9427,
+    "spy": 114.5624
   },
   {
     "date": "2013-03-20",
-    "port": 140.8966,
-    "spy": 115.2424
+    "port": 139.2202,
+    "spy": 115.3626
   },
   {
     "date": "2013-03-21",
-    "port": 140.2914,
-    "spy": 114.2578
+    "port": 138.6256,
+    "spy": 114.3771
   },
   {
     "date": "2013-03-22",
-    "port": 140.8714,
-    "spy": 115.1757
+    "port": 139.1963,
+    "spy": 115.2959
   },
   {
     "date": "2013-03-25",
-    "port": 140.3996,
-    "spy": 114.6946
+    "port": 138.7262,
+    "spy": 114.8143
   },
   {
     "date": "2013-03-26",
-    "port": 141.3286,
-    "spy": 115.6124
+    "port": 139.6466,
+    "spy": 115.7331
   },
   {
     "date": "2013-03-27",
-    "port": 141.7256,
-    "spy": 115.6124
+    "port": 140.0369,
+    "spy": 115.7331
   },
   {
     "date": "2013-03-28",
-    "port": 141.4954,
-    "spy": 115.9677
+    "port": 139.8051,
+    "spy": 116.0888
   },
   {
     "date": "2013-04-01",
-    "port": 140.8341,
-    "spy": 115.5088
+    "port": 139.1525,
+    "spy": 115.6294
   },
   {
     "date": "2013-04-02",
-    "port": 141.1992,
-    "spy": 116.0788
+    "port": 139.5283,
+    "spy": 116.2
   },
   {
     "date": "2013-04-03",
-    "port": 140.2546,
-    "spy": 114.9019
+    "port": 138.603,
+    "spy": 115.0218
   },
   {
     "date": "2013-04-04",
-    "port": 141.667,
-    "spy": 115.3682
+    "port": 140.0005,
+    "spy": 115.4886
   },
   {
     "date": "2013-04-05",
-    "port": 142.2399,
-    "spy": 114.85
+    "port": 140.5654,
+    "spy": 114.9699
   },
   {
     "date": "2013-04-08",
-    "port": 142.7552,
-    "spy": 115.6273
+    "port": 141.0685,
+    "spy": 115.7479
   },
   {
     "date": "2013-04-09",
-    "port": 142.7914,
-    "spy": 116.0269
+    "port": 141.1038,
+    "spy": 116.1481
   },
   {
     "date": "2013-04-10",
-    "port": 143.7055,
-    "spy": 117.4482
+    "port": 141.9963,
+    "spy": 117.5708
   },
   {
     "date": "2013-04-11",
-    "port": 144.0544,
-    "spy": 117.8331
+    "port": 142.3395,
+    "spy": 117.9561
   },
   {
     "date": "2013-04-12",
-    "port": 144.6922,
-    "spy": 117.5444
+    "port": 142.9824,
+    "spy": 117.667
   },
   {
     "date": "2013-04-15",
-    "port": 142.2526,
-    "spy": 114.8204
+    "port": 140.6067,
+    "spy": 114.9402
   },
   {
     "date": "2013-04-16",
-    "port": 143.3427,
-    "spy": 116.5155
+    "port": 141.6694,
+    "spy": 116.6371
   },
   {
     "date": "2013-04-17",
-    "port": 142.003,
-    "spy": 114.813
+    "port": 140.3605,
+    "spy": 114.9329
   },
   {
     "date": "2013-04-18",
-    "port": 141.4955,
-    "spy": 114.0951
+    "port": 139.8606,
+    "spy": 114.2142
   },
   {
     "date": "2013-04-19",
-    "port": 142.5603,
-    "spy": 115.0869
+    "port": 140.9091,
+    "spy": 115.207
   },
   {
     "date": "2013-04-22",
-    "port": 143.0155,
-    "spy": 115.5977
+    "port": 141.359,
+    "spy": 115.7183
   },
   {
     "date": "2013-04-23",
-    "port": 144.1465,
-    "spy": 116.7894
+    "port": 142.4648,
+    "spy": 116.9113
   },
   {
     "date": "2013-04-24",
-    "port": 144.5922,
-    "spy": 116.8634
+    "port": 142.8958,
+    "spy": 116.9854
   },
   {
     "date": "2013-04-25",
-    "port": 144.5655,
-    "spy": 117.3371
+    "port": 142.8592,
+    "spy": 117.4596
   },
   {
     "date": "2013-04-26",
-    "port": 144.8791,
-    "spy": 117.1299
+    "port": 143.1763,
+    "spy": 117.2521
   },
   {
     "date": "2013-04-29",
-    "port": 145.5619,
-    "spy": 117.9145
+    "port": 143.8462,
+    "spy": 118.0375
   },
   {
     "date": "2013-04-30",
-    "port": 145.9627,
-    "spy": 118.1958
+    "port": 144.2388,
+    "spy": 118.3191
   },
   {
     "date": "2013-05-01",
-    "port": 145.0792,
-    "spy": 117.1595
+    "port": 143.3829,
+    "spy": 117.2818
   },
   {
     "date": "2013-05-02",
-    "port": 146.1681,
-    "spy": 118.2476
+    "port": 144.4447,
+    "spy": 118.371
   },
   {
     "date": "2013-05-03",
-    "port": 146.0946,
-    "spy": 119.4467
+    "port": 144.3522,
+    "spy": 119.5714
   },
   {
     "date": "2013-05-06",
-    "port": 146.3996,
-    "spy": 119.7502
+    "port": 144.6415,
+    "spy": 119.8752
   },
   {
     "date": "2013-05-07",
-    "port": 146.7088,
-    "spy": 120.3572
+    "port": 144.9361,
+    "spy": 120.4828
   },
   {
     "date": "2013-05-08",
-    "port": 147.376,
-    "spy": 120.9049
+    "port": 145.5948,
+    "spy": 121.0311
   },
   {
     "date": "2013-05-09",
-    "port": 146.9378,
-    "spy": 120.5644
+    "port": 145.1653,
+    "spy": 120.6902
   },
   {
     "date": "2013-05-10",
-    "port": 146.7895,
-    "spy": 120.9567
+    "port": 145.0112,
+    "spy": 121.083
   },
   {
     "date": "2013-05-13",
-    "port": 146.3131,
-    "spy": 121.0529
+    "port": 144.5434,
+    "spy": 121.1793
   },
   {
     "date": "2013-05-14",
-    "port": 147.0492,
-    "spy": 122.3039
+    "port": 145.2621,
+    "spy": 122.4315
   },
   {
     "date": "2013-05-15",
-    "port": 148.119,
-    "spy": 122.9626
+    "port": 146.3202,
+    "spy": 123.091
   },
   {
     "date": "2013-05-16",
-    "port": 148.1659,
-    "spy": 122.3853
+    "port": 146.3722,
+    "spy": 122.513
   },
   {
     "date": "2013-05-17",
-    "port": 148.8602,
-    "spy": 123.5697
+    "port": 147.0568,
+    "spy": 123.6986
   },
   {
     "date": "2013-05-20",
-    "port": 148.7805,
-    "spy": 123.5623
+    "port": 146.9691,
+    "spy": 123.6912
   },
   {
     "date": "2013-05-21",
-    "port": 149.2827,
-    "spy": 123.7399
+    "port": 147.4651,
+    "spy": 123.869
   },
   {
     "date": "2013-05-22",
-    "port": 147.5689,
-    "spy": 122.822
+    "port": 145.7852,
+    "spy": 122.9502
   },
   {
     "date": "2013-05-23",
-    "port": 147.1027,
-    "spy": 122.4668
+    "port": 145.3081,
+    "spy": 122.5946
   },
   {
     "date": "2013-05-24",
-    "port": 146.7803,
-    "spy": 122.3631
+    "port": 144.9808,
+    "spy": 122.4909
   },
   {
     "date": "2013-05-28",
-    "port": 146.5705,
-    "spy": 123.0959
+    "port": 144.7629,
+    "spy": 123.2244
   },
   {
     "date": "2013-05-29",
-    "port": 145.9861,
-    "spy": 122.2965
+    "port": 144.1827,
+    "spy": 122.4241
   },
   {
     "date": "2013-05-30",
-    "port": 146.0751,
-    "spy": 122.748
+    "port": 144.2575,
+    "spy": 122.8761
   },
   {
     "date": "2013-05-31",
-    "port": 144.4346,
-    "spy": 120.9863
+    "port": 142.6418,
+    "spy": 121.1126
   },
   {
     "date": "2013-06-03",
-    "port": 144.9791,
-    "spy": 121.6525
+    "port": 143.1649,
+    "spy": 121.7795
   },
   {
     "date": "2013-06-04",
-    "port": 144.0769,
-    "spy": 121.0677
+    "port": 142.2842,
+    "spy": 121.1941
   },
   {
     "date": "2013-06-05",
-    "port": 143.0481,
-    "spy": 119.3727
+    "port": 141.2737,
+    "spy": 119.4973
   },
   {
     "date": "2013-06-06",
-    "port": 143.5068,
-    "spy": 120.4534
+    "port": 141.7058,
+    "spy": 120.5791
   },
   {
     "date": "2013-06-07",
-    "port": 144.1961,
-    "spy": 121.9856
+    "port": 142.3871,
+    "spy": 122.1129
   },
   {
     "date": "2013-06-10",
-    "port": 144.1901,
-    "spy": 121.9856
+    "port": 142.3739,
+    "spy": 122.1129
   },
   {
     "date": "2013-06-11",
-    "port": 143.3568,
-    "spy": 120.7273
+    "port": 141.5547,
+    "spy": 120.8533
   },
   {
     "date": "2013-06-12",
-    "port": 142.0278,
-    "spy": 119.728
+    "port": 140.2534,
+    "spy": 119.8529
   },
   {
     "date": "2013-06-13",
-    "port": 144.1475,
-    "spy": 121.549
+    "port": 142.3251,
+    "spy": 121.6758
   },
   {
     "date": "2013-06-14",
-    "port": 143.0921,
-    "spy": 120.7865
+    "port": 141.2881,
+    "spy": 120.9125
   },
   {
     "date": "2013-06-17",
-    "port": 143.8155,
-    "spy": 121.7191
+    "port": 142.0002,
+    "spy": 121.8462
   },
   {
     "date": "2013-06-18",
-    "port": 144.851,
-    "spy": 122.6814
+    "port": 143.0145,
+    "spy": 122.8095
   },
   {
     "date": "2013-06-19",
-    "port": 143.1185,
-    "spy": 120.9863
+    "port": 141.3175,
+    "spy": 121.1126
   },
   {
     "date": "2013-06-20",
-    "port": 140.298,
-    "spy": 117.9885
+    "port": 138.562,
+    "spy": 118.1117
   },
   {
     "date": "2013-06-21",
-    "port": 139.6835,
-    "spy": 118.3673
+    "port": 137.9542,
+    "spy": 118.4908
   },
   {
     "date": "2013-06-24",
-    "port": 138.599,
-    "spy": 116.8716
+    "port": 136.8935,
+    "spy": 116.9935
   },
   {
     "date": "2013-06-25",
-    "port": 139.1634,
-    "spy": 117.9952
+    "port": 137.4398,
+    "spy": 118.1183
   },
   {
     "date": "2013-06-26",
-    "port": 140.0503,
-    "spy": 119.1634
+    "port": 138.3092,
+    "spy": 119.2878
   },
   {
     "date": "2013-06-27",
-    "port": 141.1858,
-    "spy": 119.8629
+    "port": 139.4127,
+    "spy": 119.988
   },
   {
     "date": "2013-06-28",
-    "port": 141.4034,
-    "spy": 119.3718
+    "port": 139.6349,
+    "spy": 119.4964
   },
   {
     "date": "2013-07-01",
-    "port": 142.1272,
-    "spy": 120.0713
+    "port": 140.33,
+    "spy": 120.1966
   },
   {
     "date": "2013-07-02",
-    "port": 142.1763,
-    "spy": 119.9597
+    "port": 140.3836,
+    "spy": 120.0849
   },
   {
     "date": "2013-07-03",
-    "port": 142.0835,
-    "spy": 120.0118
+    "port": 140.29,
+    "spy": 120.137
   },
   {
     "date": "2013-07-05",
-    "port": 142.6395,
-    "spy": 121.3066
+    "port": 140.8434,
+    "spy": 121.4332
   },
   {
     "date": "2013-07-08",
-    "port": 143.1361,
-    "spy": 121.9985
+    "port": 141.3183,
+    "spy": 122.1259
   },
   {
     "date": "2013-07-09",
-    "port": 143.8948,
-    "spy": 122.8767
+    "port": 142.0556,
+    "spy": 123.0049
   },
   {
     "date": "2013-07-10",
-    "port": 143.4464,
-    "spy": 122.9213
+    "port": 141.6083,
+    "spy": 123.0496
   },
   {
     "date": "2013-07-11",
-    "port": 144.7146,
-    "spy": 124.5956
+    "port": 142.838,
+    "spy": 124.7256
   },
   {
     "date": "2013-07-12",
-    "port": 145.0363,
-    "spy": 124.6476
+    "port": 143.1568,
+    "spy": 124.7777
   },
   {
     "date": "2013-07-15",
-    "port": 145.7313,
-    "spy": 125.1239
+    "port": 143.8379,
+    "spy": 125.2545
   },
   {
     "date": "2013-07-16",
-    "port": 145.2792,
-    "spy": 124.6551
+    "port": 143.3884,
+    "spy": 124.7852
   },
   {
     "date": "2013-07-17",
-    "port": 145.7525,
-    "spy": 124.975
+    "port": 143.854,
+    "spy": 125.1055
   },
   {
     "date": "2013-07-18",
-    "port": 145.901,
-    "spy": 125.6596
+    "port": 143.9953,
+    "spy": 125.7908
   },
   {
     "date": "2013-07-19",
-    "port": 146.6128,
-    "spy": 125.8829
+    "port": 144.6919,
+    "spy": 126.0143
   },
   {
     "date": "2013-07-22",
-    "port": 146.6654,
-    "spy": 126.1284
+    "port": 144.7338,
+    "spy": 126.2601
   },
   {
     "date": "2013-07-23",
-    "port": 146.3203,
-    "spy": 125.8605
+    "port": 144.3935,
+    "spy": 125.9919
   },
   {
     "date": "2013-07-24",
-    "port": 145.4667,
-    "spy": 125.3993
+    "port": 143.5614,
+    "spy": 125.5301
   },
   {
     "date": "2013-07-25",
-    "port": 145.6018,
-    "spy": 125.7043
+    "port": 143.68,
+    "spy": 125.8355
   },
   {
     "date": "2013-07-26",
-    "port": 145.6061,
-    "spy": 125.8383
+    "port": 143.6853,
+    "spy": 125.9696
   },
   {
     "date": "2013-07-29",
-    "port": 144.6113,
-    "spy": 125.4512
+    "port": 142.707,
+    "spy": 125.5822
   },
   {
     "date": "2013-07-30",
-    "port": 144.7941,
-    "spy": 125.4512
+    "port": 142.8895,
+    "spy": 125.5822
   },
   {
     "date": "2013-07-31",
-    "port": 145.0669,
-    "spy": 125.5407
+    "port": 143.1551,
+    "spy": 125.6717
   },
   {
     "date": "2013-08-01",
-    "port": 146.1408,
-    "spy": 126.9916
+    "port": 144.2161,
+    "spy": 127.1242
   },
   {
     "date": "2013-08-02",
-    "port": 146.5988,
-    "spy": 127.2074
+    "port": 144.6658,
+    "spy": 127.3402
   },
   {
     "date": "2013-08-05",
-    "port": 146.1248,
-    "spy": 127.0214
+    "port": 144.1955,
+    "spy": 127.1539
   },
   {
     "date": "2013-08-06",
-    "port": 145.3886,
-    "spy": 126.2996
+    "port": 143.4754,
+    "spy": 126.4315
   },
   {
     "date": "2013-08-07",
-    "port": 145.0103,
-    "spy": 125.8903
+    "port": 143.101,
+    "spy": 126.0217
   },
   {
     "date": "2013-08-08",
-    "port": 145.2397,
-    "spy": 126.3517
+    "port": 143.3145,
+    "spy": 126.4835
   },
   {
     "date": "2013-08-09",
-    "port": 144.961,
-    "spy": 125.9871
+    "port": 143.0413,
+    "spy": 126.1186
   },
   {
     "date": "2013-08-12",
-    "port": 144.6297,
-    "spy": 125.8383
+    "port": 142.7094,
+    "spy": 125.9696
   },
   {
     "date": "2013-08-13",
-    "port": 144.617,
-    "spy": 126.2103
+    "port": 142.7087,
+    "spy": 126.342
   },
   {
     "date": "2013-08-14",
-    "port": 144.0876,
-    "spy": 125.5629
+    "port": 142.1852,
+    "spy": 125.694
   },
   {
     "date": "2013-08-15",
-    "port": 141.7306,
-    "spy": 123.8068
+    "port": 139.8661,
+    "spy": 123.936
   },
   {
     "date": "2013-08-16",
-    "port": 141.4684,
-    "spy": 123.3975
+    "port": 139.6129,
+    "spy": 123.5263
   },
   {
     "date": "2013-08-19",
-    "port": 140.3372,
-    "spy": 122.6088
+    "port": 138.5067,
+    "spy": 122.7367
   },
   {
     "date": "2013-08-20",
-    "port": 141.1688,
-    "spy": 123.2115
+    "port": 139.3091,
+    "spy": 123.3401
   },
   {
     "date": "2013-08-21",
-    "port": 140.0147,
-    "spy": 122.4525
+    "port": 138.1783,
+    "spy": 122.5803
   },
   {
     "date": "2013-08-22",
-    "port": 141.6043,
-    "spy": 123.5686
+    "port": 139.7346,
+    "spy": 123.6976
   },
   {
     "date": "2013-08-23",
-    "port": 142.2895,
-    "spy": 123.9854
+    "port": 140.4091,
+    "spy": 124.1148
   },
   {
     "date": "2013-08-26",
-    "port": 141.9804,
-    "spy": 123.524
+    "port": 140.0978,
+    "spy": 123.6529
   },
   {
     "date": "2013-08-27",
-    "port": 140.5972,
-    "spy": 121.5373
+    "port": 138.7528,
+    "spy": 121.6641
   },
   {
     "date": "2013-08-28",
-    "port": 140.8003,
-    "spy": 121.9688
+    "port": 138.9544,
+    "spy": 122.0961
   },
   {
     "date": "2013-08-29",
-    "port": 141.5004,
-    "spy": 122.1623
+    "port": 139.6358,
+    "spy": 122.2898
   },
   {
     "date": "2013-08-30",
-    "port": 140.7863,
-    "spy": 121.7754
+    "port": 138.9473,
+    "spy": 121.9025
   },
   {
     "date": "2013-09-03",
-    "port": 140.9268,
-    "spy": 122.326
+    "port": 139.0875,
+    "spy": 122.4537
   },
   {
     "date": "2013-09-04",
-    "port": 141.6959,
-    "spy": 123.338
+    "port": 139.843,
+    "spy": 123.4667
   },
   {
     "date": "2013-09-05",
-    "port": 141.5228,
-    "spy": 123.4942
+    "port": 139.6738,
+    "spy": 123.6231
   },
   {
     "date": "2013-09-06",
-    "port": 141.4892,
-    "spy": 123.5538
+    "port": 139.6346,
+    "spy": 123.6828
   },
   {
     "date": "2013-09-09",
-    "port": 142.4873,
-    "spy": 124.737
+    "port": 140.6033,
+    "spy": 124.8672
   },
   {
     "date": "2013-09-10",
-    "port": 143.0472,
-    "spy": 125.6596
+    "port": 141.1498,
+    "spy": 125.7908
   },
   {
     "date": "2013-09-11",
-    "port": 143.3956,
-    "spy": 126.054
+    "port": 141.4838,
+    "spy": 126.1856
   },
   {
     "date": "2013-09-12",
-    "port": 142.9598,
-    "spy": 125.7192
+    "port": 141.0613,
+    "spy": 125.8504
   },
   {
     "date": "2013-09-13",
-    "port": 143.4822,
-    "spy": 126.0019
+    "port": 141.5726,
+    "spy": 126.1335
   },
   {
     "date": "2013-09-16",
-    "port": 143.7135,
-    "spy": 126.7312
+    "port": 141.7951,
+    "spy": 126.8634
   },
   {
     "date": "2013-09-17",
-    "port": 144.6526,
-    "spy": 127.2967
+    "port": 142.7136,
+    "spy": 127.4296
   },
   {
     "date": "2013-09-18",
-    "port": 146.1424,
-    "spy": 128.7701
+    "port": 144.1737,
+    "spy": 128.9045
   },
   {
     "date": "2013-09-19",
-    "port": 145.525,
-    "spy": 128.5543
+    "port": 143.5636,
+    "spy": 128.6885
   },
   {
     "date": "2013-09-20",
-    "port": 145.2233,
-    "spy": 127.6555
+    "port": 143.2668,
+    "spy": 127.7887
   },
   {
     "date": "2013-09-23",
-    "port": 144.8877,
-    "spy": 127.0647
+    "port": 142.9312,
+    "spy": 127.1973
   },
   {
     "date": "2013-09-24",
-    "port": 145.3459,
-    "spy": 126.7658
+    "port": 143.3785,
+    "spy": 126.8981
   },
   {
     "date": "2013-09-25",
-    "port": 145.0064,
-    "spy": 126.3993
+    "port": 143.0372,
+    "spy": 126.5312
   },
   {
     "date": "2013-09-26",
-    "port": 145.0697,
-    "spy": 126.8853
+    "port": 143.1006,
+    "spy": 127.0178
   },
   {
     "date": "2013-09-27",
-    "port": 144.6065,
-    "spy": 126.302
+    "port": 142.6432,
+    "spy": 126.4338
   },
   {
     "date": "2013-09-30",
-    "port": 143.8597,
-    "spy": 125.6292
+    "port": 141.8999,
+    "spy": 125.7603
   },
   {
     "date": "2013-10-01",
-    "port": 144.6939,
-    "spy": 126.6236
+    "port": 142.7147,
+    "spy": 126.7557
   },
   {
     "date": "2013-10-02",
-    "port": 144.5126,
-    "spy": 126.5039
+    "port": 142.537,
+    "spy": 126.636
   },
   {
     "date": "2013-10-03",
-    "port": 143.5003,
-    "spy": 125.3374
+    "port": 141.547,
+    "spy": 125.4683
   },
   {
     "date": "2013-10-04",
-    "port": 144.2943,
-    "spy": 126.2871
+    "port": 142.3242,
+    "spy": 126.4189
   },
   {
     "date": "2013-10-07",
-    "port": 143.0742,
-    "spy": 125.1954
+    "port": 141.1197,
+    "spy": 125.3261
   },
   {
     "date": "2013-10-08",
-    "port": 141.7152,
-    "spy": 123.7373
+    "port": 139.7873,
+    "spy": 123.8665
   },
   {
     "date": "2013-10-09",
-    "port": 141.3948,
-    "spy": 123.827
+    "port": 139.474,
+    "spy": 123.9562
   },
   {
     "date": "2013-10-10",
-    "port": 143.9005,
-    "spy": 126.4965
+    "port": 141.9302,
+    "spy": 126.6285
   },
   {
     "date": "2013-10-11",
-    "port": 144.7086,
-    "spy": 127.3115
+    "port": 142.7116,
+    "spy": 127.4444
   },
   {
     "date": "2013-10-14",
-    "port": 144.728,
-    "spy": 127.82
+    "port": 142.7238,
+    "spy": 127.9534
   },
   {
     "date": "2013-10-15",
-    "port": 143.8641,
-    "spy": 126.8928
+    "port": 141.8774,
+    "spy": 127.0252
   },
   {
     "date": "2013-10-16",
-    "port": 145.899,
-    "spy": 128.6649
+    "port": 143.8772,
+    "spy": 128.7992
   },
   {
     "date": "2013-10-17",
-    "port": 147.1052,
-    "spy": 129.5249
+    "port": 145.0601,
+    "spy": 129.6601
   },
   {
     "date": "2013-10-18",
-    "port": 148.1395,
-    "spy": 130.3998
+    "port": 146.0746,
+    "spy": 130.5359
   },
   {
     "date": "2013-10-21",
-    "port": 148.0086,
-    "spy": 130.4071
+    "port": 145.9468,
+    "spy": 130.5433
   },
   {
     "date": "2013-10-22",
-    "port": 149.2548,
-    "spy": 131.1625
+    "port": 147.1747,
+    "spy": 131.2994
   },
   {
     "date": "2013-10-23",
-    "port": 148.6158,
-    "spy": 130.5344
+    "port": 146.5411,
+    "spy": 130.6706
   },
   {
     "date": "2013-10-24",
-    "port": 148.9664,
-    "spy": 130.968
+    "port": 146.8842,
+    "spy": 131.1047
   },
   {
     "date": "2013-10-25",
-    "port": 149.5457,
-    "spy": 131.5663
+    "port": 147.4536,
+    "spy": 131.7036
   },
   {
     "date": "2013-10-28",
-    "port": 149.7336,
-    "spy": 131.7756
+    "port": 147.6418,
+    "spy": 131.9131
   },
   {
     "date": "2013-10-29",
-    "port": 150.3645,
-    "spy": 132.4785
+    "port": 148.2619,
+    "spy": 132.6167
   },
   {
     "date": "2013-10-30",
-    "port": 149.3925,
-    "spy": 131.8205
+    "port": 147.3128,
+    "spy": 131.958
   },
   {
     "date": "2013-10-31",
-    "port": 149.1315,
-    "spy": 131.4466
+    "port": 147.0596,
+    "spy": 131.5838
   },
   {
     "date": "2013-11-01",
-    "port": 148.6526,
-    "spy": 131.7606
+    "port": 146.5861,
+    "spy": 131.8982
   },
   {
     "date": "2013-11-04",
-    "port": 149.4987,
-    "spy": 132.2243
+    "port": 147.413,
+    "spy": 132.3623
   },
   {
     "date": "2013-11-05",
-    "port": 148.3192,
-    "spy": 131.8055
+    "port": 146.2506,
+    "spy": 131.9431
   },
   {
     "date": "2013-11-06",
-    "port": 148.8502,
-    "spy": 132.4785
+    "port": 146.7796,
+    "spy": 132.6167
   },
   {
     "date": "2013-11-07",
-    "port": 147.5997,
-    "spy": 130.8035
+    "port": 145.5533,
+    "spy": 130.94
   },
   {
     "date": "2013-11-08",
-    "port": 148.2303,
-    "spy": 132.5682
+    "port": 146.1607,
+    "spy": 132.7065
   },
   {
     "date": "2013-11-11",
-    "port": 148.0929,
-    "spy": 132.5906
+    "port": 146.0237,
+    "spy": 132.729
   },
   {
     "date": "2013-11-12",
-    "port": 148.1456,
-    "spy": 132.3215
+    "port": 146.0749,
+    "spy": 132.4596
   },
   {
     "date": "2013-11-13",
-    "port": 149.3514,
-    "spy": 133.3832
+    "port": 147.2572,
+    "spy": 133.5225
   },
   {
     "date": "2013-11-14",
-    "port": 150.1821,
-    "spy": 134.0487
+    "port": 148.0751,
+    "spy": 134.1887
   },
   {
     "date": "2013-11-15",
-    "port": 150.8397,
-    "spy": 134.632
+    "port": 148.7224,
+    "spy": 134.7725
   },
   {
     "date": "2013-11-18",
-    "port": 150.7697,
-    "spy": 134.1609
+    "port": 148.6616,
+    "spy": 134.3009
   },
   {
     "date": "2013-11-19",
-    "port": 150.088,
-    "spy": 133.8693
+    "port": 147.9956,
+    "spy": 134.009
   },
   {
     "date": "2013-11-20",
-    "port": 148.8427,
-    "spy": 133.4505
+    "port": 146.7633,
+    "spy": 133.5898
   },
   {
     "date": "2013-11-21",
-    "port": 150.2501,
-    "spy": 134.5273
+    "port": 148.1414,
+    "spy": 134.6677
   },
   {
     "date": "2013-11-22",
-    "port": 151.361,
-    "spy": 135.2002
+    "port": 149.2342,
+    "spy": 135.3413
   },
   {
     "date": "2013-11-25",
-    "port": 151.3461,
-    "spy": 135.0657
+    "port": 149.2152,
+    "spy": 135.2066
   },
   {
     "date": "2013-11-26",
-    "port": 151.7407,
-    "spy": 135.1031
+    "port": 149.5956,
+    "spy": 135.2441
   },
   {
     "date": "2013-11-27",
-    "port": 152.3908,
-    "spy": 135.4321
+    "port": 150.2391,
+    "spy": 135.5734
   },
   {
     "date": "2013-11-29",
-    "port": 152.3902,
-    "spy": 135.3423
+    "port": 150.2354,
+    "spy": 135.4836
   },
   {
     "date": "2013-12-02",
-    "port": 151.7351,
-    "spy": 134.9909
+    "port": 149.6044,
+    "spy": 135.1318
   },
   {
     "date": "2013-12-03",
-    "port": 151.1484,
-    "spy": 134.4077
+    "port": 149.0204,
+    "spy": 134.548
   },
   {
     "date": "2013-12-04",
-    "port": 150.4152,
-    "spy": 134.3927
+    "port": 148.2949,
+    "spy": 134.5329
   },
   {
     "date": "2013-12-05",
-    "port": 149.6999,
-    "spy": 133.802
+    "port": 147.5821,
+    "spy": 133.9417
   },
   {
     "date": "2013-12-06",
-    "port": 151.4947,
-    "spy": 135.2975
+    "port": 149.3542,
+    "spy": 135.4387
   },
   {
     "date": "2013-12-09",
-    "port": 151.7482,
-    "spy": 135.6414
+    "port": 149.6016,
+    "spy": 135.783
   },
   {
     "date": "2013-12-10",
-    "port": 151.262,
-    "spy": 135.1554
+    "port": 149.1198,
+    "spy": 135.2965
   },
   {
     "date": "2013-12-11",
-    "port": 149.222,
-    "spy": 133.6375
+    "port": 147.1113,
+    "spy": 133.777
   },
   {
     "date": "2013-12-12",
-    "port": 148.9669,
-    "spy": 133.1963
+    "port": 146.8609,
+    "spy": 133.3354
   },
   {
     "date": "2013-12-13",
-    "port": 149.1609,
-    "spy": 133.1813
+    "port": 147.0439,
+    "spy": 133.3204
   },
   {
     "date": "2013-12-16",
-    "port": 149.9255,
-    "spy": 134.0113
+    "port": 147.7904,
+    "spy": 134.1512
   },
   {
     "date": "2013-12-17",
-    "port": 149.7821,
-    "spy": 133.5851
+    "port": 147.6502,
+    "spy": 133.7245
   },
   {
     "date": "2013-12-18",
-    "port": 152.0448,
-    "spy": 135.8658
+    "port": 149.8919,
+    "spy": 136.0076
   },
   {
     "date": "2013-12-19",
-    "port": 151.7541,
-    "spy": 135.7087
+    "port": 149.6093,
+    "spy": 135.8504
   },
   {
     "date": "2013-12-20",
-    "port": 153.2394,
-    "spy": 136.4982
+    "port": 151.0517,
+    "spy": 136.6406
   },
   {
     "date": "2013-12-23",
-    "port": 154.0638,
-    "spy": 137.2274
+    "port": 151.8645,
+    "spy": 137.3707
   },
   {
     "date": "2013-12-24",
-    "port": 153.9992,
-    "spy": 137.5281
+    "port": 151.8115,
+    "spy": 137.6716
   },
   {
     "date": "2013-12-26",
-    "port": 154.5511,
-    "spy": 138.2273
+    "port": 152.3298,
+    "spy": 138.3715
   },
   {
     "date": "2013-12-27",
-    "port": 154.6554,
-    "spy": 138.2197
+    "port": 152.4103,
+    "spy": 138.364
   },
   {
     "date": "2013-12-30",
-    "port": 155.1702,
-    "spy": 138.1972
+    "port": 152.8971,
+    "spy": 138.3414
   },
   {
     "date": "2013-12-31",
-    "port": 155.1377,
-    "spy": 138.8513
+    "port": 152.8919,
+    "spy": 138.9962
   },
   {
     "date": "2014-01-02",
-    "port": 153.6855,
-    "spy": 137.5206
+    "port": 151.4675,
+    "spy": 137.6641
   },
   {
     "date": "2014-01-03",
-    "port": 153.3844,
-    "spy": 137.498
+    "port": 151.2055,
+    "spy": 137.6415
   },
   {
     "date": "2014-01-06",
-    "port": 152.7256,
-    "spy": 137.0996
+    "port": 150.5706,
+    "spy": 137.2427
   },
   {
     "date": "2014-01-07",
-    "port": 153.9507,
-    "spy": 137.9416
+    "port": 151.7639,
+    "spy": 138.0856
   },
   {
     "date": "2014-01-08",
-    "port": 154.1547,
-    "spy": 137.9716
+    "port": 151.9238,
+    "spy": 138.1157
   },
   {
     "date": "2014-01-09",
-    "port": 154.519,
-    "spy": 138.0619
+    "port": 152.2807,
+    "spy": 138.206
   },
   {
     "date": "2014-01-10",
-    "port": 155.1624,
-    "spy": 138.4378
+    "port": 152.9534,
+    "spy": 138.5823
   },
   {
     "date": "2014-01-13",
-    "port": 153.2916,
-    "spy": 136.5959
+    "port": 151.1232,
+    "spy": 136.7385
   },
   {
     "date": "2014-01-14",
-    "port": 154.9442,
-    "spy": 138.0844
+    "port": 152.7267,
+    "spy": 138.2285
   },
   {
     "date": "2014-01-15",
-    "port": 156.1148,
-    "spy": 138.8287
+    "port": 153.8517,
+    "spy": 138.9736
   },
   {
     "date": "2014-01-16",
-    "port": 156.0234,
-    "spy": 138.6483
+    "port": 153.7882,
+    "spy": 138.793
   },
   {
     "date": "2014-01-17",
-    "port": 155.9641,
-    "spy": 138.0619
+    "port": 153.705,
+    "spy": 138.206
   },
   {
     "date": "2014-01-21",
-    "port": 156.5664,
-    "spy": 138.4678
+    "port": 154.3014,
+    "spy": 138.6123
   },
   {
     "date": "2014-01-22",
-    "port": 156.9289,
-    "spy": 138.5581
+    "port": 154.645,
+    "spy": 138.7027
   },
   {
     "date": "2014-01-23",
-    "port": 156.0451,
-    "spy": 137.4228
+    "port": 153.8112,
+    "spy": 137.5662
   },
   {
     "date": "2014-01-24",
-    "port": 153.0634,
-    "spy": 134.4909
+    "port": 150.8703,
+    "spy": 134.6312
   },
   {
     "date": "2014-01-27",
-    "port": 152.1003,
-    "spy": 133.8292
+    "port": 149.8777,
+    "spy": 133.9689
   },
   {
     "date": "2014-01-28",
-    "port": 153.1661,
-    "spy": 134.6262
+    "port": 150.9235,
+    "spy": 134.7667
   },
   {
     "date": "2014-01-29",
-    "port": 152.6222,
-    "spy": 133.333
+    "port": 150.3373,
+    "spy": 133.4722
   },
   {
     "date": "2014-01-30",
-    "port": 153.4902,
-    "spy": 134.7464
+    "port": 151.2359,
+    "spy": 134.8871
   },
   {
     "date": "2014-01-31",
-    "port": 152.4397,
-    "spy": 133.957
+    "port": 150.2226,
+    "spy": 134.0968
   },
   {
     "date": "2014-02-03",
-    "port": 149.2988,
-    "spy": 130.9423
+    "port": 147.1391,
+    "spy": 131.0789
   },
   {
     "date": "2014-02-04",
-    "port": 149.3279,
-    "spy": 131.8595
+    "port": 147.1998,
+    "spy": 131.9971
   },
   {
     "date": "2014-02-05",
-    "port": 148.3322,
-    "spy": 131.6941
+    "port": 146.2182,
+    "spy": 131.8315
   },
   {
     "date": "2014-02-06",
-    "port": 149.6623,
-    "spy": 133.4308
+    "port": 147.5378,
+    "spy": 133.57
   },
   {
     "date": "2014-02-07",
-    "port": 151.2363,
-    "spy": 135.0847
+    "port": 149.0833,
+    "spy": 135.2257
   },
   {
     "date": "2014-02-10",
-    "port": 151.2273,
-    "spy": 135.3328
+    "port": 149.1014,
+    "spy": 135.474
   },
   {
     "date": "2014-02-11",
-    "port": 152.4249,
-    "spy": 136.8139
+    "port": 150.2816,
+    "spy": 136.9567
   },
   {
     "date": "2014-02-12",
-    "port": 152.0525,
-    "spy": 136.8816
+    "port": 149.9367,
+    "spy": 137.0244
   },
   {
     "date": "2014-02-13",
-    "port": 153.3941,
-    "spy": 137.5882
+    "port": 151.2785,
+    "spy": 137.7318
   },
   {
     "date": "2014-02-14",
-    "port": 153.7509,
-    "spy": 138.3475
+    "port": 151.6519,
+    "spy": 138.4919
   },
   {
     "date": "2014-02-18",
-    "port": 154.4071,
-    "spy": 138.513
+    "port": 152.2993,
+    "spy": 138.6575
   },
   {
     "date": "2014-02-19",
-    "port": 153.5363,
-    "spy": 137.5957
+    "port": 151.3929,
+    "spy": 137.7394
   },
   {
     "date": "2014-02-20",
-    "port": 154.1704,
-    "spy": 138.4077
+    "port": 152.0446,
+    "spy": 138.5522
   },
   {
     "date": "2014-02-21",
-    "port": 154.5716,
-    "spy": 138.2498
+    "port": 152.4354,
+    "spy": 138.3941
   },
   {
     "date": "2014-02-24",
-    "port": 155.01,
-    "spy": 139.0167
+    "port": 152.9024,
+    "spy": 139.1618
   },
   {
     "date": "2014-02-25",
-    "port": 155.3576,
-    "spy": 138.964
+    "port": 153.2501,
+    "spy": 139.1091
   },
   {
     "date": "2014-02-26",
-    "port": 156.1606,
-    "spy": 138.9716
+    "port": 154.0457,
+    "spy": 139.1166
   },
   {
     "date": "2014-02-27",
-    "port": 157.1425,
-    "spy": 139.7008
+    "port": 155.0309,
+    "spy": 139.8466
   },
   {
     "date": "2014-02-28",
-    "port": 157.6116,
-    "spy": 140.0542
+    "port": 155.484,
+    "spy": 140.2003
   },
   {
     "date": "2014-03-03",
-    "port": 156.8376,
-    "spy": 139.0693
+    "port": 154.7385,
+    "spy": 139.2145
   },
   {
     "date": "2014-03-04",
-    "port": 158.3409,
-    "spy": 141.024
+    "port": 156.2454,
+    "spy": 141.1712
   },
   {
     "date": "2014-03-05",
-    "port": 158.2664,
-    "spy": 141.1518
+    "port": 156.1824,
+    "spy": 141.2992
   },
   {
     "date": "2014-03-06",
-    "port": 158.1594,
-    "spy": 141.4751
+    "port": 156.0732,
+    "spy": 141.6227
   },
   {
     "date": "2014-03-07",
-    "port": 158.0283,
-    "spy": 141.5353
+    "port": 155.9331,
+    "spy": 141.683
   },
   {
     "date": "2014-03-10",
-    "port": 157.8611,
-    "spy": 141.4601
+    "port": 155.7745,
+    "spy": 141.6078
   },
   {
     "date": "2014-03-11",
-    "port": 157.0843,
-    "spy": 140.7609
+    "port": 154.9844,
+    "spy": 140.9078
   },
   {
     "date": "2014-03-12",
-    "port": 157.3933,
-    "spy": 140.7985
+    "port": 155.3139,
+    "spy": 140.9454
   },
   {
     "date": "2014-03-13",
-    "port": 156.5224,
-    "spy": 139.2196
+    "port": 154.4441,
+    "spy": 139.3649
   },
   {
     "date": "2014-03-14",
-    "port": 156.2129,
-    "spy": 138.8287
+    "port": 154.1625,
+    "spy": 138.9736
   },
   {
     "date": "2014-03-17",
-    "port": 157.0084,
-    "spy": 140.0843
+    "port": 154.9422,
+    "spy": 140.2305
   },
   {
     "date": "2014-03-18",
-    "port": 158.3544,
-    "spy": 141.0842
+    "port": 156.2889,
+    "spy": 141.2314
   },
   {
     "date": "2014-03-19",
-    "port": 157.0675,
-    "spy": 140.3323
+    "port": 155.0263,
+    "spy": 140.4788
   },
   {
     "date": "2014-03-20",
-    "port": 157.4977,
-    "spy": 141.1518
+    "port": 155.4742,
+    "spy": 141.2992
   },
   {
     "date": "2014-03-21",
-    "port": 157.2661,
-    "spy": 140.6043
+    "port": 155.2878,
+    "spy": 140.7511
   },
   {
     "date": "2014-03-24",
-    "port": 157.0689,
-    "spy": 140.0229
+    "port": 155.0728,
+    "spy": 140.1691
   },
   {
     "date": "2014-03-25",
-    "port": 157.1715,
-    "spy": 140.6874
+    "port": 155.1854,
+    "spy": 140.8342
   },
   {
     "date": "2014-03-26",
-    "port": 156.5735,
-    "spy": 139.6755
+    "port": 154.5426,
+    "spy": 139.8213
   },
   {
     "date": "2014-03-27",
-    "port": 156.5501,
-    "spy": 139.381
+    "port": 154.5032,
+    "spy": 139.5265
   },
   {
     "date": "2014-03-28",
-    "port": 156.8743,
-    "spy": 140.0682
+    "port": 154.8278,
+    "spy": 140.2144
   },
   {
     "date": "2014-03-31",
-    "port": 157.8749,
-    "spy": 141.216
+    "port": 155.8675,
+    "spy": 141.3634
   },
   {
     "date": "2014-04-01",
-    "port": 158.6312,
-    "spy": 142.1523
+    "port": 156.62,
+    "spy": 142.3007
   },
   {
     "date": "2014-04-02",
-    "port": 158.5157,
-    "spy": 142.6281
+    "port": 156.5408,
+    "spy": 142.777
   },
   {
     "date": "2014-04-03",
-    "port": 158.4369,
-    "spy": 142.4393
+    "port": 156.4518,
+    "spy": 142.588
   },
   {
     "date": "2014-04-04",
-    "port": 156.9441,
-    "spy": 140.7554
+    "port": 154.9451,
+    "spy": 140.9023
   },
   {
     "date": "2014-04-07",
-    "port": 155.8793,
-    "spy": 139.1998
+    "port": 153.8549,
+    "spy": 139.3451
   },
   {
     "date": "2014-04-08",
-    "port": 156.4622,
-    "spy": 139.7737
+    "port": 154.4617,
+    "spy": 139.9196
   },
   {
     "date": "2014-04-09",
-    "port": 157.7961,
-    "spy": 141.2764
+    "port": 155.7727,
+    "spy": 141.4238
   },
   {
     "date": "2014-04-10",
-    "port": 155.4754,
-    "spy": 138.3088
+    "port": 153.4552,
+    "spy": 138.4531
   },
   {
     "date": "2014-04-11",
-    "port": 154.8069,
-    "spy": 137.0628
+    "port": 152.7668,
+    "spy": 137.2059
   },
   {
     "date": "2014-04-14",
-    "port": 155.4927,
-    "spy": 138.1426
+    "port": 153.4512,
+    "spy": 138.2868
   },
   {
     "date": "2014-04-15",
-    "port": 156.4938,
-    "spy": 139.0941
+    "port": 154.4596,
+    "spy": 139.2393
   },
   {
     "date": "2014-04-16",
-    "port": 158.1178,
-    "spy": 140.5516
+    "port": 156.0544,
+    "spy": 140.6983
   },
   {
     "date": "2014-04-17",
-    "port": 157.7908,
-    "spy": 140.7478
+    "port": 155.7455,
+    "spy": 140.8947
   },
   {
     "date": "2014-04-21",
-    "port": 158.1762,
-    "spy": 141.2387
+    "port": 156.1269,
+    "spy": 141.3861
   },
   {
     "date": "2014-04-22",
-    "port": 159.1694,
-    "spy": 141.8805
+    "port": 157.1267,
+    "spy": 142.0286
   },
   {
     "date": "2014-04-23",
-    "port": 158.9419,
-    "spy": 141.5482
+    "port": 156.915,
+    "spy": 141.696
   },
   {
     "date": "2014-04-24",
-    "port": 159.3032,
-    "spy": 141.8352
+    "port": 157.2458,
+    "spy": 141.9833
   },
   {
     "date": "2014-04-25",
-    "port": 157.9929,
-    "spy": 140.6723
+    "port": 155.9393,
+    "spy": 140.8192
   },
   {
     "date": "2014-04-28",
-    "port": 158.0139,
-    "spy": 141.1179
+    "port": 155.9698,
+    "spy": 141.2652
   },
   {
     "date": "2014-04-29",
-    "port": 158.5689,
-    "spy": 141.7748
+    "port": 156.52,
+    "spy": 141.9227
   },
   {
     "date": "2014-04-30",
-    "port": 159.182,
-    "spy": 142.1976
+    "port": 157.1071,
+    "spy": 142.3461
   },
   {
     "date": "2014-05-01",
-    "port": 159.7168,
-    "spy": 142.2127
+    "port": 157.6041,
+    "spy": 142.3611
   },
   {
     "date": "2014-05-02",
-    "port": 160.0657,
-    "spy": 142.0089
+    "port": 157.9435,
+    "spy": 142.1571
   },
   {
     "date": "2014-05-05",
-    "port": 159.6269,
-    "spy": 142.2807
+    "port": 157.5003,
+    "spy": 142.4292
   },
   {
     "date": "2014-05-06",
-    "port": 158.729,
-    "spy": 141.0423
+    "port": 156.6183,
+    "spy": 141.1895
   },
   {
     "date": "2014-05-07",
-    "port": 159.1411,
-    "spy": 141.873
+    "port": 157.0163,
+    "spy": 142.021
   },
   {
     "date": "2014-05-08",
-    "port": 158.7189,
-    "spy": 141.7219
+    "port": 156.6172,
+    "spy": 141.8699
   },
   {
     "date": "2014-05-09",
-    "port": 158.7731,
-    "spy": 141.9334
+    "port": 156.6738,
+    "spy": 142.0815
   },
   {
     "date": "2014-05-12",
-    "port": 159.9901,
-    "spy": 143.3152
+    "port": 157.8702,
+    "spy": 143.4648
   },
   {
     "date": "2014-05-13",
-    "port": 160.4979,
-    "spy": 143.4436
+    "port": 158.351,
+    "spy": 143.5934
   },
   {
     "date": "2014-05-14",
-    "port": 160.1843,
-    "spy": 142.764
+    "port": 158.0121,
+    "spy": 142.913
   },
   {
     "date": "2014-05-15",
-    "port": 159.6882,
-    "spy": 141.5105
+    "port": 157.5283,
+    "spy": 141.6582
   },
   {
     "date": "2014-05-16",
-    "port": 160.0099,
-    "spy": 142.0013
+    "port": 157.8482,
+    "spy": 142.1495
   },
   {
     "date": "2014-05-19",
-    "port": 160.2284,
-    "spy": 142.5224
+    "port": 158.0821,
+    "spy": 142.6711
   },
   {
     "date": "2014-05-20",
-    "port": 159.4777,
-    "spy": 141.6238
+    "port": 157.3468,
+    "spy": 141.7716
   },
   {
     "date": "2014-05-21",
-    "port": 160.2056,
-    "spy": 142.8169
+    "port": 158.0681,
+    "spy": 142.966
   },
   {
     "date": "2014-05-22",
-    "port": 160.5028,
-    "spy": 143.1642
+    "port": 158.3611,
+    "spy": 143.3136
   },
   {
     "date": "2014-05-23",
-    "port": 161.2862,
-    "spy": 143.7381
+    "port": 159.1084,
+    "spy": 143.8882
   },
   {
     "date": "2014-05-27",
-    "port": 162.7113,
-    "spy": 144.6216
+    "port": 160.5068,
+    "spy": 144.7726
   },
   {
     "date": "2014-05-28",
-    "port": 163.2071,
-    "spy": 144.5159
+    "port": 160.9606,
+    "spy": 144.6667
   },
   {
     "date": "2014-05-29",
-    "port": 163.4258,
-    "spy": 145.2635
+    "port": 161.1702,
+    "spy": 145.4151
   },
   {
     "date": "2014-05-30",
-    "port": 163.4475,
-    "spy": 145.4976
+    "port": 161.1833,
+    "spy": 145.6494
   },
   {
     "date": "2014-06-02",
-    "port": 163.2383,
-    "spy": 145.6637
+    "port": 161.0007,
+    "spy": 145.8157
   },
   {
     "date": "2014-06-03",
-    "port": 162.2203,
-    "spy": 145.5882
+    "port": 160.0101,
+    "spy": 145.7401
   },
   {
     "date": "2014-06-04",
-    "port": 162.4538,
-    "spy": 145.8827
+    "port": 160.2329,
+    "spy": 146.0349
   },
   {
     "date": "2014-06-05",
-    "port": 163.8283,
-    "spy": 146.8341
+    "port": 161.6049,
+    "spy": 146.9874
   },
   {
     "date": "2014-06-06",
-    "port": 164.5785,
-    "spy": 147.5364
+    "port": 162.3407,
+    "spy": 147.6904
   },
   {
     "date": "2014-06-09",
-    "port": 164.8732,
-    "spy": 147.6874
+    "port": 162.6449,
+    "spy": 147.8415
   },
   {
     "date": "2014-06-10",
-    "port": 164.5459,
-    "spy": 147.7025
+    "port": 162.3224,
+    "spy": 147.8567
   },
   {
     "date": "2014-06-11",
-    "port": 164.0656,
-    "spy": 147.189
+    "port": 161.8408,
+    "spy": 147.3426
   },
   {
     "date": "2014-06-12",
-    "port": 164.0299,
-    "spy": 146.147
+    "port": 161.8236,
+    "spy": 146.2995
   },
   {
     "date": "2014-06-13",
-    "port": 164.5359,
-    "spy": 146.5925
+    "port": 162.3302,
+    "spy": 146.7455
   },
   {
     "date": "2014-06-16",
-    "port": 164.7211,
-    "spy": 146.7133
+    "port": 162.5014,
+    "spy": 146.8665
   },
   {
     "date": "2014-06-17",
-    "port": 164.7298,
-    "spy": 147.1211
+    "port": 162.5238,
+    "spy": 147.2747
   },
   {
     "date": "2014-06-18",
-    "port": 166.0748,
-    "spy": 148.2009
+    "port": 163.8203,
+    "spy": 148.3556
   },
   {
     "date": "2014-06-19",
-    "port": 165.5526,
-    "spy": 148.3671
+    "port": 163.3425,
+    "spy": 148.5219
   },
   {
     "date": "2014-06-20",
-    "port": 166.065,
-    "spy": 148.6682
+    "port": 163.8098,
+    "spy": 148.8234
   },
   {
     "date": "2014-06-23",
-    "port": 165.7601,
-    "spy": 148.6227
+    "port": 163.5144,
+    "spy": 148.7778
   },
   {
     "date": "2014-06-24",
-    "port": 165.5662,
-    "spy": 147.7274
+    "port": 163.3119,
+    "spy": 147.8816
   },
   {
     "date": "2014-06-25",
-    "port": 166.4907,
-    "spy": 148.3951
+    "port": 164.2181,
+    "spy": 148.55
   },
   {
     "date": "2014-06-26",
-    "port": 166.8253,
-    "spy": 148.2889
+    "port": 164.5484,
+    "spy": 148.4437
   },
   {
     "date": "2014-06-27",
-    "port": 166.8732,
-    "spy": 148.5772
+    "port": 164.5829,
+    "spy": 148.7323
   },
   {
     "date": "2014-06-30",
-    "port": 167.3063,
-    "spy": 148.5014
+    "port": 165.0245,
+    "spy": 148.6564
   },
   {
     "date": "2014-07-01",
-    "port": 168.0685,
-    "spy": 149.4953
+    "port": 165.8108,
+    "spy": 149.6513
   },
   {
     "date": "2014-07-02",
-    "port": 167.4852,
-    "spy": 149.647
+    "port": 165.2605,
+    "spy": 149.8032
   },
   {
     "date": "2014-07-03",
-    "port": 168.0938,
-    "spy": 150.383
+    "port": 165.8695,
+    "spy": 150.54
   },
   {
     "date": "2014-07-07",
-    "port": 167.8707,
-    "spy": 149.8595
+    "port": 165.636,
+    "spy": 150.0159
   },
   {
     "date": "2014-07-08",
-    "port": 167.4815,
-    "spy": 148.8959
+    "port": 165.2216,
+    "spy": 149.0513
   },
   {
     "date": "2014-07-09",
-    "port": 168.0455,
-    "spy": 149.5636
+    "port": 165.7648,
+    "spy": 149.7197
   },
   {
     "date": "2014-07-10",
-    "port": 167.2327,
-    "spy": 148.9717
+    "port": 164.9514,
+    "spy": 149.1272
   },
   {
     "date": "2014-07-11",
-    "port": 167.8779,
-    "spy": 149.1767
+    "port": 165.5804,
+    "spy": 149.3324
   },
   {
     "date": "2014-07-14",
-    "port": 168.2488,
-    "spy": 149.9278
+    "port": 165.9446,
+    "spy": 150.0843
   },
   {
     "date": "2014-07-15",
-    "port": 167.7749,
-    "spy": 149.647
+    "port": 165.4828,
+    "spy": 149.8032
   },
   {
     "date": "2014-07-16",
-    "port": 168.5703,
-    "spy": 150.201
+    "port": 166.2509,
+    "spy": 150.3577
   },
   {
     "date": "2014-07-17",
-    "port": 167.5616,
-    "spy": 148.4938
+    "port": 165.225,
+    "spy": 148.6487
   },
   {
     "date": "2014-07-18",
-    "port": 168.9636,
-    "spy": 150.0112
+    "port": 166.6127,
+    "spy": 150.1678
   },
   {
     "date": "2014-07-21",
-    "port": 168.9918,
-    "spy": 149.7305
+    "port": 166.6328,
+    "spy": 149.8868
   },
   {
     "date": "2014-07-22",
-    "port": 170.041,
-    "spy": 150.383
+    "port": 167.6757,
+    "spy": 150.54
   },
   {
     "date": "2014-07-23",
-    "port": 170.2807,
-    "spy": 150.7168
+    "port": 167.9172,
+    "spy": 150.8741
   },
   {
     "date": "2014-07-24",
-    "port": 169.818,
-    "spy": 150.7245
+    "port": 167.4795,
+    "spy": 150.8818
   },
   {
     "date": "2014-07-25",
-    "port": 169.9498,
-    "spy": 150.0188
+    "port": 167.5931,
+    "spy": 150.1754
   },
   {
     "date": "2014-07-28",
-    "port": 169.8138,
-    "spy": 150.0795
+    "port": 167.4586,
+    "spy": 150.2362
   },
   {
     "date": "2014-07-29",
-    "port": 169.7442,
-    "spy": 149.4346
+    "port": 167.4068,
+    "spy": 149.5906
   },
   {
     "date": "2014-07-30",
-    "port": 168.9138,
-    "spy": 149.4573
+    "port": 166.6189,
+    "spy": 149.6133
   },
   {
     "date": "2014-07-31",
-    "port": 165.668,
-    "spy": 146.5058
+    "port": 163.4229,
+    "spy": 146.6588
   },
   {
     "date": "2014-08-01",
-    "port": 165.5669,
-    "spy": 146.0582
+    "port": 163.297,
+    "spy": 146.2106
   },
   {
     "date": "2014-08-04",
-    "port": 166.3903,
-    "spy": 147.1128
+    "port": 164.1063,
+    "spy": 147.2663
   },
   {
     "date": "2014-08-05",
-    "port": 165.1194,
-    "spy": 145.6864
+    "port": 162.8331,
+    "spy": 145.8385
   },
   {
     "date": "2014-08-06",
-    "port": 165.2406,
-    "spy": 145.7319
+    "port": 162.9475,
+    "spy": 145.884
   },
   {
     "date": "2014-08-07",
-    "port": 165.1297,
-    "spy": 144.9428
+    "port": 162.8274,
+    "spy": 145.0941
   },
   {
     "date": "2014-08-08",
-    "port": 166.283,
-    "spy": 146.6196
+    "port": 163.9349,
+    "spy": 146.7727
   },
   {
     "date": "2014-08-11",
-    "port": 166.9735,
-    "spy": 147.0445
+    "port": 164.6277,
+    "spy": 147.198
   },
   {
     "date": "2014-08-12",
-    "port": 166.2789,
-    "spy": 146.8397
+    "port": 163.9566,
+    "spy": 146.9929
   },
   {
     "date": "2014-08-13",
-    "port": 167.794,
-    "spy": 147.8337
+    "port": 165.4425,
+    "spy": 147.988
   },
   {
     "date": "2014-08-14",
-    "port": 168.9178,
-    "spy": 148.5317
+    "port": 166.5238,
+    "spy": 148.6867
   },
   {
     "date": "2014-08-15",
-    "port": 169.6615,
-    "spy": 148.5014
+    "port": 167.2395,
+    "spy": 148.6564
   },
   {
     "date": "2014-08-18",
-    "port": 170.2779,
-    "spy": 149.7457
+    "port": 167.8575,
+    "spy": 149.902
   },
   {
     "date": "2014-08-19",
-    "port": 170.8243,
-    "spy": 150.5271
+    "port": 168.4011,
+    "spy": 150.6843
   },
   {
     "date": "2014-08-20",
-    "port": 171.0735,
-    "spy": 150.9293
+    "port": 168.648,
+    "spy": 151.0868
   },
   {
     "date": "2014-08-21",
-    "port": 171.758,
-    "spy": 151.3694
+    "port": 169.2978,
+    "spy": 151.5274
   },
   {
     "date": "2014-08-22",
-    "port": 172.1463,
-    "spy": 151.1342
+    "port": 169.686,
+    "spy": 151.292
   },
   {
     "date": "2014-08-25",
-    "port": 173.3081,
-    "spy": 151.9005
+    "port": 170.8342,
+    "spy": 152.059
   },
   {
     "date": "2014-08-26",
-    "port": 173.2812,
-    "spy": 151.9991
+    "port": 170.8152,
+    "spy": 152.1578
   },
   {
     "date": "2014-08-27",
-    "port": 173.8712,
-    "spy": 151.9384
+    "port": 171.3829,
+    "spy": 152.097
   },
   {
     "date": "2014-08-28",
-    "port": 174.0696,
-    "spy": 151.8549
+    "port": 171.5664,
+    "spy": 152.0134
   },
   {
     "date": "2014-08-29",
-    "port": 174.6761,
-    "spy": 152.2875
+    "port": 172.1671,
+    "spy": 152.4464
   },
   {
     "date": "2014-09-02",
-    "port": 173.6656,
-    "spy": 152.2116
+    "port": 171.2191,
+    "spy": 152.3704
   },
   {
     "date": "2014-09-03",
-    "port": 173.9912,
-    "spy": 152.1281
+    "port": 171.5376,
+    "spy": 152.2869
   },
   {
     "date": "2014-09-04",
-    "port": 173.292,
-    "spy": 151.9081
+    "port": 170.9045,
+    "spy": 152.0666
   },
   {
     "date": "2014-09-05",
-    "port": 173.6711,
-    "spy": 152.5909
+    "port": 171.271,
+    "spy": 152.7502
   },
   {
     "date": "2014-09-08",
-    "port": 173.3372,
-    "spy": 152.1964
+    "port": 170.9416,
+    "spy": 152.3552
   },
   {
     "date": "2014-09-09",
-    "port": 172.1583,
-    "spy": 151.2328
+    "port": 169.7747,
+    "spy": 151.3907
   },
   {
     "date": "2014-09-10",
-    "port": 172.2511,
-    "spy": 151.8018
+    "port": 169.8747,
+    "spy": 151.9603
   },
   {
     "date": "2014-09-11",
-    "port": 172.1791,
-    "spy": 151.9764
+    "port": 169.8014,
+    "spy": 152.135
   },
   {
     "date": "2014-09-12",
-    "port": 170.5409,
-    "spy": 151.0886
+    "port": 168.2084,
+    "spy": 151.2463
   },
   {
     "date": "2014-09-15",
-    "port": 170.36,
-    "spy": 150.9748
+    "port": 168.0229,
+    "spy": 151.1324
   },
   {
     "date": "2014-09-16",
-    "port": 170.9698,
-    "spy": 152.1129
+    "port": 168.6132,
+    "spy": 152.2717
   },
   {
     "date": "2014-09-17",
-    "port": 171.0593,
-    "spy": 152.3178
+    "port": 168.7115,
+    "spy": 152.4768
   },
   {
     "date": "2014-09-18",
-    "port": 172.227,
-    "spy": 153.1297
+    "port": 169.8674,
+    "spy": 153.2895
   },
   {
     "date": "2014-09-19",
-    "port": 173.0501,
-    "spy": 152.9917
+    "port": 170.6712,
+    "spy": 153.1514
   },
   {
     "date": "2014-09-22",
-    "port": 171.8879,
-    "spy": 151.8102
+    "port": 169.5284,
+    "spy": 151.9686
   },
   {
     "date": "2014-09-23",
-    "port": 171.4992,
-    "spy": 150.9411
+    "port": 169.1419,
+    "spy": 151.0987
   },
   {
     "date": "2014-09-24",
-    "port": 172.2311,
-    "spy": 152.1227
+    "port": 169.8698,
+    "spy": 152.2814
   },
   {
     "date": "2014-09-25",
-    "port": 170.7048,
-    "spy": 149.6681
+    "port": 168.3531,
+    "spy": 149.8243
   },
   {
     "date": "2014-09-26",
-    "port": 171.8576,
-    "spy": 150.8573
+    "port": 169.4934,
+    "spy": 151.0148
   },
   {
     "date": "2014-09-29",
-    "port": 172.0019,
-    "spy": 150.5829
+    "port": 169.6097,
+    "spy": 150.74
   },
   {
     "date": "2014-09-30",
-    "port": 171.4608,
-    "spy": 150.1865
+    "port": 169.1208,
+    "spy": 150.3432
   },
   {
     "date": "2014-10-01",
-    "port": 170.87,
-    "spy": 148.1512
+    "port": 168.5158,
+    "spy": 148.3058
   },
   {
     "date": "2014-10-02",
-    "port": 170.1086,
-    "spy": 148.174
+    "port": 167.76,
+    "spy": 148.3287
   },
   {
     "date": "2014-10-03",
-    "port": 172.1368,
-    "spy": 149.8053
+    "port": 169.7562,
+    "spy": 149.9617
   },
   {
     "date": "2014-10-06",
-    "port": 171.473,
-    "spy": 149.63
+    "port": 169.0648,
+    "spy": 149.7862
   },
   {
     "date": "2014-10-07",
-    "port": 169.9393,
-    "spy": 147.3202
+    "port": 167.5215,
+    "spy": 147.474
   },
   {
     "date": "2014-10-08",
-    "port": 172.3018,
-    "spy": 149.8968
+    "port": 169.823,
+    "spy": 150.0533
   },
   {
     "date": "2014-10-09",
-    "port": 169.2214,
-    "spy": 146.9239
+    "port": 166.8297,
+    "spy": 147.0773
   },
   {
     "date": "2014-10-10",
-    "port": 168.2159,
-    "spy": 145.2469
+    "port": 165.8262,
+    "spy": 145.3985
   },
   {
     "date": "2014-10-13",
-    "port": 166.5346,
-    "spy": 142.8609
+    "port": 164.1798,
+    "spy": 143.01
   },
   {
     "date": "2014-10-14",
-    "port": 167.4932,
-    "spy": 143.0819
+    "port": 165.1239,
+    "spy": 143.2313
   },
   {
     "date": "2014-10-15",
-    "port": 167.1831,
-    "spy": 142.1138
+    "port": 164.802,
+    "spy": 142.2621
   },
   {
     "date": "2014-10-16",
-    "port": 166.7217,
-    "spy": 141.9918
+    "port": 164.3519,
+    "spy": 142.14
   },
   {
     "date": "2014-10-17",
-    "port": 167.4275,
-    "spy": 143.6689
+    "port": 165.0163,
+    "spy": 143.8189
   },
   {
     "date": "2014-10-20",
-    "port": 168.9219,
-    "spy": 145.0638
+    "port": 166.464,
+    "spy": 145.2153
   },
   {
     "date": "2014-10-21",
-    "port": 170.561,
-    "spy": 147.9377
+    "port": 168.0255,
+    "spy": 148.0921
   },
   {
     "date": "2014-10-22",
-    "port": 169.8744,
-    "spy": 146.8858
+    "port": 167.3836,
+    "spy": 147.0391
   },
   {
     "date": "2014-10-23",
-    "port": 170.6444,
-    "spy": 148.5932
+    "port": 168.1189,
+    "spy": 148.7483
   },
   {
     "date": "2014-10-24",
-    "port": 171.4685,
-    "spy": 149.7367
+    "port": 168.9006,
+    "spy": 149.893
   },
   {
     "date": "2014-10-27",
-    "port": 171.5548,
-    "spy": 149.5309
+    "port": 168.9972,
+    "spy": 149.687
   },
   {
     "date": "2014-10-28",
-    "port": 172.6179,
-    "spy": 151.246
+    "port": 170.014,
+    "spy": 151.4039
   },
   {
     "date": "2014-10-29",
-    "port": 172.3317,
-    "spy": 151.0174
+    "port": 169.7096,
+    "spy": 151.175
   },
   {
     "date": "2014-10-30",
-    "port": 173.5992,
-    "spy": 151.9855
+    "port": 170.9744,
+    "spy": 152.1441
   },
   {
     "date": "2014-10-31",
-    "port": 175.5302,
-    "spy": 153.7235
+    "port": 172.9007,
+    "spy": 153.884
   },
   {
     "date": "2014-11-03",
-    "port": 175.75,
-    "spy": 153.8074
+    "port": 173.1293,
+    "spy": 153.9679
   },
   {
     "date": "2014-11-04",
-    "port": 175.6007,
-    "spy": 153.2737
+    "port": 172.9931,
+    "spy": 153.4337
   },
   {
     "date": "2014-11-05",
-    "port": 176.492,
-    "spy": 154.2419
+    "port": 173.8734,
+    "spy": 154.4029
   },
   {
     "date": "2014-11-06",
-    "port": 176.5011,
-    "spy": 154.8593
+    "port": 173.8789,
+    "spy": 155.0209
   },
   {
     "date": "2014-11-07",
-    "port": 177.4459,
-    "spy": 155.0041
+    "port": 174.7808,
+    "spy": 155.1659
   },
   {
     "date": "2014-11-10",
-    "port": 177.2592,
-    "spy": 155.492
+    "port": 174.6153,
+    "spy": 155.6543
   },
   {
     "date": "2014-11-11",
-    "port": 177.3477,
-    "spy": 155.6445
+    "port": 174.6921,
+    "spy": 155.8069
   },
   {
     "date": "2014-11-12",
-    "port": 177.3172,
-    "spy": 155.4768
+    "port": 174.6692,
+    "spy": 155.6391
   },
   {
     "date": "2014-11-13",
-    "port": 177.8373,
-    "spy": 155.6521
+    "port": 175.2005,
+    "spy": 155.8146
   },
   {
     "date": "2014-11-14",
-    "port": 178.2333,
-    "spy": 155.6902
+    "port": 175.5807,
+    "spy": 155.8527
   },
   {
     "date": "2014-11-17",
-    "port": 177.9678,
-    "spy": 155.7893
+    "port": 175.3186,
+    "spy": 155.9519
   },
   {
     "date": "2014-11-18",
-    "port": 178.9401,
-    "spy": 156.6888
+    "port": 176.2578,
+    "spy": 156.8523
   },
   {
     "date": "2014-11-19",
-    "port": 178.2696,
-    "spy": 156.4373
+    "port": 175.6215,
+    "spy": 156.6005
   },
   {
     "date": "2014-11-20",
-    "port": 178.9298,
-    "spy": 156.7116
+    "port": 176.2483,
+    "spy": 156.8752
   },
   {
     "date": "2014-11-21",
-    "port": 180.1785,
-    "spy": 157.5502
+    "port": 177.4648,
+    "spy": 157.7146
   },
   {
     "date": "2014-11-24",
-    "port": 180.7253,
-    "spy": 157.9923
+    "port": 177.995,
+    "spy": 158.1572
   },
   {
     "date": "2014-11-25",
-    "port": 181.3601,
-    "spy": 157.878
+    "port": 178.6121,
+    "spy": 158.0427
   },
   {
     "date": "2014-11-26",
-    "port": 181.7754,
-    "spy": 158.282
+    "port": 179.0007,
+    "spy": 158.4472
   },
   {
     "date": "2014-11-28",
-    "port": 182.4655,
-    "spy": 157.9466
+    "port": 179.7204,
+    "spy": 158.1115
   },
   {
     "date": "2014-12-01",
-    "port": 180.4635,
-    "spy": 156.8489
+    "port": 177.7355,
+    "spy": 157.0126
   },
   {
     "date": "2014-12-02",
-    "port": 180.8807,
-    "spy": 157.8627
+    "port": 178.1681,
+    "spy": 158.0275
   },
   {
     "date": "2014-12-03",
-    "port": 182.2239,
-    "spy": 158.4725
+    "port": 179.5064,
+    "spy": 158.6379
   },
   {
     "date": "2014-12-04",
-    "port": 182.6911,
-    "spy": 158.2973
+    "port": 179.9542,
+    "spy": 158.4625
   },
   {
     "date": "2014-12-05",
-    "port": 182.5395,
-    "spy": 158.5564
+    "port": 179.8132,
+    "spy": 158.7219
   },
   {
     "date": "2014-12-08",
-    "port": 182.465,
-    "spy": 157.4969
+    "port": 179.731,
+    "spy": 157.6612
   },
   {
     "date": "2014-12-09",
-    "port": 182.9055,
-    "spy": 157.3901
+    "port": 180.1495,
+    "spy": 157.5544
   },
   {
     "date": "2014-12-10",
-    "port": 181.0889,
-    "spy": 154.8669
+    "port": 178.3761,
+    "spy": 155.0285
   },
   {
     "date": "2014-12-11",
-    "port": 182.1349,
-    "spy": 155.6521
+    "port": 179.3922,
+    "spy": 155.8146
   },
   {
     "date": "2014-12-12",
-    "port": 181.0876,
-    "spy": 153.1366
+    "port": 178.3825,
+    "spy": 153.2964
   },
   {
     "date": "2014-12-15",
-    "port": 179.7702,
-    "spy": 152.0846
+    "port": 177.0848,
+    "spy": 152.2433
   },
   {
     "date": "2014-12-16",
-    "port": 179.9022,
-    "spy": 150.8649
+    "port": 177.2237,
+    "spy": 151.0223
   },
   {
     "date": "2014-12-17",
-    "port": 181.9775,
-    "spy": 153.8226
+    "port": 179.239,
+    "spy": 153.9831
   },
   {
     "date": "2014-12-18",
-    "port": 184.039,
-    "spy": 157.6264
+    "port": 181.2629,
+    "spy": 157.791
   },
   {
     "date": "2014-12-19",
-    "port": 185.7566,
-    "spy": 158.2971
+    "port": 182.9238,
+    "spy": 158.4623
   },
   {
     "date": "2014-12-22",
-    "port": 186.9426,
-    "spy": 159.0253
+    "port": 184.1121,
+    "spy": 159.1913
   },
   {
     "date": "2014-12-23",
-    "port": 185.4648,
-    "spy": 159.2399
+    "port": 182.6771,
+    "spy": 159.4061
   },
   {
     "date": "2014-12-24",
-    "port": 186.0609,
-    "spy": 159.2552
+    "port": 183.2637,
+    "spy": 159.4214
   },
   {
     "date": "2014-12-26",
-    "port": 187.0048,
-    "spy": 159.7688
+    "port": 184.1899,
+    "spy": 159.9356
   },
   {
     "date": "2014-12-29",
-    "port": 188.2748,
-    "spy": 159.9834
+    "port": 185.4574,
+    "spy": 160.1504
   },
   {
     "date": "2014-12-30",
-    "port": 187.7114,
-    "spy": 159.1249
+    "port": 184.902,
+    "spy": 159.291
   },
   {
     "date": "2014-12-31",
-    "port": 186.7537,
-    "spy": 157.5459
+    "port": 183.9992,
+    "spy": 157.7104
   },
   {
     "date": "2015-01-02",
-    "port": 187.8301,
-    "spy": 157.4616
+    "port": 185.0651,
+    "spy": 157.6259
   },
   {
     "date": "2015-01-05",
-    "port": 186.7611,
-    "spy": 154.6179
+    "port": 184.0448,
+    "spy": 154.7793
   },
   {
     "date": "2015-01-06",
-    "port": 186.7446,
-    "spy": 153.1616
+    "port": 184.0156,
+    "spy": 153.3214
   },
   {
     "date": "2015-01-07",
-    "port": 188.3989,
-    "spy": 155.0702
+    "port": 185.6287,
+    "spy": 155.232
   },
   {
     "date": "2015-01-08",
-    "port": 189.7693,
-    "spy": 157.8219
+    "port": 186.9561,
+    "spy": 157.9866
   },
   {
     "date": "2015-01-09",
-    "port": 189.4637,
-    "spy": 156.5571
+    "port": 186.6513,
+    "spy": 156.7205
   },
   {
     "date": "2015-01-12",
-    "port": 189.2671,
-    "spy": 155.3307
+    "port": 186.5,
+    "spy": 155.4929
   },
   {
     "date": "2015-01-13",
-    "port": 189.0341,
-    "spy": 154.8939
+    "port": 186.2847,
+    "spy": 155.0555
   },
   {
     "date": "2015-01-14",
-    "port": 188.6501,
-    "spy": 153.9587
+    "port": 185.8958,
+    "spy": 154.1194
   },
   {
     "date": "2015-01-15",
-    "port": 188.2734,
-    "spy": 152.5484
+    "port": 185.495,
+    "spy": 152.7076
   },
   {
     "date": "2015-01-16",
-    "port": 188.7989,
-    "spy": 154.5489
+    "port": 185.977,
+    "spy": 154.7102
   },
   {
     "date": "2015-01-20",
-    "port": 190.2226,
-    "spy": 154.8785
+    "port": 187.3622,
+    "spy": 155.0402
   },
   {
     "date": "2015-01-21",
-    "port": 189.7896,
-    "spy": 155.6603
+    "port": 186.9346,
+    "spy": 155.8228
   },
   {
     "date": "2015-01-22",
-    "port": 192.1823,
-    "spy": 157.9752
+    "port": 189.2956,
+    "spy": 158.1401
   },
   {
     "date": "2015-01-23",
-    "port": 193.1763,
-    "spy": 157.109
+    "port": 190.3115,
+    "spy": 157.273
   },
   {
     "date": "2015-01-26",
-    "port": 193.2003,
-    "spy": 157.477
+    "port": 190.3201,
+    "spy": 157.6413
   },
   {
     "date": "2015-01-27",
-    "port": 191.5379,
-    "spy": 155.3998
+    "port": 188.7125,
+    "spy": 155.562
   },
   {
     "date": "2015-01-28",
-    "port": 191.46,
-    "spy": 153.4068
+    "port": 188.6718,
+    "spy": 153.5669
   },
   {
     "date": "2015-01-29",
-    "port": 192.2354,
-    "spy": 154.8249
+    "port": 189.4212,
+    "spy": 154.9865
   },
   {
     "date": "2015-01-30",
-    "port": 191.9092,
-    "spy": 152.878
+    "port": 189.1016,
+    "spy": 153.0376
   },
   {
     "date": "2015-02-02",
-    "port": 193.0099,
-    "spy": 154.7712
+    "port": 190.1321,
+    "spy": 154.9328
   },
   {
     "date": "2015-02-03",
-    "port": 192.8293,
-    "spy": 157.0094
+    "port": 189.9131,
+    "spy": 157.1733
   },
   {
     "date": "2015-02-04",
-    "port": 192.7498,
-    "spy": 156.4115
+    "port": 189.8662,
+    "spy": 156.5748
   },
   {
     "date": "2015-02-05",
-    "port": 193.0052,
-    "spy": 157.9905
+    "port": 190.0854,
+    "spy": 158.1554
   },
   {
     "date": "2015-02-06",
-    "port": 191.0742,
-    "spy": 157.5536
+    "port": 188.2128,
+    "spy": 157.718
   },
   {
     "date": "2015-02-09",
-    "port": 190.1805,
-    "spy": 156.8485
+    "port": 187.3367,
+    "spy": 157.0122
   },
   {
     "date": "2015-02-10",
-    "port": 191.0705,
-    "spy": 158.5194
+    "port": 188.2158,
+    "spy": 158.6848
   },
   {
     "date": "2015-02-11",
-    "port": 191.3603,
-    "spy": 158.6113
+    "port": 188.5019,
+    "spy": 158.7769
   },
   {
     "date": "2015-02-12",
-    "port": 192.5521,
-    "spy": 160.1367
+    "port": 189.6628,
+    "spy": 160.3038
   },
   {
     "date": "2015-02-13",
-    "port": 192.2239,
-    "spy": 160.7959
+    "port": 189.3398,
+    "spy": 160.9637
   },
   {
     "date": "2015-02-17",
-    "port": 190.7179,
-    "spy": 161.0489
+    "port": 187.8447,
+    "spy": 161.217
   },
   {
     "date": "2015-02-18",
-    "port": 191.7251,
-    "spy": 161.0641
+    "port": 188.8675,
+    "spy": 161.2322
   },
   {
     "date": "2015-02-19",
-    "port": 191.0881,
-    "spy": 160.9492
+    "port": 188.2533,
+    "spy": 161.1172
   },
   {
     "date": "2015-02-20",
-    "port": 192.1623,
-    "spy": 161.915
+    "port": 189.2917,
+    "spy": 162.084
   },
   {
     "date": "2015-02-23",
-    "port": 193.1877,
-    "spy": 161.892
+    "port": 190.2909,
+    "spy": 162.061
   },
   {
     "date": "2015-02-24",
-    "port": 194.8096,
-    "spy": 162.3519
+    "port": 191.8605,
+    "spy": 162.5213
   },
   {
     "date": "2015-02-25",
-    "port": 195.141,
-    "spy": 162.2139
+    "port": 192.1897,
+    "spy": 162.3833
   },
   {
     "date": "2015-02-26",
-    "port": 194.5341,
-    "spy": 162.0223
+    "port": 191.6714,
+    "spy": 162.1914
   },
   {
     "date": "2015-02-27",
-    "port": 194.5539,
-    "spy": 161.4704
+    "port": 191.6695,
+    "spy": 161.6389
   },
   {
     "date": "2015-03-02",
-    "port": 194.2946,
-    "spy": 162.4899
+    "port": 191.4608,
+    "spy": 162.6595
   },
   {
     "date": "2015-03-03",
-    "port": 192.9621,
-    "spy": 161.823
+    "port": 190.1339,
+    "spy": 161.9919
   },
   {
     "date": "2015-03-04",
-    "port": 192.2919,
-    "spy": 161.1408
+    "port": 189.4761,
+    "spy": 161.309
   },
   {
     "date": "2015-03-05",
-    "port": 192.8011,
-    "spy": 161.3171
+    "port": 190.0135,
+    "spy": 161.4855
   },
   {
     "date": "2015-03-06",
-    "port": 188.9667,
-    "spy": 159.0482
+    "port": 186.3059,
+    "spy": 159.2142
   },
   {
     "date": "2015-03-09",
-    "port": 190.5389,
-    "spy": 159.7075
+    "port": 187.8479,
+    "spy": 159.8741
   },
   {
     "date": "2015-03-10",
-    "port": 189.4586,
-    "spy": 157.1167
+    "port": 186.8095,
+    "spy": 157.2807
   },
   {
     "date": "2015-03-11",
-    "port": 190.6495,
-    "spy": 156.7488
+    "port": 188.0359,
+    "spy": 156.9124
   },
   {
     "date": "2015-03-12",
-    "port": 192.5254,
-    "spy": 158.7417
+    "port": 189.8591,
+    "spy": 158.9074
   },
   {
     "date": "2015-03-13",
-    "port": 191.7483,
-    "spy": 157.7682
+    "port": 189.1384,
+    "spy": 157.9329
   },
   {
     "date": "2015-03-16",
-    "port": 193.8653,
-    "spy": 159.8761
+    "port": 191.1398,
+    "spy": 160.0429
   },
   {
     "date": "2015-03-17",
-    "port": 194.3232,
-    "spy": 159.4009
+    "port": 191.5908,
+    "spy": 159.5672
   },
   {
     "date": "2015-03-18",
-    "port": 197.6773,
-    "spy": 161.3171
+    "port": 194.8344,
+    "spy": 161.4855
   },
   {
     "date": "2015-03-19",
-    "port": 196.9773,
-    "spy": 160.5813
+    "port": 194.1951,
+    "spy": 160.7489
   },
   {
     "date": "2015-03-20",
-    "port": 198.6184,
-    "spy": 161.9987
+    "port": 195.7691,
+    "spy": 162.1678
   },
   {
     "date": "2015-03-23",
-    "port": 197.9377,
-    "spy": 161.6831
+    "port": 195.0768,
+    "spy": 161.8518
   },
   {
     "date": "2015-03-24",
-    "port": 198.4173,
-    "spy": 160.7745
+    "port": 195.5756,
+    "spy": 160.9423
   },
   {
     "date": "2015-03-25",
-    "port": 195.3146,
-    "spy": 158.4186
+    "port": 192.5551,
+    "spy": 158.584
   },
   {
     "date": "2015-03-26",
-    "port": 193.3629,
-    "spy": 158.0413
+    "port": 190.6425,
+    "spy": 158.2063
   },
   {
     "date": "2015-03-27",
-    "port": 195.0437,
-    "spy": 158.4031
+    "port": 192.2923,
+    "spy": 158.5685
   },
   {
     "date": "2015-03-30",
-    "port": 196.8615,
-    "spy": 160.3357
+    "port": 194.0951,
+    "spy": 160.503
   },
   {
     "date": "2015-03-31",
-    "port": 195.8175,
-    "spy": 158.9344
+    "port": 193.0844,
+    "spy": 159.1003
   },
   {
     "date": "2015-04-01",
-    "port": 196.5275,
-    "spy": 158.3724
+    "port": 193.7692,
+    "spy": 158.5377
   },
   {
     "date": "2015-04-02",
-    "port": 196.0971,
-    "spy": 158.9421
+    "port": 193.3514,
+    "spy": 159.108
   },
   {
     "date": "2015-04-06",
-    "port": 196.956,
-    "spy": 160.0123
+    "port": 194.2204,
+    "spy": 160.1793
   },
   {
     "date": "2015-04-07",
-    "port": 197.1029,
-    "spy": 159.5888
+    "port": 194.3469,
+    "spy": 159.7554
   },
   {
     "date": "2015-04-08",
-    "port": 197.9406,
-    "spy": 160.1278
+    "port": 195.1865,
+    "spy": 160.2949
   },
   {
     "date": "2015-04-09",
-    "port": 197.8756,
-    "spy": 160.8361
+    "port": 195.1704,
+    "spy": 161.004
   },
   {
     "date": "2015-04-10",
-    "port": 198.4508,
-    "spy": 161.7138
+    "port": 195.696,
+    "spy": 161.8826
   },
   {
     "date": "2015-04-13",
-    "port": 198.3175,
-    "spy": 160.9824
+    "port": 195.5974,
+    "spy": 161.1504
   },
   {
     "date": "2015-04-14",
-    "port": 198.9659,
-    "spy": 161.2904
+    "port": 196.2029,
+    "spy": 161.4588
   },
   {
     "date": "2015-04-15",
-    "port": 199.6114,
-    "spy": 162.0141
+    "port": 196.8249,
+    "spy": 162.1832
   },
   {
     "date": "2015-04-16",
-    "port": 198.7834,
-    "spy": 161.9679
+    "port": 195.9959,
+    "spy": 162.1369
   },
   {
     "date": "2015-04-17",
-    "port": 197.3288,
-    "spy": 160.1047
+    "port": 194.5147,
+    "spy": 160.2718
   },
   {
     "date": "2015-04-20",
-    "port": 198.0974,
-    "spy": 161.5675
+    "port": 195.2785,
+    "spy": 161.7362
   },
   {
     "date": "2015-04-21",
-    "port": 197.9146,
-    "spy": 161.3751
+    "port": 195.1429,
+    "spy": 161.5435
   },
   {
     "date": "2015-04-22",
-    "port": 197.1398,
-    "spy": 162.1681
+    "port": 194.3812,
+    "spy": 162.3374
   },
   {
     "date": "2015-04-23",
-    "port": 197.6534,
-    "spy": 162.5762
+    "port": 194.8547,
+    "spy": 162.7459
   },
   {
     "date": "2015-04-24",
-    "port": 198.3635,
-    "spy": 162.9534
+    "port": 195.5308,
+    "spy": 163.1235
   },
   {
     "date": "2015-04-27",
-    "port": 197.7174,
-    "spy": 162.2759
+    "port": 194.9053,
+    "spy": 162.4453
   },
   {
     "date": "2015-04-28",
-    "port": 196.7047,
-    "spy": 162.7917
+    "port": 193.8937,
+    "spy": 162.9616
   },
   {
     "date": "2015-04-29",
-    "port": 193.8616,
-    "spy": 162.1219
+    "port": 191.032,
+    "spy": 162.2911
   },
   {
     "date": "2015-04-30",
-    "port": 191.5931,
-    "spy": 160.4973
+    "port": 188.748,
+    "spy": 160.6649
   },
   {
     "date": "2015-05-01",
-    "port": 191.9155,
-    "spy": 162.2374
+    "port": 189.0567,
+    "spy": 162.4067
   },
   {
     "date": "2015-05-04",
-    "port": 191.8599,
-    "spy": 162.6993
+    "port": 189.0377,
+    "spy": 162.8691
   },
   {
     "date": "2015-05-05",
-    "port": 189.3563,
-    "spy": 160.8361
+    "port": 186.5388,
+    "spy": 161.004
   },
   {
     "date": "2015-05-06",
-    "port": 187.0427,
-    "spy": 160.1739
+    "port": 184.2674,
+    "spy": 160.3411
   },
   {
     "date": "2015-05-07",
-    "port": 188.7354,
-    "spy": 160.813
+    "port": 185.9036,
+    "spy": 160.9809
   },
   {
     "date": "2015-05-08",
-    "port": 191.0753,
-    "spy": 162.9303
+    "port": 188.1988,
+    "spy": 163.1004
   },
   {
     "date": "2015-05-11",
-    "port": 188.4437,
-    "spy": 162.1526
+    "port": 185.6583,
+    "spy": 162.3219
   },
   {
     "date": "2015-05-12",
-    "port": 187.9199,
-    "spy": 161.6676
+    "port": 185.1202,
+    "spy": 161.8364
   },
   {
     "date": "2015-05-13",
-    "port": 187.2343,
-    "spy": 161.6984
+    "port": 184.4524,
+    "spy": 161.8671
   },
   {
     "date": "2015-05-14",
-    "port": 188.8074,
-    "spy": 163.3845
+    "port": 185.9645,
+    "spy": 163.5551
   },
   {
     "date": "2015-05-15",
-    "port": 190.4609,
-    "spy": 163.5616
+    "port": 187.547,
+    "spy": 163.7323
   },
   {
     "date": "2015-05-18",
-    "port": 189.9753,
-    "spy": 164.0698
+    "port": 187.1199,
+    "spy": 164.241
   },
   {
     "date": "2015-05-19",
-    "port": 189.8761,
-    "spy": 164.0159
+    "port": 187.0953,
+    "spy": 164.1871
   },
   {
     "date": "2015-05-20",
-    "port": 190.2365,
-    "spy": 163.9004
+    "port": 187.4723,
+    "spy": 164.0714
   },
   {
     "date": "2015-05-21",
-    "port": 191.5627,
-    "spy": 164.3778
+    "port": 188.7311,
+    "spy": 164.5493
   },
   {
     "date": "2015-05-22",
-    "port": 191.4201,
-    "spy": 163.9851
+    "port": 188.6107,
+    "spy": 164.1563
   },
   {
     "date": "2015-05-26",
-    "port": 191.3396,
-    "spy": 162.222
+    "port": 188.5315,
+    "spy": 162.3913
   },
   {
     "date": "2015-05-27",
-    "port": 193.4625,
-    "spy": 163.7618
+    "port": 190.6398,
+    "spy": 163.9327
   },
   {
     "date": "2015-05-28",
-    "port": 193.0984,
-    "spy": 163.5771
+    "port": 190.2849,
+    "spy": 163.7478
   },
   {
     "date": "2015-05-29",
-    "port": 192.1986,
-    "spy": 162.5607
+    "port": 189.3942,
+    "spy": 162.7304
   },
   {
     "date": "2015-06-01",
-    "port": 191.5706,
-    "spy": 162.8918
+    "port": 188.789,
+    "spy": 163.0618
   },
   {
     "date": "2015-06-02",
-    "port": 189.8246,
-    "spy": 162.7301
+    "port": 187.0539,
+    "spy": 162.9
   },
   {
     "date": "2015-06-03",
-    "port": 189.0317,
-    "spy": 163.1613
+    "port": 186.2975,
+    "spy": 163.3316
   },
   {
     "date": "2015-06-04",
-    "port": 188.8768,
-    "spy": 161.7831
+    "port": 186.1415,
+    "spy": 161.952
   },
   {
     "date": "2015-06-05",
-    "port": 187.8824,
-    "spy": 161.506
+    "port": 185.195,
+    "spy": 161.6745
   },
   {
     "date": "2015-06-08",
-    "port": 186.4632,
-    "spy": 160.5128
+    "port": 183.7759,
+    "spy": 160.6803
   },
   {
     "date": "2015-06-09",
-    "port": 185.4664,
-    "spy": 160.4897
+    "port": 182.7811,
+    "spy": 160.6572
   },
   {
     "date": "2015-06-10",
-    "port": 186.2941,
-    "spy": 162.4144
+    "port": 183.5698,
+    "spy": 162.584
   },
   {
     "date": "2015-06-11",
-    "port": 188.7096,
-    "spy": 162.938
+    "port": 185.9297,
+    "spy": 163.1081
   },
   {
     "date": "2015-06-12",
-    "port": 187.953,
-    "spy": 161.6907
+    "port": 185.2214,
+    "spy": 161.8595
   },
   {
     "date": "2015-06-15",
-    "port": 187.7128,
-    "spy": 160.9978
+    "port": 185.0119,
+    "spy": 161.1659
   },
   {
     "date": "2015-06-16",
-    "port": 189.0425,
-    "spy": 161.8756
+    "port": 186.2844,
+    "spy": 162.0445
   },
   {
     "date": "2015-06-17",
-    "port": 188.4654,
-    "spy": 162.1373
+    "port": 185.7209,
+    "spy": 162.3065
   },
   {
     "date": "2015-06-18",
-    "port": 189.4098,
-    "spy": 163.8234
+    "port": 186.6246,
+    "spy": 163.9944
   },
   {
     "date": "2015-06-19",
-    "port": 190.2358,
-    "spy": 163.0962
+    "port": 187.4524,
+    "spy": 163.2664
   },
   {
     "date": "2015-06-22",
-    "port": 189.4826,
-    "spy": 163.9317
+    "port": 186.7494,
+    "spy": 164.1028
   },
   {
     "date": "2015-06-23",
-    "port": 189.2528,
-    "spy": 164.0478
+    "port": 186.5353,
+    "spy": 164.219
   },
   {
     "date": "2015-06-24",
-    "port": 188.6184,
-    "spy": 162.8563
+    "port": 185.8884,
+    "spy": 163.0263
   },
   {
     "date": "2015-06-25",
-    "port": 187.6973,
-    "spy": 162.3612
+    "port": 184.9761,
+    "spy": 162.5306
   },
   {
     "date": "2015-06-26",
-    "port": 186.8227,
-    "spy": 162.3302
+    "port": 184.1378,
+    "spy": 162.4996
   },
   {
     "date": "2015-06-29",
-    "port": 185.651,
-    "spy": 158.9261
+    "port": 182.9614,
+    "spy": 159.092
   },
   {
     "date": "2015-06-30",
-    "port": 185.0122,
-    "spy": 159.2588
+    "port": 182.3093,
+    "spy": 159.425
   },
   {
     "date": "2015-07-01",
-    "port": 185.0859,
-    "spy": 160.5353
+    "port": 182.3973,
+    "spy": 160.7029
   },
   {
     "date": "2015-07-02",
-    "port": 185.0993,
-    "spy": 160.3883
+    "port": 182.4018,
+    "spy": 160.5557
   },
   {
     "date": "2015-07-06",
-    "port": 186.226,
-    "spy": 159.9319
+    "port": 183.4899,
+    "spy": 160.0989
   },
   {
     "date": "2015-07-07",
-    "port": 187.7794,
-    "spy": 160.9376
+    "port": 184.9889,
+    "spy": 161.1056
   },
   {
     "date": "2015-07-08",
-    "port": 185.5409,
-    "spy": 158.2375
+    "port": 182.7588,
+    "spy": 158.4027
   },
   {
     "date": "2015-07-09",
-    "port": 184.5129,
-    "spy": 158.5238
+    "port": 181.8002,
+    "spy": 158.6893
   },
   {
     "date": "2015-07-10",
-    "port": 184.8585,
-    "spy": 160.5199
+    "port": 182.1284,
+    "spy": 160.6874
   },
   {
     "date": "2015-07-13",
-    "port": 186.1828,
-    "spy": 162.2916
+    "port": 183.4185,
+    "spy": 162.461
   },
   {
     "date": "2015-07-14",
-    "port": 186.9816,
-    "spy": 162.9956
+    "port": 184.1824,
+    "spy": 163.1657
   },
   {
     "date": "2015-07-15",
-    "port": 187.7311,
-    "spy": 162.9414
+    "port": 184.906,
+    "spy": 163.1115
   },
   {
     "date": "2015-07-16",
-    "port": 189.179,
-    "spy": 164.2489
+    "port": 186.287,
+    "spy": 164.4203
   },
   {
     "date": "2015-07-17",
-    "port": 189.6925,
-    "spy": 164.3883
+    "port": 186.7903,
+    "spy": 164.5598
   },
   {
     "date": "2015-07-20",
-    "port": 189.5004,
-    "spy": 164.4733
+    "port": 186.6205,
+    "spy": 164.6449
   },
   {
     "date": "2015-07-21",
-    "port": 189.1928,
-    "spy": 163.8234
+    "port": 186.3022,
+    "spy": 163.9944
   },
   {
     "date": "2015-07-22",
-    "port": 189.4896,
-    "spy": 163.5294
+    "port": 186.5862,
+    "spy": 163.7001
   },
   {
     "date": "2015-07-23",
-    "port": 189.5439,
-    "spy": 162.6087
+    "port": 186.6223,
+    "spy": 162.7785
   },
   {
     "date": "2015-07-24",
-    "port": 188.2164,
-    "spy": 160.9221
+    "port": 185.3342,
+    "spy": 161.0901
   },
   {
     "date": "2015-07-27",
-    "port": 187.7634,
-    "spy": 159.986
+    "port": 184.8906,
+    "spy": 160.153
   },
   {
     "date": "2015-07-28",
-    "port": 188.6553,
-    "spy": 161.9511
+    "port": 185.7362,
+    "spy": 162.1202
   },
   {
     "date": "2015-07-29",
-    "port": 189.306,
-    "spy": 163.0652
+    "port": 186.3641,
+    "spy": 163.2354
   },
   {
     "date": "2015-07-30",
-    "port": 190.3103,
-    "spy": 163.1039
+    "port": 187.3638,
+    "spy": 163.2741
   },
   {
     "date": "2015-07-31",
-    "port": 191.1289,
-    "spy": 162.8563
+    "port": 188.1898,
+    "spy": 163.0263
   },
   {
     "date": "2015-08-03",
-    "port": 191.7823,
-    "spy": 162.307
+    "port": 188.8467,
+    "spy": 162.4764
   },
   {
     "date": "2015-08-04",
-    "port": 190.7806,
-    "spy": 161.9898
+    "port": 187.8697,
+    "spy": 162.1589
   },
   {
     "date": "2015-08-05",
-    "port": 191.0108,
-    "spy": 162.5237
+    "port": 188.1328,
+    "spy": 162.6933
   },
   {
     "date": "2015-08-06",
-    "port": 190.743,
-    "spy": 161.193
+    "port": 187.8792,
+    "spy": 161.3612
   },
   {
     "date": "2015-08-07",
-    "port": 191.3943,
-    "spy": 160.8835
+    "port": 188.4962,
+    "spy": 161.0514
   },
   {
     "date": "2015-08-10",
-    "port": 192.0304,
-    "spy": 162.9105
+    "port": 189.0968,
+    "spy": 163.0805
   },
   {
     "date": "2015-08-11",
-    "port": 192.5009,
-    "spy": 161.4405
+    "port": 189.5828,
+    "spy": 161.609
   },
   {
     "date": "2015-08-12",
-    "port": 191.5995,
-    "spy": 161.6339
+    "port": 188.6571,
+    "spy": 161.8026
   },
   {
     "date": "2015-08-13",
-    "port": 191.2802,
-    "spy": 161.4328
+    "port": 188.3637,
+    "spy": 161.6013
   },
   {
     "date": "2015-08-14",
-    "port": 191.9427,
-    "spy": 162.0208
+    "port": 188.9903,
+    "spy": 162.1899
   },
   {
     "date": "2015-08-17",
-    "port": 193.0364,
-    "spy": 162.9259
+    "port": 190.0382,
+    "spy": 163.096
   },
   {
     "date": "2015-08-18",
-    "port": 192.1441,
-    "spy": 162.454
+    "port": 189.202,
+    "spy": 162.6236
   },
   {
     "date": "2015-08-19",
-    "port": 191.644,
-    "spy": 161.1697
+    "port": 188.6997,
+    "spy": 161.3379
   },
   {
     "date": "2015-08-20",
-    "port": 189.2073,
-    "spy": 157.8043
+    "port": 186.3083,
+    "spy": 157.9691
   },
   {
     "date": "2015-08-21",
-    "port": 185.3352,
-    "spy": 153.054
+    "port": 182.5579,
+    "spy": 153.2138
   },
   {
     "date": "2015-08-24",
-    "port": 179.3855,
-    "spy": 146.6094
+    "port": 176.7851,
+    "spy": 146.7624
   },
   {
     "date": "2015-08-25",
-    "port": 176.4781,
-    "spy": 144.8841
+    "port": 173.9635,
+    "spy": 145.0353
   },
   {
     "date": "2015-08-26",
-    "port": 179.7256,
-    "spy": 150.4468
+    "port": 177.1006,
+    "spy": 150.6038
   },
   {
     "date": "2015-08-27",
-    "port": 182.3041,
-    "spy": 154.1681
+    "port": 179.5219,
+    "spy": 154.329
   },
   {
     "date": "2015-08-28",
-    "port": 182.4181,
-    "spy": 154.1758
+    "port": 179.6096,
+    "spy": 154.3367
   },
   {
     "date": "2015-08-31",
-    "port": 180.7964,
-    "spy": 152.9302
+    "port": 178.0377,
+    "spy": 153.0898
   },
   {
     "date": "2015-09-01",
-    "port": 178.0452,
-    "spy": 148.3656
+    "port": 175.4405,
+    "spy": 148.5205
   },
   {
     "date": "2015-09-02",
-    "port": 179.6343,
-    "spy": 151.1817
+    "port": 176.9604,
+    "spy": 151.3395
   },
   {
     "date": "2015-09-03",
-    "port": 179.9556,
-    "spy": 151.2901
+    "port": 177.253,
+    "spy": 151.448
   },
   {
     "date": "2015-09-04",
-    "port": 179.0025,
-    "spy": 149.0
+    "port": 176.3542,
+    "spy": 149.1555
   },
   {
     "date": "2015-09-08",
-    "port": 180.7691,
-    "spy": 152.7445
+    "port": 178.0314,
+    "spy": 152.904
   },
   {
     "date": "2015-09-09",
-    "port": 179.684,
-    "spy": 150.7021
+    "port": 177.0095,
+    "spy": 150.8594
   },
   {
     "date": "2015-09-10",
-    "port": 179.717,
-    "spy": 151.5221
+    "port": 177.0283,
+    "spy": 151.6803
   },
   {
     "date": "2015-09-11",
-    "port": 180.5965,
-    "spy": 152.2108
+    "port": 177.8605,
+    "spy": 152.3696
   },
   {
     "date": "2015-09-14",
-    "port": 180.0209,
-    "spy": 151.6459
+    "port": 177.2838,
+    "spy": 151.8042
   },
   {
     "date": "2015-09-15",
-    "port": 180.1214,
-    "spy": 153.5414
+    "port": 177.378,
+    "spy": 153.7017
   },
   {
     "date": "2015-09-16",
-    "port": 180.7337,
-    "spy": 154.8721
+    "port": 177.9443,
+    "spy": 155.0337
   },
   {
     "date": "2015-09-17",
-    "port": 181.4075,
-    "spy": 154.5239
+    "port": 178.5906,
+    "spy": 154.6852
   },
   {
     "date": "2015-09-18",
-    "port": 181.0064,
-    "spy": 151.9988
+    "port": 178.2575,
+    "spy": 152.1574
   },
   {
     "date": "2015-09-21",
-    "port": 180.5367,
-    "spy": 152.7843
+    "port": 177.8227,
+    "spy": 152.9437
   },
   {
     "date": "2015-09-22",
-    "port": 180.0079,
-    "spy": 150.8012
+    "port": 177.3179,
+    "spy": 150.9586
   },
   {
     "date": "2015-09-23",
-    "port": 179.9785,
-    "spy": 150.5601
+    "port": 177.3084,
+    "spy": 150.7173
   },
   {
     "date": "2015-09-24",
-    "port": 179.5472,
-    "spy": 150.0157
+    "port": 176.8374,
+    "spy": 150.1723
   },
   {
     "date": "2015-09-25",
-    "port": 178.8728,
-    "spy": 149.9768
+    "port": 176.1964,
+    "spy": 150.1334
   },
   {
     "date": "2015-09-28",
-    "port": 176.7989,
-    "spy": 146.2128
+    "port": 174.1772,
+    "spy": 146.3654
   },
   {
     "date": "2015-09-29",
-    "port": 176.8554,
-    "spy": 146.2984
+    "port": 174.2096,
+    "spy": 146.4511
   },
   {
     "date": "2015-09-30",
-    "port": 178.7305,
-    "spy": 149.028
+    "port": 175.9991,
+    "spy": 149.1836
   },
   {
     "date": "2015-10-01",
-    "port": 179.4608,
-    "spy": 149.4169
+    "port": 176.7158,
+    "spy": 149.5729
   },
   {
     "date": "2015-10-02",
-    "port": 181.4884,
-    "spy": 151.6489
+    "port": 178.6337,
+    "spy": 151.8071
   },
   {
     "date": "2015-10-05",
-    "port": 182.8633,
-    "spy": 154.3474
+    "port": 179.9584,
+    "spy": 154.5085
   },
   {
     "date": "2015-10-06",
-    "port": 182.259,
-    "spy": 153.8186
+    "port": 179.3199,
+    "spy": 153.9791
   },
   {
     "date": "2015-10-07",
-    "port": 182.8047,
-    "spy": 155.0784
+    "port": 179.8109,
+    "spy": 155.2403
   },
   {
     "date": "2015-10-08",
-    "port": 183.2387,
-    "spy": 156.4783
+    "port": 180.2128,
+    "spy": 156.6416
   },
   {
     "date": "2015-10-09",
-    "port": 182.969,
-    "spy": 156.5716
+    "port": 179.8962,
+    "spy": 156.735
   },
   {
     "date": "2015-10-12",
-    "port": 183.7116,
-    "spy": 156.7194
+    "port": 180.6482,
+    "spy": 156.8829
   },
   {
     "date": "2015-10-13",
-    "port": 183.1245,
-    "spy": 155.7317
+    "port": 180.0744,
+    "spy": 155.8942
   },
   {
     "date": "2015-10-14",
-    "port": 182.9897,
-    "spy": 154.9851
+    "port": 179.9693,
+    "spy": 155.1469
   },
   {
     "date": "2015-10-15",
-    "port": 184.5183,
-    "spy": 157.3648
+    "port": 181.4759,
+    "spy": 157.5291
   },
   {
     "date": "2015-10-16",
-    "port": 185.2585,
-    "spy": 158.0803
+    "port": 182.2203,
+    "spy": 158.2453
   },
   {
     "date": "2015-10-19",
-    "port": 185.2806,
-    "spy": 158.1581
+    "port": 182.2354,
+    "spy": 158.3232
   },
   {
     "date": "2015-10-20",
-    "port": 184.6245,
-    "spy": 157.9558
+    "port": 181.5585,
+    "spy": 158.1207
   },
   {
     "date": "2015-10-21",
-    "port": 184.9246,
-    "spy": 156.976
+    "port": 181.8792,
+    "spy": 157.1399
   },
   {
     "date": "2015-10-22",
-    "port": 187.5156,
-    "spy": 159.6279
+    "port": 184.4582,
+    "spy": 159.7945
   },
   {
     "date": "2015-10-23",
-    "port": 188.2884,
-    "spy": 161.3777
+    "port": 185.2163,
+    "spy": 161.5461
   },
   {
     "date": "2015-10-26",
-    "port": 188.4598,
-    "spy": 160.9811
+    "port": 185.409,
+    "spy": 161.1491
   },
   {
     "date": "2015-10-27",
-    "port": 188.2405,
-    "spy": 160.67
+    "port": 185.2345,
+    "spy": 160.8377
   },
   {
     "date": "2015-10-28",
-    "port": 189.5241,
-    "spy": 162.4976
+    "port": 186.4619,
+    "spy": 162.6672
   },
   {
     "date": "2015-10-29",
-    "port": 188.1343,
-    "spy": 162.4043
+    "port": 185.0743,
+    "spy": 162.5738
   },
   {
     "date": "2015-10-30",
-    "port": 187.6167,
-    "spy": 161.7043
+    "port": 184.5952,
+    "spy": 161.8731
   },
   {
     "date": "2015-11-02",
-    "port": 189.1773,
-    "spy": 163.6174
+    "port": 186.1049,
+    "spy": 163.7882
   },
   {
     "date": "2015-11-03",
-    "port": 188.8042,
-    "spy": 164.0918
+    "port": 185.715,
+    "spy": 164.2631
   },
   {
     "date": "2015-11-04",
-    "port": 188.7682,
-    "spy": 163.5941
+    "port": 185.6722,
+    "spy": 163.7648
   },
   {
     "date": "2015-11-05",
-    "port": 188.6009,
-    "spy": 163.4308
+    "port": 185.4861,
+    "spy": 163.6013
   },
   {
     "date": "2015-11-06",
-    "port": 187.8925,
-    "spy": 163.3452
+    "port": 184.7183,
+    "spy": 163.5157
   },
   {
     "date": "2015-11-09",
-    "port": 186.6705,
-    "spy": 161.8209
+    "port": 183.4922,
+    "spy": 161.9898
   },
   {
     "date": "2015-11-10",
-    "port": 187.5274,
-    "spy": 162.1943
+    "port": 184.3306,
+    "spy": 162.3636
   },
   {
     "date": "2015-11-11",
-    "port": 186.6912,
-    "spy": 161.5566
+    "port": 183.5147,
+    "spy": 161.7252
   },
   {
     "date": "2015-11-12",
-    "port": 185.0261,
-    "spy": 159.3013
+    "port": 181.8987,
+    "spy": 159.4676
   },
   {
     "date": "2015-11-13",
-    "port": 184.3061,
-    "spy": 157.5126
+    "port": 181.1732,
+    "spy": 157.677
   },
   {
     "date": "2015-11-16",
-    "port": 186.3914,
-    "spy": 159.9079
+    "port": 183.2359,
+    "spy": 160.0748
   },
   {
     "date": "2015-11-17",
-    "port": 186.7609,
-    "spy": 159.7912
+    "port": 183.5984,
+    "spy": 159.958
   },
   {
     "date": "2015-11-18",
-    "port": 189.0706,
-    "spy": 162.3264
+    "port": 185.8818,
+    "spy": 162.4959
   },
   {
     "date": "2015-11-19",
-    "port": 188.7796,
-    "spy": 162.1865
+    "port": 185.635,
+    "spy": 162.3558
   },
   {
     "date": "2015-11-20",
-    "port": 189.1824,
-    "spy": 162.7775
+    "port": 186.0168,
+    "spy": 162.9474
   },
   {
     "date": "2015-11-23",
-    "port": 189.4782,
-    "spy": 162.5909
+    "port": 186.2946,
+    "spy": 162.7606
   },
   {
     "date": "2015-11-24",
-    "port": 189.2125,
-    "spy": 162.8087
+    "port": 186.0315,
+    "spy": 162.9786
   },
   {
     "date": "2015-11-25",
-    "port": 189.8033,
-    "spy": 162.7853
+    "port": 186.5926,
+    "spy": 162.9552
   },
   {
     "date": "2015-11-27",
-    "port": 190.6075,
-    "spy": 162.972
+    "port": 187.3563,
+    "spy": 163.1421
   },
   {
     "date": "2015-11-30",
-    "port": 190.3486,
-    "spy": 162.2953
+    "port": 187.1045,
+    "spy": 162.4647
   },
   {
     "date": "2015-12-01",
-    "port": 192.1945,
-    "spy": 163.843
+    "port": 188.9777,
+    "spy": 164.014
   },
   {
     "date": "2015-12-02",
-    "port": 191.0316,
-    "spy": 162.171
+    "port": 187.8238,
+    "spy": 162.3402
   },
   {
     "date": "2015-12-03",
-    "port": 185.8413,
-    "spy": 159.9001
+    "port": 182.6771,
+    "spy": 160.067
   },
   {
     "date": "2015-12-04",
-    "port": 188.215,
-    "spy": 163.0186
+    "port": 185.0955,
+    "spy": 163.1888
   },
   {
     "date": "2015-12-07",
-    "port": 188.1841,
-    "spy": 162.031
+    "port": 185.1062,
+    "spy": 162.2001
   },
   {
     "date": "2015-12-08",
-    "port": 187.3168,
-    "spy": 160.9421
+    "port": 184.2545,
+    "spy": 161.1101
   },
   {
     "date": "2015-12-09",
-    "port": 186.113,
-    "spy": 159.6901
+    "port": 183.0689,
+    "spy": 159.8568
   },
   {
     "date": "2015-12-10",
-    "port": 186.607,
-    "spy": 160.1023
+    "port": 183.5577,
+    "spy": 160.2694
   },
   {
     "date": "2015-12-11",
-    "port": 185.2235,
-    "spy": 156.9993
+    "port": 182.2218,
+    "spy": 157.1632
   },
   {
     "date": "2015-12-14",
-    "port": 185.0307,
-    "spy": 157.7926
+    "port": 182.0292,
+    "spy": 157.9573
   },
   {
     "date": "2015-12-15",
-    "port": 186.315,
-    "spy": 159.4491
+    "port": 183.2702,
+    "spy": 159.6155
   },
   {
     "date": "2015-12-16",
-    "port": 188.0967,
-    "spy": 161.7821
+    "port": 185.0358,
+    "spy": 161.9509
   },
   {
     "date": "2015-12-17",
-    "port": 187.441,
-    "spy": 159.3168
+    "port": 184.3874,
+    "spy": 159.4831
   },
   {
     "date": "2015-12-18",
-    "port": 185.5255,
-    "spy": 156.4786
+    "port": 182.4916,
+    "spy": 156.6419
   },
   {
     "date": "2015-12-21",
-    "port": 186.2022,
-    "spy": 157.7695
+    "port": 183.1772,
+    "spy": 157.9341
   },
   {
     "date": "2015-12-22",
-    "port": 186.8745,
-    "spy": 159.2011
+    "port": 183.8216,
+    "spy": 159.3672
   },
   {
     "date": "2015-12-23",
-    "port": 187.2684,
-    "spy": 161.1725
+    "port": 184.2131,
+    "spy": 161.3407
   },
   {
     "date": "2015-12-24",
-    "port": 187.4998,
-    "spy": 160.9065
+    "port": 184.4431,
+    "spy": 161.0744
   },
   {
     "date": "2015-12-28",
-    "port": 187.4181,
-    "spy": 160.5388
+    "port": 184.3826,
+    "spy": 160.7063
   },
   {
     "date": "2015-12-29",
-    "port": 187.208,
-    "spy": 162.2521
+    "port": 184.1552,
+    "spy": 162.4214
   },
   {
     "date": "2015-12-30",
-    "port": 186.7429,
-    "spy": 161.1021
+    "port": 183.6788,
+    "spy": 161.2702
   },
   {
     "date": "2015-12-31",
-    "port": 185.8808,
-    "spy": 159.4905
+    "port": 182.831,
+    "spy": 159.657
   },
   {
     "date": "2016-01-04",
-    "port": 184.522,
-    "spy": 157.2609
+    "port": 181.5101,
+    "spy": 157.4251
   },
   {
     "date": "2016-01-05",
-    "port": 184.654,
-    "spy": 157.5269
+    "port": 181.6307,
+    "spy": 157.6913
   },
   {
     "date": "2016-01-06",
-    "port": 183.8681,
-    "spy": 155.5398
+    "port": 180.8884,
+    "spy": 155.7022
   },
   {
     "date": "2016-01-07",
-    "port": 180.6804,
-    "spy": 151.8082
+    "port": 177.7464,
+    "spy": 151.9666
   },
   {
     "date": "2016-01-08",
-    "port": 179.3573,
-    "spy": 150.1418
+    "port": 176.4647,
+    "spy": 150.2985
   },
   {
     "date": "2016-01-11",
-    "port": 179.599,
-    "spy": 150.2905
+    "port": 176.6582,
+    "spy": 150.4473
   },
   {
     "date": "2016-01-12",
-    "port": 181.2672,
-    "spy": 151.503
+    "port": 178.3603,
+    "spy": 151.6612
   },
   {
     "date": "2016-01-13",
-    "port": 179.0053,
-    "spy": 147.7245
+    "port": 176.1394,
+    "spy": 147.8787
   },
   {
     "date": "2016-01-14",
-    "port": 180.0935,
-    "spy": 150.1497
+    "port": 177.2167,
+    "spy": 150.3064
   },
   {
     "date": "2016-01-15",
-    "port": 179.3672,
-    "spy": 146.9265
+    "port": 176.4825,
+    "spy": 147.0799
   },
   {
     "date": "2016-01-18",
-    "port": 179.3672,
-    "spy": 146.9265
+    "port": 176.4817,
+    "spy": 147.0799
   },
   {
     "date": "2016-01-19",
-    "port": 179.0447,
-    "spy": 147.1221
+    "port": 176.1948,
+    "spy": 147.2757
   },
   {
     "date": "2016-01-20",
-    "port": 179.0254,
-    "spy": 145.2367
+    "port": 176.1273,
+    "spy": 145.3883
   },
   {
     "date": "2016-01-21",
-    "port": 178.676,
-    "spy": 146.0504
+    "port": 175.8235,
+    "spy": 146.2028
   },
   {
     "date": "2016-01-22",
-    "port": 179.6715,
-    "spy": 149.0466
+    "port": 176.9617,
+    "spy": 149.2022
   },
   {
     "date": "2016-01-25",
-    "port": 178.8866,
-    "spy": 146.7935
+    "port": 176.0343,
+    "spy": 146.9467
   },
   {
     "date": "2016-01-26",
-    "port": 180.1807,
-    "spy": 148.7963
+    "port": 177.4436,
+    "spy": 148.9516
   },
   {
     "date": "2016-01-27",
-    "port": 178.83,
-    "spy": 147.1769
+    "port": 176.0816,
+    "spy": 147.3305
   },
   {
     "date": "2016-01-28",
-    "port": 179.3319,
-    "spy": 147.9436
+    "port": 176.6173,
+    "spy": 148.098
   },
   {
     "date": "2016-01-29",
-    "port": 183.1579,
-    "spy": 151.5501
+    "port": 180.5015,
+    "spy": 151.7082
   },
   {
     "date": "2016-02-01",
-    "port": 182.9134,
-    "spy": 151.4953
+    "port": 180.2354,
+    "spy": 151.6534
   },
   {
     "date": "2016-02-02",
-    "port": 182.26,
-    "spy": 148.765
+    "port": 179.481,
+    "spy": 148.9203
   },
   {
     "date": "2016-02-03",
-    "port": 181.7104,
-    "spy": 149.6568
+    "port": 179.0003,
+    "spy": 149.813
   },
   {
     "date": "2016-02-04",
-    "port": 182.2759,
-    "spy": 149.8915
+    "port": 179.594,
+    "spy": 150.048
   },
   {
     "date": "2016-02-05",
-    "port": 180.5705,
-    "spy": 147.036
+    "port": 177.785,
+    "spy": 147.1895
   },
   {
     "date": "2016-02-08",
-    "port": 180.3666,
-    "spy": 145.0568
+    "port": 177.5629,
+    "spy": 145.2082
   },
   {
     "date": "2016-02-09",
-    "port": 180.7126,
-    "spy": 145.0646
+    "port": 177.8472,
+    "spy": 145.216
   },
   {
     "date": "2016-02-10",
-    "port": 180.8176,
-    "spy": 144.9395
+    "port": 177.9781,
+    "spy": 145.0908
   },
   {
     "date": "2016-02-11",
-    "port": 179.8404,
-    "spy": 143.0541
+    "port": 176.9527,
+    "spy": 143.2034
   },
   {
     "date": "2016-02-12",
-    "port": 180.5626,
-    "spy": 146.0034
+    "port": 177.7858,
+    "spy": 146.1558
   },
   {
     "date": "2016-02-16",
-    "port": 182.0166,
-    "spy": 148.4677
+    "port": 179.2807,
+    "spy": 148.6226
   },
   {
     "date": "2016-02-17",
-    "port": 183.0178,
-    "spy": 150.8929
+    "port": 180.3589,
+    "spy": 151.0504
   },
   {
     "date": "2016-02-18",
-    "port": 183.5768,
-    "spy": 150.2748
+    "port": 180.8885,
+    "spy": 150.4317
   },
   {
     "date": "2016-02-19",
-    "port": 183.5517,
-    "spy": 150.2045
+    "port": 180.8707,
+    "spy": 150.3612
   },
   {
     "date": "2016-02-22",
-    "port": 185.1479,
-    "spy": 152.3793
+    "port": 182.5072,
+    "spy": 152.5383
   },
   {
     "date": "2016-02-23",
-    "port": 184.4577,
-    "spy": 150.4547
+    "port": 181.7495,
+    "spy": 150.6118
   },
   {
     "date": "2016-02-24",
-    "port": 185.1681,
-    "spy": 151.1432
+    "port": 182.4639,
+    "spy": 151.3009
   },
   {
     "date": "2016-02-25",
-    "port": 186.8105,
-    "spy": 152.9739
+    "port": 184.1195,
+    "spy": 153.1335
   },
   {
     "date": "2016-02-26",
-    "port": 186.0773,
-    "spy": 152.6218
+    "port": 183.409,
+    "spy": 152.7811
   },
   {
     "date": "2016-02-29",
-    "port": 185.8187,
-    "spy": 151.4248
+    "port": 183.1344,
+    "spy": 151.5829
   },
   {
     "date": "2016-03-01",
-    "port": 187.2561,
-    "spy": 154.9844
+    "port": 184.6384,
+    "spy": 155.1462
   },
   {
     "date": "2016-03-02",
-    "port": 187.9735,
-    "spy": 155.6806
+    "port": 185.4064,
+    "spy": 155.8431
   },
   {
     "date": "2016-03-03",
-    "port": 188.7591,
-    "spy": 156.2908
+    "port": 186.2482,
+    "spy": 156.454
   },
   {
     "date": "2016-03-04",
-    "port": 188.0149,
-    "spy": 156.7993
+    "port": 185.5886,
+    "spy": 156.963
   },
   {
     "date": "2016-03-07",
-    "port": 188.0139,
-    "spy": 156.9245
+    "port": 185.663,
+    "spy": 157.0883
   },
   {
     "date": "2016-03-08",
-    "port": 187.3238,
-    "spy": 155.2113
+    "port": 184.878,
+    "spy": 155.3733
   },
   {
     "date": "2016-03-09",
-    "port": 187.0329,
-    "spy": 155.9779
+    "port": 184.6559,
+    "spy": 156.1407
   },
   {
     "date": "2016-03-10",
-    "port": 185.713,
-    "spy": 156.1031
+    "port": 183.4127,
+    "spy": 156.266
   },
   {
     "date": "2016-03-11",
-    "port": 187.2777,
-    "spy": 158.6221
+    "port": 185.0259,
+    "spy": 158.7877
   },
   {
     "date": "2016-03-14",
-    "port": 187.0616,
-    "spy": 158.4188
+    "port": 184.798,
+    "spy": 158.5841
   },
   {
     "date": "2016-03-15",
-    "port": 186.3135,
-    "spy": 158.1605
+    "port": 184.0494,
+    "spy": 158.3256
   },
   {
     "date": "2016-03-16",
-    "port": 187.4408,
-    "spy": 159.0759
+    "port": 185.1916,
+    "spy": 159.242
   },
   {
     "date": "2016-03-17",
-    "port": 188.9144,
-    "spy": 160.0851
+    "port": 186.6959,
+    "spy": 160.2522
   },
   {
     "date": "2016-03-18",
-    "port": 189.9299,
-    "spy": 160.7142
+    "port": 187.7018,
+    "spy": 160.8819
   },
   {
     "date": "2016-03-21",
-    "port": 189.4384,
-    "spy": 160.9422
+    "port": 187.21,
+    "spy": 161.1102
   },
   {
     "date": "2016-03-22",
-    "port": 189.6143,
-    "spy": 160.8557
+    "port": 187.3494,
+    "spy": 161.0236
   },
   {
     "date": "2016-03-23",
-    "port": 189.4141,
-    "spy": 159.7941
+    "port": 187.0775,
+    "spy": 159.9609
   },
   {
     "date": "2016-03-24",
-    "port": 189.0001,
-    "spy": 159.7233
+    "port": 186.7159,
+    "spy": 159.89
   },
   {
     "date": "2016-03-28",
-    "port": 189.3311,
-    "spy": 159.8177
+    "port": 187.0356,
+    "spy": 159.9845
   },
   {
     "date": "2016-03-29",
-    "port": 191.7231,
-    "spy": 161.296
+    "port": 189.4549,
+    "spy": 161.4644
   },
   {
     "date": "2016-03-30",
-    "port": 191.6287,
-    "spy": 162.0038
+    "port": 189.3573,
+    "spy": 162.1729
   },
   {
     "date": "2016-03-31",
-    "port": 190.8668,
-    "spy": 161.6106
+    "port": 188.6954,
+    "spy": 161.7793
   },
   {
     "date": "2016-04-01",
-    "port": 192.0012,
-    "spy": 162.7115
+    "port": 189.7967,
+    "spy": 162.8813
   },
   {
     "date": "2016-04-04",
-    "port": 191.0003,
-    "spy": 162.1846
+    "port": 188.7911,
+    "spy": 162.3539
   },
   {
     "date": "2016-04-05",
-    "port": 190.6514,
-    "spy": 160.5647
+    "port": 188.3912,
+    "spy": 160.7323
   },
   {
     "date": "2016-04-06",
-    "port": 191.3995,
-    "spy": 162.3183
+    "port": 189.162,
+    "spy": 162.4877
   },
   {
     "date": "2016-04-07",
-    "port": 190.6586,
-    "spy": 160.376
+    "port": 188.3755,
+    "spy": 160.5434
   },
   {
     "date": "2016-04-08",
-    "port": 190.3376,
-    "spy": 160.8085
+    "port": 188.1075,
+    "spy": 160.9763
   },
   {
     "date": "2016-04-11",
-    "port": 189.9196,
-    "spy": 160.431
+    "port": 187.697,
+    "spy": 160.5985
   },
   {
     "date": "2016-04-12",
-    "port": 190.2238,
-    "spy": 161.9252
+    "port": 188.0883,
+    "spy": 162.0942
   },
   {
     "date": "2016-04-13",
-    "port": 191.8292,
-    "spy": 163.5607
+    "port": 189.7731,
+    "spy": 163.7315
   },
   {
     "date": "2016-04-14",
-    "port": 191.3459,
-    "spy": 163.5686
+    "port": 189.2891,
+    "spy": 163.7393
   },
   {
     "date": "2016-04-15",
-    "port": 192.3356,
-    "spy": 163.3877
+    "port": 190.2327,
+    "spy": 163.5582
   },
   {
     "date": "2016-04-18",
-    "port": 192.5626,
-    "spy": 164.5358
+    "port": 190.5052,
+    "spy": 164.7075
   },
   {
     "date": "2016-04-19",
-    "port": 192.4969,
-    "spy": 165.0548
+    "port": 190.4976,
+    "spy": 165.2271
   },
   {
     "date": "2016-04-20",
-    "port": 191.508,
-    "spy": 165.212
+    "port": 189.5586,
+    "spy": 165.3845
   },
   {
     "date": "2016-04-21",
-    "port": 189.9991,
-    "spy": 164.3235
+    "port": 188.0566,
+    "spy": 164.495
   },
   {
     "date": "2016-04-22",
-    "port": 190.1535,
-    "spy": 164.3235
+    "port": 188.2337,
+    "spy": 164.495
   },
   {
     "date": "2016-04-25",
-    "port": 189.2611,
-    "spy": 164.0404
+    "port": 187.3292,
+    "spy": 164.2116
   },
   {
     "date": "2016-04-26",
-    "port": 189.2521,
-    "spy": 164.2842
+    "port": 187.3809,
+    "spy": 164.4557
   },
   {
     "date": "2016-04-27",
-    "port": 189.8309,
-    "spy": 164.6223
+    "port": 188.0236,
+    "spy": 164.7941
   },
   {
     "date": "2016-04-28",
-    "port": 189.0931,
-    "spy": 163.1282
+    "port": 187.207,
+    "spy": 163.2985
   },
   {
     "date": "2016-04-29",
-    "port": 188.3576,
-    "spy": 162.2475
+    "port": 186.4744,
+    "spy": 162.4168
   },
   {
     "date": "2016-05-02",
-    "port": 189.1485,
-    "spy": 163.5371
+    "port": 187.2941,
+    "spy": 163.7078
   },
   {
     "date": "2016-05-03",
-    "port": 188.2479,
-    "spy": 162.1138
+    "port": 186.3556,
+    "spy": 162.283
   },
   {
     "date": "2016-05-04",
-    "port": 187.3518,
-    "spy": 161.2095
+    "port": 185.4298,
+    "spy": 161.3778
   },
   {
     "date": "2016-05-05",
-    "port": 187.3067,
-    "spy": 161.1781
+    "port": 185.3355,
+    "spy": 161.3463
   },
   {
     "date": "2016-05-06",
-    "port": 187.7763,
-    "spy": 161.7678
+    "port": 185.819,
+    "spy": 161.9367
   },
   {
     "date": "2016-05-09",
-    "port": 187.6281,
-    "spy": 161.9016
+    "port": 185.6315,
+    "spy": 162.0705
   },
   {
     "date": "2016-05-10",
-    "port": 189.6533,
-    "spy": 163.9146
+    "port": 187.6265,
+    "spy": 164.0857
   },
   {
     "date": "2016-05-11",
-    "port": 188.983,
-    "spy": 162.3811
+    "port": 186.9837,
+    "spy": 162.5506
   },
   {
     "date": "2016-05-12",
-    "port": 188.4448,
-    "spy": 162.4284
+    "port": 186.448,
+    "spy": 162.5979
   },
   {
     "date": "2016-05-13",
-    "port": 187.921,
-    "spy": 161.0129
+    "port": 185.925,
+    "spy": 161.181
   },
   {
     "date": "2016-05-16",
-    "port": 188.5002,
-    "spy": 162.6014
+    "port": 186.4831,
+    "spy": 162.7711
   },
   {
     "date": "2016-05-17",
-    "port": 187.1013,
-    "spy": 161.0837
+    "port": 185.1008,
+    "spy": 161.2518
   },
   {
     "date": "2016-05-18",
-    "port": 185.6929,
-    "spy": 161.1309
+    "port": 183.7093,
+    "spy": 161.2991
   },
   {
     "date": "2016-05-19",
-    "port": 185.4969,
-    "spy": 160.5726
+    "port": 183.511,
+    "spy": 160.7402
   },
   {
     "date": "2016-05-20",
-    "port": 186.656,
-    "spy": 161.587
+    "port": 184.6527,
+    "spy": 161.7557
   },
   {
     "date": "2016-05-23",
-    "port": 186.4117,
-    "spy": 161.3668
+    "port": 184.3942,
+    "spy": 161.5352
   },
   {
     "date": "2016-05-24",
-    "port": 187.733,
-    "spy": 163.4585
+    "port": 185.6635,
+    "spy": 163.6291
   },
   {
     "date": "2016-05-25",
-    "port": 188.3828,
-    "spy": 164.5673
+    "port": 186.2977,
+    "spy": 164.739
   },
   {
     "date": "2016-05-26",
-    "port": 188.7458,
-    "spy": 164.6145
+    "port": 186.6417,
+    "spy": 164.7863
   },
   {
     "date": "2016-05-27",
-    "port": 189.3514,
-    "spy": 165.3222
+    "port": 187.2411,
+    "spy": 165.4947
   },
   {
     "date": "2016-05-31",
-    "port": 188.9764,
-    "spy": 165.0076
+    "port": 186.843,
+    "spy": 165.1798
   },
   {
     "date": "2016-06-01",
-    "port": 189.5543,
-    "spy": 165.3457
+    "port": 187.396,
+    "spy": 165.5183
   },
   {
     "date": "2016-06-02",
-    "port": 190.8956,
-    "spy": 165.849
+    "port": 188.7237,
+    "spy": 166.0221
   },
   {
     "date": "2016-06-03",
-    "port": 191.2473,
-    "spy": 165.3536
+    "port": 189.0246,
+    "spy": 165.5262
   },
   {
     "date": "2016-06-06",
-    "port": 191.4842,
-    "spy": 166.195
+    "port": 189.2627,
+    "spy": 166.3684
   },
   {
     "date": "2016-06-07",
-    "port": 192.1332,
-    "spy": 166.4545
+    "port": 189.9092,
+    "spy": 166.6282
   },
   {
     "date": "2016-06-08",
-    "port": 193.0817,
-    "spy": 166.9971
+    "port": 190.8282,
+    "spy": 167.1714
   },
   {
     "date": "2016-06-09",
-    "port": 193.5131,
-    "spy": 166.769
+    "port": 191.2531,
+    "spy": 166.9431
   },
   {
     "date": "2016-06-10",
-    "port": 192.5743,
-    "spy": 165.1884
+    "port": 190.344,
+    "spy": 165.3609
   },
   {
     "date": "2016-06-13",
-    "port": 191.7194,
-    "spy": 163.9146
+    "port": 189.5029,
+    "spy": 164.0857
   },
   {
     "date": "2016-06-14",
-    "port": 191.6704,
-    "spy": 163.5922
+    "port": 189.4834,
+    "spy": 163.7629
   },
   {
     "date": "2016-06-15",
-    "port": 191.9923,
-    "spy": 163.3642
+    "port": 189.81,
+    "spy": 163.5347
   },
   {
     "date": "2016-06-16",
-    "port": 192.7738,
-    "spy": 163.8517
+    "port": 190.5689,
+    "spy": 164.0227
   },
   {
     "date": "2016-06-17",
-    "port": 191.7049,
-    "spy": 163.2415
+    "port": 189.5236,
+    "spy": 163.4119
   },
   {
     "date": "2016-06-20",
-    "port": 191.4511,
-    "spy": 164.2928
+    "port": 189.2532,
+    "spy": 164.4642
   },
   {
     "date": "2016-06-21",
-    "port": 191.0271,
-    "spy": 164.7591
+    "port": 188.8053,
+    "spy": 164.9311
   },
   {
     "date": "2016-06-22",
-    "port": 190.8227,
-    "spy": 164.4903
+    "port": 188.5972,
+    "spy": 164.662
   },
   {
     "date": "2016-06-23",
-    "port": 191.4587,
-    "spy": 166.6325
+    "port": 189.1897,
+    "spy": 166.8064
   },
   {
     "date": "2016-06-24",
-    "port": 189.4101,
-    "spy": 160.6488
+    "port": 187.2663,
+    "spy": 160.8165
   },
   {
     "date": "2016-06-27",
-    "port": 188.5876,
-    "spy": 157.7716
+    "port": 186.4349,
+    "spy": 157.9363
   },
   {
     "date": "2016-06-28",
-    "port": 190.9906,
-    "spy": 160.6172
+    "port": 188.7442,
+    "spy": 160.7849
   },
   {
     "date": "2016-06-29",
-    "port": 192.6522,
-    "spy": 163.3522
+    "port": 190.3482,
+    "spy": 163.5227
   },
   {
     "date": "2016-06-30",
-    "port": 194.7034,
-    "spy": 165.5812
+    "port": 192.3142,
+    "spy": 165.754
   },
   {
     "date": "2016-07-01",
-    "port": 196.5091,
-    "spy": 165.9289
+    "port": 194.0894,
+    "spy": 166.1021
   },
   {
     "date": "2016-07-05",
-    "port": 196.4129,
-    "spy": 164.7354
+    "port": 193.9878,
+    "spy": 164.9073
   },
   {
     "date": "2016-07-06",
-    "port": 197.3176,
-    "spy": 165.7234
+    "port": 194.8524,
+    "spy": 165.8964
   },
   {
     "date": "2016-07-07",
-    "port": 197.3155,
-    "spy": 165.6207
+    "port": 194.8583,
+    "spy": 165.7935
   },
   {
     "date": "2016-07-08",
-    "port": 200.4561,
-    "spy": 168.0868
+    "port": 197.9232,
+    "spy": 168.2623
   },
   {
     "date": "2016-07-11",
-    "port": 200.2502,
-    "spy": 168.6797
+    "port": 197.7269,
+    "spy": 168.8558
   },
   {
     "date": "2016-07-12",
-    "port": 199.6149,
-    "spy": 169.9048
+    "port": 197.0799,
+    "spy": 170.0822
   },
   {
     "date": "2016-07-13",
-    "port": 200.7825,
-    "spy": 169.8811
+    "port": 198.2246,
+    "spy": 170.0585
   },
   {
     "date": "2016-07-14",
-    "port": 200.0345,
-    "spy": 170.8297
+    "port": 197.481,
+    "spy": 171.008
   },
   {
     "date": "2016-07-15",
-    "port": 198.9946,
-    "spy": 170.6005
+    "port": 196.463,
+    "spy": 170.7785
   },
   {
     "date": "2016-07-18",
-    "port": 199.3444,
-    "spy": 171.0589
+    "port": 196.8068,
+    "spy": 171.2375
   },
   {
     "date": "2016-07-19",
-    "port": 199.5963,
-    "spy": 170.885
+    "port": 197.0451,
+    "spy": 171.0634
   },
   {
     "date": "2016-07-20",
-    "port": 199.6474,
-    "spy": 171.5964
+    "port": 197.088,
+    "spy": 171.7755
   },
   {
     "date": "2016-07-21",
-    "port": 199.3972,
-    "spy": 170.9483
+    "port": 196.857,
+    "spy": 171.1267
   },
   {
     "date": "2016-07-22",
-    "port": 200.0254,
-    "spy": 171.7149
+    "port": 197.4476,
+    "spy": 171.8942
   },
   {
     "date": "2016-07-25",
-    "port": 199.5221,
-    "spy": 171.2486
+    "port": 196.9557,
+    "spy": 171.4273
   },
   {
     "date": "2016-07-26",
-    "port": 200.3248,
-    "spy": 171.3277
+    "port": 197.782,
+    "spy": 171.5065
   },
   {
     "date": "2016-07-27",
-    "port": 201.8565,
-    "spy": 171.1459
+    "port": 199.3183,
+    "spy": 171.3245
   },
   {
     "date": "2016-07-28",
-    "port": 201.8327,
-    "spy": 171.3435
+    "port": 199.2945,
+    "spy": 171.5223
   },
   {
     "date": "2016-07-29",
-    "port": 202.585,
-    "spy": 171.6201
+    "port": 200.0003,
+    "spy": 171.7993
   },
   {
     "date": "2016-08-01",
-    "port": 201.1878,
-    "spy": 171.4779
+    "port": 198.6235,
+    "spy": 171.6569
   },
   {
     "date": "2016-08-02",
-    "port": 198.6878,
-    "spy": 170.3791
+    "port": 196.1494,
+    "spy": 170.557
   },
   {
     "date": "2016-08-03",
-    "port": 199.364,
-    "spy": 170.8771
+    "port": 196.8149,
+    "spy": 171.0555
   },
   {
     "date": "2016-08-04",
-    "port": 200.3817,
-    "spy": 171.0589
+    "port": 197.8183,
+    "spy": 171.2375
   },
   {
     "date": "2016-08-05",
-    "port": 200.8956,
-    "spy": 172.458
+    "port": 198.3336,
+    "spy": 172.638
   },
   {
     "date": "2016-08-08",
-    "port": 200.9951,
-    "spy": 172.3552
+    "port": 198.4279,
+    "spy": 172.5351
   },
   {
     "date": "2016-08-09",
-    "port": 202.0394,
-    "spy": 172.458
+    "port": 199.4455,
+    "spy": 172.638
   },
   {
     "date": "2016-08-10",
-    "port": 202.1223,
-    "spy": 172.0311
+    "port": 199.5368,
+    "spy": 172.2107
   },
   {
     "date": "2016-08-11",
-    "port": 201.6645,
-    "spy": 172.8295
+    "port": 199.0619,
+    "spy": 173.0099
   },
   {
     "date": "2016-08-12",
-    "port": 201.8554,
-    "spy": 172.6793
+    "port": 199.204,
+    "spy": 172.8596
   },
   {
     "date": "2016-08-15",
-    "port": 201.543,
-    "spy": 173.1772
+    "port": 198.891,
+    "spy": 173.358
   },
   {
     "date": "2016-08-16",
-    "port": 200.2679,
-    "spy": 172.2841
+    "port": 197.6332,
+    "spy": 172.464
   },
   {
     "date": "2016-08-17",
-    "port": 200.6203,
-    "spy": 172.6082
+    "port": 198.0182,
+    "spy": 172.7884
   },
   {
     "date": "2016-08-18",
-    "port": 201.3036,
-    "spy": 172.9955
+    "port": 198.6919,
+    "spy": 173.1761
   },
   {
     "date": "2016-08-19",
-    "port": 200.2903,
-    "spy": 172.7425
+    "port": 197.7046,
+    "spy": 172.9228
   },
   {
     "date": "2016-08-22",
-    "port": 201.0265,
-    "spy": 172.7346
+    "port": 198.4415,
+    "spy": 172.9149
   },
   {
     "date": "2016-08-23",
-    "port": 201.9603,
-    "spy": 173.0824
+    "port": 199.3374,
+    "spy": 173.2631
   },
   {
     "date": "2016-08-24",
-    "port": 200.5862,
-    "spy": 172.1971
+    "port": 197.9889,
+    "spy": 172.3769
   },
   {
     "date": "2016-08-25",
-    "port": 200.2266,
-    "spy": 172.0786
+    "port": 197.6259,
+    "spy": 172.2582
   },
   {
     "date": "2016-08-26",
-    "port": 199.245,
-    "spy": 171.7545
+    "port": 196.6549,
+    "spy": 171.9337
   },
   {
     "date": "2016-08-29",
-    "port": 201.957,
-    "spy": 172.6003
+    "port": 199.307,
+    "spy": 172.7804
   },
   {
     "date": "2016-08-30",
-    "port": 201.2618,
-    "spy": 172.3157
+    "port": 198.6196,
+    "spy": 172.4955
   },
   {
     "date": "2016-08-31",
-    "port": 200.2229,
-    "spy": 171.8257
+    "port": 197.6358,
+    "spy": 172.005
   },
   {
     "date": "2016-09-01",
-    "port": 200.1076,
-    "spy": 171.8335
+    "port": 197.5358,
+    "spy": 172.0129
   },
   {
     "date": "2016-09-02",
-    "port": 200.3538,
-    "spy": 172.6082
+    "port": 197.761,
+    "spy": 172.7884
   },
   {
     "date": "2016-09-06",
-    "port": 202.0832,
-    "spy": 173.1298
+    "port": 199.438,
+    "spy": 173.3105
   },
   {
     "date": "2016-09-07",
-    "port": 202.3011,
-    "spy": 173.1141
+    "port": 199.64,
+    "spy": 173.2948
   },
   {
     "date": "2016-09-08",
-    "port": 200.0254,
-    "spy": 172.7188
+    "port": 197.4263,
+    "spy": 172.8991
   },
   {
     "date": "2016-09-09",
-    "port": 194.1331,
-    "spy": 168.5848
+    "port": 191.5842,
+    "spy": 168.7608
   },
   {
     "date": "2016-09-12",
-    "port": 195.979,
-    "spy": 171.0036
+    "port": 193.4528,
+    "spy": 171.1821
   },
   {
     "date": "2016-09-13",
-    "port": 192.5916,
-    "spy": 168.5453
+    "port": 190.0742,
+    "spy": 168.7212
   },
   {
     "date": "2016-09-14",
-    "port": 192.7777,
-    "spy": 168.4821
+    "port": 190.2446,
+    "spy": 168.6579
   },
   {
     "date": "2016-09-15",
-    "port": 194.0472,
-    "spy": 170.1657
+    "port": 191.4997,
+    "spy": 170.3433
   },
   {
     "date": "2016-09-16",
-    "port": 194.0665,
-    "spy": 169.5079
+    "port": 191.5286,
+    "spy": 169.6848
   },
   {
     "date": "2016-09-19",
-    "port": 194.3346,
-    "spy": 169.5396
+    "port": 191.7596,
+    "spy": 169.7166
   },
   {
     "date": "2016-09-20",
-    "port": 194.6347,
-    "spy": 169.5476
+    "port": 192.0541,
+    "spy": 169.7246
   },
   {
     "date": "2016-09-21",
-    "port": 196.851,
-    "spy": 171.4543
+    "port": 194.2867,
+    "spy": 171.6332
   },
   {
     "date": "2016-09-22",
-    "port": 198.7276,
-    "spy": 172.5347
+    "port": 196.1539,
+    "spy": 172.7148
   },
   {
     "date": "2016-09-23",
-    "port": 197.7193,
-    "spy": 171.5893
+    "port": 195.1473,
+    "spy": 171.7684
   },
   {
     "date": "2016-09-26",
-    "port": 196.9898,
-    "spy": 170.1991
+    "port": 194.4219,
+    "spy": 170.3767
   },
   {
     "date": "2016-09-27",
-    "port": 198.854,
-    "spy": 171.2557
+    "port": 196.2621,
+    "spy": 171.4344
   },
   {
     "date": "2016-09-28",
-    "port": 199.6604,
-    "spy": 172.1057
+    "port": 197.0591,
+    "spy": 172.2853
   },
   {
     "date": "2016-09-29",
-    "port": 198.3681,
-    "spy": 170.5486
+    "port": 195.7796,
+    "spy": 170.7266
   },
   {
     "date": "2016-09-30",
-    "port": 198.9678,
-    "spy": 171.8356
+    "port": 196.361,
+    "spy": 172.015
   },
   {
     "date": "2016-10-03",
-    "port": 198.3611,
-    "spy": 171.4225
+    "port": 195.7482,
+    "spy": 171.6014
   },
   {
     "date": "2016-10-04",
-    "port": 196.7816,
-    "spy": 170.5486
+    "port": 194.1508,
+    "spy": 170.7266
   },
   {
     "date": "2016-10-05",
-    "port": 196.9807,
-    "spy": 171.3033
+    "port": 194.3625,
+    "spy": 171.4821
   },
   {
     "date": "2016-10-06",
-    "port": 196.5701,
-    "spy": 171.4225
+    "port": 193.9515,
+    "spy": 171.6014
   },
   {
     "date": "2016-10-07",
-    "port": 196.1532,
-    "spy": 170.8346
+    "port": 193.5266,
+    "spy": 171.013
   },
   {
     "date": "2016-10-10",
-    "port": 196.5885,
-    "spy": 171.7244
+    "port": 193.9508,
+    "spy": 171.9036
   },
   {
     "date": "2016-10-11",
-    "port": 194.1583,
-    "spy": 169.5556
+    "port": 191.546,
+    "spy": 169.7325
   },
   {
     "date": "2016-10-12",
-    "port": 194.5896,
-    "spy": 169.7781
+    "port": 191.9632,
+    "spy": 169.9553
   },
   {
     "date": "2016-10-13",
-    "port": 193.6568,
-    "spy": 169.2219
+    "port": 191.0837,
+    "spy": 169.3986
   },
   {
     "date": "2016-10-14",
-    "port": 192.9298,
-    "spy": 169.3093
+    "port": 190.321,
+    "spy": 169.486
   },
   {
     "date": "2016-10-17",
-    "port": 192.7339,
-    "spy": 168.7214
+    "port": 190.1459,
+    "spy": 168.8975
   },
   {
     "date": "2016-10-18",
-    "port": 193.9629,
-    "spy": 169.7781
+    "port": 191.3699,
+    "spy": 169.9553
   },
   {
     "date": "2016-10-19",
-    "port": 194.7162,
-    "spy": 170.2308
+    "port": 192.1029,
+    "spy": 170.4085
   },
   {
     "date": "2016-10-20",
-    "port": 194.2322,
-    "spy": 169.9131
+    "port": 191.641,
+    "spy": 170.0905
   },
   {
     "date": "2016-10-21",
-    "port": 194.2203,
-    "spy": 169.9925
+    "port": 191.6423,
+    "spy": 170.1699
   },
   {
     "date": "2016-10-24",
-    "port": 194.7394,
-    "spy": 170.7155
+    "port": 192.1396,
+    "spy": 170.8936
   },
   {
     "date": "2016-10-25",
-    "port": 194.2432,
-    "spy": 170.1435
+    "port": 191.6542,
+    "spy": 170.3211
   },
   {
     "date": "2016-10-26",
-    "port": 192.9127,
-    "spy": 169.8019
+    "port": 190.3524,
+    "spy": 169.9792
   },
   {
     "date": "2016-10-27",
-    "port": 191.3667,
-    "spy": 169.349
+    "port": 188.8161,
+    "spy": 169.5258
   },
   {
     "date": "2016-10-28",
-    "port": 190.2328,
-    "spy": 168.8485
+    "port": 187.7191,
+    "spy": 169.0247
   },
   {
     "date": "2016-10-31",
-    "port": 190.5918,
-    "spy": 168.8565
+    "port": 188.0924,
+    "spy": 169.0327
   },
   {
     "date": "2016-11-01",
-    "port": 189.0939,
-    "spy": 167.633
+    "port": 186.6299,
+    "spy": 167.808
   },
   {
     "date": "2016-11-02",
-    "port": 187.8366,
-    "spy": 166.6241
+    "port": 185.428,
+    "spy": 166.798
   },
   {
     "date": "2016-11-03",
-    "port": 186.7543,
-    "spy": 165.8615
+    "port": 184.3317,
+    "spy": 166.0346
   },
   {
     "date": "2016-11-04",
-    "port": 186.9482,
-    "spy": 165.6788
+    "port": 184.561,
+    "spy": 165.8517
   },
   {
     "date": "2016-11-07",
-    "port": 190.0832,
-    "spy": 169.3331
+    "port": 187.6392,
+    "spy": 169.5099
   },
   {
     "date": "2016-11-08",
-    "port": 190.2472,
-    "spy": 170.0958
+    "port": 187.8084,
+    "spy": 170.2733
   },
   {
     "date": "2016-11-09",
-    "port": 189.0891,
-    "spy": 171.8992
+    "port": 186.596,
+    "spy": 172.0786
   },
   {
     "date": "2016-11-10",
-    "port": 188.6468,
-    "spy": 172.3282
+    "port": 186.1333,
+    "spy": 172.508
   },
   {
     "date": "2016-11-11",
-    "port": 188.1273,
-    "spy": 171.9309
+    "port": 185.6197,
+    "spy": 172.1104
   },
   {
     "date": "2016-11-14",
-    "port": 188.6664,
-    "spy": 172.066
+    "port": 186.098,
+    "spy": 172.2456
   },
   {
     "date": "2016-11-15",
-    "port": 189.8276,
-    "spy": 173.4085
+    "port": 187.2842,
+    "spy": 173.5895
   },
   {
     "date": "2016-11-16",
-    "port": 189.7807,
-    "spy": 173.0829
+    "port": 187.283,
+    "spy": 173.2635
   },
   {
     "date": "2016-11-17",
-    "port": 189.6458,
-    "spy": 173.9727
+    "port": 187.1153,
+    "spy": 174.1542
   },
   {
     "date": "2016-11-18",
-    "port": 189.2955,
-    "spy": 173.5833
+    "port": 186.7556,
+    "spy": 173.7645
   },
   {
     "date": "2016-11-21",
-    "port": 190.3229,
-    "spy": 174.8942
+    "port": 187.8043,
+    "spy": 175.0767
   },
   {
     "date": "2016-11-22",
-    "port": 191.3091,
-    "spy": 175.2357
+    "port": 188.7416,
+    "spy": 175.4186
   },
   {
     "date": "2016-11-23",
-    "port": 191.6535,
-    "spy": 175.3311
+    "port": 189.045,
+    "spy": 175.5141
   },
   {
     "date": "2016-11-25",
-    "port": 192.7417,
-    "spy": 175.9825
+    "port": 190.0946,
+    "spy": 176.1662
   },
   {
     "date": "2016-11-28",
-    "port": 192.2478,
-    "spy": 175.1563
+    "port": 189.6281,
+    "spy": 175.3391
   },
   {
     "date": "2016-11-29",
-    "port": 192.327,
-    "spy": 175.4979
+    "port": 189.747,
+    "spy": 175.6811
   },
   {
     "date": "2016-11-30",
-    "port": 191.4398,
-    "spy": 175.0769
+    "port": 188.8036,
+    "spy": 175.2596
   },
   {
     "date": "2016-12-01",
-    "port": 190.1622,
-    "spy": 174.4334
+    "port": 187.5164,
+    "spy": 174.6155
   },
   {
     "date": "2016-12-02",
-    "port": 190.4103,
-    "spy": 174.5208
+    "port": 187.7995,
+    "spy": 174.7029
   },
   {
     "date": "2016-12-05",
-    "port": 191.6084,
-    "spy": 175.5694
+    "port": 188.9766,
+    "spy": 175.7527
   },
   {
     "date": "2016-12-06",
-    "port": 192.3382,
-    "spy": 176.1255
+    "port": 189.6881,
+    "spy": 176.3093
   },
   {
     "date": "2016-12-07",
-    "port": 194.4768,
-    "spy": 178.4293
+    "port": 191.8617,
+    "spy": 178.6156
   },
   {
     "date": "2016-12-08",
-    "port": 194.7572,
-    "spy": 178.8663
+    "port": 192.0823,
+    "spy": 179.053
   },
   {
     "date": "2016-12-09",
-    "port": 195.1237,
-    "spy": 179.9467
+    "port": 192.3951,
+    "spy": 180.1346
   },
   {
     "date": "2016-12-12",
-    "port": 194.5239,
-    "spy": 179.7402
+    "port": 191.7926,
+    "spy": 179.9278
   },
   {
     "date": "2016-12-13",
-    "port": 195.7411,
-    "spy": 180.9397
+    "port": 192.9723,
+    "spy": 181.1286
   },
   {
     "date": "2016-12-14",
-    "port": 193.8432,
-    "spy": 179.4463
+    "port": 190.9998,
+    "spy": 179.6336
   },
   {
     "date": "2016-12-15",
-    "port": 195.251,
-    "spy": 180.1851
+    "port": 192.3926,
+    "spy": 180.3732
   },
   {
     "date": "2016-12-16",
-    "port": 194.6621,
-    "spy": 179.8326
+    "port": 191.804,
+    "spy": 180.0203
   },
   {
     "date": "2016-12-19",
-    "port": 195.6475,
-    "spy": 180.2243
+    "port": 192.8251,
+    "spy": 180.4124
   },
   {
     "date": "2016-12-20",
-    "port": 196.3603,
-    "spy": 180.9194
+    "port": 193.5452,
+    "spy": 181.1083
   },
   {
     "date": "2016-12-21",
-    "port": 196.3234,
-    "spy": 180.416
+    "port": 193.476,
+    "spy": 180.6043
   },
   {
     "date": "2016-12-22",
-    "port": 195.9202,
-    "spy": 180.1044
+    "port": 193.0203,
+    "spy": 180.2924
   },
   {
     "date": "2016-12-23",
-    "port": 196.3007,
-    "spy": 180.3681
+    "port": 193.4122,
+    "spy": 180.5564
   },
   {
     "date": "2016-12-27",
-    "port": 196.5758,
-    "spy": 180.8156
+    "port": 193.6931,
+    "spy": 181.0043
   },
   {
     "date": "2016-12-28",
-    "port": 195.7783,
-    "spy": 179.3213
+    "port": 192.8648,
+    "spy": 179.5084
   },
   {
     "date": "2016-12-29",
-    "port": 195.5395,
-    "spy": 179.2813
+    "port": 192.6745,
+    "spy": 179.4684
   },
   {
     "date": "2016-12-30",
-    "port": 194.8368,
-    "spy": 178.6261
+    "port": 191.976,
+    "spy": 178.8125
   },
   {
     "date": "2017-01-03",
-    "port": 196.0878,
-    "spy": 179.9925
+    "port": 193.2735,
+    "spy": 180.1804
   },
   {
     "date": "2017-01-04",
-    "port": 197.2997,
-    "spy": 181.0633
+    "port": 194.5562,
+    "spy": 181.2523
   },
   {
     "date": "2017-01-05",
-    "port": 197.2078,
-    "spy": 180.9194
+    "port": 194.4924,
+    "spy": 181.1083
   },
   {
     "date": "2017-01-06",
-    "port": 197.1292,
-    "spy": 181.5668
+    "port": 194.358,
+    "spy": 181.7563
   },
   {
     "date": "2017-01-09",
-    "port": 197.0162,
-    "spy": 180.9674
+    "port": 194.1915,
+    "spy": 181.1563
   },
   {
     "date": "2017-01-10",
-    "port": 197.1212,
-    "spy": 180.9674
+    "port": 194.3696,
+    "spy": 181.1563
   },
   {
     "date": "2017-01-11",
-    "port": 197.9814,
-    "spy": 181.4789
+    "port": 195.2275,
+    "spy": 181.6683
   },
   {
     "date": "2017-01-12",
-    "port": 196.9383,
-    "spy": 181.0234
+    "port": 194.1511,
+    "spy": 181.2123
   },
   {
     "date": "2017-01-13",
-    "port": 197.1934,
-    "spy": 181.4389
+    "port": 194.4067,
+    "spy": 181.6283
   },
   {
     "date": "2017-01-17",
-    "port": 196.4627,
-    "spy": 180.7996
+    "port": 193.7078,
+    "spy": 180.9883
   },
   {
     "date": "2017-01-18",
-    "port": 196.3025,
-    "spy": 181.1992
+    "port": 193.5231,
+    "spy": 181.3883
   },
   {
     "date": "2017-01-19",
-    "port": 195.2148,
-    "spy": 180.5279
+    "port": 192.3975,
+    "spy": 180.7163
   },
   {
     "date": "2017-01-20",
-    "port": 195.5667,
-    "spy": 181.1912
+    "port": 192.7774,
+    "spy": 181.3803
   },
   {
     "date": "2017-01-23",
-    "port": 195.6258,
-    "spy": 180.7197
+    "port": 192.8453,
+    "spy": 180.9083
   },
   {
     "date": "2017-01-24",
-    "port": 196.5626,
-    "spy": 181.8784
+    "port": 193.8233,
+    "spy": 182.0682
   },
   {
     "date": "2017-01-25",
-    "port": 196.9352,
-    "spy": 183.4527
+    "port": 194.2457,
+    "spy": 183.6441
   },
   {
     "date": "2017-01-26",
-    "port": 196.7689,
-    "spy": 183.2609
+    "port": 194.0686,
+    "spy": 183.4522
   },
   {
     "date": "2017-01-27",
-    "port": 196.794,
-    "spy": 182.9732
+    "port": 194.0651,
+    "spy": 183.1642
   },
   {
     "date": "2017-01-30",
-    "port": 195.0849,
-    "spy": 181.8384
+    "port": 192.3429,
+    "spy": 182.0282
   },
   {
     "date": "2017-01-31",
-    "port": 195.5945,
-    "spy": 181.8225
+    "port": 192.8758,
+    "spy": 182.0123
   },
   {
     "date": "2017-02-01",
-    "port": 195.3905,
-    "spy": 181.8944
+    "port": 192.6463,
+    "spy": 182.0842
   },
   {
     "date": "2017-02-02",
-    "port": 195.493,
-    "spy": 182.0143
+    "port": 192.7155,
+    "spy": 182.2043
   },
   {
     "date": "2017-02-03",
-    "port": 196.9078,
-    "spy": 183.2688
+    "port": 194.1619,
+    "spy": 183.4601
   },
   {
     "date": "2017-02-06",
-    "port": 196.6947,
-    "spy": 182.9412
+    "port": 193.9214,
+    "spy": 183.1322
   },
   {
     "date": "2017-02-07",
-    "port": 196.9747,
-    "spy": 182.9492
+    "port": 194.1826,
+    "spy": 183.1402
   },
   {
     "date": "2017-02-08",
-    "port": 198.0376,
-    "spy": 183.1889
+    "port": 195.2214,
+    "spy": 183.3801
   },
   {
     "date": "2017-02-09",
-    "port": 198.4147,
-    "spy": 184.2757
+    "port": 195.6307,
+    "spy": 184.4681
   },
   {
     "date": "2017-02-10",
-    "port": 199.4351,
-    "spy": 185.0029
+    "port": 196.6373,
+    "spy": 185.196
   },
   {
     "date": "2017-02-13",
-    "port": 199.9894,
-    "spy": 186.0098
+    "port": 197.1914,
+    "spy": 186.204
   },
   {
     "date": "2017-02-14",
-    "port": 200.5415,
-    "spy": 186.753
+    "port": 197.7035,
+    "spy": 186.9479
   },
   {
     "date": "2017-02-15",
-    "port": 201.1208,
-    "spy": 187.7279
+    "port": 198.2634,
+    "spy": 187.9239
   },
   {
     "date": "2017-02-16",
-    "port": 201.0913,
-    "spy": 187.5681
+    "port": 198.239,
+    "spy": 187.7639
   },
   {
     "date": "2017-02-17",
-    "port": 201.6312,
-    "spy": 187.8638
+    "port": 198.7674,
+    "spy": 188.0598
   },
   {
     "date": "2017-02-21",
-    "port": 202.8742,
-    "spy": 188.9825
+    "port": 199.9816,
+    "spy": 189.1798
   },
   {
     "date": "2017-02-22",
-    "port": 202.7931,
-    "spy": 188.8147
+    "port": 199.8783,
+    "spy": 189.0118
   },
   {
     "date": "2017-02-23",
-    "port": 202.6714,
-    "spy": 188.9425
+    "port": 199.7557,
+    "spy": 189.1397
   },
   {
     "date": "2017-02-24",
-    "port": 203.4909,
-    "spy": 189.1823
+    "port": 200.5527,
+    "spy": 189.3798
   },
   {
     "date": "2017-02-27",
-    "port": 203.5941,
-    "spy": 189.478
+    "port": 200.6568,
+    "spy": 189.6757
   },
   {
     "date": "2017-02-28",
-    "port": 203.0574,
-    "spy": 188.9666
+    "port": 200.0525,
+    "spy": 189.1638
   },
   {
     "date": "2017-03-01",
-    "port": 205.085,
-    "spy": 191.6116
+    "port": 202.0442,
+    "spy": 191.8116
   },
   {
     "date": "2017-03-02",
-    "port": 203.004,
-    "spy": 190.405
+    "port": 199.9665,
+    "spy": 190.6037
   },
   {
     "date": "2017-03-03",
-    "port": 203.0243,
-    "spy": 190.5248
+    "port": 200.0011,
+    "spy": 190.7237
   },
   {
     "date": "2017-03-06",
-    "port": 202.3099,
-    "spy": 189.9574
+    "port": 199.2914,
+    "spy": 190.1557
   },
   {
     "date": "2017-03-07",
-    "port": 201.5569,
-    "spy": 189.3901
+    "port": 198.4571,
+    "spy": 189.5878
   },
   {
     "date": "2017-03-08",
-    "port": 200.8472,
-    "spy": 189.0385
+    "port": 197.7005,
+    "spy": 189.2358
   },
   {
     "date": "2017-03-09",
-    "port": 200.3151,
-    "spy": 189.2782
+    "port": 197.1404,
+    "spy": 189.4758
   },
   {
     "date": "2017-03-10",
-    "port": 200.9306,
-    "spy": 189.9415
+    "port": 197.7771,
+    "spy": 190.1397
   },
   {
     "date": "2017-03-13",
-    "port": 200.928,
-    "spy": 190.0374
+    "port": 197.743,
+    "spy": 190.2357
   },
   {
     "date": "2017-03-14",
-    "port": 200.5069,
-    "spy": 189.3102
+    "port": 197.3271,
+    "spy": 189.5078
   },
   {
     "date": "2017-03-15",
-    "port": 202.7152,
-    "spy": 190.9484
+    "port": 199.5819,
+    "spy": 191.1477
   },
   {
     "date": "2017-03-16",
-    "port": 202.1369,
-    "spy": 190.5727
+    "port": 199.0308,
+    "spy": 190.7717
   },
   {
     "date": "2017-03-17",
-    "port": 202.3763,
-    "spy": 190.2381
+    "port": 199.2918,
+    "spy": 190.4367
   },
   {
     "date": "2017-03-20",
-    "port": 202.3742,
-    "spy": 190.0294
+    "port": 199.2492,
+    "spy": 190.2277
   },
   {
     "date": "2017-03-21",
-    "port": 200.086,
-    "spy": 187.5895
+    "port": 196.9394,
+    "spy": 187.7853
   },
   {
     "date": "2017-03-22",
-    "port": 200.822,
-    "spy": 188.031
+    "port": 197.6202,
+    "spy": 188.2273
   },
   {
     "date": "2017-03-23",
-    "port": 200.7191,
-    "spy": 187.8303
+    "port": 197.5569,
+    "spy": 188.0264
   },
   {
     "date": "2017-03-24",
-    "port": 200.8772,
-    "spy": 187.6939
+    "port": 197.6924,
+    "spy": 187.8898
   },
   {
     "date": "2017-03-27",
-    "port": 200.7666,
-    "spy": 187.5013
+    "port": 197.6315,
+    "spy": 187.697
   },
   {
     "date": "2017-03-28",
-    "port": 201.8641,
-    "spy": 188.8657
+    "port": 198.701,
+    "spy": 189.0628
   },
   {
     "date": "2017-03-29",
-    "port": 202.5532,
-    "spy": 189.0422
+    "port": 199.4068,
+    "spy": 189.2395
   },
   {
     "date": "2017-03-30",
-    "port": 202.7069,
-    "spy": 189.6442
+    "port": 199.5912,
+    "spy": 189.8421
   },
   {
     "date": "2017-03-31",
-    "port": 202.486,
-    "spy": 189.2027
+    "port": 199.4098,
+    "spy": 189.4002
   },
   {
     "date": "2017-04-03",
-    "port": 202.6472,
-    "spy": 188.8737
+    "port": 199.5123,
+    "spy": 189.0708
   },
   {
     "date": "2017-04-04",
-    "port": 202.3397,
-    "spy": 188.9941
+    "port": 199.2025,
+    "spy": 189.1913
   },
   {
     "date": "2017-04-05",
-    "port": 201.7957,
-    "spy": 188.4323
+    "port": 198.622,
+    "spy": 188.629
   },
   {
     "date": "2017-04-06",
-    "port": 202.3496,
-    "spy": 188.962
+    "port": 199.2171,
+    "spy": 189.1592
   },
   {
     "date": "2017-04-07",
-    "port": 201.9933,
-    "spy": 188.7694
+    "port": 198.8407,
+    "spy": 188.9664
   },
   {
     "date": "2017-04-10",
-    "port": 202.3781,
-    "spy": 188.8817
+    "port": 199.262,
+    "spy": 189.0789
   },
   {
     "date": "2017-04-11",
-    "port": 203.0185,
-    "spy": 188.657
+    "port": 199.9409,
+    "spy": 188.8539
   },
   {
     "date": "2017-04-12",
-    "port": 202.2874,
-    "spy": 187.8303
+    "port": 199.1626,
+    "spy": 188.0264
   },
   {
     "date": "2017-04-13",
-    "port": 201.2909,
-    "spy": 186.6104
+    "port": 198.1234,
+    "spy": 186.8052
   },
   {
     "date": "2017-04-17",
-    "port": 202.9122,
-    "spy": 188.2637
+    "port": 199.7188,
+    "spy": 188.4602
   },
   {
     "date": "2017-04-18",
-    "port": 202.4089,
-    "spy": 187.7019
+    "port": 199.3492,
+    "spy": 187.8978
   },
   {
     "date": "2017-04-19",
-    "port": 201.6678,
-    "spy": 187.3568
+    "port": 198.6382,
+    "spy": 187.5523
   },
   {
     "date": "2017-04-20",
-    "port": 203.3819,
-    "spy": 188.8817
+    "port": 200.3249,
+    "spy": 189.0789
   },
   {
     "date": "2017-04-21",
-    "port": 197.885,
-    "spy": 188.2798
+    "port": 195.4588,
+    "spy": 188.4763
   },
   {
     "date": "2017-04-24",
-    "port": 204.439,
-    "spy": 190.3504
+    "port": 201.3948,
+    "spy": 190.5491
   },
   {
     "date": "2017-04-25",
-    "port": 204.4097,
-    "spy": 191.458
+    "port": 201.3891,
+    "spy": 191.6579
   },
   {
     "date": "2017-04-26",
-    "port": 205.1978,
-    "spy": 191.3377
+    "port": 202.1777,
+    "spy": 191.5374
   },
   {
     "date": "2017-04-27",
-    "port": 205.4139,
-    "spy": 191.4982
+    "port": 202.3855,
+    "spy": 191.698
   },
   {
     "date": "2017-04-28",
-    "port": 204.9238,
-    "spy": 191.0808
+    "port": 201.8783,
+    "spy": 191.2803
   },
   {
     "date": "2017-05-01",
-    "port": 204.7477,
-    "spy": 191.5623
+    "port": 201.7215,
+    "spy": 191.7623
   },
   {
     "date": "2017-05-02",
-    "port": 205.2537,
-    "spy": 191.6346
+    "port": 202.2029,
+    "spy": 191.8346
   },
   {
     "date": "2017-05-03",
-    "port": 205.0849,
-    "spy": 191.4018
+    "port": 202.0291,
+    "spy": 191.6016
   },
   {
     "date": "2017-05-04",
-    "port": 205.407,
-    "spy": 191.6265
+    "port": 202.3652,
+    "spy": 191.8265
   },
   {
     "date": "2017-05-05",
-    "port": 205.8738,
-    "spy": 192.381
+    "port": 202.8162,
+    "spy": 192.5818
   },
   {
     "date": "2017-05-08",
-    "port": 205.3694,
-    "spy": 192.3489
+    "port": 202.3276,
+    "spy": 192.5497
   },
   {
     "date": "2017-05-09",
-    "port": 205.2331,
-    "spy": 192.1723
+    "port": 202.1947,
+    "spy": 192.3729
   },
   {
     "date": "2017-05-10",
-    "port": 205.321,
-    "spy": 192.5175
+    "port": 202.2826,
+    "spy": 192.7184
   },
   {
     "date": "2017-05-11",
-    "port": 204.676,
-    "spy": 192.1242
+    "port": 201.6307,
+    "spy": 192.3247
   },
   {
     "date": "2017-05-12",
-    "port": 205.062,
-    "spy": 191.8031
+    "port": 201.9871,
+    "spy": 192.0033
   },
   {
     "date": "2017-05-15",
-    "port": 205.5638,
-    "spy": 192.8626
+    "port": 202.4827,
+    "spy": 193.0639
   },
   {
     "date": "2017-05-16",
-    "port": 205.4835,
-    "spy": 192.686
+    "port": 202.3886,
+    "spy": 192.8871
   },
   {
     "date": "2017-05-17",
-    "port": 202.3992,
-    "spy": 189.267
+    "port": 199.2795,
+    "spy": 189.4645
   },
   {
     "date": "2017-05-18",
-    "port": 203.4828,
-    "spy": 190.0294
+    "port": 200.3482,
+    "spy": 190.2277
   },
   {
     "date": "2017-05-19",
-    "port": 204.6345,
-    "spy": 191.2654
+    "port": 201.4728,
+    "spy": 191.465
   },
   {
     "date": "2017-05-22",
-    "port": 205.174,
-    "spy": 192.2366
+    "port": 202.0064,
+    "spy": 192.4372
   },
   {
     "date": "2017-05-23",
-    "port": 205.2368,
-    "spy": 192.6619
+    "port": 202.0869,
+    "spy": 192.863
   },
   {
     "date": "2017-05-24",
-    "port": 205.8032,
-    "spy": 193.1114
+    "port": 202.6174,
+    "spy": 193.3129
   },
   {
     "date": "2017-05-25",
-    "port": 206.7079,
-    "spy": 194.0343
+    "port": 203.4967,
+    "spy": 194.2369
   },
   {
     "date": "2017-05-26",
-    "port": 206.6963,
-    "spy": 193.9942
+    "port": 203.4792,
+    "spy": 194.1967
   },
   {
     "date": "2017-05-30",
-    "port": 206.8346,
-    "spy": 193.8256
+    "port": 203.5933,
+    "spy": 194.0279
   },
   {
     "date": "2017-05-31",
-    "port": 206.9558,
-    "spy": 193.7775
+    "port": 203.7044,
+    "spy": 193.9797
   },
   {
     "date": "2017-06-01",
-    "port": 209.0047,
-    "spy": 195.3185
+    "port": 205.7516,
+    "spy": 195.5223
   },
   {
     "date": "2017-06-02",
-    "port": 210.6588,
-    "spy": 195.9686
+    "port": 207.3555,
+    "spy": 196.1732
   },
   {
     "date": "2017-06-05",
-    "port": 209.6964,
-    "spy": 195.8241
+    "port": 206.4047,
+    "spy": 196.0285
   },
   {
     "date": "2017-06-06",
-    "port": 209.3944,
-    "spy": 195.1981
+    "port": 206.0895,
+    "spy": 195.4018
   },
   {
     "date": "2017-06-07",
-    "port": 209.058,
-    "spy": 195.5593
+    "port": 205.7547,
+    "spy": 195.7634
   },
   {
     "date": "2017-06-08",
-    "port": 209.5361,
-    "spy": 195.6556
+    "port": 206.2654,
+    "spy": 195.8598
   },
   {
     "date": "2017-06-09",
-    "port": 209.3502,
-    "spy": 195.3586
+    "port": 206.1084,
+    "spy": 195.5625
   },
   {
     "date": "2017-06-12",
-    "port": 209.0064,
-    "spy": 195.3185
+    "port": 205.761,
+    "spy": 195.5223
   },
   {
     "date": "2017-06-13",
-    "port": 210.0137,
-    "spy": 196.2736
+    "port": 206.7563,
+    "spy": 196.4785
   },
   {
     "date": "2017-06-14",
-    "port": 210.6194,
-    "spy": 196.0248
+    "port": 207.2975,
+    "spy": 196.2294
   },
   {
     "date": "2017-06-15",
-    "port": 209.2448,
-    "spy": 195.6475
+    "port": 205.9134,
+    "spy": 195.8518
   },
   {
     "date": "2017-06-16",
-    "port": 209.5716,
-    "spy": 195.6903
+    "port": 206.2302,
+    "spy": 195.8946
   },
   {
     "date": "2017-06-19",
-    "port": 211.0198,
-    "spy": 197.3194
+    "port": 207.6532,
+    "spy": 197.5254
   },
   {
     "date": "2017-06-20",
-    "port": 210.4951,
-    "spy": 195.9887
+    "port": 207.1074,
+    "spy": 196.1933
   },
   {
     "date": "2017-06-21",
-    "port": 210.7405,
-    "spy": 195.9403
+    "port": 207.3354,
+    "spy": 196.1448
   },
   {
     "date": "2017-06-22",
-    "port": 210.9585,
-    "spy": 195.8516
+    "port": 207.5541,
+    "spy": 196.056
   },
   {
     "date": "2017-06-23",
-    "port": 211.189,
-    "spy": 196.0855
+    "port": 207.7903,
+    "spy": 196.2902
   },
   {
     "date": "2017-06-26",
-    "port": 212.0354,
-    "spy": 196.2145
+    "port": 208.6308,
+    "spy": 196.4193
   },
   {
     "date": "2017-06-27",
-    "port": 209.1345,
-    "spy": 194.6338
+    "port": 205.7855,
+    "spy": 194.8369
   },
   {
     "date": "2017-06-28",
-    "port": 210.3887,
-    "spy": 196.3759
+    "port": 207.0329,
+    "spy": 196.5808
   },
   {
     "date": "2017-06-29",
-    "port": 207.5968,
-    "spy": 194.6499
+    "port": 204.2947,
+    "spy": 194.8531
   },
   {
     "date": "2017-06-30",
-    "port": 206.8165,
-    "spy": 195.0129
+    "port": 203.5014,
+    "spy": 195.2164
   },
   {
     "date": "2017-07-03",
-    "port": 207.0019,
-    "spy": 195.3435
+    "port": 203.7066,
+    "spy": 195.5474
   },
   {
     "date": "2017-07-05",
-    "port": 206.9707,
-    "spy": 195.7951
+    "port": 203.6458,
+    "spy": 195.9995
   },
   {
     "date": "2017-07-06",
-    "port": 204.4161,
-    "spy": 194.0047
+    "port": 201.1374,
+    "spy": 194.2072
   },
   {
     "date": "2017-07-07",
-    "port": 205.3181,
-    "spy": 195.2628
+    "port": 202.0464,
+    "spy": 195.4666
   },
   {
     "date": "2017-07-10",
-    "port": 205.6908,
-    "spy": 195.4726
+    "port": 202.4068,
+    "spy": 195.6766
   },
   {
     "date": "2017-07-11",
-    "port": 205.7986,
-    "spy": 195.3273
+    "port": 202.5142,
+    "spy": 195.5312
   },
   {
     "date": "2017-07-12",
-    "port": 207.8759,
-    "spy": 196.7952
+    "port": 204.5442,
+    "spy": 197.0006
   },
   {
     "date": "2017-07-13",
-    "port": 207.8796,
-    "spy": 197.1259
+    "port": 204.5693,
+    "spy": 197.3316
   },
   {
     "date": "2017-07-14",
-    "port": 208.7423,
-    "spy": 198.0452
+    "port": 205.4091,
+    "spy": 198.2519
   },
   {
     "date": "2017-07-17",
-    "port": 208.9182,
-    "spy": 198.0211
+    "port": 205.5787,
+    "spy": 198.2278
   },
   {
     "date": "2017-07-18",
-    "port": 209.5481,
-    "spy": 198.1259
+    "port": 206.1686,
+    "spy": 198.3327
   },
   {
     "date": "2017-07-19",
-    "port": 210.7015,
-    "spy": 199.1986
+    "port": 207.3143,
+    "spy": 199.4065
   },
   {
     "date": "2017-07-20",
-    "port": 211.1459,
-    "spy": 199.2873
+    "port": 207.7465,
+    "spy": 199.4953
   },
   {
     "date": "2017-07-21",
-    "port": 211.0091,
-    "spy": 199.1098
+    "port": 207.5843,
+    "spy": 199.3177
   },
   {
     "date": "2017-07-24",
-    "port": 210.8368,
-    "spy": 199.0615
+    "port": 207.4263,
+    "spy": 199.2693
   },
   {
     "date": "2017-07-25",
-    "port": 210.6765,
-    "spy": 199.5454
+    "port": 207.3204,
+    "spy": 199.7537
   },
   {
     "date": "2017-07-26",
-    "port": 210.7225,
-    "spy": 199.5534
+    "port": 207.3485,
+    "spy": 199.7617
   },
   {
     "date": "2017-07-27",
-    "port": 209.8731,
-    "spy": 199.3679
+    "port": 206.5125,
+    "spy": 199.576
   },
   {
     "date": "2017-07-28",
-    "port": 210.2477,
-    "spy": 199.1341
+    "port": 206.8712,
+    "spy": 199.3419
   },
   {
     "date": "2017-07-31",
-    "port": 210.3044,
-    "spy": 199.0211
+    "port": 206.9221,
+    "spy": 199.2289
   },
   {
     "date": "2017-08-01",
-    "port": 211.147,
-    "spy": 199.4648
+    "port": 207.7316,
+    "spy": 199.673
   },
   {
     "date": "2017-08-02",
-    "port": 210.9797,
-    "spy": 199.5615
+    "port": 207.5446,
+    "spy": 199.7698
   },
   {
     "date": "2017-08-03",
-    "port": 211.1853,
-    "spy": 199.1744
+    "port": 207.7115,
+    "spy": 199.3822
   },
   {
     "date": "2017-08-04",
-    "port": 211.0851,
-    "spy": 199.5373
+    "port": 207.6432,
+    "spy": 199.7456
   },
   {
     "date": "2017-08-07",
-    "port": 211.3591,
-    "spy": 199.9083
+    "port": 207.8997,
+    "spy": 200.117
   },
   {
     "date": "2017-08-08",
-    "port": 210.7019,
-    "spy": 199.4164
+    "port": 207.263,
+    "spy": 199.6245
   },
   {
     "date": "2017-08-09",
-    "port": 210.4229,
-    "spy": 199.4083
+    "port": 206.9428,
+    "spy": 199.6164
   },
   {
     "date": "2017-08-10",
-    "port": 208.241,
-    "spy": 196.5936
+    "port": 204.7687,
+    "spy": 196.7988
   },
   {
     "date": "2017-08-11",
-    "port": 208.5103,
-    "spy": 196.8839
+    "port": 205.0285,
+    "spy": 197.0894
   },
   {
     "date": "2017-08-14",
-    "port": 210.0101,
-    "spy": 198.8357
+    "port": 206.5188,
+    "spy": 199.0432
   },
   {
     "date": "2017-08-15",
-    "port": 209.6023,
-    "spy": 198.8115
+    "port": 206.1139,
+    "spy": 199.019
   },
   {
     "date": "2017-08-16",
-    "port": 210.769,
-    "spy": 199.1583
+    "port": 207.2643,
+    "spy": 199.3661
   },
   {
     "date": "2017-08-17",
-    "port": 208.3366,
-    "spy": 196.0532
+    "port": 204.8466,
+    "spy": 196.2578
   },
   {
     "date": "2017-08-18",
-    "port": 208.4154,
-    "spy": 195.7468
+    "port": 204.9369,
+    "spy": 195.9511
   },
   {
     "date": "2017-08-21",
-    "port": 208.848,
-    "spy": 195.9
+    "port": 205.3558,
+    "spy": 196.1045
   },
   {
     "date": "2017-08-22",
-    "port": 210.4121,
-    "spy": 197.9485
+    "port": 206.9001,
+    "spy": 198.1551
   },
   {
     "date": "2017-08-23",
-    "port": 210.2626,
-    "spy": 197.2388
+    "port": 206.7406,
+    "spy": 197.4446
   },
   {
     "date": "2017-08-24",
-    "port": 209.7299,
-    "spy": 196.7791
+    "port": 206.2358,
+    "spy": 196.9845
   },
   {
     "date": "2017-08-25",
-    "port": 210.9163,
-    "spy": 197.2388
+    "port": 207.4114,
+    "spy": 197.4446
   },
   {
     "date": "2017-08-28",
-    "port": 210.8549,
-    "spy": 197.2469
+    "port": 207.3512,
+    "spy": 197.4527
   },
   {
     "date": "2017-08-29",
-    "port": 211.3418,
-    "spy": 197.4727
+    "port": 207.8225,
+    "spy": 197.6788
   },
   {
     "date": "2017-08-30",
-    "port": 211.9141,
-    "spy": 198.4082
+    "port": 208.3765,
+    "spy": 198.6153
   },
   {
     "date": "2017-08-31",
-    "port": 213.6402,
-    "spy": 199.6019
+    "port": 210.0814,
+    "spy": 199.8102
   },
   {
     "date": "2017-09-01",
-    "port": 213.6113,
-    "spy": 199.8841
+    "port": 210.0846,
+    "spy": 200.0928
   },
   {
     "date": "2017-09-05",
-    "port": 213.3353,
-    "spy": 198.4485
+    "port": 209.761,
+    "spy": 198.6556
   },
   {
     "date": "2017-09-06",
-    "port": 213.6963,
-    "spy": 199.126
+    "port": 210.1348,
+    "spy": 199.3339
   },
   {
     "date": "2017-09-07",
-    "port": 215.2645,
-    "spy": 199.1018
+    "port": 211.6689,
+    "spy": 199.3096
   },
   {
     "date": "2017-09-08",
-    "port": 214.714,
-    "spy": 198.868
+    "port": 211.1296,
+    "spy": 199.0755
   },
   {
     "date": "2017-09-11",
-    "port": 215.7402,
-    "spy": 200.989
+    "port": 212.1665,
+    "spy": 201.1988
   },
   {
     "date": "2017-09-12",
-    "port": 215.7939,
-    "spy": 201.6665
+    "port": 212.2371,
+    "spy": 201.877
   },
   {
     "date": "2017-09-13",
-    "port": 215.126,
-    "spy": 201.7633
+    "port": 211.5812,
+    "spy": 201.9739
   },
   {
     "date": "2017-09-14",
-    "port": 215.3334,
-    "spy": 201.6988
+    "port": 211.7686,
+    "spy": 201.9093
   },
   {
     "date": "2017-09-15",
-    "port": 215.9327,
-    "spy": 201.9703
+    "port": 212.3714,
+    "spy": 202.1811
   },
   {
     "date": "2017-09-18",
-    "port": 215.7316,
-    "spy": 202.3999
+    "port": 212.1875,
+    "spy": 202.6111
   },
   {
     "date": "2017-09-19",
-    "port": 216.0618,
-    "spy": 202.6025
+    "port": 212.5299,
+    "spy": 202.814
   },
   {
     "date": "2017-09-20",
-    "port": 216.1993,
-    "spy": 202.6754
+    "port": 212.6704,
+    "spy": 202.887
   },
   {
     "date": "2017-09-21",
-    "port": 215.6167,
-    "spy": 202.1324
+    "port": 212.0985,
+    "spy": 202.3433
   },
   {
     "date": "2017-09-22",
-    "port": 215.9744,
-    "spy": 202.1729
+    "port": 212.4558,
+    "spy": 202.3839
   },
   {
     "date": "2017-09-25",
-    "port": 215.9725,
-    "spy": 201.7595
+    "port": 212.4439,
+    "spy": 201.9701
   },
   {
     "date": "2017-09-26",
-    "port": 215.9166,
-    "spy": 201.8811
+    "port": 212.3968,
+    "spy": 202.0918
   },
   {
     "date": "2017-09-27",
-    "port": 215.3265,
-    "spy": 202.6674
+    "port": 211.8629,
+    "spy": 202.8789
   },
   {
     "date": "2017-09-28",
-    "port": 215.525,
-    "spy": 202.9105
+    "port": 212.071,
+    "spy": 203.1223
   },
   {
     "date": "2017-09-29",
-    "port": 216.1014,
-    "spy": 203.6237
+    "port": 212.6218,
+    "spy": 203.8362
   },
   {
     "date": "2017-10-02",
-    "port": 216.8198,
-    "spy": 204.5072
+    "port": 213.3438,
+    "spy": 204.7206
   },
   {
     "date": "2017-10-03",
-    "port": 217.4259,
-    "spy": 204.9449
+    "port": 213.9405,
+    "spy": 205.1588
   },
   {
     "date": "2017-10-04",
-    "port": 217.4514,
-    "spy": 205.188
+    "port": 213.949,
+    "spy": 205.4022
   },
   {
     "date": "2017-10-05",
-    "port": 217.8815,
-    "spy": 206.4037
+    "port": 214.3661,
+    "spy": 206.6192
   },
   {
     "date": "2017-10-06",
-    "port": 217.2641,
-    "spy": 206.1687
+    "port": 213.7554,
+    "spy": 206.3839
   },
   {
     "date": "2017-10-09",
-    "port": 217.3335,
-    "spy": 205.8283
+    "port": 213.817,
+    "spy": 206.0431
   },
   {
     "date": "2017-10-10",
-    "port": 218.2748,
-    "spy": 206.3713
+    "port": 214.7497,
+    "spy": 206.5867
   },
   {
     "date": "2017-10-11",
-    "port": 218.7898,
-    "spy": 206.6955
+    "port": 215.2497,
+    "spy": 206.9113
   },
   {
     "date": "2017-10-12",
-    "port": 218.7858,
-    "spy": 206.3876
+    "port": 215.2336,
+    "spy": 206.603
   },
   {
     "date": "2017-10-13",
-    "port": 219.6471,
-    "spy": 206.6388
+    "port": 216.0634,
+    "spy": 206.8545
   },
   {
     "date": "2017-10-16",
-    "port": 220.1932,
-    "spy": 206.9144
+    "port": 216.61,
+    "spy": 207.1303
   },
   {
     "date": "2017-10-17",
-    "port": 220.04,
-    "spy": 207.0603
+    "port": 216.4377,
+    "spy": 207.2764
   },
   {
     "date": "2017-10-18",
-    "port": 220.0175,
-    "spy": 207.2629
+    "port": 216.4449,
+    "spy": 207.4792
   },
   {
     "date": "2017-10-19",
-    "port": 219.703,
-    "spy": 207.3196
+    "port": 216.1135,
+    "spy": 207.536
   },
   {
     "date": "2017-10-20",
-    "port": 219.8113,
-    "spy": 208.3895
+    "port": 216.2439,
+    "spy": 208.607
   },
   {
     "date": "2017-10-23",
-    "port": 218.9621,
-    "spy": 207.579
+    "port": 215.3913,
+    "spy": 207.7956
   },
   {
     "date": "2017-10-24",
-    "port": 219.0372,
-    "spy": 207.9437
+    "port": 215.49,
+    "spy": 208.1608
   },
   {
     "date": "2017-10-25",
-    "port": 217.8139,
-    "spy": 206.9144
+    "port": 214.3017,
+    "spy": 207.1303
   },
   {
     "date": "2017-10-26",
-    "port": 218.1892,
-    "spy": 207.1818
+    "port": 214.6948,
+    "spy": 207.3981
   },
   {
     "date": "2017-10-27",
-    "port": 219.8031,
-    "spy": 208.8758
+    "port": 216.2447,
+    "spy": 209.0938
   },
   {
     "date": "2017-10-30",
-    "port": 219.752,
-    "spy": 208.0977
+    "port": 216.1562,
+    "spy": 208.3149
   },
   {
     "date": "2017-10-31",
-    "port": 220.6164,
-    "spy": 208.4219
+    "port": 217.0298,
+    "spy": 208.6395
   },
   {
     "date": "2017-11-01",
-    "port": 221.3449,
-    "spy": 208.6975
+    "port": 217.7316,
+    "spy": 208.9153
   },
   {
     "date": "2017-11-02",
-    "port": 221.4931,
-    "spy": 208.7785
+    "port": 217.8598,
+    "spy": 208.9965
   },
   {
     "date": "2017-11-03",
-    "port": 222.2846,
-    "spy": 209.4756
+    "port": 218.618,
+    "spy": 209.6942
   },
   {
     "date": "2017-11-06",
-    "port": 223.1221,
-    "spy": 209.7998
+    "port": 219.4433,
+    "spy": 210.0188
   },
   {
     "date": "2017-11-07",
-    "port": 222.8311,
-    "spy": 209.6539
+    "port": 219.1109,
+    "spy": 209.8727
   },
   {
     "date": "2017-11-08",
-    "port": 222.8901,
-    "spy": 210.0105
+    "port": 219.166,
+    "spy": 210.2297
   },
   {
     "date": "2017-11-09",
-    "port": 221.577,
-    "spy": 209.2486
+    "port": 217.8682,
+    "spy": 209.4671
   },
   {
     "date": "2017-11-10",
-    "port": 220.1396,
-    "spy": 209.1838
+    "port": 216.4832,
+    "spy": 209.4021
   },
   {
     "date": "2017-11-13",
-    "port": 220.3183,
-    "spy": 209.3783
+    "port": 216.6439,
+    "spy": 209.5968
   },
   {
     "date": "2017-11-14",
-    "port": 220.0185,
-    "spy": 208.892
+    "port": 216.32,
+    "spy": 209.1101
   },
   {
     "date": "2017-11-15",
-    "port": 219.8028,
-    "spy": 207.8464
+    "port": 216.0775,
+    "spy": 208.0634
   },
   {
     "date": "2017-11-16",
-    "port": 221.1262,
-    "spy": 209.6134
+    "port": 217.4172,
+    "spy": 209.8321
   },
   {
     "date": "2017-11-17",
-    "port": 221.3028,
-    "spy": 208.9973
+    "port": 217.5893,
+    "spy": 209.2154
   },
   {
     "date": "2017-11-20",
-    "port": 221.9746,
-    "spy": 209.354
+    "port": 218.269,
+    "spy": 209.5725
   },
   {
     "date": "2017-11-21",
-    "port": 223.865,
-    "spy": 210.7237
+    "port": 220.1335,
+    "spy": 210.9437
   },
   {
     "date": "2017-11-22",
-    "port": 223.6787,
-    "spy": 210.5374
+    "port": 219.9332,
+    "spy": 210.7571
   },
   {
     "date": "2017-11-24",
-    "port": 224.0236,
-    "spy": 211.0236
+    "port": 220.2754,
+    "spy": 211.2439
   },
   {
     "date": "2017-11-27",
-    "port": 223.4397,
-    "spy": 210.9183
+    "port": 219.6895,
+    "spy": 211.1385
   },
   {
     "date": "2017-11-28",
-    "port": 225.5507,
-    "spy": 213.058
+    "port": 221.7747,
+    "spy": 213.2804
   },
   {
     "date": "2017-11-29",
-    "port": 224.505,
-    "spy": 212.9283
+    "port": 220.7768,
+    "spy": 213.1505
   },
   {
     "date": "2017-11-30",
-    "port": 225.4869,
-    "spy": 214.7925
+    "port": 221.7219,
+    "spy": 215.0167
   },
   {
     "date": "2017-12-01",
-    "port": 226.2593,
-    "spy": 214.3467
+    "port": 222.4491,
+    "spy": 214.5704
   },
   {
     "date": "2017-12-04",
-    "port": 225.9665,
-    "spy": 214.0874
+    "port": 222.1637,
+    "spy": 214.3108
   },
   {
     "date": "2017-12-05",
-    "port": 225.5115,
-    "spy": 213.3174
+    "port": 221.6892,
+    "spy": 213.54
   },
   {
     "date": "2017-12-06",
-    "port": 225.1828,
-    "spy": 213.3579
+    "port": 221.3263,
+    "spy": 213.5806
   },
   {
     "date": "2017-12-07",
-    "port": 225.7429,
-    "spy": 214.0306
+    "port": 221.9152,
+    "spy": 214.254
   },
   {
     "date": "2017-12-08",
-    "port": 226.6983,
-    "spy": 215.1978
+    "port": 222.8421,
+    "spy": 215.4224
   },
   {
     "date": "2017-12-11",
-    "port": 227.2061,
-    "spy": 215.8462
+    "port": 223.3408,
+    "spy": 216.0715
   },
   {
     "date": "2017-12-12",
-    "port": 227.4585,
-    "spy": 216.2271
+    "port": 223.5836,
+    "spy": 216.4528
   },
   {
     "date": "2017-12-13",
-    "port": 227.7849,
-    "spy": 216.2027
+    "port": 223.8773,
+    "spy": 216.4284
   },
   {
     "date": "2017-12-14",
-    "port": 227.0775,
-    "spy": 215.3194
+    "port": 223.1533,
+    "spy": 215.5441
   },
   {
     "date": "2017-12-15",
-    "port": 229.2307,
-    "spy": 217.1124
+    "port": 225.277,
+    "spy": 217.339
   },
   {
     "date": "2017-12-18",
-    "port": 230.0287,
-    "spy": 218.4891
+    "port": 226.1034,
+    "spy": 218.7171
   },
   {
     "date": "2017-12-19",
-    "port": 228.0171,
-    "spy": 217.6501
+    "port": 224.1489,
+    "spy": 217.8772
   },
   {
     "date": "2017-12-20",
-    "port": 226.9503,
-    "spy": 217.5361
+    "port": 223.131,
+    "spy": 217.7631
   },
   {
     "date": "2017-12-21",
-    "port": 228.175,
-    "spy": 217.984
+    "port": 224.3375,
+    "spy": 218.2115
   },
   {
     "date": "2017-12-22",
-    "port": 228.2205,
-    "spy": 217.9271
+    "port": 224.3737,
+    "spy": 218.1546
   },
   {
     "date": "2017-12-26",
-    "port": 228.5843,
-    "spy": 217.6663
+    "port": 224.7377,
+    "spy": 217.8935
   },
   {
     "date": "2017-12-27",
-    "port": 229.5373,
-    "spy": 217.7723
+    "port": 225.6318,
+    "spy": 217.9996
   },
   {
     "date": "2017-12-28",
-    "port": 229.7284,
-    "spy": 218.2203
+    "port": 225.8179,
+    "spy": 218.4481
   },
   {
     "date": "2017-12-29",
-    "port": 229.0015,
-    "spy": 217.3975
+    "port": 225.0893,
+    "spy": 217.6244
   },
   {
     "date": "2018-01-02",
-    "port": 229.4583,
-    "spy": 218.9535
+    "port": 225.5655,
+    "spy": 219.182
   },
   {
     "date": "2018-01-03",
-    "port": 231.2032,
-    "spy": 220.3385
+    "port": 227.2639,
+    "spy": 220.5685
   },
   {
     "date": "2018-01-04",
-    "port": 232.569,
-    "spy": 221.2671
+    "port": 228.6224,
+    "spy": 221.498
   },
   {
     "date": "2018-01-05",
-    "port": 233.5481,
-    "spy": 222.7417
+    "port": 229.5793,
+    "spy": 222.9741
   },
   {
     "date": "2018-01-08",
-    "port": 234.094,
-    "spy": 223.1489
+    "port": 230.1262,
+    "spy": 223.3818
   },
   {
     "date": "2018-01-09",
-    "port": 233.2083,
-    "spy": 223.654
+    "port": 229.2747,
+    "spy": 223.8875
   },
   {
     "date": "2018-01-10",
-    "port": 232.6937,
-    "spy": 223.3118
+    "port": 228.7713,
+    "spy": 223.5449
   },
   {
     "date": "2018-01-11",
-    "port": 234.8591,
-    "spy": 224.9411
+    "port": 230.9171,
+    "spy": 225.1759
   },
   {
     "date": "2018-01-12",
-    "port": 237.057,
-    "spy": 226.4075
+    "port": 233.0927,
+    "spy": 226.6438
   },
   {
     "date": "2018-01-16",
-    "port": 236.7194,
-    "spy": 225.6336
+    "port": 232.7367,
+    "spy": 225.8691
   },
   {
     "date": "2018-01-17",
-    "port": 238.5697,
-    "spy": 227.7843
+    "port": 234.557,
+    "spy": 228.022
   },
   {
     "date": "2018-01-18",
-    "port": 237.5382,
-    "spy": 227.4014
+    "port": 233.5593,
+    "spy": 227.6387
   },
   {
     "date": "2018-01-19",
-    "port": 238.5234,
-    "spy": 228.436
+    "port": 234.5682,
+    "spy": 228.6744
   },
   {
     "date": "2018-01-22",
-    "port": 240.2212,
-    "spy": 230.2934
+    "port": 236.2225,
+    "spy": 230.5337
   },
   {
     "date": "2018-01-23",
-    "port": 240.9537,
-    "spy": 230.7822
+    "port": 236.923,
+    "spy": 231.0231
   },
   {
     "date": "2018-01-24",
-    "port": 240.6195,
-    "spy": 230.6926
+    "port": 236.6068,
+    "spy": 230.9334
   },
   {
     "date": "2018-01-25",
-    "port": 240.7649,
-    "spy": 230.7903
+    "port": 236.7046,
+    "spy": 231.0312
   },
   {
     "date": "2018-01-26",
-    "port": 242.5694,
-    "spy": 233.4624
+    "port": 238.4671,
+    "spy": 233.7061
   },
   {
     "date": "2018-01-29",
-    "port": 240.0187,
-    "spy": 231.9146
+    "port": 235.9565,
+    "spy": 232.1566
   },
   {
     "date": "2018-01-30",
-    "port": 237.0422,
-    "spy": 229.5358
+    "port": 233.0348,
+    "spy": 229.7754
   },
   {
     "date": "2018-01-31",
-    "port": 237.8229,
-    "spy": 229.6499
+    "port": 233.7826,
+    "spy": 229.8896
   },
   {
     "date": "2018-02-01",
-    "port": 237.1567,
-    "spy": 229.3892
+    "port": 233.1968,
+    "spy": 229.6286
   },
   {
     "date": "2018-02-02",
-    "port": 231.6016,
-    "spy": 224.3954
+    "port": 227.7496,
+    "spy": 224.6296
   },
   {
     "date": "2018-02-05",
-    "port": 223.6752,
-    "spy": 215.0106
+    "port": 219.9315,
+    "spy": 215.235
   },
   {
     "date": "2018-02-06",
-    "port": 226.5032,
-    "spy": 219.2468
+    "port": 222.6987,
+    "spy": 219.4756
   },
   {
     "date": "2018-02-07",
-    "port": 224.1921,
-    "spy": 218.0574
+    "port": 220.4418,
+    "spy": 218.285
   },
   {
     "date": "2018-02-08",
-    "port": 217.9703,
-    "spy": 209.8783
+    "port": 214.3758,
+    "spy": 210.0973
   },
   {
     "date": "2018-02-09",
-    "port": 219.3593,
-    "spy": 213.031
+    "port": 215.7176,
+    "spy": 213.2533
   },
   {
     "date": "2018-02-12",
-    "port": 221.9076,
-    "spy": 216.1592
+    "port": 218.1842,
+    "spy": 216.3849
   },
   {
     "date": "2018-02-13",
-    "port": 222.6467,
-    "spy": 216.6969
+    "port": 218.8947,
+    "spy": 216.9231
   },
   {
     "date": "2018-02-14",
-    "port": 225.3403,
-    "spy": 219.6215
+    "port": 221.6064,
+    "spy": 219.8507
   },
   {
     "date": "2018-02-15",
-    "port": 227.6668,
-    "spy": 222.4239
+    "port": 223.864,
+    "spy": 222.6561
   },
   {
     "date": "2018-02-16",
-    "port": 227.92,
-    "spy": 222.4891
+    "port": 224.098,
+    "spy": 222.7213
   },
   {
     "date": "2018-02-20",
-    "port": 226.186,
-    "spy": 221.096
+    "port": 222.3924,
+    "spy": 221.3268
   },
   {
     "date": "2018-02-21",
-    "port": 224.6802,
-    "spy": 219.9963
+    "port": 220.9654,
+    "spy": 220.2259
   },
   {
     "date": "2018-02-22",
-    "port": 224.9828,
-    "spy": 220.2813
+    "port": 221.2456,
+    "spy": 220.5113
   },
   {
     "date": "2018-02-23",
-    "port": 227.9683,
-    "spy": 223.7925
+    "port": 224.1266,
+    "spy": 224.0261
   },
   {
     "date": "2018-02-26",
-    "port": 229.8218,
-    "spy": 226.3912
+    "port": 225.9228,
+    "spy": 226.6275
   },
   {
     "date": "2018-02-27",
-    "port": 227.4565,
-    "spy": 223.5644
+    "port": 223.6084,
+    "spy": 223.7978
   },
   {
     "date": "2018-02-28",
-    "port": 225.4146,
-    "spy": 221.2997
+    "port": 221.559,
+    "spy": 221.5307
   },
   {
     "date": "2018-03-01",
-    "port": 223.2726,
-    "spy": 218.0818
+    "port": 219.4586,
+    "spy": 218.3094
   },
   {
     "date": "2018-03-02",
-    "port": 223.9921,
-    "spy": 219.2061
+    "port": 220.2066,
+    "spy": 219.4349
   },
   {
     "date": "2018-03-05",
-    "port": 225.6281,
-    "spy": 221.7396
+    "port": 221.8034,
+    "spy": 221.9711
   },
   {
     "date": "2018-03-06",
-    "port": 226.54,
-    "spy": 222.3018
+    "port": 222.7188,
+    "spy": 222.5338
   },
   {
     "date": "2018-03-07",
-    "port": 226.4232,
-    "spy": 222.2202
+    "port": 222.6142,
+    "spy": 222.4522
   },
   {
     "date": "2018-03-08",
-    "port": 227.0187,
-    "spy": 223.2956
+    "port": 223.1461,
+    "spy": 223.5287
   },
   {
     "date": "2018-03-09",
-    "port": 229.6213,
-    "spy": 227.1814
+    "port": 225.7089,
+    "spy": 227.4185
   },
   {
     "date": "2018-03-12",
-    "port": 229.9557,
-    "spy": 226.8963
+    "port": 226.0313,
+    "spy": 227.1331
   },
   {
     "date": "2018-03-13",
-    "port": 229.2239,
-    "spy": 225.43
+    "port": 225.3064,
+    "spy": 225.6653
   },
   {
     "date": "2018-03-14",
-    "port": 228.7044,
-    "spy": 224.2732
+    "port": 224.764,
+    "spy": 224.5073
   },
   {
     "date": "2018-03-15",
-    "port": 228.4662,
-    "spy": 224.0288
+    "port": 224.525,
+    "spy": 224.2626
   },
   {
     "date": "2018-03-16",
-    "port": 228.8955,
-    "spy": 224.2717
+    "port": 224.9827,
+    "spy": 224.5058
   },
   {
     "date": "2018-03-19",
-    "port": 226.662,
-    "spy": 221.2372
+    "port": 222.8206,
+    "spy": 221.4681
   },
   {
     "date": "2018-03-20",
-    "port": 227.0509,
-    "spy": 221.6135
+    "port": 223.2181,
+    "spy": 221.8448
   },
   {
     "date": "2018-03-21",
-    "port": 227.8688,
-    "spy": 221.1881
+    "port": 224.0671,
+    "spy": 221.419
   },
   {
     "date": "2018-03-22",
-    "port": 223.8833,
-    "spy": 215.6591
+    "port": 220.129,
+    "spy": 215.8841
   },
   {
     "date": "2018-03-23",
-    "port": 220.8952,
-    "spy": 211.0624
+    "port": 217.2312,
+    "spy": 211.2827
   },
   {
     "date": "2018-03-26",
-    "port": 225.1413,
-    "spy": 216.8368
+    "port": 221.383,
+    "spy": 217.0632
   },
   {
     "date": "2018-03-27",
-    "port": 222.6903,
-    "spy": 213.1481
+    "port": 218.9468,
+    "spy": 213.3705
   },
   {
     "date": "2018-03-28",
-    "port": 222.156,
-    "spy": 212.5183
+    "port": 218.4159,
+    "spy": 212.7401
   },
   {
     "date": "2018-03-29",
-    "port": 224.6436,
-    "spy": 215.2337
+    "port": 220.8347,
+    "spy": 215.4584
   },
   {
     "date": "2018-04-02",
-    "port": 221.4009,
-    "spy": 210.588
+    "port": 217.6663,
+    "spy": 210.8078
   },
   {
     "date": "2018-04-03",
-    "port": 222.8733,
-    "spy": 213.2871
+    "port": 219.1216,
+    "spy": 213.5097
   },
   {
     "date": "2018-04-04",
-    "port": 224.3295,
-    "spy": 215.5691
+    "port": 220.545,
+    "spy": 215.7941
   },
   {
     "date": "2018-04-05",
-    "port": 224.5376,
-    "spy": 217.2704
+    "port": 220.7487,
+    "spy": 217.4972
   },
   {
     "date": "2018-04-06",
-    "port": 221.8622,
-    "spy": 212.4283
+    "port": 218.1201,
+    "spy": 212.65
   },
   {
     "date": "2018-04-09",
-    "port": 222.6113,
-    "spy": 213.4753
+    "port": 218.8325,
+    "spy": 213.6981
   },
   {
     "date": "2018-04-10",
-    "port": 225.583,
-    "spy": 216.8696
+    "port": 221.7627,
+    "spy": 217.096
   },
   {
     "date": "2018-04-11",
-    "port": 225.3828,
-    "spy": 215.7327
+    "port": 221.5833,
+    "spy": 215.9578
   },
   {
     "date": "2018-04-12",
-    "port": 226.232,
-    "spy": 217.5075
+    "port": 222.4255,
+    "spy": 217.7345
   },
   {
     "date": "2018-04-13",
-    "port": 225.9973,
-    "spy": 216.8696
+    "port": 222.1929,
+    "spy": 217.096
   },
   {
     "date": "2018-04-16",
-    "port": 227.6064,
-    "spy": 218.6526
+    "port": 223.7759,
+    "spy": 218.8808
   },
   {
     "date": "2018-04-17",
-    "port": 229.1813,
-    "spy": 220.9919
+    "port": 225.285,
+    "spy": 221.2225
   },
   {
     "date": "2018-04-18",
-    "port": 229.1279,
-    "spy": 221.1554
+    "port": 225.2708,
+    "spy": 221.3862
   },
   {
     "date": "2018-04-19",
-    "port": 227.4651,
-    "spy": 219.9286
+    "port": 223.661,
+    "spy": 220.1581
   },
   {
     "date": "2018-04-20",
-    "port": 225.4388,
-    "spy": 218.0637
+    "port": 221.6958,
+    "spy": 218.2913
   },
   {
     "date": "2018-04-23",
-    "port": 225.2689,
-    "spy": 218.031
+    "port": 221.5249,
+    "spy": 218.2586
   },
   {
     "date": "2018-04-24",
-    "port": 223.1316,
-    "spy": 215.0947
+    "port": 219.4759,
+    "spy": 215.3192
   },
   {
     "date": "2018-04-25",
-    "port": 222.905,
-    "spy": 215.6263
+    "port": 219.2586,
+    "spy": 215.8514
   },
   {
     "date": "2018-04-26",
-    "port": 224.5508,
-    "spy": 217.8184
+    "port": 220.8186,
+    "spy": 218.0457
   },
   {
     "date": "2018-04-27",
-    "port": 224.7773,
-    "spy": 218.0228
+    "port": 220.9993,
+    "spy": 218.2504
   },
   {
     "date": "2018-04-30",
-    "port": 223.6427,
-    "spy": 216.3461
+    "port": 219.883,
+    "spy": 216.5719
   },
   {
     "date": "2018-05-01",
-    "port": 223.4161,
-    "spy": 216.7305
+    "port": 219.659,
+    "spy": 216.9567
   },
   {
     "date": "2018-05-02",
-    "port": 222.3941,
-    "spy": 215.2746
+    "port": 218.6806,
+    "spy": 215.4993
   },
   {
     "date": "2018-05-03",
-    "port": 222.0826,
-    "spy": 214.8003
+    "port": 218.3504,
+    "spy": 215.0245
   },
   {
     "date": "2018-05-04",
-    "port": 224.1965,
-    "spy": 217.5812
+    "port": 220.4096,
+    "spy": 217.8083
   },
   {
     "date": "2018-05-07",
-    "port": 224.63,
-    "spy": 218.3173
+    "port": 220.8398,
+    "spy": 218.5452
   },
   {
     "date": "2018-05-08",
-    "port": 224.9848,
-    "spy": 218.3173
+    "port": 221.2131,
+    "spy": 218.5452
   },
   {
     "date": "2018-05-09",
-    "port": 226.3956,
-    "spy": 220.4275
+    "port": 222.6111,
+    "spy": 220.6576
   },
   {
     "date": "2018-05-10",
-    "port": 227.9112,
-    "spy": 222.4886
+    "port": 224.0434,
+    "spy": 222.7209
   },
   {
     "date": "2018-05-11",
-    "port": 228.5332,
-    "spy": 223.1675
+    "port": 224.6385,
+    "spy": 223.4005
   },
   {
     "date": "2018-05-14",
-    "port": 228.5994,
-    "spy": 223.2738
+    "port": 224.7252,
+    "spy": 223.5069
   },
   {
     "date": "2018-05-15",
-    "port": 227.396,
-    "spy": 221.7362
+    "port": 223.6158,
+    "spy": 221.9676
   },
   {
     "date": "2018-05-16",
-    "port": 228.4048,
-    "spy": 222.6687
+    "port": 224.6404,
+    "spy": 222.9011
   },
   {
     "date": "2018-05-17",
-    "port": 228.0724,
-    "spy": 222.4805
+    "port": 224.3466,
+    "spy": 222.7127
   },
   {
     "date": "2018-05-18",
-    "port": 227.8714,
-    "spy": 221.9243
+    "port": 224.1168,
+    "spy": 222.1559
   },
   {
     "date": "2018-05-21",
-    "port": 228.9044,
-    "spy": 223.5928
+    "port": 225.1201,
+    "spy": 223.8261
   },
   {
     "date": "2018-05-22",
-    "port": 228.0932,
-    "spy": 222.9712
+    "port": 224.3137,
+    "spy": 223.2039
   },
   {
     "date": "2018-05-23",
-    "port": 228.2006,
-    "spy": 223.5846
+    "port": 224.3645,
+    "spy": 223.818
   },
   {
     "date": "2018-05-24",
-    "port": 228.0951,
-    "spy": 223.1266
+    "port": 224.2345,
+    "spy": 223.3595
   },
   {
     "date": "2018-05-25",
-    "port": 227.451,
-    "spy": 222.595
+    "port": 223.5653,
+    "spy": 222.8273
   },
   {
     "date": "2018-05-29",
-    "port": 226.3457,
-    "spy": 220.0349
+    "port": 222.4176,
+    "spy": 220.2646
   },
   {
     "date": "2018-05-30",
-    "port": 228.1673,
-    "spy": 222.9712
+    "port": 224.2182,
+    "spy": 223.2039
   },
   {
     "date": "2018-05-31",
-    "port": 226.9191,
-    "spy": 221.6053
+    "port": 222.9924,
+    "spy": 221.8366
   },
   {
     "date": "2018-06-01",
-    "port": 228.2234,
-    "spy": 223.781
+    "port": 224.2762,
+    "spy": 224.0145
   },
   {
     "date": "2018-06-04",
-    "port": 228.3898,
-    "spy": 224.8442
+    "port": 224.4508,
+    "spy": 225.0789
   },
   {
     "date": "2018-06-05",
-    "port": 228.8549,
-    "spy": 225.0078
+    "port": 224.9139,
+    "spy": 225.2427
   },
   {
     "date": "2018-06-06",
-    "port": 229.4621,
-    "spy": 226.889
+    "port": 225.5144,
+    "spy": 227.1258
   },
   {
     "date": "2018-06-07",
-    "port": 230.3161,
-    "spy": 226.8644
+    "port": 226.3338,
+    "spy": 227.1012
   },
   {
     "date": "2018-06-08",
-    "port": 230.4738,
-    "spy": 227.5352
+    "port": 226.4873,
+    "spy": 227.7727
   },
   {
     "date": "2018-06-11",
-    "port": 230.5966,
-    "spy": 227.8378
+    "port": 226.6129,
+    "spy": 228.0756
   },
   {
     "date": "2018-06-12",
-    "port": 230.8068,
-    "spy": 228.1322
+    "port": 226.8095,
+    "spy": 228.3703
   },
   {
     "date": "2018-06-13",
-    "port": 230.2755,
-    "spy": 227.4044
+    "port": 226.2889,
+    "spy": 227.6417
   },
   {
     "date": "2018-06-14",
-    "port": 231.5647,
-    "spy": 227.9768
+    "port": 227.5342,
+    "spy": 228.2148
   },
   {
     "date": "2018-06-15",
-    "port": 230.9237,
-    "spy": 227.686
+    "port": 226.8859,
+    "spy": 227.9237
   },
   {
     "date": "2018-06-18",
-    "port": 230.8833,
-    "spy": 227.2177
+    "port": 226.8714,
+    "spy": 227.4549
   },
   {
     "date": "2018-06-19",
-    "port": 230.4782,
-    "spy": 226.3468
+    "port": 226.4624,
+    "spy": 226.583
   },
   {
     "date": "2018-06-20",
-    "port": 230.386,
-    "spy": 226.7329
+    "port": 226.4077,
+    "spy": 226.9696
   },
   {
     "date": "2018-06-21",
-    "port": 229.4063,
-    "spy": 225.3116
+    "port": 225.4207,
+    "spy": 225.5467
   },
   {
     "date": "2018-06-22",
-    "port": 229.9911,
-    "spy": 225.7224
+    "port": 226.006,
+    "spy": 225.958
   },
   {
     "date": "2018-06-25",
-    "port": 227.5797,
-    "spy": 222.6497
+    "port": 223.6328,
+    "spy": 222.8821
   },
   {
     "date": "2018-06-26",
-    "port": 228.4857,
-    "spy": 223.1426
+    "port": 224.534,
+    "spy": 223.3755
   },
   {
     "date": "2018-06-27",
-    "port": 228.0774,
-    "spy": 221.2941
+    "port": 224.1153,
+    "spy": 221.525
   },
   {
     "date": "2018-06-28",
-    "port": 228.8885,
-    "spy": 222.5593
+    "port": 224.8913,
+    "spy": 222.7916
   },
   {
     "date": "2018-06-29",
-    "port": 228.5926,
-    "spy": 222.8797
+    "port": 224.5961,
+    "spy": 223.1123
   },
   {
     "date": "2018-07-02",
-    "port": 229.4226,
-    "spy": 223.3563
+    "port": 225.4296,
+    "spy": 223.5894
   },
   {
     "date": "2018-07-03",
-    "port": 228.9934,
-    "spy": 222.5675
+    "port": 224.997,
+    "spy": 222.7998
   },
   {
     "date": "2018-07-05",
-    "port": 230.5384,
-    "spy": 224.3832
+    "port": 226.4983,
+    "spy": 224.6174
   },
   {
     "date": "2018-07-06",
-    "port": 231.8504,
-    "spy": 226.2811
+    "port": 227.7569,
+    "spy": 226.5173
   },
   {
     "date": "2018-07-09",
-    "port": 233.2725,
-    "spy": 228.3186
+    "port": 229.1783,
+    "spy": 228.5569
   },
   {
     "date": "2018-07-10",
-    "port": 233.7518,
-    "spy": 229.1402
+    "port": 229.6283,
+    "spy": 229.3794
   },
   {
     "date": "2018-07-11",
-    "port": 232.848,
-    "spy": 227.4642
+    "port": 228.7317,
+    "spy": 227.7016
   },
   {
     "date": "2018-07-12",
-    "port": 234.3188,
-    "spy": 229.5264
+    "port": 230.1503,
+    "spy": 229.7659
   },
   {
     "date": "2018-07-13",
-    "port": 234.7538,
-    "spy": 229.7071
+    "port": 230.5704,
+    "spy": 229.9469
   },
   {
     "date": "2018-07-16",
-    "port": 233.7277,
-    "spy": 229.5017
+    "port": 229.5521,
+    "spy": 229.7413
   },
   {
     "date": "2018-07-17",
-    "port": 234.5069,
-    "spy": 230.43
+    "port": 230.3245,
+    "spy": 230.6705
   },
   {
     "date": "2018-07-18",
-    "port": 234.6524,
-    "spy": 230.9148
+    "port": 230.4821,
+    "spy": 231.1559
   },
   {
     "date": "2018-07-19",
-    "port": 234.9904,
-    "spy": 230.044
+    "port": 230.8244,
+    "spy": 230.2841
   },
   {
     "date": "2018-07-20",
-    "port": 232.8582,
-    "spy": 229.781
+    "port": 228.7319,
+    "spy": 230.0208
   },
   {
     "date": "2018-07-23",
-    "port": 232.2205,
-    "spy": 230.2083
+    "port": 228.1358,
+    "spy": 230.4486
   },
   {
     "date": "2018-07-24",
-    "port": 232.8819,
-    "spy": 231.3667
+    "port": 228.7386,
+    "spy": 231.6082
   },
   {
     "date": "2018-07-25",
-    "port": 233.6916,
-    "spy": 233.3385
+    "port": 229.4984,
+    "spy": 233.582
   },
   {
     "date": "2018-07-26",
-    "port": 234.1251,
-    "spy": 232.7881
+    "port": 229.9791,
+    "spy": 233.031
   },
   {
     "date": "2018-07-27",
-    "port": 232.6349,
-    "spy": 231.2106
+    "port": 228.4931,
+    "spy": 231.4519
   },
   {
     "date": "2018-07-30",
-    "port": 231.3223,
-    "spy": 230.0029
+    "port": 227.2207,
+    "spy": 230.2429
   },
   {
     "date": "2018-07-31",
-    "port": 232.255,
-    "spy": 231.1367
+    "port": 228.1072,
+    "spy": 231.3779
   },
   {
     "date": "2018-08-01",
-    "port": 231.3385,
-    "spy": 230.7505
+    "port": 227.2295,
+    "spy": 230.9913
   },
   {
     "date": "2018-08-02",
-    "port": 232.901,
-    "spy": 232.0076
+    "port": 228.7715,
+    "spy": 232.2497
   },
   {
     "date": "2018-08-03",
-    "port": 233.5542,
-    "spy": 233.0017
+    "port": 229.371,
+    "spy": 233.2449
   },
   {
     "date": "2018-08-06",
-    "port": 234.6024,
-    "spy": 233.8561
+    "port": 230.4088,
+    "spy": 234.1002
   },
   {
     "date": "2018-08-07",
-    "port": 234.6908,
-    "spy": 234.6283
+    "port": 230.5054,
+    "spy": 234.8732
   },
   {
     "date": "2018-08-08",
-    "port": 234.579,
-    "spy": 234.5298
+    "port": 230.3882,
+    "spy": 234.7746
   },
   {
     "date": "2018-08-09",
-    "port": 235.2139,
-    "spy": 234.2094
+    "port": 230.9976,
+    "spy": 234.4538
   },
   {
     "date": "2018-08-10",
-    "port": 235.0779,
-    "spy": 232.6401
+    "port": 230.8687,
+    "spy": 232.883
   },
   {
     "date": "2018-08-13",
-    "port": 234.1088,
-    "spy": 231.7692
+    "port": 229.9154,
+    "spy": 232.0112
   },
   {
     "date": "2018-08-14",
-    "port": 235.5119,
-    "spy": 233.2481
+    "port": 231.3133,
+    "spy": 233.4916
   },
   {
     "date": "2018-08-15",
-    "port": 234.5392,
-    "spy": 231.5064
+    "port": 230.3323,
+    "spy": 231.748
   },
   {
     "date": "2018-08-16",
-    "port": 235.9323,
-    "spy": 233.3794
+    "port": 231.6927,
+    "spy": 233.623
   },
   {
     "date": "2018-08-17",
-    "port": 236.3542,
-    "spy": 234.2012
+    "port": 232.0904,
+    "spy": 234.4456
   },
   {
     "date": "2018-08-20",
-    "port": 237.3543,
-    "spy": 234.7023
+    "port": 233.0589,
+    "spy": 234.9473
   },
   {
     "date": "2018-08-21",
-    "port": 237.3234,
-    "spy": 235.2528
+    "port": 233.0458,
+    "spy": 235.4984
   },
   {
     "date": "2018-08-22",
-    "port": 237.8468,
-    "spy": 235.1131
+    "port": 233.5613,
+    "spy": 235.3585
   },
   {
     "date": "2018-08-23",
-    "port": 238.2926,
-    "spy": 234.8009
+    "port": 234.0097,
+    "spy": 235.0459
   },
   {
     "date": "2018-08-24",
-    "port": 238.8365,
-    "spy": 236.214
+    "port": 234.5052,
+    "spy": 236.4606
   },
   {
     "date": "2018-08-27",
-    "port": 239.3136,
-    "spy": 238.0791
+    "port": 234.9569,
+    "spy": 238.3276
   },
   {
     "date": "2018-08-28",
-    "port": 239.1759,
-    "spy": 238.194
+    "port": 234.8424,
+    "spy": 238.4426
   },
   {
     "date": "2018-08-29",
-    "port": 240.4278,
-    "spy": 239.4758
+    "port": 236.0609,
+    "spy": 239.7257
   },
   {
     "date": "2018-08-30",
-    "port": 240.0627,
-    "spy": 238.5063
+    "port": 235.7074,
+    "spy": 238.7552
   },
   {
     "date": "2018-08-31",
-    "port": 239.9473,
-    "spy": 238.5144
+    "port": 235.605,
+    "spy": 238.7634
   },
   {
     "date": "2018-09-04",
-    "port": 239.1452,
-    "spy": 238.1037
+    "port": 234.8287,
+    "spy": 238.3522
   },
   {
     "date": "2018-09-05",
-    "port": 237.8328,
-    "spy": 237.4629
+    "port": 233.5301,
+    "spy": 237.7107
   },
   {
     "date": "2018-09-06",
-    "port": 236.986,
-    "spy": 236.7481
+    "port": 232.6627,
+    "spy": 236.9952
   },
   {
     "date": "2018-09-07",
-    "port": 236.1556,
-    "spy": 236.288
+    "port": 231.8769,
+    "spy": 236.5346
   },
   {
     "date": "2018-09-10",
-    "port": 236.7572,
-    "spy": 236.6988
+    "port": 232.4536,
+    "spy": 236.9458
   },
   {
     "date": "2018-09-11",
-    "port": 237.2052,
-    "spy": 237.4793
+    "port": 232.9209,
+    "spy": 237.7271
   },
   {
     "date": "2018-09-12",
-    "port": 236.8433,
-    "spy": 237.5368
+    "port": 232.538,
+    "spy": 237.7847
   },
   {
     "date": "2018-09-13",
-    "port": 237.4623,
-    "spy": 238.9417
+    "port": 233.1062,
+    "spy": 239.1911
   },
   {
     "date": "2018-09-14",
-    "port": 237.6877,
-    "spy": 238.9828
+    "port": 233.3665,
+    "spy": 239.2323
   },
   {
     "date": "2018-09-17",
-    "port": 236.2087,
-    "spy": 237.7175
+    "port": 231.899,
+    "spy": 237.9656
   },
   {
     "date": "2018-09-18",
-    "port": 236.3899,
-    "spy": 239.0075
+    "port": 232.0967,
+    "spy": 239.2569
   },
   {
     "date": "2018-09-19",
-    "port": 235.7794,
-    "spy": 239.2621
+    "port": 231.5009,
+    "spy": 239.5119
   },
   {
     "date": "2018-09-20",
-    "port": 237.1181,
-    "spy": 241.2011
+    "port": 232.7805,
+    "spy": 241.4529
   },
   {
     "date": "2018-09-21",
-    "port": 236.7551,
-    "spy": 240.9807
+    "port": 232.4177,
+    "spy": 241.2322
   },
   {
     "date": "2018-09-24",
-    "port": 236.2134,
-    "spy": 240.1802
+    "port": 231.8988,
+    "spy": 240.4309
   },
   {
     "date": "2018-09-25",
-    "port": 235.9163,
-    "spy": 239.9573
+    "port": 231.6086,
+    "spy": 240.2077
   },
   {
     "date": "2018-09-26",
-    "port": 235.7702,
-    "spy": 239.2393
+    "port": 231.4322,
+    "spy": 239.489
   },
   {
     "date": "2018-09-27",
-    "port": 236.9275,
-    "spy": 239.9078
+    "port": 232.5768,
+    "spy": 240.1583
   },
   {
     "date": "2018-09-28",
-    "port": 236.7683,
-    "spy": 239.9325
+    "port": 232.4305,
+    "spy": 240.1829
   },
   {
     "date": "2018-10-01",
-    "port": 236.8369,
-    "spy": 240.7661
+    "port": 232.4969,
+    "spy": 241.0174
   },
   {
     "date": "2018-10-02",
-    "port": 236.5547,
-    "spy": 240.6258
+    "port": 232.1729,
+    "spy": 240.877
   },
   {
     "date": "2018-10-03",
-    "port": 236.5093,
-    "spy": 240.7579
+    "port": 232.2314,
+    "spy": 241.0092
   },
   {
     "date": "2018-10-04",
-    "port": 234.1687,
-    "spy": 238.8761
+    "port": 229.9443,
+    "spy": 239.1254
   },
   {
     "date": "2018-10-05",
-    "port": 232.2295,
-    "spy": 237.5392
+    "port": 228.0554,
+    "spy": 237.7871
   },
   {
     "date": "2018-10-08",
-    "port": 231.9022,
-    "spy": 237.5392
+    "port": 227.7433,
+    "spy": 237.7871
   },
   {
     "date": "2018-10-09",
-    "port": 232.2266,
-    "spy": 237.1926
+    "port": 228.027,
+    "spy": 237.4402
   },
   {
     "date": "2018-10-10",
-    "port": 226.2064,
-    "spy": 229.6823
+    "port": 222.1541,
+    "spy": 229.922
   },
   {
     "date": "2018-10-11",
-    "port": 222.3955,
-    "spy": 224.6232
+    "port": 218.3702,
+    "spy": 224.8576
   },
   {
     "date": "2018-10-12",
-    "port": 224.0102,
-    "spy": 227.7428
+    "port": 219.9143,
+    "spy": 227.9805
   },
   {
     "date": "2018-10-15",
-    "port": 223.0218,
-    "spy": 226.4636
+    "port": 218.9657,
+    "spy": 226.7
   },
   {
     "date": "2018-10-16",
-    "port": 226.4782,
-    "spy": 231.4155
+    "port": 222.3185,
+    "spy": 231.6571
   },
   {
     "date": "2018-10-17",
-    "port": 226.2974,
-    "spy": 231.4567
+    "port": 222.1548,
+    "spy": 231.6982
   },
   {
     "date": "2018-10-18",
-    "port": 224.3424,
-    "spy": 228.1142
+    "port": 220.258,
+    "spy": 228.3523
   },
   {
     "date": "2018-10-19",
-    "port": 223.8381,
-    "spy": 227.9904
+    "port": 219.7495,
+    "spy": 228.2284
   },
   {
     "date": "2018-10-22",
-    "port": 223.2126,
-    "spy": 226.9671
+    "port": 219.1519,
+    "spy": 227.204
   },
   {
     "date": "2018-10-23",
-    "port": 221.9557,
-    "spy": 225.8116
+    "port": 217.888,
+    "spy": 226.0473
   },
   {
     "date": "2018-10-24",
-    "port": 217.5452,
-    "spy": 218.9698
+    "port": 213.5565,
+    "spy": 219.1984
   },
   {
     "date": "2018-10-25",
-    "port": 220.3615,
-    "spy": 222.8983
+    "port": 216.3254,
+    "spy": 223.1309
   },
   {
     "date": "2018-10-26",
-    "port": 218.0223,
-    "spy": 218.9781
+    "port": 214.0445,
+    "spy": 219.2067
   },
   {
     "date": "2018-10-29",
-    "port": 217.2183,
-    "spy": 217.7649
+    "port": 213.2773,
+    "spy": 217.9922
   },
   {
     "date": "2018-10-30",
-    "port": 219.2989,
-    "spy": 220.9919
+    "port": 215.328,
+    "spy": 221.2225
   },
   {
     "date": "2018-10-31",
-    "port": 220.503,
-    "spy": 223.3522
+    "port": 216.4978,
+    "spy": 223.5853
   },
   {
     "date": "2018-11-01",
-    "port": 221.0513,
-    "spy": 225.7291
+    "port": 216.9957,
+    "spy": 225.9647
   },
   {
     "date": "2018-11-02",
-    "port": 219.3461,
-    "spy": 224.3921
+    "port": 215.3797,
+    "spy": 224.6263
   },
   {
     "date": "2018-11-05",
-    "port": 220.7075,
-    "spy": 225.63
+    "port": 216.7036,
+    "spy": 225.8655
   },
   {
     "date": "2018-11-06",
-    "port": 221.5636,
-    "spy": 227.0578
+    "port": 217.5328,
+    "spy": 227.2948
   },
   {
     "date": "2018-11-07",
-    "port": 224.4493,
-    "spy": 231.9189
+    "port": 220.3073,
+    "spy": 232.1609
   },
   {
     "date": "2018-11-08",
-    "port": 224.3627,
-    "spy": 231.498
+    "port": 220.2255,
+    "spy": 231.7396
   },
   {
     "date": "2018-11-09",
-    "port": 223.4663,
-    "spy": 229.2367
+    "port": 219.3332,
+    "spy": 229.476
   },
   {
     "date": "2018-11-12",
-    "port": 221.4758,
-    "spy": 224.9533
+    "port": 217.4005,
+    "spy": 225.1881
   },
   {
     "date": "2018-11-13",
-    "port": 220.5538,
-    "spy": 224.5324
+    "port": 216.4793,
+    "spy": 224.7667
   },
   {
     "date": "2018-11-14",
-    "port": 219.4249,
-    "spy": 222.9973
+    "port": 215.3713,
+    "spy": 223.2301
   },
   {
     "date": "2018-11-15",
-    "port": 220.3877,
-    "spy": 225.3246
+    "port": 216.2881,
+    "spy": 225.5598
   },
   {
     "date": "2018-11-16",
-    "port": 220.5374,
-    "spy": 225.9106
+    "port": 216.3911,
+    "spy": 226.1464
   },
   {
     "date": "2018-11-19",
-    "port": 218.5231,
-    "spy": 222.0895
+    "port": 214.3327,
+    "spy": 222.3213
   },
   {
     "date": "2018-11-20",
-    "port": 216.0822,
-    "spy": 217.9795
+    "port": 211.8232,
+    "spy": 218.207
   },
   {
     "date": "2018-11-21",
-    "port": 216.4417,
-    "spy": 218.7222
+    "port": 212.213,
+    "spy": 218.9505
   },
   {
     "date": "2018-11-23",
-    "port": 215.9668,
-    "spy": 217.2615
+    "port": 211.6893,
+    "spy": 217.4882
   },
   {
     "date": "2018-11-26",
-    "port": 217.95,
-    "spy": 220.769
+    "port": 213.6997,
+    "spy": 220.9994
   },
   {
     "date": "2018-11-27",
-    "port": 218.436,
-    "spy": 221.5117
+    "port": 214.1827,
+    "spy": 221.7429
   },
   {
     "date": "2018-11-28",
-    "port": 220.7792,
-    "spy": 226.6122
+    "port": 216.6211,
+    "spy": 226.8487
   },
   {
     "date": "2018-11-29",
-    "port": 220.6732,
-    "spy": 226.117
+    "port": 216.527,
+    "spy": 226.353
   },
   {
     "date": "2018-11-30",
-    "port": 221.898,
-    "spy": 227.4952
+    "port": 217.7613,
+    "spy": 227.7326
   },
   {
     "date": "2018-12-03",
-    "port": 223.5064,
-    "spy": 230.5075
+    "port": 219.4992,
+    "spy": 230.7481
   },
   {
     "date": "2018-12-04",
-    "port": 220.0833,
-    "spy": 223.0385
+    "port": 216.0108,
+    "spy": 223.2713
   },
   {
     "date": "2018-12-06",
-    "port": 219.7743,
-    "spy": 222.7002
+    "port": 215.7278,
+    "spy": 222.9326
   },
   {
     "date": "2018-12-07",
-    "port": 216.7153,
-    "spy": 217.5255
+    "port": 212.6157,
+    "spy": 217.7526
   },
   {
     "date": "2018-12-10",
-    "port": 217.1958,
-    "spy": 217.9382
+    "port": 213.0946,
+    "spy": 218.1657
   },
   {
     "date": "2018-12-11",
-    "port": 217.1912,
-    "spy": 217.9877
+    "port": 213.0877,
+    "spy": 218.2152
   },
   {
     "date": "2018-12-12",
-    "port": 217.2222,
-    "spy": 219.0854
+    "port": 213.1642,
+    "spy": 219.314
   },
   {
     "date": "2018-12-13",
-    "port": 216.5544,
-    "spy": 219.0111
+    "port": 212.5043,
+    "spy": 219.2397
   },
   {
     "date": "2018-12-14",
-    "port": 214.7272,
-    "spy": 214.9671
+    "port": 210.5885,
+    "spy": 215.1915
   },
   {
     "date": "2018-12-17",
-    "port": 212.2918,
-    "spy": 210.7498
+    "port": 208.1416,
+    "spy": 210.9698
   },
   {
     "date": "2018-12-18",
-    "port": 212.7072,
-    "spy": 210.5187
+    "port": 208.5549,
+    "spy": 210.7384
   },
   {
     "date": "2018-12-19",
-    "port": 211.8446,
-    "spy": 207.366
+    "port": 207.6547,
+    "spy": 207.5825
   },
   {
     "date": "2018-12-20",
-    "port": 209.5783,
-    "spy": 203.9906
+    "port": 205.3258,
+    "spy": 204.2035
   },
   {
     "date": "2018-12-21",
-    "port": 207.6958,
-    "spy": 199.8109
+    "port": 203.2963,
+    "spy": 200.0195
   },
   {
     "date": "2018-12-24",
-    "port": 205.1888,
-    "spy": 194.5313
+    "port": 200.6846,
+    "spy": 194.7343
   },
   {
     "date": "2018-12-26",
-    "port": 209.7767,
-    "spy": 204.3599
+    "port": 205.4774,
+    "spy": 204.5732
   },
   {
     "date": "2018-12-27",
-    "port": 210.8287,
-    "spy": 205.9289
+    "port": 206.5311,
+    "spy": 206.1438
   },
   {
     "date": "2018-12-28",
-    "port": 211.1791,
-    "spy": 205.6632
+    "port": 206.9152,
+    "spy": 205.8779
   },
   {
     "date": "2018-12-31",
-    "port": 212.4694,
-    "spy": 207.4646
+    "port": 208.2446,
+    "spy": 207.6812
   },
   {
     "date": "2019-01-02",
-    "port": 213.9422,
-    "spy": 207.6804
+    "port": 209.6518,
+    "spy": 207.8972
   },
   {
     "date": "2019-01-03",
-    "port": 211.5143,
-    "spy": 202.7246
+    "port": 207.2084,
+    "spy": 202.9362
   },
   {
     "date": "2019-01-04",
-    "port": 213.9531,
-    "spy": 209.5151
+    "port": 209.8322,
+    "spy": 209.7337
   },
   {
     "date": "2019-01-07",
-    "port": 214.4572,
-    "spy": 211.167
+    "port": 210.3987,
+    "spy": 211.3874
   },
   {
     "date": "2019-01-08",
-    "port": 215.4499,
-    "spy": 213.151
+    "port": 211.4236,
+    "spy": 213.3735
   },
   {
     "date": "2019-01-09",
-    "port": 215.7544,
-    "spy": 214.1471
+    "port": 211.7712,
+    "spy": 214.3706
   },
   {
     "date": "2019-01-10",
-    "port": 216.2028,
-    "spy": 214.9025
+    "port": 212.1634,
+    "spy": 215.1268
   },
   {
     "date": "2019-01-11",
-    "port": 216.7455,
-    "spy": 214.9855
+    "port": 212.6966,
+    "spy": 215.2099
   },
   {
     "date": "2019-01-14",
-    "port": 216.0306,
-    "spy": 213.6739
+    "port": 211.9147,
+    "spy": 213.897
   },
   {
     "date": "2019-01-15",
-    "port": 217.1861,
-    "spy": 216.1228
+    "port": 213.0896,
+    "spy": 216.3484
   },
   {
     "date": "2019-01-16",
-    "port": 217.7054,
-    "spy": 216.6458
+    "port": 213.6133,
+    "spy": 216.872
   },
   {
     "date": "2019-01-17",
-    "port": 218.4447,
-    "spy": 218.2895
+    "port": 214.4066,
+    "spy": 218.5173
   },
   {
     "date": "2019-01-18",
-    "port": 219.659,
-    "spy": 221.1948
+    "port": 215.6671,
+    "spy": 221.4257
   },
   {
     "date": "2019-01-22",
-    "port": 218.7767,
-    "spy": 218.2064
+    "port": 214.701,
+    "spy": 218.4341
   },
   {
     "date": "2019-01-23",
-    "port": 218.7106,
-    "spy": 218.663
+    "port": 214.6629,
+    "spy": 218.8912
   },
   {
     "date": "2019-01-24",
-    "port": 219.7671,
-    "spy": 218.7792
+    "port": 215.692,
+    "spy": 219.0076
   },
   {
     "date": "2019-01-25",
-    "port": 220.0095,
-    "spy": 220.6304
+    "port": 216.0148,
+    "spy": 220.8607
   },
   {
     "date": "2019-01-28",
-    "port": 219.132,
-    "spy": 218.9536
+    "port": 215.0881,
+    "spy": 219.1821
   },
   {
     "date": "2019-01-29",
-    "port": 219.5701,
-    "spy": 218.663
+    "port": 215.5113,
+    "spy": 218.8912
   },
   {
     "date": "2019-01-30",
-    "port": 221.1724,
-    "spy": 222.1246
+    "port": 217.202,
+    "spy": 222.3564
   },
   {
     "date": "2019-01-31",
-    "port": 222.839,
-    "spy": 224.0754
+    "port": 218.9301,
+    "spy": 224.3092
   },
   {
     "date": "2019-02-01",
-    "port": 222.4277,
-    "spy": 224.1833
+    "port": 218.5083,
+    "spy": 224.4173
   },
   {
     "date": "2019-02-04",
-    "port": 222.8788,
-    "spy": 225.7605
+    "port": 218.9898,
+    "spy": 225.9962
   },
   {
     "date": "2019-02-05",
-    "port": 223.7076,
-    "spy": 226.7069
+    "port": 219.8511,
+    "spy": 226.9435
   },
   {
     "date": "2019-02-06",
-    "port": 224.0886,
-    "spy": 226.408
+    "port": 220.1669,
+    "spy": 226.6444
   },
   {
     "date": "2019-02-07",
-    "port": 223.9531,
-    "spy": 224.2498
+    "port": 219.9425,
+    "spy": 224.4838
   },
   {
     "date": "2019-02-08",
-    "port": 224.4916,
-    "spy": 224.5237
+    "port": 220.4761,
+    "spy": 224.758
   },
   {
     "date": "2019-02-11",
-    "port": 224.6266,
-    "spy": 224.6482
+    "port": 220.5793,
+    "spy": 224.8826
   },
   {
     "date": "2019-02-12",
-    "port": 226.0307,
-    "spy": 227.537
+    "port": 222.0385,
+    "spy": 227.7745
   },
   {
     "date": "2019-02-13",
-    "port": 226.2287,
-    "spy": 228.2759
+    "port": 222.2342,
+    "spy": 228.5141
   },
   {
     "date": "2019-02-14",
-    "port": 226.8298,
-    "spy": 227.7694
+    "port": 222.7955,
+    "spy": 228.0072
   },
   {
     "date": "2019-02-15",
-    "port": 228.3947,
-    "spy": 230.2516
+    "port": 224.4211,
+    "spy": 230.4919
   },
   {
     "date": "2019-02-19",
-    "port": 228.874,
-    "spy": 230.65
+    "port": 224.9131,
+    "spy": 230.8908
   },
   {
     "date": "2019-02-20",
-    "port": 229.1092,
-    "spy": 231.1148
+    "port": 225.1394,
+    "spy": 231.3561
   },
   {
     "date": "2019-02-21",
-    "port": 227.6109,
-    "spy": 230.293
+    "port": 223.6239,
+    "spy": 230.5334
   },
   {
     "date": "2019-02-22",
-    "port": 228.9902,
-    "spy": 231.7209
+    "port": 225.029,
+    "spy": 231.9627
   },
   {
     "date": "2019-02-25",
-    "port": 228.7669,
-    "spy": 232.0362
+    "port": 224.814,
+    "spy": 232.2784
   },
   {
     "date": "2019-02-26",
-    "port": 228.9526,
-    "spy": 231.8703
+    "port": 225.0051,
+    "spy": 232.1123
   },
   {
     "date": "2019-02-27",
-    "port": 227.5651,
-    "spy": 231.7707
+    "port": 223.6296,
+    "spy": 232.0127
   },
   {
     "date": "2019-02-28",
-    "port": 226.7789,
-    "spy": 231.339
+    "port": 222.8464,
+    "spy": 231.5804
   },
   {
     "date": "2019-03-01",
-    "port": 226.6751,
-    "spy": 232.7834
+    "port": 222.7686,
+    "spy": 233.0264
   },
   {
     "date": "2019-03-04",
-    "port": 227.1711,
-    "spy": 231.9367
+    "port": 223.2276,
+    "spy": 232.1788
   },
   {
     "date": "2019-03-05",
-    "port": 227.0324,
-    "spy": 231.6213
+    "port": 223.0899,
+    "spy": 231.8631
   },
   {
     "date": "2019-03-06",
-    "port": 226.9693,
-    "spy": 230.2183
+    "port": 222.9329,
+    "spy": 230.4586
   },
   {
     "date": "2019-03-07",
-    "port": 227.1895,
-    "spy": 228.2925
+    "port": 223.0357,
+    "spy": 228.5308
   },
   {
     "date": "2019-03-08",
-    "port": 226.954,
-    "spy": 227.8359
+    "port": 222.8289,
+    "spy": 228.0737
   },
   {
     "date": "2019-03-11",
-    "port": 228.738,
-    "spy": 231.1398
+    "port": 224.6559,
+    "spy": 231.381
   },
   {
     "date": "2019-03-12",
-    "port": 229.2452,
-    "spy": 232.0114
+    "port": 225.2507,
+    "spy": 232.2536
   },
   {
     "date": "2019-03-13",
-    "port": 229.8448,
-    "spy": 233.5471
+    "port": 225.8848,
+    "spy": 233.7909
   },
   {
     "date": "2019-03-14",
-    "port": 229.4016,
-    "spy": 233.3977
+    "port": 225.3889,
+    "spy": 233.6413
   },
   {
     "date": "2019-03-15",
-    "port": 230.5331,
-    "spy": 234.5508
+    "port": 226.5557,
+    "spy": 234.7957
   },
   {
     "date": "2019-03-18",
-    "port": 231.2095,
-    "spy": 235.4013
+    "port": 227.2309,
+    "spy": 235.647
   },
   {
     "date": "2019-03-19",
-    "port": 230.7131,
-    "spy": 235.4596
+    "port": 226.7468,
+    "spy": 235.7053
   },
   {
     "date": "2019-03-20",
-    "port": 231.178,
-    "spy": 234.751
+    "port": 227.214,
+    "spy": 234.996
   },
   {
     "date": "2019-03-21",
-    "port": 233.026,
-    "spy": 237.4024
+    "port": 229.095,
+    "spy": 237.6502
   },
   {
     "date": "2019-03-22",
-    "port": 231.934,
-    "spy": 232.8332
+    "port": 227.8783,
+    "spy": 233.0763
   },
   {
     "date": "2019-03-25",
-    "port": 231.9479,
-    "spy": 232.6581
+    "port": 227.8982,
+    "spy": 232.901
   },
   {
     "date": "2019-03-26",
-    "port": 232.944,
-    "spy": 234.3924
+    "port": 228.8802,
+    "spy": 234.6371
   },
   {
     "date": "2019-03-27",
-    "port": 233.5692,
-    "spy": 233.1668
+    "port": 229.5028,
+    "spy": 233.4101
   },
   {
     "date": "2019-03-28",
-    "port": 234.5443,
-    "spy": 234.0506
+    "port": 230.4581,
+    "spy": 234.2948
   },
   {
     "date": "2019-03-29",
-    "port": 234.9553,
-    "spy": 235.5264
+    "port": 230.8329,
+    "spy": 235.7722
   },
   {
     "date": "2019-04-01",
-    "port": 235.2977,
-    "spy": 238.3195
+    "port": 231.203,
+    "spy": 238.5682
   },
   {
     "date": "2019-04-02",
-    "port": 235.8762,
-    "spy": 238.4362
+    "port": 231.7589,
+    "spy": 238.6851
   },
   {
     "date": "2019-04-03",
-    "port": 234.7141,
-    "spy": 238.8114
+    "port": 230.6249,
+    "spy": 239.0607
   },
   {
     "date": "2019-04-04",
-    "port": 235.6868,
-    "spy": 239.4452
+    "port": 231.6001,
+    "spy": 239.6951
   },
   {
     "date": "2019-04-05",
-    "port": 236.8523,
-    "spy": 240.6041
+    "port": 232.7553,
+    "spy": 240.8552
   },
   {
     "date": "2019-04-08",
-    "port": 236.4927,
-    "spy": 240.7875
+    "port": 232.404,
+    "spy": 241.0388
   },
   {
     "date": "2019-04-09",
-    "port": 235.8798,
-    "spy": 239.5535
+    "port": 231.7761,
+    "spy": 239.8036
   },
   {
     "date": "2019-04-10",
-    "port": 237.2131,
-    "spy": 240.3706
+    "port": 233.1108,
+    "spy": 240.6215
   },
   {
     "date": "2019-04-11",
-    "port": 236.7472,
-    "spy": 240.3039
+    "port": 232.6684,
+    "spy": 240.5547
   },
   {
     "date": "2019-04-12",
-    "port": 236.8963,
-    "spy": 241.9297
+    "port": 232.8215,
+    "spy": 242.1822
   },
   {
     "date": "2019-04-15",
-    "port": 236.7547,
-    "spy": 241.7713
+    "port": 232.6573,
+    "spy": 242.0237
   },
   {
     "date": "2019-04-16",
-    "port": 236.9202,
-    "spy": 241.9297
+    "port": 232.8628,
+    "spy": 242.1822
   },
   {
     "date": "2019-04-17",
-    "port": 236.8788,
-    "spy": 241.3378
+    "port": 232.826,
+    "spy": 241.5897
   },
   {
     "date": "2019-04-18",
-    "port": 237.9589,
-    "spy": 241.813
+    "port": 233.8643,
+    "spy": 242.0654
   },
   {
     "date": "2019-04-22",
-    "port": 237.4719,
-    "spy": 242.0215
+    "port": 233.3756,
+    "spy": 242.2741
   },
   {
     "date": "2019-04-23",
-    "port": 239.6722,
-    "spy": 244.1977
+    "port": 235.5465,
+    "spy": 244.4526
   },
   {
     "date": "2019-04-24",
-    "port": 241.0648,
-    "spy": 243.6557
+    "port": 236.9193,
+    "spy": 243.9101
   },
   {
     "date": "2019-04-25",
-    "port": 240.0972,
-    "spy": 243.5056
+    "port": 235.9296,
+    "spy": 243.7598
   },
   {
     "date": "2019-04-26",
-    "port": 241.4007,
-    "spy": 244.6396
+    "port": 237.2085,
+    "spy": 244.8949
   },
   {
     "date": "2019-04-29",
-    "port": 241.0024,
-    "spy": 245.0231
+    "port": 236.8385,
+    "spy": 245.2788
   },
   {
     "date": "2019-04-30",
-    "port": 241.612,
-    "spy": 245.1482
+    "port": 237.4105,
+    "spy": 245.4041
   },
   {
     "date": "2019-05-01",
-    "port": 240.6121,
-    "spy": 243.3055
+    "port": 236.4129,
+    "spy": 243.5595
   },
   {
     "date": "2019-05-02",
-    "port": 239.6044,
-    "spy": 242.7804
+    "port": 235.4346,
+    "spy": 243.0338
   },
   {
     "date": "2019-05-03",
-    "port": 241.912,
-    "spy": 245.1565
+    "port": 237.7185,
+    "spy": 245.4124
   },
   {
     "date": "2019-05-06",
-    "port": 241.7741,
-    "spy": 244.1477
+    "port": 237.5891,
+    "spy": 244.4025
   },
   {
     "date": "2019-05-07",
-    "port": 239.3501,
-    "spy": 240.0705
+    "port": 235.1895,
+    "spy": 240.321
   },
   {
     "date": "2019-05-08",
-    "port": 238.8575,
-    "spy": 239.7369
+    "port": 234.7056,
+    "spy": 239.9872
   },
   {
     "date": "2019-05-09",
-    "port": 238.7195,
-    "spy": 239.0116
+    "port": 234.5638,
+    "spy": 239.261
   },
   {
     "date": "2019-05-10",
-    "port": 239.164,
-    "spy": 240.2122
+    "port": 234.9837,
+    "spy": 240.463
   },
   {
     "date": "2019-05-13",
-    "port": 235.5634,
-    "spy": 234.1756
+    "port": 231.4198,
+    "spy": 234.42
   },
   {
     "date": "2019-05-14",
-    "port": 236.4528,
-    "spy": 236.2934
+    "port": 232.3006,
+    "spy": 236.54
   },
   {
     "date": "2019-05-15",
-    "port": 237.7999,
-    "spy": 237.6775
+    "port": 233.5914,
+    "spy": 237.9256
   },
   {
     "date": "2019-05-16",
-    "port": 238.7081,
-    "spy": 239.8788
+    "port": 234.4662,
+    "spy": 240.1292
   },
   {
     "date": "2019-05-17",
-    "port": 237.8399,
-    "spy": 238.3278
+    "port": 233.5901,
+    "spy": 238.5766
   },
   {
     "date": "2019-05-20",
-    "port": 235.9491,
-    "spy": 236.752
+    "port": 231.7302,
+    "spy": 236.9991
   },
   {
     "date": "2019-05-21",
-    "port": 237.8135,
-    "spy": 238.8864
+    "port": 233.5727,
+    "spy": 239.1358
   },
   {
     "date": "2019-05-22",
-    "port": 237.5725,
-    "spy": 238.1528
+    "port": 233.2913,
+    "spy": 238.4013
   },
   {
     "date": "2019-05-23",
-    "port": 235.8496,
-    "spy": 235.2429
+    "port": 231.5387,
+    "spy": 235.4884
   },
   {
     "date": "2019-05-24",
-    "port": 236.3641,
-    "spy": 235.7765
+    "port": 232.0505,
+    "spy": 236.0226
   },
   {
     "date": "2019-05-28",
-    "port": 235.4469,
-    "spy": 233.5836
+    "port": 231.1379,
+    "spy": 233.8274
   },
   {
     "date": "2019-05-29",
-    "port": 234.4981,
-    "spy": 232.0161
+    "port": 230.2072,
+    "spy": 232.2583
   },
   {
     "date": "2019-05-30",
-    "port": 235.3129,
-    "spy": 232.6497
+    "port": 230.9558,
+    "spy": 232.8926
   },
   {
     "date": "2019-05-31",
-    "port": 234.0783,
-    "spy": 229.5148
+    "port": 229.7106,
+    "spy": 229.7544
   },
   {
     "date": "2019-06-03",
-    "port": 234.4104,
-    "spy": 228.9312
+    "port": 230.0534,
+    "spy": 229.1701
   },
   {
     "date": "2019-06-04",
-    "port": 236.8293,
-    "spy": 233.9006
+    "port": 232.4532,
+    "spy": 234.1447
   },
   {
     "date": "2019-06-05",
-    "port": 237.5645,
-    "spy": 235.9266
+    "port": 233.1338,
+    "spy": 236.1728
   },
   {
     "date": "2019-06-06",
-    "port": 238.3983,
-    "spy": 237.4607
+    "port": 233.9113,
+    "spy": 237.7085
   },
   {
     "date": "2019-06-07",
-    "port": 241.2888,
-    "spy": 239.837
+    "port": 236.7146,
+    "spy": 240.0873
   },
   {
     "date": "2019-06-10",
-    "port": 240.9527,
-    "spy": 240.9376
+    "port": 236.4006,
+    "spy": 241.1891
   },
   {
     "date": "2019-06-11",
-    "port": 241.0532,
-    "spy": 240.8792
+    "port": 236.5015,
+    "spy": 241.1307
   },
   {
     "date": "2019-06-12",
-    "port": 240.9755,
-    "spy": 240.454
+    "port": 236.4132,
+    "spy": 240.705
   },
   {
     "date": "2019-06-13",
-    "port": 242.4122,
-    "spy": 241.4462
+    "port": 237.8398,
+    "spy": 241.6982
   },
   {
     "date": "2019-06-14",
-    "port": 242.6421,
-    "spy": 241.1793
+    "port": 238.0439,
+    "spy": 241.4311
   },
   {
     "date": "2019-06-17",
-    "port": 242.6988,
-    "spy": 241.2711
+    "port": 238.0885,
+    "spy": 241.5229
   },
   {
     "date": "2019-06-18",
-    "port": 245.4806,
-    "spy": 243.7974
+    "port": 240.8216,
+    "spy": 244.0519
   },
   {
     "date": "2019-06-19",
-    "port": 246.1164,
-    "spy": 244.3478
+    "port": 241.4364,
+    "spy": 244.6029
   },
   {
     "date": "2019-06-20",
-    "port": 247.4831,
-    "spy": 246.6823
+    "port": 242.7496,
+    "spy": 246.9398
   },
   {
     "date": "2019-06-21",
-    "port": 245.7392,
-    "spy": 246.3237
+    "port": 241.0428,
+    "spy": 246.5808
   },
   {
     "date": "2019-06-24",
-    "port": 245.9037,
-    "spy": 246.0221
+    "port": 241.1589,
+    "spy": 246.2789
   },
   {
     "date": "2019-06-25",
-    "port": 245.0133,
-    "spy": 243.6092
+    "port": 240.3117,
+    "spy": 243.8634
   },
   {
     "date": "2019-06-26",
-    "port": 243.7946,
-    "spy": 243.3662
+    "port": 239.1367,
+    "spy": 243.6202
   },
   {
     "date": "2019-06-27",
-    "port": 245.4511,
-    "spy": 244.2291
+    "port": 240.7763,
+    "spy": 244.484
   },
   {
     "date": "2019-06-28",
-    "port": 246.1353,
-    "spy": 245.4859
+    "port": 241.4671,
+    "spy": 245.7422
   },
   {
     "date": "2019-07-01",
-    "port": 248.029,
-    "spy": 247.7145
+    "port": 243.3177,
+    "spy": 247.9731
   },
   {
     "date": "2019-07-02",
-    "port": 249.2446,
-    "spy": 248.3597
+    "port": 244.4591,
+    "spy": 248.6189
   },
   {
     "date": "2019-07-03",
-    "port": 251.3332,
-    "spy": 250.3453
+    "port": 246.4802,
+    "spy": 250.6066
   },
   {
     "date": "2019-07-05",
-    "port": 249.7776,
-    "spy": 250.0605
+    "port": 245.0025,
+    "spy": 250.3215
   },
   {
     "date": "2019-07-08",
-    "port": 248.8302,
-    "spy": 248.6865
+    "port": 244.0599,
+    "spy": 248.9461
   },
   {
     "date": "2019-07-09",
-    "port": 248.7029,
-    "spy": 248.9965
+    "port": 243.9178,
+    "spy": 249.2564
   },
   {
     "date": "2019-07-10",
-    "port": 248.4926,
-    "spy": 250.1861
+    "port": 243.7014,
+    "spy": 250.4472
   },
   {
     "date": "2019-07-11",
-    "port": 247.0008,
-    "spy": 250.7727
+    "port": 242.2398,
+    "spy": 251.0345
   },
   {
     "date": "2019-07-12",
-    "port": 247.7892,
-    "spy": 251.8953
+    "port": 243.0187,
+    "spy": 252.1582
   },
   {
     "date": "2019-07-15",
-    "port": 248.3117,
-    "spy": 251.9792
+    "port": 243.4895,
+    "spy": 252.2422
   },
   {
     "date": "2019-07-16",
-    "port": 247.8125,
-    "spy": 251.1665
+    "port": 243.0294,
+    "spy": 251.4287
   },
   {
     "date": "2019-07-17",
-    "port": 247.9588,
-    "spy": 249.4573
+    "port": 243.1442,
+    "spy": 249.7177
   },
   {
     "date": "2019-07-18",
-    "port": 248.4253,
-    "spy": 250.3704
+    "port": 243.5911,
+    "spy": 250.6318
   },
   {
     "date": "2019-07-19",
-    "port": 247.2343,
-    "spy": 248.9797
+    "port": 242.4473,
+    "spy": 249.2395
   },
   {
     "date": "2019-07-22",
-    "port": 247.9481,
-    "spy": 249.5913
+    "port": 243.1276,
+    "spy": 249.8518
   },
   {
     "date": "2019-07-23",
-    "port": 248.8244,
-    "spy": 251.376
+    "port": 244.0055,
+    "spy": 251.6383
   },
   {
     "date": "2019-07-24",
-    "port": 250.5869,
-    "spy": 252.5572
+    "port": 245.7632,
+    "spy": 252.8208
   },
   {
     "date": "2019-07-25",
-    "port": 249.0457,
-    "spy": 251.3507
+    "port": 244.2456,
+    "spy": 251.613
   },
   {
     "date": "2019-07-26",
-    "port": 250.7482,
-    "spy": 253.0348
+    "port": 245.9151,
+    "spy": 253.2989
   },
   {
     "date": "2019-07-29",
-    "port": 250.4179,
-    "spy": 252.5739
+    "port": 245.5751,
+    "spy": 252.8375
   },
   {
     "date": "2019-07-30",
-    "port": 250.7019,
-    "spy": 251.954
+    "port": 245.8986,
+    "spy": 252.217
   },
   {
     "date": "2019-07-31",
-    "port": 250.3237,
-    "spy": 249.1976
+    "port": 245.5411,
+    "spy": 249.4577
   },
   {
     "date": "2019-08-01",
-    "port": 251.2006,
-    "spy": 247.0275
+    "port": 246.325,
+    "spy": 247.2853
   },
   {
     "date": "2019-08-02",
-    "port": 250.6885,
-    "spy": 245.1675
+    "port": 245.791,
+    "spy": 245.4234
   },
   {
     "date": "2019-08-05",
-    "port": 247.3782,
-    "spy": 237.7946
+    "port": 242.5313,
+    "spy": 238.0428
   },
   {
     "date": "2019-08-06",
-    "port": 250.2653,
-    "spy": 241.1291
+    "port": 245.3083,
+    "spy": 241.3808
   },
   {
     "date": "2019-08-07",
-    "port": 250.5074,
-    "spy": 241.2717
+    "port": 245.5326,
+    "spy": 241.5235
   },
   {
     "date": "2019-08-08",
-    "port": 253.9536,
-    "spy": 246.0054
+    "port": 248.885,
+    "spy": 246.2622
   },
   {
     "date": "2019-08-09",
-    "port": 252.3169,
-    "spy": 244.3296
+    "port": 247.2692,
+    "spy": 244.5846
   },
   {
     "date": "2019-08-12",
-    "port": 252.8979,
-    "spy": 241.3554
+    "port": 247.8097,
+    "spy": 241.6073
   },
   {
     "date": "2019-08-13",
-    "port": 254.7099,
-    "spy": 245.1088
+    "port": 249.5532,
+    "spy": 245.3647
   },
   {
     "date": "2019-08-14",
-    "port": 252.5495,
-    "spy": 237.8617
+    "port": 247.4221,
+    "spy": 238.1099
   },
   {
     "date": "2019-08-15",
-    "port": 254.074,
-    "spy": 238.49
+    "port": 248.8645,
+    "spy": 238.7389
   },
   {
     "date": "2019-08-16",
-    "port": 255.6704,
-    "spy": 242.0088
+    "port": 250.3494,
+    "spy": 242.2614
   },
   {
     "date": "2019-08-19",
-    "port": 256.2113,
-    "spy": 244.9246
+    "port": 250.8192,
+    "spy": 245.1803
   },
   {
     "date": "2019-08-20",
-    "port": 256.1638,
-    "spy": 243.0478
+    "port": 250.8062,
+    "spy": 243.3015
   },
   {
     "date": "2019-08-21",
-    "port": 256.9194,
-    "spy": 245.0251
+    "port": 251.5236,
+    "spy": 245.2808
   },
   {
     "date": "2019-08-22",
-    "port": 255.9776,
-    "spy": 244.9496
+    "port": 250.581,
+    "spy": 245.2053
   },
   {
     "date": "2019-08-23",
-    "port": 253.3611,
-    "spy": 238.6576
+    "port": 248.1278,
+    "spy": 238.9067
   },
   {
     "date": "2019-08-26",
-    "port": 254.647,
-    "spy": 241.2968
+    "port": 249.3766,
+    "spy": 241.5486
   },
   {
     "date": "2019-08-27",
-    "port": 255.5145,
-    "spy": 240.35
+    "port": 250.337,
+    "spy": 240.6008
   },
   {
     "date": "2019-08-28",
-    "port": 257.1139,
-    "spy": 242.0423
+    "port": 251.8631,
+    "spy": 242.295
   },
   {
     "date": "2019-08-29",
-    "port": 259.2566,
-    "spy": 245.1341
+    "port": 253.903,
+    "spy": 245.3899
   },
   {
     "date": "2019-08-30",
-    "port": 259.5626,
-    "spy": 245.0251
+    "port": 254.2048,
+    "spy": 245.2808
   },
   {
     "date": "2019-09-03",
-    "port": 258.5069,
-    "spy": 243.5924
+    "port": 253.2316,
+    "spy": 243.8467
   },
   {
     "date": "2019-09-04",
-    "port": 260.0592,
-    "spy": 246.3573
+    "port": 254.746,
+    "spy": 246.6144
   },
   {
     "date": "2019-09-05",
-    "port": 259.8527,
-    "spy": 249.5243
+    "port": 254.4243,
+    "spy": 249.7847
   },
   {
     "date": "2019-09-06",
-    "port": 260.7207,
-    "spy": 249.717
+    "port": 255.3135,
+    "spy": 249.9776
   },
   {
     "date": "2019-09-09",
-    "port": 259.433,
-    "spy": 249.8426
+    "port": 253.8578,
+    "spy": 250.1034
   },
   {
     "date": "2019-09-10",
-    "port": 257.6244,
-    "spy": 249.784
+    "port": 251.9413,
+    "spy": 250.0447
   },
   {
     "date": "2019-09-11",
-    "port": 259.1631,
-    "spy": 251.5602
+    "port": 253.3624,
+    "spy": 251.8227
   },
   {
     "date": "2019-09-12",
-    "port": 258.2331,
-    "spy": 252.4316
+    "port": 252.4527,
+    "spy": 252.695
   },
   {
     "date": "2019-09-13",
-    "port": 255.476,
-    "spy": 252.264
+    "port": 249.6565,
+    "spy": 252.5273
   },
   {
     "date": "2019-09-16",
-    "port": 257.0283,
-    "spy": 251.4848
+    "port": 251.1613,
+    "spy": 251.7473
   },
   {
     "date": "2019-09-17",
-    "port": 257.6844,
-    "spy": 252.1217
+    "port": 251.8907,
+    "spy": 252.3848
   },
   {
     "date": "2019-09-18",
-    "port": 258.2798,
-    "spy": 252.2724
+    "port": 252.5212,
+    "spy": 252.5357
   },
   {
     "date": "2019-09-19",
-    "port": 258.4704,
-    "spy": 252.2556
+    "port": 252.7522,
+    "spy": 252.5189
   },
   {
     "date": "2019-09-20",
-    "port": 259.5255,
-    "spy": 251.0637
+    "port": 253.8177,
+    "spy": 251.3258
   },
   {
     "date": "2019-09-23",
-    "port": 259.6588,
-    "spy": 251.0048
+    "port": 253.9263,
+    "spy": 251.2668
   },
   {
     "date": "2019-09-24",
-    "port": 259.3143,
-    "spy": 249.0353
+    "port": 253.6623,
+    "spy": 249.2952
   },
   {
     "date": "2019-09-25",
-    "port": 259.0708,
-    "spy": 250.5082
+    "port": 253.3165,
+    "spy": 250.7697
   },
   {
     "date": "2019-09-26",
-    "port": 259.3989,
-    "spy": 249.9864
+    "port": 253.7046,
+    "spy": 250.2473
   },
   {
     "date": "2019-09-27",
-    "port": 258.62,
-    "spy": 248.6396
+    "port": 252.9442,
+    "spy": 248.8991
   },
   {
     "date": "2019-09-30",
-    "port": 259.4051,
-    "spy": 249.7928
+    "port": 253.7288,
+    "spy": 250.0535
   },
   {
     "date": "2019-10-01",
-    "port": 257.3341,
-    "spy": 246.8216
+    "port": 251.7631,
+    "spy": 247.0793
   },
   {
     "date": "2019-10-02",
-    "port": 254.6394,
-    "spy": 242.4615
+    "port": 249.1202,
+    "spy": 242.7145
   },
   {
     "date": "2019-10-03",
-    "port": 256.8154,
-    "spy": 244.448
+    "port": 251.3167,
+    "spy": 244.7031
   },
   {
     "date": "2019-10-04",
-    "port": 259.6272,
-    "spy": 247.7559
+    "port": 254.0998,
+    "spy": 248.0145
   },
   {
     "date": "2019-10-07",
-    "port": 258.2608,
-    "spy": 246.6868
+    "port": 252.7346,
+    "spy": 246.9443
   },
   {
     "date": "2019-10-08",
-    "port": 255.8852,
-    "spy": 242.8571
+    "port": 250.4363,
+    "spy": 243.1106
   },
   {
     "date": "2019-10-09",
-    "port": 256.6624,
-    "spy": 245.1634
+    "port": 251.1938,
+    "spy": 245.4193
   },
   {
     "date": "2019-10-10",
-    "port": 255.8922,
-    "spy": 246.8216
+    "port": 250.3917,
+    "spy": 247.0793
   },
   {
     "date": "2019-10-11",
-    "port": 256.1529,
-    "spy": 249.3804
+    "port": 250.553,
+    "spy": 249.6407
   },
   {
     "date": "2019-10-14",
-    "port": 256.6699,
-    "spy": 249.1026
+    "port": 251.0972,
+    "spy": 249.3626
   },
   {
     "date": "2019-10-15",
-    "port": 257.0704,
-    "spy": 251.5688
+    "port": 251.4411,
+    "spy": 251.8313
   },
   {
     "date": "2019-10-16",
-    "port": 257.0537,
-    "spy": 251.1647
+    "port": 251.4045,
+    "spy": 251.4268
   },
   {
     "date": "2019-10-17",
-    "port": 256.8529,
-    "spy": 251.9055
+    "port": 251.1625,
+    "spy": 252.1684
   },
   {
     "date": "2019-10-18",
-    "port": 255.6305,
-    "spy": 250.8028
+    "port": 249.9561,
+    "spy": 251.0646
   },
   {
     "date": "2019-10-21",
-    "port": 256.2309,
-    "spy": 252.503
+    "port": 250.4954,
+    "spy": 252.7665
   },
   {
     "date": "2019-10-22",
-    "port": 256.9191,
-    "spy": 251.6782
+    "port": 251.1474,
+    "spy": 251.9409
   },
   {
     "date": "2019-10-23",
-    "port": 257.8376,
-    "spy": 252.4105
+    "port": 252.0418,
+    "spy": 252.6739
   },
   {
     "date": "2019-10-24",
-    "port": 258.4402,
-    "spy": 252.8229
+    "port": 252.6464,
+    "spy": 253.0868
   },
   {
     "date": "2019-10-25",
-    "port": 258.6696,
-    "spy": 253.8582
+    "port": 252.8334,
+    "spy": 254.1232
   },
   {
     "date": "2019-10-28",
-    "port": 258.2607,
-    "spy": 255.2891
+    "port": 252.3935,
+    "spy": 255.5555
   },
   {
     "date": "2019-10-29",
-    "port": 258.1546,
-    "spy": 255.2133
+    "port": 252.2584,
+    "spy": 255.4797
   },
   {
     "date": "2019-10-30",
-    "port": 259.6213,
-    "spy": 255.9961
+    "port": 253.8073,
+    "spy": 256.2633
   },
   {
     "date": "2019-10-31",
-    "port": 260.1991,
-    "spy": 255.3144
+    "port": 254.4463,
+    "spy": 255.5809
   },
   {
     "date": "2019-11-01",
-    "port": 261.1841,
-    "spy": 257.6796
+    "port": 255.4434,
+    "spy": 257.9486
   },
   {
     "date": "2019-11-04",
-    "port": 261.6345,
-    "spy": 258.7148
+    "port": 255.6777,
+    "spy": 258.9848
   },
   {
     "date": "2019-11-05",
-    "port": 260.3654,
-    "spy": 258.4287
+    "port": 254.3638,
+    "spy": 258.6984
   },
   {
     "date": "2019-11-06",
-    "port": 261.1144,
-    "spy": 258.4877
+    "port": 255.1439,
+    "spy": 258.7575
   },
   {
     "date": "2019-11-07",
-    "port": 259.5057,
-    "spy": 259.3966
+    "port": 253.5022,
+    "spy": 259.6673
   },
   {
     "date": "2019-11-08",
-    "port": 259.5143,
-    "spy": 260.0363
+    "port": 253.5061,
+    "spy": 260.3077
   },
   {
     "date": "2019-11-11",
-    "port": 259.0953,
-    "spy": 259.5398
+    "port": 253.1048,
+    "spy": 259.8107
   },
   {
     "date": "2019-11-12",
-    "port": 259.8498,
-    "spy": 260.0869
+    "port": 253.8642,
+    "spy": 260.3583
   },
   {
     "date": "2019-11-13",
-    "port": 260.1418,
-    "spy": 260.171
+    "port": 254.2074,
+    "spy": 260.4426
   },
   {
     "date": "2019-11-14",
-    "port": 261.8204,
-    "spy": 260.5498
+    "port": 255.8866,
+    "spy": 260.8217
   },
   {
     "date": "2019-11-15",
-    "port": 262.9652,
-    "spy": 262.4352
+    "port": 257.0186,
+    "spy": 262.7091
   },
   {
     "date": "2019-11-18",
-    "port": 263.2204,
-    "spy": 262.6288
+    "port": 257.3078,
+    "spy": 262.9029
   },
   {
     "date": "2019-11-19",
-    "port": 263.8418,
-    "spy": 262.553
+    "port": 257.9468,
+    "spy": 262.8271
   },
   {
     "date": "2019-11-20",
-    "port": 264.0919,
-    "spy": 261.5767
+    "port": 258.2389,
+    "spy": 261.8497
   },
   {
     "date": "2019-11-21",
-    "port": 263.0496,
-    "spy": 261.1558
+    "port": 257.2065,
+    "spy": 261.4284
   },
   {
     "date": "2019-11-22",
-    "port": 263.5854,
-    "spy": 261.7365
+    "port": 257.7291,
+    "spy": 262.0097
   },
   {
     "date": "2019-11-25",
-    "port": 265.8536,
-    "spy": 263.7651
+    "port": 259.8974,
+    "spy": 264.0404
   },
   {
     "date": "2019-11-26",
-    "port": 266.9574,
-    "spy": 264.3628
+    "port": 261.0212,
+    "spy": 264.6387
   },
   {
     "date": "2019-11-27",
-    "port": 267.7512,
-    "spy": 265.5411
+    "port": 261.7801,
+    "spy": 265.8183
   },
   {
     "date": "2019-11-29",
-    "port": 266.2526,
-    "spy": 264.5563
+    "port": 260.329,
+    "spy": 264.8324
   },
   {
     "date": "2019-12-02",
-    "port": 261.6093,
-    "spy": 262.3089
+    "port": 255.7369,
+    "spy": 262.5827
   },
   {
     "date": "2019-12-03",
-    "port": 262.4069,
-    "spy": 260.5498
+    "port": 256.5998,
+    "spy": 260.8217
   },
   {
     "date": "2019-12-04",
-    "port": 262.9598,
-    "spy": 262.1574
+    "port": 257.0903,
+    "spy": 262.431
   },
   {
     "date": "2019-12-05",
-    "port": 262.9274,
-    "spy": 262.6288
+    "port": 257.0282,
+    "spy": 262.9029
   },
   {
     "date": "2019-12-06",
-    "port": 264.4842,
-    "spy": 265.0276
+    "port": 258.4965,
+    "spy": 265.3043
   },
   {
     "date": "2019-12-09",
-    "port": 264.1124,
-    "spy": 264.1943
+    "port": 258.1246,
+    "spy": 264.4701
   },
   {
     "date": "2019-12-10",
-    "port": 263.8018,
-    "spy": 263.8997
+    "port": 257.8142,
+    "spy": 264.1752
   },
   {
     "date": "2019-12-11",
-    "port": 265.308,
-    "spy": 264.6489
+    "port": 259.3042,
+    "spy": 264.9251
   },
   {
     "date": "2019-12-12",
-    "port": 265.5024,
-    "spy": 266.9299
+    "port": 259.3961,
+    "spy": 267.2085
   },
   {
     "date": "2019-12-13",
-    "port": 267.1426,
-    "spy": 267.0898
+    "port": 261.0878,
+    "spy": 267.3686
   },
   {
     "date": "2019-12-16",
-    "port": 267.4195,
-    "spy": 268.9248
+    "port": 261.3261,
+    "spy": 269.2055
   },
   {
     "date": "2019-12-17",
-    "port": 267.4014,
-    "spy": 268.9836
+    "port": 261.2453,
+    "spy": 269.2643
   },
   {
     "date": "2019-12-18",
-    "port": 266.4228,
-    "spy": 269.0004
+    "port": 260.2492,
+    "spy": 269.2812
   },
   {
     "date": "2019-12-19",
-    "port": 266.8671,
-    "spy": 270.1031
+    "port": 260.6988,
+    "spy": 270.385
   },
   {
     "date": "2019-12-20",
-    "port": 267.826,
-    "spy": 271.2873
+    "port": 261.6616,
+    "spy": 271.5705
   },
   {
     "date": "2019-12-23",
-    "port": 267.8271,
-    "spy": 271.7017
+    "port": 261.6692,
+    "spy": 271.9853
   },
   {
     "date": "2019-12-24",
-    "port": 268.1871,
-    "spy": 271.7102
+    "port": 262.0192,
+    "spy": 271.9938
   },
   {
     "date": "2019-12-26",
-    "port": 269.5311,
-    "spy": 273.1566
+    "port": 263.3687,
+    "spy": 273.4418
   },
   {
     "date": "2019-12-27",
-    "port": 269.0998,
-    "spy": 273.0889
+    "port": 262.9822,
+    "spy": 273.374
   },
   {
     "date": "2019-12-30",
-    "port": 267.3108,
-    "spy": 271.5833
+    "port": 261.1871,
+    "spy": 271.8668
   },
   {
     "date": "2019-12-31",
-    "port": 266.6068,
-    "spy": 272.2431
+    "port": 260.4598,
+    "spy": 272.5272
   },
   {
     "date": "2020-01-02",
-    "port": 270.087,
-    "spy": 274.7891
+    "port": 263.9461,
+    "spy": 275.0759
   },
   {
     "date": "2020-01-03",
-    "port": 270.4569,
-    "spy": 272.7083
+    "port": 264.3406,
+    "spy": 272.993
   },
   {
     "date": "2020-01-06",
-    "port": 270.2273,
-    "spy": 273.7486
+    "port": 264.1202,
+    "spy": 274.0343
   },
   {
     "date": "2020-01-07",
-    "port": 269.2832,
-    "spy": 272.979
+    "port": 263.182,
+    "spy": 273.2639
   },
   {
     "date": "2020-01-08",
-    "port": 269.4034,
-    "spy": 274.4338
+    "port": 263.3006,
+    "spy": 274.7203
   },
   {
     "date": "2020-01-09",
-    "port": 270.7293,
-    "spy": 276.2947
+    "port": 264.6552,
+    "spy": 276.5831
   },
   {
     "date": "2020-01-10",
-    "port": 270.8556,
-    "spy": 275.4996
+    "port": 264.8269,
+    "spy": 275.7871
   },
   {
     "date": "2020-01-13",
-    "port": 271.8551,
-    "spy": 277.3943
+    "port": 265.7887,
+    "spy": 277.6838
   },
   {
     "date": "2020-01-14",
-    "port": 272.1414,
-    "spy": 276.9714
+    "port": 266.0669,
+    "spy": 277.2605
   },
   {
     "date": "2020-01-15",
-    "port": 273.0011,
-    "spy": 277.5972
+    "port": 266.9435,
+    "spy": 277.887
   },
   {
     "date": "2020-01-16",
-    "port": 274.825,
-    "spy": 279.9065
+    "port": 268.6897,
+    "spy": 280.1986
   },
   {
     "date": "2020-01-17",
-    "port": 274.6683,
-    "spy": 280.7777
+    "port": 268.5446,
+    "spy": 281.0707
   },
   {
     "date": "2020-01-21",
-    "port": 274.7162,
-    "spy": 280.2279
+    "port": 268.6938,
+    "spy": 280.5204
   },
   {
     "date": "2020-01-22",
-    "port": 274.9063,
-    "spy": 280.2617
+    "port": 268.903,
+    "spy": 280.5542
   },
   {
     "date": "2020-01-23",
-    "port": 275.732,
-    "spy": 280.5831
+    "port": 269.7304,
+    "spy": 280.8759
   },
   {
     "date": "2020-01-24",
-    "port": 274.6956,
-    "spy": 278.0879
+    "port": 268.7909,
+    "spy": 278.3781
   },
   {
     "date": "2020-01-27",
-    "port": 272.8724,
-    "spy": 273.6302
+    "port": 267.065,
+    "spy": 273.9158
   },
   {
     "date": "2020-01-28",
-    "port": 274.2151,
-    "spy": 276.4977
+    "port": 268.3617,
+    "spy": 276.7863
   },
   {
     "date": "2020-01-29",
-    "port": 275.1711,
-    "spy": 276.2693
+    "port": 269.3742,
+    "spy": 276.5577
   },
   {
     "date": "2020-01-30",
-    "port": 275.7627,
-    "spy": 277.1659
+    "port": 269.9639,
+    "spy": 277.4552
   },
   {
     "date": "2020-01-31",
-    "port": 272.572,
-    "spy": 272.1331
+    "port": 266.9198,
+    "spy": 272.4171
   },
   {
     "date": "2020-02-03",
-    "port": 274.0978,
-    "spy": 274.1547
+    "port": 268.4038,
+    "spy": 274.4408
   },
   {
     "date": "2020-02-04",
-    "port": 276.0313,
-    "spy": 278.3331
+    "port": 270.2739,
+    "spy": 278.6236
   },
   {
     "date": "2020-02-05",
-    "port": 277.8036,
-    "spy": 281.5474
+    "port": 271.8986,
+    "spy": 281.8412
   },
   {
     "date": "2020-02-06",
-    "port": 278.5724,
-    "spy": 282.4947
+    "port": 272.7316,
+    "spy": 282.7896
   },
   {
     "date": "2020-02-07",
-    "port": 278.7085,
-    "spy": 280.9891
+    "port": 272.9473,
+    "spy": 281.2824
   },
   {
     "date": "2020-02-10",
-    "port": 280.5395,
-    "spy": 283.0868
+    "port": 274.7916,
+    "spy": 283.3822
   },
   {
     "date": "2020-02-11",
-    "port": 280.5674,
-    "spy": 283.5774
+    "port": 274.7507,
+    "spy": 283.8734
   },
   {
     "date": "2020-02-12",
-    "port": 281.4901,
-    "spy": 285.4045
+    "port": 275.6307,
+    "spy": 285.7023
   },
   {
     "date": "2020-02-13",
-    "port": 281.8152,
-    "spy": 285.0999
+    "port": 275.943,
+    "spy": 285.3975
   },
   {
     "date": "2020-02-14",
-    "port": 282.4766,
-    "spy": 285.5567
+    "port": 276.6468,
+    "spy": 285.8548
   },
   {
     "date": "2020-02-18",
-    "port": 282.7069,
-    "spy": 284.8208
+    "port": 276.9168,
+    "spy": 285.1181
   },
   {
     "date": "2020-02-19",
-    "port": 284.1517,
-    "spy": 286.1827
+    "port": 278.3221,
+    "spy": 286.4814
   },
   {
     "date": "2020-02-20",
-    "port": 284.6746,
-    "spy": 285.0068
+    "port": 278.8077,
+    "spy": 285.3043
   },
   {
     "date": "2020-02-21",
-    "port": 283.1797,
-    "spy": 282.0718
+    "port": 277.3877,
+    "spy": 282.3662
   },
   {
     "date": "2020-02-24",
-    "port": 277.5524,
-    "spy": 272.7168
+    "port": 271.9449,
+    "spy": 273.0015
   },
   {
     "date": "2020-02-25",
-    "port": 271.3705,
-    "spy": 264.4528
+    "port": 265.9675,
+    "spy": 264.7288
   },
   {
     "date": "2020-02-26",
-    "port": 269.5572,
-    "spy": 263.4802
+    "port": 264.2538,
+    "spy": 263.7552
   },
   {
     "date": "2020-02-27",
-    "port": 262.1782,
-    "spy": 251.6468
+    "port": 257.0164,
+    "spy": 251.9095
   },
   {
     "date": "2020-02-28",
-    "port": 263.2752,
-    "spy": 250.5895
+    "port": 258.196,
+    "spy": 250.8511
   },
   {
     "date": "2020-03-02",
-    "port": 268.8476,
-    "spy": 261.4417
+    "port": 263.7162,
+    "spy": 261.7146
   },
   {
     "date": "2020-03-03",
-    "port": 265.3297,
-    "spy": 253.956
+    "port": 260.293,
+    "spy": 254.221
   },
   {
     "date": "2020-03-04",
-    "port": 270.9862,
-    "spy": 264.6305
+    "port": 265.6314,
+    "spy": 264.9067
   },
   {
     "date": "2020-03-05",
-    "port": 266.8334,
-    "spy": 255.8337
+    "port": 261.5757,
+    "spy": 256.1007
   },
   {
     "date": "2020-03-06",
-    "port": 269.2478,
-    "spy": 251.6045
+    "port": 263.8113,
+    "spy": 251.8671
   },
   {
     "date": "2020-03-09",
-    "port": 257.196,
-    "spy": 231.9556
+    "port": 252.2531,
+    "spy": 232.1977
   },
   {
     "date": "2020-03-10",
-    "port": 259.9882,
-    "spy": 243.9581
+    "port": 254.8726,
+    "spy": 244.2128
   },
   {
     "date": "2020-03-11",
-    "port": 248.5311,
-    "spy": 232.0656
+    "port": 244.1063,
+    "spy": 232.3078
   },
   {
     "date": "2020-03-12",
-    "port": 236.8235,
-    "spy": 209.8622
+    "port": 233.2619,
+    "spy": 210.0812
   },
   {
     "date": "2020-03-13",
-    "port": 243.9464,
-    "spy": 227.8025
+    "port": 239.7203,
+    "spy": 228.0403
   },
   {
     "date": "2020-03-16",
-    "port": 233.16,
-    "spy": 202.8755
+    "port": 229.4602,
+    "spy": 203.0873
   },
   {
     "date": "2020-03-17",
-    "port": 235.232,
-    "spy": 213.8292
+    "port": 231.1191,
+    "spy": 214.0524
   },
   {
     "date": "2020-03-18",
-    "port": 221.5634,
-    "spy": 203.0024
+    "port": 218.8482,
+    "spy": 203.2143
   },
   {
     "date": "2020-03-19",
-    "port": 225.1251,
-    "spy": 203.4337
+    "port": 221.8576,
+    "spy": 203.6461
   },
   {
     "date": "2020-03-20",
-    "port": 224.7333,
-    "spy": 194.667
+    "port": 221.5011,
+    "spy": 194.8702
   },
   {
     "date": "2020-03-23",
-    "port": 224.2234,
-    "spy": 189.6896
+    "port": 221.0116,
+    "spy": 189.8876
   },
   {
     "date": "2020-03-24",
-    "port": 235.0037,
-    "spy": 206.8762
+    "port": 231.7978,
+    "spy": 207.0921
   },
   {
     "date": "2020-03-25",
-    "port": 236.9982,
-    "spy": 209.9731
+    "port": 233.7948,
+    "spy": 210.1923
   },
   {
     "date": "2020-03-26",
-    "port": 246.0423,
-    "spy": 222.2334
+    "port": 242.8404,
+    "spy": 222.4654
   },
   {
     "date": "2020-03-27",
-    "port": 243.8011,
-    "spy": 215.6141
+    "port": 240.5966,
+    "spy": 215.8391
   },
   {
     "date": "2020-03-30",
-    "port": 248.2814,
-    "spy": 222.6163
+    "port": 245.0568,
+    "spy": 222.8486
   },
   {
     "date": "2020-03-31",
-    "port": 245.8299,
-    "spy": 219.2981
+    "port": 242.5809,
+    "spy": 219.527
   },
   {
     "date": "2020-04-01",
-    "port": 239.9142,
-    "spy": 209.4286
+    "port": 236.6665,
+    "spy": 209.6472
   },
   {
     "date": "2020-04-02",
-    "port": 243.4712,
-    "spy": 214.2613
+    "port": 240.2374,
+    "spy": 214.4849
   },
   {
     "date": "2020-04-03",
-    "port": 240.7455,
-    "spy": 211.1643
+    "port": 237.5337,
+    "spy": 211.3847
   },
   {
     "date": "2020-04-06",
-    "port": 251.2981,
-    "spy": 225.3474
+    "port": 248.0654,
+    "spy": 225.5826
   },
   {
     "date": "2020-04-07",
-    "port": 250.8334,
-    "spy": 225.5771
+    "port": 247.5896,
+    "spy": 225.8126
   },
   {
     "date": "2020-04-08",
-    "port": 255.6733,
-    "spy": 233.1495
+    "port": 252.4268,
+    "spy": 233.3928
   },
   {
     "date": "2020-04-09",
-    "port": 259.6018,
-    "spy": 236.6973
+    "port": 256.3203,
+    "spy": 236.9443
   },
   {
     "date": "2020-04-13",
-    "port": 256.6307,
-    "spy": 234.5362
+    "port": 253.3547,
+    "spy": 234.781
   },
   {
     "date": "2020-04-14",
-    "port": 260.9649,
-    "spy": 241.4534
+    "port": 257.6963,
+    "spy": 241.7054
   },
   {
     "date": "2020-04-15",
-    "port": 259.2,
-    "spy": 236.3229
+    "port": 255.9548,
+    "spy": 236.5696
   },
   {
     "date": "2020-04-16",
-    "port": 260.5165,
-    "spy": 237.463
+    "port": 257.2893,
+    "spy": 237.7108
   },
   {
     "date": "2020-04-17",
-    "port": 264.4508,
-    "spy": 243.8782
+    "port": 261.2019,
+    "spy": 244.1328
   },
   {
     "date": "2020-04-20",
-    "port": 262.4206,
-    "spy": 239.5815
+    "port": 259.1637,
+    "spy": 239.8316
   },
   {
     "date": "2020-04-21",
-    "port": 259.2414,
-    "spy": 232.3071
+    "port": 255.9585,
+    "spy": 232.5495
   },
   {
     "date": "2020-04-22",
-    "port": 261.2719,
-    "spy": 237.463
+    "port": 258.0042,
+    "spy": 237.7108
   },
   {
     "date": "2020-04-23",
-    "port": 261.9154,
-    "spy": 237.446
+    "port": 258.6503,
+    "spy": 237.6939
   },
   {
     "date": "2020-04-24",
-    "port": 264.5253,
-    "spy": 240.7558
+    "port": 261.2607,
+    "spy": 241.0071
   },
   {
     "date": "2020-04-27",
-    "port": 266.5409,
-    "spy": 244.227
+    "port": 263.229,
+    "spy": 244.482
   },
   {
     "date": "2020-04-28",
-    "port": 267.8324,
-    "spy": 243.1041
+    "port": 264.4985,
+    "spy": 243.3578
   },
   {
     "date": "2020-04-29",
-    "port": 272.5929,
-    "spy": 249.468
+    "port": 269.2433,
+    "spy": 249.7284
   },
   {
     "date": "2020-04-30",
-    "port": 268.3522,
-    "spy": 247.1453
+    "port": 265.0206,
+    "spy": 247.4033
   },
   {
     "date": "2020-05-01",
-    "port": 264.1559,
-    "spy": 240.6026
+    "port": 261.1559,
+    "spy": 240.8537
   },
   {
     "date": "2020-05-04",
-    "port": 264.0419,
-    "spy": 241.2661
+    "port": 261.0649,
+    "spy": 241.5179
   },
   {
     "date": "2020-05-05",
-    "port": 264.2361,
-    "spy": 243.4953
+    "port": 261.1923,
+    "spy": 243.7495
   },
   {
     "date": "2020-05-06",
-    "port": 261.12,
-    "spy": 241.8448
+    "port": 258.3225,
+    "spy": 242.0973
   },
   {
     "date": "2020-05-07",
-    "port": 264.9979,
-    "spy": 244.7631
+    "port": 261.9482,
+    "spy": 245.0185
   },
   {
     "date": "2020-05-08",
-    "port": 267.3285,
-    "spy": 248.8129
+    "port": 264.0232,
+    "spy": 249.0726
   },
   {
     "date": "2020-05-11",
-    "port": 265.86,
-    "spy": 248.864
+    "port": 262.6822,
+    "spy": 249.1238
   },
   {
     "date": "2020-05-12",
-    "port": 262.7745,
-    "spy": 243.9038
+    "port": 259.8451,
+    "spy": 244.1583
   },
   {
     "date": "2020-05-13",
-    "port": 259.7623,
-    "spy": 239.59
+    "port": 257.0761,
+    "spy": 239.8401
   },
   {
     "date": "2020-05-14",
-    "port": 262.5855,
-    "spy": 242.4574
+    "port": 259.7132,
+    "spy": 242.7104
   },
   {
     "date": "2020-05-15",
-    "port": 263.2196,
-    "spy": 243.5719
+    "port": 260.2857,
+    "spy": 243.8261
   },
   {
     "date": "2020-05-18",
-    "port": 267.1746,
-    "spy": 250.9911
+    "port": 263.7913,
+    "spy": 251.2531
   },
   {
     "date": "2020-05-19",
-    "port": 265.2393,
-    "spy": 248.4131
+    "port": 261.9996,
+    "spy": 248.6724
   },
   {
     "date": "2020-05-20",
-    "port": 268.8831,
-    "spy": 252.6331
+    "port": 265.3649,
+    "spy": 252.8968
   },
   {
     "date": "2020-05-21",
-    "port": 268.4646,
-    "spy": 250.889
+    "port": 265.0272,
+    "spy": 251.1509
   },
   {
     "date": "2020-05-22",
-    "port": 269.6443,
-    "spy": 251.3653
+    "port": 266.1877,
+    "spy": 251.6277
   },
   {
     "date": "2020-05-26",
-    "port": 271.2566,
-    "spy": 254.4624
+    "port": 267.5776,
+    "spy": 254.728
   },
   {
     "date": "2020-05-27",
-    "port": 275.2512,
-    "spy": 258.2485
+    "port": 271.3505,
+    "spy": 258.5181
   },
   {
     "date": "2020-05-28",
-    "port": 273.2365,
-    "spy": 257.7721
+    "port": 269.4486,
+    "spy": 258.0411
   },
   {
     "date": "2020-05-29",
-    "port": 273.998,
-    "spy": 258.9206
+    "port": 270.1614,
+    "spy": 259.1909
   },
   {
     "date": "2020-06-01",
-    "port": 274.0789,
-    "spy": 259.9671
+    "port": 270.1944,
+    "spy": 260.2385
   },
   {
     "date": "2020-06-02",
-    "port": 275.0379,
-    "spy": 262.1197
+    "port": 271.0144,
+    "spy": 262.3933
   },
   {
     "date": "2020-06-03",
-    "port": 276.4373,
-    "spy": 265.608
+    "port": 272.4537,
+    "spy": 265.8853
   },
   {
     "date": "2020-06-04",
-    "port": 274.8464,
-    "spy": 264.9104
+    "port": 270.8959,
+    "spy": 265.1869
   },
   {
     "date": "2020-06-05",
-    "port": 278.6961,
-    "spy": 271.6999
+    "port": 274.8032,
+    "spy": 271.9835
   },
   {
     "date": "2020-06-08",
-    "port": 281.9122,
-    "spy": 274.984
+    "port": 278.0289,
+    "spy": 275.271
   },
   {
     "date": "2020-06-09",
-    "port": 281.2936,
-    "spy": 272.9336
+    "port": 277.3731,
+    "spy": 273.2185
   },
   {
     "date": "2020-06-10",
-    "port": 280.6906,
-    "spy": 271.4107
+    "port": 276.7221,
+    "spy": 271.694
   },
   {
     "date": "2020-06-11",
-    "port": 271.5338,
-    "spy": 255.7641
+    "port": 267.5128,
+    "spy": 256.031
   },
   {
     "date": "2020-06-12",
-    "port": 273.3622,
-    "spy": 258.8271
+    "port": 269.3463,
+    "spy": 259.0972
   },
   {
     "date": "2020-06-15",
-    "port": 275.2637,
-    "spy": 261.2434
+    "port": 271.2517,
+    "spy": 261.5161
   },
   {
     "date": "2020-06-16",
-    "port": 277.5322,
-    "spy": 266.2717
+    "port": 273.5274,
+    "spy": 266.5496
   },
   {
     "date": "2020-06-17",
-    "port": 276.4558,
-    "spy": 265.1657
+    "port": 272.4344,
+    "spy": 265.4425
   },
   {
     "date": "2020-06-18",
-    "port": 277.5754,
-    "spy": 265.2677
+    "port": 273.5449,
+    "spy": 265.5446
   },
   {
     "date": "2020-06-19",
-    "port": 276.3987,
-    "spy": 263.7517
+    "port": 272.3636,
+    "spy": 264.027
   },
   {
     "date": "2020-06-22",
-    "port": 277.5288,
-    "spy": 265.4438
+    "port": 273.4897,
+    "spy": 265.7208
   },
   {
     "date": "2020-06-23",
-    "port": 277.8235,
-    "spy": 266.6658
+    "port": 273.7723,
+    "spy": 266.9442
   },
   {
     "date": "2020-06-24",
-    "port": 274.2191,
-    "spy": 259.8634
+    "port": 270.1312,
+    "spy": 260.1347
   },
   {
     "date": "2020-06-25",
-    "port": 276.5766,
-    "spy": 262.6494
+    "port": 272.4872,
+    "spy": 262.9236
   },
   {
     "date": "2020-06-26",
-    "port": 273.7552,
-    "spy": 256.411
+    "port": 269.6305,
+    "spy": 256.6786
   },
   {
     "date": "2020-06-29",
-    "port": 276.3935,
-    "spy": 260.1797
+    "port": 272.3043,
+    "spy": 260.4513
   },
   {
     "date": "2020-06-30",
-    "port": 277.441,
-    "spy": 263.5124
+    "port": 273.3945,
+    "spy": 263.7875
   },
   {
     "date": "2020-07-01",
-    "port": 277.0091,
-    "spy": 265.3583
+    "port": 272.968,
+    "spy": 265.6353
   },
   {
     "date": "2020-07-02",
-    "port": 278.1725,
-    "spy": 266.8196
+    "port": 274.1253,
+    "spy": 267.0981
   },
   {
     "date": "2020-07-06",
-    "port": 280.0916,
-    "spy": 270.9385
+    "port": 276.0656,
+    "spy": 271.2213
   },
   {
     "date": "2020-07-07",
-    "port": 279.5756,
-    "spy": 268.1442
+    "port": 275.5131,
+    "spy": 268.424
   },
   {
     "date": "2020-07-08",
-    "port": 280.2763,
-    "spy": 270.1951
+    "port": 276.2272,
+    "spy": 270.4771
   },
   {
     "date": "2020-07-09",
-    "port": 280.1866,
-    "spy": 268.657
+    "port": 276.11,
+    "spy": 268.9374
   },
   {
     "date": "2020-07-10",
-    "port": 282.1534,
-    "spy": 271.4001
+    "port": 278.0893,
+    "spy": 271.6833
   },
   {
     "date": "2020-07-13",
-    "port": 281.3307,
-    "spy": 269.0501
+    "port": 277.2492,
+    "spy": 269.3309
   },
   {
     "date": "2020-07-14",
-    "port": 283.987,
-    "spy": 272.5367
+    "port": 279.9041,
+    "spy": 272.8211
   },
   {
     "date": "2020-07-15",
-    "port": 286.1562,
-    "spy": 275.0405
+    "port": 282.0958,
+    "spy": 275.3276
   },
   {
     "date": "2020-07-16",
-    "port": 286.0001,
-    "spy": 274.1346
+    "port": 281.9424,
+    "spy": 274.4208
   },
   {
     "date": "2020-07-17",
-    "port": 285.9545,
-    "spy": 274.9294
+    "port": 281.8949,
+    "spy": 275.2163
   },
   {
     "date": "2020-07-20",
-    "port": 287.2305,
-    "spy": 277.1513
+    "port": 283.1463,
+    "spy": 277.4406
   },
   {
     "date": "2020-07-21",
-    "port": 288.6546,
-    "spy": 277.7409
+    "port": 284.5778,
+    "spy": 278.0308
   },
   {
     "date": "2020-07-22",
-    "port": 289.9726,
-    "spy": 279.3218
+    "port": 285.8876,
+    "spy": 279.6133
   },
   {
     "date": "2020-07-23",
-    "port": 289.5934,
-    "spy": 275.989
+    "port": 285.5167,
+    "spy": 276.2771
   },
   {
     "date": "2020-07-24",
-    "port": 288.3666,
-    "spy": 274.2116
+    "port": 284.279,
+    "spy": 274.4978
   },
   {
     "date": "2020-07-27",
-    "port": 289.516,
-    "spy": 276.2112
+    "port": 285.4181,
+    "spy": 276.4995
   },
   {
     "date": "2020-07-28",
-    "port": 289.1178,
-    "spy": 274.4594
+    "port": 285.0048,
+    "spy": 274.7459
   },
   {
     "date": "2020-07-29",
-    "port": 291.9484,
-    "spy": 277.835
+    "port": 287.8323,
+    "spy": 278.125
   },
   {
     "date": "2020-07-30",
-    "port": 292.0256,
-    "spy": 276.8436
+    "port": 287.8804,
+    "spy": 277.1325
   },
   {
     "date": "2020-07-31",
-    "port": 292.8103,
-    "spy": 279.0313
+    "port": 288.6559,
+    "spy": 279.3226
   },
   {
     "date": "2020-08-03",
-    "port": 293.7889,
-    "spy": 280.9712
+    "port": 289.642,
+    "spy": 281.2644
   },
   {
     "date": "2020-08-04",
-    "port": 296.3185,
-    "spy": 282.0564
+    "port": 292.1299,
+    "spy": 282.3508
   },
   {
     "date": "2020-08-05",
-    "port": 296.5958,
-    "spy": 283.8083
+    "port": 292.4448,
+    "spy": 284.1045
   },
   {
     "date": "2020-08-06",
-    "port": 298.6044,
-    "spy": 285.7054
+    "port": 294.4185,
+    "spy": 286.0036
   },
   {
     "date": "2020-08-07",
-    "port": 298.3142,
-    "spy": 285.9105
+    "port": 294.1671,
+    "spy": 286.209
   },
   {
     "date": "2020-08-10",
-    "port": 298.8047,
-    "spy": 286.7651
+    "port": 294.6782,
+    "spy": 287.0644
   },
   {
     "date": "2020-08-11",
-    "port": 295.3325,
-    "spy": 284.3979
+    "port": 291.2634,
+    "spy": 284.6948
   },
   {
     "date": "2020-08-12",
-    "port": 296.1582,
-    "spy": 288.3632
+    "port": 292.1122,
+    "spy": 288.6641
   },
   {
     "date": "2020-08-13",
-    "port": 294.118,
-    "spy": 287.8418
+    "port": 290.0827,
+    "spy": 288.1422
   },
   {
     "date": "2020-08-14",
-    "port": 294.1295,
-    "spy": 287.8504
+    "port": 290.0895,
+    "spy": 288.1509
   },
   {
     "date": "2020-08-17",
-    "port": 294.9229,
-    "spy": 288.7648
+    "port": 290.8672,
+    "spy": 289.0662
   },
   {
     "date": "2020-08-18",
-    "port": 295.9255,
-    "spy": 289.3885
+    "port": 291.8316,
+    "spy": 289.6906
   },
   {
     "date": "2020-08-19",
-    "port": 294.1722,
-    "spy": 288.1837
+    "port": 290.1036,
+    "spy": 288.4845
   },
   {
     "date": "2020-08-20",
-    "port": 295.4592,
-    "spy": 289.0808
+    "port": 291.3664,
+    "spy": 289.3826
   },
   {
     "date": "2020-08-21",
-    "port": 296.4823,
-    "spy": 290.1064
+    "port": 292.377,
+    "spy": 290.4092
   },
   {
     "date": "2020-08-24",
-    "port": 298.5916,
-    "spy": 293.0461
+    "port": 294.5064,
+    "spy": 293.3519
   },
   {
     "date": "2020-08-25",
-    "port": 297.8902,
-    "spy": 294.0716
+    "port": 293.8243,
+    "spy": 294.3785
   },
   {
     "date": "2020-08-26",
-    "port": 298.8964,
-    "spy": 297.0199
+    "port": 294.8116,
+    "spy": 297.3299
   },
   {
     "date": "2020-08-27",
-    "port": 296.9996,
-    "spy": 297.6692
+    "port": 292.9553,
+    "spy": 297.9799
   },
   {
     "date": "2020-08-28",
-    "port": 298.6954,
-    "spy": 299.592
+    "port": 294.6274,
+    "spy": 299.9047
   },
   {
     "date": "2020-08-31",
-    "port": 298.1451,
-    "spy": 298.5068
+    "port": 294.0662,
+    "spy": 298.8183
   },
   {
     "date": "2020-09-01",
-    "port": 301.6485,
-    "spy": 301.3183
+    "port": 297.5522,
+    "spy": 301.6328
   },
   {
     "date": "2020-09-02",
-    "port": 305.3243,
-    "spy": 305.6765
+    "port": 301.2186,
+    "spy": 305.9956
   },
   {
     "date": "2020-09-03",
-    "port": 298.7411,
-    "spy": 295.1569
+    "port": 294.6591,
+    "spy": 295.465
   },
   {
     "date": "2020-09-04",
-    "port": 295.3888,
-    "spy": 292.747
+    "port": 291.3266,
+    "spy": 293.0526
   },
   {
     "date": "2020-09-08",
-    "port": 290.5621,
-    "spy": 284.7484
+    "port": 286.5035,
+    "spy": 285.0456
   },
   {
     "date": "2020-09-09",
-    "port": 293.5704,
-    "spy": 290.3714
+    "port": 289.5105,
+    "spy": 290.6744
   },
   {
     "date": "2020-09-10",
-    "port": 290.6459,
-    "spy": 285.3295
+    "port": 286.5925,
+    "spy": 285.6273
   },
   {
     "date": "2020-09-11",
-    "port": 291.0761,
-    "spy": 285.4747
+    "port": 287.0171,
+    "spy": 285.7727
   },
   {
     "date": "2020-09-14",
-    "port": 293.9932,
-    "spy": 289.2348
+    "port": 289.9213,
+    "spy": 289.5367
   },
   {
     "date": "2020-09-15",
-    "port": 294.2963,
-    "spy": 290.696
+    "port": 290.2195,
+    "spy": 290.9994
   },
   {
     "date": "2020-09-16",
-    "port": 293.7425,
-    "spy": 289.5424
+    "port": 289.6731,
+    "spy": 289.8446
   },
   {
     "date": "2020-09-17",
-    "port": 292.6074,
-    "spy": 286.9958
+    "port": 288.5357,
+    "spy": 287.2954
   },
   {
     "date": "2020-09-18",
-    "port": 289.9532,
-    "spy": 283.6917
+    "port": 285.8966,
+    "spy": 283.9878
   },
   {
     "date": "2020-09-21",
-    "port": 287.4235,
-    "spy": 280.5344
+    "port": 283.341,
+    "spy": 280.8272
   },
   {
     "date": "2020-09-22",
-    "port": 288.989,
-    "spy": 283.3914
+    "port": 284.9002,
+    "spy": 283.6872
   },
   {
     "date": "2020-09-23",
-    "port": 284.0366,
-    "spy": 276.8193
+    "port": 279.9677,
+    "spy": 277.1082
   },
   {
     "date": "2020-09-24",
-    "port": 284.9886,
-    "spy": 277.5571
+    "port": 280.9177,
+    "spy": 277.8468
   },
   {
     "date": "2020-09-25",
-    "port": 287.8606,
-    "spy": 282.0444
+    "port": 283.7758,
+    "spy": 282.3388
   },
   {
     "date": "2020-09-28",
-    "port": 291.0538,
-    "spy": 286.729
+    "port": 286.9805,
+    "spy": 287.0283
   },
   {
     "date": "2020-09-29",
-    "port": 290.4882,
-    "spy": 285.1674
+    "port": 286.3861,
+    "spy": 285.465
   },
   {
     "date": "2020-09-30",
-    "port": 290.5217,
-    "spy": 287.3295
+    "port": 286.4339,
+    "spy": 287.6294
   },
   {
     "date": "2020-10-01",
-    "port": 292.3984,
-    "spy": 289.1742
+    "port": 288.3011,
+    "spy": 289.476
   },
   {
     "date": "2020-10-02",
-    "port": 291.3397,
-    "spy": 286.4287
+    "port": 287.2469,
+    "spy": 286.7276
   },
   {
     "date": "2020-10-05",
-    "port": 292.1311,
-    "spy": 291.5079
+    "port": 288.0946,
+    "spy": 291.8122
   },
   {
     "date": "2020-10-06",
-    "port": 290.2778,
-    "spy": 287.3638
+    "port": 286.2406,
+    "spy": 287.6638
   },
   {
     "date": "2020-10-07",
-    "port": 292.8228,
-    "spy": 292.3659
+    "port": 288.8014,
+    "spy": 292.671
   },
   {
     "date": "2020-10-08",
-    "port": 295.4905,
-    "spy": 294.957
+    "port": 291.4655,
+    "spy": 295.2649
   },
   {
     "date": "2020-10-09",
-    "port": 297.3233,
-    "spy": 297.5911
+    "port": 293.273,
+    "spy": 297.9017
   },
   {
     "date": "2020-10-12",
-    "port": 300.5877,
-    "spy": 302.3786
+    "port": 296.5317,
+    "spy": 302.6942
   },
   {
     "date": "2020-10-13",
-    "port": 299.5586,
-    "spy": 300.4052
+    "port": 295.4997,
+    "spy": 300.7187
   },
   {
     "date": "2020-10-14",
-    "port": 298.5967,
-    "spy": 298.5176
+    "port": 294.5399,
+    "spy": 298.8292
   },
   {
     "date": "2020-10-15",
-    "port": 298.801,
-    "spy": 298.1487
+    "port": 294.7512,
+    "spy": 298.4599
   },
   {
     "date": "2020-10-16",
-    "port": 298.0288,
-    "spy": 297.9685
+    "port": 293.9846,
+    "spy": 298.2795
   },
   {
     "date": "2020-10-19",
-    "port": 294.7094,
-    "spy": 293.4384
+    "port": 290.6667,
+    "spy": 293.7447
   },
   {
     "date": "2020-10-20",
-    "port": 294.5274,
-    "spy": 294.6139
+    "port": 290.4979,
+    "spy": 294.9214
   },
   {
     "date": "2020-10-21",
-    "port": 293.9489,
-    "spy": 294.0561
+    "port": 289.9044,
+    "spy": 294.3631
   },
   {
     "date": "2020-10-22",
-    "port": 293.9948,
-    "spy": 295.6691
+    "port": 289.977,
+    "spy": 295.9778
   },
   {
     "date": "2020-10-23",
-    "port": 295.5734,
-    "spy": 296.673
+    "port": 291.5448,
+    "spy": 296.9826
   },
   {
     "date": "2020-10-26",
-    "port": 292.6399,
-    "spy": 291.1905
+    "port": 288.6053,
+    "spy": 291.4944
   },
   {
     "date": "2020-10-27",
-    "port": 291.9136,
-    "spy": 290.1866
+    "port": 287.8711,
+    "spy": 290.4895
   },
   {
     "date": "2020-10-28",
-    "port": 285.054,
-    "spy": 280.2684
+    "port": 281.0338,
+    "spy": 280.5609
   },
   {
     "date": "2020-10-29",
-    "port": 285.5631,
-    "spy": 283.1169
+    "port": 281.5709,
+    "spy": 283.4125
   },
   {
     "date": "2020-10-30",
-    "port": 282.413,
-    "spy": 280.1655
+    "port": 278.4451,
+    "spy": 280.4579
   },
   {
     "date": "2020-11-02",
-    "port": 285.903,
-    "spy": 283.3056
+    "port": 281.9302,
+    "spy": 283.6013
   },
   {
     "date": "2020-11-03",
-    "port": 289.1541,
-    "spy": 288.3076
+    "port": 285.1777,
+    "spy": 288.6086
   },
   {
     "date": "2020-11-04",
-    "port": 294.4993,
-    "spy": 294.7511
+    "port": 290.4645,
+    "spy": 295.0587
   },
   {
     "date": "2020-11-05",
-    "port": 299.685,
-    "spy": 300.4995
+    "port": 295.6238,
+    "spy": 300.8132
   },
   {
     "date": "2020-11-06",
-    "port": 297.9299,
-    "spy": 300.4309
+    "port": 293.8618,
+    "spy": 300.7445
   },
   {
     "date": "2020-11-09",
-    "port": 298.8929,
-    "spy": 304.206
+    "port": 294.9123,
+    "spy": 304.5235
   },
   {
     "date": "2020-11-10",
-    "port": 298.9094,
-    "spy": 303.7599
+    "port": 294.9577,
+    "spy": 304.077
   },
   {
     "date": "2020-11-11",
-    "port": 300.0559,
-    "spy": 306.0164
+    "port": 296.0934,
+    "spy": 306.3358
   },
   {
     "date": "2020-11-12",
-    "port": 299.4373,
-    "spy": 303.0478
+    "port": 295.461,
+    "spy": 303.3641
   },
   {
     "date": "2020-11-13",
-    "port": 302.7584,
-    "spy": 307.2434
+    "port": 298.7824,
+    "spy": 307.5641
   },
   {
     "date": "2020-11-16",
-    "port": 306.2236,
-    "spy": 311.0785
+    "port": 302.2424,
+    "spy": 311.4032
   },
   {
     "date": "2020-11-17",
-    "port": 306.1955,
-    "spy": 309.4054
+    "port": 302.2089,
+    "spy": 309.7284
   },
   {
     "date": "2020-11-18",
-    "port": 304.2605,
-    "spy": 305.6818
+    "port": 300.2664,
+    "spy": 306.0009
   },
   {
     "date": "2020-11-19",
-    "port": 305.786,
-    "spy": 306.9687
+    "port": 301.7819,
+    "spy": 307.2891
   },
   {
     "date": "2020-11-20",
-    "port": 305.607,
-    "spy": 304.8667
+    "port": 301.5893,
+    "spy": 305.1849
   },
   {
     "date": "2020-11-23",
-    "port": 306.9515,
-    "spy": 306.6942
+    "port": 302.9593,
+    "spy": 307.0143
   },
   {
     "date": "2020-11-24",
-    "port": 309.7504,
-    "spy": 311.6362
+    "port": 305.7766,
+    "spy": 311.9615
   },
   {
     "date": "2020-11-25",
-    "port": 308.4664,
-    "spy": 311.1557
+    "port": 304.4685,
+    "spy": 311.4804
   },
   {
     "date": "2020-11-27",
-    "port": 310.1654,
-    "spy": 312.0223
+    "port": 306.1792,
+    "spy": 312.348
   },
   {
     "date": "2020-11-30",
-    "port": 307.6689,
-    "spy": 310.6409
+    "port": 303.8773,
+    "spy": 310.9652
   },
   {
     "date": "2020-12-01",
-    "port": 308.747,
-    "spy": 314.0385
+    "port": 304.8844,
+    "spy": 314.3663
   },
   {
     "date": "2020-12-02",
-    "port": 308.0179,
-    "spy": 314.6992
+    "port": 304.0774,
+    "spy": 315.0277
   },
   {
     "date": "2020-12-03",
-    "port": 310.3149,
-    "spy": 314.6134
+    "port": 306.4377,
+    "spy": 314.9417
   },
   {
     "date": "2020-12-04",
-    "port": 310.6662,
-    "spy": 317.3246
+    "port": 306.5283,
+    "spy": 317.6558
   },
   {
     "date": "2020-12-07",
-    "port": 311.7636,
-    "spy": 316.6725
+    "port": 307.7096,
+    "spy": 317.0031
   },
   {
     "date": "2020-12-08",
-    "port": 312.2718,
-    "spy": 317.5992
+    "port": 308.0405,
+    "spy": 317.9307
   },
   {
     "date": "2020-12-09",
-    "port": 311.2393,
-    "spy": 314.7506
+    "port": 307.1747,
+    "spy": 315.0792
   },
   {
     "date": "2020-12-10",
-    "port": 311.8111,
-    "spy": 314.6478
+    "port": 307.5956,
+    "spy": 314.9762
   },
   {
     "date": "2020-12-11",
-    "port": 311.8348,
-    "spy": 314.2788
+    "port": 307.6897,
+    "spy": 314.6068
   },
   {
     "date": "2020-12-14",
-    "port": 310.691,
-    "spy": 312.8717
+    "port": 306.675,
+    "spy": 313.1983
   },
   {
     "date": "2020-12-15",
-    "port": 314.012,
-    "spy": 317.1015
+    "port": 309.779,
+    "spy": 317.4325
   },
   {
     "date": "2020-12-16",
-    "port": 313.5096,
-    "spy": 317.5992
+    "port": 309.2965,
+    "spy": 317.9307
   },
   {
     "date": "2020-12-17",
-    "port": 315.4308,
-    "spy": 319.3752
+    "port": 311.2359,
+    "spy": 319.7085
   },
   {
     "date": "2020-12-18",
-    "port": 313.5188,
-    "spy": 318.0999
+    "port": 309.358,
+    "spy": 318.432
   },
   {
     "date": "2020-12-21",
-    "port": 313.5324,
-    "spy": 316.9626
+    "port": 309.4772,
+    "spy": 317.2934
   },
   {
     "date": "2020-12-22",
-    "port": 312.667,
-    "spy": 316.4284
+    "port": 308.489,
+    "spy": 316.7587
   },
   {
     "date": "2020-12-23",
-    "port": 314.5757,
-    "spy": 316.7127
+    "port": 310.5002,
+    "spy": 317.0433
   },
   {
     "date": "2020-12-24",
-    "port": 315.1298,
-    "spy": 317.9448
+    "port": 310.9385,
+    "spy": 318.2767
   },
   {
     "date": "2020-12-28",
-    "port": 315.8435,
-    "spy": 320.6763
+    "port": 311.4423,
+    "spy": 321.011
   },
   {
     "date": "2020-12-29",
-    "port": 317.2205,
-    "spy": 320.0645
+    "port": 313.2441,
+    "spy": 320.3986
   },
   {
     "date": "2020-12-30",
-    "port": 319.4366,
-    "spy": 320.5211
+    "port": 315.4992,
+    "spy": 320.8557
   },
   {
     "date": "2020-12-31",
-    "port": 320.3317,
-    "spy": 322.1496
+    "port": 316.3289,
+    "spy": 322.4858
   },
   {
     "date": "2021-01-04",
-    "port": 317.2305,
-    "spy": 317.7639
+    "port": 313.3795,
+    "spy": 318.0956
   },
   {
     "date": "2021-01-05",
-    "port": 320.4236,
-    "spy": 319.9525
+    "port": 316.6344,
+    "spy": 320.2865
   },
   {
     "date": "2021-01-06",
-    "port": 321.1421,
-    "spy": 321.8652
+    "port": 316.9356,
+    "spy": 322.2012
   },
   {
     "date": "2021-01-07",
-    "port": 322.0304,
-    "spy": 326.6474
+    "port": 317.7835,
+    "spy": 326.9883
   },
   {
     "date": "2021-01-08",
-    "port": 321.8265,
-    "spy": 328.5086
+    "port": 317.5212,
+    "spy": 328.8515
   },
   {
     "date": "2021-01-11",
-    "port": 319.1158,
-    "spy": 326.2942
+    "port": 314.8651,
+    "spy": 326.6347
   },
   {
     "date": "2021-01-12",
-    "port": 322.4864,
-    "spy": 326.3631
+    "port": 318.3056,
+    "spy": 326.7037
   },
   {
     "date": "2021-01-13",
-    "port": 323.0479,
-    "spy": 327.242
+    "port": 318.7651,
+    "spy": 327.5835
   },
   {
     "date": "2021-01-14",
-    "port": 324.1521,
-    "spy": 326.096
+    "port": 319.9967,
+    "spy": 326.4364
   },
   {
     "date": "2021-01-15",
-    "port": 320.7464,
-    "spy": 323.7179
+    "port": 316.5653,
+    "spy": 324.0557
   },
   {
     "date": "2021-01-19",
-    "port": 323.6671,
-    "spy": 326.2596
+    "port": 319.4464,
+    "spy": 326.6002
   },
   {
     "date": "2021-01-20",
-    "port": 326.2995,
-    "spy": 330.7747
+    "port": 321.9939,
+    "spy": 331.12
   },
   {
     "date": "2021-01-21",
-    "port": 325.6901,
-    "spy": 331.0762
+    "port": 321.3841,
+    "spy": 331.4218
   },
   {
     "date": "2021-01-22",
-    "port": 324.2677,
-    "spy": 329.9045
+    "port": 319.9794,
+    "spy": 330.2488
   },
   {
     "date": "2021-01-25",
-    "port": 326.2975,
-    "spy": 331.2055
+    "port": 321.9207,
+    "spy": 331.5512
   },
   {
     "date": "2021-01-26",
-    "port": 326.8773,
-    "spy": 330.6886
+    "port": 322.5194,
+    "spy": 331.0337
   },
   {
     "date": "2021-01-27",
-    "port": 321.5088,
-    "spy": 322.6063
+    "port": 317.2679,
+    "spy": 322.9431
   },
   {
     "date": "2021-01-28",
-    "port": 322.1314,
-    "spy": 325.3809
+    "port": 317.8518,
+    "spy": 325.7205
   },
   {
     "date": "2021-01-29",
-    "port": 317.9413,
-    "spy": 318.8669
+    "port": 313.7783,
+    "spy": 319.1997
   },
   {
     "date": "2021-02-01",
-    "port": 320.9018,
-    "spy": 324.1746
+    "port": 316.6748,
+    "spy": 324.5129
   },
   {
     "date": "2021-02-02",
-    "port": 322.8996,
-    "spy": 328.7585
+    "port": 318.6298,
+    "spy": 329.1016
   },
   {
     "date": "2021-02-03",
-    "port": 323.1504,
-    "spy": 329.0169
+    "port": 318.9387,
+    "spy": 329.3603
   },
   {
     "date": "2021-02-04",
-    "port": 324.6499,
-    "spy": 332.7564
+    "port": 320.4116,
+    "spy": 333.1037
   },
   {
     "date": "2021-02-05",
-    "port": 325.8994,
-    "spy": 334.0661
+    "port": 321.7012,
+    "spy": 334.4148
   },
   {
     "date": "2021-02-08",
-    "port": 329.7557,
-    "spy": 336.4788
+    "port": 325.5611,
+    "spy": 336.83
   },
   {
     "date": "2021-02-09",
-    "port": 330.5322,
-    "spy": 336.2548
+    "port": 326.3459,
+    "spy": 336.6058
   },
   {
     "date": "2021-02-10",
-    "port": 330.5421,
-    "spy": 336.1082
+    "port": 326.3154,
+    "spy": 336.459
   },
   {
     "date": "2021-02-11",
-    "port": 330.2839,
-    "spy": 336.651
+    "port": 326.075,
+    "spy": 337.0024
   },
   {
     "date": "2021-02-12",
-    "port": 330.4372,
-    "spy": 338.314
+    "port": 326.2679,
+    "spy": 338.6671
   },
   {
     "date": "2021-02-16",
-    "port": 330.0821,
-    "spy": 338.0211
+    "port": 326.006,
+    "spy": 338.3739
   },
   {
     "date": "2021-02-17",
-    "port": 329.858,
-    "spy": 338.0987
+    "port": 325.733,
+    "spy": 338.4516
   },
   {
     "date": "2021-02-18",
-    "port": 329.1465,
-    "spy": 336.6596
+    "port": 325.0387,
+    "spy": 337.011
   },
   {
     "date": "2021-02-19",
-    "port": 329.2216,
-    "spy": 336.0651
+    "port": 325.2475,
+    "spy": 336.4159
   },
   {
     "date": "2021-02-22",
-    "port": 329.7344,
-    "spy": 333.4802
+    "port": 325.8968,
+    "spy": 333.8282
   },
   {
     "date": "2021-02-23",
-    "port": 330.2674,
-    "spy": 333.8852
+    "port": 326.4423,
+    "spy": 334.2337
   },
   {
     "date": "2021-02-24",
-    "port": 333.8702,
-    "spy": 337.5644
+    "port": 330.0728,
+    "spy": 337.9167
   },
   {
     "date": "2021-02-25",
-    "port": 326.8629,
-    "spy": 329.4306
+    "port": 323.2164,
+    "spy": 329.7744
   },
   {
     "date": "2021-02-26",
-    "port": 326.9019,
-    "spy": 327.7331
+    "port": 323.1133,
+    "spy": 328.0752
   },
   {
     "date": "2021-03-01",
-    "port": 329.127,
-    "spy": 335.6774
+    "port": 325.3006,
+    "spy": 336.0277
   },
   {
     "date": "2021-03-02",
-    "port": 327.6491,
-    "spy": 333.058
+    "port": 323.8479,
+    "spy": 333.4057
   },
   {
     "date": "2021-03-03",
-    "port": 325.252,
-    "spy": 328.6465
+    "port": 321.6113,
+    "spy": 328.9895
   },
   {
     "date": "2021-03-04",
-    "port": 322.5427,
-    "spy": 324.5795
+    "port": 318.9786,
+    "spy": 324.9183
   },
   {
     "date": "2021-03-05",
-    "port": 327.745,
-    "spy": 330.5507
+    "port": 324.1412,
+    "spy": 330.8957
   },
   {
     "date": "2021-03-08",
-    "port": 326.5814,
-    "spy": 328.9048
+    "port": 323.0943,
+    "spy": 329.2481
   },
   {
     "date": "2021-03-09",
-    "port": 329.2016,
-    "spy": 333.6008
+    "port": 325.5292,
+    "spy": 333.949
   },
   {
     "date": "2021-03-10",
-    "port": 331.5367,
-    "spy": 335.6774
+    "port": 327.7471,
+    "spy": 336.0277
   },
   {
     "date": "2021-03-11",
-    "port": 334.089,
-    "spy": 339.081
+    "port": 330.2111,
+    "spy": 339.4349
   },
   {
     "date": "2021-03-12",
-    "port": 333.4776,
-    "spy": 339.5376
+    "port": 329.4302,
+    "spy": 339.892
   },
   {
     "date": "2021-03-15",
-    "port": 334.6737,
-    "spy": 341.5624
+    "port": 330.7004,
+    "spy": 341.9189
   },
   {
     "date": "2021-03-16",
-    "port": 332.9442,
-    "spy": 341.1316
+    "port": 329.0652,
+    "spy": 341.4876
   },
   {
     "date": "2021-03-17",
-    "port": 332.9599,
-    "spy": 342.2947
+    "port": 329.0099,
+    "spy": 342.652
   },
   {
     "date": "2021-03-18",
-    "port": 327.0939,
-    "spy": 337.3145
+    "port": 323.1898,
+    "spy": 337.6666
   },
   {
     "date": "2021-03-19",
-    "port": 327.8686,
-    "spy": 336.6904
+    "port": 323.9536,
+    "spy": 337.0418
   },
   {
     "date": "2021-03-22",
-    "port": 329.1374,
-    "spy": 339.3788
+    "port": 325.4357,
+    "spy": 339.733
   },
   {
     "date": "2021-03-23",
-    "port": 325.0727,
-    "spy": 336.7077
+    "port": 321.6786,
+    "spy": 337.0591
   },
   {
     "date": "2021-03-24",
-    "port": 324.9735,
-    "spy": 334.996
+    "port": 321.5989,
+    "spy": 335.3457
   },
   {
     "date": "2021-03-25",
-    "port": 324.8151,
-    "spy": 336.8806
+    "port": 321.3136,
+    "spy": 337.2322
   },
   {
     "date": "2021-03-26",
-    "port": 329.3944,
-    "spy": 342.3094
+    "port": 325.7564,
+    "spy": 342.6667
   },
   {
     "date": "2021-03-29",
-    "port": 328.5551,
-    "spy": 342.1365
+    "port": 325.0167,
+    "spy": 342.4936
   },
   {
     "date": "2021-03-30",
-    "port": 328.3707,
-    "spy": 341.2288
+    "port": 324.7488,
+    "spy": 341.585
   },
   {
     "date": "2021-03-31",
-    "port": 329.0343,
-    "spy": 342.6119
+    "port": 325.4101,
+    "spy": 342.9695
   },
   {
     "date": "2021-04-01",
-    "port": 332.6485,
-    "spy": 346.3118
+    "port": 329.0606,
+    "spy": 346.6732
   },
   {
     "date": "2021-04-05",
-    "port": 335.0065,
-    "spy": 351.2825
+    "port": 331.4332,
+    "spy": 351.6491
   },
   {
     "date": "2021-04-06",
-    "port": 335.6152,
-    "spy": 351.075
+    "port": 332.0775,
+    "spy": 351.4414
   },
   {
     "date": "2021-04-07",
-    "port": 334.4843,
-    "spy": 351.4813
+    "port": 330.9944,
+    "spy": 351.8482
   },
   {
     "date": "2021-04-08",
-    "port": 335.8145,
-    "spy": 353.1497
+    "port": 332.3741,
+    "spy": 353.5183
   },
   {
     "date": "2021-04-09",
-    "port": 337.6191,
-    "spy": 355.7171
+    "port": 334.1499,
+    "spy": 356.0884
   },
   {
     "date": "2021-04-12",
-    "port": 337.0821,
-    "spy": 355.8468
+    "port": 333.6147,
+    "spy": 356.2183
   },
   {
     "date": "2021-04-13",
-    "port": 337.6477,
-    "spy": 356.9014
+    "port": 334.3125,
+    "spy": 357.274
   },
   {
     "date": "2021-04-14",
-    "port": 339.6155,
-    "spy": 355.6826
+    "port": 336.0944,
+    "spy": 356.0538
   },
   {
     "date": "2021-04-15",
-    "port": 343.2116,
-    "spy": 359.5034
+    "port": 339.7992,
+    "spy": 359.8787
   },
   {
     "date": "2021-04-16",
-    "port": 343.3693,
-    "spy": 360.7051
+    "port": 339.8935,
+    "spy": 361.0816
   },
   {
     "date": "2021-04-19",
-    "port": 341.7348,
-    "spy": 358.933
+    "port": 338.2732,
+    "spy": 359.3076
   },
   {
     "date": "2021-04-20",
-    "port": 340.3199,
-    "spy": 356.305
+    "port": 337.0104,
+    "spy": 356.6769
   },
   {
     "date": "2021-04-21",
-    "port": 342.9004,
-    "spy": 359.6764
+    "port": 339.519,
+    "spy": 360.0518
   },
   {
     "date": "2021-04-22",
-    "port": 342.6013,
-    "spy": 356.3914
+    "port": 339.2109,
+    "spy": 356.7634
   },
   {
     "date": "2021-04-23",
-    "port": 345.4596,
-    "spy": 360.2556
+    "port": 341.9569,
+    "spy": 360.6316
   },
   {
     "date": "2021-04-26",
-    "port": 347.2246,
-    "spy": 361.0077
+    "port": 343.6654,
+    "spy": 361.3845
   },
   {
     "date": "2021-04-27",
-    "port": 347.3929,
-    "spy": 360.9299
+    "port": 343.7454,
+    "spy": 361.3066
   },
   {
     "date": "2021-04-28",
-    "port": 346.77,
-    "spy": 360.8262
+    "port": 343.1304,
+    "spy": 361.2028
   },
   {
     "date": "2021-04-29",
-    "port": 348.8754,
-    "spy": 363.1256
+    "port": 345.2081,
+    "spy": 363.5046
   },
   {
     "date": "2021-04-30",
-    "port": 347.6985,
-    "spy": 360.7397
+    "port": 344.0897,
+    "spy": 361.1163
   },
   {
     "date": "2021-05-03",
-    "port": 348.3757,
-    "spy": 361.5177
+    "port": 344.6617,
+    "spy": 361.8951
   },
   {
     "date": "2021-05-04",
-    "port": 348.9485,
-    "spy": 359.2874
+    "port": 345.1908,
+    "spy": 359.6624
   },
   {
     "date": "2021-05-05",
-    "port": 350.0518,
-    "spy": 359.3998
+    "port": 346.2388,
+    "spy": 359.7749
   },
   {
     "date": "2021-05-06",
-    "port": 352.0956,
-    "spy": 362.2697
+    "port": 348.2743,
+    "spy": 362.6479
   },
   {
     "date": "2021-05-07",
-    "port": 353.878,
-    "spy": 364.9064
+    "port": 349.9839,
+    "spy": 365.2873
   },
   {
     "date": "2021-05-10",
-    "port": 349.9241,
-    "spy": 361.293
+    "port": 346.0323,
+    "spy": 361.6701
   },
   {
     "date": "2021-05-11",
-    "port": 348.8382,
-    "spy": 358.0685
+    "port": 344.8843,
+    "spy": 358.4422
   },
   {
     "date": "2021-05-12",
-    "port": 345.2198,
-    "spy": 350.4612
+    "port": 341.2384,
+    "spy": 350.827
   },
   {
     "date": "2021-05-13",
-    "port": 344.3668,
-    "spy": 354.6712
+    "port": 340.399,
+    "spy": 355.0414
   },
   {
     "date": "2021-05-14",
-    "port": 349.0373,
-    "spy": 360.1172
+    "port": 345.0276,
+    "spy": 360.4931
   },
   {
     "date": "2021-05-17",
-    "port": 349.6509,
-    "spy": 359.2009
+    "port": 345.5431,
+    "spy": 359.5758
   },
   {
     "date": "2021-05-18",
-    "port": 347.0623,
-    "spy": 356.1061
+    "port": 343.0093,
+    "spy": 356.4778
   },
   {
     "date": "2021-05-19",
-    "port": 344.9256,
-    "spy": 355.1726
+    "port": 340.94,
+    "spy": 355.5433
   },
   {
     "date": "2021-05-20",
-    "port": 345.7431,
-    "spy": 358.9935
+    "port": 341.9099,
+    "spy": 359.3682
   },
   {
     "date": "2021-05-21",
-    "port": 347.1678,
-    "spy": 358.6996
+    "port": 343.2645,
+    "spy": 359.074
   },
   {
     "date": "2021-05-24",
-    "port": 349.854,
-    "spy": 362.3562
+    "port": 345.9979,
+    "spy": 362.7344
   },
   {
     "date": "2021-05-25",
-    "port": 348.1775,
-    "spy": 361.5523
+    "port": 344.5151,
+    "spy": 361.9297
   },
   {
     "date": "2021-05-26",
-    "port": 350.3711,
-    "spy": 362.2697
+    "port": 346.5561,
+    "spy": 362.6479
   },
   {
     "date": "2021-05-27",
-    "port": 351.1702,
-    "spy": 362.46
+    "port": 347.2354,
+    "spy": 362.8383
   },
   {
     "date": "2021-05-28",
-    "port": 350.9347,
-    "spy": 363.1083
+    "port": 347.0187,
+    "spy": 363.4873
   },
   {
     "date": "2021-06-01",
-    "port": 353.7695,
-    "spy": 362.7885
+    "port": 349.668,
+    "spy": 363.1671
   },
   {
     "date": "2021-06-02",
-    "port": 353.3518,
-    "spy": 363.359
+    "port": 349.3287,
+    "spy": 363.7383
   },
   {
     "date": "2021-06-03",
-    "port": 352.3526,
-    "spy": 362.0104
+    "port": 348.3044,
+    "spy": 362.3883
   },
   {
     "date": "2021-06-04",
-    "port": 355.9003,
-    "spy": 365.3213
+    "port": 351.9325,
+    "spy": 365.7026
   },
   {
     "date": "2021-06-07",
-    "port": 354.4847,
-    "spy": 364.967
+    "port": 350.5092,
+    "spy": 365.3479
   },
   {
     "date": "2021-06-08",
-    "port": 356.4954,
-    "spy": 365.0447
+    "port": 352.4658,
+    "spy": 365.4258
   },
   {
     "date": "2021-06-09",
-    "port": 355.5551,
-    "spy": 364.5001
+    "port": 351.662,
+    "spy": 364.8805
   },
   {
     "date": "2021-06-10",
-    "port": 356.6537,
-    "spy": 366.1944
+    "port": 352.8807,
+    "spy": 366.5767
   },
   {
     "date": "2021-06-11",
-    "port": 357.0856,
-    "spy": 366.7996
+    "port": 353.2501,
+    "spy": 367.1824
   },
   {
     "date": "2021-06-14",
-    "port": 356.1116,
-    "spy": 367.6208
+    "port": 352.3459,
+    "spy": 368.0045
   },
   {
     "date": "2021-06-15",
-    "port": 355.7907,
-    "spy": 366.9465
+    "port": 351.9622,
+    "spy": 367.3295
   },
   {
     "date": "2021-06-16",
-    "port": 353.9889,
-    "spy": 364.8977
+    "port": 350.1589,
+    "spy": 365.2786
   },
   {
     "date": "2021-06-17",
-    "port": 351.0149,
-    "spy": 364.7768
+    "port": 347.5452,
+    "spy": 365.1576
   },
   {
     "date": "2021-06-18",
-    "port": 348.6141,
-    "spy": 359.8558
+    "port": 345.341,
+    "spy": 360.2314
   },
   {
     "date": "2021-06-21",
-    "port": 350.7506,
-    "spy": 365.0074
+    "port": 347.2987,
+    "spy": 365.3884
   },
   {
     "date": "2021-06-22",
-    "port": 351.2706,
-    "spy": 366.9589
+    "port": 347.8758,
+    "spy": 367.3419
   },
   {
     "date": "2021-06-23",
-    "port": 352.2313,
-    "spy": 366.5165
+    "port": 348.7695,
+    "spy": 366.8991
   },
   {
     "date": "2021-06-24",
-    "port": 355.1794,
-    "spy": 368.6847
+    "port": 351.6281,
+    "spy": 369.0695
   },
   {
     "date": "2021-06-25",
-    "port": 354.669,
-    "spy": 369.9943
+    "port": 351.0827,
+    "spy": 370.3805
   },
   {
     "date": "2021-06-28",
-    "port": 355.4575,
-    "spy": 370.7402
+    "port": 352.0353,
+    "spy": 371.1272
   },
   {
     "date": "2021-06-29",
-    "port": 355.5945,
-    "spy": 370.9397
+    "port": 352.2144,
+    "spy": 371.3269
   },
   {
     "date": "2021-06-30",
-    "port": 358.1624,
-    "spy": 371.2519
+    "port": 354.721,
+    "spy": 371.6394
   },
   {
     "date": "2021-07-01",
-    "port": 359.4034,
-    "spy": 373.3074
+    "port": 355.9289,
+    "spy": 373.697
   },
   {
     "date": "2021-07-02",
-    "port": 360.8259,
-    "spy": 376.1608
+    "port": 357.4942,
+    "spy": 376.5534
   },
   {
     "date": "2021-07-06",
-    "port": 358.5596,
-    "spy": 375.4756
+    "port": 355.4838,
+    "spy": 375.8676
   },
   {
     "date": "2021-07-07",
-    "port": 358.8471,
-    "spy": 376.8025
+    "port": 355.8813,
+    "spy": 377.1958
   },
   {
     "date": "2021-07-08",
-    "port": 357.5402,
-    "spy": 373.7324
+    "port": 354.6195,
+    "spy": 374.1225
   },
   {
     "date": "2021-07-09",
-    "port": 359.9979,
-    "spy": 377.7219
+    "port": 356.8669,
+    "spy": 378.1162
   },
   {
     "date": "2021-07-12",
-    "port": 360.0763,
-    "spy": 379.0748
+    "port": 356.9481,
+    "spy": 379.4705
   },
   {
     "date": "2021-07-13",
-    "port": 358.5012,
-    "spy": 377.7826
+    "port": 355.4205,
+    "spy": 378.1769
   },
   {
     "date": "2021-07-14",
-    "port": 358.4008,
-    "spy": 378.3464
+    "port": 355.4608,
+    "spy": 378.7412
   },
   {
     "date": "2021-07-15",
-    "port": 359.2539,
-    "spy": 377.0541
+    "port": 356.3419,
+    "spy": 377.4477
   },
   {
     "date": "2021-07-16",
-    "port": 356.7869,
-    "spy": 374.0966
+    "port": 353.9525,
+    "spy": 374.4871
   },
   {
     "date": "2021-07-19",
-    "port": 352.9445,
-    "spy": 368.5721
+    "port": 350.3467,
+    "spy": 368.9567
   },
   {
     "date": "2021-07-20",
-    "port": 356.6607,
-    "spy": 373.8538
+    "port": 353.8998,
+    "spy": 374.244
   },
   {
     "date": "2021-07-21",
-    "port": 357.6499,
-    "spy": 376.8806
+    "port": 354.7456,
+    "spy": 377.274
   },
   {
     "date": "2021-07-22",
-    "port": 360.2539,
-    "spy": 377.6698
+    "port": 357.4621,
+    "spy": 378.064
   },
   {
     "date": "2021-07-23",
-    "port": 361.723,
-    "spy": 381.5553
+    "port": 358.9154,
+    "spy": 381.9536
   },
   {
     "date": "2021-07-26",
-    "port": 363.2343,
-    "spy": 382.4919
+    "port": 360.3333,
+    "spy": 382.8911
   },
   {
     "date": "2021-07-27",
-    "port": 362.1372,
-    "spy": 380.7487
+    "port": 359.3356,
+    "spy": 381.1462
   },
   {
     "date": "2021-07-28",
-    "port": 363.2879,
-    "spy": 380.5926
+    "port": 360.3915,
+    "spy": 380.9899
   },
   {
     "date": "2021-07-29",
-    "port": 364.335,
-    "spy": 382.171
+    "port": 361.344,
+    "spy": 382.5699
   },
   {
     "date": "2021-07-30",
-    "port": 362.7375,
-    "spy": 380.3151
+    "port": 359.7988,
+    "spy": 380.7121
   },
   {
     "date": "2021-08-02",
-    "port": 364.063,
-    "spy": 379.5172
+    "port": 361.178,
+    "spy": 379.9133
   },
   {
     "date": "2021-08-03",
-    "port": 364.9606,
-    "spy": 382.6047
+    "port": 362.0859,
+    "spy": 383.0041
   },
   {
     "date": "2021-08-04",
-    "port": 362.7989,
-    "spy": 380.7227
+    "port": 360.056,
+    "spy": 381.1201
   },
   {
     "date": "2021-08-05",
-    "port": 364.845,
-    "spy": 383.1337
+    "port": 361.999,
+    "spy": 383.5336
   },
   {
     "date": "2021-08-06",
-    "port": 363.6269,
-    "spy": 383.7669
+    "port": 360.6232,
+    "spy": 384.1674
   },
   {
     "date": "2021-08-09",
-    "port": 361.5739,
-    "spy": 383.4547
+    "port": 358.62,
+    "spy": 383.8549
   },
   {
     "date": "2021-08-10",
-    "port": 363.8773,
-    "spy": 383.9316
+    "port": 360.7547,
+    "spy": 384.3324
   },
   {
     "date": "2021-08-11",
-    "port": 365.8468,
-    "spy": 384.8858
+    "port": 362.6232,
+    "spy": 385.2875
   },
   {
     "date": "2021-08-12",
-    "port": 366.1332,
-    "spy": 386.0392
+    "port": 362.9475,
+    "spy": 386.4421
   },
   {
     "date": "2021-08-13",
-    "port": 367.7925,
-    "spy": 386.7418
+    "port": 364.7407,
+    "spy": 387.1455
   },
   {
     "date": "2021-08-16",
-    "port": 367.8325,
-    "spy": 387.6524
+    "port": 364.8557,
+    "spy": 388.057
   },
   {
     "date": "2021-08-17",
-    "port": 364.8045,
-    "spy": 385.1112
+    "port": 361.9171,
+    "spy": 385.5131
   },
   {
     "date": "2021-08-18",
-    "port": 362.2437,
-    "spy": 380.8961
+    "port": 359.382,
+    "spy": 381.2937
   },
   {
     "date": "2021-08-19",
-    "port": 361.873,
-    "spy": 381.4859
+    "port": 359.1673,
+    "spy": 381.8841
   },
   {
     "date": "2021-08-20",
-    "port": 362.6184,
-    "spy": 384.5215
+    "port": 359.9129,
+    "spy": 384.9228
   },
   {
     "date": "2021-08-23",
-    "port": 365.7708,
-    "spy": 387.9038
+    "port": 363.0065,
+    "spy": 388.3087
   },
   {
     "date": "2021-08-24",
-    "port": 366.5655,
-    "spy": 388.5196
+    "port": 363.68,
+    "spy": 388.9251
   },
   {
     "date": "2021-08-25",
-    "port": 367.1665,
-    "spy": 389.3349
+    "port": 364.1933,
+    "spy": 389.7413
   },
   {
     "date": "2021-08-26",
-    "port": 366.0565,
-    "spy": 387.0366
+    "port": 363.1284,
+    "spy": 387.4406
   },
   {
     "date": "2021-08-27",
-    "port": 370.6207,
-    "spy": 390.4971
+    "port": 367.561,
+    "spy": 390.9047
   },
   {
     "date": "2021-08-30",
-    "port": 370.6432,
-    "spy": 392.2143
+    "port": 367.7131,
+    "spy": 392.6237
   },
   {
     "date": "2021-08-31",
-    "port": 368.4221,
-    "spy": 391.6332
+    "port": 365.4811,
+    "spy": 392.0419
   },
   {
     "date": "2021-09-01",
-    "port": 367.9587,
-    "spy": 391.8414
+    "port": 365.0442,
+    "spy": 392.2504
   },
   {
     "date": "2021-09-02",
-    "port": 370.0448,
-    "spy": 393.047
+    "port": 367.1165,
+    "spy": 393.4572
   },
   {
     "date": "2021-09-03",
-    "port": 368.3844,
-    "spy": 392.9515
+    "port": 365.458,
+    "spy": 393.3616
   },
   {
     "date": "2021-09-07",
-    "port": 365.6102,
-    "spy": 391.5465
+    "port": 362.6984,
+    "spy": 391.9552
   },
   {
     "date": "2021-09-08",
-    "port": 365.9975,
-    "spy": 391.0695
+    "port": 363.1709,
+    "spy": 391.4776
   },
   {
     "date": "2021-09-09",
-    "port": 366.4219,
-    "spy": 389.3957
+    "port": 363.6267,
+    "spy": 389.8021
   },
   {
     "date": "2021-09-10",
-    "port": 363.9194,
-    "spy": 386.3254
+    "port": 361.0767,
+    "spy": 386.7286
   },
   {
     "date": "2021-09-13",
-    "port": 366.1101,
-    "spy": 387.3141
+    "port": 363.2183,
+    "spy": 387.7183
   },
   {
     "date": "2021-09-14",
-    "port": 366.1007,
-    "spy": 385.2239
+    "port": 363.3309,
+    "spy": 385.626
   },
   {
     "date": "2021-09-15",
-    "port": 369.2997,
-    "spy": 388.4416
+    "port": 366.4232,
+    "spy": 388.8471
   },
   {
     "date": "2021-09-16",
-    "port": 367.607,
-    "spy": 387.8258
+    "port": 364.7535,
+    "spy": 388.2306
   },
   {
     "date": "2021-09-17",
-    "port": 364.5421,
-    "spy": 384.048
+    "port": 361.6421,
+    "spy": 384.4488
   },
   {
     "date": "2021-09-20",
-    "port": 362.0,
-    "spy": 377.6443
+    "port": 359.1803,
+    "spy": 378.0385
   },
   {
     "date": "2021-09-21",
-    "port": 360.3852,
-    "spy": 377.2875
+    "port": 357.6106,
+    "spy": 377.6813
   },
   {
     "date": "2021-09-22",
-    "port": 364.7116,
-    "spy": 380.9679
+    "port": 361.8811,
+    "spy": 381.3656
   },
   {
     "date": "2021-09-23",
-    "port": 366.0504,
-    "spy": 385.5967
+    "port": 363.0317,
+    "spy": 385.9992
   },
   {
     "date": "2021-09-24",
-    "port": 365.6739,
-    "spy": 386.2319
+    "port": 362.5931,
+    "spy": 386.635
   },
   {
     "date": "2021-09-27",
-    "port": 366.7858,
-    "spy": 385.1269
+    "port": 363.4658,
+    "spy": 385.5289
   },
   {
     "date": "2021-09-28",
-    "port": 360.2928,
-    "spy": 377.3658
+    "port": 356.8725,
+    "spy": 377.7597
   },
   {
     "date": "2021-09-29",
-    "port": 361.2703,
-    "spy": 378.001
+    "port": 357.8346,
+    "spy": 378.3956
   },
   {
     "date": "2021-09-30",
-    "port": 358.5755,
-    "spy": 373.3809
+    "port": 355.1659,
+    "spy": 373.7706
   },
   {
     "date": "2021-10-01",
-    "port": 362.4474,
-    "spy": 377.8183
+    "port": 359.0157,
+    "spy": 378.2126
   },
   {
     "date": "2021-10-04",
-    "port": 361.4978,
-    "spy": 372.946
+    "port": 357.9212,
+    "spy": 373.3352
   },
   {
     "date": "2021-10-05",
-    "port": 363.266,
-    "spy": 376.8264
+    "port": 359.6527,
+    "spy": 377.2197
   },
   {
     "date": "2021-10-06",
-    "port": 363.6985,
-    "spy": 378.3925
+    "port": 360.2054,
+    "spy": 378.7874
   },
   {
     "date": "2021-10-07",
-    "port": 364.7947,
-    "spy": 381.664
+    "port": 361.2058,
+    "spy": 382.0623
   },
   {
     "date": "2021-10-08",
-    "port": 364.0212,
-    "spy": 380.9679
+    "port": 360.3906,
+    "spy": 381.3656
   },
   {
     "date": "2021-10-11",
-    "port": 363.9766,
-    "spy": 378.2099
+    "port": 360.2876,
+    "spy": 378.6046
   },
   {
     "date": "2021-10-12",
-    "port": 364.2094,
-    "spy": 377.2788
+    "port": 360.6045,
+    "spy": 377.6726
   },
   {
     "date": "2021-10-13",
-    "port": 365.0384,
-    "spy": 378.6361
+    "port": 361.5355,
+    "spy": 379.0313
   },
   {
     "date": "2021-10-14",
-    "port": 369.5525,
-    "spy": 385.005
+    "port": 366.0646,
+    "spy": 385.4068
   },
   {
     "date": "2021-10-15",
-    "port": 371.5726,
-    "spy": 387.9371
+    "port": 368.0684,
+    "spy": 388.342
   },
   {
     "date": "2021-10-18",
-    "port": 372.652,
-    "spy": 389.0857
+    "port": 369.1681,
+    "spy": 389.4918
   },
   {
     "date": "2021-10-19",
-    "port": 372.2778,
-    "spy": 392.0875
+    "port": 368.7883,
+    "spy": 392.4967
   },
   {
     "date": "2021-10-20",
-    "port": 372.8838,
-    "spy": 393.6274
+    "port": 369.2971,
+    "spy": 394.0383
   },
   {
     "date": "2021-10-21",
-    "port": 373.2649,
-    "spy": 394.6541
+    "port": 369.6964,
+    "spy": 395.0661
   },
   {
     "date": "2021-10-22",
-    "port": 374.3479,
-    "spy": 394.2451
+    "port": 370.8017,
+    "spy": 394.6566
   },
   {
     "date": "2021-10-25",
-    "port": 376.1424,
-    "spy": 396.3594
+    "port": 372.5227,
+    "spy": 396.7731
   },
   {
     "date": "2021-10-26",
-    "port": 376.7406,
-    "spy": 396.7162
+    "port": 373.2458,
+    "spy": 397.1302
   },
   {
     "date": "2021-10-27",
-    "port": 376.1881,
-    "spy": 394.9586
+    "port": 372.9374,
+    "spy": 395.3708
   },
   {
     "date": "2021-10-28",
-    "port": 377.5083,
-    "spy": 398.7695
+    "port": 374.2126,
+    "spy": 399.1857
   },
   {
     "date": "2021-10-29",
-    "port": 380.2903,
-    "spy": 399.5787
+    "port": 376.9844,
+    "spy": 399.9957
   },
   {
     "date": "2021-11-01",
-    "port": 380.2749,
-    "spy": 400.2661
+    "port": 376.7773,
+    "spy": 400.6839
   },
   {
     "date": "2021-11-02",
-    "port": 381.5039,
-    "spy": 401.8844
+    "port": 378.0648,
+    "spy": 402.3038
   },
   {
     "date": "2021-11-03",
-    "port": 380.4926,
-    "spy": 404.3379
+    "port": 376.9548,
+    "spy": 404.76
   },
   {
     "date": "2021-11-04",
-    "port": 382.6637,
-    "spy": 406.2434
+    "port": 379.2405,
+    "spy": 406.6674
   },
   {
     "date": "2021-11-05",
-    "port": 385.2636,
-    "spy": 407.653
+    "port": 381.7927,
+    "spy": 408.0785
   },
   {
     "date": "2021-11-08",
-    "port": 386.247,
-    "spy": 408.001
+    "port": 382.7366,
+    "spy": 408.4268
   },
   {
     "date": "2021-11-09",
-    "port": 386.602,
-    "spy": 406.6524
+    "port": 383.1508,
+    "spy": 407.0768
   },
   {
     "date": "2021-11-10",
-    "port": 384.216,
-    "spy": 403.3809
+    "port": 380.6441,
+    "spy": 403.802
   },
   {
     "date": "2021-11-11",
-    "port": 384.6872,
-    "spy": 403.5114
+    "port": 381.0295,
+    "spy": 403.9326
   },
   {
     "date": "2021-11-12",
-    "port": 384.4919,
-    "spy": 406.5567
+    "port": 380.8887,
+    "spy": 406.981
   },
   {
     "date": "2021-11-15",
-    "port": 383.8681,
-    "spy": 406.6958
+    "port": 380.189,
+    "spy": 407.1203
   },
   {
     "date": "2021-11-16",
-    "port": 386.1463,
-    "spy": 408.3054
+    "port": 382.426,
+    "spy": 408.7316
   },
   {
     "date": "2021-11-17",
-    "port": 384.2325,
-    "spy": 407.3136
+    "port": 380.6692,
+    "spy": 407.7387
   },
   {
     "date": "2021-11-18",
-    "port": 385.0866,
-    "spy": 408.697
+    "port": 381.5807,
+    "spy": 409.1236
   },
   {
     "date": "2021-11-19",
-    "port": 385.3976,
-    "spy": 407.9661
+    "port": 382.0221,
+    "spy": 408.392
   },
   {
     "date": "2021-11-22",
-    "port": 384.8652,
-    "spy": 406.8177
+    "port": 381.3097,
+    "spy": 407.2423
   },
   {
     "date": "2021-11-23",
-    "port": 384.957,
-    "spy": 407.3571
+    "port": 381.2574,
+    "spy": 407.7823
   },
   {
     "date": "2021-11-24",
-    "port": 387.4599,
-    "spy": 408.4447
+    "port": 383.8753,
+    "spy": 408.871
   },
   {
     "date": "2021-11-26",
-    "port": 379.6019,
-    "spy": 399.3351
+    "port": 376.3994,
+    "spy": 399.7519
   },
   {
     "date": "2021-11-29",
-    "port": 380.4044,
-    "spy": 404.2335
+    "port": 377.2837,
+    "spy": 404.6555
   },
   {
     "date": "2021-11-30",
-    "port": 374.9247,
-    "spy": 396.3682
+    "port": 371.9958,
+    "spy": 396.7819
   },
   {
     "date": "2021-12-01",
-    "port": 371.986,
-    "spy": 391.9656
+    "port": 369.1308,
+    "spy": 392.3747
   },
   {
     "date": "2021-12-02",
-    "port": 377.2228,
-    "spy": 397.9691
+    "port": 374.2417,
+    "spy": 398.3845
   },
   {
     "date": "2021-12-03",
-    "port": 376.1213,
-    "spy": 394.5062
+    "port": 373.2193,
+    "spy": 394.918
   },
   {
     "date": "2021-12-06",
-    "port": 378.4591,
-    "spy": 399.1784
+    "port": 375.3968,
+    "spy": 399.5951
   },
   {
     "date": "2021-12-07",
-    "port": 382.9013,
-    "spy": 407.4354
+    "port": 379.8263,
+    "spy": 407.8607
   },
   {
     "date": "2021-12-08",
-    "port": 381.7559,
-    "spy": 408.5143
+    "port": 378.5845,
+    "spy": 408.9406
   },
   {
     "date": "2021-12-09",
-    "port": 380.0809,
-    "spy": 405.7561
+    "port": 376.9772,
+    "spy": 406.1796
   },
   {
     "date": "2021-12-10",
-    "port": 381.8995,
-    "spy": 409.5757
+    "port": 378.8148,
+    "spy": 410.0032
   },
   {
     "date": "2021-12-13",
-    "port": 381.1194,
-    "spy": 405.9475
+    "port": 378.1848,
+    "spy": 406.3712
   },
   {
     "date": "2021-12-14",
-    "port": 379.2519,
-    "spy": 403.1547
+    "port": 376.2779,
+    "spy": 403.5754
   },
   {
     "date": "2021-12-15",
-    "port": 380.7451,
-    "spy": 409.454
+    "port": 377.7794,
+    "spy": 409.8813
   },
   {
     "date": "2021-12-16",
-    "port": 378.549,
-    "spy": 405.8432
+    "port": 375.584,
+    "spy": 406.2668
   },
   {
     "date": "2021-12-17",
-    "port": 377.6467,
-    "spy": 401.5239
+    "port": 374.7003,
+    "spy": 401.943
   },
   {
     "date": "2021-12-20",
-    "port": 373.4759,
-    "spy": 397.2543
+    "port": 370.5609,
+    "spy": 397.669
   },
   {
     "date": "2021-12-21",
-    "port": 378.677,
-    "spy": 404.3092
+    "port": 375.6213,
+    "spy": 404.7312
   },
   {
     "date": "2021-12-22",
-    "port": 381.9232,
-    "spy": 408.3517
+    "port": 378.8723,
+    "spy": 408.7779
   },
   {
     "date": "2021-12-23",
-    "port": 382.568,
-    "spy": 410.8925
+    "port": 379.4602,
+    "spy": 411.3213
   },
   {
     "date": "2021-12-27",
-    "port": 386.7769,
-    "spy": 416.7075
+    "port": 383.6505,
+    "spy": 417.1424
   },
   {
     "date": "2021-12-28",
-    "port": 386.0741,
-    "spy": 416.367
+    "port": 382.9267,
+    "spy": 416.8015
   },
   {
     "date": "2021-12-29",
-    "port": 384.8125,
-    "spy": 416.8996
+    "port": 381.602,
+    "spy": 417.3348
   },
   {
     "date": "2021-12-30",
-    "port": 384.3714,
-    "spy": 415.747
+    "port": 381.239,
+    "spy": 416.1809
   },
   {
     "date": "2021-12-31",
-    "port": 383.3245,
-    "spy": 414.6993
+    "port": 380.1922,
+    "spy": 415.1321
   },
   {
     "date": "2022-01-03",
-    "port": 382.4441,
-    "spy": 417.1004
+    "port": 379.1196,
+    "spy": 417.5358
   },
   {
     "date": "2022-01-04",
-    "port": 383.1699,
-    "spy": 416.9607
+    "port": 379.6855,
+    "spy": 417.3959
   },
   {
     "date": "2022-01-05",
-    "port": 377.8268,
-    "spy": 408.9541
+    "port": 374.3123,
+    "spy": 409.3809
   },
   {
     "date": "2022-01-06",
-    "port": 378.9655,
-    "spy": 408.57
+    "port": 375.3583,
+    "spy": 408.9964
   },
   {
     "date": "2022-01-07",
-    "port": 376.713,
-    "spy": 406.9547
+    "port": 373.0944,
+    "spy": 407.3795
   },
   {
     "date": "2022-01-10",
-    "port": 376.2309,
-    "spy": 406.4483
+    "port": 372.6539,
+    "spy": 406.8726
   },
   {
     "date": "2022-01-11",
-    "port": 379.5932,
-    "spy": 410.1503
+    "port": 376.0285,
+    "spy": 410.5784
   },
   {
     "date": "2022-01-12",
-    "port": 379.2016,
-    "spy": 411.2591
+    "port": 375.6498,
+    "spy": 411.6883
   },
   {
     "date": "2022-01-13",
-    "port": 377.231,
-    "spy": 405.5926
+    "port": 373.6089,
+    "spy": 406.0159
   },
   {
     "date": "2022-01-14",
-    "port": 377.0213,
-    "spy": 405.7585
+    "port": 373.2509,
+    "spy": 406.182
   },
   {
     "date": "2022-01-18",
-    "port": 372.1459,
-    "spy": 398.5727
+    "port": 368.3205,
+    "spy": 398.9887
   },
   {
     "date": "2022-01-19",
-    "port": 370.253,
-    "spy": 394.4341
+    "port": 366.5175,
+    "spy": 394.8458
   },
   {
     "date": "2022-01-20",
-    "port": 368.156,
-    "spy": 390.0685
+    "port": 364.5304,
+    "spy": 390.4756
   },
   {
     "date": "2022-01-21",
-    "port": 364.6754,
-    "spy": 382.4112
+    "port": 361.1068,
+    "spy": 382.8103
   },
   {
     "date": "2022-01-24",
-    "port": 365.7638,
-    "spy": 384.0351
+    "port": 362.0272,
+    "spy": 384.436
   },
   {
     "date": "2022-01-25",
-    "port": 363.7596,
-    "spy": 379.3465
+    "port": 359.9608,
+    "spy": 379.7425
   },
   {
     "date": "2022-01-26",
-    "port": 362.8776,
-    "spy": 378.3947
+    "port": 359.0544,
+    "spy": 378.7897
   },
   {
     "date": "2022-01-27",
-    "port": 364.4755,
-    "spy": 376.5262
+    "port": 360.7721,
+    "spy": 376.9192
   },
   {
     "date": "2022-01-28",
-    "port": 369.3513,
-    "spy": 385.8774
+    "port": 365.735,
+    "spy": 386.2802
   },
   {
     "date": "2022-01-31",
-    "port": 372.1645,
-    "spy": 392.8276
+    "port": 368.545,
+    "spy": 393.2376
   },
   {
     "date": "2022-02-01",
-    "port": 374.1825,
-    "spy": 395.4818
+    "port": 370.4804,
+    "spy": 395.8945
   },
   {
     "date": "2022-02-02",
-    "port": 376.735,
-    "spy": 399.3236
+    "port": 373.1057,
+    "spy": 399.7404
   },
   {
     "date": "2022-02-03",
-    "port": 371.3373,
-    "spy": 389.9375
+    "port": 367.5946,
+    "spy": 390.3445
   },
   {
     "date": "2022-02-04",
-    "port": 372.0157,
-    "spy": 391.7711
+    "port": 368.2026,
+    "spy": 392.18
   },
   {
     "date": "2022-02-07",
-    "port": 370.5758,
-    "spy": 390.5138
+    "port": 366.7606,
+    "spy": 390.9214
   },
   {
     "date": "2022-02-08",
-    "port": 372.4791,
-    "spy": 393.7269
+    "port": 368.5463,
+    "spy": 394.1378
   },
   {
     "date": "2022-02-09",
-    "port": 375.4696,
-    "spy": 399.4895
+    "port": 371.5847,
+    "spy": 399.9065
   },
   {
     "date": "2022-02-10",
-    "port": 370.642,
-    "spy": 392.3124
+    "port": 366.6322,
+    "spy": 392.7218
   },
   {
     "date": "2022-02-11",
-    "port": 368.6413,
-    "spy": 384.5765
+    "port": 364.6054,
+    "spy": 384.9779
   },
   {
     "date": "2022-02-14",
-    "port": 368.1775,
-    "spy": 383.3192
+    "port": 364.053,
+    "spy": 383.7193
   },
   {
     "date": "2022-02-15",
-    "port": 369.6483,
-    "spy": 389.5009
+    "port": 365.4266,
+    "spy": 389.9074
   },
   {
     "date": "2022-02-16",
-    "port": 370.6934,
-    "spy": 389.9375
+    "port": 366.4739,
+    "spy": 390.3445
   },
   {
     "date": "2022-02-17",
-    "port": 365.9971,
-    "spy": 381.6079
+    "port": 361.8414,
+    "spy": 382.0062
   },
   {
     "date": "2022-02-18",
-    "port": 366.3871,
-    "spy": 379.1369
+    "port": 362.2405,
+    "spy": 379.5327
   },
   {
     "date": "2022-02-22",
-    "port": 365.4387,
-    "spy": 375.0682
+    "port": 361.3111,
+    "spy": 375.4596
   },
   {
     "date": "2022-02-23",
-    "port": 360.979,
-    "spy": 368.415
+    "port": 356.7603,
+    "spy": 368.7996
   },
   {
     "date": "2022-02-24",
-    "port": 365.6334,
-    "spy": 373.9593
+    "port": 361.4071,
+    "spy": 374.3496
   },
   {
     "date": "2022-02-25",
-    "port": 367.3108,
-    "spy": 382.2103
+    "port": 363.1137,
+    "spy": 382.6093
   },
   {
     "date": "2022-02-28",
-    "port": 370.5082,
-    "spy": 381.2324
+    "port": 366.3415,
+    "spy": 381.6303
   },
   {
     "date": "2022-03-01",
-    "port": 370.5631,
-    "spy": 375.4261
+    "port": 366.4449,
+    "spy": 375.818
   },
   {
     "date": "2022-03-02",
-    "port": 374.7163,
-    "spy": 382.3325
+    "port": 370.2371,
+    "spy": 382.7316
   },
   {
     "date": "2022-03-03",
-    "port": 377.2643,
-    "spy": 380.4291
+    "port": 372.7522,
+    "spy": 380.8262
   },
   {
     "date": "2022-03-04",
-    "port": 378.7311,
-    "spy": 377.3383
+    "port": 374.2952,
+    "spy": 377.7322
   },
   {
     "date": "2022-03-07",
-    "port": 373.6252,
-    "spy": 366.2147
+    "port": 369.1201,
+    "spy": 366.5969
   },
   {
     "date": "2022-03-08",
-    "port": 373.8653,
-    "spy": 363.4382
+    "port": 369.1734,
+    "spy": 363.8175
   },
   {
     "date": "2022-03-09",
-    "port": 371.1774,
-    "spy": 373.1823
+    "port": 366.6512,
+    "spy": 373.5718
   },
   {
     "date": "2022-03-10",
-    "port": 369.2522,
-    "spy": 371.4971
+    "port": 364.6046,
+    "spy": 371.8848
   },
   {
     "date": "2022-03-11",
-    "port": 369.1387,
-    "spy": 366.7735
+    "port": 364.4183,
+    "spy": 367.1563
   },
   {
     "date": "2022-03-14",
-    "port": 364.5693,
-    "spy": 364.093
+    "port": 359.7782,
+    "spy": 364.473
   },
   {
     "date": "2022-03-15",
-    "port": 366.462,
-    "spy": 372.0996
+    "port": 361.7838,
+    "spy": 372.4879
   },
   {
     "date": "2022-03-16",
-    "port": 371.1058,
-    "spy": 380.3506
+    "port": 366.4529,
+    "spy": 380.7476
   },
   {
     "date": "2022-03-17",
-    "port": 375.7721,
-    "spy": 385.1091
+    "port": 371.0164,
+    "spy": 385.511
   },
   {
     "date": "2022-03-18",
-    "port": 379.3922,
-    "spy": 389.3272
+    "port": 374.7251,
+    "spy": 389.7335
   },
   {
     "date": "2022-03-21",
-    "port": 380.3968,
-    "spy": 389.2132
+    "port": 375.5307,
+    "spy": 389.6195
   },
   {
     "date": "2022-03-22",
-    "port": 381.5568,
-    "spy": 393.7677
+    "port": 376.6629,
+    "spy": 394.1787
   },
   {
     "date": "2022-03-23",
-    "port": 381.9074,
-    "spy": 388.6965
+    "port": 377.1124,
+    "spy": 389.1022
   },
   {
     "date": "2022-03-24",
-    "port": 384.9264,
-    "spy": 394.5559
+    "port": 380.0956,
+    "spy": 394.9677
   },
   {
     "date": "2022-03-25",
-    "port": 386.4099,
-    "spy": 396.4828
+    "port": 381.4227,
+    "spy": 396.8966
   },
   {
     "date": "2022-03-28",
-    "port": 384.7724,
-    "spy": 399.303
+    "port": 380.0199,
+    "spy": 399.7197
   },
   {
     "date": "2022-03-29",
-    "port": 386.6602,
-    "spy": 404.2427
+    "port": 381.9478,
+    "spy": 404.6646
   },
   {
     "date": "2022-03-30",
-    "port": 386.9612,
-    "spy": 401.7465
+    "port": 382.3288,
+    "spy": 402.1658
   },
   {
     "date": "2022-03-31",
-    "port": 382.2746,
-    "spy": 395.5631
+    "port": 377.7038,
+    "spy": 395.9759
   },
   {
     "date": "2022-04-01",
-    "port": 383.4968,
-    "spy": 396.6842
+    "port": 378.9182,
+    "spy": 397.0982
   },
   {
     "date": "2022-04-04",
-    "port": 385.1758,
-    "spy": 400.0824
+    "port": 380.6279,
+    "spy": 400.5
   },
   {
     "date": "2022-04-05",
-    "port": 381.1098,
-    "spy": 395.0288
+    "port": 376.4923,
+    "spy": 395.4411
   },
   {
     "date": "2022-04-06",
-    "port": 378.0533,
-    "spy": 391.0787
+    "port": 373.4156,
+    "spy": 391.4869
   },
   {
     "date": "2022-04-07",
-    "port": 378.4016,
-    "spy": 393.0494
+    "port": 373.7666,
+    "spy": 393.4597
   },
   {
     "date": "2022-04-08",
-    "port": 378.529,
-    "spy": 391.9985
+    "port": 373.778,
+    "spy": 392.4076
   },
   {
     "date": "2022-04-11",
-    "port": 374.5756,
-    "spy": 385.2983
+    "port": 369.6638,
+    "spy": 385.7004
   },
   {
     "date": "2022-04-12",
-    "port": 375.6688,
-    "spy": 383.8707
+    "port": 370.9803,
+    "spy": 384.2713
   },
   {
     "date": "2022-04-13",
-    "port": 380.1772,
-    "spy": 388.2674
+    "port": 375.3914,
+    "spy": 388.6727
   },
   {
     "date": "2022-04-14",
-    "port": 378.2068,
-    "spy": 383.4327
+    "port": 374.0603,
+    "spy": 383.8329
   },
   {
     "date": "2022-04-18",
-    "port": 380.34,
-    "spy": 383.5904
+    "port": 376.4444,
+    "spy": 383.9908
   },
   {
     "date": "2022-04-19",
-    "port": 380.8756,
-    "spy": 389.7825
+    "port": 377.1514,
+    "spy": 390.1894
   },
   {
     "date": "2022-04-20",
-    "port": 381.8458,
-    "spy": 389.4936
+    "port": 378.2699,
+    "spy": 389.9001
   },
   {
     "date": "2022-04-21",
-    "port": 378.9984,
-    "spy": 383.6692
+    "port": 375.2452,
+    "spy": 384.0696
   },
   {
     "date": "2022-04-22",
-    "port": 370.173,
-    "spy": 373.1416
+    "port": 366.4104,
+    "spy": 373.5311
   },
   {
     "date": "2022-04-25",
-    "port": 370.4277,
-    "spy": 375.3049
+    "port": 366.8325,
+    "spy": 375.6966
   },
   {
     "date": "2022-04-26",
-    "port": 367.5188,
-    "spy": 364.4358
+    "port": 363.7184,
+    "spy": 364.8162
   },
   {
     "date": "2022-04-27",
-    "port": 368.0653,
-    "spy": 365.4606
+    "port": 364.1479,
+    "spy": 365.842
   },
   {
     "date": "2022-04-28",
-    "port": 374.728,
-    "spy": 374.6919
+    "port": 370.8327,
+    "spy": 375.0829
   },
   {
     "date": "2022-04-29",
-    "port": 363.9711,
-    "spy": 360.8449
+    "port": 359.9899,
+    "spy": 361.2216
   },
   {
     "date": "2022-05-02",
-    "port": 365.8651,
-    "spy": 363.017
+    "port": 361.7006,
+    "spy": 363.3959
   },
   {
     "date": "2022-05-03",
-    "port": 368.1201,
-    "spy": 364.6811
+    "port": 363.9745,
+    "spy": 365.0617
   },
   {
     "date": "2022-05-04",
-    "port": 375.9947,
-    "spy": 375.7866
+    "port": 371.9195,
+    "spy": 376.1788
   },
   {
     "date": "2022-05-05",
-    "port": 367.7451,
-    "spy": 362.4301
+    "port": 363.3106,
+    "spy": 362.8084
   },
   {
     "date": "2022-05-06",
-    "port": 365.2715,
-    "spy": 360.2669
+    "port": 360.7438,
+    "spy": 360.6429
   },
   {
     "date": "2022-05-09",
-    "port": 355.7052,
-    "spy": 348.7321
+    "port": 351.3352,
+    "spy": 349.0961
   },
   {
     "date": "2022-05-10",
-    "port": 355.9221,
-    "spy": 349.5378
+    "port": 351.6399,
+    "spy": 349.9027
   },
   {
     "date": "2022-05-11",
-    "port": 356.6399,
-    "spy": 343.985
+    "port": 352.2491,
+    "spy": 344.344
   },
   {
     "date": "2022-05-12",
-    "port": 357.2924,
-    "spy": 343.6259
+    "port": 352.8379,
+    "spy": 343.9845
   },
   {
     "date": "2022-05-13",
-    "port": 360.5212,
-    "spy": 351.8414
+    "port": 356.0979,
+    "spy": 352.2086
   },
   {
     "date": "2022-05-16",
-    "port": 361.435,
-    "spy": 350.4137
+    "port": 356.8948,
+    "spy": 350.7794
   },
   {
     "date": "2022-05-17",
-    "port": 365.5741,
-    "spy": 357.6219
+    "port": 361.0135,
+    "spy": 357.9951
   },
   {
     "date": "2022-05-18",
-    "port": 357.6585,
-    "spy": 343.2055
+    "port": 353.1488,
+    "spy": 343.5637
   },
   {
     "date": "2022-05-19",
-    "port": 353.9509,
-    "spy": 341.1035
+    "port": 349.5875,
+    "spy": 341.4595
   },
   {
     "date": "2022-05-20",
-    "port": 356.6423,
-    "spy": 341.2525
+    "port": 352.2163,
+    "spy": 341.6086
   },
   {
     "date": "2022-05-23",
-    "port": 358.897,
-    "spy": 347.6374
+    "port": 354.4665,
+    "spy": 348.0002
   },
   {
     "date": "2022-05-24",
-    "port": 358.1868,
-    "spy": 344.9835
+    "port": 353.8571,
+    "spy": 345.3436
   },
   {
     "date": "2022-05-25",
-    "port": 361.8102,
-    "spy": 348.0315
+    "port": 357.4577,
+    "spy": 348.3947
   },
   {
     "date": "2022-05-26",
-    "port": 365.2446,
-    "spy": 354.9855
+    "port": 360.9574,
+    "spy": 355.356
   },
   {
     "date": "2022-05-27",
-    "port": 370.3345,
-    "spy": 363.7001
+    "port": 366.1465,
+    "spy": 364.0798
   },
   {
     "date": "2022-05-31",
-    "port": 366.2004,
-    "spy": 361.6594
+    "port": 361.9589,
+    "spy": 362.0369
   },
   {
     "date": "2022-06-01",
-    "port": 367.7393,
-    "spy": 358.7342
+    "port": 363.2782,
+    "spy": 359.1086
   },
   {
     "date": "2022-06-02",
-    "port": 370.0008,
-    "spy": 365.5657
+    "port": 365.7051,
+    "spy": 365.9473
   },
   {
     "date": "2022-06-03",
-    "port": 368.7354,
-    "spy": 359.5662
+    "port": 364.2464,
+    "spy": 359.9415
   },
   {
     "date": "2022-06-06",
-    "port": 371.567,
-    "spy": 360.661
+    "port": 366.7964,
+    "spy": 361.0374
   },
   {
     "date": "2022-06-07",
-    "port": 374.7152,
-    "spy": 364.1205
+    "port": 370.0111,
+    "spy": 364.5005
   },
   {
     "date": "2022-06-08",
-    "port": 371.0343,
-    "spy": 360.1617
+    "port": 366.2746,
+    "spy": 360.5377
   },
   {
     "date": "2022-06-09",
-    "port": 368.1412,
-    "spy": 351.5961
+    "port": 363.2168,
+    "spy": 351.9631
   },
   {
     "date": "2022-06-10",
-    "port": 362.3501,
-    "spy": 341.4013
+    "port": 358.0178,
+    "spy": 341.7577
   },
   {
     "date": "2022-06-13",
-    "port": 352.3624,
-    "spy": 328.4389
+    "port": 349.0458,
+    "spy": 328.7817
   },
   {
     "date": "2022-06-14",
-    "port": 349.9111,
-    "spy": 327.4492
+    "port": 346.6574,
+    "spy": 327.791
   },
   {
     "date": "2022-06-15",
-    "port": 350.3518,
-    "spy": 332.1174
+    "port": 347.6061,
+    "spy": 332.4641
   },
   {
     "date": "2022-06-16",
-    "port": 344.571,
-    "spy": 321.1257
+    "port": 341.5443,
+    "spy": 321.4608
   },
   {
     "date": "2022-06-17",
-    "port": 343.8551,
-    "spy": 321.8179
+    "port": 340.9628,
+    "spy": 322.1538
   },
   {
     "date": "2022-06-21",
-    "port": 347.809,
-    "spy": 329.9193
+    "port": 344.9215,
+    "spy": 330.2636
   },
   {
     "date": "2022-06-22",
-    "port": 346.8895,
-    "spy": 329.321
+    "port": 344.3644,
+    "spy": 329.6648
   },
   {
     "date": "2022-06-23",
-    "port": 346.9995,
-    "spy": 332.5494
+    "port": 344.7449,
+    "spy": 332.8965
   },
   {
     "date": "2022-06-24",
-    "port": 352.8567,
-    "spy": 343.1224
+    "port": 350.7041,
+    "spy": 343.4805
   },
   {
     "date": "2022-06-27",
-    "port": 352.1904,
-    "spy": 341.8117
+    "port": 349.928,
+    "spy": 342.1685
   },
   {
     "date": "2022-06-28",
-    "port": 350.1688,
-    "spy": 334.8275
+    "port": 347.6728,
+    "spy": 335.177
   },
   {
     "date": "2022-06-29",
-    "port": 349.9031,
-    "spy": 334.5548
+    "port": 347.5745,
+    "spy": 334.904
   },
   {
     "date": "2022-06-30",
-    "port": 344.5612,
-    "spy": 331.8369
+    "port": 342.5951,
+    "spy": 332.1832
   },
   {
     "date": "2022-07-01",
-    "port": 348.7092,
-    "spy": 335.3465
+    "port": 346.7889,
+    "spy": 335.6965
   },
   {
     "date": "2022-07-05",
-    "port": 346.1374,
-    "spy": 335.9799
+    "port": 344.5331,
+    "spy": 336.3305
   },
   {
     "date": "2022-07-06",
-    "port": 343.483,
-    "spy": 337.1146
+    "port": 341.8921,
+    "spy": 337.4665
   },
   {
     "date": "2022-07-07",
-    "port": 349.3129,
-    "spy": 342.1635
+    "port": 347.5053,
+    "spy": 342.5206
   },
   {
     "date": "2022-07-08",
-    "port": 349.653,
-    "spy": 341.8822
+    "port": 347.6411,
+    "spy": 342.239
   },
   {
     "date": "2022-07-11",
-    "port": 350.5237,
-    "spy": 337.9766
+    "port": 348.4024,
+    "spy": 338.3294
   },
   {
     "date": "2022-07-12",
-    "port": 346.0843,
-    "spy": 334.9858
+    "port": 344.2255,
+    "spy": 335.3355
   },
   {
     "date": "2022-07-13",
-    "port": 347.2055,
-    "spy": 333.2266
+    "port": 345.2895,
+    "spy": 333.5744
   },
   {
     "date": "2022-07-14",
-    "port": 346.8974,
-    "spy": 332.4174
+    "port": 344.7981,
+    "spy": 332.7643
   },
   {
     "date": "2022-07-15",
-    "port": 351.4886,
-    "spy": 338.7682
+    "port": 349.5626,
+    "spy": 339.1218
   },
   {
     "date": "2022-07-18",
-    "port": 349.626,
-    "spy": 335.9711
+    "port": 347.5522,
+    "spy": 336.3218
   },
   {
     "date": "2022-07-19",
-    "port": 354.9231,
-    "spy": 345.0487
+    "port": 353.0244,
+    "spy": 345.4088
   },
   {
     "date": "2022-07-20",
-    "port": 356.2731,
-    "spy": 347.2478
+    "port": 354.4743,
+    "spy": 347.6102
   },
   {
     "date": "2022-07-21",
-    "port": 359.6143,
-    "spy": 350.7839
+    "port": 357.9868,
+    "spy": 351.15
   },
   {
     "date": "2022-07-22",
-    "port": 357.1823,
-    "spy": 347.5292
+    "port": 355.767,
+    "spy": 347.892
   },
   {
     "date": "2022-07-25",
-    "port": 358.5124,
-    "spy": 347.9515
+    "port": 356.9205,
+    "spy": 348.3147
   },
   {
     "date": "2022-07-26",
-    "port": 356.7714,
-    "spy": 343.8349
+    "port": 355.0603,
+    "spy": 344.1938
   },
   {
     "date": "2022-07-27",
-    "port": 360.3147,
-    "spy": 352.763
+    "port": 358.8743,
+    "spy": 353.1312
   },
   {
     "date": "2022-07-28",
-    "port": 362.3999,
-    "spy": 357.1875
+    "port": 361.2079,
+    "spy": 357.5603
   },
   {
     "date": "2022-07-29",
-    "port": 364.7055,
-    "spy": 362.3948
+    "port": 363.6211,
+    "spy": 362.7731
   },
   {
     "date": "2022-08-01",
-    "port": 364.9107,
-    "spy": 361.3217
+    "port": 363.4576,
+    "spy": 361.6988
   },
   {
     "date": "2022-08-02",
-    "port": 362.6841,
-    "spy": 358.9379
+    "port": 361.6738,
+    "spy": 359.3126
   },
   {
     "date": "2022-08-03",
-    "port": 368.0854,
-    "spy": 364.5587
+    "port": 366.81,
+    "spy": 364.9392
   },
   {
     "date": "2022-08-04",
-    "port": 364.6175,
-    "spy": 364.3124
+    "port": 363.0682,
+    "spy": 364.6927
   },
   {
     "date": "2022-08-05",
-    "port": 363.4601,
-    "spy": 363.6967
+    "port": 362.2902,
+    "spy": 364.0763
   },
   {
     "date": "2022-08-08",
-    "port": 365.2053,
-    "spy": 363.2745
+    "port": 363.9027,
+    "spy": 363.6536
   },
   {
     "date": "2022-08-09",
-    "port": 365.1876,
-    "spy": 361.8319
+    "port": 364.0923,
+    "spy": 362.2096
   },
   {
     "date": "2022-08-10",
-    "port": 366.6775,
-    "spy": 369.4318
+    "port": 365.1571,
+    "spy": 369.8174
   },
   {
     "date": "2022-08-11",
-    "port": 367.459,
-    "spy": 369.4318
+    "port": 366.4106,
+    "spy": 369.8174
   },
   {
     "date": "2022-08-12",
-    "port": 371.8891,
-    "spy": 375.6859
+    "port": 370.5173,
+    "spy": 376.078
   },
   {
     "date": "2022-08-15",
-    "port": 372.487,
-    "spy": 377.234
+    "port": 371.0709,
+    "spy": 377.6277
   },
   {
     "date": "2022-08-16",
-    "port": 374.7139,
-    "spy": 377.9729
+    "port": 373.3361,
+    "spy": 378.3674
   },
   {
     "date": "2022-08-17",
-    "port": 373.8458,
-    "spy": 375.2901
+    "port": 372.8552,
+    "spy": 375.6818
   },
   {
     "date": "2022-08-18",
-    "port": 377.1213,
-    "spy": 376.3809
+    "port": 376.2861,
+    "spy": 376.7737
   },
   {
     "date": "2022-08-19",
-    "port": 372.6259,
-    "spy": 371.323
+    "port": 372.1357,
+    "spy": 371.7105
   },
   {
     "date": "2022-08-22",
-    "port": 368.4578,
-    "spy": 363.5911
+    "port": 368.3146,
+    "spy": 363.9706
   },
   {
     "date": "2022-08-23",
-    "port": 367.8389,
-    "spy": 362.7116
+    "port": 367.7991,
+    "spy": 363.0901
   },
   {
     "date": "2022-08-24",
-    "port": 367.9103,
-    "spy": 363.8727
+    "port": 367.9159,
+    "spy": 364.2525
   },
   {
     "date": "2022-08-25",
-    "port": 372.2137,
-    "spy": 369.0097
+    "port": 371.8983,
+    "spy": 369.3948
   },
   {
     "date": "2022-08-26",
-    "port": 366.1811,
-    "spy": 356.519
+    "port": 366.2271,
+    "spy": 356.8911
   },
   {
     "date": "2022-08-29",
-    "port": 364.8807,
-    "spy": 354.1616
+    "port": 365.173,
+    "spy": 354.5313
   },
   {
     "date": "2022-08-30",
-    "port": 362.34,
-    "spy": 350.2737
+    "port": 362.7159,
+    "spy": 350.6393
   },
   {
     "date": "2022-08-31",
-    "port": 359.706,
-    "spy": 347.6084
+    "port": 360.252,
+    "spy": 347.9712
   },
   {
     "date": "2022-09-01",
-    "port": 358.0488,
-    "spy": 348.6992
+    "port": 358.7337,
+    "spy": 349.0631
   },
   {
     "date": "2022-09-02",
-    "port": 356.7041,
-    "spy": 345.0223
+    "port": 357.4542,
+    "spy": 345.3824
   },
   {
     "date": "2022-09-06",
-    "port": 353.6994,
-    "spy": 343.7205
+    "port": 354.7476,
+    "spy": 344.0793
   },
   {
     "date": "2022-09-07",
-    "port": 355.4017,
-    "spy": 349.8954
+    "port": 355.8132,
+    "spy": 350.2606
   },
   {
     "date": "2022-09-08",
-    "port": 356.8274,
-    "spy": 352.1825
+    "port": 357.3691,
+    "spy": 352.5501
   },
   {
     "date": "2022-09-09",
-    "port": 360.1018,
-    "spy": 357.6537
+    "port": 360.4181,
+    "spy": 358.027
   },
   {
     "date": "2022-09-12",
-    "port": 361.6222,
-    "spy": 361.4977
+    "port": 361.8887,
+    "spy": 361.875
   },
   {
     "date": "2022-09-13",
-    "port": 355.3398,
-    "spy": 345.7789
+    "port": 356.3044,
+    "spy": 346.1398
   },
   {
     "date": "2022-09-14",
-    "port": 355.7059,
-    "spy": 347.0983
+    "port": 356.5405,
+    "spy": 347.4606
   },
   {
     "date": "2022-09-15",
-    "port": 353.3579,
-    "spy": 343.1576
+    "port": 354.2986,
+    "spy": 343.5157
   },
   {
     "date": "2022-09-16",
-    "port": 349.3922,
-    "spy": 340.5396
+    "port": 350.3328,
+    "spy": 340.895
   },
   {
     "date": "2022-09-19",
-    "port": 353.1695,
-    "spy": 343.1806
+    "port": 354.1702,
+    "spy": 343.5387
   },
   {
     "date": "2022-09-20",
-    "port": 349.9764,
-    "spy": 339.2413
+    "port": 351.1881,
+    "spy": 339.5954
   },
   {
     "date": "2022-09-21",
-    "port": 348.1426,
-    "spy": 333.3236
+    "port": 349.3911,
+    "spy": 333.6715
   },
   {
     "date": "2022-09-22",
-    "port": 343.9363,
-    "spy": 330.5238
+    "port": 345.5064,
+    "spy": 330.8688
   },
   {
     "date": "2022-09-23",
-    "port": 342.5477,
-    "spy": 324.9859
+    "port": 344.4096,
+    "spy": 325.3251
   },
   {
     "date": "2022-09-26",
-    "port": 341.2396,
-    "spy": 321.7709
+    "port": 342.661,
+    "spy": 322.1068
   },
   {
     "date": "2022-09-27",
-    "port": 338.4535,
-    "spy": 320.9495
+    "port": 339.6801,
+    "spy": 321.2845
   },
   {
     "date": "2022-09-28",
-    "port": 341.9894,
-    "spy": 327.2646
+    "port": 343.9058,
+    "spy": 327.6062
   },
   {
     "date": "2022-09-29",
-    "port": 338.7959,
-    "spy": 320.4284
+    "port": 340.3557,
+    "spy": 320.7629
   },
   {
     "date": "2022-09-30",
-    "port": 334.5783,
-    "spy": 315.4735
+    "port": 335.9437,
+    "spy": 315.8028
   },
   {
     "date": "2022-10-03",
-    "port": 338.9916,
-    "spy": 323.8023
+    "port": 340.9083,
+    "spy": 324.1403
   },
   {
     "date": "2022-10-04",
-    "port": 342.8468,
-    "spy": 333.836
+    "port": 345.2592,
+    "spy": 334.1844
   },
   {
     "date": "2022-10-05",
-    "port": 344.3399,
-    "spy": 333.0586
+    "port": 346.4401,
+    "spy": 333.4063
   },
   {
     "date": "2022-10-06",
-    "port": 344.7905,
-    "spy": 329.6229
+    "port": 346.539,
+    "spy": 329.9669
   },
   {
     "date": "2022-10-07",
-    "port": 339.6709,
-    "spy": 320.4284
+    "port": 340.9982,
+    "spy": 320.7629
   },
   {
     "date": "2022-10-10",
-    "port": 337.8205,
-    "spy": 317.9818
+    "port": 338.9311,
+    "spy": 318.3137
   },
   {
     "date": "2022-10-11",
-    "port": 337.9512,
-    "spy": 315.968
+    "port": 338.9875,
+    "spy": 316.2978
   },
   {
     "date": "2022-10-12",
-    "port": 337.4267,
-    "spy": 314.9259
+    "port": 338.4941,
+    "spy": 315.2546
   },
   {
     "date": "2022-10-13",
-    "port": 341.1157,
-    "spy": 323.2371
+    "port": 342.4451,
+    "spy": 323.5745
   },
   {
     "date": "2022-10-14",
-    "port": 338.0586,
-    "spy": 315.8709
+    "port": 338.9486,
+    "spy": 316.2006
   },
   {
     "date": "2022-10-17",
-    "port": 340.2987,
-    "spy": 323.9878
+    "port": 340.898,
+    "spy": 324.326
   },
   {
     "date": "2022-10-18",
-    "port": 341.9112,
-    "spy": 327.7946
+    "port": 342.3515,
+    "spy": 328.1367
   },
   {
     "date": "2022-10-19",
-    "port": 339.4398,
-    "spy": 325.4716
+    "port": 340.0966,
+    "spy": 325.8113
   },
   {
     "date": "2022-10-20",
-    "port": 335.569,
-    "spy": 322.7425
+    "port": 336.3606,
+    "spy": 323.0794
   },
   {
     "date": "2022-10-21",
-    "port": 337.3647,
-    "spy": 330.5856
+    "port": 338.0321,
+    "spy": 330.9306
   },
   {
     "date": "2022-10-24",
-    "port": 338.5738,
-    "spy": 334.6308
+    "port": 339.1857,
+    "spy": 334.9801
   },
   {
     "date": "2022-10-25",
-    "port": 343.5962,
-    "spy": 339.9744
+    "port": 343.8493,
+    "spy": 340.3293
   },
   {
     "date": "2022-10-26",
-    "port": 341.8951,
-    "spy": 337.413
+    "port": 341.994,
+    "spy": 337.7651
   },
   {
     "date": "2022-10-27",
-    "port": 341.4008,
-    "spy": 335.6112
+    "port": 341.4349,
+    "spy": 335.9615
   },
   {
     "date": "2022-10-28",
-    "port": 346.8998,
-    "spy": 343.5956
+    "port": 346.9041,
+    "spy": 343.9542
   },
   {
     "date": "2022-10-31",
-    "port": 346.1548,
-    "spy": 341.1137
+    "port": 346.3514,
+    "spy": 341.4697
   },
   {
     "date": "2022-11-01",
-    "port": 346.2481,
-    "spy": 339.6211
+    "port": 346.4108,
+    "spy": 339.9756
   },
   {
     "date": "2022-11-02",
-    "port": 341.2013,
-    "spy": 331.0979
+    "port": 341.6073,
+    "spy": 331.4434
   },
   {
     "date": "2022-11-03",
-    "port": 340.3897,
-    "spy": 327.6886
+    "port": 341.0185,
+    "spy": 328.0306
   },
   {
     "date": "2022-11-04",
-    "port": 340.1247,
-    "spy": 332.405
+    "port": 340.666,
+    "spy": 332.752
   },
   {
     "date": "2022-11-07",
-    "port": 341.1315,
-    "spy": 335.5847
+    "port": 341.6749,
+    "spy": 335.935
   },
   {
     "date": "2022-11-08",
-    "port": 341.8607,
-    "spy": 337.3953
+    "port": 342.2053,
+    "spy": 337.7475
   },
   {
     "date": "2022-11-09",
-    "port": 337.1942,
-    "spy": 330.4443
+    "port": 337.6066,
+    "spy": 330.7892
   },
   {
     "date": "2022-11-10",
-    "port": 347.602,
-    "spy": 348.6036
+    "port": 347.1192,
+    "spy": 348.9674
   },
   {
     "date": "2022-11-11",
-    "port": 348.0411,
-    "spy": 351.9775
+    "port": 347.4322,
+    "spy": 352.3449
   },
   {
     "date": "2022-11-14",
-    "port": 346.4446,
-    "spy": 348.9834
+    "port": 345.9441,
+    "spy": 349.3476
   },
   {
     "date": "2022-11-15",
-    "port": 349.3002,
-    "spy": 351.9598
+    "port": 348.5833,
+    "spy": 352.3272
   },
   {
     "date": "2022-11-16",
-    "port": 348.4998,
-    "spy": 349.2748
+    "port": 347.8449,
+    "spy": 349.6394
   },
   {
     "date": "2022-11-17",
-    "port": 348.1257,
-    "spy": 348.2061
+    "port": 347.2673,
+    "spy": 348.5695
   },
   {
     "date": "2022-11-18",
-    "port": 348.6924,
-    "spy": 349.7871
+    "port": 347.8304,
+    "spy": 350.1522
   },
   {
     "date": "2022-11-21",
-    "port": 348.8549,
-    "spy": 348.5153
+    "port": 347.945,
+    "spy": 348.879
   },
   {
     "date": "2022-11-22",
-    "port": 352.2582,
-    "spy": 353.2052
+    "port": 351.6405,
+    "spy": 353.5738
   },
   {
     "date": "2022-11-23",
-    "port": 352.179,
-    "spy": 355.431
+    "port": 351.9275,
+    "spy": 355.802
   },
   {
     "date": "2022-11-25",
-    "port": 352.292,
-    "spy": 355.3515
+    "port": 352.0149,
+    "spy": 355.7224
   },
   {
     "date": "2022-11-28",
-    "port": 350.3006,
-    "spy": 349.6811
+    "port": 349.7168,
+    "spy": 350.0461
   },
   {
     "date": "2022-11-29",
-    "port": 349.3788,
-    "spy": 349.0805
+    "port": 348.7485,
+    "spy": 349.4448
   },
   {
     "date": "2022-11-30",
-    "port": 354.8191,
-    "spy": 360.0768
+    "port": 354.6043,
+    "spy": 360.4526
   },
   {
     "date": "2022-12-01",
-    "port": 355.6573,
-    "spy": 359.8119
+    "port": 355.7591,
+    "spy": 360.1874
   },
   {
     "date": "2022-12-02",
-    "port": 356.8464,
-    "spy": 359.3966
+    "port": 356.9819,
+    "spy": 359.7718
   },
   {
     "date": "2022-12-05",
-    "port": 352.2615,
-    "spy": 352.9314
+    "port": 352.7278,
+    "spy": 353.2997
   },
   {
     "date": "2022-12-06",
-    "port": 350.5433,
-    "spy": 347.8439
+    "port": 351.0211,
+    "spy": 348.207
   },
   {
     "date": "2022-12-07",
-    "port": 351.777,
-    "spy": 347.2522
+    "port": 352.063,
+    "spy": 347.6146
   },
   {
     "date": "2022-12-08",
-    "port": 352.9961,
-    "spy": 349.9726
+    "port": 353.2476,
+    "spy": 350.3378
   },
   {
     "date": "2022-12-09",
-    "port": 349.3279,
-    "spy": 347.3582
+    "port": 349.8616,
+    "spy": 347.7207
   },
   {
     "date": "2022-12-12",
-    "port": 352.8956,
-    "spy": 352.3662
+    "port": 353.3227,
+    "spy": 352.734
   },
   {
     "date": "2022-12-13",
-    "port": 354.0752,
-    "spy": 355.0335
+    "port": 354.2846,
+    "spy": 355.404
   },
   {
     "date": "2022-12-14",
-    "port": 352.9714,
-    "spy": 352.7636
+    "port": 353.1949,
+    "spy": 353.1318
   },
   {
     "date": "2022-12-15",
-    "port": 350.2926,
-    "spy": 344.1344
+    "port": 350.8385,
+    "spy": 344.4936
   },
   {
     "date": "2022-12-16",
-    "port": 347.4234,
-    "spy": 340.0715
+    "port": 348.1773,
+    "spy": 340.4264
   },
   {
     "date": "2022-12-19",
-    "port": 343.9625,
-    "spy": 337.1878
+    "port": 344.8804,
+    "spy": 337.5397
   },
   {
     "date": "2022-12-20",
-    "port": 342.6585,
-    "spy": 337.6493
+    "port": 343.677,
+    "spy": 338.0017
   },
   {
     "date": "2022-12-21",
-    "port": 346.3863,
-    "spy": 342.698
+    "port": 347.3067,
+    "spy": 343.0557
   },
   {
     "date": "2022-12-22",
-    "port": 344.2014,
-    "spy": 337.8089
+    "port": 345.2942,
+    "spy": 338.1615
   },
   {
     "date": "2022-12-23",
-    "port": 343.8526,
-    "spy": 339.7521
+    "port": 344.9731,
+    "spy": 340.1067
   },
   {
     "date": "2022-12-27",
-    "port": 340.2976,
-    "spy": 338.4123
+    "port": 341.4892,
+    "spy": 338.7655
   },
   {
     "date": "2022-12-28",
-    "port": 332.9582,
-    "spy": 334.2066
+    "port": 333.9691,
+    "spy": 334.5554
   },
   {
     "date": "2022-12-29",
-    "port": 337.0968,
-    "spy": 340.2224
+    "port": 337.8711,
+    "spy": 340.5775
   },
   {
     "date": "2022-12-30",
-    "port": 335.0044,
-    "spy": 339.3261
+    "port": 335.8287,
+    "spy": 339.6803
   },
   {
     "date": "2023-01-03",
-    "port": 336.9362,
-    "spy": 337.8977
+    "port": 337.7484,
+    "spy": 338.2503
   },
   {
     "date": "2023-01-04",
-    "port": 339.0366,
-    "spy": 340.5063
+    "port": 339.6399,
+    "spy": 340.8617
   },
   {
     "date": "2023-01-05",
-    "port": 338.7104,
-    "spy": 336.62
+    "port": 339.4809,
+    "spy": 336.9713
   },
   {
     "date": "2023-01-06",
-    "port": 343.0475,
-    "spy": 344.3394
+    "port": 343.367,
+    "spy": 344.6988
   },
   {
     "date": "2023-01-09",
-    "port": 342.8485,
-    "spy": 344.1442
+    "port": 343.0952,
+    "spy": 344.5034
   },
   {
     "date": "2023-01-10",
-    "port": 343.6502,
-    "spy": 346.5576
+    "port": 344.0098,
+    "spy": 346.9193
   },
   {
     "date": "2023-01-11",
-    "port": 346.0968,
-    "spy": 350.9408
+    "port": 346.1273,
+    "spy": 351.3071
   },
   {
     "date": "2023-01-12",
-    "port": 347.9347,
-    "spy": 352.2185
+    "port": 347.7239,
+    "spy": 352.5861
   },
   {
     "date": "2023-01-13",
-    "port": 348.1943,
-    "spy": 353.5849
+    "port": 348.0414,
+    "spy": 353.954
   },
   {
     "date": "2023-01-17",
-    "port": 346.4572,
-    "spy": 352.9372
+    "port": 346.316,
+    "spy": 353.3056
   },
   {
     "date": "2023-01-18",
-    "port": 345.2306,
-    "spy": 347.365
+    "port": 345.0354,
+    "spy": 347.7276
   },
   {
     "date": "2023-01-19",
-    "port": 343.0849,
-    "spy": 344.8363
+    "port": 342.9897,
+    "spy": 345.1962
   },
   {
     "date": "2023-01-20",
-    "port": 345.6031,
-    "spy": 351.2602
+    "port": 345.4904,
+    "spy": 351.6269
   },
   {
     "date": "2023-01-23",
-    "port": 347.0784,
-    "spy": 355.4748
+    "port": 346.8645,
+    "spy": 355.8459
   },
   {
     "date": "2023-01-24",
-    "port": 348.4581,
-    "spy": 355.0933
+    "port": 348.1705,
+    "spy": 355.4639
   },
   {
     "date": "2023-01-25",
-    "port": 349.1484,
-    "spy": 355.2264
+    "port": 348.8562,
+    "spy": 355.5972
   },
   {
     "date": "2023-01-26",
-    "port": 351.733,
-    "spy": 359.1305
+    "port": 351.4503,
+    "spy": 359.5053
   },
   {
     "date": "2023-01-27",
-    "port": 352.064,
-    "spy": 359.9557
+    "port": 351.7942,
+    "spy": 360.3314
   },
   {
     "date": "2023-01-30",
-    "port": 349.8937,
-    "spy": 355.4394
+    "port": 349.8124,
+    "spy": 355.8104
   },
   {
     "date": "2023-01-31",
-    "port": 354.5442,
-    "spy": 360.6655
+    "port": 354.3153,
+    "spy": 361.0419
   },
   {
     "date": "2023-02-01",
-    "port": 358.1947,
-    "spy": 364.4986
+    "port": 357.7981,
+    "spy": 364.879
   },
   {
     "date": "2023-02-02",
-    "port": 360.815,
-    "spy": 369.8046
+    "port": 360.236,
+    "spy": 370.1905
   },
   {
     "date": "2023-02-03",
-    "port": 357.0461,
-    "spy": 365.8739
+    "port": 356.6559,
+    "spy": 366.2557
   },
   {
     "date": "2023-02-06",
-    "port": 355.1614,
-    "spy": 363.6379
+    "port": 354.9073,
+    "spy": 364.0174
   },
   {
     "date": "2023-02-07",
-    "port": 356.4593,
-    "spy": 368.3938
+    "port": 356.1089,
+    "spy": 368.7783
   },
   {
     "date": "2023-02-08",
-    "port": 355.0937,
-    "spy": 364.3654
+    "port": 354.8464,
+    "spy": 364.7457
   },
   {
     "date": "2023-02-09",
-    "port": 351.8374,
-    "spy": 361.2068
+    "port": 351.7086,
+    "spy": 361.5838
   },
   {
     "date": "2023-02-10",
-    "port": 350.5025,
-    "spy": 362.0497
+    "port": 350.3715,
+    "spy": 362.4276
   },
   {
     "date": "2023-02-13",
-    "port": 354.952,
-    "spy": 366.2998
+    "port": 354.7533,
+    "spy": 366.6821
   },
   {
     "date": "2023-02-14",
-    "port": 354.8252,
-    "spy": 366.1312
+    "port": 354.6632,
+    "spy": 366.5133
   },
   {
     "date": "2023-02-15",
-    "port": 354.8114,
-    "spy": 367.3202
+    "port": 354.694,
+    "spy": 367.7036
   },
   {
     "date": "2023-02-16",
-    "port": 350.8691,
-    "spy": 362.2627
+    "port": 350.9798,
+    "spy": 362.6408
   },
   {
     "date": "2023-02-17",
-    "port": 351.5195,
-    "spy": 361.3576
+    "port": 351.6221,
+    "spy": 361.7348
   },
   {
     "date": "2023-02-21",
-    "port": 346.3181,
-    "spy": 354.1084
+    "port": 346.8135,
+    "spy": 354.478
   },
   {
     "date": "2023-02-22",
-    "port": 346.377,
-    "spy": 353.6204
+    "port": 346.7749,
+    "spy": 353.9895
   },
   {
     "date": "2023-02-23",
-    "port": 347.7633,
-    "spy": 355.5014
+    "port": 348.0038,
+    "spy": 355.8725
   },
   {
     "date": "2023-02-24",
-    "port": 344.4688,
-    "spy": 351.7039
+    "port": 344.8765,
+    "spy": 352.071
   },
   {
     "date": "2023-02-27",
-    "port": 345.8274,
-    "spy": 352.9017
+    "port": 346.2207,
+    "spy": 353.27
   },
   {
     "date": "2023-02-28",
-    "port": 345.0339,
-    "spy": 351.5975
+    "port": 345.3841,
+    "spy": 351.9644
   },
   {
     "date": "2023-03-01",
-    "port": 343.925,
-    "spy": 350.2488
+    "port": 344.4083,
+    "spy": 350.6143
   },
   {
     "date": "2023-03-02",
-    "port": 344.5474,
-    "spy": 352.9727
+    "port": 345.0366,
+    "spy": 353.3411
   },
   {
     "date": "2023-03-03",
-    "port": 349.3189,
-    "spy": 358.6336
+    "port": 349.4764,
+    "spy": 359.0079
   },
   {
     "date": "2023-03-06",
-    "port": 349.0029,
-    "spy": 358.882
+    "port": 349.2804,
+    "spy": 359.2566
   },
   {
     "date": "2023-03-07",
-    "port": 347.1253,
-    "spy": 353.3809
+    "port": 347.5306,
+    "spy": 353.7497
   },
   {
     "date": "2023-03-08",
-    "port": 347.69,
-    "spy": 353.9576
+    "port": 348.0887,
+    "spy": 354.327
   },
   {
     "date": "2023-03-09",
-    "port": 344.0672,
-    "spy": 347.4272
+    "port": 344.6205,
+    "spy": 347.7898
   },
   {
     "date": "2023-03-10",
-    "port": 342.0689,
-    "spy": 342.414
+    "port": 342.355,
+    "spy": 342.7714
   },
   {
     "date": "2023-03-13",
-    "port": 337.5205,
-    "spy": 341.9259
+    "port": 337.5442,
+    "spy": 342.2828
   },
   {
     "date": "2023-03-14",
-    "port": 340.6196,
-    "spy": 347.578
+    "port": 340.7223,
+    "spy": 347.9407
   },
   {
     "date": "2023-03-15",
-    "port": 340.0658,
-    "spy": 345.4041
+    "port": 340.0533,
+    "spy": 345.7646
   },
   {
     "date": "2023-03-16",
-    "port": 343.3791,
-    "spy": 351.4643
+    "port": 343.3211,
+    "spy": 351.8312
   },
   {
     "date": "2023-03-17",
-    "port": 340.6683,
-    "spy": 347.3547
+    "port": 340.5161,
+    "spy": 347.7173
   },
   {
     "date": "2023-03-20",
-    "port": 341.8706,
-    "spy": 350.6948
+    "port": 341.6972,
+    "spy": 351.0608
   },
   {
     "date": "2023-03-21",
-    "port": 345.1584,
-    "spy": 355.2996
+    "port": 345.0185,
+    "spy": 355.6704
   },
   {
     "date": "2023-03-22",
-    "port": 342.67,
-    "spy": 349.243
+    "port": 342.5814,
+    "spy": 349.6075
   },
   {
     "date": "2023-03-23",
-    "port": 342.0388,
-    "spy": 350.1871
+    "port": 341.8732,
+    "spy": 350.5526
   },
   {
     "date": "2023-03-24",
-    "port": 343.4511,
-    "spy": 352.485
+    "port": 343.1654,
+    "spy": 352.8529
   },
   {
     "date": "2023-03-27",
-    "port": 342.2004,
-    "spy": 353.1441
+    "port": 342.0881,
+    "spy": 353.5127
   },
   {
     "date": "2023-03-28",
-    "port": 342.2485,
-    "spy": 352.3514
+    "port": 342.1558,
+    "spy": 352.7192
   },
   {
     "date": "2023-03-29",
-    "port": 345.6267,
-    "spy": 357.4728
+    "port": 345.4911,
+    "spy": 357.8459
   },
   {
     "date": "2023-03-30",
-    "port": 347.7969,
-    "spy": 359.5659
+    "port": 347.6417,
+    "spy": 359.9412
   },
   {
     "date": "2023-03-31",
-    "port": 351.5759,
-    "spy": 364.6339
+    "port": 351.138,
+    "spy": 365.0144
   },
   {
     "date": "2023-04-03",
-    "port": 352.0862,
-    "spy": 366.0233
+    "port": 351.5299,
+    "spy": 366.4053
   },
   {
     "date": "2023-04-04",
-    "port": 351.0754,
-    "spy": 363.9926
+    "port": 350.5478,
+    "spy": 364.3725
   },
   {
     "date": "2023-04-05",
-    "port": 351.3738,
-    "spy": 363.0396
+    "port": 350.7926,
+    "spy": 363.4185
   },
   {
     "date": "2023-04-06",
-    "port": 353.3937,
-    "spy": 364.4558
+    "port": 352.8464,
+    "spy": 364.8362
   },
   {
     "date": "2023-04-10",
-    "port": 351.7639,
-    "spy": 364.8298
+    "port": 351.2789,
+    "spy": 365.2106
   },
   {
     "date": "2023-04-11",
-    "port": 353.0286,
-    "spy": 364.9278
+    "port": 352.5811,
+    "spy": 365.3087
   },
   {
     "date": "2023-04-12",
-    "port": 352.4733,
-    "spy": 363.4403
+    "port": 352.0992,
+    "spy": 363.8197
   },
   {
     "date": "2023-04-13",
-    "port": 354.592,
-    "spy": 368.2678
+    "port": 354.1872,
+    "spy": 368.6522
   },
   {
     "date": "2023-04-14",
-    "port": 352.3642,
-    "spy": 367.3682
+    "port": 351.9944,
+    "spy": 367.7517
   },
   {
     "date": "2023-04-17",
-    "port": 351.4474,
-    "spy": 368.6864
+    "port": 351.0857,
+    "spy": 369.0712
   },
   {
     "date": "2023-04-18",
-    "port": 352.0776,
-    "spy": 368.9269
+    "port": 351.7039,
+    "spy": 369.3119
   },
   {
     "date": "2023-04-19",
-    "port": 353.2496,
-    "spy": 368.8646
+    "port": 352.9768,
+    "spy": 369.2496
   },
   {
     "date": "2023-04-20",
-    "port": 353.6782,
-    "spy": 366.8516
+    "port": 353.4546,
+    "spy": 367.2345
   },
   {
     "date": "2023-04-21",
-    "port": 352.9189,
-    "spy": 367.1366
+    "port": 352.7169,
+    "spy": 367.5198
   },
   {
     "date": "2023-04-24",
-    "port": 354.8753,
-    "spy": 367.5196
+    "port": 354.6512,
+    "spy": 367.9032
   },
   {
     "date": "2023-04-25",
-    "port": 352.6342,
-    "spy": 361.6856
+    "port": 352.4347,
+    "spy": 362.0631
   },
   {
     "date": "2023-04-26",
-    "port": 351.6115,
-    "spy": 360.1537
+    "port": 351.6102,
+    "spy": 360.5296
   },
   {
     "date": "2023-04-27",
-    "port": 355.1733,
-    "spy": 367.3237
+    "port": 355.1142,
+    "spy": 367.7071
   },
   {
     "date": "2023-04-28",
-    "port": 358.7306,
-    "spy": 370.4588
+    "port": 358.4842,
+    "spy": 370.8455
   },
   {
     "date": "2023-05-01",
-    "port": 354.7519,
-    "spy": 370.0849
+    "port": 354.6682,
+    "spy": 370.4712
   },
   {
     "date": "2023-05-02",
-    "port": 355.6172,
-    "spy": 365.9253
+    "port": 355.532,
+    "spy": 366.3073
   },
   {
     "date": "2023-05-03",
-    "port": 355.5485,
-    "spy": 363.4136
+    "port": 355.54,
+    "spy": 363.7929
   },
   {
     "date": "2023-05-04",
-    "port": 352.0374,
-    "spy": 360.8396
+    "port": 352.1142,
+    "spy": 361.2162
   },
   {
     "date": "2023-05-05",
-    "port": 355.8313,
-    "spy": 367.5196
+    "port": 355.7782,
+    "spy": 367.9032
   },
   {
     "date": "2023-05-08",
-    "port": 353.4277,
-    "spy": 367.6176
+    "port": 353.4064,
+    "spy": 368.0013
   },
   {
     "date": "2023-05-09",
-    "port": 351.7794,
-    "spy": 366.0055
+    "port": 351.7929,
+    "spy": 366.3875
   },
   {
     "date": "2023-05-10",
-    "port": 353.798,
-    "spy": 367.7156
+    "port": 353.7237,
+    "spy": 368.0994
   },
   {
     "date": "2023-05-11",
-    "port": 354.2202,
-    "spy": 367.0743
+    "port": 354.0779,
+    "spy": 367.4575
   },
   {
     "date": "2023-05-12",
-    "port": 353.4078,
-    "spy": 366.5934
+    "port": 353.3612,
+    "spy": 366.976
   },
   {
     "date": "2023-05-15",
-    "port": 352.1784,
-    "spy": 367.8582
+    "port": 352.087,
+    "spy": 368.2421
   },
   {
     "date": "2023-05-16",
-    "port": 350.3019,
-    "spy": 365.3998
+    "port": 350.2887,
+    "spy": 365.7812
   },
   {
     "date": "2023-05-17",
-    "port": 353.1948,
-    "spy": 369.8354
+    "port": 353.1122,
+    "spy": 370.2214
   },
   {
     "date": "2023-05-18",
-    "port": 354.1282,
-    "spy": 373.3981
+    "port": 353.9964,
+    "spy": 373.7878
   },
   {
     "date": "2023-05-19",
-    "port": 353.5126,
-    "spy": 372.8548
+    "port": 353.4952,
+    "spy": 373.244
   },
   {
     "date": "2023-05-22",
-    "port": 353.6477,
-    "spy": 373.0062
+    "port": 353.6649,
+    "spy": 373.3955
   },
   {
     "date": "2023-05-23",
-    "port": 351.4472,
-    "spy": 368.82
+    "port": 351.5039,
+    "spy": 369.205
   },
   {
     "date": "2023-05-24",
-    "port": 348.8969,
-    "spy": 366.1481
+    "port": 349.0123,
+    "spy": 366.5302
   },
   {
     "date": "2023-05-25",
-    "port": 351.2155,
-    "spy": 369.3188
+    "port": 351.3641,
+    "spy": 369.7043
   },
   {
     "date": "2023-05-26",
-    "port": 354.7978,
-    "spy": 374.1018
+    "port": 354.7969,
+    "spy": 374.4922
   },
   {
     "date": "2023-05-30",
-    "port": 357.0438,
-    "spy": 374.2442
+    "port": 357.0702,
+    "spy": 374.6348
   },
   {
     "date": "2023-05-31",
-    "port": 355.6711,
-    "spy": 372.169
+    "port": 355.6345,
+    "spy": 372.5574
   },
   {
     "date": "2023-06-01",
-    "port": 358.1222,
-    "spy": 375.7049
+    "port": 357.9821,
+    "spy": 376.0971
   },
   {
     "date": "2023-06-02",
-    "port": 359.8908,
-    "spy": 381.1381
+    "port": 359.6201,
+    "spy": 381.5359
   },
   {
     "date": "2023-06-05",
-    "port": 358.7379,
-    "spy": 380.4077
+    "port": 358.4965,
+    "spy": 380.8048
   },
   {
     "date": "2023-06-06",
-    "port": 360.7894,
-    "spy": 381.236
+    "port": 360.4874,
+    "spy": 381.634
   },
   {
     "date": "2023-06-07",
-    "port": 359.2182,
-    "spy": 379.9178
+    "port": 359.0346,
+    "spy": 380.3144
   },
   {
     "date": "2023-06-08",
-    "port": 361.852,
-    "spy": 382.2158
+    "port": 361.5782,
+    "spy": 382.6147
   },
   {
     "date": "2023-06-09",
-    "port": 361.9153,
-    "spy": 382.9016
+    "port": 361.6458,
+    "spy": 383.3012
   },
   {
     "date": "2023-06-12",
-    "port": 364.7355,
-    "spy": 386.3752
+    "port": 364.4261,
+    "spy": 386.7785
   },
   {
     "date": "2023-06-13",
-    "port": 365.1667,
-    "spy": 388.9226
+    "port": 364.8597,
+    "spy": 389.3286
   },
   {
     "date": "2023-06-14",
-    "port": 366.124,
-    "spy": 389.3857
+    "port": 365.7701,
+    "spy": 389.7921
   },
   {
     "date": "2023-06-15",
-    "port": 367.8614,
-    "spy": 394.2132
+    "port": 367.1804,
+    "spy": 394.6247
   },
   {
     "date": "2023-06-16",
-    "port": 365.5552,
-    "spy": 392.8704
+    "port": 364.8605,
+    "spy": 393.2805
   },
   {
     "date": "2023-06-20",
-    "port": 365.1141,
-    "spy": 390.8321
+    "port": 364.4154,
+    "spy": 391.24
   },
   {
     "date": "2023-06-21",
-    "port": 363.276,
-    "spy": 388.8296
+    "port": 362.5158,
+    "spy": 389.2354
   },
   {
     "date": "2023-06-22",
-    "port": 363.3585,
-    "spy": 390.2332
+    "port": 362.7333,
+    "spy": 390.6405
   },
   {
     "date": "2023-06-23",
-    "port": 361.476,
-    "spy": 387.283
+    "port": 360.7567,
+    "spy": 387.6872
   },
   {
     "date": "2023-06-26",
-    "port": 360.4769,
-    "spy": 385.7007
+    "port": 359.7442,
+    "spy": 386.1033
   },
   {
     "date": "2023-06-27",
-    "port": 364.2955,
-    "spy": 389.9292
+    "port": 363.5966,
+    "spy": 390.3362
   },
   {
     "date": "2023-06-28",
-    "port": 365.0051,
-    "spy": 390.1259
+    "port": 364.2775,
+    "spy": 390.5331
   },
   {
     "date": "2023-06-29",
-    "port": 364.7372,
-    "spy": 391.6635
+    "port": 364.1427,
+    "spy": 392.0723
   },
   {
     "date": "2023-06-30",
-    "port": 368.6235,
-    "spy": 396.2854
+    "port": 367.8659,
+    "spy": 396.6991
   },
   {
     "date": "2023-07-03",
-    "port": 369.2167,
-    "spy": 396.7414
+    "port": 368.5505,
+    "spy": 397.1555
   },
   {
     "date": "2023-07-05",
-    "port": 367.2955,
-    "spy": 396.1514
+    "port": 366.7025,
+    "spy": 396.5649
   },
   {
     "date": "2023-07-06",
-    "port": 364.6189,
-    "spy": 393.0492
+    "port": 364.2678,
+    "spy": 393.4595
   },
   {
     "date": "2023-07-07",
-    "port": 364.4839,
-    "spy": 392.0569
+    "port": 364.2333,
+    "spy": 392.4661
   },
   {
     "date": "2023-07-10",
-    "port": 365.2447,
-    "spy": 393.0492
+    "port": 364.9482,
+    "spy": 393.4595
   },
   {
     "date": "2023-07-11",
-    "port": 367.337,
-    "spy": 395.5524
+    "port": 366.9487,
+    "spy": 395.9653
   },
   {
     "date": "2023-07-12",
-    "port": 370.3598,
-    "spy": 398.735
+    "port": 369.818,
+    "spy": 399.1512
   },
   {
     "date": "2023-07-13",
-    "port": 373.1594,
-    "spy": 401.8997
+    "port": 372.4685,
+    "spy": 402.3192
   },
   {
     "date": "2023-07-14",
-    "port": 372.4012,
-    "spy": 401.6494
+    "port": 371.7896,
+    "spy": 402.0686
   },
   {
     "date": "2023-07-17",
-    "port": 373.4559,
-    "spy": 403.044
+    "port": 372.8187,
+    "spy": 403.4647
   },
   {
     "date": "2023-07-18",
-    "port": 375.4691,
-    "spy": 406.0388
+    "port": 374.6881,
+    "spy": 406.4626
   },
   {
     "date": "2023-07-19",
-    "port": 376.4959,
-    "spy": 406.9418
+    "port": 375.5376,
+    "spy": 407.3665
   },
   {
     "date": "2023-07-20",
-    "port": 373.1854,
-    "spy": 404.2419
+    "port": 372.3525,
+    "spy": 404.6638
   },
   {
     "date": "2023-07-21",
-    "port": 373.543,
-    "spy": 404.2419
+    "port": 372.7498,
+    "spy": 404.6638
   },
   {
     "date": "2023-07-24",
-    "port": 372.8563,
-    "spy": 406.0478
+    "port": 371.9368,
+    "spy": 406.4716
   },
   {
     "date": "2023-07-25",
-    "port": 373.1459,
-    "spy": 407.1564
+    "port": 372.2121,
+    "spy": 407.5813
   },
   {
     "date": "2023-07-26",
-    "port": 374.9088,
-    "spy": 407.2189
+    "port": 374.0644,
+    "spy": 407.6439
   },
   {
     "date": "2023-07-27",
-    "port": 370.152,
-    "spy": 404.5191
+    "port": 369.4386,
+    "spy": 404.9413
   },
   {
     "date": "2023-07-28",
-    "port": 373.1092,
-    "spy": 408.4794
+    "port": 372.281,
+    "spy": 408.9057
   },
   {
     "date": "2023-07-31",
-    "port": 374.7356,
-    "spy": 409.2572
+    "port": 373.9261,
+    "spy": 409.6844
   },
   {
     "date": "2023-08-01",
-    "port": 372.9554,
-    "spy": 408.0861
+    "port": 372.3443,
+    "spy": 408.512
   },
   {
     "date": "2023-08-02",
-    "port": 367.658,
-    "spy": 402.4093
+    "port": 367.1629,
+    "spy": 402.8293
   },
   {
     "date": "2023-08-03",
-    "port": 364.8107,
-    "spy": 401.256
+    "port": 364.5365,
+    "spy": 401.6749
   },
   {
     "date": "2023-08-04",
-    "port": 365.1926,
-    "spy": 399.4412
+    "port": 364.7765,
+    "spy": 399.8581
   },
   {
     "date": "2023-08-07",
-    "port": 365.7301,
-    "spy": 402.9278
+    "port": 365.2819,
+    "spy": 403.3483
   },
   {
     "date": "2023-08-08",
-    "port": 365.0878,
-    "spy": 401.1755
+    "port": 364.5286,
+    "spy": 401.5943
   },
   {
     "date": "2023-08-09",
-    "port": 364.1237,
-    "spy": 398.4936
+    "port": 363.5798,
+    "spy": 398.9095
   },
   {
     "date": "2023-08-10",
-    "port": 362.8031,
-    "spy": 398.6366
+    "port": 362.4253,
+    "spy": 399.0527
   },
   {
     "date": "2023-08-11",
-    "port": 363.6831,
-    "spy": 398.4041
+    "port": 363.4154,
+    "spy": 398.82
   },
   {
     "date": "2023-08-14",
-    "port": 364.4263,
-    "spy": 400.6034
+    "port": 364.1283,
+    "spy": 401.0216
   },
   {
     "date": "2023-08-15",
-    "port": 361.5526,
-    "spy": 395.9368
+    "port": 361.4332,
+    "spy": 396.3501
   },
   {
     "date": "2023-08-16",
-    "port": 358.8591,
-    "spy": 393.0314
+    "port": 358.8418,
+    "spy": 393.4416
   },
   {
     "date": "2023-08-17",
-    "port": 357.206,
-    "spy": 390.0365
+    "port": 357.3148,
+    "spy": 390.4436
   },
   {
     "date": "2023-08-18",
-    "port": 357.3639,
-    "spy": 390.2242
+    "port": 357.4101,
+    "spy": 390.6315
   },
   {
     "date": "2023-08-21",
-    "port": 357.5507,
-    "spy": 392.7631
+    "port": 357.6755,
+    "spy": 393.1731
   },
   {
     "date": "2023-08-22",
-    "port": 357.3016,
-    "spy": 391.6994
+    "port": 357.3773,
+    "spy": 392.1082
   },
   {
     "date": "2023-08-23",
-    "port": 361.2999,
-    "spy": 396.062
+    "port": 361.0495,
+    "spy": 396.4753
   },
   {
     "date": "2023-08-24",
-    "port": 357.6305,
-    "spy": 390.5729
+    "port": 357.5331,
+    "spy": 390.9806
   },
   {
     "date": "2023-08-25",
-    "port": 360.9408,
-    "spy": 393.3264
+    "port": 360.8885,
+    "spy": 393.7369
   },
   {
     "date": "2023-08-28",
-    "port": 362.5731,
-    "spy": 395.8206
+    "port": 362.4643,
+    "spy": 396.2337
   },
   {
     "date": "2023-08-29",
-    "port": 366.9054,
-    "spy": 401.5421
+    "port": 366.6102,
+    "spy": 401.9612
   },
   {
     "date": "2023-08-30",
-    "port": 367.3901,
-    "spy": 403.1959
+    "port": 367.0476,
+    "spy": 403.6167
   },
   {
     "date": "2023-08-31",
-    "port": 367.0978,
-    "spy": 402.6059
+    "port": 366.7032,
+    "spy": 403.0261
   },
   {
     "date": "2023-09-01",
-    "port": 367.0817,
-    "spy": 403.3569
+    "port": 366.8445,
+    "spy": 403.7779
   },
   {
     "date": "2023-09-05",
-    "port": 365.1456,
-    "spy": 401.6136
+    "port": 365.1529,
+    "spy": 402.0328
   },
   {
     "date": "2023-09-06",
-    "port": 364.0004,
-    "spy": 398.9137
+    "port": 364.0483,
+    "spy": 399.3301
   },
   {
     "date": "2023-09-07",
-    "port": 363.3208,
-    "spy": 397.689
+    "port": 363.3774,
+    "spy": 398.1041
   },
   {
     "date": "2023-09-08",
-    "port": 364.6732,
-    "spy": 398.288
+    "port": 364.7416,
+    "spy": 398.7037
   },
   {
     "date": "2023-09-11",
-    "port": 365.326,
-    "spy": 400.9073
+    "port": 365.4027,
+    "spy": 401.3258
   },
   {
     "date": "2023-09-12",
-    "port": 365.167,
-    "spy": 398.7081
+    "port": 365.2639,
+    "spy": 399.1243
   },
   {
     "date": "2023-09-13",
-    "port": 364.7613,
-    "spy": 399.173
+    "port": 364.821,
+    "spy": 399.5897
   },
   {
     "date": "2023-09-14",
-    "port": 366.5044,
-    "spy": 402.6148
+    "port": 366.5681,
+    "spy": 403.0351
   },
   {
     "date": "2023-09-15",
-    "port": 362.794,
-    "spy": 397.764
+    "port": 362.9694,
+    "spy": 398.1792
   },
   {
     "date": "2023-09-18",
-    "port": 364.0231,
-    "spy": 397.9973
+    "port": 364.2035,
+    "spy": 398.4127
   },
   {
     "date": "2023-09-19",
-    "port": 362.8556,
-    "spy": 397.1719
+    "port": 363.1103,
+    "spy": 397.5864
   },
   {
     "date": "2023-09-20",
-    "port": 360.4333,
-    "spy": 393.5206
+    "port": 360.679,
+    "spy": 393.9313
   },
   {
     "date": "2023-09-21",
-    "port": 354.7265,
-    "spy": 387.0163
+    "port": 355.3127,
+    "spy": 387.4203
   },
   {
     "date": "2023-09-22",
-    "port": 354.5538,
-    "spy": 386.1461
+    "port": 355.0667,
+    "spy": 386.5491
   },
   {
     "date": "2023-09-25",
-    "port": 353.1225,
-    "spy": 387.7699
+    "port": 353.7665,
+    "spy": 388.1747
   },
   {
     "date": "2023-09-26",
-    "port": 349.5812,
-    "spy": 382.0731
+    "port": 350.3541,
+    "spy": 382.4719
   },
   {
     "date": "2023-09-27",
-    "port": 350.2766,
-    "spy": 382.2256
+    "port": 351.1454,
+    "spy": 382.6246
   },
   {
     "date": "2023-09-28",
-    "port": 351.8747,
-    "spy": 384.4415
+    "port": 352.6772,
+    "spy": 384.8428
   },
   {
     "date": "2023-09-29",
-    "port": 351.0134,
-    "spy": 383.5086
+    "port": 351.8141,
+    "spy": 383.9088
   },
   {
     "date": "2023-10-02",
-    "port": 349.1294,
-    "spy": 383.356
+    "port": 350.0663,
+    "spy": 383.7562
   },
   {
     "date": "2023-10-03",
-    "port": 343.9148,
-    "spy": 378.2244
+    "port": 345.074,
+    "spy": 378.6192
   },
   {
     "date": "2023-10-04",
-    "port": 344.9222,
-    "spy": 380.9786
+    "port": 345.8198,
+    "spy": 381.3763
   },
   {
     "date": "2023-10-05",
-    "port": 342.3572,
-    "spy": 380.8351
+    "port": 343.1375,
+    "spy": 381.2325
   },
   {
     "date": "2023-10-06",
-    "port": 343.3255,
-    "spy": 385.3566
+    "port": 344.0865,
+    "spy": 385.7588
   },
   {
     "date": "2023-10-09",
-    "port": 347.2106,
-    "spy": 387.8238
+    "port": 347.7895,
+    "spy": 388.2286
   },
   {
     "date": "2023-10-10",
-    "port": 347.8683,
-    "spy": 389.8423
+    "port": 348.384,
+    "spy": 390.2492
   },
   {
     "date": "2023-10-11",
-    "port": 350.1035,
-    "spy": 391.4392
+    "port": 350.3996,
+    "spy": 391.8478
   },
   {
     "date": "2023-10-12",
-    "port": 346.9995,
-    "spy": 389.0528
+    "port": 347.6251,
+    "spy": 389.4589
   },
   {
     "date": "2023-10-13",
-    "port": 347.7946,
-    "spy": 387.1151
+    "port": 348.3617,
+    "spy": 387.5191
   },
   {
     "date": "2023-10-16",
-    "port": 349.137,
-    "spy": 391.1881
+    "port": 349.7719,
+    "spy": 391.5964
   },
   {
     "date": "2023-10-17",
-    "port": 349.5787,
-    "spy": 391.1701
+    "port": 350.3734,
+    "spy": 391.5784
   },
   {
     "date": "2023-10-18",
-    "port": 346.372,
-    "spy": 385.9577
+    "port": 347.3748,
+    "spy": 386.3605
   },
   {
     "date": "2023-10-19",
-    "port": 342.6213,
-    "spy": 382.5665
+    "port": 343.8368,
+    "spy": 382.9658
   },
   {
     "date": "2023-10-20",
-    "port": 340.469,
-    "spy": 377.8655
+    "port": 341.7224,
+    "spy": 378.2599
   },
   {
     "date": "2023-10-23",
-    "port": 339.6405,
-    "spy": 377.2105
+    "port": 340.7211,
+    "spy": 377.6042
   },
   {
     "date": "2023-10-24",
-    "port": 342.0673,
-    "spy": 380.0545
+    "port": 342.9999,
+    "spy": 380.4512
   },
   {
     "date": "2023-10-25",
-    "port": 338.4023,
-    "spy": 374.5999
+    "port": 339.6764,
+    "spy": 374.9909
   },
   {
     "date": "2023-10-26",
-    "port": 336.7651,
-    "spy": 370.1143
+    "port": 337.9354,
+    "spy": 370.5006
   },
   {
     "date": "2023-10-27",
-    "port": 335.5517,
-    "spy": 368.4366
+    "port": 336.799,
+    "spy": 368.8212
   },
   {
     "date": "2023-10-30",
-    "port": 336.9709,
-    "spy": 372.8415
+    "port": 338.1313,
+    "spy": 373.2307
   },
   {
     "date": "2023-10-31",
-    "port": 337.7914,
-    "spy": 375.1831
+    "port": 338.9391,
+    "spy": 375.5747
   },
   {
     "date": "2023-11-01",
-    "port": 341.6069,
-    "spy": 379.1843
+    "port": 342.5254,
+    "spy": 379.5801
   },
   {
     "date": "2023-11-02",
-    "port": 347.4301,
-    "spy": 386.4512
+    "port": 348.0296,
+    "spy": 386.8545
   },
   {
     "date": "2023-11-03",
-    "port": 348.0576,
-    "spy": 389.9769
+    "port": 348.3574,
+    "spy": 390.384
   },
   {
     "date": "2023-11-06",
-    "port": 348.3516,
-    "spy": 390.874
+    "port": 348.7898,
+    "spy": 391.282
   },
   {
     "date": "2023-11-07",
-    "port": 349.2631,
-    "spy": 391.9865
+    "port": 349.5292,
+    "spy": 392.3956
   },
   {
     "date": "2023-11-08",
-    "port": 350.1877,
-    "spy": 392.2736
+    "port": 350.2856,
+    "spy": 392.683
   },
   {
     "date": "2023-11-09",
-    "port": 347.1414,
-    "spy": 389.2143
+    "port": 347.5395,
+    "spy": 389.6205
   },
   {
     "date": "2023-11-10",
-    "port": 351.4495,
-    "spy": 395.2879
+    "port": 351.7368,
+    "spy": 395.7005
   },
   {
     "date": "2023-11-13",
-    "port": 351.2876,
-    "spy": 394.9112
+    "port": 351.6175,
+    "spy": 395.3234
   },
   {
     "date": "2023-11-14",
-    "port": 355.9947,
-    "spy": 402.5727
+    "port": 355.819,
+    "spy": 402.9929
   },
   {
     "date": "2023-11-15",
-    "port": 355.7273,
-    "spy": 403.4249
+    "port": 355.6853,
+    "spy": 403.846
   },
   {
     "date": "2023-11-16",
-    "port": 355.5503,
-    "spy": 403.9184
+    "port": 355.3266,
+    "spy": 404.34
   },
   {
     "date": "2023-11-17",
-    "port": 356.9427,
-    "spy": 404.4208
+    "port": 356.6921,
+    "spy": 404.8429
   },
   {
     "date": "2023-11-20",
-    "port": 359.8191,
-    "spy": 407.5339
+    "port": 359.5156,
+    "spy": 407.9592
   },
   {
     "date": "2023-11-21",
-    "port": 359.0597,
-    "spy": 406.6457
+    "port": 358.785,
+    "spy": 407.0701
   },
   {
     "date": "2023-11-22",
-    "port": 360.4384,
-    "spy": 408.2157
+    "port": 360.1205,
+    "spy": 408.6418
   },
   {
     "date": "2023-11-24",
-    "port": 359.3093,
-    "spy": 408.4669
+    "port": 359.0533,
+    "spy": 408.8932
   },
   {
     "date": "2023-11-27",
-    "port": 360.6051,
-    "spy": 407.7312
+    "port": 360.2473,
+    "spy": 408.1568
   },
   {
     "date": "2023-11-28",
-    "port": 360.067,
-    "spy": 408.1349
+    "port": 359.6335,
+    "spy": 408.5609
   },
   {
     "date": "2023-11-29",
-    "port": 361.0216,
-    "spy": 407.8479
+    "port": 360.4696,
+    "spy": 408.2736
   },
   {
     "date": "2023-11-30",
-    "port": 360.3675,
-    "spy": 409.4538
+    "port": 359.8443,
+    "spy": 409.8811
   },
   {
     "date": "2023-12-01",
-    "port": 362.4562,
-    "spy": 411.876
+    "port": 361.5952,
+    "spy": 412.3059
   },
   {
     "date": "2023-12-04",
-    "port": 362.0599,
-    "spy": 409.7139
+    "port": 361.3263,
+    "spy": 410.1416
   },
   {
     "date": "2023-12-05",
-    "port": 362.5964,
-    "spy": 409.6332
+    "port": 361.6228,
+    "spy": 410.0607
   },
   {
     "date": "2023-12-06",
-    "port": 362.8457,
-    "spy": 407.9825
+    "port": 361.7891,
+    "spy": 408.4083
   },
   {
     "date": "2023-12-07",
-    "port": 363.0363,
-    "spy": 411.0956
+    "port": 361.8793,
+    "spy": 411.5246
   },
   {
     "date": "2023-12-08",
-    "port": 364.2658,
-    "spy": 412.8629
+    "port": 363.214,
+    "spy": 413.2938
   },
   {
     "date": "2023-12-11",
-    "port": 366.0722,
-    "spy": 414.4687
+    "port": 365.0905,
+    "spy": 414.9013
   },
   {
     "date": "2023-12-12",
-    "port": 366.1004,
-    "spy": 416.3617
+    "port": 364.9811,
+    "spy": 416.7963
   },
   {
     "date": "2023-12-13",
-    "port": 371.7658,
-    "spy": 422.1033
+    "port": 370.2889,
+    "spy": 422.5439
   },
   {
     "date": "2023-12-14",
-    "port": 375.9133,
-    "spy": 423.4581
+    "port": 374.7049,
+    "spy": 423.9
   },
   {
     "date": "2023-12-15",
-    "port": 374.7447,
-    "spy": 422.7609
+    "port": 373.5742,
+    "spy": 423.2021
   },
   {
     "date": "2023-12-18",
-    "port": 375.3801,
-    "spy": 425.1389
+    "port": 374.1658,
+    "spy": 425.5826
   },
   {
     "date": "2023-12-19",
-    "port": 378.4315,
-    "spy": 427.7241
+    "port": 377.2816,
+    "spy": 428.1705
   },
   {
     "date": "2023-12-20",
-    "port": 376.1386,
-    "spy": 421.797
+    "port": 374.8823,
+    "spy": 422.2373
   },
   {
     "date": "2023-12-21",
-    "port": 376.8544,
-    "spy": 425.7965
+    "port": 375.7316,
+    "spy": 426.2409
   },
   {
     "date": "2023-12-22",
-    "port": 376.8572,
-    "spy": 426.6522
+    "port": 375.7357,
+    "spy": 427.0975
   },
   {
     "date": "2023-12-26",
-    "port": 378.3134,
-    "spy": 428.4537
+    "port": 377.2623,
+    "spy": 428.9009
   },
   {
     "date": "2023-12-27",
-    "port": 381.4354,
-    "spy": 429.2284
+    "port": 380.4381,
+    "spy": 429.6765
   },
   {
     "date": "2023-12-28",
-    "port": 379.807,
-    "spy": 429.3906
+    "port": 378.8207,
+    "spy": 429.8388
   },
   {
     "date": "2023-12-29",
-    "port": 378.0775,
-    "spy": 428.1475
+    "port": 376.9617,
+    "spy": 428.5944
   },
   {
     "date": "2024-01-02",
-    "port": 375.4421,
-    "spy": 425.7514
+    "port": 374.3076,
+    "spy": 426.1958
   },
   {
     "date": "2024-01-03",
-    "port": 373.7743,
-    "spy": 422.2745
+    "port": 372.5244,
+    "spy": 422.7152
   },
   {
     "date": "2024-01-04",
-    "port": 370.8848,
-    "spy": 420.9143
+    "port": 369.5543,
+    "spy": 421.3536
   },
   {
     "date": "2024-01-05",
-    "port": 370.2776,
-    "spy": 421.4908
+    "port": 368.886,
+    "spy": 421.9307
   },
   {
     "date": "2024-01-08",
-    "port": 374.8913,
-    "spy": 427.508
+    "port": 373.638,
+    "spy": 427.9542
   },
   {
     "date": "2024-01-09",
-    "port": 372.5048,
-    "spy": 426.8594
+    "port": 371.2583,
+    "spy": 427.3049
   },
   {
     "date": "2024-01-10",
-    "port": 373.5666,
-    "spy": 429.2734
+    "port": 372.2884,
+    "spy": 429.7215
   },
   {
     "date": "2024-01-11",
-    "port": 373.8745,
-    "spy": 429.0843
+    "port": 372.6202,
+    "spy": 429.5322
   },
   {
     "date": "2024-01-12",
-    "port": 374.1609,
-    "spy": 429.3816
+    "port": 372.845,
+    "spy": 429.8297
   },
   {
     "date": "2024-01-16",
-    "port": 369.9031,
-    "spy": 427.8052
+    "port": 368.5283,
+    "spy": 428.2517
   },
   {
     "date": "2024-01-17",
-    "port": 367.6676,
-    "spy": 425.4272
+    "port": 366.2976,
+    "spy": 425.8712
   },
   {
     "date": "2024-01-18",
-    "port": 368.1174,
-    "spy": 429.2105
+    "port": 366.8263,
+    "spy": 429.6584
   },
   {
     "date": "2024-01-19",
-    "port": 372.3007,
-    "spy": 434.561
+    "port": 371.0397,
+    "spy": 435.0146
   },
   {
     "date": "2024-01-22",
-    "port": 374.5648,
-    "spy": 435.4798
+    "port": 373.3366,
+    "spy": 435.9343
   },
   {
     "date": "2024-01-23",
-    "port": 372.6521,
-    "spy": 436.7499
+    "port": 371.4934,
+    "spy": 437.2058
   },
   {
     "date": "2024-01-24",
-    "port": 370.5256,
-    "spy": 437.2274
+    "port": 369.4806,
+    "spy": 437.6837
   },
   {
     "date": "2024-01-25",
-    "port": 373.5569,
-    "spy": 439.6054
+    "port": 372.518,
+    "spy": 440.0642
   },
   {
     "date": "2024-01-26",
-    "port": 373.9103,
-    "spy": 439.0469
+    "port": 372.7876,
+    "spy": 439.5051
   },
   {
     "date": "2024-01-29",
-    "port": 378.7369,
-    "spy": 442.5238
+    "port": 377.599,
+    "spy": 442.9857
   },
   {
     "date": "2024-01-30",
-    "port": 378.5733,
-    "spy": 442.1816
+    "port": 377.5837,
+    "spy": 442.6431
   },
   {
     "date": "2024-01-31",
-    "port": 375.2586,
-    "spy": 434.9664
+    "port": 374.167,
+    "spy": 435.4204
   },
   {
     "date": "2024-02-01",
-    "port": 381.3177,
-    "spy": 440.6593
+    "port": 380.3519,
+    "spy": 441.1192
   },
   {
     "date": "2024-02-02",
-    "port": 380.1811,
-    "spy": 445.2982
+    "port": 379.1855,
+    "spy": 445.763
   },
   {
     "date": "2024-02-05",
-    "port": 376.5654,
-    "spy": 443.6768
+    "port": 375.3923,
+    "spy": 444.1399
   },
   {
     "date": "2024-02-06",
-    "port": 378.1656,
-    "spy": 444.965
+    "port": 377.089,
+    "spy": 445.4295
   },
   {
     "date": "2024-02-07",
-    "port": 379.9113,
-    "spy": 448.6762
+    "port": 378.7981,
+    "spy": 449.1445
   },
   {
     "date": "2024-02-08",
-    "port": 380.39,
-    "spy": 448.8743
+    "port": 379.1945,
+    "spy": 449.3428
   },
   {
     "date": "2024-02-09",
-    "port": 382.2199,
-    "spy": 451.4686
+    "port": 381.02,
+    "spy": 451.9398
   },
   {
     "date": "2024-02-12",
-    "port": 383.3144,
-    "spy": 451.2704
+    "port": 382.1106,
+    "spy": 451.7414
   },
   {
     "date": "2024-02-13",
-    "port": 377.2206,
-    "spy": 445.055
+    "port": 375.7345,
+    "spy": 445.5196
   },
   {
     "date": "2024-02-14",
-    "port": 380.3687,
-    "spy": 449.0995
+    "port": 378.996,
+    "spy": 449.5683
   },
   {
     "date": "2024-02-15",
-    "port": 384.0389,
-    "spy": 452.1982
+    "port": 382.7008,
+    "spy": 452.6702
   },
   {
     "date": "2024-02-16",
-    "port": 381.9326,
-    "spy": 449.9463
+    "port": 380.4952,
+    "spy": 450.4159
   },
   {
     "date": "2024-02-20",
-    "port": 379.0847,
-    "spy": 447.4692
+    "port": 377.7192,
+    "spy": 447.9362
   },
   {
     "date": "2024-02-21",
-    "port": 377.9038,
-    "spy": 447.8744
+    "port": 376.5602,
+    "spy": 448.3419
   },
   {
     "date": "2024-02-22",
-    "port": 383.2607,
-    "spy": 457.1435
+    "port": 382.0371,
+    "spy": 457.6206
   },
   {
     "date": "2024-02-23",
-    "port": 385.5918,
-    "spy": 457.4587
+    "port": 384.41,
+    "spy": 457.9362
   },
   {
     "date": "2024-02-26",
-    "port": 384.5904,
-    "spy": 455.7833
+    "port": 383.3547,
+    "spy": 456.259
   },
   {
     "date": "2024-02-27",
-    "port": 383.7828,
-    "spy": 456.63
+    "port": 382.5665,
+    "spy": 457.1066
   },
   {
     "date": "2024-02-28",
-    "port": 383.2289,
-    "spy": 456.0265
+    "port": 382.0977,
+    "spy": 456.5025
   },
   {
     "date": "2024-02-29",
-    "port": 385.6721,
-    "spy": 457.6658
+    "port": 384.5781,
+    "spy": 458.1435
   },
   {
     "date": "2024-03-01",
-    "port": 389.4416,
-    "spy": 461.9626
+    "port": 388.374,
+    "spy": 462.4448
   },
   {
     "date": "2024-03-04",
-    "port": 388.1455,
-    "spy": 461.4672
+    "port": 387.0754,
+    "spy": 461.9488
   },
   {
     "date": "2024-03-05",
-    "port": 387.4567,
-    "spy": 456.8552
+    "port": 386.4351,
+    "spy": 457.3321
   },
   {
     "date": "2024-03-06",
-    "port": 388.9066,
-    "spy": 459.1702
+    "port": 387.9865,
+    "spy": 459.6494
   },
   {
     "date": "2024-03-07",
-    "port": 391.0783,
-    "spy": 463.7281
+    "port": 390.2464,
+    "spy": 464.2121
   },
   {
     "date": "2024-03-08",
-    "port": 389.1309,
-    "spy": 460.9447
+    "port": 388.2746,
+    "spy": 461.4258
   },
   {
     "date": "2024-03-11",
-    "port": 388.8932,
-    "spy": 460.5483
+    "port": 388.0045,
+    "spy": 461.029
   },
   {
     "date": "2024-03-12",
-    "port": 390.3041,
-    "spy": 465.5026
+    "port": 389.41,
+    "spy": 465.9884
   },
   {
     "date": "2024-03-13",
-    "port": 390.2778,
-    "spy": 464.773
+    "port": 389.2731,
+    "spy": 465.2581
   },
   {
     "date": "2024-03-14",
-    "port": 387.9027,
-    "spy": 463.8543
+    "port": 386.7002,
+    "spy": 464.3384
   },
   {
     "date": "2024-03-15",
-    "port": 387.1832,
-    "spy": 460.6691
+    "port": 385.8863,
+    "spy": 461.1499
   },
   {
     "date": "2024-03-18",
-    "port": 388.5556,
-    "spy": 463.407
+    "port": 387.2025,
+    "spy": 463.8906
   },
   {
     "date": "2024-03-19",
-    "port": 390.6356,
-    "spy": 465.9821
+    "port": 389.3329,
+    "spy": 466.4685
   },
   {
     "date": "2024-03-20",
-    "port": 392.9579,
-    "spy": 470.2922
+    "port": 391.7941,
+    "spy": 470.783
   },
   {
     "date": "2024-03-21",
-    "port": 394.0603,
-    "spy": 471.8463
+    "port": 392.979,
+    "spy": 472.3388
   },
   {
     "date": "2024-03-22",
-    "port": 394.6874,
-    "spy": 470.9518
+    "port": 393.5955,
+    "spy": 471.4434
   },
   {
     "date": "2024-03-25",
-    "port": 394.0757,
-    "spy": 469.6508
+    "port": 392.8841,
+    "spy": 470.141
   },
   {
     "date": "2024-03-26",
-    "port": 393.392,
-    "spy": 468.7832
+    "port": 392.2447,
+    "spy": 469.2725
   },
   {
     "date": "2024-03-27",
-    "port": 398.1013,
-    "spy": 472.7228
+    "port": 397.0326,
+    "spy": 473.2162
   },
   {
     "date": "2024-03-28",
-    "port": 397.9659,
-    "spy": 472.6325
+    "port": 396.9311,
+    "spy": 473.1258
   },
   {
     "date": "2024-04-01",
-    "port": 395.9223,
-    "spy": 471.8102
+    "port": 394.639,
+    "spy": 472.3026
   },
   {
     "date": "2024-04-02",
-    "port": 393.9114,
-    "spy": 468.8104
+    "port": 392.4565,
+    "spy": 469.2997
   },
   {
     "date": "2024-04-03",
-    "port": 394.3053,
-    "spy": 469.3254
+    "port": 392.873,
+    "spy": 469.8153
   },
   {
     "date": "2024-04-04",
-    "port": 392.384,
-    "spy": 463.5967
+    "port": 390.8707,
+    "spy": 464.0806
   },
   {
     "date": "2024-04-05",
-    "port": 392.859,
-    "spy": 468.4398
+    "port": 391.3554,
+    "spy": 468.9288
   },
   {
     "date": "2024-04-08",
-    "port": 393.1612,
-    "spy": 468.7019
+    "port": 391.6607,
+    "spy": 469.1911
   },
   {
     "date": "2024-04-09",
-    "port": 394.9962,
-    "spy": 469.244
+    "port": 393.5281,
+    "spy": 469.7338
   },
   {
     "date": "2024-04-10",
-    "port": 390.0066,
-    "spy": 464.5454
+    "port": 388.2062,
+    "spy": 465.0303
   },
   {
     "date": "2024-04-11",
-    "port": 391.6504,
-    "spy": 468.0514
+    "port": 389.8241,
+    "spy": 468.5399
   },
   {
     "date": "2024-04-12",
-    "port": 389.0821,
-    "spy": 461.5908
+    "port": 387.14,
+    "spy": 462.0726
   },
   {
     "date": "2024-04-15",
-    "port": 386.2439,
-    "spy": 455.8079
+    "port": 383.9314,
+    "spy": 456.2837
   },
   {
     "date": "2024-04-16",
-    "port": 384.487,
-    "spy": 454.9766
+    "port": 382.1382,
+    "spy": 455.4515
   },
   {
     "date": "2024-04-17",
-    "port": 383.4692,
-    "spy": 452.284
+    "port": 381.204,
+    "spy": 452.756
   },
   {
     "date": "2024-04-18",
-    "port": 383.0249,
-    "spy": 451.3533
+    "port": 380.6614,
+    "spy": 451.8244
   },
   {
     "date": "2024-04-19",
-    "port": 381.9677,
-    "spy": 447.4137
+    "port": 379.609,
+    "spy": 447.8807
   },
   {
     "date": "2024-04-22",
-    "port": 382.7687,
-    "spy": 451.534
+    "port": 380.5727,
+    "spy": 452.0053
   },
   {
     "date": "2024-04-23",
-    "port": 384.9712,
-    "spy": 456.8921
+    "port": 382.9562,
+    "spy": 457.369
   },
   {
     "date": "2024-04-24",
-    "port": 384.5037,
-    "spy": 456.6753
+    "port": 382.3958,
+    "spy": 457.152
   },
   {
     "date": "2024-04-25",
-    "port": 383.3673,
-    "spy": 454.9405
+    "port": 381.1155,
+    "spy": 455.4153
   },
   {
     "date": "2024-04-26",
-    "port": 386.5646,
-    "spy": 459.2505
+    "port": 384.3687,
+    "spy": 459.7299
   },
   {
     "date": "2024-04-29",
-    "port": 387.1125,
-    "spy": 460.877
+    "port": 385.1087,
+    "spy": 461.358
   },
   {
     "date": "2024-04-30",
-    "port": 383.4249,
-    "spy": 453.5761
+    "port": 381.0902,
+    "spy": 454.0496
   },
   {
     "date": "2024-05-01",
-    "port": 383.0157,
-    "spy": 452.1033
+    "port": 380.7679,
+    "spy": 452.5751
   },
   {
     "date": "2024-05-02",
-    "port": 382.8777,
-    "spy": 456.3319
+    "port": 381.0256,
+    "spy": 456.8082
   },
   {
     "date": "2024-05-03",
-    "port": 384.5693,
-    "spy": 461.9884
+    "port": 383.0849,
+    "spy": 462.4706
   },
   {
     "date": "2024-05-06",
-    "port": 387.0598,
-    "spy": 466.7592
+    "port": 385.7362,
+    "spy": 467.2464
   },
   {
     "date": "2024-05-07",
-    "port": 387.8245,
-    "spy": 467.2743
+    "port": 386.5581,
+    "spy": 467.762
   },
   {
     "date": "2024-05-08",
-    "port": 388.595,
-    "spy": 467.3194
+    "port": 387.1721,
+    "spy": 467.8071
   },
   {
     "date": "2024-05-09",
-    "port": 390.1228,
-    "spy": 470.0121
+    "port": 388.8468,
+    "spy": 470.5027
   },
   {
     "date": "2024-05-10",
-    "port": 389.888,
-    "spy": 470.6175
+    "port": 388.5491,
+    "spy": 471.1087
   },
   {
     "date": "2024-05-13",
-    "port": 390.0737,
-    "spy": 470.6807
+    "port": 388.7575,
+    "spy": 471.172
   },
   {
     "date": "2024-05-14",
-    "port": 391.7864,
-    "spy": 472.8404
+    "port": 390.5781,
+    "spy": 473.3339
   },
   {
     "date": "2024-05-15",
-    "port": 395.0849,
-    "spy": 478.6955
+    "port": 394.1668,
+    "spy": 479.1952
   },
   {
     "date": "2024-05-16",
-    "port": 394.3187,
-    "spy": 477.7104
+    "port": 393.3644,
+    "spy": 478.209
   },
   {
     "date": "2024-05-17",
-    "port": 394.4141,
-    "spy": 478.3972
+    "port": 393.3772,
+    "spy": 478.8965
   },
   {
     "date": "2024-05-20",
-    "port": 393.3859,
-    "spy": 478.9484
+    "port": 392.3967,
+    "spy": 479.4483
   },
   {
     "date": "2024-05-21",
-    "port": 394.5964,
-    "spy": 480.1231
+    "port": 393.6485,
+    "spy": 480.6242
   },
   {
     "date": "2024-05-22",
-    "port": 392.6544,
-    "spy": 478.7407
+    "port": 391.7754,
+    "spy": 479.2403
   },
   {
     "date": "2024-05-23",
-    "port": 389.7121,
-    "spy": 475.2438
+    "port": 388.7025,
+    "spy": 475.7398
   },
   {
     "date": "2024-05-24",
-    "port": 392.2526,
-    "spy": 478.3883
+    "port": 391.2836,
+    "spy": 478.8876
   },
   {
     "date": "2024-05-28",
-    "port": 391.2037,
-    "spy": 478.7225
+    "port": 390.0803,
+    "spy": 479.2222
   },
   {
     "date": "2024-05-29",
-    "port": 389.5503,
-    "spy": 475.3703
+    "port": 388.0919,
+    "spy": 475.8664
   },
   {
     "date": "2024-05-30",
-    "port": 389.0587,
-    "spy": 472.2169
+    "port": 387.7123,
+    "spy": 472.7097
   },
   {
     "date": "2024-05-31",
-    "port": 391.9603,
-    "spy": 476.5178
+    "port": 390.7678,
+    "spy": 477.0152
   },
   {
     "date": "2024-06-03",
-    "port": 392.1601,
-    "spy": 476.9063
+    "port": 391.2059,
+    "spy": 477.4041
   },
   {
     "date": "2024-06-04",
-    "port": 391.8396,
-    "spy": 477.4394
+    "port": 391.0353,
+    "spy": 477.9377
   },
   {
     "date": "2024-06-05",
-    "port": 395.1817,
-    "spy": 483.1139
+    "port": 394.5569,
+    "spy": 483.6181
   },
   {
     "date": "2024-06-06",
-    "port": 394.533,
-    "spy": 483.1049
+    "port": 393.8786,
+    "spy": 483.6091
   },
   {
     "date": "2024-06-07",
-    "port": 391.2942,
-    "spy": 482.5175
+    "port": 390.7448,
+    "spy": 483.0211
   },
   {
     "date": "2024-06-10",
-    "port": 391.8741,
-    "spy": 484.0085
+    "port": 391.3973,
+    "spy": 484.5137
   },
   {
     "date": "2024-06-11",
-    "port": 392.7173,
-    "spy": 485.1741
+    "port": 392.1188,
+    "spy": 485.6805
   },
   {
     "date": "2024-06-12",
-    "port": 395.4693,
-    "spy": 489.1589
+    "port": 394.7187,
+    "spy": 489.6694
   },
   {
     "date": "2024-06-13",
-    "port": 396.5815,
-    "spy": 490.1437
+    "port": 395.6851,
+    "spy": 490.6553
   },
   {
     "date": "2024-06-14",
-    "port": 397.0333,
-    "spy": 490.4419
+    "port": 396.0899,
+    "spy": 490.9538
   },
   {
     "date": "2024-06-17",
-    "port": 398.5786,
-    "spy": 494.3453
+    "port": 397.674,
+    "spy": 494.8613
   },
   {
     "date": "2024-06-18",
-    "port": 399.9712,
-    "spy": 495.6014
+    "port": 398.9578,
+    "spy": 496.1187
   },
   {
     "date": "2024-06-20",
-    "port": 399.7662,
-    "spy": 494.255
+    "port": 398.9072,
+    "spy": 494.7709
   },
   {
     "date": "2024-06-21",
-    "port": 399.417,
-    "spy": 493.5923
+    "port": 398.5627,
+    "spy": 494.1075
   },
   {
     "date": "2024-06-24",
-    "port": 398.6173,
-    "spy": 491.9879
+    "port": 397.6939,
+    "spy": 492.5014
   },
   {
     "date": "2024-06-25",
-    "port": 400.122,
-    "spy": 493.8824
+    "port": 399.2199,
+    "spy": 494.3979
   },
   {
     "date": "2024-06-26",
-    "port": 399.0681,
-    "spy": 494.4989
+    "port": 398.2782,
+    "spy": 495.0151
   },
   {
     "date": "2024-06-27",
-    "port": 399.857,
-    "spy": 495.2784
+    "port": 399.0234,
+    "spy": 495.7954
   },
   {
     "date": "2024-06-28",
-    "port": 397.8787,
-    "spy": 493.3293
+    "port": 397.2425,
+    "spy": 493.8443
   },
   {
     "date": "2024-07-01",
-    "port": 396.1207,
-    "spy": 494.3447
+    "port": 395.6114,
+    "spy": 494.8607
   },
   {
     "date": "2024-07-02",
-    "port": 398.462,
-    "spy": 497.6716
+    "port": 397.836,
+    "spy": 498.191
   },
   {
     "date": "2024-07-03",
-    "port": 401.1352,
-    "spy": 499.8924
+    "port": 400.3972,
+    "spy": 500.4142
   },
   {
     "date": "2024-07-05",
-    "port": 403.7723,
-    "spy": 502.7751
+    "port": 403.0085,
+    "spy": 503.2999
   },
   {
     "date": "2024-07-08",
-    "port": 404.9432,
-    "spy": 503.3552
+    "port": 404.192,
+    "spy": 503.8806
   },
   {
     "date": "2024-07-09",
-    "port": 404.3828,
-    "spy": 503.8448
+    "port": 403.6502,
+    "spy": 504.3707
   },
   {
     "date": "2024-07-10",
-    "port": 408.2895,
-    "spy": 508.8303
+    "port": 407.5123,
+    "spy": 509.3614
   },
   {
     "date": "2024-07-11",
-    "port": 409.0396,
-    "spy": 504.443
+    "port": 408.2423,
+    "spy": 504.9696
   },
   {
     "date": "2024-07-12",
-    "port": 411.4915,
-    "spy": 507.6248
+    "port": 410.6317,
+    "spy": 508.1547
   },
   {
     "date": "2024-07-15",
-    "port": 412.099,
-    "spy": 509.0208
+    "port": 411.3473,
+    "spy": 509.5521
   },
   {
     "date": "2024-07-16",
-    "port": 417.0767,
-    "spy": 512.0393
+    "port": 416.1849,
+    "spy": 512.5738
   },
   {
     "date": "2024-07-17",
-    "port": 413.7576,
-    "spy": 504.86
+    "port": 412.9772,
+    "spy": 505.387
   },
   {
     "date": "2024-07-18",
-    "port": 410.0772,
-    "spy": 500.9803
+    "port": 409.3928,
+    "spy": 501.5032
   },
   {
     "date": "2024-07-19",
-    "port": 406.738,
-    "spy": 497.6535
+    "port": 406.0934,
+    "spy": 498.1729
   },
   {
     "date": "2024-07-22",
-    "port": 408.3622,
-    "spy": 502.7842
+    "port": 407.5872,
+    "spy": 503.3089
   },
   {
     "date": "2024-07-23",
-    "port": 408.1928,
-    "spy": 501.9955
+    "port": 407.4355,
+    "spy": 502.5195
   },
   {
     "date": "2024-07-24",
-    "port": 400.8981,
-    "spy": 490.619
+    "port": 400.3894,
+    "spy": 491.1311
   },
   {
     "date": "2024-07-25",
-    "port": 401.658,
-    "spy": 488.0627
+    "port": 401.1296,
+    "spy": 488.5721
   },
   {
     "date": "2024-07-26",
-    "port": 406.7596,
-    "spy": 493.5289
+    "port": 406.1627,
+    "spy": 494.044
   },
   {
     "date": "2024-07-29",
-    "port": 407.192,
-    "spy": 493.8191
+    "port": 406.5575,
+    "spy": 494.3345
   },
   {
     "date": "2024-07-30",
-    "port": 406.607,
-    "spy": 491.3171
+    "port": 405.9733,
+    "spy": 491.8299
   },
   {
     "date": "2024-07-31",
-    "port": 411.9694,
-    "spy": 499.3032
+    "port": 411.1627,
+    "spy": 499.8244
   },
   {
     "date": "2024-08-01",
-    "port": 408.7698,
-    "spy": 492.2326
+    "port": 408.0559,
+    "spy": 492.7464
   },
   {
     "date": "2024-08-02",
-    "port": 405.8743,
-    "spy": 483.068
+    "port": 405.0534,
+    "spy": 483.5722
   },
   {
     "date": "2024-08-05",
-    "port": 397.4331,
-    "spy": 468.9993
+    "port": 396.7291,
+    "spy": 469.4888
   },
   {
     "date": "2024-08-06",
-    "port": 396.1218,
-    "spy": 473.3232
+    "port": 395.4233,
+    "spy": 473.8173
   },
   {
     "date": "2024-08-07",
-    "port": 392.6347,
-    "spy": 470.1596
+    "port": 391.9895,
+    "spy": 470.6503
   },
   {
     "date": "2024-08-08",
-    "port": 397.5752,
-    "spy": 481.0284
+    "port": 396.7758,
+    "spy": 481.5304
   },
   {
     "date": "2024-08-09",
-    "port": 400.1626,
-    "spy": 483.1495
+    "port": 399.3051,
+    "spy": 483.6538
   },
   {
     "date": "2024-08-12",
-    "port": 400.6133,
-    "spy": 483.4034
+    "port": 399.7538,
+    "spy": 483.9079
   },
   {
     "date": "2024-08-13",
-    "port": 406.6237,
-    "spy": 491.3534
+    "port": 405.6491,
+    "spy": 491.8662
   },
   {
     "date": "2024-08-14",
-    "port": 407.9009,
-    "spy": 492.9034
+    "port": 406.8605,
+    "spy": 493.4179
   },
   {
     "date": "2024-08-15",
-    "port": 411.7103,
-    "spy": 501.3519
+    "port": 410.5809,
+    "spy": 501.8752
   },
   {
     "date": "2024-08-16",
-    "port": 413.1866,
-    "spy": 502.476
+    "port": 412.0412,
+    "spy": 503.0005
   },
   {
     "date": "2024-08-19",
-    "port": 416.682,
-    "spy": 507.2803
+    "port": 415.4435,
+    "spy": 507.8098
   },
   {
     "date": "2024-08-20",
-    "port": 417.3625,
-    "spy": 506.4554
+    "port": 416.1388,
+    "spy": 506.984
   },
   {
     "date": "2024-08-21",
-    "port": 419.1961,
-    "spy": 508.196
+    "port": 417.9711,
+    "spy": 508.7264
   },
   {
     "date": "2024-08-22",
-    "port": 415.6492,
-    "spy": 504.2074
+    "port": 414.5458,
+    "spy": 504.7337
   },
   {
     "date": "2024-08-23",
-    "port": 420.2677,
-    "spy": 509.5647
+    "port": 419.0113,
+    "spy": 510.0965
   },
   {
     "date": "2024-08-26",
-    "port": 418.4833,
-    "spy": 508.35
+    "port": 417.2086,
+    "spy": 508.8806
   },
   {
     "date": "2024-08-27",
-    "port": 417.8423,
-    "spy": 509.048
+    "port": 416.5362,
+    "spy": 509.5794
   },
   {
     "date": "2024-08-28",
-    "port": 416.3057,
-    "spy": 506.0928
+    "port": 415.0603,
+    "spy": 506.621
   },
   {
     "date": "2024-08-29",
-    "port": 415.257,
-    "spy": 506.1382
+    "port": 413.9675,
+    "spy": 506.6664
   },
   {
     "date": "2024-08-30",
-    "port": 415.8232,
-    "spy": 510.9697
+    "port": 414.4968,
+    "spy": 511.5031
   },
   {
     "date": "2024-09-03",
-    "port": 412.8707,
-    "spy": 500.4545
+    "port": 411.6805,
+    "spy": 500.9768
   },
   {
     "date": "2024-09-04",
-    "port": 415.0222,
-    "spy": 499.4301
+    "port": 413.8464,
+    "spy": 499.9514
   },
   {
     "date": "2024-09-05",
-    "port": 415.5036,
-    "spy": 498.2154
+    "port": 414.355,
+    "spy": 498.7354
   },
   {
     "date": "2024-09-06",
-    "port": 411.4256,
-    "spy": 489.8303
+    "port": 410.4655,
+    "spy": 490.3416
   },
   {
     "date": "2024-09-09",
-    "port": 414.2804,
-    "spy": 495.3146
+    "port": 413.1945,
+    "spy": 495.8316
   },
   {
     "date": "2024-09-10",
-    "port": 417.6649,
-    "spy": 497.4721
+    "port": 416.6198,
+    "spy": 497.9913
   },
   {
     "date": "2024-09-11",
-    "port": 419.284,
-    "spy": 502.5757
+    "port": 418.1186,
+    "spy": 503.1002
   },
   {
     "date": "2024-09-12",
-    "port": 420.2872,
-    "spy": 506.8089
+    "port": 419.0233,
+    "spy": 507.3379
   },
   {
     "date": "2024-09-13",
-    "port": 423.2175,
-    "spy": 509.4559
+    "port": 421.901,
+    "spy": 509.9877
   },
   {
     "date": "2024-09-16",
-    "port": 425.9423,
-    "spy": 510.2084
+    "port": 424.6089,
+    "spy": 510.7409
   },
   {
     "date": "2024-09-17",
-    "port": 424.6816,
-    "spy": 510.4168
+    "port": 423.2991,
+    "spy": 510.9495
   },
   {
     "date": "2024-09-18",
-    "port": 421.1296,
-    "spy": 508.903
+    "port": 419.7701,
+    "spy": 509.4342
   },
   {
     "date": "2024-09-19",
-    "port": 425.3393,
-    "spy": 517.5871
+    "port": 423.8275,
+    "spy": 518.1273
   },
   {
     "date": "2024-09-20",
-    "port": 422.6755,
-    "spy": 516.6924
+    "port": 421.139,
+    "spy": 517.2317
   },
   {
     "date": "2024-09-23",
-    "port": 422.598,
-    "spy": 517.9835
+    "port": 421.0296,
+    "spy": 518.5241
   },
   {
     "date": "2024-09-24",
-    "port": 423.1944,
-    "spy": 519.4656
+    "port": 421.6032,
+    "spy": 520.0078
   },
   {
     "date": "2024-09-25",
-    "port": 419.6128,
-    "spy": 518.3199
+    "port": 418.0137,
+    "spy": 518.8609
   },
   {
     "date": "2024-09-26",
-    "port": 423.054,
-    "spy": 520.3749
+    "port": 421.5199,
+    "spy": 520.918
   },
   {
     "date": "2024-09-27",
-    "port": 423.8474,
-    "spy": 519.6202
+    "port": 422.2963,
+    "spy": 520.1625
   },
   {
     "date": "2024-09-30",
-    "port": 423.3853,
-    "spy": 521.7024
+    "port": 421.768,
+    "spy": 522.2469
   },
   {
     "date": "2024-10-01",
-    "port": 421.4089,
-    "spy": 517.0289
+    "port": 419.8109,
+    "spy": 517.5685
   },
   {
     "date": "2024-10-02",
-    "port": 418.6324,
-    "spy": 517.2471
+    "port": 416.9796,
+    "spy": 517.787
   },
   {
     "date": "2024-10-03",
-    "port": 414.2092,
-    "spy": 516.3014
+    "port": 412.4598,
+    "spy": 516.8403
   },
   {
     "date": "2024-10-04",
-    "port": 413.6144,
-    "spy": 520.9932
+    "port": 411.7553,
+    "spy": 521.537
   },
   {
     "date": "2024-10-07",
-    "port": 408.9974,
-    "spy": 516.2832
+    "port": 407.1814,
+    "spy": 516.8221
   },
   {
     "date": "2024-10-08",
-    "port": 412.286,
-    "spy": 521.166
+    "port": 410.4589,
+    "spy": 521.71
   },
   {
     "date": "2024-10-09",
-    "port": 412.6025,
-    "spy": 524.7758
+    "port": 410.7033,
+    "spy": 525.3235
   },
   {
     "date": "2024-10-10",
-    "port": 411.0371,
-    "spy": 523.8575
+    "port": 409.1467,
+    "spy": 524.4043
   },
   {
     "date": "2024-10-11",
-    "port": 413.2922,
-    "spy": 526.9945
+    "port": 411.4135,
+    "spy": 527.5445
   },
   {
     "date": "2024-10-14",
-    "port": 416.1758,
-    "spy": 531.3043
+    "port": 414.2699,
+    "spy": 531.8589
   },
   {
     "date": "2024-10-15",
-    "port": 417.3924,
-    "spy": 527.1763
+    "port": 415.576,
+    "spy": 527.7265
   },
   {
     "date": "2024-10-16",
-    "port": 420.137,
-    "spy": 529.4677
+    "port": 418.2744,
+    "spy": 530.0204
   },
   {
     "date": "2024-10-17",
-    "port": 417.4297,
-    "spy": 529.5131
+    "port": 415.6249,
+    "spy": 530.0658
   },
   {
     "date": "2024-10-18",
-    "port": 419.471,
-    "spy": 531.5499
+    "port": 417.7231,
+    "spy": 532.1047
   },
   {
     "date": "2024-10-21",
-    "port": 413.8074,
-    "spy": 530.677
+    "port": 412.0705,
+    "spy": 531.2309
   },
   {
     "date": "2024-10-22",
-    "port": 413.009,
-    "spy": 530.3951
+    "port": 411.2259,
+    "spy": 530.9487
   },
   {
     "date": "2024-10-23",
-    "port": 409.8382,
-    "spy": 525.5487
+    "port": 408.1163,
+    "spy": 526.0972
   },
   {
     "date": "2024-10-24",
-    "port": 411.2015,
-    "spy": 526.6853
+    "port": 409.4057,
+    "spy": 527.235
   },
   {
     "date": "2024-10-25",
-    "port": 410.0037,
-    "spy": 526.5034
+    "port": 408.2488,
+    "spy": 527.0529
   },
   {
     "date": "2024-10-28",
-    "port": 413.0005,
-    "spy": 528.1311
+    "port": 411.369,
+    "spy": 528.6823
   },
   {
     "date": "2024-10-29",
-    "port": 412.7795,
-    "spy": 528.9857
+    "port": 411.0862,
+    "spy": 529.5379
   },
   {
     "date": "2024-10-30",
-    "port": 412.2783,
-    "spy": 527.3854
+    "port": 410.5627,
+    "spy": 527.9359
   },
   {
     "date": "2024-10-31",
-    "port": 407.5597,
-    "spy": 517.0471
+    "port": 406.0153,
+    "spy": 517.5868
   },
   {
     "date": "2024-11-01",
-    "port": 406.5555,
-    "spy": 519.2292
+    "port": 405.067,
+    "spy": 519.7712
   },
   {
     "date": "2024-11-04",
-    "port": 407.5088,
-    "spy": 518.1108
+    "port": 405.8853,
+    "spy": 518.6516
   },
   {
     "date": "2024-11-05",
-    "port": 411.9953,
-    "spy": 524.3757
+    "port": 410.2471,
+    "spy": 524.9231
   },
   {
     "date": "2024-11-06",
-    "port": 416.4471,
-    "spy": 537.4146
+    "port": 414.5846,
+    "spy": 537.9755
   },
   {
     "date": "2024-11-07",
-    "port": 419.6293,
-    "spy": 541.57
+    "port": 417.6423,
+    "spy": 542.1352
   },
   {
     "date": "2024-11-08",
-    "port": 422.7902,
-    "spy": 543.9159
+    "port": 420.7101,
+    "spy": 544.4836
   },
   {
     "date": "2024-11-11",
-    "port": 422.9373,
-    "spy": 544.4342
+    "port": 420.8618,
+    "spy": 545.0025
   },
   {
     "date": "2024-11-12",
-    "port": 419.7239,
-    "spy": 542.743
+    "port": 417.4943,
+    "spy": 543.3095
   },
   {
     "date": "2024-11-13",
-    "port": 418.4488,
-    "spy": 543.0067
+    "port": 416.1432,
+    "spy": 543.5735
   },
   {
     "date": "2024-11-14",
-    "port": 419.4539,
-    "spy": 539.5151
+    "port": 416.9347,
+    "spy": 540.0782
   },
   {
     "date": "2024-11-15",
-    "port": 415.4488,
-    "spy": 532.6046
+    "port": 412.8643,
+    "spy": 533.1605
   },
   {
     "date": "2024-11-18",
-    "port": 414.6136,
-    "spy": 534.7869
+    "port": 412.2342,
+    "spy": 535.3451
   },
   {
     "date": "2024-11-19",
-    "port": 415.8962,
-    "spy": 536.7419
+    "port": 413.5466,
+    "spy": 537.3021
   },
   {
     "date": "2024-11-20",
-    "port": 415.2951,
-    "spy": 536.9237
+    "port": 412.9665,
+    "spy": 537.4841
   },
   {
     "date": "2024-11-21",
-    "port": 416.0305,
-    "spy": 539.8059
+    "port": 413.8904,
+    "spy": 540.3694
   },
   {
     "date": "2024-11-22",
-    "port": 418.2721,
-    "spy": 541.4791
+    "port": 416.1549,
+    "spy": 542.0443
   },
   {
     "date": "2024-11-25",
-    "port": 422.3981,
-    "spy": 543.3159
+    "port": 420.5494,
+    "spy": 543.8829
   },
   {
     "date": "2024-11-26",
-    "port": 422.9766,
-    "spy": 546.1527
+    "port": 421.0493,
+    "spy": 546.7228
   },
   {
     "date": "2024-11-27",
-    "port": 422.9959,
-    "spy": 544.4978
+    "port": 421.0877,
+    "spy": 545.0661
   },
   {
     "date": "2024-11-29",
-    "port": 424.7175,
-    "spy": 547.8802
+    "port": 422.9961,
+    "spy": 548.452
   },
   {
     "date": "2024-12-02",
-    "port": 426.4801,
-    "spy": 548.8623
+    "port": 424.699,
+    "spy": 549.4352
   },
   {
     "date": "2024-12-03",
-    "port": 425.486,
-    "spy": 549.1169
+    "port": 423.5872,
+    "spy": 549.69
   },
   {
     "date": "2024-12-04",
-    "port": 428.7104,
-    "spy": 552.5266
+    "port": 426.8474,
+    "spy": 553.1033
   },
   {
     "date": "2024-12-05",
-    "port": 427.0647,
-    "spy": 551.6174
+    "port": 425.2563,
+    "spy": 552.1932
   },
   {
     "date": "2024-12-06",
-    "port": 428.9189,
-    "spy": 552.6631
+    "port": 426.9737,
+    "spy": 553.24
   },
   {
     "date": "2024-12-09",
-    "port": 425.6455,
-    "spy": 549.817
+    "port": 423.6987,
+    "spy": 550.3909
   },
   {
     "date": "2024-12-10",
-    "port": 424.5602,
-    "spy": 548.1075
+    "port": 422.5246,
+    "spy": 548.6796
   },
   {
     "date": "2024-12-11",
-    "port": 425.353,
-    "spy": 552.3448
+    "port": 423.3342,
+    "spy": 552.9213
   },
   {
     "date": "2024-12-12",
-    "port": 422.1339,
-    "spy": 549.4989
+    "port": 419.9869,
+    "spy": 550.0724
   },
   {
     "date": "2024-12-13",
-    "port": 420.8711,
-    "spy": 549.3898
+    "port": 418.5856,
+    "spy": 549.9632
   },
   {
     "date": "2024-12-16",
-    "port": 422.4758,
-    "spy": 551.7355
+    "port": 420.1821,
+    "spy": 552.3114
   },
   {
     "date": "2024-12-17",
-    "port": 422.0643,
-    "spy": 549.4624
+    "port": 419.6239,
+    "spy": 550.0359
   },
   {
     "date": "2024-12-18",
-    "port": 413.9859,
-    "spy": 533.0865
+    "port": 410.9897,
+    "spy": 533.6429
   },
   {
     "date": "2024-12-19",
-    "port": 412.301,
-    "spy": 532.9228
+    "port": 409.1541,
+    "spy": 533.4791
   },
   {
     "date": "2024-12-20",
-    "port": 413.737,
-    "spy": 539.3237
+    "port": 410.8837,
+    "spy": 539.8866
   },
   {
     "date": "2024-12-23",
-    "port": 415.0022,
-    "spy": 542.5534
+    "port": 412.0497,
+    "spy": 543.1197
   },
   {
     "date": "2024-12-24",
-    "port": 417.9793,
-    "spy": 548.5839
+    "port": 415.1641,
+    "spy": 549.1565
   },
   {
     "date": "2024-12-26",
-    "port": 418.254,
-    "spy": 548.6204
+    "port": 415.4376,
+    "spy": 549.193
   },
   {
     "date": "2024-12-27",
-    "port": 414.4287,
-    "spy": 542.8453
+    "port": 411.4651,
+    "spy": 543.4119
   },
   {
     "date": "2024-12-30",
-    "port": 410.9803,
-    "spy": 536.6506
+    "port": 408.1575,
+    "spy": 537.2107
   },
   {
     "date": "2024-12-31",
-    "port": 410.2005,
-    "spy": 534.6983
+    "port": 407.3104,
+    "spy": 535.2564
   },
   {
     "date": "2025-01-02",
-    "port": 410.7922,
-    "spy": 533.3845
+    "port": 407.7901,
+    "spy": 533.9412
   },
   {
     "date": "2025-01-03",
-    "port": 414.085,
-    "spy": 540.0536
+    "port": 411.0834,
+    "spy": 540.6173
   },
   {
     "date": "2025-01-06",
-    "port": 413.0978,
-    "spy": 543.1647
+    "port": 410.2481,
+    "spy": 543.7316
   },
   {
     "date": "2025-01-07",
-    "port": 409.7503,
-    "spy": 537.0247
+    "port": 406.7042,
+    "spy": 537.5852
   },
   {
     "date": "2025-01-08",
-    "port": 411.3135,
-    "spy": 537.8093
+    "port": 408.16,
+    "spy": 538.3706
   },
   {
     "date": "2025-01-09",
-    "port": 411.3135,
-    "spy": 537.8093
+    "port": 408.1582,
+    "spy": 538.3706
   },
   {
     "date": "2025-01-10",
-    "port": 406.0725,
-    "spy": 529.5983
+    "port": 402.7842,
+    "spy": 530.1511
   },
   {
     "date": "2025-01-13",
-    "port": 405.8257,
-    "spy": 530.4194
+    "port": 402.686,
+    "spy": 530.973
   },
   {
     "date": "2025-01-14",
-    "port": 406.4208,
-    "spy": 531.1493
+    "port": 403.369,
+    "spy": 531.7037
   },
   {
     "date": "2025-01-15",
-    "port": 410.7716,
-    "spy": 540.8109
+    "port": 408.1616,
+    "spy": 541.3754
   },
   {
     "date": "2025-01-16",
-    "port": 410.5875,
-    "spy": 539.7708
+    "port": 407.9934,
+    "spy": 540.3342
   },
   {
     "date": "2025-01-17",
-    "port": 413.9521,
-    "spy": 545.19
+    "port": 411.3487,
+    "spy": 545.7591
   },
   {
     "date": "2025-01-21",
-    "port": 415.5345,
-    "spy": 550.1804
+    "port": 413.247,
+    "spy": 550.7546
   },
   {
     "date": "2025-01-22",
-    "port": 415.9125,
-    "spy": 553.2733
+    "port": 413.5713,
+    "spy": 553.8508
   },
   {
     "date": "2025-01-23",
-    "port": 416.2754,
-    "spy": 556.2931
+    "port": 413.9325,
+    "spy": 556.8737
   },
   {
     "date": "2025-01-24",
-    "port": 415.5087,
-    "spy": 554.669
+    "port": 413.226,
+    "spy": 555.248
   },
   {
     "date": "2025-01-27",
-    "port": 413.7958,
-    "spy": 546.8232
+    "port": 411.4928,
+    "spy": 547.394
   },
   {
     "date": "2025-01-28",
-    "port": 416.118,
-    "spy": 551.5216
+    "port": 413.7921,
+    "spy": 552.0973
   },
   {
     "date": "2025-01-29",
-    "port": 414.7293,
-    "spy": 549.0491
+    "port": 412.3788,
+    "spy": 549.6222
   },
   {
     "date": "2025-01-30",
-    "port": 416.1753,
-    "spy": 551.996
+    "port": 413.9612,
+    "spy": 552.5722
   },
   {
     "date": "2025-01-31",
-    "port": 414.142,
-    "spy": 549.0583
+    "port": 411.772,
+    "spy": 549.6314
   },
   {
     "date": "2025-02-03",
-    "port": 413.2944,
-    "spy": 545.3633
+    "port": 410.8002,
+    "spy": 545.9326
   },
   {
     "date": "2025-02-04",
-    "port": 413.3823,
-    "spy": 549.0218
+    "port": 411.2189,
+    "spy": 549.5949
   },
   {
     "date": "2025-02-05",
-    "port": 416.1529,
-    "spy": 551.2479
+    "port": 414.1642,
+    "spy": 551.8232
   },
   {
     "date": "2025-02-06",
-    "port": 416.3708,
-    "spy": 553.1638
+    "port": 414.4345,
+    "spy": 553.7412
   },
   {
     "date": "2025-02-07",
-    "port": 413.2266,
-    "spy": 548.1004
+    "port": 411.1213,
+    "spy": 548.6725
   },
   {
     "date": "2025-02-10",
-    "port": 415.0626,
-    "spy": 551.8227
+    "port": 412.9222,
+    "spy": 552.3987
   },
   {
     "date": "2025-02-11",
-    "port": 414.8448,
-    "spy": 552.2424
+    "port": 412.6709,
+    "spy": 552.8188
   },
   {
     "date": "2025-02-12",
-    "port": 412.6363,
-    "spy": 550.4633
+    "port": 410.232,
+    "spy": 551.0379
   },
   {
     "date": "2025-02-13",
-    "port": 415.6669,
-    "spy": 556.2748
+    "port": 413.5817,
+    "spy": 556.8555
   },
   {
     "date": "2025-02-14",
-    "port": 415.4106,
-    "spy": 556.2475
+    "port": 413.4415,
+    "spy": 556.8281
   },
   {
     "date": "2025-02-18",
-    "port": 416.2952,
-    "spy": 557.8805
+    "port": 414.1537,
+    "spy": 558.4628
   },
   {
     "date": "2025-02-19",
-    "port": 418.2328,
-    "spy": 559.1943
+    "port": 415.9416,
+    "spy": 559.778
   },
   {
     "date": "2025-02-20",
-    "port": 415.5141,
-    "spy": 556.8678
+    "port": 413.3527,
+    "spy": 557.4491
   },
   {
     "date": "2025-02-21",
-    "port": 411.9288,
-    "spy": 547.3432
+    "port": 409.6726,
+    "spy": 547.9145
   },
   {
     "date": "2025-02-24",
-    "port": 412.0594,
-    "spy": 544.8526
+    "port": 409.6881,
+    "spy": 545.4212
   },
   {
     "date": "2025-02-25",
-    "port": 412.1559,
-    "spy": 542.1428
+    "port": 409.9429,
+    "spy": 542.7086
   },
   {
     "date": "2025-02-26",
-    "port": 412.8681,
-    "spy": 542.4166
+    "port": 410.6728,
+    "spy": 542.9828
   },
   {
     "date": "2025-02-27",
-    "port": 409.7551,
-    "spy": 533.7586
+    "port": 407.2351,
+    "spy": 534.3157
   },
   {
     "date": "2025-02-28",
-    "port": 414.4465,
-    "spy": 542.0881
+    "port": 412.1386,
+    "spy": 542.6539
   },
   {
     "date": "2025-03-03",
-    "port": 410.5763,
-    "spy": 532.5908
+    "port": 408.0601,
+    "spy": 533.1466
   },
   {
     "date": "2025-03-04",
-    "port": 406.2212,
-    "spy": 526.2866
+    "port": 403.445,
+    "spy": 526.8359
   },
   {
     "date": "2025-03-05",
-    "port": 408.656,
-    "spy": 531.943
+    "port": 405.8477,
+    "spy": 532.4982
   },
   {
     "date": "2025-03-06",
-    "port": 402.6085,
-    "spy": 522.5004
+    "port": 399.8058,
+    "spy": 523.0457
   },
   {
     "date": "2025-03-07",
-    "port": 404.3087,
-    "spy": 525.4289
+    "port": 401.4681,
+    "spy": 525.9773
   },
   {
     "date": "2025-03-10",
-    "port": 399.0647,
-    "spy": 511.4339
+    "port": 396.0317,
+    "spy": 511.9677
   },
   {
     "date": "2025-03-11",
-    "port": 396.7536,
-    "spy": 507.1823
+    "port": 393.597,
+    "spy": 507.7117
   },
   {
     "date": "2025-03-12",
-    "port": 396.1184,
-    "spy": 509.8737
+    "port": 393.0356,
+    "spy": 510.4059
   },
   {
     "date": "2025-03-13",
-    "port": 394.6196,
-    "spy": 503.0768
+    "port": 391.3953,
+    "spy": 503.6019
   },
   {
     "date": "2025-03-14",
-    "port": 398.778,
-    "spy": 513.4684
+    "port": 395.7421,
+    "spy": 514.0043
   },
   {
     "date": "2025-03-17",
-    "port": 400.9057,
-    "spy": 517.4278
+    "port": 398.0151,
+    "spy": 517.9679
   },
   {
     "date": "2025-03-18",
-    "port": 398.747,
-    "spy": 511.8353
+    "port": 395.7852,
+    "spy": 512.3695
   },
   {
     "date": "2025-03-19",
-    "port": 402.821,
-    "spy": 517.4096
+    "port": 399.9176,
+    "spy": 517.9496
   },
   {
     "date": "2025-03-20",
-    "port": 401.9443,
-    "spy": 515.9134
+    "port": 399.0214,
+    "spy": 516.4518
   },
   {
     "date": "2025-03-21",
-    "port": 400.8813,
-    "spy": 516.0835
+    "port": 397.9015,
+    "spy": 516.6222
   },
   {
     "date": "2025-03-24",
-    "port": 404.0513,
-    "spy": 525.3258
+    "port": 401.2196,
+    "spy": 525.8741
   },
   {
     "date": "2025-03-25",
-    "port": 404.5251,
-    "spy": 526.5887
+    "port": 401.6541,
+    "spy": 527.1383
   },
   {
     "date": "2025-03-26",
-    "port": 401.1239,
-    "spy": 520.3021
+    "port": 398.1597,
+    "spy": 520.8452
   },
   {
     "date": "2025-03-27",
-    "port": 400.1265,
-    "spy": 518.9203
+    "port": 397.1164,
+    "spy": 519.462
   },
   {
     "date": "2025-03-28",
-    "port": 397.1879,
-    "spy": 508.4702
+    "port": 394.0181,
+    "spy": 509.0009
   },
   {
     "date": "2025-03-31",
-    "port": 399.0206,
-    "spy": 511.8834
+    "port": 396.0016,
+    "spy": 512.4176
   },
   {
     "date": "2025-04-01",
-    "port": 400.2637,
-    "spy": 513.3292
+    "port": 397.3522,
+    "spy": 513.865
   },
   {
     "date": "2025-04-02",
-    "port": 402.1539,
-    "spy": 516.5777
+    "port": 399.3151,
+    "spy": 517.1168
   },
   {
     "date": "2025-04-03",
-    "port": 387.8326,
-    "spy": 491.1204
+    "port": 384.5809,
+    "spy": 491.633
   },
   {
     "date": "2025-04-04",
-    "port": 376.2082,
-    "spy": 462.3687
+    "port": 372.5479,
+    "spy": 462.8513
   },
   {
     "date": "2025-04-07",
-    "port": 371.4644,
-    "spy": 461.5451
+    "port": 367.6982,
+    "spy": 462.0269
   },
   {
     "date": "2025-04-08",
-    "port": 364.9602,
-    "spy": 454.3161
+    "port": 361.0022,
+    "spy": 454.7903
   },
   {
     "date": "2025-04-09",
-    "port": 388.6616,
-    "spy": 502.0281
+    "port": 385.3705,
+    "spy": 502.5521
   },
   {
     "date": "2025-04-10",
-    "port": 372.331,
-    "spy": 480.0297
+    "port": 368.7524,
+    "spy": 480.5307
   },
   {
     "date": "2025-04-11",
-    "port": 376.5296,
-    "spy": 488.5948
+    "port": 373.1055,
+    "spy": 489.1048
   },
   {
     "date": "2025-04-14",
-    "port": 379.5401,
-    "spy": 493.3348
+    "port": 376.2182,
+    "spy": 493.8497
   },
   {
     "date": "2025-04-15",
-    "port": 378.9447,
-    "spy": 491.953
+    "port": 375.6571,
+    "spy": 492.4665
   },
   {
     "date": "2025-04-16",
-    "port": 374.5895,
-    "spy": 481.018
+    "port": 371.2429,
+    "spy": 481.52
   },
   {
     "date": "2025-04-17",
-    "port": 373.8938,
-    "spy": 481.7043
+    "port": 370.5864,
+    "spy": 482.207
   },
   {
     "date": "2025-04-21",
-    "port": 366.7571,
-    "spy": 470.2383
+    "port": 363.1934,
+    "spy": 470.7291
   },
   {
     "date": "2025-04-22",
-    "port": 372.9294,
-    "spy": 482.473
+    "port": 369.6049,
+    "spy": 482.9766
   },
   {
     "date": "2025-04-23",
-    "port": 377.4483,
-    "spy": 489.9491
+    "port": 374.2623,
+    "spy": 490.4604
   },
   {
     "date": "2025-04-24",
-    "port": 382.7229,
-    "spy": 500.262
+    "port": 379.8115,
+    "spy": 500.7841
   },
   {
     "date": "2025-04-25",
-    "port": 384.5799,
-    "spy": 503.8765
+    "port": 381.7425,
+    "spy": 504.4024
   },
   {
     "date": "2025-04-28",
-    "port": 386.8976,
-    "spy": 504.0686
+    "port": 383.9733,
+    "spy": 504.5947
   },
   {
     "date": "2025-04-29",
-    "port": 389.9703,
-    "spy": 507.244
+    "port": 387.0767,
+    "spy": 507.7734
   },
   {
     "date": "2025-04-30",
-    "port": 388.0645,
-    "spy": 507.4453
+    "port": 385.1629,
+    "spy": 507.9749
   },
   {
     "date": "2025-05-01",
-    "port": 388.4744,
-    "spy": 511.0415
+    "port": 385.6725,
+    "spy": 511.5749
   },
   {
     "date": "2025-05-02",
-    "port": 391.9478,
-    "spy": 518.6275
+    "port": 389.1653,
+    "spy": 519.1688
   },
   {
     "date": "2025-05-05",
-    "port": 390.0878,
-    "spy": 515.6535
+    "port": 387.2065,
+    "spy": 516.1917
   },
   {
     "date": "2025-05-06",
-    "port": 388.5821,
-    "spy": 511.3435
+    "port": 385.6412,
+    "spy": 511.8772
   },
   {
     "date": "2025-05-07",
-    "port": 389.9825,
-    "spy": 513.4939
+    "port": 387.0907,
+    "spy": 514.0299
   },
   {
     "date": "2025-05-08",
-    "port": 390.0792,
-    "spy": 517.0719
+    "port": 387.3298,
+    "spy": 517.6116
   },
   {
     "date": "2025-05-09",
-    "port": 390.0891,
-    "spy": 516.4131
+    "port": 387.3347,
+    "spy": 516.9521
   },
   {
     "date": "2025-05-12",
-    "port": 395.7481,
-    "spy": 533.4792
+    "port": 393.385,
+    "spy": 534.036
   },
   {
     "date": "2025-05-13",
-    "port": 396.7863,
-    "spy": 537.0022
+    "port": 394.4832,
+    "spy": 537.5627
   },
   {
     "date": "2025-05-14",
-    "port": 395.8403,
-    "spy": 537.6885
+    "port": 393.4834,
+    "spy": 538.2497
   },
   {
     "date": "2025-05-15",
-    "port": 398.0081,
-    "spy": 540.3147
+    "port": 395.7219,
+    "spy": 540.8786
   },
   {
     "date": "2025-05-16",
-    "port": 399.5295,
-    "spy": 543.7372
+    "port": 397.3251,
+    "spy": 544.3047
   },
   {
     "date": "2025-05-19",
-    "port": 399.851,
-    "spy": 544.332
+    "port": 397.5488,
+    "spy": 544.9001
   },
   {
     "date": "2025-05-20",
-    "port": 398.766,
-    "spy": 542.5018
+    "port": 396.34,
+    "spy": 543.068
   },
   {
     "date": "2025-05-21",
-    "port": 392.559,
-    "spy": 533.3602
+    "port": 389.797,
+    "spy": 533.9168
   },
   {
     "date": "2025-05-22",
-    "port": 393.365,
-    "spy": 533.5706
+    "port": 390.6103,
+    "spy": 534.1275
   },
   {
     "date": "2025-05-23",
-    "port": 392.7243,
-    "spy": 529.9287
+    "port": 389.864,
+    "spy": 530.4818
   },
   {
     "date": "2025-05-26",
-    "port": 392.7243,
-    "spy": 529.9287
+    "port": 389.8622,
+    "spy": 530.4818
   },
   {
     "date": "2025-05-27",
-    "port": 398.7985,
-    "spy": 540.9462
+    "port": 396.2741,
+    "spy": 541.5108
   },
   {
     "date": "2025-05-28",
-    "port": 396.4298,
-    "spy": 537.8166
+    "port": 393.8129,
+    "spy": 538.378
   },
   {
     "date": "2025-05-29",
-    "port": 398.7897,
-    "spy": 539.9396
+    "port": 396.2305,
+    "spy": 540.5032
   },
   {
     "date": "2025-05-30",
-    "port": 398.5991,
-    "spy": 539.3357
+    "port": 395.9998,
+    "spy": 539.8986
   },
   {
     "date": "2025-06-02",
-    "port": 399.6056,
-    "spy": 542.3737
+    "port": 396.866,
+    "spy": 542.9398
   },
   {
     "date": "2025-06-03",
-    "port": 400.4832,
-    "spy": 545.4667
+    "port": 397.8968,
+    "spy": 546.036
   },
   {
     "date": "2025-06-04",
-    "port": 402.1094,
-    "spy": 545.3201
+    "port": 399.5762,
+    "spy": 545.8893
   },
   {
     "date": "2025-06-05",
-    "port": 401.7167,
-    "spy": 542.6848
+    "port": 399.0925,
+    "spy": 543.2513
   },
   {
     "date": "2025-06-06",
-    "port": 401.9005,
-    "spy": 548.2576
+    "port": 399.4029,
+    "spy": 548.8298
   },
   {
     "date": "2025-06-09",
-    "port": 402.4405,
-    "spy": 548.7517
+    "port": 399.9861,
+    "spy": 549.3244
   },
   {
     "date": "2025-06-10",
-    "port": 404.2848,
-    "spy": 551.863
+    "port": 401.9684,
+    "spy": 552.439
   },
   {
     "date": "2025-06-11",
-    "port": 403.0565,
-    "spy": 550.2891
+    "port": 400.7964,
+    "spy": 550.8634
   },
   {
     "date": "2025-06-12",
-    "port": 406.0263,
-    "spy": 552.476
+    "port": 403.7633,
+    "spy": 553.0527
   },
   {
     "date": "2025-06-13",
-    "port": 400.3311,
-    "spy": 546.2993
+    "port": 398.0271,
+    "spy": 546.8695
   },
   {
     "date": "2025-06-16",
-    "port": 401.0431,
-    "spy": 551.497
+    "port": 398.8257,
+    "spy": 552.0726
   },
   {
     "date": "2025-06-17",
-    "port": 398.6261,
-    "spy": 546.7844
+    "port": 396.532,
+    "spy": 547.3551
   },
   {
     "date": "2025-06-18",
-    "port": 397.8049,
-    "spy": 546.702
+    "port": 395.8425,
+    "spy": 547.2726
   },
   {
     "date": "2025-06-20",
-    "port": 396.8303,
-    "spy": 545.418
+    "port": 394.8705,
+    "spy": 545.9873
   },
   {
     "date": "2025-06-23",
-    "port": 401.9937,
-    "spy": 550.8053
+    "port": 399.9203,
+    "spy": 551.3803
   },
   {
     "date": "2025-06-24",
-    "port": 406.3511,
-    "spy": 556.8902
+    "port": 404.334,
+    "spy": 557.4715
   },
   {
     "date": "2025-06-25",
-    "port": 406.7535,
-    "spy": 557.2023
+    "port": 404.6566,
+    "spy": 557.7839
   },
   {
     "date": "2025-06-26",
-    "port": 410.8202,
-    "spy": 561.5617
+    "port": 408.7531,
+    "spy": 562.1479
   },
   {
     "date": "2025-06-27",
-    "port": 410.5958,
-    "spy": 564.3518
+    "port": 408.5731,
+    "spy": 564.9408
   },
   {
     "date": "2025-06-30",
-    "port": 413.8329,
-    "spy": 567.05
+    "port": 411.7843,
+    "spy": 567.6419
   },
   {
     "date": "2025-07-01",
-    "port": 415.3808,
-    "spy": 566.8665
+    "port": 413.4095,
+    "spy": 567.4582
   },
   {
     "date": "2025-07-02",
-    "port": 417.0172,
-    "spy": 569.4363
+    "port": 415.0335,
+    "spy": 570.0306
   },
   {
     "date": "2025-07-03",
-    "port": 416.7307,
-    "spy": 573.9242
+    "port": 414.8896,
+    "spy": 574.5232
   },
   {
     "date": "2025-07-07",
-    "port": 412.9284,
-    "spy": 569.6473
+    "port": 410.9521,
+    "spy": 570.2419
   },
   {
     "date": "2025-07-08",
-    "port": 414.981,
-    "spy": 569.3353
+    "port": 412.861,
+    "spy": 569.9296
   },
   {
     "date": "2025-07-09",
-    "port": 417.6809,
-    "spy": 572.7495
+    "port": 415.6687,
+    "spy": 573.3473
   },
   {
     "date": "2025-07-10",
-    "port": 419.054,
-    "spy": 574.3648
+    "port": 417.0715,
+    "spy": 574.9642
   },
   {
     "date": "2025-07-11",
-    "port": 416.8511,
-    "spy": 572.3456
+    "port": 414.6588,
+    "spy": 572.943
   },
   {
     "date": "2025-07-14",
-    "port": 415.8255,
-    "spy": 573.4378
+    "port": 413.7399,
+    "spy": 574.0363
   },
   {
     "date": "2025-07-15",
-    "port": 413.3404,
-    "spy": 570.9873
+    "port": 411.0439,
+    "spy": 571.5833
   },
   {
     "date": "2025-07-16",
-    "port": 413.5142,
-    "spy": 572.8962
+    "port": 411.3322,
+    "spy": 573.4942
   },
   {
     "date": "2025-07-17",
-    "port": 416.1473,
-    "spy": 576.4022
+    "port": 413.97,
+    "spy": 577.0038
   },
   {
     "date": "2025-07-18",
-    "port": 415.5897,
-    "spy": 575.9801
+    "port": 413.4262,
+    "spy": 576.5813
   },
   {
     "date": "2025-07-21",
-    "port": 417.8152,
-    "spy": 577.0723
+    "port": 415.6213,
+    "spy": 577.6746
   },
   {
     "date": "2025-07-22",
-    "port": 419.6636,
-    "spy": 577.1548
+    "port": 417.5355,
+    "spy": 577.7572
   },
   {
     "date": "2025-07-23",
-    "port": 423.1025,
-    "spy": 582.0649
+    "port": 420.8736,
+    "spy": 582.6724
   },
   {
     "date": "2025-07-24",
-    "port": 421.2573,
-    "spy": 582.2576
+    "port": 419.0443,
+    "spy": 582.8653
   },
   {
     "date": "2025-07-25",
-    "port": 423.045,
-    "spy": 584.7173
+    "port": 420.916,
+    "spy": 585.3276
   },
   {
     "date": "2025-07-28",
-    "port": 420.9116,
-    "spy": 584.5705
+    "port": 418.8531,
+    "spy": 585.1807
   },
   {
     "date": "2025-07-29",
-    "port": 422.0932,
-    "spy": 583.0286
+    "port": 420.1097,
+    "spy": 583.6371
   },
   {
     "date": "2025-07-30",
-    "port": 418.1384,
-    "spy": 582.2943
+    "port": 416.2809,
+    "spy": 582.9021
   },
   {
     "date": "2025-07-31",
-    "port": 416.1583,
-    "spy": 580.1101
+    "port": 414.3004,
+    "spy": 580.7156
   },
   {
     "date": "2025-08-01",
-    "port": 413.2787,
-    "spy": 570.6018
+    "port": 411.3518,
+    "spy": 571.1974
   },
   {
     "date": "2025-08-04",
-    "port": 418.1998,
-    "spy": 579.2748
+    "port": 416.3579,
+    "spy": 579.8794
   },
   {
     "date": "2025-08-05",
-    "port": 417.9615,
-    "spy": 576.3379
+    "port": 416.1198,
+    "spy": 576.9395
   },
   {
     "date": "2025-08-06",
-    "port": 418.5435,
-    "spy": 580.7525
+    "port": 416.7185,
+    "spy": 581.3587
   },
   {
     "date": "2025-08-07",
-    "port": 418.6991,
-    "spy": 580.266
+    "port": 416.794,
+    "spy": 580.8717
   },
   {
     "date": "2025-08-08",
-    "port": 420.3199,
-    "spy": 584.7908
+    "port": 418.4197,
+    "spy": 585.4011
   },
   {
     "date": "2025-08-11",
-    "port": 418.8805,
-    "spy": 583.6343
+    "port": 417.06,
+    "spy": 584.2435
   },
   {
     "date": "2025-08-12",
-    "port": 423.645,
-    "spy": 589.8477
+    "port": 421.8268,
+    "spy": 590.4634
   },
   {
     "date": "2025-08-13",
-    "port": 425.847,
-    "spy": 591.8669
+    "port": 424.2584,
+    "spy": 592.4847
   },
   {
     "date": "2025-08-14",
-    "port": 425.3154,
-    "spy": 591.9219
+    "port": 423.5587,
+    "spy": 592.5397
   },
   {
     "date": "2025-08-15",
-    "port": 423.884,
-    "spy": 590.5361
+    "port": 421.9878,
+    "spy": 591.1524
   },
   {
     "date": "2025-08-18",
-    "port": 423.8753,
-    "spy": 590.4075
+    "port": 421.9401,
+    "spy": 591.0238
   },
   {
     "date": "2025-08-19",
-    "port": 423.9696,
-    "spy": 587.2045
+    "port": 421.9983,
+    "spy": 587.8174
   },
   {
     "date": "2025-08-20",
-    "port": 423.0373,
-    "spy": 585.6442
+    "port": 421.0738,
+    "spy": 586.2555
   },
   {
     "date": "2025-08-21",
-    "port": 421.582,
-    "spy": 583.2948
+    "port": 419.5569,
+    "spy": 583.9036
   },
   {
     "date": "2025-08-22",
-    "port": 428.4227,
-    "spy": 592.2523
+    "port": 426.6388,
+    "spy": 592.8705
   },
   {
     "date": "2025-08-25",
-    "port": 426.4582,
-    "spy": 589.6457
+    "port": 424.6403,
+    "spy": 590.2612
   },
   {
     "date": "2025-08-26",
-    "port": 427.3222,
-    "spy": 592.1146
+    "port": 425.5375,
+    "spy": 592.7326
   },
   {
     "date": "2025-08-27",
-    "port": 428.2317,
-    "spy": 593.4638
+    "port": 426.4665,
+    "spy": 594.0832
   },
   {
     "date": "2025-08-28",
-    "port": 428.9526,
-    "spy": 595.5654
+    "port": 427.3181,
+    "spy": 596.187
   },
   {
     "date": "2025-08-29",
-    "port": 426.9105,
-    "spy": 592.0137
+    "port": 425.1587,
+    "spy": 592.6316
   },
   {
     "date": "2025-09-02",
-    "port": 424.8996,
-    "spy": 587.6267
+    "port": 422.9453,
+    "spy": 588.24
   },
   {
     "date": "2025-09-03",
-    "port": 427.5621,
-    "spy": 590.8114
+    "port": 425.6669,
+    "spy": 591.4281
   },
   {
     "date": "2025-09-04",
-    "port": 430.6337,
-    "spy": 595.749
+    "port": 428.931,
+    "spy": 596.3708
   },
   {
     "date": "2025-09-05",
-    "port": 432.3792,
-    "spy": 594.0236
+    "port": 430.7182,
+    "spy": 594.6436
   },
   {
     "date": "2025-09-08",
-    "port": 435.0429,
-    "spy": 595.4828
+    "port": 433.4182,
+    "spy": 596.1043
   },
   {
     "date": "2025-09-09",
-    "port": 434.0882,
-    "spy": 596.8595
+    "port": 432.4204,
+    "spy": 597.4824
   },
   {
     "date": "2025-09-10",
-    "port": 435.3281,
-    "spy": 598.5849
+    "port": 433.7229,
+    "spy": 599.2097
   },
   {
     "date": "2025-09-11",
-    "port": 438.9348,
-    "spy": 603.5593
+    "port": 437.4791,
+    "spy": 604.1893
   },
   {
     "date": "2025-09-12",
-    "port": 438.2015,
-    "spy": 603.3574
+    "port": 436.574,
+    "spy": 603.9872
   },
   {
     "date": "2025-09-15",
-    "port": 439.8173,
-    "spy": 606.5696
+    "port": 438.1137,
+    "spy": 607.2027
   },
   {
     "date": "2025-09-16",
-    "port": 440.0168,
-    "spy": 605.7344
+    "port": 438.3254,
+    "spy": 606.3666
   },
   {
     "date": "2025-09-17",
-    "port": 439.245,
-    "spy": 604.9819
+    "port": 437.582,
+    "spy": 605.6134
   },
   {
     "date": "2025-09-18",
-    "port": 439.7382,
-    "spy": 607.8087
+    "port": 438.1544,
+    "spy": 608.4431
   },
   {
     "date": "2025-09-19",
-    "port": 439.7179,
-    "spy": 610.819
+    "port": 438.0488,
+    "spy": 611.4566
   },
   {
     "date": "2025-09-22",
-    "port": 441.135,
-    "spy": 613.7088
+    "port": 439.4964,
+    "spy": 614.3494
   },
   {
     "date": "2025-09-23",
-    "port": 441.0766,
-    "spy": 610.3681
+    "port": 439.4535,
+    "spy": 611.0051
   },
   {
     "date": "2025-09-24",
-    "port": 438.0227,
-    "spy": 608.4261
+    "port": 436.3564,
+    "spy": 609.0611
   },
   {
     "date": "2025-09-25",
-    "port": 436.2091,
-    "spy": 605.6192
+    "port": 434.5506,
+    "spy": 606.2513
   },
   {
     "date": "2025-09-26",
-    "port": 438.5129,
-    "spy": 609.0888
+    "port": 436.8647,
+    "spy": 609.7245
   },
   {
     "date": "2025-09-29",
-    "port": 439.8574,
-    "spy": 610.8006
+    "port": 438.081,
+    "spy": 611.4382
   },
   {
     "date": "2025-09-30",
-    "port": 440.1189,
-    "spy": 613.1014
+    "port": 438.3094,
+    "spy": 613.7413
   },
   {
     "date": "2025-10-01",
-    "port": 440.9823,
-    "spy": 615.1906
+    "port": 439.0902,
+    "spy": 615.8327
   },
   {
     "date": "2025-10-02",
-    "port": 440.8094,
-    "spy": 615.8992
+    "port": 438.8234,
+    "spy": 616.542
   },
   {
     "date": "2025-10-03",
-    "port": 441.2687,
-    "spy": 615.89
+    "port": 439.3426,
+    "spy": 616.5328
   },
   {
     "date": "2025-10-06",
-    "port": 441.5285,
-    "spy": 618.0987
+    "port": 439.6665,
+    "spy": 618.7439
   },
   {
     "date": "2025-10-07",
-    "port": 440.9091,
-    "spy": 615.8072
+    "port": 439.0098,
+    "spy": 616.4499
   },
   {
     "date": "2025-10-08",
-    "port": 442.6656,
-    "spy": 619.4792
+    "port": 440.7045,
+    "spy": 620.1258
   },
   {
     "date": "2025-10-09",
-    "port": 441.4418,
-    "spy": 617.6846
+    "port": 439.4989,
+    "spy": 618.3293
   },
   {
     "date": "2025-10-10",
-    "port": 436.3514,
-    "spy": 600.99
+    "port": 434.5429,
+    "spy": 601.6172
   },
   {
     "date": "2025-10-13",
-    "port": 441.5622,
-    "spy": 610.2116
+    "port": 439.6819,
+    "spy": 610.8485
   },
   {
     "date": "2025-10-14",
-    "port": 442.3381,
-    "spy": 609.4661
+    "port": 440.4714,
+    "spy": 610.1023
   },
   {
     "date": "2025-10-15",
-    "port": 443.2128,
-    "spy": 612.1719
+    "port": 441.3225,
+    "spy": 612.8109
   },
   {
     "date": "2025-10-16",
-    "port": 442.1321,
-    "spy": 608.0029
+    "port": 440.2324,
+    "spy": 608.6375
   },
   {
     "date": "2025-10-17",
-    "port": 443.1277,
-    "spy": 611.4541
+    "port": 441.1661,
+    "spy": 612.0923
   },
   {
     "date": "2025-10-20",
-    "port": 446.4526,
-    "spy": 617.8135
+    "port": 444.3476,
+    "spy": 618.4583
   },
   {
     "date": "2025-10-21",
-    "port": 446.5247,
-    "spy": 617.8042
+    "port": 444.3321,
+    "spy": 618.4491
   },
   {
     "date": "2025-10-22",
-    "port": 444.7953,
-    "spy": 614.5924
+    "port": 442.6262,
+    "spy": 615.2338
   },
   {
     "date": "2025-10-23",
-    "port": 445.5042,
-    "spy": 618.2368
+    "port": 443.3378,
+    "spy": 618.8821
   },
   {
     "date": "2025-10-24",
-    "port": 448.2201,
-    "spy": 623.2894
+    "port": 445.9978,
+    "spy": 623.94
   },
   {
     "date": "2025-10-27",
-    "port": 451.8242,
-    "spy": 630.6428
+    "port": 449.4472,
+    "spy": 631.301
   },
   {
     "date": "2025-10-28",
-    "port": 452.0377,
-    "spy": 632.3177
+    "port": 449.5552,
+    "spy": 632.9777
   },
   {
     "date": "2025-10-29",
-    "port": 449.4851,
-    "spy": 632.6215
+    "port": 447.0232,
+    "spy": 633.2818
   },
   {
     "date": "2025-10-30",
-    "port": 445.2459,
-    "spy": 625.6639
+    "port": 442.9256,
+    "spy": 626.3169
   },
   {
     "date": "2025-10-31",
-    "port": 445.4682,
-    "spy": 627.7162
+    "port": 443.1258,
+    "spy": 628.3713
   },
   {
     "date": "2025-11-03",
-    "port": 444.3015,
-    "spy": 628.8942
+    "port": 441.8769,
+    "spy": 629.5506
   },
   {
     "date": "2025-11-04",
-    "port": 440.8144,
-    "spy": 621.4396
+    "port": 438.4545,
+    "spy": 622.0882
   },
   {
     "date": "2025-11-05",
-    "port": 440.3072,
-    "spy": 623.5931
+    "port": 438.0122,
+    "spy": 624.244
   },
   {
     "date": "2025-11-06",
-    "port": 439.5101,
-    "spy": 616.9024
+    "port": 437.298,
+    "spy": 617.5463
   },
   {
     "date": "2025-11-07",
-    "port": 440.1017,
-    "spy": 617.5097
+    "port": 437.9365,
+    "spy": 618.1542
   },
   {
     "date": "2025-11-10",
-    "port": 444.4324,
-    "spy": 627.1456
+    "port": 442.1274,
+    "spy": 627.8002
   },
   {
     "date": "2025-11-11",
-    "port": 446.7641,
-    "spy": 628.5812
+    "port": 444.4567,
+    "spy": 629.2373
   },
   {
     "date": "2025-11-12",
-    "port": 446.898,
-    "spy": 628.931
+    "port": 444.5494,
+    "spy": 629.5874
   },
   {
     "date": "2025-11-13",
-    "port": 440.6592,
-    "spy": 618.4945
+    "port": 438.5222,
+    "spy": 619.1401
   },
   {
     "date": "2025-11-14",
-    "port": 439.3411,
-    "spy": 618.3932
+    "port": 437.2317,
+    "spy": 619.0387
   },
   {
     "date": "2025-11-17",
-    "port": 436.0864,
-    "spy": 612.632
+    "port": 433.9862,
+    "spy": 613.2714
   },
   {
     "date": "2025-11-18",
-    "port": 434.823,
-    "spy": 607.4874
+    "port": 432.8689,
+    "spy": 608.1214
   },
   {
     "date": "2025-11-19",
-    "port": 434.5289,
-    "spy": 609.8343
+    "port": 432.4879,
+    "spy": 610.4708
   },
   {
     "date": "2025-11-20",
-    "port": 430.9364,
-    "spy": 600.539
+    "port": 429.007,
+    "spy": 601.1658
   },
   {
     "date": "2025-11-21",
-    "port": 434.8791,
-    "spy": 606.5211
+    "port": 432.8726,
+    "spy": 607.1542
   },
   {
     "date": "2025-11-24",
-    "port": 439.4678,
-    "spy": 615.4482
+    "port": 437.2601,
+    "spy": 616.0906
   },
   {
     "date": "2025-11-25",
-    "port": 443.912,
-    "spy": 621.237
+    "port": 441.6783,
+    "spy": 621.8855
   },
   {
     "date": "2025-11-26",
-    "port": 447.0932,
-    "spy": 625.5258
+    "port": 444.7928,
+    "spy": 626.1787
   },
   {
     "date": "2025-11-28",
-    "port": 447.9373,
-    "spy": 628.9402
+    "port": 445.6299,
+    "spy": 629.5966
   },
   {
     "date": "2025-12-01",
-    "port": 444.479,
-    "spy": 626.0687
+    "port": 442.3016,
+    "spy": 626.7222
   },
   {
     "date": "2025-12-02",
-    "port": 444.541,
-    "spy": 627.2284
+    "port": 442.3133,
+    "spy": 627.8831
   },
   {
     "date": "2025-12-03",
-    "port": 447.2628,
-    "spy": 629.4004
+    "port": 445.0543,
+    "spy": 630.0573
   },
   {
     "date": "2025-12-04",
-    "port": 446.0092,
-    "spy": 629.8606
+    "port": 443.7996,
+    "spy": 630.518
   },
   {
     "date": "2025-12-05",
-    "port": 445.2092,
-    "spy": 631.0569
+    "port": 442.9817,
+    "spy": 631.7156
   },
   {
     "date": "2025-12-08",
-    "port": 444.462,
-    "spy": 629.1611
+    "port": 442.331,
+    "spy": 629.8178
   },
   {
     "date": "2025-12-09",
-    "port": 444.8718,
-    "spy": 628.6181
+    "port": 442.7725,
+    "spy": 629.2742
   },
   {
     "date": "2025-12-10",
-    "port": 448.5522,
-    "spy": 632.7872
+    "port": 446.422,
+    "spy": 633.4477
   },
   {
     "date": "2025-12-11",
-    "port": 450.5008,
-    "spy": 634.2597
+    "port": 448.4518,
+    "spy": 634.9217
   },
   {
     "date": "2025-12-12",
-    "port": 445.4718,
-    "spy": 627.4401
+    "port": 443.5799,
+    "spy": 628.095
   },
   {
     "date": "2025-12-15",
-    "port": 445.3604,
-    "spy": 626.4921
+    "port": 443.489,
+    "spy": 627.146
   },
   {
     "date": "2025-12-16",
-    "port": 445.1437,
-    "spy": 624.7803
+    "port": 443.239,
+    "spy": 625.4324
   },
   {
     "date": "2025-12-17",
-    "port": 442.5679,
-    "spy": 617.9055
+    "port": 440.8092,
+    "spy": 618.5505
   },
   {
     "date": "2025-12-18",
-    "port": 445.9781,
-    "spy": 622.5715
+    "port": 444.1524,
+    "spy": 623.2213
   },
   {
     "date": "2025-12-19",
-    "port": 446.889,
-    "spy": 628.2142
+    "port": 444.9481,
+    "spy": 628.8699
   },
   {
     "date": "2025-12-22",
-    "port": 449.4086,
-    "spy": 632.1278
+    "port": 447.4958,
+    "spy": 632.7876
   },
   {
     "date": "2025-12-23",
-    "port": 450.3084,
-    "spy": 635.0169
+    "port": 448.301,
+    "spy": 635.6797
   },
   {
     "date": "2025-12-24",
-    "port": 451.9201,
-    "spy": 637.2507
+    "port": 449.8113,
+    "spy": 637.9159
   },
   {
     "date": "2025-12-26",
-    "port": 451.4337,
-    "spy": 637.1861
+    "port": 449.3601,
+    "spy": 637.8512
   },
   {
     "date": "2025-12-29",
-    "port": 450.195,
-    "spy": 634.9154
+    "port": 448.071,
+    "spy": 635.5781
   },
   {
     "date": "2025-12-30",
-    "port": 450.3707,
-    "spy": 634.14
+    "port": 448.3368,
+    "spy": 634.8019
   },
   {
     "date": "2025-12-31",
-    "port": 446.7884,
-    "spy": 629.4418
+    "port": 444.8774,
+    "spy": 630.0987
   },
   {
     "date": "2026-01-02",
-    "port": 448.2417,
-    "spy": 630.5956
+    "port": 446.3999,
+    "spy": 631.2537
   },
   {
     "date": "2026-01-05",
-    "port": 452.4733,
-    "spy": 634.7954
+    "port": 450.6234,
+    "spy": 635.458
   },
   {
     "date": "2026-01-06",
-    "port": 454.9022,
-    "spy": 638.5707
+    "port": 453.0752,
+    "spy": 639.2372
   },
   {
     "date": "2026-01-07",
-    "port": 452.6723,
-    "spy": 636.5123
+    "port": 450.6907,
+    "spy": 637.1766
   },
   {
     "date": "2026-01-08",
-    "port": 453.4066,
-    "spy": 636.4477
+    "port": 451.553,
+    "spy": 637.112
   },
   {
     "date": "2026-01-09",
-    "port": 456.9778,
-    "spy": 640.6568
+    "port": 455.0501,
+    "spy": 641.3254
   },
   {
     "date": "2026-01-12",
-    "port": 457.5404,
-    "spy": 641.6629
+    "port": 455.6621,
+    "spy": 642.3326
   },
   {
     "date": "2026-01-13",
-    "port": 457.4007,
-    "spy": 640.3798
+    "port": 455.5358,
+    "spy": 641.0482
   },
   {
     "date": "2026-01-14",
-    "port": 458.3477,
-    "spy": 637.2322
+    "port": 456.5679,
+    "spy": 637.8973
   },
   {
     "date": "2026-01-15",
-    "port": 459.1152,
-    "spy": 638.9676
+    "port": 457.3041,
+    "spy": 639.6345
   },
   {
     "date": "2026-01-16",
-    "port": 456.647,
-    "spy": 638.4322
+    "port": 454.8155,
+    "spy": 639.0985
   },
   {
     "date": "2026-01-20",
-    "port": 449.0502,
-    "spy": 625.4357
+    "port": 447.5376,
+    "spy": 626.0885
   },
   {
     "date": "2026-01-21",
-    "port": 453.5415,
-    "spy": 632.654
+    "port": 451.8511,
+    "spy": 633.3143
   },
   {
     "date": "2026-01-22",
-    "port": 456.3489,
-    "spy": 635.9585
+    "port": 454.6164,
+    "spy": 636.6223
   },
   {
     "date": "2026-01-23",
-    "port": 455.7124,
-    "spy": 636.1892
+    "port": 453.8929,
+    "spy": 636.8532
   },
   {
     "date": "2026-01-26",
-    "port": 457.8455,
-    "spy": 639.4199
+    "port": 455.9348,
+    "spy": 640.0873
   },
   {
     "date": "2026-01-27",
-    "port": 459.0149,
-    "spy": 641.9674
+    "port": 457.1838,
+    "spy": 642.6375
   },
   {
     "date": "2026-01-28",
-    "port": 458.9157,
-    "spy": 641.9028
+    "port": 457.1255,
+    "spy": 642.5728
   },
   {
     "date": "2026-01-29",
-    "port": 458.4538,
-    "spy": 640.629
+    "port": 456.6786,
+    "spy": 641.2977
   },
   {
     "date": "2026-01-30",
-    "port": 453.3256,
-    "spy": 638.7184
+    "port": 451.4094,
+    "spy": 639.3851
   },
   {
     "date": "2026-02-02",
-    "port": 457.1857,
-    "spy": 641.8936
+    "port": 455.4256,
+    "spy": 642.5636
   },
   {
     "date": "2026-02-03",
-    "port": 457.4417,
-    "spy": 636.4661
+    "port": 455.8773,
+    "spy": 637.1304
   },
   {
     "date": "2026-02-04",
-    "port": 456.592,
-    "spy": 633.3832
+    "port": 455.1408,
+    "spy": 634.0443
   },
   {
     "date": "2026-02-05",
-    "port": 452.6081,
-    "spy": 625.4727
+    "port": 451.0474,
+    "spy": 626.1255
   },
   {
     "date": "2026-02-06",
-    "port": 460.8873,
-    "spy": 637.4722
+    "port": 459.3135,
+    "spy": 638.1376
   },
   {
     "date": "2026-02-09",
-    "port": 463.2952,
-    "spy": 640.546
+    "port": 461.7473,
+    "spy": 641.2145
   },
   {
     "date": "2026-02-10",
-    "port": 464.1779,
-    "spy": 638.8568
+    "port": 462.5474,
+    "spy": 639.5236
   },
   {
     "date": "2026-02-11",
-    "port": 463.3053,
-    "spy": 638.7091
+    "port": 461.7213,
+    "spy": 639.3758
   },
   {
     "date": "2026-02-12",
-    "port": 458.8623,
-    "spy": 628.8418
+    "port": 457.1843,
+    "spy": 629.4982
   },
   {
     "date": "2026-02-13",
-    "port": 460.8046,
-    "spy": 629.2848
+    "port": 459.1303,
+    "spy": 629.9416
   },
   {
     "date": "2026-02-17",
-    "port": 461.1903,
-    "spy": 630.3002
+    "port": 459.4683,
+    "spy": 630.9581
   },
   {
     "date": "2026-02-18",
-    "port": 462.9007,
-    "spy": 633.4755
+    "port": 461.215,
+    "spy": 634.1366
   },
   {
     "date": "2026-02-19",
-    "port": 462.294,
-    "spy": 631.8048
+    "port": 460.6233,
+    "spy": 632.4642
   },
   {
     "date": "2026-02-20",
-    "port": 463.8684,
-    "spy": 636.3739
+    "port": 462.1407,
+    "spy": 637.0381
   },
   {
     "date": "2026-02-23",
-    "port": 461.1851,
-    "spy": 629.8756
+    "port": 459.5154,
+    "spy": 630.533
   },
   {
     "date": "2026-02-24",
-    "port": 464.0095,
-    "spy": 634.4539
+    "port": 462.2844,
+    "spy": 635.1161
   },
   {
     "date": "2026-02-25",
-    "port": 466.2211,
-    "spy": 639.8076
+    "port": 464.3995,
+    "spy": 640.4754
   },
   {
     "date": "2026-02-26",
-    "port": 466.3386,
-    "spy": 636.2538
+    "port": 464.6022,
+    "spy": 636.9179
   },
   {
     "date": "2026-02-27",
-    "port": 465.8464,
-    "spy": 633.1985
+    "port": 464.1097,
+    "spy": 633.8594
   },
   {
     "date": "2026-03-02",
-    "port": 465.5962,
-    "spy": 633.5585
+    "port": 464.012,
+    "spy": 634.2198
   },
   {
     "date": "2026-03-03",
-    "port": 461.2205,
-    "spy": 627.9742
+    "port": 459.6455,
+    "spy": 628.6296
   },
   {
     "date": "2026-03-04",
-    "port": 464.4152,
-    "spy": 632.4048
+    "port": 462.9057,
+    "spy": 633.0649
   },
   {
     "date": "2026-03-05",
-    "port": 461.1755,
-    "spy": 628.8787
+    "port": 459.696,
+    "spy": 629.5351
   },
   {
     "date": "2026-03-06",
-    "port": 457.323,
-    "spy": 620.6359
+    "port": 456.0395,
+    "spy": 621.2837
   },
   {
     "date": "2026-03-09",
-    "port": 460.3642,
-    "spy": 626.0727
+    "port": 458.8815,
+    "spy": 626.7261
   },
   {
     "date": "2026-03-10",
-    "port": 459.135,
-    "spy": 625.0666
+    "port": 457.8157,
+    "spy": 625.719
   },
   {
     "date": "2026-03-11",
-    "port": 457.8363,
-    "spy": 624.282
+    "port": 456.7005,
+    "spy": 624.9336
   },
   {
     "date": "2026-03-12",
-    "port": 454.3619,
-    "spy": 614.8023
+    "port": 453.4581,
+    "spy": 615.444
   },
   {
     "date": "2026-03-13",
-    "port": 451.2423,
-    "spy": 611.3224
+    "port": 450.3802,
+    "spy": 611.9605
   },
   {
     "date": "2026-03-16",
-    "port": 455.1832,
-    "spy": 617.5438
+    "port": 454.1662,
+    "spy": 618.1884
   },
   {
     "date": "2026-03-17",
-    "port": 458.1908,
-    "spy": 619.1683
+    "port": 457.2429,
+    "spy": 619.8145
   },
   {
     "date": "2026-03-18",
-    "port": 453.1515,
-    "spy": 610.5286
+    "port": 452.3625,
+    "spy": 611.1658
   },
   {
     "date": "2026-03-19",
-    "port": 451.9799,
-    "spy": 609.024
+    "port": 451.0687,
+    "spy": 609.6597
   },
   {
     "date": "2026-03-20",
-    "port": 445.8208,
-    "spy": 600.2932
+    "port": 445.2379,
+    "spy": 600.9198
   },
   {
     "date": "2026-03-23",
-    "port": 446.9583,
-    "spy": 606.5963
+    "port": 446.0512,
+    "spy": 607.2294
   },
   {
     "date": "2026-03-24",
-    "port": 447.089,
-    "spy": 604.5601
+    "port": 446.3458,
+    "spy": 605.1911
   },
   {
     "date": "2026-03-25",
-    "port": 450.0658,
-    "spy": 607.9291
+    "port": 449.1934,
+    "spy": 608.5636
   },
   {
     "date": "2026-03-26",
-    "port": 445.904,
-    "spy": 597.0723
+    "port": 445.3841,
+    "spy": 597.6955
   },
   {
     "date": "2026-03-27",
-    "port": 442.3191,
-    "spy": 586.891
+    "port": 442.1124,
+    "spy": 587.5036
   },
   {
     "date": "2026-03-30",
-    "port": 444.3112,
-    "spy": 584.9288
+    "port": 444.0966,
+    "spy": 585.5394
   },
   {
     "date": "2026-03-31",
-    "port": 451.1525,
-    "spy": 601.9315
+    "port": 450.6435,
+    "spy": 602.5597
   },
   {
     "date": "2026-04-01",
-    "port": 451.6854,
-    "spy": 606.4667
+    "port": 451.0319,
+    "spy": 607.0997
   },
   {
     "date": "2026-04-02",
-    "port": 454.7749,
-    "spy": 607.0128
+    "port": 454.1892,
+    "spy": 607.6464
   },
   {
     "date": "2026-04-06",
-    "port": 456.6891,
-    "spy": 609.8821
+    "port": 456.128,
+    "spy": 610.5187
   },
   {
     "date": "2026-04-07",
-    "port": 457.0081,
-    "spy": 610.1504
+    "port": 456.4572,
+    "spy": 610.7873
   },
   {
     "date": "2026-04-08",
-    "port": 460.9115,
-    "spy": 625.6907
+    "port": 459.8665,
+    "spy": 626.3438
   },
   {
     "date": "2026-04-09",
-    "port": 463.3116,
-    "spy": 629.3003
+    "port": 462.3068,
+    "spy": 629.9572
   },
   {
     "date": "2026-04-10",
-    "port": 462.6533,
-    "spy": 628.8839
+    "port": 461.6745,
+    "spy": 629.5403
   },
   {
     "date": "2026-04-13",
-    "port": 467.4625,
-    "spy": 635.0296
+    "port": 466.466,
+    "spy": 635.6925
   },
   {
     "date": "2026-04-14",
-    "port": 469.8703,
-    "spy": 642.7674
+    "port": 468.6001,
+    "spy": 643.4383
   },
   {
     "date": "2026-04-15",
-    "port": 471.3322,
-    "spy": 647.8395
+    "port": 470.0203,
+    "spy": 648.5157
   },
   {
     "date": "2026-04-16",
-    "port": 472.2613,
-    "spy": 649.4314
+    "port": 471.0551,
+    "spy": 650.1093
   },
   {
     "date": "2026-04-17",
-    "port": 474.1754,
-    "spy": 657.2803
+    "port": 472.5774,
+    "spy": 657.9663
   },
   {
     "date": "2026-04-20",
-    "port": 475.1164,
-    "spy": 655.9658
+    "port": 473.6358,
+    "spy": 656.6505
   },
   {
     "date": "2026-04-21",
-    "port": 474.8928,
-    "spy": 651.6713
+    "port": 473.6897,
+    "spy": 652.3515
   },
   {
     "date": "2026-04-22",
-    "port": 477.9941,
-    "spy": 658.2706
+    "port": 476.6679,
+    "spy": 658.9576
   },
   {
     "date": "2026-04-23",
-    "port": 478.551,
-    "spy": 655.716
+    "port": 477.4104,
+    "spy": 656.4004
   },
   {
     "date": "2026-04-24",
-    "port": 480.1226,
-    "spy": 660.7974
+    "port": 478.833,
+    "spy": 661.4871
   },
   {
     "date": "2026-04-27",
-    "port": 481.8472,
-    "spy": 661.9358
+    "port": 480.71,
+    "spy": 662.6267
   },
   {
     "date": "2026-04-28",
-    "port": 482.1826,
-    "spy": 658.7148
+    "port": 481.185,
+    "spy": 659.4023
   },
   {
     "date": "2026-04-29",
-    "port": 482.9195,
-    "spy": 658.613
+    "port": 482.1233,
+    "spy": 659.3004
   },
   {
     "date": "2026-04-30",
-    "port": 484.4472,
-    "spy": 665.166
+    "port": 483.4763,
+    "spy": 665.8603
   },
   {
     "date": "2026-05-01",
-    "port": 483.9278,
-    "spy": 667.0079
+    "port": 482.7817,
+    "spy": 667.7041
   },
   {
     "date": "2026-05-04",
-    "port": 481.7948,
-    "spy": 664.5644
+    "port": 480.7691,
+    "spy": 665.258
   },
   {
     "date": "2026-05-05",
-    "port": 485.6367,
-    "spy": 669.8957
+    "port": 484.5183,
+    "spy": 670.5949
   },
   {
     "date": "2026-05-06",
-    "port": 488.1415,
-    "spy": 679.2068
+    "port": 486.6354,
+    "spy": 679.9158
   },
   {
     "date": "2026-05-07",
-    "port": 486.6569,
-    "spy": 677.1243
+    "port": 485.2496,
+    "spy": 677.8311
   },
   {
     "date": "2026-05-08",
-    "port": 489.7297,
-    "spy": 682.7147
+    "port": 488.1842,
+    "spy": 683.4273
   },
   {
     "date": "2026-05-11",
-    "port": 490.5151,
-    "spy": 684.2696
+    "port": 489.0799,
+    "spy": 684.9838
   },
   {
     "date": "2026-05-12",
-    "port": 491.9078,
-    "spy": 683.233
+    "port": 490.7414,
+    "spy": 683.9462
   },
   {
     "date": "2026-05-13",
-    "port": 491.1368,
-    "spy": 687.0556
+    "port": 489.803,
+    "spy": 687.7727
   },
   {
     "date": "2026-05-14",
-    "port": 492.3712,
-    "spy": 692.4794
+    "port": 490.8568,
+    "spy": 693.2022
   },
   {
     "date": "2026-05-15",
-    "port": 487.0842,
-    "spy": 684.1494
+    "port": 485.8832,
+    "spy": 684.8635
   },
   {
     "date": "2026-05-18",
-    "port": 487.5804,
-    "spy": 683.6681
+    "port": 486.4464,
+    "spy": 684.3816
   },
   {
     "date": "2026-05-19",
-    "port": 484.5529,
-    "spy": 679.1143
+    "port": 483.5454,
+    "spy": 679.8231
   },
   {
     "date": "2026-05-20",
-    "port": 487.1135,
-    "spy": 686.0745
+    "port": 485.765,
+    "spy": 686.7906
   },
   {
     "date": "2026-05-21",
-    "port": 487.0063,
-    "spy": 687.4351
+    "port": 485.5206,
+    "spy": 688.1526
   },
   {
     "date": "2026-05-22",
-    "port": 489.3794,
-    "spy": 690.1378
+    "port": 487.8239,
+    "spy": 690.8581
   },
   {
     "date": "2026-05-25",
-    "port": 489.3794,
-    "spy": 690.1378
+    "port": 487.8218,
+    "spy": 690.8581
   },
   {
     "date": "2026-05-26",
-    "port": 490.7373,
-    "spy": 694.7193
+    "port": 488.9712,
+    "spy": 695.4444
   },
   {
     "date": "2026-05-27",
-    "port": 489.483,
-    "spy": 694.599
+    "port": 487.5955,
+    "spy": 695.324
   },
   {
     "date": "2026-05-28",
-    "port": 491.5939,
-    "spy": 698.4308
+    "port": 489.5761,
+    "spy": 699.1598
   },
   {
     "date": "2026-05-29",
-    "port": 490.468,
-    "spy": 700.1709
+    "port": 488.3063,
+    "spy": 700.9017
   },
   {
     "date": "2026-06-01",
-    "port": 492.7152,
-    "spy": 702.0775
+    "port": 490.6062,
+    "spy": 702.8103
   },
   {
     "date": "2026-06-02",
-    "port": 494.7912,
-    "spy": 703.0309
+    "port": 492.7227,
+    "spy": 703.7647
   },
   {
     "date": "2026-06-03",
-    "port": 492.0381,
-    "spy": 698.0976
+    "port": 490.089,
+    "spy": 698.8262
   },
   {
     "date": "2026-06-04",
-    "port": 492.5319,
-    "spy": 700.7355
+    "port": 490.4493,
+    "spy": 701.4669
   },
   {
     "date": "2026-06-05",
-    "port": 483.7444,
-    "spy": 682.6499
+    "port": 481.9809,
+    "spy": 683.3624
   },
   {
     "date": "2026-06-08",
-    "port": 484.4256,
-    "spy": 684.1956
+    "port": 482.7357,
+    "spy": 684.9097
   },
   {
     "date": "2026-06-09",
-    "port": 484.2658,
-    "spy": 682.1871
+    "port": 482.5292,
+    "spy": 682.8992
   },
   {
     "date": "2026-06-10",
-    "port": 480.501,
-    "spy": 671.4321
+    "port": 479.037,
+    "spy": 672.1329
   },
   {
     "date": "2026-06-11",
-    "port": 486.327,
-    "spy": 682.8443
+    "port": 484.4948,
+    "spy": 683.557
   },
   {
     "date": "2026-06-12",
-    "port": 487.0771,
-    "spy": 686.5373
+    "port": 485.1782,
+    "spy": 687.2539
   },
   {
     "date": "2026-06-15",
-    "port": 490.2283,
-    "spy": 698.6437
+    "port": 488.0324,
+    "spy": 699.3729
   },
   {
     "date": "2026-06-16",
-    "port": 488.0733,
-    "spy": 694.4787
+    "port": 485.8094,
+    "spy": 695.2035
   },
   {
     "date": "2026-06-17",
-    "port": 484.2669,
-    "spy": 685.8061
+    "port": 482.1085,
+    "spy": 686.5219
   },
   {
     "date": "2026-06-18",
-    "port": 488.4582,
-    "spy": 692.9364
+    "port": 486.1673,
+    "spy": 693.6597
   },
   {
     "date": "2026-06-22",
-    "port": 487.3433,
-    "spy": 690.7558
+    "port": 485.2213,
+    "spy": 691.4768
   },
   {
     "date": "2026-06-23",
-    "port": 482.651,
-    "spy": 680.7246
+    "port": 480.6307,
+    "spy": 681.4351
   },
   {
     "date": "2026-06-24",
-    "port": 483.3595,
-    "spy": 680.4091
+    "port": 481.1261,
+    "spy": 681.1193
   },
   {
     "date": "2026-06-25",
-    "port": 485.1573,
-    "spy": 681.3927
+    "port": 482.9976,
+    "spy": 682.1039
   },
   {
     "date": "2026-06-26",
-    "port": 481.9923,
-    "spy": 676.4654
+    "port": 479.8379,
+    "spy": 677.1714
   },
   {
     "date": "2026-06-29",
-    "port": 486.4006,
-    "spy": 687.61
+    "port": 484.0319,
+    "spy": 688.3277
   },
   {
     "date": "2026-06-30",
-    "port": 487.2114,
-    "spy": 692.9643
+    "port": 484.8955,
+    "spy": 693.6876
   },
   {
     "date": "2026-07-01",
-    "port": 485.7593,
-    "spy": 692.0271
+    "port": 483.5271,
+    "spy": 692.7494
   },
   {
     "date": "2026-07-02",
-    "port": 484.6077,
-    "spy": 691.1177
+    "port": 482.3493,
+    "spy": 691.8391
   },
   {
     "date": "2026-07-06",
-    "port": 487.4739,
-    "spy": 697.1494
+    "port": 485.1512,
+    "spy": 697.877
   },
   {
     "date": "2026-07-07",
-    "port": 485.2576,
-    "spy": 693.8366
+    "port": 483.1471,
+    "spy": 694.5608
   },
   {
     "date": "2026-07-08",
-    "port": 485.6965,
-    "spy": 691.693
+    "port": 483.7537,
+    "spy": 692.415
   },
   {
     "date": "2026-07-09",
-    "port": 488.2468,
-    "spy": 697.5484
+    "port": 486.1836,
+    "spy": 698.2765
   },
   {
     "date": "2026-07-10",
-    "port": 489.6097,
-    "spy": 700.5549
+    "port": 487.5122,
+    "spy": 701.2861
   },
   {
     "date": "2026-07-13",
-    "port": 489.9389,
-    "spy": 695.1914
+    "port": 488.2024,
+    "spy": 695.917
   },
   {
     "date": "2026-07-14",
-    "port": 491.7431,
-    "spy": 697.6597
+    "port": 489.9919,
+    "spy": 698.3879
   },
   {
     "date": "2026-07-15",
-    "port": 493.5653,
-    "spy": 700.425
+    "port": 491.7721,
+    "spy": 701.1561
   },
   {
     "date": "2026-07-16",
-    "port": 493.7939,
-    "spy": 696.6297
+    "port": 492.1704,
+    "spy": 697.3568
   },
   {
     "date": "2026-07-17",
-    "port": 491.5396,
-    "spy": 689.735
+    "port": 489.9972,
+    "spy": 690.4549
   },
   {
     "date": "2026-07-20",
-    "port": 490.7341,
-    "spy": 688.6215
+    "port": 489.3386,
+    "spy": 689.3403
   },
   {
     "date": "2026-07-21",
-    "port": 493.9676,
-    "spy": 694.3655
+    "port": 492.5816,
+    "spy": 695.0903
   },
   {
     "date": "2026-07-22",
-    "port": 493.4055,
-    "spy": 693.5581
+    "port": 492.0689,
+    "spy": 694.282
   },
   {
     "date": "2026-07-23",
-    "port": 491.3329,
-    "spy": 684.9932
+    "port": 490.2905,
+    "spy": 685.7082
   },
   {
     "date": "2026-07-24",
-    "port": 490.8266,
-    "spy": 685.6891
+    "port": 489.7022,
+    "spy": 686.4048
   },
   {
     "date": "2026-07-27",
-    "port": 490.5006,
-    "spy": 685.8377
+    "port": 489.2317,
+    "spy": 686.5535
   },
   {
     "date": "2026-07-28",
-    "port": 492.0844,
-    "spy": 687.4801
+    "port": 490.7276,
+    "spy": 688.1976
   },
   {
     "date": "2026-07-29",
-    "port": 486.7868,
-    "spy": 676.9015
+    "port": 485.8608,
+    "spy": 677.608
   },
   {
     "date": "2026-07-30",
-    "port": 489.0476,
-    "spy": 688.2503
+    "port": 487.8031,
+    "spy": 688.9686
   },
   {
     "date": "2026-07-31",
-    "port": 490.0231,
-    "spy": 693.2056
+    "port": 488.7652,
+    "spy": 693.9291
   },
   {
     "date": "2026-08-03",
-    "port": 491.6017,
-    "spy": 703.0789
+    "port": 489.9622,
+    "spy": 703.8128
   },
   {
     "date": "2026-08-04",
-    "port": 496.2686,
-    "spy": 715.7547
+    "port": 494.2402,
+    "spy": 716.5018
   },
   {
     "date": "2026-08-05",
-    "port": 495.7643,
-    "spy": 714.3256
+    "port": 493.7256,
+    "spy": 715.0712
   },
   {
     "date": "2026-08-06",
-    "port": 495.1789,
-    "spy": 713.1843
+    "port": 493.2716,
+    "spy": 713.9287
   },
   {
     "date": "2026-08-07",
-    "port": 495.2637,
-    "spy": 717.5457
+    "port": 493.1231,
+    "spy": 718.2946
   },
   {
     "date": "2026-08-10",
-    "port": 496.8705,
-    "spy": 717.3322
+    "port": 495.0091,
+    "spy": 718.0809
   },
   {
     "date": "2026-08-11",
-    "port": 496.6093,
-    "spy": 715.0402
+    "port": 494.7929,
+    "spy": 715.7865
   },
   {
     "date": "2026-08-12",
-    "port": 497.5775,
-    "spy": 716.8311
+    "port": 495.7678,
+    "spy": 717.5793
   },
   {
     "date": "2026-08-13",
-    "port": 500.1195,
-    "spy": 721.8328
+    "port": 498.1437,
+    "spy": 722.5862
   },
   {
     "date": "2026-08-14",
-    "port": 500.515,
-    "spy": 720.4037
+    "port": 498.756,
+    "spy": 721.1557
   },
   {
     "date": "2026-08-17",
-    "port": 499.2467,
-    "spy": 716.9981
+    "port": 497.7196,
+    "spy": 717.7465
   },
   {
     "date": "2026-08-18",
-    "port": 497.0853,
-    "spy": 712.1543
+    "port": 495.5509,
+    "spy": 712.8976
   },
   {
     "date": "2026-08-19",
-    "port": 498.5038,
-    "spy": 713.6482
+    "port": 496.6712,
+    "spy": 714.3931
   },
   {
     "date": "2026-08-20",
-    "port": 495.762,
-    "spy": 707.6537
+    "port": 494.17,
+    "spy": 708.3923
   },
   {
     "date": "2026-08-21",
-    "port": 497.2025,
-    "spy": 710.5489
+    "port": 495.6494,
+    "spy": 711.2905
   },
   {
     "date": "2026-08-24",
-    "port": 495.7735,
-    "spy": 708.461
+    "port": 494.0972,
+    "spy": 709.2004
   },
   {
     "date": "2026-08-25",
-    "port": 496.8577,
-    "spy": 710.7252
+    "port": 494.9401,
+    "spy": 711.467
   },
   {
     "date": "2026-08-26",
-    "port": 498.2657,
-    "spy": 710.883
+    "port": 496.4708,
+    "spy": 711.6249
   },
   {
     "date": "2026-08-27",
-    "port": 501.0719,
-    "spy": 715.5413
+    "port": 499.3008,
+    "spy": 716.2881
   },
   {
     "date": "2026-08-28",
-    "port": 501.0869,
-    "spy": 713.9174
+    "port": 499.448,
+    "spy": 714.6625
   },
   {
     "date": "2026-08-31",
-    "port": 500.6885,
-    "spy": 711.7831
+    "port": 499.2024,
+    "spy": 712.526
   },
   {
     "date": "2026-09-01",
-    "port": 500.6802,
-    "spy": 706.8928
+    "port": 499.4831,
+    "spy": 707.6306
   },
   {
     "date": "2026-09-02",
-    "port": 502.3281,
-    "spy": 710.0292
+    "port": 501.076,
+    "spy": 710.7703
   },
   {
     "date": "2026-09-03",
-    "port": 503.6142,
-    "spy": 717.4621
+    "port": 502.1051,
+    "spy": 718.211
   },
   {
     "date": "2026-09-04",
-    "port": 503.0767,
-    "spy": 714.6969
+    "port": 501.613,
+    "spy": 715.4428
   },
   {
     "date": "2026-09-07",
-    "port": 503.0767,
-    "spy": 714.6969
+    "port": 501.6109,
+    "spy": 715.4428
   },
   {
     "date": "2026-09-08",
-    "port": 501.6925,
-    "spy": 710.7716
+    "port": 500.3125,
+    "spy": 711.5135
   },
   {
     "date": "2026-09-09",
-    "port": 500.9462,
-    "spy": 707.4682
+    "port": 499.7725,
+    "spy": 708.2066
   },
   {
     "date": "2026-09-10",
-    "port": 500.6363,
-    "spy": 703.2274
+    "port": 499.8497,
+    "spy": 703.9614
   },
   {
     "date": "2026-09-11",
-    "port": 502.7142,
-    "spy": 709.2219
+    "port": 501.791,
+    "spy": 709.9622
   },
   {
     "date": "2026-09-14",
-    "port": 500.3711,
-    "spy": 706.0576
+    "port": 499.4147,
+    "spy": 706.7946
   },
   {
     "date": "2026-09-15",
-    "port": 500.4383,
-    "spy": 702.8191
+    "port": 499.6717,
+    "spy": 703.5527
   },
   {
     "date": "2026-09-16",
-    "port": 498.6298,
-    "spy": 699.7198
+    "port": 497.8404,
+    "spy": 700.4501
   },
   {
     "date": "2026-09-17",
-    "port": 502.213,
-    "spy": 707.6537
+    "port": 501.1115,
+    "spy": 708.3923
   },
   {
     "date": "2026-09-18",
-    "port": 500.9221,
-    "spy": 708.5644
+    "port": 499.8337,
+    "spy": 709.304
   },
   {
     "date": "2026-09-21",
-    "port": 504.9578,
-    "spy": 719.5507
+    "port": 503.5462,
+    "spy": 720.3017
   },
   {
     "date": "2026-09-22",
-    "port": 504.4852,
-    "spy": 719.4391
+    "port": 503.0573,
+    "spy": 720.19
   },
   {
     "date": "2026-09-23",
-    "port": 501.807,
-    "spy": 714.2576
+    "port": 500.744,
+    "spy": 715.0031
   },
   {
     "date": "2026-09-24",
-    "port": 499.3513,
-    "spy": 713.6715
+    "port": 498.405,
+    "spy": 714.4164
   },
   {
     "date": "2026-09-25",
-    "port": 499.7633,
-    "spy": 717.5506
+    "port": 498.7118,
+    "spy": 718.2996
   },
   {
     "date": "2026-09-28",
-    "port": 496.3644,
-    "spy": 712.211
+    "port": 495.4895,
+    "spy": 712.9544
   },
   {
     "date": "2026-09-29",
-    "port": 494.7519,
-    "spy": 710.8994
+    "port": 493.928,
+    "spy": 711.6414
   },
   {
     "date": "2026-09-30",
-    "port": 493.3439,
-    "spy": 709.4389
+    "port": 492.6012,
+    "spy": 710.1793
   },
   {
     "date": "2026-10-01",
-    "port": 495.1744,
-    "spy": 710.704
+    "port": 494.4358,
+    "spy": 711.4458
   },
   {
     "date": "2026-10-02",
-    "port": 496.5761,
-    "spy": 715.96
+    "port": 495.767,
+    "spy": 716.7072
   },
   {
     "date": "2026-10-05",
-    "port": 498.7525,
-    "spy": 720.788
+    "port": 497.978,
+    "spy": 721.5403
   },
   {
     "date": "2026-10-06",
-    "port": 501.0264,
-    "spy": 724.7509
+    "port": 500.1971,
+    "spy": 725.5073
   },
   {
     "date": "2026-10-07",
-    "port": 499.4033,
-    "spy": 723.0112
+    "port": 498.5813,
+    "spy": 723.7659
   },
   {
     "date": "2026-10-08",
-    "port": 499.9134,
-    "spy": 719.9507
+    "port": 499.0601,
+    "spy": 720.7022
   },
   {
     "date": "2026-10-09",
-    "port": 499.9339,
-    "spy": 724.2671
+    "port": 499.058,
+    "spy": 720.7022
+  },
+  {
+    "date": "2026-10-12",
+    "port": 500.6924,
+    "spy": 724.5854
   }
 ];
 const NTSX_YEARLY      = [
   {
     "year": 2007,
-    "port_return": 1.71,
-    "spy_return": -3.36,
-    "port_maxdd": -6.7,
+    "port_return": 1.66,
+    "spy_return": -3.26,
+    "port_maxdd": -6.71,
     "spy_maxdd": -9.92,
     "winner": "Portfolio"
   },
   {
     "year": 2008,
-    "port_return": -11.7,
+    "port_return": -11.64,
     "spy_return": -36.79,
     "port_maxdd": -26.0,
     "spy_maxdd": -47.12,
@@ -25033,71 +25111,71 @@ const NTSX_YEARLY      = [
   },
   {
     "year": 2009,
-    "port_return": 8.54,
+    "port_return": 7.92,
     "spy_return": 26.35,
-    "port_maxdd": -20.59,
+    "port_maxdd": -20.71,
     "spy_maxdd": -27.13,
     "winner": "SPY"
   },
   {
     "year": 2010,
-    "port_return": 14.05,
+    "port_return": 13.92,
     "spy_return": 15.06,
-    "port_maxdd": -7.82,
+    "port_maxdd": -7.77,
     "spy_maxdd": -15.7,
     "winner": "SPY"
   },
   {
     "year": 2011,
-    "port_return": 10.35,
+    "port_return": 9.92,
     "spy_return": 1.9,
-    "port_maxdd": -9.13,
+    "port_maxdd": -9.16,
     "spy_maxdd": -18.61,
     "winner": "Portfolio"
   },
   {
     "year": 2012,
-    "port_return": 8.33,
+    "port_return": 8.05,
     "spy_return": 15.99,
-    "port_maxdd": -4.34,
+    "port_maxdd": -4.36,
     "spy_maxdd": -9.69,
     "winner": "SPY"
   },
   {
     "year": 2013,
-    "port_return": 16.72,
+    "port_return": 16.57,
     "spy_return": 32.31,
-    "port_maxdd": -7.16,
+    "port_maxdd": -7.17,
     "spy_maxdd": -5.55,
     "winner": "SPY"
   },
   {
     "year": 2014,
-    "port_return": 20.38,
+    "port_return": 20.35,
     "spy_return": 13.46,
-    "port_maxdd": -5.48,
+    "port_maxdd": -5.45,
     "spy_maxdd": -7.27,
     "winner": "Portfolio"
   },
   {
     "year": 2015,
-    "port_return": -0.47,
+    "port_return": -0.63,
     "spy_return": 1.23,
-    "port_maxdd": -11.59,
+    "port_maxdd": -11.62,
     "spy_maxdd": -11.91,
     "winner": "SPY"
   },
   {
     "year": 2016,
-    "port_return": 4.82,
+    "port_return": 5.0,
     "spy_return": 12.0,
-    "port_maxdd": -7.81,
+    "port_maxdd": -7.83,
     "spy_maxdd": -9.19,
     "winner": "SPY"
   },
   {
     "year": 2017,
-    "port_return": 17.54,
+    "port_return": 17.25,
     "spy_return": 21.71,
     "port_maxdd": -3.59,
     "spy_maxdd": -2.61,
@@ -25105,73 +25183,73 @@ const NTSX_YEARLY      = [
   },
   {
     "year": 2018,
-    "port_return": -7.22,
+    "port_return": -7.48,
     "spy_return": -4.57,
-    "port_maxdd": -15.41,
+    "port_maxdd": -15.84,
     "spy_maxdd": -19.35,
     "winner": "SPY"
   },
   {
     "year": 2019,
-    "port_return": 25.48,
+    "port_return": 25.07,
     "spy_return": 31.22,
-    "port_maxdd": -3.24,
+    "port_maxdd": -3.37,
     "spy_maxdd": -6.62,
     "winner": "SPY"
   },
   {
     "year": 2020,
-    "port_return": 20.15,
+    "port_return": 21.45,
     "spy_return": 18.33,
-    "port_maxdd": -22.17,
+    "port_maxdd": -21.51,
     "spy_maxdd": -33.72,
     "winner": "Portfolio"
   },
   {
     "year": 2021,
-    "port_return": 19.66,
+    "port_return": 20.19,
     "spy_return": 28.73,
-    "port_maxdd": -3.99,
+    "port_maxdd": -3.84,
     "spy_maxdd": -5.11,
     "winner": "SPY"
   },
   {
     "year": 2022,
-    "port_return": -12.61,
+    "port_return": -11.67,
     "spy_return": -18.18,
-    "port_maxdd": -13.96,
+    "port_maxdd": -12.65,
     "spy_maxdd": -24.5,
     "winner": "Portfolio"
   },
   {
     "year": 2023,
-    "port_return": 12.86,
+    "port_return": 12.25,
     "spy_return": 26.18,
-    "port_maxdd": -10.88,
+    "port_maxdd": -10.32,
     "spy_maxdd": -9.97,
     "winner": "SPY"
   },
   {
     "year": 2024,
-    "port_return": 8.5,
+    "port_return": 8.05,
     "spy_return": 24.89,
-    "port_maxdd": -5.86,
+    "port_maxdd": -5.81,
     "spy_maxdd": -8.41,
     "winner": "SPY"
   },
   {
     "year": 2025,
-    "port_return": 8.92,
+    "port_return": 9.22,
     "spy_return": 17.72,
-    "port_maxdd": -12.74,
+    "port_maxdd": -13.21,
     "spy_maxdd": -18.76,
     "winner": "SPY"
   },
   {
     "year": 2026,
-    "port_return": 11.9,
-    "spy_return": 15.06,
-    "port_maxdd": -5.15,
+    "port_return": 12.55,
+    "spy_return": 15.0,
+    "port_maxdd": -4.84,
     "spy_maxdd": -8.88,
     "winner": "SPY"
   }
@@ -25179,44 +25257,46 @@ const NTSX_YEARLY      = [
 const NTSX_METRICS     = {
   "portfolio": {
     "cagr": 8.67,
-    "max_dd": -30.83,
-    "sharpe": 0.41,
-    "sortino": 0.54,
+    "max_dd": -30.81,
+    "sharpe": 0.58,
+    "sortino": 0.81,
     "calmar": 0.28
   },
   "spy": {
     "cagr": 10.77,
     "max_dd": -55.19,
-    "sharpe": 0.42,
-    "sortino": 0.51,
+    "sharpe": 0.52,
+    "sortino": 0.73,
     "calmar": 0.2
   }
 };
 const NTSX_REB_DATES   = [
-  "2008-01-15",
-  "2008-10-06",
-  "2008-10-24",
+  "2008-01-16",
+  "2008-10-07",
+  "2008-10-27",
   "2008-12-17",
-  "2009-02-23",
-  "2009-05-04",
-  "2010-03-02",
-  "2011-05-05",
-  "2011-10-03",
-  "2012-01-27",
-  "2012-12-10",
-  "2013-12-23",
-  "2015-10-09",
-  "2016-08-12",
-  "2016-12-08",
-  "2018-11-16",
-  "2019-08-15",
-  "2020-03-16",
-  "2020-06-02",
-  "2021-01-06",
-  "2022-04-11",
-  "2022-06-09",
-  "2022-10-14",
-  "2022-11-15",
-  "2023-12-13",
-  "2024-11-11"
+  "2009-02-24",
+  "2009-07-17",
+  "2010-03-08",
+  "2011-05-09",
+  "2011-10-04",
+  "2012-02-14",
+  "2013-01-23",
+  "2014-04-24",
+  "2016-01-20",
+  "2016-04-28",
+  "2017-04-24",
+  "2019-03-22",
+  "2020-03-03",
+  "2020-03-19",
+  "2020-04-30",
+  "2020-11-25",
+  "2021-03-09",
+  "2022-04-18",
+  "2022-06-14",
+  "2022-07-29",
+  "2022-09-23",
+  "2022-12-02",
+  "2024-06-06",
+  "2025-09-12"
 ];

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-06",
+  "signal_day": "Tuesday",
+  "exec_day": "Wednesday",
+  "regime": "BULL",
+  "top3_picks": [
+    "AMD",
+    "META",
+    "INTC"
+  ],
+  "breadth_pct": 71.4,
+  "next_execution": "2026-10-07",
+  "allocation": {
+    "SPY": 35.0,
+    "AMD": 21.7,
+    "META": 21.7,
+    "INTC": 21.7
+  }
+}
