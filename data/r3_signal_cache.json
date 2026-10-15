@@ -1,18 +1,18 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-15",
   "signal_day": "Thursday",
   "exec_day": "Friday",
   "bt_score": 4.5,
-  "bear_score": 0.266,
-  "net_confidence": 0.33,
-  "vol_scalar": 0.425,
-  "deploy_pct": 49.5,
+  "bear_score": 0.3122,
+  "net_confidence": 0.3095,
+  "vol_scalar": 0.4394,
+  "deploy_pct": 51.8,
   "top3_picks": [
-    "AMD",
-    "META",
-    "INTC"
+    "MU",
+    "INTC",
+    "AMAT"
   ],
-  "breadth_pct": 71.4,
+  "breadth_pct": 58.1,
   "regime": "CAUTION",
-  "next_execution": "2026-10-09"
+  "next_execution": "2026-10-16"
 }
