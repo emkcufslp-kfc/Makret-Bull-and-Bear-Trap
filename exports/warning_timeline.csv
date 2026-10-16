@@ -1,4 +1,9 @@
 ﻿Date,Indicator,Status Change,Severity
+2026-10-16,Increasing downward momentum,Watch -> Warning,Warning
+2026-10-16,Top range formation & breakdown from range,Normal -> Watch,Watch
+2026-10-16,Technical indicators deteriorating,Normal -> Warning,Warning
+2026-10-16,Market breadth worsening,Normal -> Watch,Watch
+2026-10-16,VIX > 20 / VIX spike,Normal -> Watch,Watch
 2026-10-15,Market breadth worsening,Watch -> Normal,Normal
 2026-10-14,Market breadth worsening,Normal -> Watch,Watch
 2026-10-14,Theme stocks momentum weakening,Watch -> Warning,Warning
@@ -18,8 +23,3 @@
 2026-09-21,Market breadth worsening,Warning -> Watch,Watch
 2026-09-18,Technical indicators deteriorating,Warning -> Watch,Watch
 2026-09-18,Market breadth worsening,Watch -> Warning,Warning
-2026-09-17,Top range formation & breakdown from range,Watch -> Normal,Normal
-2026-09-16,Market breadth worsening,Warning -> Watch,Watch
-2026-09-16,Theme stocks momentum weakening,Warning -> Normal,Normal
-2026-09-15,Top range formation & breakdown from range,Normal -> Watch,Watch
-2026-09-14,Technical indicators deteriorating,Watch -> Warning,Warning
