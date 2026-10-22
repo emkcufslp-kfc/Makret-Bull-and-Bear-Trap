@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-22",
   "signal_day": "Thursday",
   "exec_day": "Friday",
   "bt_score": 4.5,
-  "bear_score": 0.3122,
-  "net_confidence": 0.3095,
-  "vol_scalar": 0.4394,
-  "deploy_pct": 51.8,
+  "bear_score": 0.3366,
+  "net_confidence": 0.2985,
+  "vol_scalar": 0.4963,
+  "deploy_pct": 50.3,
   "top3_picks": [
     "MU",
     "INTC",
@@ -14,5 +14,5 @@
   ],
   "breadth_pct": 58.1,
   "regime": "CAUTION",
-  "next_execution": "2026-10-16"
+  "next_execution": "2026-10-23"
 }
